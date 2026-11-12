@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "unique_metric_rows": 2048,
+  "test_seeds": 32,
+  "protocol_method_scenario_cases": 64,
+  "checks": [
+    "disjoint development/test seeds",
+    "all stored estimates and weights finite",
+    "weights within [0,1]",
+    "identical reference sending schedules",
+    "all injections use actual packets in allowed window",
+    "all replay source packets actually transmitted earlier",
+    "reported attack MSE agrees with saved trajectories"
+  ]
+}

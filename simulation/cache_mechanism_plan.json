@@ -1,0 +1,19 @@
+{
+  "id":"2026-11-11_cache_residency_mechanism_check",
+  "purpose":"Check whether the observed sustained-bias improvement truly depends on receiving later local measurements before next packet; not search a favorable attack amplitude",
+  "base_config":"simulation/config.json",
+  "models":["heterogeneous_sensing"],
+  "schedule":"controlled fixed gaps; before results compare short gap2 and long gap8",
+  "schedule_pattern":[2],
+  "schedule_phase":1,
+  "methods":["age_decay","packet_spatial","instant_cache","mean_cache"],
+  "scenarios":["clean","step","low_step"],
+  "splits":{"train":{"start":810000,"count":64},"calibration":{"start":820000,"count":64},"validation":{"start":830000,"count":48},"test":{"start":840000,"count":128}},
+  "episode_false_alarm_target":0.05,
+  "normal_validation_multipliers":[0.5,1.0,2.0,4.0],
+  "age_decay_half_lives":[1,2,4,8,1000000],
+  "primary":"mean vs instant under same schedule/cost; total receiver MSE and paired excess. Across gap lengths absolute MSE cannot be called same-cost comparison",
+  "hypothesis":"More residency measurements should create evidence accumulation opportunity, but process noise and covariance can erase it; report both directions and all failures",
+  "no_model_or_attack_change":true,
+  "no_new_novelty_claim":"Only explain narrow candidate already identified by exploratory screen; final independent confirmation required for later changes"
+}

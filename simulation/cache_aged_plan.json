@@ -1,0 +1,21 @@
+{
+  "id":"2026-11-11_age_value_matched_confirmation",
+  "reason":"Previous cache tests showed deterministic normal-data age weighting is a strong competitor; separate normal information-value decay from anomaly gating and compare detectors under identical age weights",
+  "previous_results_seen":true,
+  "model":"same heterogeneous_sensing defined BEFORE reference screen",
+  "base_config":"simulation/config.json",
+  "schedules":{"irregular":[1,2,3,4,6,8,6,4,3,3],"gap8":[8]},
+  "methods":["local","age_only","age_packet","age_instant","age_mean"],
+  "scenarios":["clean","step","half_step","low_step","replay_matched"],
+  "splits":{"train":{"start":910000,"count":64},"calibration":{"start":920000,"count":64},"validation":{"start":930000,"count":48},"test":{"start":940000,"count":128}},
+  "half_lives":[1,2,4,8,1000000],
+  "half_life_choice":"choose ONCE by normal validation MSE for age-only; all detectors share same value",
+  "detector_choices":[0.5,1,2,4],
+  "normal_alarm_limit":0.06,
+  "episode_target":0.05,
+  "shared_statistics":"train/cal cache residuals from age-only baseline; same full joint covariance for instantaneous/mean; empirical per-residency max threshold",
+  "primary":"age_mean vs age_instant receiver attack-window total MSE on step and half_step across both schedules; >=1% gain, Holm4, normalMSE <=2% degradation, observed episodeFPR<=6%",
+  "continue":"At least 2 of4 primary cases pass, with at least one in each schedule; otherwise retain at most narrow exploratory engineering signal",
+  "no_new_parameters_or_attack_direction_search":true,
+  "scope":"Last bounded confirmation this research round; no claim that standard residual mean or age weights are novel"
+}

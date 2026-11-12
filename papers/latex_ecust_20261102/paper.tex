@@ -1,0 +1,32 @@
+% !TeX program = xelatex
+% paper.pdf: two-column reading layout; paper_submission.pdf: official submission layout.
+\ifdefined\ECUSTSubmission
+\documentclass[a4paper,10pt]{article}
+\else
+\documentclass[a4paper,twocolumn,10pt]{article}
+\fi
+\usepackage[numbers,sort&compress,square,super]{natbib}
+\input{paper-style}
+\input{ecust-layout}
+\externaldocument[][nocite]{supplement}
+\hypersetup{pdftitle={随机触发估计的隐蔽攻击损伤界},pdfsubject={华东理工大学学报中文稿}}
+\begin{document}
+\ifdefined\ECUSTSubmission
+\ecustfront
+\else
+\twocolumn[\ecustfront]
+\fi
+\input{introduction}
+\input{ecust_typeset/theory}
+\input{record_design}
+\input{ecust_typeset/numerical}
+\input{conclusion}
+\ifdefined\ECUSTSubmission
+\input{english_abstract}
+\input{references}
+\input{ecust_typeset/graphical_abstract}
+\else
+\input{references}
+\input{english_abstract}
+\fi
+\end{document}

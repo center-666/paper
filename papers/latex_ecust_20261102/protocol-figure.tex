@@ -1,0 +1,21 @@
+\begin{ecustfigure}
+\centering
+\begin{tikzpicture}[>=Stealth,font=\fontsize{11}{13}\selectfont,
+ box/.style={draw,line width=.6pt,rounded corners=2pt,align=center,minimum height=12mm,text width=36mm,inner xsep=2pt},
+ edge/.style={->,line width=.7pt},
+ edge label/.style={font=\fontsize{10.5}{12.5}\selectfont}]
+\node[box] (sensor) {Sensor and\\random trigger};
+\node[box,right=18mm of sensor] (attack) {Payload modification\\$\widetilde y_t=y_t+a_t$};
+\node[box,right=18mm of attack] (receiver) {Receiver\\$(m_t^+,P_t^+)$};
+\node[box,below=20mm of attack] (logger) {Remote logger\\$(P_k^+,\gamma_{k+1})$};
+\draw[edge] (sensor) -- node[above,edge label]{sent $y_t$} (attack);
+\draw[edge] (attack) -- (receiver);
+\draw[edge] (sensor.north) -- ++(0,7mm) -| node[pos=.25,above,edge label]{trusted event $\gamma_t$} (receiver.north);
+\draw[edge] (receiver.south) -- ++(0,-39mm) -| node[pos=.25,below,edge label]{trusted actual prediction feedback $m_{t+1}^-$} (sensor.south);
+\draw[edge] (sensor.south east) -- ++(3mm,-9mm) -| node[pos=.25,above,edge label]{events} (logger.north west);
+\draw[edge] (receiver.south west) -- ++(-3mm,-9mm) coordinate (covturn)
+ -- node[midway,above,edge label,xshift=-2mm]{nominal $P_k^+$} (logger.north east |- covturn) -- (logger.north east);
+\end{tikzpicture}
+\figcaption{实际预测反馈下的载荷攻击与可信记录}{Payload attacks and trusted records with feedback of the receiver's actual prediction}
+\label{fig:protocol}
+\end{ecustfigure}

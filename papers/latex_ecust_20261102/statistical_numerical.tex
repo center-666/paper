@@ -1,0 +1,54 @@
+\subsection{二维算例中的统计代价}
+采用 $b_{\rm ref}=0.2$ 预先固定记录核，并在 $b=0.1$ 的两拍符号攻击下评价该核。
+首先比较同一输入记录产生的实值得分 $T$ 与二值输出 $B$，结果见表\ref{tab:vector-variance}。
+两者的总体均值相同，二值输出的方差则分别增加0.014176和0.043915（各列独立舍入），
+与 $\E[T(1-T)]$ 一致。因此，将输出限制为单比特会在相同实验次数下引入额外的抽样方差。
+
+\begin{table}[H]
+\centering\small
+\tabcaption{同攻击下实值得分与二值输出的方差}{Variances of the real-valued score and binary output under the same attack}
+\label{tab:vector-variance}
+\begin{tabular}{lrrr}
+\toprule
+工况 & $\operatorname{Var}(T)$ & $\operatorname{Var}(B)$ & 新增方差\\
+\midrule
+S & 0.222770 & 0.236945 & 0.014176 \\
+U & 0.203677 & 0.247592 & 0.043915 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering\small
+\tabcaption{总体中心处的95\%损伤上界示例}{Illustrative 95\% damage bounds evaluated at the population means}
+\label{tab:vector-confidence}
+\begin{tabular}{lrrrr}
+\toprule
+工况 & $C_B$ & 统计损伤证书 & 参考已知 & 两组估计\\
+\midrule
+S & 6.884 & 0.000458 & 0.085 & 0.120 \\
+U & 5.869 & 0.000902 & 0.073 & 0.102 \\
+\bottomrule
+\end{tabular}
+\end{table}
+表\ref{tab:vector-confidence}使用每组 $10^4$ 次独立实验对应的单侧Hoeffding余量，
+并令经验均值等于总体均值；这是置信界公式的示意计算，并非新增采样结果。
+S、U的统计损伤证书分别约为 $0.000458$ 和 $0.000902$，均高于相应真实损伤；
+加入有限样本余量后，上界明显增大。
+若目标阈值设为各自统计损伤证书加 $0.01$，
+式\eqref{eq:fs-planning}的已知参考中心规划值分别为709866和515964次；
+两组等量估计时分别为每组1419732和1031927次。
+这些总体中心处的规划值由本文的证书常数和Hoeffding界确定，
+并非统计认证所必需的最小实验次数。输出位数与实验次数应分别计入成本。
+
+最后，以仅利用峰值约束的上界为基准，评价记录提供的额外信息。
+当 $b=0.1$ 时，式\eqref{eq:peak-bound}给出的S、U损伤上界分别为0.033677和0.132695。
+在表\ref{tab:vector-confidence}的总体中心条件下，每组 $10^4$ 个样本所得的两种统计界
+均未收紧S的幅值界；对于U，无攻击参考已知和两组估计时则分别收紧约45.2\%和22.8\%。
+由未舍入参数反解单侧余量可得：若经验均值等于总体均值，
+使该Hoeffding统计界严格小于本文幅值界的最小整数样本数，
+在S中为64326次受攻实验，或两组各128652次；在U中相应为2971次，或两组各5942次。
+这些阈值对应总体中心处的界限交点，实际认证结果仍随样本均值而变化。
+记录能否收紧本文的幅值界取决于系统参数和样本量。
+实际使用时，可将有限样本置信上界与 $C_{\rm peak}b^2$ 取较小者；
+表\ref{tab:vector-confidence}单列统计界，以区分统计损伤证书与采样余量。

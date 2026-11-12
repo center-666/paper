@@ -1,0 +1,73 @@
+{
+  "id": "2026-11-11_cache_mean_confirmation",
+  "reason": "Exploratory screen found GLS gain only in heterogeneous full step; confirm against a stronger covariance-corrected prefix-mean baseline on fresh normal and test data",
+  "prior_results_seen": true,
+  "base_config": "simulation/config.json",
+  "models": [
+    "original",
+    "heterogeneous_sensing"
+  ],
+  "schedule": "same predeclared repeated irregular gaps",
+  "methods": [
+    "local",
+    "fresh_only_cap",
+    "age_decay",
+    "instant_cache",
+    "joint_cache",
+    "mean_cache",
+    "gls_cache"
+  ],
+  "scenarios": [
+    "clean",
+    "step",
+    "half_step",
+    "low_step",
+    "replay_matched"
+  ],
+  "splits": {
+    "train": {
+      "start": 610000,
+      "count": 64
+    },
+    "calibration": {
+      "start": 620000,
+      "count": 64
+    },
+    "validation": {
+      "start": 630000,
+      "count": 48
+    },
+    "test": {
+      "start": 640000,
+      "count": 128
+    }
+  },
+  "episode_false_alarm_target": 0.05,
+  "normal_validation_multipliers": [
+    0.5,
+    1.0,
+    2.0,
+    4.0
+  ],
+  "age_decay_half_lives": [
+    1,
+    2,
+    4,
+    8,
+    1000000
+  ],
+  "mean_baseline": "prefix arithmetic mean normalized using exact same fitted joint covariance C*S*C^T; no false independent-residual assumption",
+  "primary_model": "heterogeneous_sensing",
+  "primary_scenarios": [
+    "step",
+    "half_step"
+  ],
+  "primary_baselines": [
+    "instant_cache",
+    "mean_cache"
+  ],
+  "practical_gate": "candidate paired receiver attack-excess reduction >5% of comparator clean receiver attack-window MSE in BOTH step and half_step against BOTH baselines; Holm one-sided tests of paired practical margin across4; normal networkMSE increase<=2%; achieved normal episodeFPR<=6%",
+  "other_results": "original model, lowstep,Replay,joint,age-only,fresh-only/local all reported, not substitute primary outcomes",
+  "no_attack_parameter_tuning": true,
+  "stop": "If covariance-corrected arithmetic mean explains GLS gain, stop dynamic GLS novelty and evaluate only a narrower cache-episode evidence design with prior-art caveats"
+}

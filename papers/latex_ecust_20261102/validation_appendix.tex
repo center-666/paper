@@ -1,0 +1,84 @@
+\section{二维数值计算与复现方法}
+\label{app:validation}
+\subsection{事件树计算与条件高斯积分}
+主实验枚举 $\gamma_{0:k+1}$ 的全部 64 个事件串。
+对于两拍策略，先分别递推私有符号取正、负时的概率和偏差，再对同一事件串的质量求和。
+因此，TV 根据符号混合后的可见记录分布计算。
+本节两拍策略的条件偏差仅依赖事件串和符号，持续策略仅依赖事件历史，
+故两者的总体期望均可由有限事件树精确表达；表中数值是这些表达式的双精度计算结果。
+协方差直接由矩阵公式递推，不按浮点距离合并标签。
+
+实现中分别计算 $P-P(P+R_i)^{-1}P$ 与 $(P^{-1}+R_i^{-1})^{-1}$，
+以检查矩阵更新的一致性，并核对概率总和、协方差正定性、逐路径峰值、见证恒等式和有符号证书。
+其中，见证恒等式通过两种独立汇总方式核对：一是对目标偏差的条件指数项求平均，
+二是根据完整事件串的质量汇总下一时刻的静默位及其权重。
+两种结果的一致性用于检查数值实现。
+
+在预测均值平移为零的坐标下，另设 $x\sim N(d,P_0)$、$d=(0.13,-0.17)^\top$。
+积分测量噪声后，静默似然为正文所用的高斯因子。
+对 $x$ 进行二维 Gauss--Hermite 积分，独立计算静默概率、条件均值和协方差。
+静默概率的解析值为 $s_{\rm cur}(P_0)\allowbreak e^{-d^\top(Z^{-1}+P_0+R)^{-1}d/2}$；
+条件均值和协方差的解析值分别为 $(I-K_0(P_0))d$ 和 $F_0(P_0)$。
+这里 $s_{\rm cur}(P_0)=\det(I+Z^{1/2}(P_0+R)Z^{1/2})^{-1/2}$，以区别于正文的下一时刻函数 $s(P)$。
+每维分别使用 24 和 40 个节点，前者用于观察求积收敛，后者用于报告残差。
+两工况共享 $P_0,R,Z,d$，因此该项积分检验对应共同的测量更新。
+不同 $A$ 所产生的动态递推另由事件树和状态过程模拟检查。
+上述积分仅检验条件高斯更新，不计算完整载荷日志的联合 TV。
+
+\subsection{状态过程模拟}
+另行模拟状态、测量及触发随机数，分别运行无攻击和受攻接收器，以核对事件树计算的损伤。
+为降低配对损伤差的方差，每次实验的两个分支共享物理噪声及触发随机数，
+并分别依据各自的实际预测计算发送决定。因此，两分支允许产生不同事件。
+各次实验独立重置。取 $b=0.2$，每组进行 40 万次实验，使用预先固定的随机种子。
+两拍策略的补偿动作发生在目标误差评价之后，因而不影响此处的 $J_k$。
+结果见表\ref{tab:physical-validation}。
+\begin{table}[H]
+\centering\small
+\tabcaption{状态过程模拟与事件树损伤的比较（$b=0.2$）}{State-process simulation and event-tree damage ($b=0.2$)}
+\label{tab:physical-validation}
+\begin{tabular}{llrrr}
+\toprule
+工况 & 策略 & 事件树 $J_k$ & 物理模拟均值 & 近似95\%置信区间\\
+\midrule
+S & 持续定向 & 0.0051947 & 0.0051157 & [0.0049781,0.0052534]\\
+S & 两拍符号 & 0.0012874 & 0.0012858 & [0.0012289,0.0013427]\\
+U & 持续定向 & 0.0125900 & 0.0127272 & [0.0124110,0.0130434]\\
+U & 两拍符号 & 0.0022952 & 0.0023031 & [0.0022175,0.0023887]\\
+\bottomrule
+\end{tabular}\end{table}
+表中区间由配对损伤差的样本均值加减 1.96 倍标准误得到，依赖正态近似；
+附录\ref{app:statistical}的有限样本损伤保证则来自有界记录的 Hoeffding 不等式，二者适用对象不同。
+实验次数、随机种子和标准误保存在 \texttt{vector\_data/physical\_check.json}。
+
+\subsection{预算可行性与数值精度}
+表\ref{tab:vector-constants}列出式\eqref{eq:attainable}及幅值上界所用的构造常数。
+\begin{table}[H]
+\centering\small
+\tabcaption{二维算例中的解析构造常数}{Constants used in the two-dimensional attack constructions}
+\label{tab:vector-constants}
+\begin{tabular}{lrrrr}
+\toprule
+工况 & $L_v$ & $C_\pm$ & $C_{\rm peak}$ & $\kappa$\\
+\midrule
+S & 0.032185 & 3.663689 & 3.367727 & 1.000000 \\
+U & 0.057380 & 3.511111 & 13.269454 & 1.000000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+完整日志预算构造使用式\eqref{eq:Cpm}的显式 $C_\pm$，
+乘以 $\eta^2$ 得到 TV 的充分上界，再与零动作策略进行私有随机混合以满足预算。
+正文上下界图采用这些解析表达式的浮点计算结果，所示区间为最坏损伤的上下界，
+并非对全策略最优值或连续载荷联合 TV 的精确数值求解。
+二维表格采用普通浮点计算，不附带严格区间误差界。
+
+\input{label_refinement}
+
+\subsection{复现文件与运行方式}
+附件包含 Python 源代码、固定参数及完整的 CSV/JSON 结果，计算依赖 NumPy 和 Matplotlib。
+运行 \texttt{python experiments.py} 可重建二维表格与图，
+运行 \texttt{python physical\_check.py} 可复算状态过程模拟。
+版本、随机种子及源文件哈希保存在结果文件中，环境配置与稿件编译方法见附件说明。
+\texttt{review\_checks}目录提供确定性重放与标签核查脚本。
+正式S、U算例的入口为\texttt{experiments.py}；\texttt{vector\_core.py}由其作为函数库调用。
+正文图\ref{fig:vector-budget}的图例与解析界转折点由\texttt{plot\_review.py}从原参数和预算数据重建，无需再次模拟。

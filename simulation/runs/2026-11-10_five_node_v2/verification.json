@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "checks": [
+    "shared-process full joint covariance vs 4000 independent trials",
+    "nominal schedule replay identity",
+    "infinite-cap identity",
+    "attack causality",
+    "only actual historical sent packets used",
+    "fixed sending opportunities unchanged",
+    "direct cache corruption restricted to attacked edge",
+    "max communication gap",
+    "local estimator independent of communication attacks",
+    "Zhou threshold shared across receiver incoming edges"
+  ],
+  "joint_covariance_relative_error": 0.020222325502467872,
+  "expected_nominal_mse": 0.08406390308875505,
+  "empirical_nominal_mse": 0.08429416534445586,
+  "replay_injected_packets": 21,
+  "post_window_malicious_cache_observed": true,
+  "warning": "This validates implementation of the declared research model, not reproduction of all Yang/Zhou paper results."
+}

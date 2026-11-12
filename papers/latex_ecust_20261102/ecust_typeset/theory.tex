@@ -1,0 +1,294 @@
+\section{问题描述}
+\label{sec:model}
+\subsection{系统模型与通信协议}
+考虑如下 $n$ 维线性高斯系统，其中 $n\ge1$ 为固定有限维数：
+\begin{equation}
+ {\bm{x}}_{t+1}={\bm{A}}{\bm{x}}_t+{\bm{w}}_t,\qquad {\bm{y}}_t={\bm{x}}_t+{\bm{v}}_t\in\R^n.
+ \label{eq:model}
+\end{equation}
+其中，${\bm{x}}_t$ 为系统状态，${\bm{y}}_t$ 为全状态含噪测量，${\bm{w}}_t$ 和 ${\bm{v}}_t$ 分别为过程噪声与测量噪声。
+设 ${\bm{x}}_0\sim N({\bm{m}}_0,{\bm{P}}_0)$，${\bm{w}}_t\sim N(0,{\bm{Q}})$，${\bm{v}}_t\sim N(0,{\bm{R}})$，
+${\bm{A}}$ 可逆，${\bm{P}}_0,{\bm{R}},{\bm{Z}}\succ0$，${\bm{Q}}\succeq0$。初值、各时刻噪声及触发随机数相互独立。
+下文 ${\bm{I}}$ 为单位矩阵，$\|\cdot\|_2$ 对向量表示欧氏范数、对矩阵表示诱导谱范数，
+$\operatorname{tr}$ 表示矩阵的迹，$\lambda_{\min}$ 表示对称矩阵的最小特征值。
+
+图\ref{fig:protocol}给出了系统的通信与攻击过程。传感器通过可信及时反馈获得接收端实际预测 ${\bm{m}}_t^-$。
+反馈内容未被篡改，但其中的预测值仍可能含有先前载荷攻击造成的偏差。
+传感器以私有随机数 $U_t\sim\operatorname{Unif}[0,1]$ 生成发送事件：
+\begin{equation}
+ \begin{aligned}
+ \gamma_t=0\ &\Longleftrightarrow\ U_t\le g({\bm{y}}_t-{\bm{m}}_t^-),\\
+ g({\bm{z}})&=\exp(-{\bm{z}}^\top {\bm{Z}}{\bm{z}}/2).
+ \end{aligned}
+ \label{eq:trigger}
+\end{equation}
+$\gamma_t=0$ 表示静默，$\gamma_t=1$ 表示发送。事件位可信，攻击者在发送决定之后修改载荷，接收值为
+\begin{equation}
+ \widetilde {\bm{y}}_t={\bm{y}}_t+{\bm{a}}_t,\qquad \|{\bm{a}}_t\|_2\le b.
+ \label{eq:peak}
+\end{equation}
+其中，${\bm{a}}_t$ 为载荷修改量，$b$ 为逐路径的欧氏峰值上限，静默时令 ${\bm{a}}_t=0$。
+本文考虑无丢包、无时延的状态估计过程，估计值不参与物理系统的反馈控制。
+
+\input{ecust_typeset/protocol-figure}
+
+\subsection{状态估计与攻击模型}
+记 ${\bm{R}}_1={\bm{R}}$、${\bm{R}}_0={\bm{R}}+{\bm{Z}}^{-1}$。对正定矩阵 ${\bm{P}}$，定义
+\begin{equation}
+ \begin{aligned}
+ {\bm{K}}_i({\bm{P}})&={\bm{P}}({\bm{P}}+{\bm{R}}_i)^{-1},\\
+ F_i({\bm{P}})&={\bm{P}}-{\bm{P}}({\bm{P}}+{\bm{R}}_i)^{-1}{\bm{P}}\\
+       &=({\bm{P}}^{-1}+{\bm{R}}_i^{-1})^{-1},\quad i\in\{0,1\}.
+ \end{aligned}
+ \label{eq:gains}
+\end{equation}
+接收端按正常模型计算
+\begin{equation}
+ \begin{aligned}
+ {\bm{m}}_t^+&={\bm{m}}_t^-+\gamma_t{\bm{K}}_1({\bm{P}}_t^-)(\widetilde {\bm{y}}_t-{\bm{m}}_t^-),\\
+ {\bm{P}}_t^+&=F_{\gamma_t}({\bm{P}}_t^-),\\
+ {\bm{m}}_{t+1}^-&={\bm{A}}{\bm{m}}_t^+,\quad {\bm{P}}_{t+1}^-={\bm{A}}{\bm{P}}_t^+{\bm{A}}^\top+{\bm{Q}},
+ \end{aligned}
+ \label{eq:receiver}
+\end{equation}
+静默时按 ${\bm{m}}_t^+={\bm{m}}_t^-$ 更新，发送时使用收到的载荷。
+初值为 $({\bm{m}}_0^-,{\bm{P}}_0^-)=({\bm{m}}_0,{\bm{P}}_0)$。${\bm{P}}_t^\pm$ 是接收端按事件历史递推的名义协方差，
+受攻时还需计入估计偏差，才能得到真实均方误差。
+对任一有限时刻，全部事件历史对应的 ${\bm{P}}_t^\pm$ 均正定，且构成有限值集。
+增益矩阵 ${\bm{K}}_i$ 一般不对称，后文的范数估计不要求 $\|{\bm{K}}_i\|_2\le1$。
+
+用 $S$ 表示独立于物理过程和触发随机数的攻击私有种子，
+令 $Y_t^{\rm true}={\bm{y}}_t$ 在发送时成立，静默时为 $\bot$。定义
+\begin{equation}
+ \begin{aligned}
+ \mathcal G_t^-&=\sigma(S,\gamma_{0:t-1},Y_{0:t-1}^{\rm true}),\\
+ \mathcal G_t^+&=\mathcal G_t^-\vee\sigma(\gamma_t,Y_t^{\rm true}).
+ \end{aligned}
+ \label{eq:information}
+\end{equation}
+攻击策略为任意 $\mathcal G_t^+$ 可测且满足式\eqref{eq:peak}的随机因果策略。
+给定策略后，攻击者可由上述历史重建已实施的动作及接收端预测。
+攻击者不能读取隐藏状态、未发送测量、未来噪声或触发私有随机数。
+式\eqref{eq:information}中的扩展历史用于分析真实状态的条件分布。
+远端评估者没有真实已发送测量的副本，仅能利用下文定义的通信记录。
+
+\subsection{攻击损伤与统计隐蔽约束}
+固定目标时刻 $k\in\{0,1,\ldots\}$。下标 $0$ 表示无攻击协议的分布，$\pi$ 表示受攻协议的分布。
+两种运行均根据各自的实际预测形成发送事件，事件轨迹因而可以不同。
+以真实总均方误差（mean-square error，MSE）相对无攻击运行的增量衡量攻击损伤：
+\begin{equation}
+ J_k(\pi)=\E_\pi\|{\bm{x}}_k-{\bm{m}}_k^+\|_2^2-
+             \E_0\|{\bm{x}}_k-{\bm{m}}_k^+\|_2^2.
+ \label{eq:damage}
+\end{equation}
+令 $H_t$ 收集截至 $t$ 的可信事件、实际预测反馈及收到的载荷（静默记为 $\bot$）。
+日志保存实际发生的事件、反馈和接收值，因此其中的载荷可以包含攻击修改。
+为比较不同记录条件下的损伤保证，分别考虑完整日志、事件串及协方差标记记录：
+\begin{equation}
+ \begin{aligned}
+ R_{\rm full}&=H_{k+1},\\
+ R_{\rm bits}&=\gamma_{0:k+1},\\
+ R_{\rm marked}&=({\bm{P}}_k^+,\gamma_{k+1}).
+ \end{aligned}
+ \label{eq:records}
+\end{equation}
+其中，${\bm{P}}_k^+$ 为未经量化的完整协方差矩阵标签。三类记录均包含目标时刻后的下一事件，
+标记记录中的协方差用于确定该事件的正常概率基准。
+
+用 $\TV(\mu,\nu)=\sup_E|\mu(E)-\nu(E)|$ 记总变差，并定义
+\begin{equation}
+ \begin{aligned}
+ \Delta_j(\pi)&=\TV(\Law_\pi(R_j),\Law_0(R_j)),\\
+ V_j(b,\varepsilon)&=\sup_{\pi:\,\|{\bm{a}}_t\|_2\le b,\,\Delta_j(\pi)\le\varepsilon}J_k(\pi).
+ \end{aligned}
+ \label{eq:value}
+\end{equation}
+式\eqref{eq:value}以峰值 $b$ 和记录联合分布的TV预算 $\varepsilon$ 同时限制攻击，
+$V_j$ 表示满足这两项约束的最坏损伤。该隐蔽约束不依赖具体检测器的报警阈值。
+完整日志确定事件串，事件串进一步确定精确标记记录，故数据处理性质给出
+$\Delta_{\rm marked}\le\Delta_{\rm bits}\le\Delta_{\rm full}$。
+
+\section{双预算约束下的损伤分析}
+\label{sec:bounds}
+载荷修改一方面引入估计偏差，另一方面通过实际预测反馈改变后续发送概率。
+由于名义协方差由事件历史决定，计算真实损伤时需要同时考虑这两种影响。
+为此，先给出条件误差分解，再建立峰值约束与记录约束下的损伤上界，并构造达到相同阶数的攻击。
+\begin{lemma}[条件误差分解]
+\label{lem:gaussian}
+对任意允许策略，${\bm{x}}_t\mid\mathcal G_t^\pm$ 为高斯分布，均值记为 ${\bm{\mu}}_t^\pm$，
+协方差为 ${\bm{P}}_t^\pm$。令 ${\bm{d}}_t={\bm{\mu}}_t^--{\bm{m}}_t^-$、${\bm{D}}_t={\bm{\mu}}_t^+-{\bm{m}}_t^+$，则
+\begin{equation}
+ \begin{aligned}
+ {\bm{D}}_t&=({\bm{I}}-{\bm{K}}_{\gamma_t}({\bm{P}}_t^-)){\bm{d}}_t-\gamma_t {\bm{K}}_1({\bm{P}}_t^-){\bm{a}}_t,\\
+ {\bm{d}}_{t+1}&={\bm{A}}{\bm{D}}_t,\quad {\bm{d}}_0=0,\\
+ J_k(\pi)&=\E_\pi\|{\bm{D}}_k\|_2^2+
+ \E_\pi\operatorname{tr}{\bm{P}}_k^+-\E_0\operatorname{tr}{\bm{P}}_k^+.
+ \end{aligned}
+ \label{eq:decomposition}
+\end{equation}
+\end{lemma}
+\begin{proof}
+发送时，给定真实测量后，发送事件的似然因子不再依赖状态，
+故在后验归一化时消去，条件分布按标准高斯公式更新。
+静默时，将触发概率对测量噪声积分，所得似然正比于
+$\exp[-({\bm{x}}_t-{\bm{m}}_t^-)^\top {\bm{R}}_0^{-1}({\bm{x}}_t-{\bm{m}}_t^-)/2]$。
+因此静默后的条件均值为 ${\bm{\mu}}_t^-+{\bm{K}}_0({\bm{P}}_t^-)({\bm{m}}_t^--{\bm{\mu}}_t^-)$，
+协方差为 $F_0({\bm{P}}_t^-)$。将条件均值与接收端估计相减，得到偏差递推。
+${\bm{x}}_t-{\bm{\mu}}_t^+$ 在给定 $\mathcal G_t^+$ 后均值为零，
+误差平方的交叉项因此具有零期望，得到最后一式。
+完整的归纳证明见附录\ref{app:conditional}。
+\end{proof}
+
+式\eqref{eq:decomposition}中，第一项为条件偏差引起的损伤，后两项之差来自事件历史概率的变化。
+同一事件历史下的协方差递推不变，但不同历史的概率权重可以改变，因此协方差变化项可能为负。
+单个策略的 $J_k$ 也可能为负；最坏值 $V_j$ 的可行策略包含零动作策略，故 $V_j\ge0$。
+在此基础上，可得以下双预算损伤界。
+
+\Needspace{13\baselineskip}
+\begin{theorem}[任意固定维数下的最坏损伤界]
+\label{thm:main}
+固定式\eqref{eq:model}--\eqref{eq:information}的模型、有限 $k$ 及参考峰值
+$b_{\rm ref}>0$。存在 $0<c\le C<\infty$，使所有 $0<b\le b_{\rm ref}$、
+$0\le\varepsilon\le1$ 及 $j\in\{\mathrm{full},\mathrm{bits},\mathrm{marked}\}$ 满足
+\begin{equation}
+ c\min\{b^2,\varepsilon\}\le V_j(b,\varepsilon)
+ \le C\min\{b^2,\varepsilon\}.
+ \label{eq:main}
+\end{equation}
+特别地，$V_j(b,0)=0$。常数可依赖维数、模型、$k$ 和 $b_{\rm ref}$，
+但不依赖变化的 $b,\varepsilon$。
+\end{theorem}
+
+\subsection{峰值约束下的损伤上界}
+令 $\mathcal P_t^-$ 为长度 $t$ 的所有事件前缀产生的先验协方差有限值集。
+以下最大值均取 ${\bm{P}}\in\mathcal P_t^-$、$i\in\{0,1\}$，定义
+\begin{equation}
+ \begin{aligned}
+ \alpha_t&=\max_{{\bm{P}},i}\|{\bm{I}}-{\bm{K}}_i({\bm{P}})\|_2,\quad
+ \beta_t=\max_{\bm{P}}\|{\bm{K}}_1({\bm{P}})\|_2,\\
+ r_0&=\beta_0,\quad r_t=\alpha_t\|{\bm{A}}\|_2r_{t-1}+\beta_t,\\
+ \ell_0&=0,\quad \ell_t=\|{\bm{A}}\|_2r_{t-1}\quad(t\ge1).
+ \end{aligned}
+ \label{eq:radii}
+\end{equation}
+由引理\ref{lem:gaussian}递推可得 $\|{\bm{d}}_t\|_2\le\ell_tb$、$\|{\bm{D}}_t\|_2\le r_tb$。
+这两个半径界对全部允许策略和事件历史统一成立。
+给定事件前缀 $h$，令 ${\bm{\Sigma}}_h={\bm{P}}_t^-(h)+{\bm{R}}$、
+${\bm{W}}_h=({\bm{Z}}^{-1}+{\bm{\Sigma}}_h)^{-1}$、
+$s_h=\det({\bm{I}}+{\bm{Z}}^{1/2}{\bm{\Sigma}}_h{\bm{Z}}^{1/2})^{-1/2}$。高斯积分给出
+\begin{equation}
+ \Pr_\pi(\gamma_t=0\mid h)
+ =s_h\E_\pi[e^{-{\bm{d}}_t^\top {\bm{W}}_h{\bm{d}}_t/2}\mid h].
+ \label{eq:prefix-silence}
+\end{equation}
+无攻击时的条件静默概率为 $s_h$。由 ${\bm{W}}_h\preceq {\bm{Z}}$ 及 $1-e^{-u}\le u$，
+每步概率差至多为 $\|{\bm{Z}}\|_2\ell_t^2b^2/2$。
+在共同事件前缀上依次耦合两个伯努利条件分布，得到
+\begin{equation}
+ \TV(\Law_\pi(\gamma_{0:k}),\Law_0(\gamma_{0:k}))
+ \le\frac{\|{\bm{Z}}\|_2b^2}{2}\sum_{t=1}^k\ell_t^2.
+ \label{eq:prefix-tv}
+\end{equation}
+记 $\mathcal P_k^+$ 为后验协方差有限值集，
+$\Omega_k=\max_{{\bm{P}}\in\mathcal P_k^+}\operatorname{tr}{\bm{P}}-
+\min_{{\bm{P}}\in\mathcal P_k^+}\operatorname{tr}{\bm{P}}$。
+对协方差迹应用有界函数期望差的TV界，再结合式\eqref{eq:decomposition}，得到
+\begin{equation}
+ J_k\le C_{\rm peak}b^2,\qquad
+ C_{\rm peak}=r_k^2+\frac{\Omega_k\|{\bm{Z}}\|_2}{2}\sum_{t=1}^k\ell_t^2.
+ \label{eq:peak-bound}
+\end{equation}
+
+\subsection{记录约束下的损伤上界}
+令 ${\bm{P}}={\bm{P}}_k^+$、${\bm{D}}={\bm{D}}_k$、$Y=\ind\{\gamma_{k+1}=0\}$，定义
+\begin{equation}
+ \begin{aligned}
+ {\bm{\Sigma}}({\bm{P}})&={\bm{A}}{\bm{P}}{\bm{A}}^\top+{\bm{Q}}+{\bm{R}},\\
+ s({\bm{P}})&=\det({\bm{I}}+{\bm{Z}}^{1/2}{\bm{\Sigma}}({\bm{P}}){\bm{Z}}^{1/2})^{-1/2},\\
+ w({\bm{P}})&=s({\bm{P}})^{-1},\\
+ {\bm{H}}({\bm{P}})&=\tfrac12 {\bm{A}}^\top[{\bm{Z}}^{-1}+{\bm{\Sigma}}({\bm{P}})]^{-1}{\bm{A}}.
+ \end{aligned}
+ \label{eq:witness-functions}
+\end{equation}
+目标时刻的偏差 ${\bm{D}}$ 经状态转移成为下一时刻的预测偏差 ${\bm{A}}{\bm{D}}$。
+给定 $\mathcal G_k^+$，下一测量相对实际预测服从 $N({\bm{A}}{\bm{D}},{\bm{\Sigma}}({\bm{P}}))$，因而
+\begin{equation}
+ \begin{aligned}
+ \E_\pi[Y\mid\mathcal G_k^+]&=s({\bm{P}})e^{-{\bm{D}}^\top {\bm{H}}({\bm{P}}){\bm{D}}},\\
+ \E_0[w({\bm{P}})Y]&=1,\quad
+ \E_\pi[w({\bm{P}})Y]=\E_\pi e^{-{\bm{D}}^\top {\bm{H}}({\bm{P}}){\bm{D}}}.
+ \end{aligned}
+ \label{eq:witness}
+\end{equation}
+由式\eqref{eq:witness}可知，当前估计偏差通过反馈降低下一时刻的条件静默概率。
+$s({\bm{P}})$ 为相应协方差下的正常概率，权重 $w({\bm{P}})$ 将不同事件历史的正常基准统一为1。
+因此，加权静默统计量的期望差能够反映当前偏差；下一时刻的载荷修改发生在发送决定之后，不影响这一关系。
+${\bm{A}}$ 可逆使全部 ${\bm{H}}({\bm{P}})\succ0$。令
+\begin{equation}
+ \begin{aligned}
+ h_*&=\min_{{\bm{P}}\in\mathcal P_k^+}\lambda_{\min}({\bm{H}}({\bm{P}})),\quad
+ M=\max_{{\bm{P}}\in\mathcal P_k^+}w({\bm{P}}),\\
+ B_*&=r_kb_{\rm ref},\quad q=\frac{1-e^{-h_*B_*^2}}{B_*^2}>0.
+ \end{aligned}
+ \label{eq:witness-constants}
+\end{equation}
+凹函数 $1-e^{-h_*x}$ 在 $[0,B_*^2]$ 上的割线给出
+$1-e^{-{\bm{D}}^\top {\bm{H}}({\bm{P}}){\bm{D}}}\ge q\|{\bm{D}}\|_2^2$。又 $0\le w({\bm{P}})Y\le M$，故
+\begin{equation}
+ \begin{aligned}
+ q\E_\pi\|{\bm{D}}\|_2^2&\le\E_0[w({\bm{P}})Y]-\E_\pi[w({\bm{P}})Y]\\
+ &\le M\Delta_{\rm marked}(\pi),\\
+ J_k(\pi)&\le C_{\rm record}\Delta_{\rm marked}(\pi),\\
+ C_{\rm record}&=M/q+\Omega_k.
+ \end{aligned}
+ \label{eq:record-bound}
+\end{equation}
+将式\eqref{eq:peak-bound}与式\eqref{eq:record-bound}结合，并利用三类记录间的数据处理关系，
+即可得到定理\ref{thm:main}的上界。该上界同时计入偏差平方与协方差期望变化。
+
+\subsection{可达到损伤下界的攻击构造}
+为证明上述损伤阶数可以达到，需要构造满足因果权限与两项预算的攻击。
+以下采用私有随机符号，并通过下一拍补偿控制完整日志的联合分布差异。
+固定单位方向 ${\bm{v}}\in\R^n$，在目标时刻前不施加攻击。
+令 $h=\gamma_{0:k-1}$（$k=0$ 时为空串），${\bm{K}}_h={\bm{K}}_1({\bm{P}}_k^-(h))$，并取
+\begin{equation}
+ \kappa=\bigl[\max\{1,\max_h\|{\bm{A}}{\bm{K}}_h{\bm{v}}\|_2\}\bigr]^{-1},\quad \eta=\kappa b.
+ \label{eq:kappa}
+\end{equation}
+目标时刻发送时注入 ${\bm{a}}_k=\sigma\eta {\bm{v}}$，其中 $\sigma$ 是私有的等概率正负符号。
+若下一时刻也发送，注入 ${\bm{a}}_{k+1}=\sigma\eta {\bm{A}}{\bm{K}}_h{\bm{v}}$；
+目标时刻静默或其他时刻均不攻击。两个动作都满足欧氏峰值 $b$。
+该策略只使用事件历史、私有符号及已知模型，因而满足因果信息约束。
+
+记无攻击运行的前缀概率为 $w_h$、目标时刻的条件发送概率为 $p_h$。
+由于目标时刻之前未施加攻击，目标时刻的协方差分布保持不变，故
+\begin{equation}
+ J_k=L_{\bm{v}}\eta^2,\qquad L_{\bm{v}}=\sum_hw_hp_h\|{\bm{K}}_h{\bm{v}}\|_2^2>0.
+ \label{eq:lower-damage}
+\end{equation}
+\input{ecust_typeset/main_joint_kernel}
+再在实验开始前以私有概率
+$\lambda=\min\{1,\varepsilon/(C_\pm\kappa^2b^2)\}$ 选择上述攻击，其余情况下不施加攻击，得到
+\begin{equation}
+ \begin{aligned}
+ \Delta_{\rm full}&\le\varepsilon,\\
+ J_k&=L_{\bm{v}}\min\{\kappa^2b^2,\varepsilon/C_\pm\}.
+ \end{aligned}
+ \label{eq:attainable}
+\end{equation}
+取 $c=L_{\bm{v}}\min\{\kappa^2,C_\pm^{-1}\}$ 即得全部三类记录的下界，主定理得证。
+上述构造中的下一拍动作仅补偿接收创新的平移，不消除条件估计偏差，
+也不改变已经形成的目标时刻损伤。它使载荷分布与后续事件概率能够在同一联合核中分析，从而满足完整日志预算。
+
+\begin{remark}[维数、观测条件和时间范围]
+式\eqref{eq:main}对任意固定 $n$ 给出同一阶数结构，其中的常数依赖具体维数与模型。
+可逆性保证下一时刻事件所对应的二次型在全部偏差方向上正定。
+若 ${\bm{A}}$ 奇异，则对非零 ${\bm{v}}\in\ker {\bm{A}}$ 有 ${\bm{v}}^\top {\bm{H}}({\bm{P}}){\bm{v}}=0$；
+沿该方向的当前偏差不改变下一时刻预测均值，因而不能由下一静默概率约束。
+这是单步事件感知全部偏差方向所需的结构条件。
+若使用部分测量 ${\bm{y}}={\bm{C}}{\bm{x}}+{\bm{v}}$，对应二次型含有 ${\bm{C}}{\bm{A}}$，
+仅凭 $({\bm{A}},{\bm{C}})$ 可观不能保证单步二次型正定。
+因此，本节结论适用于全状态含噪测量及固定有限时刻；
+部分测量情形与时间一致界需要另行分析。
+有限时刻分析允许 ${\bm{A}}$ 不稳定。
+\end{remark}

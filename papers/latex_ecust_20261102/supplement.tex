@@ -1,0 +1,28 @@
+% !TeX program = xelatex
+\documentclass[final,3p,11pt]{elsarticle}
+\input{paper-style}
+\externaldocument{paper}
+\hypersetup{pdftitle={随机触发估计的隐蔽攻击损伤界：补充材料}}
+\begin{document}
+\begin{center}
+{\Large\bfseries 随机触发估计的隐蔽攻击损伤界}\par\medskip
+{\large 补充材料：理论证明、数值复现与统计应用}\par\smallskip
+{\small Supplementary Material: Proofs, Reproducibility, and Statistical Applications}
+\end{center}
+本补充材料给出条件高斯结构、双预算损伤界及记录删减反例的证明，并说明二维实验的计算和复现方法。最后给出记录编码及有限样本应用。
+主定理的证明适用于正文假设下的任意固定有限维数；末事件位反例为标量系统中的存在性构造。
+本补充材料与正文共用参考文献表及引用编号。公式编号以 S 为前缀，跨文件引用链接至\href{paper.pdf}{正文}。
+\appendix
+\renewcommand{\thesection}{\Alph{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\counterwithin{table}{section}
+\counterwithout{equation}{section}
+\renewcommand{\theequation}{S\arabic{equation}}
+\setcounter{equation}{0}
+\renewcommand{\thepage}{S\arabic{page}}
+\input{vector_proof}
+\input{scalar_counterexample}
+\input{validation_appendix}
+\input{statistical_extension}
+\input{record_condition_appendix}
+\end{document}

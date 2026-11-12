@@ -1,0 +1,95 @@
+% Local anonymous reading layout informed by the two specified ECUST articles.
+\usepackage[UTF8,fontset=windows,scheme=plain]{ctex}
+\usepackage{amsmath,amssymb,amsthm,bm,mathtools}
+\usepackage{newtxmath}
+\setmainfont{TeX Gyre Termes}
+\setsansfont{TeX Gyre Heros}
+\setmonofont{Latin Modern Mono}
+\usepackage{graphicx,booktabs,array,tabularx,longtable}
+\usepackage{enumitem,needspace}
+\usepackage{etoolbox}
+% Provide a standard paragraph command before titlesec inspects elsarticle.
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}{3.25ex \@plus 1ex \@minus .2ex}{-1em}{\normalfont\normalsize\bfseries}}
+\makeatother
+\usepackage{titlesec}
+\usepackage{cuted}
+\usepackage{placeins}
+\usepackage{float}
+\usepackage[font=small,labelfont=bf,labelsep=quad,justification=raggedright,singlelinecheck=false]{caption}
+\usepackage{xcolor,tikz}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\usepackage{xurl}
+\usepackage{xr-hyper}
+\usepackage[unicode,hidelinks]{hyperref}
+\usepackage{bookmark}
+\urlstyle{same}
+\newcommand{\paperdoi}[1]{\begingroup\useOriginalUrlSetting\href{https://doi.org/#1}{\nolinkurl{#1}}\endgroup}
+% Keep remote-link temporary state local under the installed XeTeX driver.
+\makeatletter
+\let\paper@linkfile\hyper@linkfile
+\def\hyper@linkfile#1#2#3{\begingroup\paper@linkfile{#1}{#2}{#3}\endgroup}
+% This anonymous reading version has no author/address block yet.
+\patchcmd{\MaketitleBox}{\vskip18pt}{\vskip12pt}{}{}
+\patchcmd{\MaketitleBox}{\vskip10pt}{\vskip0pt}{}{}
+\patchcmd{\MaketitleBox}{\vskip36pt}{\vskip6pt}{}{}
+\makeatother
+\providecommand{\biboptions}[1]{}
+\providecommand{\abstracttitle}[1]{}
+\providecommand{\keywordtitle}[1]{}
+\providecommand{\keywordtitlesep}[1]{}
+\biboptions{numbers,sort&compress,super}
+\AtBeginDocument{\setcitestyle{square,super}}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+\titlespacing*{\section}{0pt}{12pt plus 2pt}{8pt}
+\titlespacing*{\subsection}{0pt}{8pt plus 2pt}{5pt}
+\renewcommand{\bibfont}{\small}
+\setlength{\bibsep}{1pt plus 1pt}
+\AtBeginEnvironment{thebibliography}{\interlinepenalty=10000}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\newcommand{\figcaption}[2]{\caption{#1\\Fig.\,\thefigure\quad #2}}
+\newcommand{\tabcaption}[2]{\caption{#1\\Table\,\thetable\quad #2}}
+\renewcommand{\refname}{参考文献}
+\renewcommand{\appendixname}{附录}
+\abstracttitle{摘要}
+\keywordtitle{\normalfont\bfseries 关键词}
+\keywordtitlesep{：}
+\newcommand{\E}{\mathbb E}
+\newcommand{\TV}{\operatorname{TV}}
+\newcommand{\Law}{\mathcal L}
+\newcommand{\R}{\mathbb R}
+\newcommand{\ind}{\mathbf 1}
+\newtheoremstyle{paperplain}{6pt}{6pt}{\normalfont}{}{
+\bfseries}{.}{.5em}{}
+\theoremstyle{paperplain}
+\newtheorem{theorem}{定理}
+\newtheorem{lemma}{引理}
+\newtheorem{proposition}{命题}
+\newtheorem{corollary}{推论}
+\theoremstyle{remark}
+\newtheorem{remark}{注}
+\renewcommand{\proofname}{证明}
+\setlength{\emergencystretch}{1.5em}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0pt}
+\setlength{\abovedisplayskip}{6pt plus 2pt minus 2pt}
+\setlength{\belowdisplayskip}{6pt plus 2pt minus 2pt}
+\setlength{\abovedisplayshortskip}{3pt plus 2pt}
+\setlength{\belowdisplayshortskip}{3pt plus 2pt}
+\setlength{\textfloatsep}{12pt plus 2pt minus 3pt}
+\setlength{\dbltextfloatsep}{12pt plus 2pt minus 3pt}
+\setlength{\floatsep}{10pt plus 2pt minus 2pt}
+\setlist{nosep,leftmargin=1.6em,topsep=3pt}
+\setcounter{topnumber}{3}
+\setcounter{dbltopnumber}{3}
+\setcounter{totalnumber}{5}
+\renewcommand{\topfraction}{.9}
+\renewcommand{\bottomfraction}{.8}
+\renewcommand{\textfraction}{.08}
+\renewcommand{\floatpagefraction}{.75}
+\renewcommand{\dbltopfraction}{.9}
+\renewcommand{\dblfloatpagefraction}{.75}
+\raggedbottom
+\pagestyle{plain}

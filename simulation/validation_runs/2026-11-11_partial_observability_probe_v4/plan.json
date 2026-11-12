@@ -1,0 +1,209 @@
+{
+  "id": "2026-11-11_partial_observability_probe",
+  "reason": "One predeclared pressure check after targeted novelty audit: test whether the narrow cache-residency signal survives when each node measures only one state component",
+  "previous_results_seen": true,
+  "base_config": "simulation/config.json",
+  "A": [
+    [
+      1.0,
+      0.1
+    ],
+    [
+      0.0,
+      1.01
+    ]
+  ],
+  "H_matrices": [
+    [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0
+      ]
+    ],
+    [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0
+      ]
+    ],
+    [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ]
+  ],
+  "R_matrices": [
+    [
+      [
+        0.05,
+        0.0
+      ],
+      [
+        0.0,
+        0.05
+      ]
+    ],
+    [
+      [
+        0.05,
+        0.0
+      ],
+      [
+        0.0,
+        0.05
+      ]
+    ],
+    [
+      [
+        0.05,
+        0.0
+      ],
+      [
+        0.0,
+        0.05
+      ]
+    ],
+    [
+      [
+        0.05,
+        0.0
+      ],
+      [
+        0.0,
+        0.05
+      ]
+    ],
+    [
+      [
+        0.05,
+        0.0
+      ],
+      [
+        0.0,
+        0.05
+      ]
+    ]
+  ],
+  "schedules": {
+    "gap8": [
+      8
+    ],
+    "irregular": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      8,
+      6,
+      4,
+      3,
+      3
+    ]
+  },
+  "phase_step": 1,
+  "attack_edges": {
+    "primary": [
+      0,
+      1
+    ],
+    "external_reversed_sensitivity": [
+      1,
+      2
+    ]
+  },
+  "methods": [
+    "local",
+    "age_only",
+    "mean",
+    "carry_energy_cusum",
+    "carry_signed_cusum"
+  ],
+  "scenarios": [
+    "clean",
+    "step",
+    "half_step"
+  ],
+  "splits": {
+    "train": {
+      "start": 1310000,
+      "count": 48
+    },
+    "calibration": {
+      "start": 1320000,
+      "count": 48
+    },
+    "design": {
+      "start": 1330000,
+      "count": 32
+    },
+    "tune": {
+      "start": 1340000,
+      "count": 32
+    },
+    "normal_audit": {
+      "start": 1350000,
+      "count": 32
+    },
+    "test": {
+      "start": 1360000,
+      "count": 192
+    }
+  },
+  "half_lives": [
+    1,
+    2,
+    4,
+    8,
+    1000000
+  ],
+  "window_length": 4,
+  "signed_cusum_reference": 0.5,
+  "threshold_tuning_rounds": 8,
+  "normal_target": 0.05,
+  "normal_acceptance": {
+    "max_network_mse_increase": 0.02,
+    "max_receiver_clean_mse_increase": 0.02,
+    "max_steady_fpr_difference": 0.005,
+    "target_steady_fpr_range": [
+      0.035,
+      0.065
+    ]
+  },
+  "primary": "Descriptive pressure check only: mean versus both carry CUSUM baselines on primary-edge step under gap8 and irregular; no promotion gate replaces the main validation",
+  "scope": "Each node is rank-one measured; collective measurement directions alternate across the ring. No claim of general local-unobservability stability.",
+  "no_test_retuning": true
+}

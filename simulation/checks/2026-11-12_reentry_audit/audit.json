@@ -1,0 +1,97 @@
+{
+  "new_simulations": false,
+  "geometry": [
+    {
+      "node": 0,
+      "measurement_rank": 1,
+      "dynamic_observability_rank": 2,
+      "observable": true
+    },
+    {
+      "node": 1,
+      "measurement_rank": 1,
+      "dynamic_observability_rank": 1,
+      "observable": false
+    },
+    {
+      "node": 2,
+      "measurement_rank": 1,
+      "dynamic_observability_rank": 2,
+      "observable": true
+    },
+    {
+      "node": 3,
+      "measurement_rank": 1,
+      "dynamic_observability_rank": 1,
+      "observable": false
+    },
+    {
+      "node": 4,
+      "measurement_rank": 1,
+      "dynamic_observability_rank": 2,
+      "observable": true
+    }
+  ],
+  "steady_test_rates": [
+    {
+      "schedule": "gap8",
+      "method": "mean",
+      "phase": "steady",
+      "complete_episode_count": 81792,
+      "false_isolations": 4034,
+      "test_false_isolation_rate": 0.049320226917057904,
+      "source": "test saved clean weights; complete episodes; primary edge-label run only"
+    },
+    {
+      "schedule": "gap8",
+      "method": "carry_energy_cusum",
+      "phase": "steady",
+      "complete_episode_count": 81792,
+      "false_isolations": 3590,
+      "test_false_isolation_rate": 0.04389182316118936,
+      "source": "test saved clean weights; complete episodes; primary edge-label run only"
+    },
+    {
+      "schedule": "gap8",
+      "method": "carry_signed_cusum",
+      "phase": "steady",
+      "complete_episode_count": 81792,
+      "false_isolations": 4139,
+      "test_false_isolation_rate": 0.0506039710485133,
+      "source": "test saved clean weights; complete episodes; primary edge-label run only"
+    },
+    {
+      "schedule": "irregular",
+      "method": "mean",
+      "phase": "steady",
+      "complete_episode_count": 162816,
+      "false_isolations": 7625,
+      "test_false_isolation_rate": 0.04683200668238994,
+      "source": "test saved clean weights; complete episodes; primary edge-label run only"
+    },
+    {
+      "schedule": "irregular",
+      "method": "carry_energy_cusum",
+      "phase": "steady",
+      "complete_episode_count": 162816,
+      "false_isolations": 7540,
+      "test_false_isolation_rate": 0.04630994496855346,
+      "source": "test saved clean weights; complete episodes; primary edge-label run only"
+    },
+    {
+      "schedule": "irregular",
+      "method": "carry_signed_cusum",
+      "phase": "steady",
+      "complete_episode_count": 162816,
+      "false_isolations": 8059,
+      "test_false_isolation_rate": 0.049497592374213834,
+      "source": "test saved clean weights; complete episodes; primary edge-label run only"
+    }
+  ],
+  "corrections": [
+    "rank(H)=1 does not imply dynamic unobservability",
+    "v4 REPORT previously labeled independent normal-audit rates as test rates",
+    "v3 completed all saved test trajectories before summary export failed"
+  ],
+  "source_config_sha256": "8ac9cd3c2c46d1784014061412b26962067e4eb014ee508d4825c81d3ced30d5"
+}

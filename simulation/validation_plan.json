@@ -1,0 +1,31 @@
+{
+  "plan_id":"2026-11-10_predeclared_validation_v1",
+  "base_config":"simulation/config.json",
+  "purpose":"Validate the incremental value of interval-tail calibration after implementation review; do not retune from test results",
+  "methods":["yang","local","capped","spatial_hard","pooled","interval_scale","interval_tail","tail_shared_scale","zhou_random"],
+  "splits":{
+    "train":{"start":110000,"count":64},
+    "calibration":{"start":120000,"count":64},
+    "validation":{"start":130000,"count":48},
+    "test":{"start":140000,"count":128}
+  },
+  "regimes":[
+    {"id":"base","delta_squared":0.12,"schedule":"normal_reference","primary":true},
+    {"id":"dense","delta_squared":0.03,"schedule":"normal_reference","primary":true},
+    {"id":"sparse","delta_squared":0.48,"schedule":"normal_reference","primary":true},
+    {"id":"repeated_gaps","delta_squared":0.12,"schedule":"repeated_pattern","primary":false}
+  ],
+  "common_scenarios":["clean","step","ramp","low_step","replay_packet"],
+  "extra_repeated_scenarios":["replay_matched"],
+  "low_bias_factor":0.25,
+  "repeated_gap_pattern":[1,2,3,4,6,8,6,4,3,3],
+  "node_phase_step":3,
+  "matched_replay_time_lag":80,
+  "time_windows":{"early":[50,149],"pre_attack":[150,199],"attack":[200,249],"recovery":[250,299],"late":[300,399]},
+  "primary_comparison":{"candidate":"tail_shared_scale","baseline":"interval_scale","scenarios":["step","ramp","replay_packet"],"metric":"mse_attack_window","practical_relative_gain":0.01,"family_alpha":0.05,"correction":"Holm across 9 paired one-sided t tests of candidate-(1-0.01)*baseline"},
+  "normal_acceptance":{"maximum_relative_mse_degradation":0.02,"maximum_attack_window_low_weight_rate_difference":0.01,"maximum_mean_weight_difference":0.02},
+  "continuation_gate":"At least two primary attack types each pass in at least two primary regimes, with normal acceptance checks; otherwise no positive contribution claim",
+  "exploratory_only":["low_step","repeated_gaps","interval_tail deployment calibration versus interval_scale","strong-baseline rankings","calibration fairness by time window"],
+  "stopping_rule":"Run all predeclared cases once after checks; preserve failures; no parameter or attack selection based on new test output",
+  "limitations":"One full-local-observability isotropic model; intervals conditional on fitted normal-data calibrations; no general stability proof or formal novelty claim"
+}

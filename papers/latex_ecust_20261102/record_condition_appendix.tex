@@ -1,0 +1,58 @@
+\section{同一攻击下的记录观察时域对照}
+\label{app:record-ablation}
+本节使用附录\ref{app:mh}已经定义的一步MH攻击，并在目标时刻后停止攻击。
+沿用 $w_h,f_h,K_h,P_h^s$ 的定义，令
+\begin{equation}
+ A_h(b)=\int\min\{f_h(u),f_h(u+bv)\}\,du,\qquad
+ t_h=b^2(K_hv)^\top H(P_h^s)(K_hv).
+ \label{eq:mh-overlap}
+\end{equation}
+正负提议各以概率 $1/2$ 选择，经平移换元可知，两者接受的未归一化质量均为 $A_h(b)/2$。
+因此，$A_h$ 已包含目标发送事件的概率，计算时不应再次乘 $p_h$。
+接受后 $D_k=\mp bK_hv$，拒绝和目标静默时 $D_k=0$。
+目标协方差的分布保持不变，故
+\begin{equation}
+ J_k=b^2\sum_h w_hA_h(b)\|K_hv\|_2^2.
+ \label{eq:mh-numerical-damage}
+\end{equation}
+记 $s_h^+=s(P_h^s)$。事件原子 $(h,1,0)$ 的概率减少
+$w_hA_h(b)s_h^+(1-e^{-t_h})$，原子 $(h,1,1)$ 增加同样的概率。
+因此，TV定义中的 $1/2$ 因子与两类原子相抵，得到
+\begin{equation}
+ \begin{aligned}
+ \Delta_{\rm bits}&=\sum_h w_hA_h(b)s_h^+(1-e^{-t_h}),\\
+ G_b&:=\E_0[w(P_k^+)Y]-\E_\pi[w(P_k^+)Y]
+      =\sum_h w_hA_h(b)(1-e^{-t_h}),\\
+ J_k&\le G_b/q.
+ \end{aligned}
+ \label{eq:mh-next-event}
+\end{equation}
+最后一式使用主定理的固定 $q$；由于本例的协方差迹分布不变，$G_b/q$ 也等于附录F中实值得分的统计损伤证书。
+它不包括有限样本余量。
+
+各历史下的下一静默概率变化同号，发送概率变化也分别同号，故合并历史不会抵消，本例有
+$\Delta_{\rm last}=\Delta_{\rm marked}=\Delta_{\rm bits}$，无需标签映射为单射。
+另一方面，详细平衡严格保证 $H_k$ 同律；数据处理关系则给出
+$\TV(\Law_\pi(H_{k+1}),\Law_0(H_{k+1}))\ge\Delta_{\rm bits}>0$。
+这不是完整扩展日志TV的精确求值。
+
+\textbf{积分与精度。}
+对于每个前缀，令 $S_h=L_hL_h^\top$、$\delta=bv/2$、$a=L_h^{-1}\delta$。
+中点白化后，重叠质量可写为
+\begin{equation}
+ A_h(b)=\int_{\R^2}\min\big\{
+ \phi_I(x-a)[1-g(L_hx-\delta)],
+ \phi_I(x+a)[1-g(L_hx+\delta)]\big\}\,dx.
+ \label{eq:mh-whitened}
+\end{equation}
+在 $[-9,9]^2$ 上采用每维128、256、512阶Gauss--Legendre求积。
+两套原系统和四个固定幅值共128个前缀积分中，256至512阶的最大相对变化约为
+$6.42\times10^{-5}$；发送质量的积分残差小于 $2.9\times10^{-14}$。
+盒外质量由高斯尾部并集界控制，其浮点评估小于 $8.2\times10^{-19}$。
+被积函数含有取小运算，阶数差只用于收敛诊断，不构成严格离散化误差界。
+正文报告普通浮点近似，未作区间认证。
+
+程序另核对 $0<A_h\le p_h$、附录\ref{app:mh}的接受质量下界、统计损伤证书及前缀质量和。
+复现入口为 \texttt{record\_study/mh\_record\_conditions.py}，依赖NumPy和SciPy，
+不调用原事件树实验模块；\texttt{record\_study/plot\_record\_conditions.py}绘制对照图。
+结果、前缀积分和三种求积阶数均保存在同目录的CSV/JSON文件中。

@@ -1,0 +1,778 @@
+{
+  "status": "passed_float_formula_checks",
+  "parameters": {
+    "k": 4,
+    "b_ref": 0.2,
+    "b_values": [
+      0.025,
+      0.05,
+      0.1,
+      0.2
+    ],
+    "budget_peak": 0.1,
+    "epsilon_values": [
+      1e-05,
+      0.0001,
+      0.001,
+      0.01,
+      0.1
+    ],
+    "confidence_alpha": 0.05,
+    "sample_size_per_group": 10000,
+    "planning_margin_in_damage_units": 0.01,
+    "cases": {
+      "S": {
+        "A": [
+          [
+            0.82,
+            0.18
+          ],
+          [
+            -0.1,
+            0.72
+          ]
+        ]
+      },
+      "U": {
+        "A": [
+          [
+            1.04,
+            0.12
+          ],
+          [
+            0.03,
+            0.91
+          ]
+        ]
+      }
+    },
+    "common": {
+      "P0": [
+        [
+          0.8,
+          0.12
+        ],
+        [
+          0.12,
+          0.6
+        ]
+      ],
+      "Q": [
+        [
+          0.05,
+          0.01
+        ],
+        [
+          0.01,
+          0.04
+        ]
+      ],
+      "R": [
+        [
+          0.2,
+          0.03
+        ],
+        [
+          0.03,
+          0.3
+        ]
+      ],
+      "Z": [
+        [
+          2.0,
+          0.25
+        ],
+        [
+          0.25,
+          1.5
+        ]
+      ],
+      "direction": [
+        1.0,
+        -1.0
+      ],
+      "quadrature_bias": [
+        0.13,
+        -0.17
+      ]
+    }
+  },
+  "cases": {
+    "S": {
+      "constants": {
+        "r_k": 1.722886625925229,
+        "h_star": 0.24218531122181997,
+        "M": 1.6252800877045346,
+        "q": 0.2387363670176291,
+        "Omega": 0.0763267661980999,
+        "C_peak": 3.3677268478466997,
+        "C_record": 6.884171369046221,
+        "L": 1.643502062572873,
+        "p_max": 0.20004253865074206,
+        "C_pm": 3.6636887699593768,
+        "L_v": 0.032185030926132265,
+        "kappa": 1.0,
+        "radii": [
+          0.8008368390444938,
+          1.2202339710562258,
+          1.47178280209285,
+          1.626009762993378,
+          1.722886625925229
+        ]
+      },
+      "rho_A": 0.7800000000000001,
+      "healthy_mse": 0.15965745298913311,
+      "healthy_score": {
+        "mean": 0.6143231649201418,
+        "variance_T": 0.22275345566838717,
+        "variance_B": 0.23693021396264205,
+        "added_variance": 0.014176758294254917
+      },
+      "P0_R_commutator": 0.025455844122715704,
+      "quadrature": [
+        {
+          "order_per_dimension": 24,
+          "quadrature_points": 576,
+          "silence_probability_quadrature": 0.37213197755137317,
+          "silence_probability_formula": 0.3721319775635088,
+          "silence_probability_abs_error": 1.2135625837572661e-11,
+          "silent_mean_error_2norm": 1.376695745944179e-10,
+          "silent_covariance_error_fro": 7.045910461629134e-10
+        },
+        {
+          "order_per_dimension": 40,
+          "quadrature_points": 1600,
+          "silence_probability_quadrature": 0.3721319775635088,
+          "silence_probability_formula": 0.3721319775635088,
+          "silence_probability_abs_error": 0.0,
+          "silent_mean_error_2norm": 3.925231146709438e-17,
+          "silent_covariance_error_fro": 4.998171544788447e-16
+        }
+      ],
+      "budget_base_row": {
+        "case": "S",
+        "policy": "compensated_rademacher",
+        "b": 0.1,
+        "J": 0.0003218503092612949,
+        "bias2": 0.00032185030926132265,
+        "covariance_change": -2.7755575615628914e-17,
+        "J_over_b2": 0.03218503092612948,
+        "event_word_TV": 6.878619409346389e-05,
+        "full_log_TV_analytic_upper": 0.03663688769959377,
+        "score_gap": 6.646061438342343e-05,
+        "population_certificate": 0.00045752625870758507,
+        "mean": 0.6142567043057584,
+        "variance_T": 0.22276968434899258,
+        "variance_B": 0.23694540552118648,
+        "added_variance": 0.014175721172193807,
+        "probability_mass_error": 2.220446049250313e-16,
+        "peak_attack_norm": 0.1,
+        "covariance_identity_max_residual_fro": 7.858125020761362e-17,
+        "minimum_posterior_covariance_eigenvalue": 0.04762464315311876,
+        "gain_asymmetry_max_fro": 0.045125097131129846,
+        "silent_I_minus_K_max_spectral_norm": 0.9428770389873402,
+        "witness_residual": 4.440892098500626e-16
+      },
+      "sampling": {
+        "n": 10000,
+        "alpha": 0.05,
+        "known_radius": 0.012238734153404082,
+        "two_radius": 0.017308183826022852,
+        "centered_known_bound": 0.08471106951094011,
+        "centered_two_bound": 0.119610029804003,
+        "target_tau": 0.010457526258707585,
+        "planning_margin": 0.01,
+        "centered_known_planning_n": 709866,
+        "centered_two_planning_each_n": 1419732
+      }
+    },
+    "U": {
+      "constants": {
+        "r_k": 3.191641679183437,
+        "h_star": 0.34455555922490316,
+        "M": 1.8273024090126853,
+        "q": 0.3214620998776393,
+        "Omega": 0.18477088392909263,
+        "C_peak": 13.269453915905432,
+        "C_record": 5.869118773488161,
+        "L": 1.886699245356779,
+        "p_max": 0.3499957329534943,
+        "C_pm": 3.511111006815558,
+        "L_v": 0.05737965755257867,
+        "kappa": 1.0,
+        "radii": [
+          0.8008368390444938,
+          1.4378122545086627,
+          2.0371421738639004,
+          2.619415768774741,
+          3.191641679183437
+        ]
+      },
+      "rho_A": 1.0634590300647706,
+      "healthy_mse": 0.23730433815043908,
+      "healthy_score": {
+        "mean": 0.5492269183664072,
+        "variance_T": 0.20365367787401517,
+        "variance_B": 0.24757671050814709,
+        "added_variance": 0.04392303263413211
+      },
+      "P0_R_commutator": 0.025455844122715704,
+      "quadrature": [
+        {
+          "order_per_dimension": 24,
+          "quadrature_points": 576,
+          "silence_probability_quadrature": 0.37213197755137317,
+          "silence_probability_formula": 0.3721319775635088,
+          "silence_probability_abs_error": 1.2135625837572661e-11,
+          "silent_mean_error_2norm": 1.376695745944179e-10,
+          "silent_covariance_error_fro": 7.045910461629134e-10
+        },
+        {
+          "order_per_dimension": 40,
+          "quadrature_points": 1600,
+          "silence_probability_quadrature": 0.3721319775635088,
+          "silence_probability_formula": 0.3721319775635088,
+          "silence_probability_abs_error": 0.0,
+          "silent_mean_error_2norm": 3.925231146709438e-17,
+          "silent_covariance_error_fro": 4.998171544788447e-16
+        }
+      ],
+      "budget_base_row": {
+        "case": "U",
+        "policy": "compensated_rademacher",
+        "b": 0.1,
+        "J": 0.0005737965755258146,
+        "bias2": 0.0005737965755257869,
+        "covariance_change": 2.7755575615628914e-17,
+        "J_over_b2": 0.05737965755258145,
+        "event_word_TV": 0.00017226136589917245,
+        "full_log_TV_analytic_upper": 0.035111110068155586,
+        "score_gap": 0.000153751612664621,
+        "population_certificate": 0.0009023864763440072,
+        "mean": 0.5490731667537426,
+        "variance_T": 0.20367718092170295,
+        "variance_B": 0.24759182430475937,
+        "added_variance": 0.04391464338305649,
+        "probability_mass_error": 2.220446049250313e-16,
+        "peak_attack_norm": 0.1,
+        "covariance_identity_max_residual_fro": 7.88106850030428e-17,
+        "minimum_posterior_covariance_eigenvalue": 0.059842009001785344,
+        "gain_asymmetry_max_fro": 0.07445236894761836,
+        "silent_I_minus_K_max_spectral_norm": 0.922179688555842,
+        "witness_residual": 1.1102230246251565e-16
+      },
+      "sampling": {
+        "n": 10000,
+        "alpha": 0.05,
+        "known_radius": 0.012238734153404082,
+        "two_radius": 0.017308183826022852,
+        "centered_known_bound": 0.07273297085981864,
+        "centered_two_bound": 0.10248617310463888,
+        "target_tau": 0.010902386476344008,
+        "planning_margin": 0.01,
+        "centered_known_planning_n": 515964,
+        "centered_two_planning_each_n": 1031927
+      }
+    }
+  },
+  "rows": [
+    {
+      "case": "S",
+      "policy": "persistent_fixed_direction",
+      "b": 0.025,
+      "J": 8.08914923720798e-05,
+      "bias2": 8.216910693483557e-05,
+      "covariance_change": -1.277614562755769e-06,
+      "J_over_b2": 0.12942638779532767,
+      "event_word_TV": 4.8914291840002413e-05,
+      "full_log_TV_analytic_upper": null,
+      "score_gap": 1.3857179067766623e-05,
+      "population_certificate": 9.53951953940656e-05,
+      "mean": 0.6143093077410741,
+      "variance_T": 0.2227565926707747,
+      "variance_B": 0.23693338216375642,
+      "added_variance": 0.014176789492981859,
+      "probability_mass_error": 2.220446049250313e-16,
+      "peak_attack_norm": 0.025,
+      "covariance_identity_max_residual_fro": 7.858125020761362e-17,
+      "minimum_posterior_covariance_eigenvalue": 0.04762464315311876,
+      "gain_asymmetry_max_fro": 0.045125097131129846,
+      "silent_I_minus_K_max_spectral_norm": 0.9428770389873402,
+      "witness_residual": 1.1102230246251565e-16
+    },
+    {
+      "case": "S",
+      "policy": "persistent_fixed_direction",
+      "b": 0.05,
+      "J": 0.0003236184707424875,
+      "bias2": 0.00032872909713928565,
+      "covariance_change": -5.110626396798157e-06,
+      "J_over_b2": 0.12944738829699498,
+      "event_word_TV": 0.0001956469919857963,
+      "full_log_TV_analytic_upper": null,
+      "score_gap": 5.5434675042986825e-05,
+      "population_certificate": 0.00038162180278331103,
+      "mean": 0.6142677302450988,
+      "variance_T": 0.2227660028017353,
+      "variance_B": 0.23694288582463333,
+      "added_variance": 0.014176883022897864,
+      "probability_mass_error": 2.220446049250313e-16,
+      "peak_attack_norm": 0.05,
+      "covariance_identity_max_residual_fro": 7.858125020761362e-17,
+      "minimum_posterior_covariance_eigenvalue": 0.04762464315311876,
+      "gain_asymmetry_max_fro": 0.045125097131129846,
+      "silent_I_minus_K_max_spectral_norm": 0.9428770389873402,
+      "witness_residual": 0.0
+    },
+    {
+      "case": "S",
+      "policy": "persistent_fixed_direction",
+      "b": 0.1,
+      "J": 0.0012953141031107655,
+      "bias2": 0.0013157592932633337,
+      "covariance_change": -2.0445190152568182e-05,
+      "J_over_b2": 0.1295314103110765,
+      "event_word_TV": 0.0007824248192477275,
+      "full_log_TV_analytic_upper": null,
+      "score_gap": 0.00022183402401365626,
+      "population_certificate": 0.0015271434367951243,
+      "mean": 0.6141013308961282,
+      "variance_T": 0.22280363014011728,
+      "variance_B": 0.23698088628773226,
+      "added_variance": 0.014177256147614973,
+      "probability_mass_error": 2.220446049250313e-16,
+      "peak_attack_norm": 0.1,
+      "covariance_identity_max_residual_fro": 7.858125020761362e-17,
+      "minimum_posterior_covariance_eigenvalue": 0.04762464315311876,
+      "gain_asymmetry_max_fro": 0.045125097131129846,
+      "silent_I_minus_K_max_spectral_norm": 0.9428770389873402,
+      "witness_residual": 0.0
+    },
+    {
+      "case": "S",
+      "policy": "persistent_fixed_direction",
+      "b": 0.2,
+      "J": 0.005194712656558657,
+      "bias2": 0.005276536001131397,
+      "covariance_change": -8.18233445727401e-05,
+      "J_over_b2": 0.1298678164139664,
+      "event_word_TV": 0.0031270671016609703,
+      "full_log_TV_analytic_upper": null,
+      "score_gap": 0.0008888602025233228,
+      "population_certificate": 0.0061190659572956845,
+      "mean": 0.6134343047176185,
+      "variance_T": 0.22295392584699086,
+      "variance_B": 0.23713265851323048,
+      "added_variance": 0.014178732666239629,
+      "probability_mass_error": 3.3306690738754696e-16,
+      "peak_attack_norm": 0.2,
+      "covariance_identity_max_residual_fro": 7.858125020761362e-17,
+      "minimum_posterior_covariance_eigenvalue": 0.04762464315311876,
+      "gain_asymmetry_max_fro": 0.045125097131129846,
+      "silent_I_minus_K_max_spectral_norm": 0.9428770389873402,
+      "witness_residual": 0.0
+    },
+    {
+      "case": "S",
+      "policy": "compensated_rademacher",
+      "b": 0.025,
+      "J": 2.011564432880491e-05,
+      "bias2": 2.0115644328832666e-05,
+      "covariance_change": -2.7755575615628914e-17,
+      "J_over_b2": 0.03218503092608785,
+      "event_word_TV": 4.299731619664951e-06,
+      "full_log_TV_analytic_upper": 0.0022898054812246107,
+      "score_gap": 4.154363006603212e-06,
+      "population_certificate": 2.8599346866682612e-05,
+      "mean": 0.6143190105571352,
+      "variance_T": 0.22275447036004237,
+      "variance_B": 0.2369311638252376,
+      "added_variance": 0.01417669346519489,
+      "probability_mass_error": 4.440892098500626e-16,
+      "peak_attack_norm": 0.025,
+      "covariance_identity_max_residual_fro": 7.858125020761362e-17,
+      "minimum_posterior_covariance_eigenvalue": 0.04762464315311876,
+      "gain_asymmetry_max_fro": 0.045125097131129846,
+      "silent_I_minus_K_max_spectral_norm": 0.9428770389873402,
+      "witness_residual": 3.3306690738754696e-16
+    },
+    {
+      "case": "S",
+      "policy": "compensated_rademacher",
+      "b": 0.05,
+      "J": 8.046257731530291e-05,
+      "bias2": 8.046257731533066e-05,
+      "covariance_change": -2.7755575615628914e-17,
+      "J_over_b2": 0.032185030926121155,
+      "event_word_TV": 1.7198450851812e-05,
+      "full_log_TV_analytic_upper": 0.009159221924898443,
+      "score_gap": 1.661699230659508e-05,
+      "population_certificate": 0.00011439422267672317,
+      "mean": 0.6143065479278352,
+      "variance_T": 0.2227575141156608,
+      "variance_B": 0.23693401310082152,
+      "added_variance": 0.014176498985160327,
+      "probability_mass_error": 2.220446049250313e-16,
+      "peak_attack_norm": 0.05,
+      "covariance_identity_max_residual_fro": 7.858125020761362e-17,
+      "minimum_posterior_covariance_eigenvalue": 0.04762464315311876,
+      "gain_asymmetry_max_fro": 0.045125097131129846,
+      "silent_I_minus_K_max_spectral_norm": 0.9428770389873402,
+      "witness_residual": 3.3306690738754696e-16
+    },
+    {
+      "case": "S",
+      "policy": "compensated_rademacher",
+      "b": 0.1,
+      "J": 0.0003218503092612949,
+      "bias2": 0.00032185030926132265,
+      "covariance_change": -2.7755575615628914e-17,
+      "J_over_b2": 0.03218503092612948,
+      "event_word_TV": 6.878619409346389e-05,
+      "full_log_TV_analytic_upper": 0.03663688769959377,
+      "score_gap": 6.646061438342343e-05,
+      "population_certificate": 0.00045752625870758507,
+      "mean": 0.6142567043057584,
+      "variance_T": 0.22276968434899258,
+      "variance_B": 0.23694540552118648,
+      "added_variance": 0.014175721172193807,
+      "probability_mass_error": 2.220446049250313e-16,
+      "peak_attack_norm": 0.1,
+      "covariance_identity_max_residual_fro": 7.858125020761362e-17,
+      "minimum_posterior_covariance_eigenvalue": 0.04762464315311876,
+      "gain_asymmetry_max_fro": 0.045125097131129846,
+      "silent_I_minus_K_max_spectral_norm": 0.9428770389873402,
+      "witness_residual": 4.440892098500626e-16
+    },
+    {
+      "case": "S",
+      "policy": "compensated_rademacher",
+      "b": 0.2,
+      "J": 0.0012874012370452628,
+      "bias2": 0.0012874012370452906,
+      "covariance_change": -2.7755575615628914e-17,
+      "J_over_b2": 0.032185030926131564,
+      "event_word_TV": 0.00027502307313802005,
+      "full_log_TV_analytic_upper": 0.1465475507983751,
+      "score_gap": 0.0002657248243012056,
+      "population_certificate": 0.001829295227499197,
+      "mean": 0.6140574400958406,
+      "variance_T": 0.22281828872438209,
+      "variance_B": 0.23699090035878373,
+      "added_variance": 0.014172611634401368,
+      "probability_mass_error": 2.220446049250313e-16,
+      "peak_attack_norm": 0.2,
+      "covariance_identity_max_residual_fro": 7.858125020761362e-17,
+      "minimum_posterior_covariance_eigenvalue": 0.04762464315311876,
+      "gain_asymmetry_max_fro": 0.045125097131129846,
+      "silent_I_minus_K_max_spectral_norm": 0.9428770389873402,
+      "witness_residual": 1.1102230246251565e-16
+    },
+    {
+      "case": "U",
+      "policy": "persistent_fixed_direction",
+      "b": 0.025,
+      "J": 0.00019547538199714506,
+      "bias2": 0.0002029776127473066,
+      "covariance_change": -7.502230750161543e-06,
+      "J_over_b2": 0.312760611195432,
+      "event_word_TV": 0.0001072539633477595,
+      "full_log_TV_analytic_upper": null,
+      "score_gap": 4.625093657983914e-05,
+      "population_certificate": 0.0002714522401721442,
+      "mean": 0.5491806674298274,
+      "variance_T": 0.20365882358431942,
+      "variance_B": 0.2475812619511567,
+      "added_variance": 0.04392243836683726,
+      "probability_mass_error": 4.440892098500626e-16,
+      "peak_attack_norm": 0.025,
+      "covariance_identity_max_residual_fro": 7.88106850030428e-17,
+      "minimum_posterior_covariance_eigenvalue": 0.059842009001785344,
+      "gain_asymmetry_max_fro": 0.07445236894761836,
+      "silent_I_minus_K_max_spectral_norm": 0.922179688555842,
+      "witness_residual": 0.0
+    },
+    {
+      "case": "U",
+      "policy": "persistent_fixed_direction",
+      "b": 0.05,
+      "J": 0.0007821383985306715,
+      "bias2": 0.0008121465789295043,
+      "covariance_change": -3.0008180398832796e-05,
+      "J_over_b2": 0.31285535941226855,
+      "event_word_TV": 0.0004289684430243395,
+      "full_log_TV_analytic_upper": null,
+      "score_gap": 0.0001850280289468209,
+      "population_certificate": 0.0010859514783132975,
+      "mean": 0.5490418903374604,
+      "variance_T": 0.20367423935839218,
+      "variance_B": 0.2475948929921285,
+      "added_variance": 0.043920653633736234,
+      "probability_mass_error": 0.0,
+      "peak_attack_norm": 0.05,
+      "covariance_identity_max_residual_fro": 7.88106850030428e-17,
+      "minimum_posterior_covariance_eigenvalue": 0.059842009001785344,
+      "gain_asymmetry_max_fro": 0.07445236894761836,
+      "silent_I_minus_K_max_spectral_norm": 0.922179688555842,
+      "witness_residual": 1.1102230246251565e-16
+    },
+    {
+      "case": "U",
+      "policy": "persistent_fixed_direction",
+      "b": 0.1,
+      "J": 0.0031323434872774967,
+      "bias2": 0.003252364187072273,
+      "covariance_change": -0.00012002069979477614,
+      "J_over_b2": 0.3132343487277496,
+      "event_word_TV": 0.0017151120451196862,
+      "full_log_TV_analytic_upper": null,
+      "score_gap": 0.0007404995782832602,
+      "population_certificate": 0.004346079976662348,
+      "mean": 0.548486418788124,
+      "variance_T": 0.20373558144034865,
+      "variance_B": 0.24764906719310265,
+      "added_variance": 0.04391348575275396,
+      "probability_mass_error": 3.3306690738754696e-16,
+      "peak_attack_norm": 0.1,
+      "covariance_identity_max_residual_fro": 7.88106850030428e-17,
+      "minimum_posterior_covariance_eigenvalue": 0.059842009001785344,
+      "gain_asymmetry_max_fro": 0.07445236894761836,
+      "silent_I_minus_K_max_spectral_norm": 0.922179688555842,
+      "witness_residual": 0.0
+    },
+    {
+      "case": "U",
+      "policy": "persistent_fixed_direction",
+      "b": 0.2,
+      "J": 0.012590008443623499,
+      "bias2": 0.013069889959362271,
+      "covariance_change": -0.0004798815157387726,
+      "J_over_b2": 0.31475021109058743,
+      "event_word_TV": 0.006848060633347863,
+      "full_log_TV_analytic_upper": null,
+      "score_gap": 0.0029681296541553825,
+      "population_certificate": 0.017420305475350277,
+      "mean": 0.5462587887122519,
+      "variance_T": 0.20397577214661122,
+      "variance_B": 0.24786012446687525,
+      "added_variance": 0.043884352320263935,
+      "probability_mass_error": 0.0,
+      "peak_attack_norm": 0.2,
+      "covariance_identity_max_residual_fro": 7.88106850030428e-17,
+      "minimum_posterior_covariance_eigenvalue": 0.059842009001785344,
+      "gain_asymmetry_max_fro": 0.07445236894761836,
+      "silent_I_minus_K_max_spectral_norm": 0.922179688555842,
+      "witness_residual": 1.1102230246251565e-16
+    },
+    {
+      "case": "U",
+      "policy": "compensated_rademacher",
+      "b": 0.025,
+      "J": 3.5862285970389435e-05,
+      "bias2": 3.586228597036168e-05,
+      "covariance_change": 2.7755575615628914e-17,
+      "J_over_b2": 0.05737965755262309,
+      "event_word_TV": 1.076991910656808e-05,
+      "full_log_TV_analytic_upper": 0.002194444379259724,
+      "score_gap": 9.6126797832774e-06,
+      "population_certificate": 5.6417959379563496e-05,
+      "mean": 0.549217305686624,
+      "variance_T": 0.2036551486884946,
+      "variance_B": 0.2475776568209494,
+      "added_variance": 0.04392250813245505,
+      "probability_mass_error": 2.220446049250313e-16,
+      "peak_attack_norm": 0.025,
+      "covariance_identity_max_residual_fro": 7.88106850030428e-17,
+      "minimum_posterior_covariance_eigenvalue": 0.059842009001785344,
+      "gain_asymmetry_max_fro": 0.07445236894761836,
+      "silent_I_minus_K_max_spectral_norm": 0.922179688555842,
+      "witness_residual": 2.220446049250313e-16
+    },
+    {
+      "case": "U",
+      "policy": "compensated_rademacher",
+      "b": 0.05,
+      "J": 0.00014344914388147447,
+      "bias2": 0.00014344914388144672,
+      "covariance_change": 2.7755575615628914e-17,
+      "J_over_b2": 0.05737965755258978,
+      "event_word_TV": 4.307680890904995e-05,
+      "full_log_TV_analytic_upper": 0.008777777517038897,
+      "score_gap": 3.844815546794056e-05,
+      "population_certificate": 0.00022565679106288143,
+      "mean": 0.5491884702109393,
+      "variance_T": 0.2036595596320705,
+      "variance_B": 0.24758049439830754,
+      "added_variance": 0.043920934766237096,
+      "probability_mass_error": 2.220446049250313e-16,
+      "peak_attack_norm": 0.05,
+      "covariance_identity_max_residual_fro": 7.88106850030428e-17,
+      "minimum_posterior_covariance_eigenvalue": 0.059842009001785344,
+      "gain_asymmetry_max_fro": 0.07445236894761836,
+      "silent_I_minus_K_max_spectral_norm": 0.922179688555842,
+      "witness_residual": 0.0
+    },
+    {
+      "case": "U",
+      "policy": "compensated_rademacher",
+      "b": 0.1,
+      "J": 0.0005737965755258146,
+      "bias2": 0.0005737965755257869,
+      "covariance_change": 2.7755575615628914e-17,
+      "J_over_b2": 0.05737965755258145,
+      "event_word_TV": 0.00017226136589917245,
+      "full_log_TV_analytic_upper": 0.035111110068155586,
+      "score_gap": 0.000153751612664621,
+      "population_certificate": 0.0009023864763440072,
+      "mean": 0.5490731667537426,
+      "variance_T": 0.20367718092170295,
+      "variance_B": 0.24759182430475937,
+      "added_variance": 0.04391464338305649,
+      "probability_mass_error": 2.220446049250313e-16,
+      "peak_attack_norm": 0.1,
+      "covariance_identity_max_residual_fro": 7.88106850030428e-17,
+      "minimum_posterior_covariance_eigenvalue": 0.059842009001785344,
+      "gain_asymmetry_max_fro": 0.07445236894761836,
+      "silent_I_minus_K_max_spectral_norm": 0.922179688555842,
+      "witness_residual": 1.1102230246251565e-16
+    },
+    {
+      "case": "U",
+      "policy": "compensated_rademacher",
+      "b": 0.2,
+      "J": 0.002295186302103175,
+      "bias2": 0.0022951863021031475,
+      "covariance_change": 2.7755575615628914e-17,
+      "J_over_b2": 0.05737965755257937,
+      "event_word_TV": 0.0006883122217392445,
+      "full_log_TV_analytic_upper": 0.14044444027262235,
+      "score_gap": 0.0006143509068320396,
+      "population_certificate": 0.0036056984407974,
+      "mean": 0.5486125674595752,
+      "variance_T": 0.20374730715952533,
+      "variance_B": 0.24763681828498824,
+      "added_variance": 0.04388951112546312,
+      "probability_mass_error": 2.220446049250313e-16,
+      "peak_attack_norm": 0.2,
+      "covariance_identity_max_residual_fro": 7.88106850030428e-17,
+      "minimum_posterior_covariance_eigenvalue": 0.059842009001785344,
+      "gain_asymmetry_max_fro": 0.07445236894761836,
+      "silent_I_minus_K_max_spectral_norm": 0.922179688555842,
+      "witness_residual": 0.0
+    }
+  ],
+  "budget_rows": [
+    {
+      "case": "S",
+      "b": 0.1,
+      "epsilon": 1e-05,
+      "mixture_probability": 0.00027294894921194084,
+      "achievable_J": 8.784870371640864e-08,
+      "event_word_TV": 1.8775119398099582e-08,
+      "full_log_TV_analytic_upper": 1e-05,
+      "worst_case_upper": 6.884171369046222e-05
+    },
+    {
+      "case": "S",
+      "b": 0.1,
+      "epsilon": 0.0001,
+      "mixture_probability": 0.0027294894921194085,
+      "achievable_J": 8.784870371640863e-07,
+      "event_word_TV": 1.8775119398099582e-07,
+      "full_log_TV_analytic_upper": 0.0001,
+      "worst_case_upper": 0.0006884171369046222
+    },
+    {
+      "case": "S",
+      "b": 0.1,
+      "epsilon": 0.001,
+      "mixture_probability": 0.027294894921194083,
+      "achievable_J": 8.784870371640863e-06,
+      "event_word_TV": 1.877511939809958e-06,
+      "full_log_TV_analytic_upper": 0.001,
+      "worst_case_upper": 0.006884171369046221
+    },
+    {
+      "case": "S",
+      "b": 0.1,
+      "epsilon": 0.01,
+      "mixture_probability": 0.27294894921194085,
+      "achievable_J": 8.784870371640863e-05,
+      "event_word_TV": 1.877511939809958e-05,
+      "full_log_TV_analytic_upper": 0.01,
+      "worst_case_upper": 0.033677268478467005
+    },
+    {
+      "case": "S",
+      "b": 0.1,
+      "epsilon": 0.1,
+      "mixture_probability": 1,
+      "achievable_J": 0.0003218503092612949,
+      "event_word_TV": 6.878619409346389e-05,
+      "full_log_TV_analytic_upper": 0.03663688769959377,
+      "worst_case_upper": 0.033677268478467005
+    },
+    {
+      "case": "U",
+      "b": 0.1,
+      "epsilon": 1e-05,
+      "mixture_probability": 0.00028481013504240107,
+      "achievable_J": 1.6342308016237454e-07,
+      "event_word_TV": 4.906178288433177e-08,
+      "full_log_TV_analytic_upper": 1e-05,
+      "worst_case_upper": 5.8691187734881613e-05
+    },
+    {
+      "case": "U",
+      "b": 0.1,
+      "epsilon": 0.0001,
+      "mixture_probability": 0.0028481013504240106,
+      "achievable_J": 1.6342308016237453e-06,
+      "event_word_TV": 4.906178288433176e-07,
+      "full_log_TV_analytic_upper": 0.0001,
+      "worst_case_upper": 0.0005869118773488161
+    },
+    {
+      "case": "U",
+      "b": 0.1,
+      "epsilon": 0.001,
+      "mixture_probability": 0.028481013504240107,
+      "achievable_J": 1.6342308016237455e-05,
+      "event_word_TV": 4.906178288433177e-06,
+      "full_log_TV_analytic_upper": 0.001,
+      "worst_case_upper": 0.005869118773488161
+    },
+    {
+      "case": "U",
+      "b": 0.1,
+      "epsilon": 0.01,
+      "mixture_probability": 0.28481013504240105,
+      "achievable_J": 0.00016342308016237454,
+      "event_word_TV": 4.906178288433176e-05,
+      "full_log_TV_analytic_upper": 0.01,
+      "worst_case_upper": 0.05869118773488161
+    },
+    {
+      "case": "U",
+      "b": 0.1,
+      "epsilon": 0.1,
+      "mixture_probability": 1,
+      "achievable_J": 0.0005737965755258146,
+      "event_word_TV": 0.00017226136589917245,
+      "full_log_TV_analytic_upper": 0.035111110068155586,
+      "worst_case_upper": 0.13269453915905435
+    }
+  ],
+  "python": "3.10.18 | packaged by Anaconda, Inc. | (main, Jun  5 2025, 13:08:55) [MSC v.1929 64 bit (AMD64)]",
+  "numpy": "2.2.5",
+  "source_sha256": {
+    "experiments.py": "cf113e17690663c6bfc3cbcaa21ff7589bb293fa96569648c53c11bc3ec7c814",
+    "vector_core.py": "749f40185dda2a65a20c741ce7ad3b98dbcfd5fe9dd10019719c11afc70e67d4"
+  },
+  "limitations": [
+    "No continuous-payload TV integration; full-log feasibility uses the analytic sufficient bound.",
+    "No interval certificate for floating-point tables; no maximization over the causal attack class.",
+    "No asserted covariance-label injectivity; exact event words are enumerated.",
+    "Centered confidence values are illustrations, not sampled observations or success probabilities."
+  ]
+}

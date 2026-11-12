@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering\small
+\caption{50组、每组240拍的通信与误差汇总\\ Table~\thetable\quad Communication and error results for 50 runs of 240 slots}\label{tab:results}
+\begin{tabular}{llrrrr}
+\toprule
+Attack & Protocol & Attempts & Blocked & Success / ACK & Mean squared error\\
+\midrule
+Greedy & Immediate & 153812 & 81724 & 72088 & 1.305733 \\
+Greedy & Retry & 173136 & 84124 & 89012 & 1.288476 \\
+Greedy & Reset memory & 144988 & 80052 & 64936 & 1.316971 \\
+Greedy & Full memory & 129160 & 77944 & 51216 & 1.330751 \\
+\midrule
+Calendar & Immediate & 148748 & 59227 & 89521 & 1.262126 \\
+Calendar & Retry & 165826 & 66856 & 98970 & 1.257148 \\
+Calendar & Reset memory & 141700 & 59419 & 82281 & 1.270677 \\
+Calendar & Full memory & 129982 & 59598 & 70384 & 1.277224 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,63 @@
+% Essential joint-log proof; explicit constants are expanded in Appendix B.
+由于两拍载荷使用同一私有符号，需要计算其联合分布，才能检验完整日志约束。
+给定攻击前完整历史，令
+${\bm{S}}_h={\bm{P}}_k^-(h)+{\bm{R}}$、${\bm{S}}'_h={\bm{A}}F_1({\bm{P}}_k^-(h)){\bm{A}}^\top+{\bm{Q}}+{\bm{R}}$，
+${\bm{u}}_h={\bm{A}}{\bm{K}}_h{\bm{v}}$，并以 $\phi_{\bm{\Sigma}}$ 表示 $N(0,{\bm{\Sigma}})$ 的密度。
+当前真实创新的未归一化发送密度为
+$f_h({\bm{u}})=\phi_{{\bm{S}}_h}({\bm{u}})[1-g({\bm{u}})]$，其积分为 $p_h$。
+给定当前真实发送测量，下一真实条件创新 ${\bm{e}}$ 服从 $N(0,{\bm{S}}'_h)$，
+且该条件分布不随当前创新改变。
+对有符号幅值 $t$，下一预测偏差为 $-t{\bm{u}}_h$；
+若下一时刻发送，补偿使接收创新恰为 ${\bm{e}}$。
+下一记录既可能是静默事件，也可能包含连续载荷。将两者共同表示为
+$\{\bot\}\sqcup\R^n$ 上的概率核，并定义当前发送分支的联合核：
+\begin{equation}
+ \begin{aligned}
+ \mathcal K_{h,{\bm{d}}}(\{\bot\})&=\int\phi_{{\bm{S}}'_h}({\bm{e}})g({\bm{e}}+{\bm{d}})\,d{\bm{e}},\\
+ \mathcal K_{h,{\bm{d}}}(d{\bm{e}})&=\phi_{{\bm{S}}'_h}({\bm{e}})[1-g({\bm{e}}+{\bm{d}})]\,d{\bm{e}},\\
+ F_h(t)(d{\bm{z}},d{\bm{\xi}})&=f_h({\bm{z}}-t{\bm{v}})\,d{\bm{z}}\,\mathcal K_{h,-t{\bm{u}}_h}(d{\bm{\xi}}).
+ \end{aligned}
+ \label{eq:main-joint-kernel}
+\end{equation}
+其中，${\bm{z}}$ 为当前接收创新，$F_h(t)$ 的总质量恒为 $p_h$。
+式\eqref{eq:main-joint-kernel}的第一因子描述当前载荷的平移，第二因子描述预测反馈引起的下一事件概率变化。
+
+记 $\|\cdot\|_{\rm var}$ 为有符号测度的变差范数，并令 $a_h={\bm{u}}_h^\top {\bm{Z}}{\bm{u}}_h$。
+由 $\sup_{\bm{z}}|\partial_{{\bm{u}}_h}g({\bm{z}})|\le\sqrt{a_h/\mathrm e}$、
+$\sup_{\bm{z}}|\partial_{{\bm{u}}_h}^2g({\bm{z}})|\le a_h$，
+分别计入静默原子和连续密度的导数，得到
+\begin{equation}
+ \begin{aligned}
+ \|F_h''(t)\|_{\rm var}
+ &\le \|\partial_{\bm{v}}^2 f_h\|_1
+ +4\sqrt{a_h/\mathrm e}\|\partial_{\bm{v}} f_h\|_1
+ +2p_ha_h\\
+ &\le B_h<\infty.
+ \end{aligned}
+ \label{eq:main-kernel-smooth}
+\end{equation}
+式\eqref{eq:main-kernel-smooth}中的三项依次来自当前密度的二阶导数、
+两个因子的交叉导数及下一记录核的二阶导数。
+$f_h$ 的高斯方向导数可积，平移保持其 $L^1$ 范数；
+在共同支配测度 $d{\bm{z}}\otimes(\delta_\bot+d{\bm{\xi}})$ 下，乘积核因而二阶连续 $L^1$ 可微。
+固定模型和有限事件前缀使 $B_h$ 与变化的 $b,\varepsilon$ 无关；
+附录\ref{app:full-kernel}给出其显式选择。
+等概率正负符号使联合核的一阶扰动相消。
+对 $Q_h^\eta=[F_h(\eta)+F_h(-\eta)]/2$ 使用中心 Taylor 公式，可得
+\begin{equation}
+ \begin{aligned}
+ &Q_h^\eta-F_h(0)\\
+ &\quad=\frac12\int_0^\eta(\eta-t)
+ \bigl[F_h''(t)+F_h''(-t)\bigr]\,dt,\\
+ &\|Q_h^\eta-F_h(0)\|_{\rm var}\le \tfrac12B_h\eta^2.
+ \end{aligned}
+ \label{eq:main-kernel-taylor}
+\end{equation}
+给定攻击前历史及 $({\bm{z}},{\bm{\xi}})$，按
+${\bm{m}}_{k+1}^-={\bm{A}}({\bm{m}}_k^-+{\bm{K}}_h{\bm{z}})$，并在 ${\bm{\xi}}\ne\bot$ 时令下一载荷为
+${\bm{m}}_{k+1}^-+{\bm{\xi}}$，即可重建全部事件、载荷和预测记录。
+该重建映射不依赖 $t$ 或私有符号；当前静默分支则与无攻击运行相同。
+对共同前史积分，利用 TV 在固定映射下的收缩性，以及等质量测度差的
+TV 为其变差范数的一半，得到
+$\Delta_{\rm full}\le C_\pm\eta^2$，
+其中 $C_\pm=\frac14\sum_hw_hB_h\in(0,\infty)$。

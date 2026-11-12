@@ -1,0 +1,25 @@
+{
+  "id":"2026-11-10_reference_contamination_screen",
+  "purpose":"Exploratory screening of temporal-reference contamination and recovery; not revival of rejected interval-tail claim",
+  "base_config":"simulation/config.json",
+  "methods":["yang","local","capped","fresh_only_cap","interval_scale","spatial_soft","spatial_hard","reference_reset","reference_soft"],
+  "scenarios":["clean","single_step","step","replay_matched","alternating"],
+  "models":[
+    {"id":"original","reason":"Keep the old model as a boundary/negative control"},
+    {"id":"heterogeneous_sensing","reason":"Different state sensitivities and dynamic coupling make recovery of cooperative information operationally relevant; declared before new results",
+      "A":[[1.0,0.1],[0.0,1.01]],
+      "H_matrices":[[[1.0,0.0],[0.0,0.15]],[[0.15,0.0],[0.0,1.0]],[[1.0,0.0],[0.0,0.15]],[[0.15,0.0],[0.0,1.0]],[[0.7,0.0],[0.0,0.7]]]}
+  ],
+  "splits":{"train":{"start":310000,"count":64},"calibration":{"start":320000,"count":64},"validation":{"start":330000,"count":48},"test":{"start":340000,"count":128}},
+  "schedule":{"gap_pattern":[1,2,3,4,6,8,6,4,3,3],"phase_step":3,"replay_lag":80},
+  "reference_rule":{"reset":"previous packet's independent spatial statistic ratio > 1 disables temporal evidence for the current packet",
+    "soft":"r=exp(-max(previous_spatial_ratio-1,0)); g=(alpha*gs+(1-alpha)*r*gt)/(alpha+(1-alpha)*r)",
+    "no_composite_weight_feedback":true,"normal_control_rounds":3},
+  "single_step":"Attack the first actual packet in the declared attack window once",
+  "alternating":"Alternate full and 0.25 times fixed bias on successive actual packets; tests resetting/weak-payload acceptance vulnerability",
+  "normal_target":"5% new-packet weight<0.5 on independent normal validation; report achieved weights and normal MSE",
+  "primary_recovery":"Attacked receiver MSE for 10 estimate updates after first unsubstituted post-attack received packet; source still may have indirect contamination",
+  "novelty_gate":"A complex rule is not promoted unless it improves receiver recovery by >=5% over raw-reference AND >=2% over both simple reset and spatial-only on at least 2 of single_step/step/replay_matched, with normal and attack-window MSE degradation <=2%; per-case intervals are exploratory",
+  "no_parameter_search":true,
+  "limitations":"Mechanism screening, not publication novelty proof; original full-local model remains; new sensing model justified before testing; Berman2014 full text still needed"
+}

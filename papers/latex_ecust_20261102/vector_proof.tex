@@ -1,0 +1,207 @@
+\section{条件高斯结构与上界细节}
+\label{app:conditional}
+本节先证明扩充信息集下的条件高斯性，再给出正文两类上界所需的概率估计。
+对 $z\sim N(d,\Sigma)$、$\Sigma\succ0$，配方积分得
+\begin{equation}
+ \E e^{-z^\top Zz/2}=\det(I+Z^{1/2}\Sigma Z^{1/2})^{-1/2}
+ e^{-d^\top(Z^{-1}+\Sigma)^{-1}d/2}.
+ \label{eq:gaussian-integral}
+\end{equation}
+其中使用恒等式 $Z-Z(\Sigma^{-1}+Z)^{-1}Z=(Z^{-1}+\Sigma)^{-1}$，
+无需假设矩阵可交换。
+
+由接收递推和过去动作的可测性，给定 $\mathcal G_t^-$ 后，接收端的实际预测为已知量。
+攻击种子与物理初值独立，故初始条件分布为高斯分布。
+现假设时刻 $t$ 的预测条件分布为 $N(\mu_t^-,P_t^-)$。
+若发生发送，进一步给定真实测量 $y_t$ 后，发送概率仅取决于已知测量和实际预测，
+因此该概率因子在后验归一化时约去，得到
+\begin{equation}
+ \mu_t^+=\mu_t^-+K_1(P_t^-)(y_t-\mu_t^-),\qquad P_t^+=F_1(P_t^-).
+\end{equation}
+若发生静默，对测量噪声积分可得似然
+\begin{equation}
+ \Pr(\gamma_t=0\mid x_t,\mathcal G_t^-)
+ =\det(I+Z^{1/2}RZ^{1/2})^{-1/2}
+ e^{-(x_t-m_t^-)^\top R_0^{-1}(x_t-m_t^-)/2}.
+\end{equation}
+将该似然乘以高斯先验并归一化，后验均值为 $\mu_t^-+K_0(P_t^-)(m_t^--\mu_t^-)$，
+协方差为 $F_0(P_t^-)$。两种分支均保持条件高斯性；再由独立高斯过程噪声进行预测，
+即可完成归纳。允许动作依赖当前真实发送测量，因为动作对 $\mathcal G_t^+$ 可测；
+上述推导无需攻击与观测独立。
+最后，条件均值残差与可测偏差正交，展开平方范数并取期望即得正文的真实 MSE 分解。
+
+下面证明损伤上界。对偏差递推依次应用算子范数界与三角不等式，得到正文的偏差半径。
+在固定有限时刻，协方差正定且仅取有限个值，因此递推系数中的最大值均有限。
+每个事件前缀的静默概率严格处于 $(0,1)$，相应事件链的条件概率均有定义。
+对尚未分离的共同前缀采用最大耦合，单步分离概率等于两个伯努利参数之差的绝对值。
+再对首次分离时刻求和，得到式\eqref{eq:prefix-tv}。
+该耦合用于比较两种分布，不要求无攻击与受攻系统在物理运行中产生相同事件。
+由于协方差迹的取值区间长度为 $\Omega_k$，有
+\begin{equation}
+ |\E_\pi\operatorname{tr}P_k^+-\E_0\operatorname{tr}P_k^+|
+ \le\Omega_k\TV(\Law_\pi(\gamma_{0:k}),\Law_0(\gamma_{0:k})).
+\end{equation}
+将此式与偏差平方的上界相加，得到幅值约束下的损伤上界。
+对于记录约束，可逆 $A$ 与有限正定标签集保证 $h_*>0$。
+固定 $b_{\rm ref}$ 后，$q>0$ 与 $b\le b_{\rm ref}$ 的具体取值无关。
+结合两类上界，可取 $C=\max\{C_{\rm peak},C_{\rm record}\}$。
+此外，零动作策略可行，故 $V_j\ge0$；令记录预算为零即得 $V_j(b,0)=0$。
+此处仅使用最优值非负，并未要求每个允许策略的损伤均非负。
+
+\section{完整联合日志的匹配下界}
+\label{app:full-kernel}
+\subsection{条件发送密度与合法动作}
+以下构造在目标时刻前不施加攻击的策略。记事件前缀为 $h=\gamma_{0:k-1}$，其无攻击概率为
+$w_h=\Pr_0(\gamma_{0:k-1}=h)$。先给定该前缀及相应完整载荷历史，定义
+\begin{equation}
+ \begin{aligned}
+ P_h&=P_k^-(h),\quad S_h=P_h+R,\quad K_h=P_hS_h^{-1},\\
+ P_h^s&=P_h-P_hS_h^{-1}P_h,\quad S'_h=AP_h^sA^\top+Q+R,\\
+ T_h&=(S_h^{-1}+Z)^{-1},\quad
+ s_h=\det(I+Z^{1/2}S_hZ^{1/2})^{-1/2},\quad p_h=1-s_h.
+ \end{aligned}
+ \label{eq:lower-definitions}
+\end{equation}
+在该条件下，真实创新服从 $N(0,S_h)$，其协方差只取决于事件前缀。
+因此，记 $\phi_\Sigma$ 为 $N(0,\Sigma)$ 的概率密度。当前发送分支的未归一化密度为
+\begin{equation}
+ f_h(u)=\phi_{S_h}(u)(1-g(u))=\phi_{S_h}(u)-s_h\phi_{T_h}(u),
+ \qquad \int f_h=p_h>0.
+ \label{eq:sent-density}
+\end{equation}
+取单位方向 $v$，令 $u_h=AK_hv$，并按正文取 $\eta=\kappa b$。
+目标时刻发送后，偏差为 $D_k=-\sigma\eta K_hv$，下一时刻的预测偏差为 $d=-\sigma\eta u_h$。
+若下一时刻发送，则取补偿动作 $-d$。该动作仅依赖模型、事件前缀及攻击者的私有符号，
+其范数不超过 $\kappa b\max_h\|u_h\|_2\le b$，因而满足因果性和峰值约束。
+若目标时刻静默，则两拍均不施加攻击。由于 $K_h$ 可逆，
+$L_v=\sum_hw_hp_h\|K_hv\|_2^2>0$；对各前缀及发送分支求和，目标损伤恰为 $L_v\eta^2$。
+
+\subsection{静默原子和连续载荷的同一联合核}
+为同时计入发送载荷与静默事件，下面构造两拍记录的联合核。
+给定无攻击前史和当前真实发送测量后，下一时刻的真实条件创新
+$e=y_{k+1}-\mu_{k+1}^-$ 服从 $N(0,S'_h)$。
+即 $\Law(e\mid\text{无攻击前史},u,\gamma_k=1)=N(0,S'_h)$，该条件分布不随 $u$ 改变。
+因此，给定无攻击前史及当前发送事件后，$e$ 与当前真实创新条件独立。
+触发器使用创新 $e+d$，补偿后收到的创新为 $e+d+a_{k+1}=e$。
+这里补偿的是接收创新的平移；下一发送分支的条件估计偏差仍为 $D_{k+1}=d$。
+在 $\{\bot\}\sqcup\R^n$ 上定义概率核
+\begin{equation}
+ \begin{aligned}
+ \mathcal K_{h,d}(\{\bot\})&=\int\phi_{S'_h}(e)g(e+d)\,de,\\
+ \mathcal K_{h,d}(de)&=\phi_{S'_h}(e)[1-g(e+d)]\,de.
+ \end{aligned}
+ \label{eq:joint-kernel}
+\end{equation}
+令有符号幅值为 $t$，目标接收创新为 $z=u+tv$，则两拍次概率测度为
+\begin{equation}
+ F_h(t)(dz,d\xi)=f_h(z-tv)\,dz\,\mathcal K_{h,-tu_h}(d\xi),
+ \qquad F_h(t)(\text{全空间})=p_h.
+ \label{eq:product-kernel}
+\end{equation}
+混合分支为 $Q_h^\eta=[F_h(\eta)+F_h(-\eta)]/2$，无攻击分支为 $F_h(0)$。
+给定攻击前完整记录，令 $m=m_k^-$。当前发送分支中的日志由 $(z,\xi)$ 重建为
+\begin{equation}
+ \begin{aligned}
+ \widetilde y_k&=m+z,\quad m_k^+=m+K_hz,\\
+ m_{k+1}^-&=A(m+K_hz),\\
+ (\gamma_{k+1},\widetilde Y_{k+1})
+ &=\begin{cases}
+ (0,\bot),&\xi=\bot,\\
+ (1,A(m+K_hz)+\xi),&\xi\in\R^n.
+ \end{cases}
+ \end{aligned}
+\end{equation}
+其中 $\widetilde Y_{k+1}$ 表示收到的载荷或静默标记，$\gamma_k=1$；
+协方差由事件历史递推。附上原前史后即得到完整日志，
+该映射依赖已给定的前史，但不依赖 $t$、私有符号或策略标签。
+联合核保留了两拍记录的相关性；目标时刻的静默分支与无攻击分支相同，可直接并入完整日志。
+
+\subsection{二阶变差界}
+记 $\|\cdot\|_{\rm var}$ 为有符号测度的变差范数，两个概率测度的 TV 为其差测度变差范数的一半。
+对方向 $u$ 令 $a=u^\top Zu$。求方向导数并应用 Cauchy--Schwarz 不等式，得
+\begin{equation}
+ \sup_z|\partial_u g(z)|\le\sqrt{a/\mathrm e},\qquad
+ \sup_z|\partial_u^2g(z)|\le a.
+\end{equation}
+当 $a>0$ 时，第二式由 $z^\top Zz\ge(u^\top Zz)^2/a$ 及
+$\sup_r|r^2-1|e^{-r^2/2}=1$ 得到；$a=0$ 时导数为零。
+将静默原子与连续密度的导数分别积分后相加，得
+\begin{equation}
+ \sup_d\|\partial_u\mathcal K_{h,d}\|_{\rm var}\le2\sqrt{a/\mathrm e}=:l_1(u),\qquad
+ \sup_d\|\partial_u^2\mathcal K_{h,d}\|_{\rm var}\le2a=:l_2(u).
+ \label{eq:kernel-derivatives}
+\end{equation}
+令 $\nu=\delta_\bot+\lambda_n$，其中 $\lambda_n$ 为连续部分的Lebesgue测度，
+并记 $\mathcal K_{h,-tu_h}$ 关于 $\nu$ 的密度为 $q_{h,t}$，$a_h=u_h^\top Zu_h$。
+连续部分的一、二阶 $t$ 导数分别由 $\sqrt{a_h/\mathrm e}\,\phi_{S'_h}$、
+$a_h\phi_{S'_h}$ 支配，原子处则分别由常数 $\sqrt{a_h/\mathrm e}$、$a_h$ 支配。
+支配收敛定理给出 $t\mapsto q_{h,t}$ 的二阶连续 $L^1(\nu)$ 可微性。
+另一方面，高斯密度的方向导数满足
+\begin{equation}
+ \|\partial_v\phi_\Sigma\|_1=\sqrt{2/\pi}\sqrt{v^\top\Sigma^{-1}v},\qquad
+ \|\partial_v^2\phi_\Sigma\|_1\le2v^\top\Sigma^{-1}v.
+\end{equation}
+据此定义
+\begin{equation}
+ \begin{aligned}
+ F_{1,h}&=\sqrt{2/\pi}\big(\sqrt{v^\top S_h^{-1}v}+s_h\sqrt{v^\top T_h^{-1}v}\big),\\
+ F_{2,h}&=2\big(v^\top S_h^{-1}v+s_hv^\top T_h^{-1}v\big),\\
+ B_h&=F_{2,h}+2F_{1,h}l_1(u_h)+p_hl_2(u_h)
+ \end{aligned}
+ \label{eq:Bh}
+\end{equation}
+三者分别控制 $\|\partial_v f_h\|_1$、$\|\partial_v^2f_h\|_1$ 及 $\|F_h''(t)\|_{\rm var}$。
+$f_h$ 及其前两阶方向导数均可积；由 $L^1$ 中平移的连续性与微积分基本定理，
+$t\mapsto f_h(\cdot-tv)$ 二阶连续 $L^1$ 可微。
+张量乘积是连续双线性映射，故联合密度
+$f_h(z-tv)q_{h,t}(\xi)$ 在共同测度 $dz\otimes\nu$ 下也二阶连续 $L^1$ 可微。
+乘积求导包含交叉项，而平移保持导数范数，因而
+$\sup_{t\in\R}\|F_h''(t)\|_{\rm var}\le B_h$。
+该界不依赖连续载荷前史；固定模型和有限事件前缀保证全部 $B_h$ 有限。
+采用中心 Taylor 公式，得到
+\begin{equation}
+ Q_h^\eta-F_h(0)=\frac12\int_0^\eta(\eta-t)[F_h''(t)+F_h''(-t)]\,dt,
+ \quad \|Q_h^\eta-F_h(0)\|_{\rm var}\le\tfrac12B_h\eta^2.
+\end{equation}
+对私有正负符号先取混合，使一阶项相消。
+$F_h(\eta)$、$F_h(-\eta)$ 和 $F_h(0)$ 均具有质量 $p_h$，故混合差测度的总质量为零。
+记完整无攻击前史为 $\zeta$，其共同分布为 $\mu_{\rm pre}$，事件前缀为 $h(\zeta)$。
+当前静默分支相消后，利用固定日志映射下的TV收缩性及等质量测度的 $1/2$ 因子，有
+\[
+ \Delta_{\rm full}\le
+ \int\tfrac12\|Q_{h(\zeta)}^\eta-F_{h(\zeta)}(0)\|_{\rm var}\,\mu_{\rm pre}(d\zeta)
+ \le\tfrac{\eta^2}{4}\sum_hw_hB_h.
+\]
+因此
+\begin{equation}
+ \Delta_{\rm full}(\pi_\pm)\le C_\pm\eta^2,\qquad
+ C_\pm=\tfrac14\sum_hw_hB_h\in(0,\infty).
+ \label{eq:Cpm}
+\end{equation}
+该上界适用于包含连续载荷、静默原子、完整前史和实际预测反馈的联合日志。
+最后，将上述攻击与零动作策略按私有概率 $\lambda$ 混合，
+记录分布之差及损伤均按同一概率精确缩放，即得式\eqref{eq:attainable}。
+由于两种分支分别满足峰值约束，混合后仍逐路径满足该约束。
+
+\section{一般维数的当拍截止反例}
+\label{app:mh}
+本节构造一个保持当拍截止日志分布不变、但产生正损伤的策略。
+目标时刻之前不施加攻击；目标时刻发送后，对真实创新 $u$ 等概率提议 $u+bv$ 或 $u-bv$，
+以概率 $\min\{1,f_h(u\pm bv)/f_h(u)\}$ 接受，否则保留 $u$。
+在 $f_h(u)=0$ 的零测集上定义恒等动作。
+正向转移质量 $\frac12\min\{f_h(u),f_h(u+bv)\}\,du$ 在交换端点后等于反向转移质量，
+拒绝移动的质量位于对角线上。因此，该一步转移核满足详细平衡并保持 $f_h$ 不变。
+发送概率、前史及静默分支也保持不变，故 $H_k$ 在无攻击与受攻条件下精确同律。
+这一结论仅需一步核的不变性，无需遍历性。接受移动的未归一化质量满足
+\begin{equation}
+ A_h(b)=p_h-\tfrac12\|f_h-f_h(\cdot+bv)\|_1
+ \ge p_h-\tfrac b2F_{1,h}.
+\end{equation}
+其中，不等式由可积方向导数界得到。接受移动后，$\|D_k\|_2^2=b^2\|K_hv\|_2^2$；
+拒绝移动后，偏差为零。由于目标协方差的分布保持不变，有
+\begin{equation}
+ J_k=b^2\sum_hw_h\|K_hv\|_2^2A_h(b)
+ \ge L_vb^2-\tfrac{b^3}{2}\sum_hw_h\|K_hv\|_2^2F_{1,h}.
+\end{equation}
+由 $L_v>0$ 且上式各和有限，充分小 $b$ 下可得正的二次下界。
+结合正文的幅值上界，即得命题\ref{prop:deletion}。

@@ -1,0 +1,72 @@
+\section{统计损伤证书与有限样本应用}
+\label{app:statistical}
+本节给出主定理记录关系的一项应用。统计实验比较\cite{blackwell1953}和分布距离不等式\cite{sason2016}
+用于描述记录的信息与期望约束，分布约束优化\cite{bertsimas2005}提供相应求界背景；
+随机单比特编码\cite{benbasat2021,suresh2017}则限制每次输出的位数。
+以下构造采用正文已定义的 $P=P_k^+$、$Y=\ind\{\gamma_{k+1}=0\}$ 以及常数 $M,q,\Omega_k$。
+先给出固定核的统计损伤证书，再说明其独立样本保证和数值代价。
+\subsection{固定记录核与统计损伤证书}
+式\eqref{eq:witness}中的加权静默事件反映条件估计偏差。
+将其与协方差迹项合并，可构造取值在 $[0,1]$ 的实值得分，
+使得分均值之差直接控制真实均方误差增量。
+令 $p_{\max}=\max_{P\in\mathcal P_k^+}\operatorname{tr}P$，定义
+\begin{equation}
+ \begin{aligned}
+ L&=M+q\Omega_k,\\
+ T(P,Y)&=\frac{w(P)Y+q(p_{\max}-\operatorname{tr}P)}{L},\\
+ B\mid(P,Y)&\sim\operatorname{Bernoulli}(T(P,Y)).
+ \end{aligned}
+ \label{eq:score}
+\end{equation}
+二值化使用与系统及攻击相独立的额外随机数。
+无攻击与受攻运行采用同一固定记录核；由于 $0\le T\le1$，
+实值得分与二值输出均可通过样本均值估计其期望。
+\begin{proposition}[向量系统的统计损伤证书]
+\label{prop:certificate}
+对主定理的全部允许策略及 $b\le b_{\rm ref}$，有
+\begin{equation}
+ \begin{aligned}
+ J_k&\le C_B(\E_0T-\E_\pi T)
+       =C_B(\E_0B-\E_\pi B),\\
+ C_B&=L/q=C_{\rm record}.
+ \end{aligned}
+ \label{eq:signed-certificate}
+\end{equation}
+\end{proposition}
+\begin{proof}
+由式\eqref{eq:score}，
+\begin{equation}
+ \begin{aligned}
+ L(\E_0T-\E_\pi T)
+ &=1-\E_\pi e^{-D^\top H(P)D}\\
+ &\quad+q(\E_\pi\operatorname{tr}P-\E_0\operatorname{tr}P)\\
+ &\ge qJ_k.
+ \end{aligned}
+ \label{eq:score-identity}
+\end{equation}
+条件期望又给出 $\E B=\E T$，故结论成立。
+\end{proof}
+该构造给出适用于 $n$ 维系统的可行证书。
+常数沿用主定理中的统一半径界与最小特征值，保守性也由此传递到证书中；
+其在全部记录核中的最优性尚未建立。
+
+\subsection{记录成本与二值化方差}
+矩阵标签 $P_k^+$ 有 $n(n+1)/2$ 个对称分量；作为有限事件历史的函数，
+它也可以用模型依赖的标签索引表示。
+当历史到精确标签的映射为单射时，标签与历史具有相同的统计区分信息。
+此时，精确矩阵标签提供的是事件历史的等价表示。
+标签量化会合并不同历史，对量化记录的损伤保证需要重新推导，
+以计入精确 $w(P)$ 被替换后产生的误差。
+
+二值记录 $B$ 每次输出一位，其生成需要 $P$、下一时刻事件及预计算的记录核。
+因此，输出位数、在线协方差存储与更新、离线历史枚举及核计算是不同的成本项。
+实值得分 $T$ 保留相同均值，而全方差公式给出
+\begin{equation}
+ \operatorname{Var}(B)=\operatorname{Var}(T)+\E[T(1-T)].
+ \label{eq:variance}
+\end{equation}
+在独立等样本数条件下，随机二值化保持均值，并增加非负的抽样方差项。
+二值输出的传输或存储收益应与这一统计代价共同评估。
+
+\input{finite_sample}
+\input{statistical_numerical}

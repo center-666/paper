@@ -1,0 +1,138 @@
+\section{末事件位反例的构造与正损伤证明}
+\label{app:last-bit}
+本节考察只保留下一时刻事件、删去历史背景的情形。记
+$\Delta_{\rm last}=\TV(\Law_\pi(\gamma_{k+1}),\Law_0(\gamma_{k+1}))$。
+本节证明正文命题\ref{prop:last-bit}。
+
+以下构造对末事件概率产生相反影响的两个策略，再用固定概率混合消去概率差。
+依次计算损伤和事件概率、确定展开系数的符号，最后证明混合后仍具有正损伤。
+
+\subsection{两种策略的闭式表达}
+
+
+本节固定 $A=1$、$P_0=4/5$、$R=1/5$、$Q=2$、$Z=2$、$k=1$。
+记当前时刻的静默概率函数和两种协方差更新为
+\begin{equation}
+ s_*(p)=[1+2(p+R)]^{-1/2},\quad
+ F_1(p)=\frac{pR}{p+R},\quad
+ F_0(p)=\frac{p(R+1/2)}{p+R+1/2}.
+ \label{eq:counter-functions}
+\end{equation}
+其中，静默函数的下标用于区别正文定义的下一时刻函数 $s(p)$。
+令 $u=b^2$，并定义
+\begin{equation}
+ \begin{split}
+ w_0&=1-s_*(P_0),\quad p_1=Q+F_1(P_0)=54/25,\\
+ p_s&=F_1(p_1)=54/295,\quad p_n=F_0(p_1)=378/715,\\
+ s_1&=s_*(p_1),\quad s_s=s_*(Q+p_s),\quad s_n=s_*(Q+p_n),\\
+ c_1&=16/143,\quad d_n^2=(28/143)^2,\quad
+ c_2=\frac{d_n^2}{1+2(Q+p_n+R)},\quad q_1(u)=s_1e^{-c_1u}.
+ \end{split}
+ \label{eq:counter-constants}
+\end{equation}
+策略 $E$ 在 $\gamma_0=1$ 后注入 $b$，使时刻 $1$ 的预测偏差为 $-4b/5$；
+若又有 $\gamma_1=1$，取
+$a_1=(R/p_1)(-4b/5)=-2b/27$，则 $D_1=0$。
+若 $\gamma_1=0$，则 $D_1=-28b/143$。
+$\gamma_0=0$ 对应的两个事件分支与无攻击分支相同。
+记 $\delta_E$ 为受攻与无攻击条件下末时刻静默概率之差。对四个事件分支加权，得
+\begin{align}
+ J_E(u)&=w_0[(q_1-s_1)(p_n-p_s)+q_1d_n^2u],\\
+ \delta_E(u)&=w_0[(s_1-q_1)(s_s-s_n)
+                     +q_1s_n(e^{-c_2u}-1)].
+ \label{eq:E-closed}
+\end{align}
+第一式中的 $(q_1-s_1)(p_n-p_s)$ 表示事件概率变化所引起的平均协方差变化。
+
+策略 $L$ 在时刻 $0$ 不施加攻击，仅在 $\gamma_1=1$ 后注入 $b$。
+令求和指标 $(p,w)$ 取下列两个值：
+\begin{equation}
+ (p,w)\in\{(Q+F_1(P_0),1-s_*(P_0)),
+              (Q+F_0(P_0),s_*(P_0))\},
+ \label{eq:L-branches}
+\end{equation}
+并令 $K(p)=p/(p+R)$、$D_p=1+2[Q+F_1(p)+R]$。
+同样对四个事件分支求和，得到
+\begin{align}
+ J_L(u)&=u\sum_{p,w}w[1-s_*(p)]K(p)^2,\\
+ \delta_L(u)&=\sum_{p,w}w[1-s_*(p)]s_*(Q+F_1(p))
+                [e^{-K(p)^2u/D_p}-1].
+ \label{eq:L-closed}
+\end{align}
+当 $u>0$ 时 $J_L>0$、$\delta_L<0$。
+
+\subsection{展开系数的符号}
+上述有限表达式在 $u=0$ 附近解析。定义
+$j_E=J_E'(0)$、$d_E=\delta_E'(0)$、
+$j_L=J_L'(0)$、$d_L=\delta_L'(0)$，则
+\begin{align}
+ j_E&=w_0s_1[-c_1(p_n-p_s)+d_n^2],\\
+ d_E&=w_0s_1[c_1(s_s-s_n)-s_nc_2],\\
+ j_L&=\sum_{p,w}w[1-s_*(p)]K(p)^2,\\
+ d_L&=-\sum_{p,w}w[1-s_*(p)]s_*(Q+F_1(p))K(p)^2/D_p.
+ \label{eq:counter-derivatives}
+\end{align}
+这些系数仅含有理运算和正有理数的平方根，可通过有理区间确定其符号。
+令 $B_0=10^{20}$，
+对表\ref{tab:sqrt-brackets}中的正有理数 $q=n/d$ 和整数 $N_q$，直接平方可验证
+$N_q^2 n<B_0^2d<(N_q+1)^2 n$。
+因此 $N_q/B_0<q^{-1/2}<(N_q+1)/B_0$。
+\begin{table}[H]
+\centering\small
+\tabcaption{平方根倒数的有理包围区间所用整数}{Integers defining rational enclosures of reciprocal square roots}
+\label{tab:sqrt-brackets}
+\begin{tabular}{cr}
+\toprule
+$q$ & $N_q$\\
+\midrule
+$3$ & $57735026918962576450$\\
+$143/25$ & $41812100500354538535$\\
+$1701/295$ & $41644614975962723125$\\
+$4617/715$ & $39352568506259571953$\\
+$461/75$ & $40334824255503366866$\\
+$5567/965$ & $41634470525994220264$\\
+\bottomrule
+\end{tabular}
+\end{table}
+这六个平方根倒数依次为
+$s_*(P_0),s_1,s_s,s_n,s_*(Q+F_0(P_0))$ 和
+$s_*(Q+F_1(Q+F_0(P_0)))$。
+把这些有理区间代入式\eqref{eq:counter-derivatives}，
+用端点相加、四个端点乘积的最小值与最大值、正区间的倒数进行有理区间运算，
+得到以下严格包含系数的区间：
+\begin{equation}
+ \begin{split}
+ 0.00004029915481592&<d_E<0.00004029915481593,\\
+ -0.036025793676275&<d_L<-0.036025793676274,\\
+ 0.00111736957492&<\frac{d_E}{d_E-d_L}<0.00111736957494,\\
+ 0.00049907284044&<
+ \frac{d_Ej_L-d_Lj_E}{d_E-d_L}<0.00049907284046.
+ \end{split}
+ \label{eq:counter-intervals}
+\end{equation}
+由式\eqref{eq:counter-constants}、\eqref{eq:L-branches}和
+\eqref{eq:counter-derivatives}，上述区间均可通过有理数运算复核，
+因此系数的符号由严格区间确定。
+
+\subsection{零末位差异下的正损伤}
+因为 $d_E>0>d_L$，存在 $u_0>0$，使全部 $0<u<u_0$ 上
+$\delta_E(u)>0>\delta_L(u)$。在实验开始前以概率
+\begin{equation}
+ \lambda(u)=\frac{\delta_E(u)}{\delta_E(u)-\delta_L(u)}
+ \label{eq:counter-mixture}
+\end{equation}
+选择 $L$，否则选择 $E$。
+于是 $(1-\lambda)\delta_E+\lambda\delta_L=0$ 是精确恒等式。
+伯努利分布由静默概率唯一确定，故末事件位的 TV 恰为零。
+$\lambda$ 在零点的可去奇点可延拓为
+$\lambda_0=d_E/(d_E-d_L)$，进而
+\begin{equation}
+ J_{\pi_b}=(1-\lambda(u))J_E(u)+\lambda(u)J_L(u)
+ =c_*b^2+O(b^4),\qquad
+ c_*=(1-\lambda_0)j_E+\lambda_0j_L
+     =\frac{d_Ej_L-d_Lj_E}{d_E-d_L}>0.
+ \label{eq:counter-positive}
+\end{equation}
+因此，命题\ref{prop:last-bit} 成立。
+该结论使用式\eqref{eq:counter-mixture}的精确混合权重，并适用于充分小的幅值。
+这里的同律结论限于末事件位；它不要求完整事件历史或载荷日志同律。

@@ -1,0 +1,23 @@
+{
+  "id":"2026-11-10_cache_episode_screen",
+  "reason":"A packet can remain in fusion for several local measurement updates; ask whether accumulated LOCAL consistency evidence has value beyond instantaneous monitoring and simple cache-value policies",
+  "novelty_warning":"Whitening, GLS and sequential residual tests are existing tools; passing an engineering screen does not prove novelty",
+  "base_config":"simulation/config.json",
+  "models":["original","heterogeneous_sensing"],
+  "schedule":"previous reference screen repeated irregular gaps; identical messages across policies",
+  "methods":["yang","local","capped","fresh_only_cap","age_decay","packet_spatial","instant_cache","joint_cache","gls_cache"],
+  "scenarios":["clean","single_step","low_step","step","replay_matched"],
+  "splits":{"train":{"start":410000,"count":64},"calibration":{"start":420000,"count":64},"validation":{"start":430000,"count":48},"test":{"start":440000,"count":128}},
+  "normal_training_policy":"cap-only on common no-attack data; edge/age centered residual covariance, common for all monitors",
+  "episode_false_alarm_target":0.05,
+  "normal_episode_control":"calibrate maximum over all legal age prefixes in a no-attack cache residency; do not treat repeated correlated residuals as independent tests",
+  "monitor_update":"hard-isolate a cache on first threshold exceedance; reset only when new packet arrives; fresh packet controller analogous at age0",
+  "normal_validation_multipliers":[0.5,1.0,2.0,4.0],
+  "parameter_selection":"each detection policy uses normal validation only, lowest normal MSE among multiplier choices with normal cache-residency alarm rate <=0.06; fallback report if infeasible",
+  "age_decay_half_lives":[1,2,4,8,1000000],
+  "age_decay_selection":"normal validation MSE only, no attack-informed search; normal weight loss is information management, not automatically false alarm",
+  "main_comparison":"GLS prefix-bias projection vs instant age-normalized cache spatial gate; joint covariance energy is a strong additional simple baseline",
+  "practical_gate":"GLS receiver attack-excess MSE improves >=5% of receiver clean baseline relative to BOTH instantaneous and best normal age-only/fresh-only, in >=2 non-clean scenarios without normal network MSE degradation>2%; exploratory paired CI must favor candidate; otherwise stop or reduce to engineering correction",
+  "scope":"Exploratory alternate question, not reuse of discarded tail calibration claim; conditional residual bias map M_age=H_i*A^age, no receiver-private information accessible to attacker",
+  "save":"train/cal episodes, model stats, validation choices, full test states/weights/send/injection masks, episode diagnostics and source snapshots"
+}

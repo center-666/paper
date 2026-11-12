@@ -1,0 +1,23 @@
+{
+  "id": "2026-11-12_reachable_silence_screen",
+  "scope": "Quantitative extension of the user's frozen stochastic-trigger manuscript; NOT a new Yang-network detector and NOT a claim that silence-window Gaussian formulas are new.",
+  "inheritance": ["Old 2026-10-09 finite-silence-window formulas and arbitrary-history mixture closure", "Old 2026-10-20 fixed finite-time peak/TV damage decomposition"],
+  "candidate": "For each event history h at target k, compute the attack-reachable bias range R_h. Require future-silence observation G_L=[CA;...;CA^L] to be injective only on R_h, rather than on the entire state space. Derive a marked-record total-MSE damage upper bound under that restricted coercivity.",
+  "requirements": ["Trusted stochastic event bits and actual predictive feedback, as in the old manuscript", "Measurement payload replacement after a real sending decision; no unsent measurements/state/future noise available to attacker", "Exact covariance tag and fixed finite target time; no DoS or feedback delay", "No promise of finite-sample detection or universal necessary-and-sufficient security condition"],
+  "fixed_models": [
+    {"name":"coupled_observable", "A":[[0.9,0.2],[0.0,0.95]], "C":[[1.0,0.0]], "P0":[[0.5,0.1],[0.1,0.4]]},
+    {"name":"globally_unobservable_attack_confined", "A":[[0.9,0.0],[0.0,0.95]], "C":[[1.0,0.0]], "P0":[[0.5,0.0],[0.0,0.4]]},
+    {"name":"globally_unobservable_correlated_prior", "A":[[0.9,0.0],[0.0,0.95]], "C":[[1.0,0.0]], "P0":[[0.5,0.1],[0.1,0.4]]},
+    {"name":"singular_A_erases_attack", "A":[[0.0,0.0],[0.0,0.95]], "C":[[1.0,0.0],[0.0,1.0]], "P0":[[0.5,0.0],[0.0,0.4]]}
+  ],
+  "Q": [[0.02,0.0],[0.0,0.02]],
+  "measurement_noise_variance": 0.1,
+  "trigger_Z_scalar": 2.0,
+  "target_k": [0,1,2,3],
+  "lookahead_L": [1,2,3,4],
+  "reference_peak": 1.0,
+  "checks": ["Exact rational ranks of observability/reachability/G_L R_h", "Gaussian batch formula versus causal silence-filter recursion, normal determinant and bias quadratic", "Direct Gauss-Hermite integration of fixed one-/two-output windows", "Random bounded linear combinations of legitimate input maps satisfy the restricted quadratic lower bound"],
+  "numeric_seed": 20261112,
+  "no_estimator_Monte_Carlo": true,
+  "stop": "If this is already fully contained in old documents, classify as a corollary. If restricted ranks fail, do not claim all-state damage bound via this witness. If valid, retain as an incremental theorem candidate pending direct-paper fulltext and proof review, not as established novelty."
+}

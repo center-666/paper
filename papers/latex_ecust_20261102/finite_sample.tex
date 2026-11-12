@@ -1,0 +1,71 @@
+\subsection{独立实验下的有限样本置信上界}
+\label{sec:finite-sample}
+
+命题\ref{prop:certificate}用总体期望差控制均方误差增量。
+从有限记录计算损伤上界时，还需计入均值估计的抽样误差。
+固定记录核、攻击策略分布及正整数样本量，取 $0<\alpha<1$，记
+$p_0=\E_0B$、$p_a=\E_\pi B$。式\eqref{eq:signed-certificate}给出
+有符号关系 $J_k\le C_B(p_0-p_a)$，因此只需构造概率差的单侧上界。
+以下实验均从相同初始分布独立重置，攻击私有随机数
+与记录随机化也在每次实验中独立生成。
+
+若无攻击时的概率 $p_0$ 已知，以 $n_a$ 次受攻实验得到均值 $\hat p_a$，
+Hoeffding不等式\cite{hoeffding1963}给出：以至少 $1-\alpha$ 的概率，
+\begin{equation}
+ J_k\le C_B\left[p_0-\hat p_a+
+ \sqrt{\frac{\log(1/\alpha)}{2n_a}}\right].
+ \label{eq:fs-known}
+\end{equation}
+若另以独立的 $n_0$ 次无攻击实验估计 $p_0$，则
+\begin{equation}
+ J_k\le C_B\left[\hat p_0-\hat p_a+
+ \sqrt{\frac{\log(1/\alpha)}{2}
+ \left(\frac1{n_0}+\frac1{n_a}\right)}\right]
+ \label{eq:fs-two}
+\end{equation}
+同样具有至少 $1-\alpha$ 的置信水平。
+为证明式\eqref{eq:fs-two}，令 $X=\hat p_0-\hat p_a$。其中无攻击样本的权重为
+$1/n_0$，受攻样本的权重为 $-1/n_a$，各独立加权项的取值区间长度
+平方之和为 $1/n_0+1/n_a$。直接应用Hoeffding下尾界即得
+$\Pr\{\E X-X>t\}\le\exp[-2t^2/(1/n_0+1/n_a)]$。
+该推导直接控制两组样本均值之差，避免了分别构造置信区间再相加所带来的额外余量。
+
+上述公式也适用于 $[0,1]$ 内的实值得分 $T$，将概率估计替换为得分均值即可。
+Hoeffding界仅使用取值区间，因此两种输出具有相同形式的置信余量，
+式\eqref{eq:variance}中的方差差异不影响该余量。
+实际计算以观测均值代入，并将所得上界与预定允许损伤比较；
+若上界仍高于该阈值，则本次数据不足以完成认证。
+这里的认证对象是给定策略分布下的期望损伤。
+
+\textbf{给定损伤阈值的样本量规划。}
+令允许损伤为 $\tau$，总体概率差为 $\delta=p_0-p_a$，并记
+$m=\tau/C_B-\delta$。在参考概率及记录核均精确的条件下，若 $m>0$，令经验概率差
+等于总体差并反解式\eqref{eq:fs-known}、\eqref{eq:fs-two}，得到
+\begin{equation}
+ \begin{aligned}
+ n_a&\ge\left\lceil\frac{\log(1/\alpha)}{2m^2}\right\rceil
+ &&(p_0\text{已知}),\\
+ n_0=n_a&\ge\left\lceil\frac{\log(1/\alpha)}{m^2}\right\rceil
+ &&(\text{两组等量采样}).
+ \end{aligned}
+ \label{eq:fs-planning}
+\end{equation}
+式\eqref{eq:fs-planning}给出经验概率差恰等于总体差时的样本量规划值，
+用于衡量置信余量的规模。它既非必要样本量，也不保证以 $1-\alpha$ 概率成功认证，
+因为实际经验均值仍存在随机偏差。
+后文以二维工况给出相应数值；认证时仍须代入实际样本均值。
+若 $m\le0$，则即使经验概率差等于总体差，有限样本上界也无法达到目标。
+
+\textbf{实现误差与适用条件。}
+上述结论以模型证书成立和记录核准确实现为前提。若使用的无攻击参考值
+$\tilde p_0$ 满足 $|\tilde p_0-p_0|\le\delta_0$，则在式
+\eqref{eq:fs-known}中以 $\tilde p_0$ 替换 $p_0$，并在括号内加上 $\delta_0$。
+若实际二值输出为 $\widetilde B$，且已验证
+$|\E_i\widetilde B-\E_iB|\le\eta_i$（$i=0,a$，其中 $\E_a=\E_\pi$），
+则以实际输出的样本均值代入式\eqref{eq:fs-two}，并在括号内加上 $\eta_0+\eta_a$。
+无攻击参考采用规定核的理论概率时，式\eqref{eq:fs-known}的括号内只需加 $\eta_a$。
+这些概率误差均需乘以外部系数 $C_B$ 才转换为损伤余量；
+模型失配及证书常数的有效性仍需单独核验。
+记录核、样本数和置信水平应事先确定；若由数据选择记录核，
+则应另用独立样本验证。以上置信保证适用于独立重置实验，
+对于单条连续轨迹中的相关记录，需要另行建立相应的统计界。

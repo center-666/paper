@@ -1,0 +1,25 @@
+{
+  "id": "2026-11-12_shared_channel_deadline_screen",
+  "type": "new structural candidate; exact finite deterministic scheduling screen, not state-estimator Monte Carlo",
+  "motivation": "Old single-link ACK theorem is frozen. Test shared-channel conflicts when per-link locally minimal attempt counts have different history-expiry deadlines.",
+  "old_work_unchanged": true,
+  "model": {
+    "tasks": "One pending packet per link; all available at slot 0, common deadline n-1; stop a task after its first success.",
+    "channel": "One attempted DATA packet per slot; trusted scheduler sees all relevant per-link failure histories and immediate authenticated ACKs.",
+    "attack": "Separate effective-failure budget B_i in every physical sliding window L_i; adversary sees actual attempts causally. No FDI and no shared/global jammer budget.",
+    "horizon": "n <= min_i L_i; all future failures remain inside the current window before the deadline.",
+    "resource_warning": "Coordination and globally visible ACK histories are added assumptions versus center-free neighbor filtering; ACK airtime is abstracted into one slot, not proven free in practice."
+  },
+  "hypothesis": "Choose an attempt count r_i for each task; its latest admissible force-success slot is d_i(r_i)=max{t<=n-1: U_i(t)+r_i>B_i}. Shared feasibility is ordinary common-release preemptive EDF workload feasibility for these selected options. Min sum r_i should equal direct adversarial game optimum.",
+  "exhaustive": {"tasks": 2, "L": [2,3,4,5], "B_max": 2, "n": "all 1..L", "histories": "all length L-1 binary words of weight <= B_i, zero before the stored prefix"},
+  "three_task_cases": {"count": 128, "seed": 20261112, "L": [3,4,5,6,7], "B_max": 2, "n": "uniform integer in 1..L"},
+  "baselines": [
+    "Direct minimax Bellman game over actual physical suffixes; ACK success/failure outcomes explicitly enumerated, independent of proposed reduction",
+    "Per-link minimal count frozen initially, with its own effective deadline",
+    "Uniform worst-case B_i+1 reservations",
+    "Dynamic effective-deadline-first, recompute each slot; best of all fixed tie priorities per known instance"
+  ],
+  "checks": ["All exact finite game values must equal option-reduction values", "Constructed schedule verified against all legal success/failure branches for named examples", "Two-link expiry-collision example declared before output: L=3,B=(1,1), histories=(0,1),(0,1), n=3"],
+  "stop": "Any reduction/game mismatch invalidates theorem. If no separation from a strong simple online rule, retain only a possible characterization, not a new scheduling algorithm. Even if valid, EDF/ILP/DP are standard; require direct near-neighbor fulltext before novelty claim.",
+  "no_parameter_search_for_estimation_gain": true
+}

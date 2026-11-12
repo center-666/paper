@@ -1,0 +1,60 @@
+{
+  "id": "2026-11-11_cusum_cross_packet_audit",
+  "source_run": "simulation/validation_runs/2026-11-11_sequential_strong_v1",
+  "reason": "Post-result comparator audit: ordinary CUSUM need not reset on every arriving packet. Test retained cumulative state across messages, with alarm resets, under the same cache isolation action",
+  "earlier_results_seen": true,
+  "not_a_replacement_for_failed_primary_gate": true,
+  "schedules": [
+    "gap8",
+    "irregular"
+  ],
+  "attack_edges": {
+    "primary": [
+      0,
+      1
+    ],
+    "external_reversed_sensitivity": [
+      1,
+      2
+    ]
+  },
+  "methods": [
+    "mean",
+    "carry_energy_cusum",
+    "carry_signed_cusum"
+  ],
+  "scenarios": [
+    "clean",
+    "step",
+    "half_step"
+  ],
+  "tune_seeds": {
+    "start": 1240000,
+    "count": 64
+  },
+  "normal_audit_seeds": {
+    "start": 1250000,
+    "count": 64
+  },
+  "test_seeds": {
+    "start": 1260000,
+    "count": 192
+  },
+  "normal_target": 0.05,
+  "tune_rounds": 8,
+  "tune_rule": "Eight fixed geometric bracket iterations, multipliers [0.05,40], update each phase using its realized NORMAL complete-episode alarm rate; finalize geometric midpoint, audit independently, no test retuning",
+  "shared_assets": "phase normal moments, base score thresholds, cap and half-life frozen from source run; no test-based retuning",
+  "causal_whitening": "same within-cache conditional innovation as first benchmark; cross-cache independence is NOT assumed, normal episode maxima are empirically calibrated",
+  "reset_rule": "retain detector sums on a new packet; reset sums after each threshold crossing; rejected cache stays isolated until replaced. All evidence current/past only",
+  "primary": "mean vs both carry baselines for primary-edge step under both schedules:4 tests for >=1% receiverMSE improvement, Holm4; half-step and external edge are boundary checks",
+  "normal_acceptance": {
+    "max_network_mse_increase": 0.02,
+    "max_receiver_clean_mse_increase": 0.02,
+    "max_steady_fpr_difference": 0.005,
+    "target_steady_fpr_range": [
+      0.035,
+      0.065
+    ]
+  },
+  "decision": "If even this stronger comparator is surpassed, retain only sustained-full-bias engineering signal, not generic detector novelty. If false-isolation matching fails, flag incomparable and do not use test data to tune again"
+}

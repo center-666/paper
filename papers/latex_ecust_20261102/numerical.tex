@@ -1,0 +1,91 @@
+\section{数值仿真与分析}
+\label{sec:numerical}
+
+
+\subsection{仿真设置}
+为验证上述分析，选取两个二维耦合系统，分别考察损伤组成、双预算下的可达到损伤和记录观察时域的影响。
+两组状态矩阵取为
+\begin{equation}
+ A_{\rm S}=\begin{bmatrix}0.82&0.18\\-0.10&0.72\end{bmatrix},\qquad
+ A_{\rm U}=\begin{bmatrix}1.04&0.12\\0.03&0.91\end{bmatrix}.
+\end{equation}
+两者的谱半径分别约为 $0.7800$ 和 $1.0635$，分别记为稳定工况S和不稳定工况U，均在同一有限时刻评价损伤。
+共同参数设置如下：
+\begin{equation}
+ \begin{gathered}
+ P_0=\begin{bmatrix}0.8&0.12\\0.12&0.6\end{bmatrix},\quad
+ Q=\begin{bmatrix}0.05&0.01\\0.01&0.04\end{bmatrix},\\
+ R=\begin{bmatrix}0.2&0.03\\0.03&0.3\end{bmatrix},\quad
+ Z=\begin{bmatrix}2&0.25\\0.25&1.5\end{bmatrix}.
+\end{gathered}
+ \label{eq:2d-parameters}
+\end{equation}
+取 $m_0=0$、$k=4$、$b_{\rm ref}=0.2$、$v=(1,-1)^\top/\sqrt2$。
+其中 $\|\cdot\|_F$ 为Frobenius范数，$\|P_0R-RP_0\|_F\approx0.02546$，
+故两矩阵不能通过同一正交变换同时对角化。
+因此，该设置包含矩阵非交换的情形。系统参数和攻击方向均预先固定。
+用有理数精确递推可验证，S、U工况中32条 $\gamma_{0:4}$ 历史分别产生32个不同的 $P_4^+$。
+因此在这两组工况中，精确标记与事件串可相互确定，对同一攻击有
+$\Delta_{\rm marked}=\Delta_{\rm bits}$，精确标记在本例中没有压缩事件历史的信息量。
+
+采用以下两类因果攻击比较损伤组成。
+持续定向策略在 $0,\ldots,k$ 的每次真实发送后注入 $bv$，使先前载荷修改影响后续触发。
+两拍符号策略采用第\ref{sec:bounds}节的等概率正负注入及下一拍补偿，在目标时刻首次攻击。
+两者采用相同的系统、欧氏峰值和记录协议，攻击方向及策略未经最优化。
+双预算验证则将两拍符号构造给出的合法下界与全策略理论上界比较。
+
+通过完整有限事件树计算总体概率及条件矩，并分别保留各协方差标签。
+表\ref{tab:vector-damage}中的TV对应事件串 $\gamma_{0:k+1}$；
+完整连续日志的预算可行性则由附录\ref{app:full-kernel}中的解析充分界判定。
+以下二维结果均采用普通浮点计算，未作严格区间认证。
+
+
+
+\subsection{损伤组成与幅值的影响}
+
+取 $b=0.1$，损伤分解结果如表\ref{tab:vector-damage}所示。
+持续定向攻击下，两组工况的平均协方差迹均减小。这是由于先前攻击改变了后续触发概率，进而改变各协方差历史的概率权重。
+协方差变化的负项抵消了部分偏差损伤，因此仅采用 $\E_\pi\|D_k\|_2^2$ 会高估本例的真实MSE增量。
+两拍符号攻击在目标时刻的发送决定之后首次修改载荷，目标时刻的协方差分布保持不变。
+此时协方差变化项为零，损伤完全来自偏差平方项，且 $J_k=L_v\kappa^2b^2$。
+
+
+进一步取 $b\in\{0.025,0.05,0.1,0.2\}$，考察损伤随峰值的变化，见图\ref{fig:vector-damage}。
+两拍符号策略在S、U中的 $J_k/b^2$ 分别约为 $0.032185$、$0.057380$，
+与解析系数一致。持续定向策略在此幅值范围内也呈近似二次变化。
+上述结果与引理\ref{lem:gaussian}的损伤分解一致。
+这里比较的是固定策略在相同峰值下的损伤；持续定向策略未按同一完整日志TV预算构造，故不据此评价双预算下的攻击优劣。
+
+\input{damage_table_float}
+\input{damage_figure}
+
+\subsection{双预算损伤界的验证}
+为同时满足峰值与完整日志TV约束，固定 $b=0.1$，将两拍符号策略以概率
+$\lambda=\min\{1,\varepsilon/(C_\pm\kappa^2b^2)\}$ 与无攻击策略混合。
+该混合概率由完整日志TV的解析充分界选取，所得策略的损伤由式\eqref{eq:attainable}给出。
+相同预算下的损伤上下界如图\ref{fig:vector-budget}所示，计算所用常数见附录\ref{app:validation}。
+
+
+图中下曲线为合法攻击构造下界，上曲线为幅值界与记录界的较小值：
+\[\min\{C_{\rm peak}b^2,C_{\rm record}\varepsilon\}.\]
+由图可见，上下界均先随TV预算线性增加，随后达到峰值约束决定的平台，但切换点与比例常数不同。
+这一变化对应定理\ref{thm:main}中的两种限制：预算较小时，损伤主要受记录约束限制；预算放宽后，峰值约束起主要作用。
+在线性区间内，S、U的上界与合法攻击构造下界之比分别约为783.64和359.14。
+因此，上下界在阶数上匹配，其数值常数仍较保守。
+按精确协方差标签分别选取偏差半径和统计损伤证书系数，可有限减小记录界常数；
+本次选取使两工况的常数最多分别下降约3.25\%和11.99\%，仍未消除这一间隙，见附录\ref{app:label-refinement}。
+图中的预算可行性由完整日志联合核的解析界保证。
+表\ref{tab:vector-damage}所列事件串TV仅对应较少的信息，不用于替代完整日志约束。
+
+
+为检查事件树递推的数值实现，两组模型和两类策略的每种组合均进行了40万次独立重置的状态过程模拟。
+四项事件树损伤均位于配对模拟的近似95\%置信区间内，最大标准化差异约为1.125。
+模型积分、模拟设置及原始结果见附录\ref{app:validation}。
+状态过程模拟与事件树结果相符，支持上述数值实现；一般维数的结论由第\ref{sec:bounds}节的理论分析给出。
+\begin{ecustfigure}
+\centering\includegraphics[width=.95\textwidth]{figures/vector_budget.pdf}
+\figcaption{合法攻击构造下界与全策略理论上界（$b=0.1$，$k=4$）}{Lower bound from an admissible attack construction and all-policy theoretical upper bound ($b=0.1$, $k=4$)}
+\label{fig:vector-budget}
+\end{ecustfigure}
+\input{record_condition_numerical}
+\FloatBarrier

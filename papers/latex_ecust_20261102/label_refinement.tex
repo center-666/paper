@@ -1,0 +1,54 @@
+\subsection{精确标签与记录界常数的一次精化}
+\label{app:label-refinement}
+将正文十进制参数视为精确有理数，按
+$P^+=(P^{-1}+R_\gamma^{-1})^{-1}$ 及预测公式枚举，
+S、U工况各32条历史均产生32个不同的后验协方差矩阵。
+相等判定使用有理数运算，故精确标记与事件串的信息等价不依赖浮点去重阈值。
+
+下面只评估标签依赖系数对现有记录界常数的影响。
+对历史 $h=\gamma_{0:k}$，令 $M_t=(I-K_{\gamma_t}(P_t^-))A$，
+$T_{j,h}=M_k\cdots M_{j+1}K_1(P_j^-)$（空乘积为 $I$）。偏差递推给出
+$D_k=-\sum_{j:\gamma_j=1}T_{j,h}a_j$。于是取
+\begin{equation}
+ B(P)=b_{\rm ref}\max_{h:P_k^+(h)=P}\sum_{j:\gamma_j=1}\|T_{j,h}\|_2,
+ \qquad \|D_k\|_2\le B(P_k^+).
+ \label{eq:label-radius}
+\end{equation}
+此半径适用于全部允许策略。令 $h(P)=\lambda_{\min}(H(P))$，定义
+\begin{equation}
+ \begin{aligned}
+ c(P)&=\frac{B(P)^2}{1-e^{-h(P)B(P)^2}}\quad(B(P)>0),\\
+ F(P,Y)&=\operatorname{tr}P+c(P)[1-Y/s(P)].
+ \end{aligned}
+ \label{eq:label-score}
+\end{equation}
+$B(P)=0$ 时先取连续延拓 $c(P)=1/h(P)$。
+割线界给出 $c(P)(1-e^{-D^\top H(P)D})\ge\|D\|_2^2$。
+由条件静默恒等式，健康时 $\E_0F=\E_0\operatorname{tr}P$，因而
+\begin{equation}
+ J_k\le\E_\pi F-\E_0F\le C_{\rm label}\Delta_{\rm marked},
+ \qquad C_{\rm label}=\max_{P,Y}F-\min_{P,Y}F.
+ \label{eq:label-bound}
+\end{equation}
+最大、最小值取全部可达精确标签及 $Y\in\{0,1\}$。
+若 $B(P)=0$，该标签下所有允许偏差均为零，亦可直接取 $c(P)=0$；
+这是另一个有效取值，不是式\eqref{eq:label-score}的连续延拓。
+表\ref{tab:label-constants}比较两种系数取值与原统一常数。
+\begin{table}[H]
+\centering\small
+\tabcaption{标签依赖系数对记录界常数的影响}{Effect of label-dependent coefficients on the record-bound constant}
+\label{tab:label-constants}
+\begin{tabular}{lrrr}
+\toprule
+工况 & 原 $C_{\rm record}$ & 连续延拓 $C_{\rm label}$ & 零半径处取零\\
+\midrule
+S & 6.884171 & 6.710895 & 6.660168\\
+U & 5.869119 & 5.303361 & 5.165567\\
+\bottomrule
+\end{tabular}
+\end{table}
+连续延拓取值使常数分别下降约2.52\%和9.64\%；零半径处取零时分别下降约3.25\%和11.99\%。
+后一取值下，线性区间的上、下界斜率比仍约为758.14和316.09。
+这些浮点评估说明，标签依赖系数仅有限改善当前常数，尚未消除上下界的明显间隙。
+正文图\ref{fig:vector-budget}保留原常数，以对应主定理的统一构造。
+精确标签表、两种边界取值及重建脚本见复现附件；常数小数值未作严格区间认证。

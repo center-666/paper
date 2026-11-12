@@ -1,0 +1,118 @@
+{
+  "study": {
+    "target_k": 4,
+    "amplitudes": [
+      0.025,
+      0.05,
+      0.1,
+      0.2
+    ],
+    "orders_per_dimension": [
+      128,
+      256,
+      512
+    ],
+    "box_half_width": 9.0,
+    "attack_after_target": "zero",
+    "b_ref": 0.2,
+    "integral_relative_change_tolerance": 0.002,
+    "description": "Fixed original S/U cases; target-time single MH transition only."
+  },
+  "original_parameters": {
+    "k": 4,
+    "b_ref": 0.2,
+    "b_values": [
+      0.025,
+      0.05,
+      0.1,
+      0.2
+    ],
+    "budget_peak": 0.1,
+    "epsilon_values": [
+      1e-05,
+      0.0001,
+      0.001,
+      0.01,
+      0.1
+    ],
+    "confidence_alpha": 0.05,
+    "sample_size_per_group": 10000,
+    "planning_margin_in_damage_units": 0.01,
+    "cases": {
+      "S": {
+        "A": [
+          [
+            0.82,
+            0.18
+          ],
+          [
+            -0.1,
+            0.72
+          ]
+        ]
+      },
+      "U": {
+        "A": [
+          [
+            1.04,
+            0.12
+          ],
+          [
+            0.03,
+            0.91
+          ]
+        ]
+      }
+    },
+    "common": {
+      "P0": [
+        [
+          0.8,
+          0.12
+        ],
+        [
+          0.12,
+          0.6
+        ]
+      ],
+      "Q": [
+        [
+          0.05,
+          0.01
+        ],
+        [
+          0.01,
+          0.04
+        ]
+      ],
+      "R": [
+        [
+          0.2,
+          0.03
+        ],
+        [
+          0.03,
+          0.3
+        ]
+      ],
+      "Z": [
+        [
+          2.0,
+          0.25
+        ],
+        [
+          0.25,
+          1.5
+        ]
+      ],
+      "direction": [
+        1.0,
+        -1.0
+      ],
+      "quadrature_bias": [
+        0.13,
+        -0.17
+      ]
+    }
+  }
+}

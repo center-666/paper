@@ -1,0 +1,77 @@
+# Local runtimes, editor state and credentials
+.venv/
+__pycache__/
+*.py[cod]
+.vscode/
+.idea/
+.env
+.env.*
+!.env.example
+Thumbs.db
+.DS_Store
+
+# Original working archive and source tree are preserved locally.
+/第二篇小论文.zip
+/第二篇小论文/
+
+# Raw simulation trajectories and generated run trees stay local.
+/simulation/runs/
+/simulation/exploration_runs/
+/simulation/validation_runs/
+/simulation/checks/
+/simulation/verification_*.json
+/simulation/verification_new.json
+/simulation/*_new.json
+*.npz
+*.npy
+*.mat
+*.sav
+
+# Local Zotero snapshots, downloaded source papers and extracted full text.
+/literature_review/
+/literature_review/pdf/
+/literature_review/fulltext/
+/literature_review/zotero_snapshot*/
+/literature_review/zotero_inventory.json
+/literature_review/*zotero*inventory*.json
+/literature_review/**/*.sqlite
+/literature_review/**/*.sqlite-shm
+/literature_review/**/*.sqlite-wal
+*.download
+
+# LaTeX/editor build products. Author-created manuscript PDFs are explicitly
+# force-added from the curated papers/ snapshots.
+/papers/latex_ecust_20261102/build.ps1
+/papers/latex_ecust_20261102/package_manifest.json
+/papers/latex_ecust_20261102/verify_package.py
+/papers/latex_ecust_20261102/fulltext_review/
+/papers/latex_ecust_20261102/submission_review/library_registration.json
+/papers/paper2_ack_budget_deadline/research/
+papers/latex_ecust_20261102/**/*.aux
+papers/latex_ecust_20261102/**/*.log
+papers/latex_ecust_20261102/**/*.spl
+papers/latex_ecust_20261102/**/*.synctex.gz
+papers/latex_ecust_20261102/**/*_build.txt
+papers/latex_ecust_20261102/**/*_extracted.txt
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.spl
+*.synctex.gz
+*.toc
+*.xdv
+*.lof
+*.lot
+*.gz
+
+# Rendered page previews and temporary bundles
+**/rendered/
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
