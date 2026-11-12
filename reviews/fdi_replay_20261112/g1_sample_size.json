@@ -1,0 +1,153 @@
+{
+  "purpose": "read-only sample-size precision planning; no new trajectories or parameter selection",
+  "source": "simulation/validation_runs/2026-11-11_sequential_strong_v1/per_seed_metrics.csv",
+  "unit": "paired independent seed; not timesteps, methods, or episodes",
+  "assumptions": "normal approximation, 80 percent power, two-sided alpha 0.05; familywise Bonferroni 0.05/12",
+  "warning": "uses exploratory prior method variance; a future matched GLS statistic may have different variance",
+  "comparisons": [
+    {
+      "schedule": "gap8",
+      "scenario": "step",
+      "baseline": "white_window",
+      "prior_independent_paired_seeds": 192,
+      "baseline_receiver_attack_mse": 0.30381430152707967,
+      "paired_difference_sd": 0.036836330007245725,
+      "one_percent_relative_minimum_detectable_difference": 0.003038143015270797,
+      "prior_ci_halfwidth_as_fraction_baseline": 0.017150059119665814,
+      "normal_approx_n_80pct_power_single_test": 1154,
+      "normal_approx_n_80pct_power_bonferroni12_tests": 2020
+    },
+    {
+      "schedule": "gap8",
+      "scenario": "step",
+      "baseline": "white_cusum",
+      "prior_independent_paired_seeds": 192,
+      "baseline_receiver_attack_mse": 0.3036926834287303,
+      "paired_difference_sd": 0.03624940689465737,
+      "one_percent_relative_minimum_detectable_difference": 0.003036926834287303,
+      "prior_ci_halfwidth_as_fraction_baseline": 0.01688356119217229,
+      "normal_approx_n_80pct_power_single_test": 1119,
+      "normal_approx_n_80pct_power_bonferroni12_tests": 1958
+    },
+    {
+      "schedule": "gap8",
+      "scenario": "step",
+      "baseline": "white_signed_cusum",
+      "prior_independent_paired_seeds": 192,
+      "baseline_receiver_attack_mse": 0.2971080637673134,
+      "paired_difference_sd": 0.033465510079968626,
+      "one_percent_relative_minimum_detectable_difference": 0.002971080637673134,
+      "prior_ci_halfwidth_as_fraction_baseline": 0.015932373901520646,
+      "normal_approx_n_80pct_power_single_test": 996,
+      "normal_approx_n_80pct_power_bonferroni12_tests": 1744
+    },
+    {
+      "schedule": "gap8",
+      "scenario": "half_step",
+      "baseline": "white_window",
+      "prior_independent_paired_seeds": 192,
+      "baseline_receiver_attack_mse": 0.24303003505160994,
+      "paired_difference_sd": 0.020682907464656577,
+      "one_percent_relative_minimum_detectable_difference": 0.0024303003505160995,
+      "prior_ci_halfwidth_as_fraction_baseline": 0.012037855324067424,
+      "normal_approx_n_80pct_power_single_test": 569,
+      "normal_approx_n_80pct_power_bonferroni12_tests": 996
+    },
+    {
+      "schedule": "gap8",
+      "scenario": "half_step",
+      "baseline": "white_cusum",
+      "prior_independent_paired_seeds": 192,
+      "baseline_receiver_attack_mse": 0.24273784327206968,
+      "paired_difference_sd": 0.020983362482422108,
+      "one_percent_relative_minimum_detectable_difference": 0.002427378432720697,
+      "prior_ci_halfwidth_as_fraction_baseline": 0.012227426874029746,
+      "normal_approx_n_80pct_power_single_test": 587,
+      "normal_approx_n_80pct_power_bonferroni12_tests": 1027
+    },
+    {
+      "schedule": "gap8",
+      "scenario": "half_step",
+      "baseline": "white_signed_cusum",
+      "prior_independent_paired_seeds": 192,
+      "baseline_receiver_attack_mse": 0.2411965305616165,
+      "paired_difference_sd": 0.019005148146148565,
+      "one_percent_relative_minimum_detectable_difference": 0.002411965305616165,
+      "prior_ci_halfwidth_as_fraction_baseline": 0.01114545192448788,
+      "normal_approx_n_80pct_power_single_test": 488,
+      "normal_approx_n_80pct_power_bonferroni12_tests": 854
+    },
+    {
+      "schedule": "irregular",
+      "scenario": "step",
+      "baseline": "white_window",
+      "prior_independent_paired_seeds": 192,
+      "baseline_receiver_attack_mse": 0.2941624835932836,
+      "paired_difference_sd": 0.037346479427270415,
+      "one_percent_relative_minimum_detectable_difference": 0.0029416248359328363,
+      "prior_ci_halfwidth_as_fraction_baseline": 0.01795807845505486,
+      "normal_approx_n_80pct_power_single_test": 1266,
+      "normal_approx_n_80pct_power_bonferroni12_tests": 2215
+    },
+    {
+      "schedule": "irregular",
+      "scenario": "step",
+      "baseline": "white_cusum",
+      "prior_independent_paired_seeds": 192,
+      "baseline_receiver_attack_mse": 0.28914215483411776,
+      "paired_difference_sd": 0.03223305026964866,
+      "one_percent_relative_minimum_detectable_difference": 0.0028914215483411775,
+      "prior_ci_halfwidth_as_fraction_baseline": 0.015768394338558995,
+      "normal_approx_n_80pct_power_single_test": 976,
+      "normal_approx_n_80pct_power_bonferroni12_tests": 1708
+    },
+    {
+      "schedule": "irregular",
+      "scenario": "step",
+      "baseline": "white_signed_cusum",
+      "prior_independent_paired_seeds": 192,
+      "baseline_receiver_attack_mse": 0.2882243089597022,
+      "paired_difference_sd": 0.03396213818049207,
+      "one_percent_relative_minimum_detectable_difference": 0.002882243089597022,
+      "prior_ci_halfwidth_as_fraction_baseline": 0.016667171267414287,
+      "normal_approx_n_80pct_power_single_test": 1090,
+      "normal_approx_n_80pct_power_bonferroni12_tests": 1908
+    },
+    {
+      "schedule": "irregular",
+      "scenario": "half_step",
+      "baseline": "white_window",
+      "prior_independent_paired_seeds": 192,
+      "baseline_receiver_attack_mse": 0.22350889994520048,
+      "paired_difference_sd": 0.01568943636462494,
+      "one_percent_relative_minimum_detectable_difference": 0.0022350889994520048,
+      "prior_ci_halfwidth_as_fraction_baseline": 0.00992910266117994,
+      "normal_approx_n_80pct_power_single_test": 387,
+      "normal_approx_n_80pct_power_bonferroni12_tests": 677
+    },
+    {
+      "schedule": "irregular",
+      "scenario": "half_step",
+      "baseline": "white_cusum",
+      "prior_independent_paired_seeds": 192,
+      "baseline_receiver_attack_mse": 0.22373041973194066,
+      "paired_difference_sd": 0.014683727142404152,
+      "one_percent_relative_minimum_detectable_difference": 0.0022373041973194068,
+      "prior_ci_halfwidth_as_fraction_baseline": 0.009283436014414006,
+      "normal_approx_n_80pct_power_single_test": 339,
+      "normal_approx_n_80pct_power_bonferroni12_tests": 592
+    },
+    {
+      "schedule": "irregular",
+      "scenario": "half_step",
+      "baseline": "white_signed_cusum",
+      "prior_independent_paired_seeds": 192,
+      "baseline_receiver_attack_mse": 0.22246145342966894,
+      "paired_difference_sd": 0.0151439781279447,
+      "one_percent_relative_minimum_detectable_difference": 0.0022246145342966895,
+      "prior_ci_halfwidth_as_fraction_baseline": 0.009629033186267106,
+      "normal_approx_n_80pct_power_single_test": 364,
+      "normal_approx_n_80pct_power_bonferroni12_tests": 637
+    }
+  ]
+}

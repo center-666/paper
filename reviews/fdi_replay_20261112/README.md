@@ -11,6 +11,9 @@
 - [小型解析诊断](code/mechanism_checks.py)：只核对公式与简化假设，不是新方法性能仿真。
 - [给网页版GPT的独立审阅材料](web_review_packet.md)：含攻击权限、关键竞争方法、旧实验负结果与明确审阅问题。
 - [交付校验报告](sources/delivery_validation.json)与[方法级文献BibTeX](sources/references.bib)。
+- [G1验收文件](identifiability_audit.md)：可辨识性、基线等价性、未执行计划、样本量和唯一结论。
+- G1只读代码复核见[GLS/episode审计](code/g1_reaudit.py)与[配对样本量重算](code/g1_sample_size.py)；本轮无新Run ID、无新仿真。
+- [G1交付校验](g1_delivery_validation.json)：来源运行哈希、episode删失与旧文件未改检查。
 
 证据标记：L＝文献原文的假设/结论；M＝由文献模型或公式可直接推导；E＝项目已有实验；H＝候选研究假设；U＝全文或结论尚未核实。L不代表本轮重新证明了原文所有结论。
 

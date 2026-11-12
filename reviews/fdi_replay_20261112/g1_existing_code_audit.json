@@ -1,0 +1,420 @@
+{
+  "status": "READ_ONLY_REAUDIT_PASSED",
+  "new_physical_trajectories": 0,
+  "source_code_sha256": "dd9c8678544c98a481551528fbec60318b5e4bea94cc95ef2efe742470fdd6a8",
+  "source_run": "2026-11-11_sequential_strong_v1",
+  "actual_attack_and_cache_settings": {
+    "A": [
+      [
+        1.0,
+        0.1
+      ],
+      [
+        0.0,
+        1.01
+      ]
+    ],
+    "Q": [
+      [
+        0.02,
+        0.0
+      ],
+      [
+        0.0,
+        0.02
+      ]
+    ],
+    "P0": [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0
+      ]
+    ],
+    "H_matrices": [
+      [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.15
+        ]
+      ],
+      [
+        [
+          0.15,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.15
+        ]
+      ],
+      [
+        [
+          0.15,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      [
+        [
+          0.7,
+          0.0
+        ],
+        [
+          0.0,
+          0.7
+        ]
+      ]
+    ],
+    "R_matrices": [
+      0.05,
+      0.05,
+      0.05,
+      0.05,
+      0.05
+    ],
+    "send_delta_squared": 0.12,
+    "max_interval": 10,
+    "fixed_schedules": [
+      8
+    ],
+    "attack_edges": {
+      "primary": [
+        0,
+        1
+      ]
+    },
+    "attack": {
+      "sender": 0,
+      "receiver": 1,
+      "start": 200,
+      "end_inclusive": 249,
+      "bias": [
+        1.2,
+        -0.8
+      ],
+      "replay_packet_lag": 8,
+      "recovery_steps": 50,
+      "matched_replay_time_lag": 80,
+      "low_bias_factor": 0.25
+    }
+  },
+  "existing_method_code": "PhaseStatistics.fit/current/episode_scores + SequentialController.update",
+  "existing_mean_statistic": "d.T C.T (C S_L C.T)^-1 C d; C=[I ... I]/L; S_L is empirical full joint prefix covariance where supported",
+  "meaning": "covariance-normalized prefix-average/Wald statistic for a constant residual offset; not unrestricted GLS for arbitrary S_L",
+  "episode_max_threshold": true,
+  "threshold_calibration": "training/calibration normal episodes fit S_L; each detector tune set re-used for 4 quantile-retuning rounds; separate normal-audit and test seeds.",
+  "cache_isolation": "bad flag ORs any prefix alarm during one cache episode; reset on the next received packet.",
+  "trigger_schedule": "each local measurement is available every simulation tick; new estimate packets use a fixed exogenous repeated schedule in this benchmark. In the online engine, Send-on-Delta checks current pre-measurement estimate difference and timeout; t=0 forced send.",
+  "cache_timing": "fresh packet resets last_receive and payload before aligned=A^age payload and monitor update. Episode includes residuals at ages 0..Delta-1; next fresh packet closes it before that time sample is assigned to the old episode.",
+  "right_censor": "finish() labels final unclosed episodes complete=False; fit and false-isolation denominators exclude incomplete episodes.",
+  "steady_main_edge_episode_length_and_censor_audit": {
+    "gap8": {
+      "steady_main_edge_test_episodes_total": 8256,
+      "complete": 8064,
+      "right_censored": 192,
+      "right_censor_fraction": 0.023255813953488372,
+      "complete_episode_length_histogram": {
+        "8": 8064
+      },
+      "right_censored_length_histogram": {
+        "8": 192
+      }
+    },
+    "irregular": {
+      "steady_main_edge_test_episodes_total": 16512,
+      "complete": 16320,
+      "right_censored": 192,
+      "right_censor_fraction": 0.011627906976744186,
+      "complete_episode_length_histogram": {
+        "1": 1536,
+        "2": 1536,
+        "3": 4800,
+        "4": 3264,
+        "6": 3456,
+        "8": 1728
+      },
+      "right_censored_length_histogram": {
+        "3": 192
+      }
+    }
+  },
+  "main_edge_prefix_covariance_audit": {
+    "gap8": [
+      {
+        "prefix_length": 1,
+        "train_episodes_covering_prefix": 4032,
+        "calibration_episodes_covering_prefix": 4032,
+        "block_diagonal_fallback": false
+      },
+      {
+        "prefix_length": 2,
+        "train_episodes_covering_prefix": 4032,
+        "calibration_episodes_covering_prefix": 4032,
+        "block_diagonal_fallback": false
+      },
+      {
+        "prefix_length": 3,
+        "train_episodes_covering_prefix": 4032,
+        "calibration_episodes_covering_prefix": 4032,
+        "block_diagonal_fallback": false
+      },
+      {
+        "prefix_length": 4,
+        "train_episodes_covering_prefix": 4032,
+        "calibration_episodes_covering_prefix": 4032,
+        "block_diagonal_fallback": false
+      },
+      {
+        "prefix_length": 5,
+        "train_episodes_covering_prefix": 4032,
+        "calibration_episodes_covering_prefix": 4032,
+        "block_diagonal_fallback": false
+      },
+      {
+        "prefix_length": 6,
+        "train_episodes_covering_prefix": 4032,
+        "calibration_episodes_covering_prefix": 4032,
+        "block_diagonal_fallback": false
+      },
+      {
+        "prefix_length": 7,
+        "train_episodes_covering_prefix": 4032,
+        "calibration_episodes_covering_prefix": 4032,
+        "block_diagonal_fallback": false
+      },
+      {
+        "prefix_length": 8,
+        "train_episodes_covering_prefix": 4032,
+        "calibration_episodes_covering_prefix": 4032,
+        "block_diagonal_fallback": false
+      },
+      {
+        "prefix_length": 9,
+        "train_episodes_covering_prefix": 0,
+        "calibration_episodes_covering_prefix": 0,
+        "block_diagonal_fallback": true
+      },
+      {
+        "prefix_length": 10,
+        "train_episodes_covering_prefix": 0,
+        "calibration_episodes_covering_prefix": 0,
+        "block_diagonal_fallback": true
+      }
+    ],
+    "irregular": [
+      {
+        "prefix_length": 1,
+        "train_episodes_covering_prefix": 8160,
+        "calibration_episodes_covering_prefix": 8160,
+        "block_diagonal_fallback": false
+      },
+      {
+        "prefix_length": 2,
+        "train_episodes_covering_prefix": 7392,
+        "calibration_episodes_covering_prefix": 7392,
+        "block_diagonal_fallback": false
+      },
+      {
+        "prefix_length": 3,
+        "train_episodes_covering_prefix": 6624,
+        "calibration_episodes_covering_prefix": 6624,
+        "block_diagonal_fallback": false
+      },
+      {
+        "prefix_length": 4,
+        "train_episodes_covering_prefix": 4224,
+        "calibration_episodes_covering_prefix": 4224,
+        "block_diagonal_fallback": false
+      },
+      {
+        "prefix_length": 5,
+        "train_episodes_covering_prefix": 2592,
+        "calibration_episodes_covering_prefix": 2592,
+        "block_diagonal_fallback": false
+      },
+      {
+        "prefix_length": 6,
+        "train_episodes_covering_prefix": 2592,
+        "calibration_episodes_covering_prefix": 2592,
+        "block_diagonal_fallback": false
+      },
+      {
+        "prefix_length": 7,
+        "train_episodes_covering_prefix": 864,
+        "calibration_episodes_covering_prefix": 864,
+        "block_diagonal_fallback": false
+      },
+      {
+        "prefix_length": 8,
+        "train_episodes_covering_prefix": 864,
+        "calibration_episodes_covering_prefix": 864,
+        "block_diagonal_fallback": false
+      },
+      {
+        "prefix_length": 9,
+        "train_episodes_covering_prefix": 0,
+        "calibration_episodes_covering_prefix": 0,
+        "block_diagonal_fallback": true
+      },
+      {
+        "prefix_length": 10,
+        "train_episodes_covering_prefix": 0,
+        "calibration_episodes_covering_prefix": 0,
+        "block_diagonal_fallback": true
+      }
+    ]
+  },
+  "score_equivalence_checks": [
+    {
+      "schedule": "gap8",
+      "prefix_length": 1,
+      "train_episodes_covering_prefix": 4032,
+      "full_joint_covariance_fallback_used": false,
+      "existing_score_equals_full_covariance_normalized_arithmetic_mean": true,
+      "operator_relative_difference_from_unrestricted_GLS_common_constant_mean": 2.7257432168225577e-18
+    },
+    {
+      "schedule": "gap8",
+      "prefix_length": 2,
+      "train_episodes_covering_prefix": 4032,
+      "full_joint_covariance_fallback_used": false,
+      "existing_score_equals_full_covariance_normalized_arithmetic_mean": true,
+      "operator_relative_difference_from_unrestricted_GLS_common_constant_mean": 0.07269561950416184
+    },
+    {
+      "schedule": "gap8",
+      "prefix_length": 3,
+      "train_episodes_covering_prefix": 4032,
+      "full_joint_covariance_fallback_used": false,
+      "existing_score_equals_full_covariance_normalized_arithmetic_mean": true,
+      "operator_relative_difference_from_unrestricted_GLS_common_constant_mean": 0.08914624589517775
+    },
+    {
+      "schedule": "gap8",
+      "prefix_length": 4,
+      "train_episodes_covering_prefix": 4032,
+      "full_joint_covariance_fallback_used": false,
+      "existing_score_equals_full_covariance_normalized_arithmetic_mean": true,
+      "operator_relative_difference_from_unrestricted_GLS_common_constant_mean": 0.11116544938731589
+    },
+    {
+      "schedule": "gap8",
+      "prefix_length": 5,
+      "train_episodes_covering_prefix": 4032,
+      "full_joint_covariance_fallback_used": false,
+      "existing_score_equals_full_covariance_normalized_arithmetic_mean": true,
+      "operator_relative_difference_from_unrestricted_GLS_common_constant_mean": 0.13317420816971837
+    },
+    {
+      "schedule": "gap8",
+      "prefix_length": 6,
+      "train_episodes_covering_prefix": 4032,
+      "full_joint_covariance_fallback_used": false,
+      "existing_score_equals_full_covariance_normalized_arithmetic_mean": true,
+      "operator_relative_difference_from_unrestricted_GLS_common_constant_mean": 0.17257231555242794
+    },
+    {
+      "schedule": "gap8",
+      "prefix_length": 7,
+      "train_episodes_covering_prefix": 4032,
+      "full_joint_covariance_fallback_used": false,
+      "existing_score_equals_full_covariance_normalized_arithmetic_mean": true,
+      "operator_relative_difference_from_unrestricted_GLS_common_constant_mean": 0.19488823841957623
+    },
+    {
+      "schedule": "gap8",
+      "prefix_length": 8,
+      "train_episodes_covering_prefix": 4032,
+      "full_joint_covariance_fallback_used": false,
+      "existing_score_equals_full_covariance_normalized_arithmetic_mean": true,
+      "operator_relative_difference_from_unrestricted_GLS_common_constant_mean": 0.23197646370069622
+    },
+    {
+      "schedule": "irregular",
+      "prefix_length": 1,
+      "train_episodes_covering_prefix": 8160,
+      "full_joint_covariance_fallback_used": false,
+      "existing_score_equals_full_covariance_normalized_arithmetic_mean": true,
+      "operator_relative_difference_from_unrestricted_GLS_common_constant_mean": 1.3572772472603335e-18
+    },
+    {
+      "schedule": "irregular",
+      "prefix_length": 2,
+      "train_episodes_covering_prefix": 7392,
+      "full_joint_covariance_fallback_used": false,
+      "existing_score_equals_full_covariance_normalized_arithmetic_mean": true,
+      "operator_relative_difference_from_unrestricted_GLS_common_constant_mean": 0.06509196575728343
+    },
+    {
+      "schedule": "irregular",
+      "prefix_length": 3,
+      "train_episodes_covering_prefix": 6624,
+      "full_joint_covariance_fallback_used": false,
+      "existing_score_equals_full_covariance_normalized_arithmetic_mean": true,
+      "operator_relative_difference_from_unrestricted_GLS_common_constant_mean": 0.08362321850439233
+    },
+    {
+      "schedule": "irregular",
+      "prefix_length": 4,
+      "train_episodes_covering_prefix": 4224,
+      "full_joint_covariance_fallback_used": false,
+      "existing_score_equals_full_covariance_normalized_arithmetic_mean": true,
+      "operator_relative_difference_from_unrestricted_GLS_common_constant_mean": 0.091573986551642
+    },
+    {
+      "schedule": "irregular",
+      "prefix_length": 5,
+      "train_episodes_covering_prefix": 2592,
+      "full_joint_covariance_fallback_used": false,
+      "existing_score_equals_full_covariance_normalized_arithmetic_mean": true,
+      "operator_relative_difference_from_unrestricted_GLS_common_constant_mean": 0.13152135417846045
+    },
+    {
+      "schedule": "irregular",
+      "prefix_length": 6,
+      "train_episodes_covering_prefix": 2592,
+      "full_joint_covariance_fallback_used": false,
+      "existing_score_equals_full_covariance_normalized_arithmetic_mean": true,
+      "operator_relative_difference_from_unrestricted_GLS_common_constant_mean": 0.17113002081015613
+    },
+    {
+      "schedule": "irregular",
+      "prefix_length": 7,
+      "train_episodes_covering_prefix": 864,
+      "full_joint_covariance_fallback_used": false,
+      "existing_score_equals_full_covariance_normalized_arithmetic_mean": true,
+      "operator_relative_difference_from_unrestricted_GLS_common_constant_mean": 0.23182939483214213
+    },
+    {
+      "schedule": "irregular",
+      "prefix_length": 8,
+      "train_episodes_covering_prefix": 864,
+      "full_joint_covariance_fallback_used": false,
+      "existing_score_equals_full_covariance_normalized_arithmetic_mean": true,
+      "operator_relative_difference_from_unrestricted_GLS_common_constant_mean": 0.27454276491833934
+    }
+  ],
+  "conditional_distribution_limit": "send selection and survival without a next packet depend on the sender estimate/process path; conditional cache error need not remain Gaussian. Stored covariance is empirical for the age-only-policy training trajectories.",
+  "baseline_gap": "an unrestricted GLS matched to the dynamic attack response X=[H;HA;...] is not the existing arithmetic-prefix statistic. It is a standard GLS/GLRT, not a new mechanism; do not claim exact identity. The existing detector already covers full-covariance prefix averaging and episode-max cache isolation."
+}
