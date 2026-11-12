@@ -1,0 +1,86 @@
+{
+  "category": "2-dimensional Gauss-Hermite physical-noise integration; not exact probability arithmetic",
+  "parameters": {
+    "A": 1,
+    "C": 1,
+    "Q": 0,
+    "P0": 0.5,
+    "R": 0.1,
+    "Z": 2,
+    "k": 1,
+    "L": 1,
+    "b": 0.25
+  },
+  "collision": "P(01)=P(10)=3/41 exactly",
+  "policy": "a0=b*tanh(y0) on send; a1=-b/2*tanh(y1-m1) on send",
+  "rows": [
+    {
+      "order_per_dimension": 48,
+      "TV_numerical_integration": 0.007754353320096813,
+      "J_physical_integral": 0.006107995275159983,
+      "bias_square": 0.006241750382511798,
+      "covariance_change": -0.00013375510735025298,
+      "physical_vs_decomposition_error": 1.5543122344752192e-15,
+      "normalized_witness_identity_error": 4.846817391879199e-15,
+      "probability_mass_error": 2.220446049250313e-16,
+      "normal_history_probabilities": {
+        "00": 0.5103103630798284,
+        "01": 0.16388949938341352,
+        "10": 0.2786890866867072,
+        "11": 0.047111050850050726
+      },
+      "attack_history_probabilities": {
+        "00": 0.5103103630798284,
+        "01": 0.16388949938341352,
+        "10": 0.27386320241350964,
+        "11": 0.05193693512324835
+      }
+    },
+    {
+      "order_per_dimension": 72,
+      "TV_numerical_integration": 0.007754353559908692,
+      "J_physical_integral": 0.00610799541855675,
+      "bias_square": 0.006241750529348101,
+      "covariance_change": -0.0001337551107913615,
+      "physical_vs_decomposition_error": 0.0,
+      "normalized_witness_identity_error": 1.1015494072452725e-16,
+      "probability_mass_error": 0.0,
+      "normal_history_probabilities": {
+        "00": 0.5103103630798288,
+        "01": 0.1638894993834133,
+        "10": 0.2786890866867071,
+        "11": 0.04711105085005071
+      },
+      "attack_history_probabilities": {
+        "00": 0.5103103630798288,
+        "01": 0.1638894993834133,
+        "10": 0.27386320228935473,
+        "11": 0.051936935247403136
+      }
+    },
+    {
+      "order_per_dimension": 104,
+      "TV_numerical_integration": 0.007754353560763436,
+      "J_physical_integral": 0.006107995419020074,
+      "bias_square": 0.00624175052982228,
+      "covariance_change": -0.00013375511080221392,
+      "physical_vs_decomposition_error": 0.0,
+      "normalized_witness_identity_error": 1.196959198423997e-16,
+      "probability_mass_error": 1.1102230246251565e-16,
+      "normal_history_probabilities": {
+        "00": 0.5103103630798286,
+        "01": 0.1638894993834133,
+        "10": 0.2786890866867072,
+        "11": 0.04711105085005071
+      },
+      "attack_history_probabilities": {
+        "00": 0.5103103630798286,
+        "01": 0.1638894993834133,
+        "10": 0.27386320228896277,
+        "11": 0.05193693524779515
+      }
+    }
+  ],
+  "merged_marked_atoms": 6,
+  "conclusion": "history weights change, but exact-P normalization prevents signed energy cancellation"
+}

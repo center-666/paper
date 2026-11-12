@@ -1,0 +1,149 @@
+{
+  "category": "analytic non-necessity example; code evaluates proof constants only",
+  "parameters": {
+    "A": [
+      [
+        0.9,
+        0.0
+      ],
+      [
+        0.0,
+        0.95
+      ]
+    ],
+    "C": [
+      [
+        1.0,
+        0.0
+      ]
+    ],
+    "P0": [
+      [
+        0.5,
+        0.1
+      ],
+      [
+        0.1,
+        0.4
+      ]
+    ],
+    "Q": [
+      [
+        0.02,
+        0.0
+      ],
+      [
+        0.0,
+        0.02
+      ]
+    ],
+    "R": 0.1,
+    "Z": 2.0,
+    "k": 1,
+    "L": 1,
+    "bref": 1.0
+  },
+  "history_11_range_rank": 2,
+  "history_11_visible_rank": 1,
+  "conditional_next_silence_probability_lower_bound": 0.5664775805625394,
+  "c0": 0.5890909090909091,
+  "c1": 0.3600000000000001,
+  "dmin": 0.42,
+  "C_causal_energy": 24.059378904068204,
+  "beta_min": 0.6585598541912885,
+  "zmax": 0.78,
+  "qz": 0.5426158029253816,
+  "max_inverse_silence_probability": 1.232260063811558,
+  "alternative_finite_J_over_TV_bound": 54.7685027896221,
+  "explicit_histories": [
+    {
+      "history": "00",
+      "P": [
+        [
+          0.17189189189189188,
+          0.03327567567567567
+        ],
+        [
+          0.03327567567567567,
+          0.370209027027027
+        ]
+      ],
+      "B": [
+        [],
+        []
+      ],
+      "visible_peak_radius_bref1": 0.0
+    },
+    {
+      "history": "01",
+      "P": [
+        [
+          0.07066666666666667,
+          0.01368
+        ],
+        [
+          0.01368,
+          0.3664156
+        ]
+      ],
+      "B": [
+        [
+          -0.7066666666666667
+        ],
+        [
+          -0.1368
+        ]
+      ],
+      "visible_peak_radius_bref1": 0.636
+    },
+    {
+      "history": "10",
+      "P": [
+        [
+          0.07636363636363637,
+          0.012436363636363636
+        ],
+        [
+          0.012436363636363636,
+          0.3656629696969697
+        ]
+      ],
+      "B": [
+        [
+          -0.6545454545454545
+        ],
+        [
+          -0.1427878787878788
+        ]
+      ],
+      "visible_peak_radius_bref1": 0.5890909090909091
+    },
+    {
+      "history": "11",
+      "P": [
+        [
+          0.04666666666666667,
+          0.0076
+        ],
+        [
+          0.0076,
+          0.36487533333333333
+        ]
+      ],
+      "B": [
+        [
+          -0.4,
+          -0.4666666666666667
+        ],
+        [
+          -0.10133333333333333,
+          -0.076
+        ]
+      ],
+      "visible_peak_radius_bref1": 0.78
+    }
+  ],
+  "proved_in_document": "E||D1||^2 <= C_causal_energy E||CA D1||^2 for all allowed policies",
+  "conclusion": "pathwise range injectivity is sufficient but not necessary for a finite linear-TV bound",
+  "not_an_empirical_necessity_claim": true
+}

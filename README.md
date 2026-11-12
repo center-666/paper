@@ -16,10 +16,11 @@
 - [当前项目管理和研究状态](docs/PROJECT_MANAGEMENT.md)
 - [研究与文献索引](research/README.md)
 - [部分观测候选的精读比较和立项判断](research/literature_comparison.md)
+- [第二轮核心定理复审：执行摘要与研究决策](reviews/executive_summary.md)
 - [文献证据矩阵](research/references/文献证据矩阵_42篇.md) 与 [BibTeX](research/references/survey_references.bib)
 - [实验工程说明](simulation/README.md)
 
-缓存驻留均值的通用 FDI/Replay 主张已经停止；当前部分观测候选暂定位为旧随机触发损伤界论文的推广命题，尚未通过独立新颖性审查。 ACK 理论稿也保留了相近误差基准未支持资源优势的结果。
+缓存驻留均值的通用 FDI/Replay 主张已经停止。第二轮审计支持部分观测候选在明确条件下的有限时刻上界，但其秩条件不是必要条件；新增主要是旧稿适用范围的推广，目前建议限量并入旧稿，不作为独立论文立项。 ACK 理论稿也保留了相近误差基准未支持资源优势的结果。
 
 ## 本地复现
 
