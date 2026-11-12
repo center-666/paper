@@ -1,0 +1,145 @@
+{
+  "run_id": "g1r_deghat_output_channels_20261112_07",
+  "scenario_summaries": [
+    {
+      "scenario": "single_step",
+      "window": "full_prefix_local",
+      "feature_dim": 34,
+      "n_seed": 48,
+      "trigger_rate": 0.1875,
+      "mean_receiver_excess_before": 0.0007186231100910816,
+      "mean_receiver_excess_after": -0.0014548808426003985,
+      "mean_network_excess_after": -4.2861675055967304e-05,
+      "mean_offset_estimation_error": 2.7706516983154175
+    },
+    {
+      "scenario": "single_step",
+      "window": "full_prefix_augmented",
+      "feature_dim": 68,
+      "n_seed": 48,
+      "trigger_rate": 1.0,
+      "mean_receiver_excess_before": 0.0007186231100910816,
+      "mean_receiver_excess_after": 2.974387994386478e-05,
+      "mean_network_excess_after": 0.00014690083206944033,
+      "mean_offset_estimation_error": 0.34934369648896846
+    },
+    {
+      "scenario": "single_step",
+      "window": "post_cache_local",
+      "feature_dim": 16,
+      "n_seed": 48,
+      "trigger_rate": 0.0625,
+      "mean_receiver_excess_before": 0.0007186231100910816,
+      "mean_receiver_excess_after": 0.00021072567183588793,
+      "mean_network_excess_after": 2.146077761841351e-05,
+      "mean_offset_estimation_error": 7.135219920946352
+    },
+    {
+      "scenario": "single_step",
+      "window": "post_cache_augmented",
+      "feature_dim": 32,
+      "n_seed": 48,
+      "trigger_rate": 0.0625,
+      "mean_receiver_excess_before": 0.0007186231100910816,
+      "mean_receiver_excess_after": 0.001237776182650729,
+      "mean_network_excess_after": 0.000532460336184168,
+      "mean_offset_estimation_error": 3.1898832150223484
+    },
+    {
+      "scenario": "replay_packet",
+      "window": "full_prefix_local",
+      "feature_dim": 34,
+      "n_seed": 48,
+      "trigger_rate": 0.9375,
+      "mean_receiver_excess_before": 0.816380551248888,
+      "mean_receiver_excess_after": 0.2584753576347854,
+      "mean_network_excess_after": 0.10064357396827428,
+      "mean_offset_estimation_error": 7.827683220880192
+    },
+    {
+      "scenario": "replay_packet",
+      "window": "full_prefix_augmented",
+      "feature_dim": 68,
+      "n_seed": 48,
+      "trigger_rate": 1.0,
+      "mean_receiver_excess_before": 0.816380551248888,
+      "mean_receiver_excess_after": 0.22199279737140432,
+      "mean_network_excess_after": 0.09803957604877929,
+      "mean_offset_estimation_error": 3.0317938815461076
+    },
+    {
+      "scenario": "replay_packet",
+      "window": "post_cache_local",
+      "feature_dim": 16,
+      "n_seed": 48,
+      "trigger_rate": 0.8125,
+      "mean_receiver_excess_before": 0.816380551248888,
+      "mean_receiver_excess_after": 0.20760678862205814,
+      "mean_network_excess_after": 0.07260302588034422,
+      "mean_offset_estimation_error": 21.248166263216365
+    },
+    {
+      "scenario": "replay_packet",
+      "window": "post_cache_augmented",
+      "feature_dim": 32,
+      "n_seed": 48,
+      "trigger_rate": 0.9791666666666666,
+      "mean_receiver_excess_before": 0.816380551248888,
+      "mean_receiver_excess_after": 0.22734754549274414,
+      "mean_network_excess_after": 0.10257541548700311,
+      "mean_offset_estimation_error": 4.879984796278527
+    }
+  ],
+  "normal_false_correction_rates": {
+    "full_prefix_local": 0.041666666666666664,
+    "full_prefix_augmented": 0.041666666666666664,
+    "post_cache_local": 0.041666666666666664,
+    "post_cache_augmented": 0.0
+  },
+  "information_permission_audit": {
+    "passed": true,
+    "forbidden_attributes_absent": [
+      "estimates",
+      "injected",
+      "replay_source",
+      "source_time",
+      "state_truth",
+      "true_state",
+      "x"
+    ],
+    "allowed_sources": [
+      "receiver_log.local",
+      "receiver_log.aligned",
+      "y",
+      "model.H"
+    ],
+    "source": "AST inspection of online output_features function"
+  },
+  "receiver_logger_matches_vanilla_yang_max_abs_error": 0.0,
+  "offline_cache_reconstruction_audits": [
+    {
+      "scenario": "single_step",
+      "trial_count": 48,
+      "max_logged_cache_reconstruction_error": 0.0,
+      "all_sources_were_prior_transmissions": true,
+      "offline_audit_only_uses_simulated_packets": true
+    },
+    {
+      "scenario": "replay_packet",
+      "trial_count": 48,
+      "max_logged_cache_reconstruction_error": 0.0,
+      "all_sources_were_prior_transmissions": true,
+      "offline_audit_only_uses_simulated_packets": true
+    }
+  ],
+  "source_hashes": {
+    "compare_deghat_outputs.py": "d0762030523dbfef571236ad567ff4ab5946334547a2712566d7534538fd77cf",
+    "engine.py": "05fb3f19d457e103d7c1665ccd1087ea4b27076d6a39b57ac7e0d16cfdb35c97",
+    "model.py": "5b674a4cc274fca42d52d00f15490d5e3952231df98146a90cb28a62b4a9aeca",
+    "minimal_recovery_screen.py": "23824443eabb9615d3a4e158c92d8f86a3ad7c3bd8de55bfb982eccd5af7f38f",
+    "config.json": "cf801650e2527a409ebb4730e894e6d3fcb3602a08259bfeda1cb529d7ebb62b",
+    "reference_exploration_plan.json": "244d7788a3d2b097d571e32626431be05ef8b9f3ac3f4c788f238dca05761fab"
+  },
+  "scope": "small comparator screen; common seeds, fixed schedule, known event; not method novelty evidence",
+  "elapsed_seconds": 1.3159692999997787
+}

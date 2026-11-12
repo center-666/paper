@@ -1,0 +1,955 @@
+{
+  "date": "2026-11-13",
+  "baseline_commit": "db7dabd8cbb9b425482bc9693b065fd25865d720",
+  "final_source_fingerprints": {
+    "reviews\\g1_retroactive_recovery\\code\\compare_deghat_outputs.py": {
+      "sha256": "4fbf23c17760d6daa115ada113853dc5f943067757c57ecf897729626e578451",
+      "sha256_lf": "4fbf23c17760d6daa115ada113853dc5f943067757c57ecf897729626e578451"
+    },
+    "reviews\\g1_retroactive_recovery\\code\\minimal_recovery_screen.py": {
+      "sha256": "23824443eabb9615d3a4e158c92d8f86a3ad7c3bd8de55bfb982eccd5af7f38f",
+      "sha256_lf": "23824443eabb9615d3a4e158c92d8f86a3ad7c3bd8de55bfb982eccd5af7f38f"
+    },
+    "reviews\\g1_retroactive_recovery\\code\\p0_verified.py": {
+      "sha256": "9c573da0e1b89c57bd2d5e3649f3b9a0f6a6765d0cc3e8aea4c679eb61bf8b05",
+      "sha256_lf": "9c573da0e1b89c57bd2d5e3649f3b9a0f6a6765d0cc3e8aea4c679eb61bf8b05"
+    },
+    "reviews\\g1_retroactive_recovery\\code\\p1_structural_check.py": {
+      "sha256": "781aba770fb96bbce2813fea9df5de774c96eb54c00745a22f23e8804aab05e0",
+      "sha256_lf": "781aba770fb96bbce2813fea9df5de774c96eb54c00745a22f23e8804aab05e0"
+    },
+    "simulation\\engine.py": {
+      "sha256": "05fb3f19d457e103d7c1665ccd1087ea4b27076d6a39b57ac7e0d16cfdb35c97",
+      "sha256_lf": "05fb3f19d457e103d7c1665ccd1087ea4b27076d6a39b57ac7e0d16cfdb35c97"
+    },
+    "simulation\\model.py": {
+      "sha256": "5b674a4cc274fca42d52d00f15490d5e3952231df98146a90cb28a62b4a9aeca",
+      "sha256_lf": "5b674a4cc274fca42d52d00f15490d5e3952231df98146a90cb28a62b4a9aeca"
+    }
+  },
+  "runtime": {
+    "python": "3.14.9",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1"
+  },
+  "important": [
+    "Historical PASS fields may be withdrawn; use status here and reports 07-10.",
+    "Same seeds across reruns are not additional independent trials.",
+    "Intermediate code was not snapshotted at every failure; raw results are audit records, not all reproducible from current code.",
+    "The empty failed audit_01 directory is recorded here because Git cannot store empty directories.",
+    "Ignored legacy NPZ files remain local; final fitted NPZ is explicitly included in the delivery.",
+    "sha256_lf only normalizes CRLF to LF for pre-existing text checkout compatibility; original byte hashes are retained.",
+    "No papers downloaded during this task."
+  ],
+  "literature_source_fingerprints": [
+    {
+      "local_only": "sources/deghat2019.txt",
+      "sha256": "07780ff0e0ac486afd7654ca30236d92bf5375eee85e2c3afdeccb66911ed5a2",
+      "DOI": "10.1016/j.automatica.2018.10.052",
+      "public_author_url": "https://arxiv.org/pdf/1810.04301"
+    }
+  ],
+  "runs": [
+    {
+      "run_id": "g1r_attack_input_tracker_20261112_01",
+      "status": "LEGACY_LIMITED",
+      "reason": "Batch/recursive GLS algebra only; not a faithful Deghat tracker or new mechanism.",
+      "files": [
+        {
+          "path": "results/g1r_attack_input_tracker_20261112_01/config.json",
+          "bytes": 3309,
+          "sha256": "0c2d6af1274480c80e5d1873a549a2402c65f3bd1d82ed0396ebe13fec40031d",
+          "sha256_lf": "21ddca24c802947120a54a8266a693151a369fce4236209f5c66fc77d3c18047"
+        },
+        {
+          "path": "results/g1r_attack_input_tracker_20261112_01/diagnostics.json",
+          "bytes": 706,
+          "sha256": "0496eb17f4cbeabff67808c1277c419d8add59e30a9eb0edb6def2436f5952c7",
+          "sha256_lf": "5675aefd1262a482292342e2c99a3ffba1c3dd52202313c3622730c4f7bae0b2"
+        },
+        {
+          "path": "results/g1r_attack_input_tracker_20261112_01/equivalence_checks.csv",
+          "bytes": 4308,
+          "sha256": "f9c113d8dce1882f27065ab0b2e38fda2d3191f788fb3e8f05d8ad571978ad80",
+          "sha256_lf": "cda4dcc933523291e183d5324a11f3ace01fad924a093aee0a67a4ed1f708f06"
+        },
+        {
+          "path": "results/g1r_attack_input_tracker_20261112_01/per_seed_comparison.csv",
+          "bytes": 52037,
+          "sha256": "859423589e22f7c7086922e39686e0c9286a6e6ecb826a3f04b37a165acbf7c4",
+          "sha256_lf": "fe0d1b664b16e0c723ea077976663ba66539eec2d61733730a7be366823f6e8c"
+        },
+        {
+          "path": "results/g1r_attack_input_tracker_20261112_01/recursive_trace.csv",
+          "bytes": 129101,
+          "sha256": "df270498e9686a44fb3a371e954750df79e32c41f360c09f2be0c064a09d7fe4",
+          "sha256_lf": "571387a097a70148ff8fb2f01d09de00a0e0cf31136ae6f231d9fd07052f9657"
+        },
+        {
+          "path": "results/g1r_attack_input_tracker_20261112_01/source_hashes.json",
+          "bytes": 378,
+          "sha256": "38421d23e57833c0fcdddd2bfc05e2369f3a990dbf9be94dada5673879801836",
+          "sha256_lf": "4a08218baae08966463e6fd0853640eb431449df7961018c81de1b3bf7d6f713"
+        },
+        {
+          "path": "results/g1r_attack_input_tracker_20261112_01/summary.json",
+          "bytes": 1879,
+          "sha256": "c91fd46294a32bc2f1758517e02a82840d27e67502577b08a31080a6126c9b09",
+          "sha256_lf": "d7337aca7f276b43362ed9bade335f400685ed3383f1b79de702940c1ae329fc"
+        }
+      ]
+    },
+    {
+      "run_id": "g1r_attack_input_tracker_20261112_02",
+      "status": "LEGACY_LIMITED",
+      "reason": "Batch/recursive GLS algebra only; not a faithful Deghat tracker or new mechanism.",
+      "files": [
+        {
+          "path": "results/g1r_attack_input_tracker_20261112_02/config.json",
+          "bytes": 3309,
+          "sha256": "532da0a224d7b72eec4e8743d3975ec879c19552373b74d0a073b52623cf433b",
+          "sha256_lf": "250f48f170fd7a64d0f550471bff35676bf264467bf9c8c5b68d7450dcccdedd"
+        },
+        {
+          "path": "results/g1r_attack_input_tracker_20261112_02/diagnostics.json",
+          "bytes": 871,
+          "sha256": "912750640cc6774d9be942c3d36ed0738bbb4e9144dff9c37df1777eaa1e53d0",
+          "sha256_lf": "bf7e98a07964d924680b5d9767f7c387337689d215c1c7a4e980a62490fd545c"
+        },
+        {
+          "path": "results/g1r_attack_input_tracker_20261112_02/equivalence_checks.csv",
+          "bytes": 4308,
+          "sha256": "f9c113d8dce1882f27065ab0b2e38fda2d3191f788fb3e8f05d8ad571978ad80",
+          "sha256_lf": "cda4dcc933523291e183d5324a11f3ace01fad924a093aee0a67a4ed1f708f06"
+        },
+        {
+          "path": "results/g1r_attack_input_tracker_20261112_02/normal_test_audit.csv",
+          "bytes": 9447,
+          "sha256": "3410e7dac36bc174e261631420dff2415cb1b61b2bb9244f60028a41d8c74e7f",
+          "sha256_lf": "9760ba5531ce73508d107a61f33a5bec961dea358b9fe83e23aa98c5a069c277"
+        },
+        {
+          "path": "results/g1r_attack_input_tracker_20261112_02/per_seed_comparison.csv",
+          "bytes": 52037,
+          "sha256": "859423589e22f7c7086922e39686e0c9286a6e6ecb826a3f04b37a165acbf7c4",
+          "sha256_lf": "fe0d1b664b16e0c723ea077976663ba66539eec2d61733730a7be366823f6e8c"
+        },
+        {
+          "path": "results/g1r_attack_input_tracker_20261112_02/recursive_trace.csv",
+          "bytes": 129101,
+          "sha256": "df270498e9686a44fb3a371e954750df79e32c41f360c09f2be0c064a09d7fe4",
+          "sha256_lf": "571387a097a70148ff8fb2f01d09de00a0e0cf31136ae6f231d9fd07052f9657"
+        },
+        {
+          "path": "results/g1r_attack_input_tracker_20261112_02/source_hashes.json",
+          "bytes": 378,
+          "sha256": "01efa23537dee67da498bfb55cfe37b619c3f345e0046d528133fedd7f8606e6",
+          "sha256_lf": "5cfabc6f801fae2a65df2bdaa23855810e9b96ec9b1c27f26b26afc265ca190e"
+        },
+        {
+          "path": "results/g1r_attack_input_tracker_20261112_02/summary.json",
+          "bytes": 1878,
+          "sha256": "8d1969f9cf698b75906b83610233f2b8c9f3e8cd1981934f9775b91e620bd4f9",
+          "sha256_lf": "36042efca6ff1070ffcb391241cbc7fc1bf132aa3f802d3ec48711ee199997d3"
+        },
+        {
+          "path": "results/g1r_attack_input_tracker_20261112_02/tracker_audit.json",
+          "bytes": 2785,
+          "sha256": "03e9fc96d4e763dc0357065c31935122cfca187bca1e5b5709cec6a7e4699f41",
+          "sha256_lf": "41d6bcf58d979145c3a7e9e64e9a63b7d7a75ba93168acffb54a3ede9d1e8cc9"
+        }
+      ]
+    },
+    {
+      "run_id": "g1r_deghat_mapping_audit_20261112_01",
+      "status": "INSUFFICIENT",
+      "reason": "Circular arithmetic check, not independent full-horizon evidence.",
+      "files": [
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_01/config.json",
+          "bytes": 1094,
+          "sha256": "d8bd787609a6033771ccd4bc7ddf76d8727b6238c455a94ce94972e883258f21",
+          "sha256_lf": "b13ec49f36f49105adba545377a20a921ffdb7f4c155ea94847477402f5b467f"
+        },
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_01/per_seed_propagation.csv",
+          "bytes": 79359,
+          "sha256": "056ddaadb4ffaa1f2b0126d31a07c226bbf0ee4150169c5dc3941af563e4a4a1",
+          "sha256_lf": "49a5be6ee518192c57fd0d1325515b626d39c69d3a0fa01eb99ba160ecb27e43"
+        },
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_01/summary.json",
+          "bytes": 1722,
+          "sha256": "7c103397a00adefdcdce5f05db75c65554f40dcd95f7741622f65dafd5a8c5e1",
+          "sha256_lf": "f44fe106a240b4b31b4e65e1eac46988f1992c3a6eb26cddd0d7d5b7dab7ecac"
+        }
+      ]
+    },
+    {
+      "run_id": "g1r_deghat_mapping_audit_20261112_02",
+      "status": "INSUFFICIENT",
+      "reason": "Circular arithmetic check, not independent full-horizon evidence.",
+      "files": [
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_02/config.json",
+          "bytes": 1094,
+          "sha256": "eae9a69fe28ec50b0062f5355913fce74a934931981a493c69f047467042ec9a",
+          "sha256_lf": "a03ee5a161c216f7b088374f020fc12562059e17bdd8953ddfc14918283bcf4c"
+        },
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_02/per_seed_propagation.csv",
+          "bytes": 80130,
+          "sha256": "2c94276449b4728aa34b8f485cc590b5046168ab9994ba7b9642b3e9314f5dbc",
+          "sha256_lf": "7c9c734254a92a0762f8bc7b22bfb40b58480e8025ab8601fb2f4b106c2f6ea7"
+        },
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_02/summary.json",
+          "bytes": 1739,
+          "sha256": "becc117fea1f2300b0962512d81dd8cbe6a90cab067a6422a71159b977ae8cef",
+          "sha256_lf": "983de6bdf0b2972d64745ef66901199e2d3fc7ed1c4946ccf48a049c907f94f0"
+        }
+      ]
+    },
+    {
+      "run_id": "g1r_deghat_mapping_audit_20261112_03",
+      "status": "INVALID_INDEPENDENCE",
+      "reason": "Reference future sender difference fed back to recurrence.",
+      "files": [
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_03/config.json",
+          "bytes": 1094,
+          "sha256": "6f17dcb52ec6cdf5ef675c6e06e3d41804a63b241de79d2e35a70666c5b31a4f",
+          "sha256_lf": "8700d0150ea6c99d620290c810f970b29a32a8cc78fbfd85ec2e4523bedb21b6"
+        },
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_03/per_seed_propagation.csv",
+          "bytes": 93890,
+          "sha256": "7914c685bcb9398df42bebb72b63fd391133b801419fcdbcd4681fd52ea4b4f9",
+          "sha256_lf": "87d0141a34fb1d7be93d6b2a3ec223ea5ff7a785c8714f9928dec2bf3fef2944"
+        },
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_03/summary.json",
+          "bytes": 2149,
+          "sha256": "9326aad6214656e6f0ecda7b9b4c4a4640bd9a306608ca822334f8428dc544ac",
+          "sha256_lf": "e1979ac3ef8262637b28c5590e1a02265916829e37e27959543e3393bd957e9a"
+        }
+      ]
+    },
+    {
+      "run_id": "g1r_deghat_mapping_audit_20261112_04",
+      "status": "PRE_REPLACEMENT_ONLY",
+      "reason": "Independent range(R,q); no independent post-q verification.",
+      "files": [
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_04/config.json",
+          "bytes": 1094,
+          "sha256": "dc4ab7f6e29f3d37dd8f7eb975c6d2314eb7a46303034ef840a9e7f943b32422",
+          "sha256_lf": "6a340b1170a9a20763e439b9ed54a671f5038e11e648c1d34bf378f46e46b7d2"
+        },
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_04/per_seed_propagation.csv",
+          "bytes": 93904,
+          "sha256": "b8205ca714917a05e62c90b4f8f2c10f751d14dd107840f8cff8b600e138f1d2",
+          "sha256_lf": "6e47fa85b04acc8e5df932d7366396bfdebf45b81e197224741f631ff302d490"
+        },
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_04/summary.json",
+          "bytes": 2163,
+          "sha256": "36de984985f30a8315d0b19ba2cfa89aa5ae28f17206d14f394c930130e967d2",
+          "sha256_lf": "1e99455e2b892654eec37b1c3d8979ac0529efbedb7b6018b328f78ad701c326"
+        }
+      ]
+    },
+    {
+      "run_id": "g1r_deghat_mapping_audit_20261112_05",
+      "status": "FAILED_EXPORT",
+      "reason": "Partial run; write_csv NameError, no complete audit claim.",
+      "files": [
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_05/config.json",
+          "bytes": 1312,
+          "sha256": "3834d259e4e8fef2c7a704086082e4d22f5c16dbd1f55221276ab576f4bcf6df",
+          "sha256_lf": "0ebea803ddd56609a9e27f5a72ae7683d0a7c928fdb29685ad9942c905aa0045"
+        },
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_05/per_seed_propagation.csv",
+          "bytes": 133330,
+          "sha256": "40e088487c43d78fafb7f22fd2b2f630fc63cbe39fa93eb56f5a7192c58e2fb2",
+          "sha256_lf": "01563c33e0d7b4956f69a2cf10de9d98517f98268fca014029da2d8bd2b39489"
+        }
+      ]
+    },
+    {
+      "run_id": "g1r_deghat_mapping_audit_20261112_06",
+      "status": "SUPERSEDED_FORMAT_ERROR",
+      "reason": "Full-horizon intermediate; per-seed JSON with CSV suffix.",
+      "files": [
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_06/config.json",
+          "bytes": 1312,
+          "sha256": "12e0501fd6214e010c81f291d5e8838db402eb864c10b54db34f2f4a065da9cd",
+          "sha256_lf": "80de57610c03d02974ae4bf39c1ae4ab4ddc29be9952cc638480a298f6127919"
+        },
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_06/per_seed_propagation.csv",
+          "bytes": 133330,
+          "sha256": "40e088487c43d78fafb7f22fd2b2f630fc63cbe39fa93eb56f5a7192c58e2fb2",
+          "sha256_lf": "01563c33e0d7b4956f69a2cf10de9d98517f98268fca014029da2d8bd2b39489"
+        },
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_06/per_time_link_cache_errors.csv",
+          "bytes": 29436158,
+          "sha256": "3d967346c1f85d5659c9bfc4be81c5f328500c61601911a1bd3d1887f15f3549",
+          "sha256_lf": "12ddbbb79b906a09112570f32ee74081a0a615c2810ed7ad1cdecb312b123c8d"
+        },
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_06/per_time_network_errors.csv",
+          "bytes": 7028280,
+          "sha256": "e8ea6f495d69d840d296fabe527ca97ef5d573f3d4f1b5dde3be06b515febcd1",
+          "sha256_lf": "51df030fc19f87da888951c6a971417550b5f884dd9385f27fcce40f02f091c4"
+        },
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_06/summary.json",
+          "bytes": 2691,
+          "sha256": "46b2d91dbc133a771786965077e75e7ef54b507a5d8c21af7d7b5046f5af29cc",
+          "sha256_lf": "61a9ddeab6afdda622fa5b21a2e0087983757692f936bbc48377e4bede183017"
+        }
+      ]
+    },
+    {
+      "run_id": "g1r_deghat_mapping_audit_20261112_07",
+      "status": "SUPERSEDED",
+      "reason": "Intermediate full-horizon result; final entry is 20261113_v1.",
+      "files": [
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_07/config.json",
+          "bytes": 1312,
+          "sha256": "48b2280749590dda0a05d1f8d672e2447f1988626bb7131862b96e992ec59b02",
+          "sha256_lf": "93908212f255dacc4454a67fa77640585cfe436350ba9d7387f19aa6191fec27"
+        },
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_07/per_seed_propagation.csv",
+          "bytes": 43214,
+          "sha256": "5117bce13884be0134583dd487a7c70cea9ecc496243957cb57b9fbe2cca9f0f",
+          "sha256_lf": "18fd5f3e684488ab6515e0735dbfff3fd764264c726aa8da9d7add7b074428a1"
+        },
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_07/per_time_link_cache_errors.csv",
+          "bytes": 29436158,
+          "sha256": "3d967346c1f85d5659c9bfc4be81c5f328500c61601911a1bd3d1887f15f3549",
+          "sha256_lf": "12ddbbb79b906a09112570f32ee74081a0a615c2810ed7ad1cdecb312b123c8d"
+        },
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_07/per_time_network_errors.csv",
+          "bytes": 7028280,
+          "sha256": "e8ea6f495d69d840d296fabe527ca97ef5d573f3d4f1b5dde3be06b515febcd1",
+          "sha256_lf": "51df030fc19f87da888951c6a971417550b5f884dd9385f27fcce40f02f091c4"
+        },
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_07/summary.json",
+          "bytes": 2690,
+          "sha256": "db178abd35de984405220876580207148188741e462fc0e4ac45d6407afc1b17",
+          "sha256_lf": "66a100e358d91c5ba4a7927afe96f7f18d5ab4a3b6fdfae72b6a57bcad8028bf"
+        }
+      ]
+    },
+    {
+      "run_id": "g1r_deghat_mapping_audit_20261112_08",
+      "status": "SUPERSEDED",
+      "reason": "Intermediate full-horizon result; final entry is 20261113_v1.",
+      "files": [
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_08/config.json",
+          "bytes": 1590,
+          "sha256": "23cecfd8afb81964346cf6f67514b29248dfd1059ed0b693635bc3036fecd6da",
+          "sha256_lf": "f74c4ce6336851b994c61c860608c612abbe58976f38bb6998abfb2a76761c09"
+        },
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_08/per_seed_propagation.csv",
+          "bytes": 43214,
+          "sha256": "5117bce13884be0134583dd487a7c70cea9ecc496243957cb57b9fbe2cca9f0f",
+          "sha256_lf": "18fd5f3e684488ab6515e0735dbfff3fd764264c726aa8da9d7add7b074428a1"
+        },
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_08/per_time_link_cache_errors.csv",
+          "bytes": 29436158,
+          "sha256": "3d967346c1f85d5659c9bfc4be81c5f328500c61601911a1bd3d1887f15f3549",
+          "sha256_lf": "12ddbbb79b906a09112570f32ee74081a0a615c2810ed7ad1cdecb312b123c8d"
+        },
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_08/per_time_network_errors.csv",
+          "bytes": 7028280,
+          "sha256": "e8ea6f495d69d840d296fabe527ca97ef5d573f3d4f1b5dde3be06b515febcd1",
+          "sha256_lf": "51df030fc19f87da888951c6a971417550b5f884dd9385f27fcce40f02f091c4"
+        },
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_08/preregistration.json",
+          "bytes": 582,
+          "sha256": "fb4906795b5ea9ebf43fe003f0dea06311eddd0bdaa62520b219218755c80475",
+          "sha256_lf": "6974db15c9d14736a261cb05d46a54dcaa2c93e546d4209ae486b9f67de15a1c"
+        },
+        {
+          "path": "results/g1r_deghat_mapping_audit_20261112_08/summary.json",
+          "bytes": 2691,
+          "sha256": "2d80c0883214bc019c9ff92f652a7537635259c4d5e7516c8e535ac1a42f1dd1",
+          "sha256_lf": "89f83924e0ea3eff6d5a4f4998b2443ba4e233fcd2626d4b5362db0d7407765a"
+        }
+      ]
+    },
+    {
+      "run_id": "g1r_deghat_output_channels_20261112_01",
+      "status": "INVALID_COMPARISON",
+      "reason": "Disagreement feature branch was not enabled.",
+      "files": [
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_01/config.json",
+          "bytes": 3493,
+          "sha256": "c1b399d5fd1c8d2e46138f560130d13e32fbe18975a59ca8e6fe21d38e170f4a",
+          "sha256_lf": "294f3e82940f2566afc3d21b6f7c68ea8e60cf995e144b94deb22bfb153e8aef"
+        },
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_01/normal_audit.csv",
+          "bytes": 6188,
+          "sha256": "2f3b2c0e9702a40e42c629caf25450a3a4386435dd8ddf88495f7efd51a00236",
+          "sha256_lf": "9e69c46bf018752337fecc09cf73e880cf64224285dd2eb825daaf78eac2f3c7"
+        },
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_01/per_seed.csv",
+          "bytes": 37978,
+          "sha256": "f88cc5d203414454f56a7ae585de623981d9f1cb2d09bbf34e0d2c1dfc105ff7",
+          "sha256_lf": "379f8ee64ebacc31c507bf74a1c468e31b792ca8bbf971861534ee9750e9d317"
+        },
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_01/summary.json",
+          "bytes": 1966,
+          "sha256": "c1919e333c480a55472e147275feeec1791755018f6bc813a3f0c93b2e80a3d6",
+          "sha256_lf": "4e8075bdc0f21ed15b4a2f0d1023b1b662d31a719ae3397416f1208b2cdbc486"
+        }
+      ]
+    },
+    {
+      "run_id": "g1r_deghat_output_channels_20261112_02",
+      "status": "EXTRA_INFORMATION_CONTROL",
+      "reason": "Augmented branch used unsent sender estimates; not a same-permission baseline.",
+      "files": [
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_02/audit_summary.json",
+          "bytes": 3943,
+          "sha256": "dda0d9bbc2321379d86de8989cf6b8ecaf2e282c5918b9697f81204c1ade6b7e",
+          "sha256_lf": "1f1c722926b4ed7004bfa00143f126362e7beb0d8367234b9182810f6bd0f322"
+        },
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_02/config.json",
+          "bytes": 3964,
+          "sha256": "a0a5f2dfcbab9ea965bad1d78162e8a97787612f1a149b99c8e42a2f75d180ea",
+          "sha256_lf": "dc4bbbed41ae44a1d40f92cfa1e641d21faa724af5325a6275fc56a03cc96cc9"
+        },
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_02/normal_audit.csv",
+          "bytes": 13816,
+          "sha256": "0b667f8e4ec92594762024b3e5d808661ce3fbffe038e255a436e40395915838",
+          "sha256_lf": "f956ec97cb7a8b0f74e15b2b3bdbe7f9b404ba073ca8a15f0d6ea86420d2063c"
+        },
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_02/per_seed.csv",
+          "bytes": 78787,
+          "sha256": "40259127a3a0d559ee251d200c8c38848f76bc17dd3e0443b2df80f4ff0c35f2",
+          "sha256_lf": "173ded9ba62e2258c1766b4ec4f656a877eb27ed0857f76a6801738ae14d8f29"
+        },
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_02/summary.json",
+          "bytes": 3763,
+          "sha256": "11b8aa54f4702997370c8cb48be94eab7bc0a6e8e1b5fe0f2df86817935b8086",
+          "sha256_lf": "24943b6d721f333659b879f2a4d9dfffe78a4b2091ac837a077a02d3b539611f"
+        }
+      ]
+    },
+    {
+      "run_id": "g1r_deghat_output_channels_20261112_04",
+      "status": "WITHDRAWN_MSE",
+      "reason": "Legal cache input but response used S A.T instead of A S; do not cite correction MSE.",
+      "files": [
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_04/config.json",
+          "bytes": 4376,
+          "sha256": "c678f9890abb8fc6a03754e1a93411691a4ad07ce126ea1aa4d85027d34815b1",
+          "sha256_lf": "af526e7a76782ac584430005be2717f12156927fc19d011a8525b321f96b4483"
+        },
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_04/normal_audit.csv",
+          "bytes": 13773,
+          "sha256": "8ce171b613dfd883656f4e3a598a3a0725142c9ddc42dbfe03866ee692189c40",
+          "sha256_lf": "40ba9af9f1e7b2678b87fe660492ffb5b2bfa63a816a322dc50025cbd1db8dbc"
+        },
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_04/per_seed.csv",
+          "bytes": 78070,
+          "sha256": "612e657d280cf3eaf8530af81e1e08d79c32e503b5b65e7848bbd7997c036fe2",
+          "sha256_lf": "9a7fb900ecf2927cac66d532c6f18c5450ff5900208e64728c9e0e11ce5b4a68"
+        },
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_04/summary.json",
+          "bytes": 3684,
+          "sha256": "b9012e6fc79b1ae41b34c4ce42c4316a589974612baabd0084653b8a174eac49",
+          "sha256_lf": "8e039dc0ef116c1944237a3432d6a6ce20f6b2d5afe3f9fc7444e479c4dbea5a"
+        }
+      ]
+    },
+    {
+      "run_id": "g1r_deghat_output_channels_20261112_05",
+      "status": "WITHDRAWN_MSE",
+      "reason": "Legal cache input but response used S A.T instead of A S; do not cite correction MSE.",
+      "files": [
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_05/config.json",
+          "bytes": 5458,
+          "sha256": "a9d3c6981c893bab36b580a62e78b0bd4e4bc2302778ef50215e6afb7590e7a5",
+          "sha256_lf": "3793b5502cd3debc6db79b093a8f26c8a8d21a0c34bdeec348225f0ef05b8768"
+        },
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_05/normal_audit.csv",
+          "bytes": 13773,
+          "sha256": "8ce171b613dfd883656f4e3a598a3a0725142c9ddc42dbfe03866ee692189c40",
+          "sha256_lf": "40ba9af9f1e7b2678b87fe660492ffb5b2bfa63a816a322dc50025cbd1db8dbc"
+        },
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_05/per_seed.csv",
+          "bytes": 78070,
+          "sha256": "612e657d280cf3eaf8530af81e1e08d79c32e503b5b65e7848bbd7997c036fe2",
+          "sha256_lf": "9a7fb900ecf2927cac66d532c6f18c5450ff5900208e64728c9e0e11ce5b4a68"
+        },
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_05/summary.json",
+          "bytes": 4675,
+          "sha256": "0e9abae5588de783107904b21d457aaab90d7c1b1ffc1e7b1b15de7582058d73",
+          "sha256_lf": "0fdd18d028da29702e1e218748dd473b9e5a6f738290a3c72e4d4e83159886fe"
+        }
+      ]
+    },
+    {
+      "run_id": "g1r_deghat_output_channels_20261112_06",
+      "status": "WITHDRAWN_MSE",
+      "reason": "Legal cache input but response used S A.T instead of A S; do not cite correction MSE.",
+      "files": [
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_06/config.json",
+          "bytes": 6057,
+          "sha256": "9b1d125d4530201180bbb2964e8393034c318283f66af95bb11cc59ba2c1fed7",
+          "sha256_lf": "c816fe00f758b159aa8940cbb667c94154f8e78c0edda44f12d480420b1d1695"
+        },
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_06/normal_audit.csv",
+          "bytes": 13773,
+          "sha256": "8ce171b613dfd883656f4e3a598a3a0725142c9ddc42dbfe03866ee692189c40",
+          "sha256_lf": "40ba9af9f1e7b2678b87fe660492ffb5b2bfa63a816a322dc50025cbd1db8dbc"
+        },
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_06/per_seed.csv",
+          "bytes": 78070,
+          "sha256": "612e657d280cf3eaf8530af81e1e08d79c32e503b5b65e7848bbd7997c036fe2",
+          "sha256_lf": "9a7fb900ecf2927cac66d532c6f18c5450ff5900208e64728c9e0e11ce5b4a68"
+        },
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_06/summary.json",
+          "bytes": 5274,
+          "sha256": "5f3647ca13ba5afa1645e7c51585d77d9cb441c8f1ca7d06b635383b0c8da576",
+          "sha256_lf": "12c879cf57b6cff309dedff4cc594b3a5d91ddd2f8c4f8c25264124ea3319417"
+        }
+      ]
+    },
+    {
+      "run_id": "g1r_deghat_output_channels_20261112_07",
+      "status": "WITHDRAWN_MSE",
+      "reason": "Legal cache input but response used S A.T instead of A S; do not cite correction MSE.",
+      "files": [
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_07/config.json",
+          "bytes": 6095,
+          "sha256": "6fe9d392301c81fc82322cae0d72063fdce6b3c8e6cd8aea4d916aa9c7d2d69d",
+          "sha256_lf": "f45680c530b78af1050095d380b11fd1e7ec4d24e9079620a33ec6ab6a24216c"
+        },
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_07/normal_audit.csv",
+          "bytes": 13773,
+          "sha256": "8ce171b613dfd883656f4e3a598a3a0725142c9ddc42dbfe03866ee692189c40",
+          "sha256_lf": "40ba9af9f1e7b2678b87fe660492ffb5b2bfa63a816a322dc50025cbd1db8dbc"
+        },
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_07/per_seed.csv",
+          "bytes": 78070,
+          "sha256": "612e657d280cf3eaf8530af81e1e08d79c32e503b5b65e7848bbd7997c036fe2",
+          "sha256_lf": "9a7fb900ecf2927cac66d532c6f18c5450ff5900208e64728c9e0e11ce5b4a68"
+        },
+        {
+          "path": "results/g1r_deghat_output_channels_20261112_07/summary.json",
+          "bytes": 5312,
+          "sha256": "2d3912c32bdcd18fed5292f11a949ccb6dfa8b122f8a9c6fb473ea5d805f3e9f",
+          "sha256_lf": "f96edf9f5c74858c188fba52abf3b9faa34657ec4b7ccbb4fd691ca6d5319616"
+        }
+      ]
+    },
+    {
+      "run_id": "g1r_format_repair_20261113_v1",
+      "status": "FORMAT_ONLY",
+      "reason": "New JSON/CSV copies; does not rehabilitate historical scientific claims.",
+      "files": [
+        {
+          "path": "results/g1r_format_repair_20261113_v1/g1r_deghat_mapping_audit_20261112_01/per_seed_propagation.csv",
+          "bytes": 21630,
+          "sha256": "65568901c51f283965799582d261cb0bd57a899f47445c6f1c0c6a4f1cc8e65e",
+          "sha256_lf": "36f4090dc37a1545983246164940b42c8846995b86d1d3039dfbe35bd723df3e"
+        },
+        {
+          "path": "results/g1r_format_repair_20261113_v1/g1r_deghat_mapping_audit_20261112_01/per_seed_propagation.json",
+          "bytes": 79359,
+          "sha256": "056ddaadb4ffaa1f2b0126d31a07c226bbf0ee4150169c5dc3941af563e4a4a1",
+          "sha256_lf": "49a5be6ee518192c57fd0d1325515b626d39c69d3a0fa01eb99ba160ecb27e43"
+        },
+        {
+          "path": "results/g1r_format_repair_20261113_v1/g1r_deghat_mapping_audit_20261112_02/per_seed_propagation.csv",
+          "bytes": 22401,
+          "sha256": "7447868565906eb1af96659dada32186e9c164d9b4aa5a1592bf65f1b17cd56f",
+          "sha256_lf": "e3405cfb63c6037169941ced9e95258f1f67a2066f1e6af749344bdcf449070d"
+        },
+        {
+          "path": "results/g1r_format_repair_20261113_v1/g1r_deghat_mapping_audit_20261112_02/per_seed_propagation.json",
+          "bytes": 80130,
+          "sha256": "2c94276449b4728aa34b8f485cc590b5046168ab9994ba7b9642b3e9314f5dbc",
+          "sha256_lf": "7c9c734254a92a0762f8bc7b22bfb40b58480e8025ab8601fb2f4b106c2f6ea7"
+        },
+        {
+          "path": "results/g1r_format_repair_20261113_v1/g1r_deghat_mapping_audit_20261112_03/per_seed_propagation.csv",
+          "bytes": 30834,
+          "sha256": "fad5379746e75ebcc117661e893bd8b0e0d1936118a1981f7aff2b42b093fbc3",
+          "sha256_lf": "3fc90838c08a5596232c0abbe9730d8a4f2a75a534e0f361f3392e7c7b8f507a"
+        },
+        {
+          "path": "results/g1r_format_repair_20261113_v1/g1r_deghat_mapping_audit_20261112_03/per_seed_propagation.json",
+          "bytes": 93890,
+          "sha256": "7914c685bcb9398df42bebb72b63fd391133b801419fcdbcd4681fd52ea4b4f9",
+          "sha256_lf": "87d0141a34fb1d7be93d6b2a3ec223ea5ff7a785c8714f9928dec2bf3fef2944"
+        },
+        {
+          "path": "results/g1r_format_repair_20261113_v1/g1r_deghat_mapping_audit_20261112_04/per_seed_propagation.csv",
+          "bytes": 30848,
+          "sha256": "b57f76af22d3b4f8d82fd56e7a7022d43a35b02acfb147458947a37d5501a052",
+          "sha256_lf": "38896e8123728d195700b2a07cf025af877586d48a35a140d4da7097e395dd19"
+        },
+        {
+          "path": "results/g1r_format_repair_20261113_v1/g1r_deghat_mapping_audit_20261112_04/per_seed_propagation.json",
+          "bytes": 93904,
+          "sha256": "b8205ca714917a05e62c90b4f8f2c10f751d14dd107840f8cff8b600e138f1d2",
+          "sha256_lf": "6e47fa85b04acc8e5df932d7366396bfdebf45b81e197224741f631ff302d490"
+        },
+        {
+          "path": "results/g1r_format_repair_20261113_v1/g1r_deghat_mapping_audit_20261112_05/per_seed_propagation.csv",
+          "bytes": 43211,
+          "sha256": "c263682a248212ad2eac9111659dce48ed9fe13b9f7be59a667d2f3e61b04234",
+          "sha256_lf": "b241635162ab2bdaa45fd9f34d33dc279d8e37285a37efc61d6bf3c3a8447cf1"
+        },
+        {
+          "path": "results/g1r_format_repair_20261113_v1/g1r_deghat_mapping_audit_20261112_05/per_seed_propagation.json",
+          "bytes": 133330,
+          "sha256": "40e088487c43d78fafb7f22fd2b2f630fc63cbe39fa93eb56f5a7192c58e2fb2",
+          "sha256_lf": "01563c33e0d7b4956f69a2cf10de9d98517f98268fca014029da2d8bd2b39489"
+        },
+        {
+          "path": "results/g1r_format_repair_20261113_v1/g1r_deghat_mapping_audit_20261112_06/per_seed_propagation.csv",
+          "bytes": 43211,
+          "sha256": "c263682a248212ad2eac9111659dce48ed9fe13b9f7be59a667d2f3e61b04234",
+          "sha256_lf": "b241635162ab2bdaa45fd9f34d33dc279d8e37285a37efc61d6bf3c3a8447cf1"
+        },
+        {
+          "path": "results/g1r_format_repair_20261113_v1/g1r_deghat_mapping_audit_20261112_06/per_seed_propagation.json",
+          "bytes": 133330,
+          "sha256": "40e088487c43d78fafb7f22fd2b2f630fc63cbe39fa93eb56f5a7192c58e2fb2",
+          "sha256_lf": "01563c33e0d7b4956f69a2cf10de9d98517f98268fca014029da2d8bd2b39489"
+        },
+        {
+          "path": "results/g1r_format_repair_20261113_v1/index.json",
+          "bytes": 3207,
+          "sha256": "2ff681cbacf76402ae33de0bd9cf0c6c347dda71b188b1e561dcf6751e9f6fbe",
+          "sha256_lf": "973463e04eefadf871637e3503cb84ee535e12193eb71f2bb808ab664c32fd52"
+        }
+      ]
+    },
+    {
+      "run_id": "g1r_minimal_screen_20261112_01",
+      "status": "LEGACY_NOT_REENDORSED",
+      "reason": "Preserved original screen; current claims must use final P0 evidence and stated scope.",
+      "files": [
+        {
+          "path": "results/g1r_minimal_screen_20261112_01/config.json",
+          "bytes": 6317,
+          "sha256": "62ddb86ee8b7d1dfcd3f75cd689665ac8ceb7bee65b6197f09bcddc249ebb6d9",
+          "sha256_lf": "6fbba134841bd5ff325d8fbf8d7923ce16f2ebadc288581971ef4dcd7b4ff4f3"
+        },
+        {
+          "path": "results/g1r_minimal_screen_20261112_01/diagnostics.json",
+          "bytes": 574,
+          "sha256": "25f4464ea5a4f24cd7d0b2f9a10e77596d50838c1790507b73d0e1d8651a8999",
+          "sha256_lf": "913c43cda39a00bb944aee91e3eeb275641b5eab8a0ab2ab6b6c32df2d89d25a"
+        },
+        {
+          "path": "results/g1r_minimal_screen_20261112_01/normal_correction_audit.csv",
+          "bytes": 3577,
+          "sha256": "740c6455c51f4b7981a7f8d63e973ca4e5d8fa6af93440b44cc3b345e27a60e7",
+          "sha256_lf": "c5bda49968302774b610f5a61c01ff375fbe7260093544baf19d2417d189e622"
+        },
+        {
+          "path": "results/g1r_minimal_screen_20261112_01/packet_audit.csv",
+          "bytes": 5134,
+          "sha256": "3a6e15969d16095f81ae4611d6bc238a77f23552a01ca7cf4534eb5a256e725a",
+          "sha256_lf": "92da382eba89b077ffd6f9f4991ba54bf38d94a983c25c6e070af1716c99c276"
+        },
+        {
+          "path": "results/g1r_minimal_screen_20261112_01/per_seed_attacks.csv",
+          "bytes": 25008,
+          "sha256": "16388e09a47d38bd0b4497762716843832f7bd06d308d30e8b5d213a7a29d9a7",
+          "sha256_lf": "e70ac91f187022dcfd67b0ee88081a50abedb53aa91d27f8270784eb0e63e4f2"
+        },
+        {
+          "path": "results/g1r_minimal_screen_20261112_01/per_seed_methods.csv",
+          "bytes": 121336,
+          "sha256": "03d12b8eb564294a7261815b8a1c6f3be43c9ee9bc07e57e411e4de55862b26e",
+          "sha256_lf": "21d8da9adee87b24df6f8e7b7dcb19faf826960834aab1ede767cca65960db16"
+        },
+        {
+          "path": "results/g1r_minimal_screen_20261112_01/source_hashes.json",
+          "bytes": 463,
+          "sha256": "69f14ed76f8912e517ab30a704673f61979d363bc232417d4c9205408df55982",
+          "sha256_lf": "22ea5818ff2f923598fe6a9b401c25e6ebe479e2fb0df67d0c1cd798c9230862"
+        },
+        {
+          "path": "results/g1r_minimal_screen_20261112_01/summary.json",
+          "bytes": 5646,
+          "sha256": "9cd92a2f197ca9448954270b2a5a3403ce2d4c56e27229e3421e45604ed19f27",
+          "sha256_lf": "9c19ba7021bbc1e0297f9d2770538c4cd81e90ac6318fed22d7305ff54aa0434"
+        }
+      ]
+    },
+    {
+      "run_id": "g1r_minimal_screen_20261112_02",
+      "status": "LEGACY_NOT_REENDORSED",
+      "reason": "Preserved original screen; current claims must use final P0 evidence and stated scope.",
+      "files": [
+        {
+          "path": "results/g1r_minimal_screen_20261112_02/audit_summary.json",
+          "bytes": 5146,
+          "sha256": "31a0557aa70f2c9bd0f0fe5260d8815190f9e333024483ab14c4b57033f8c94d",
+          "sha256_lf": "31058576954f849fa848ee330065b4942024fd0bc42ef1eca559ac15711fe22c"
+        },
+        {
+          "path": "results/g1r_minimal_screen_20261112_02/config.json",
+          "bytes": 6317,
+          "sha256": "ca1eaa505744aaf1d34402e5e551b40a7ffd4b422d0ce91549e6d7a17a420a7a",
+          "sha256_lf": "4e55f41875c0aa6e33c7e0c946eeda18f2f9f0a3fece228b0b8e94057f18a1ec"
+        },
+        {
+          "path": "results/g1r_minimal_screen_20261112_02/diagnostics.json",
+          "bytes": 574,
+          "sha256": "25f4464ea5a4f24cd7d0b2f9a10e77596d50838c1790507b73d0e1d8651a8999",
+          "sha256_lf": "913c43cda39a00bb944aee91e3eeb275641b5eab8a0ab2ab6b6c32df2d89d25a"
+        },
+        {
+          "path": "results/g1r_minimal_screen_20261112_02/normal_correction_audit.csv",
+          "bytes": 3577,
+          "sha256": "740c6455c51f4b7981a7f8d63e973ca4e5d8fa6af93440b44cc3b345e27a60e7",
+          "sha256_lf": "c5bda49968302774b610f5a61c01ff375fbe7260093544baf19d2417d189e622"
+        },
+        {
+          "path": "results/g1r_minimal_screen_20261112_02/packet_audit.csv",
+          "bytes": 5134,
+          "sha256": "3a6e15969d16095f81ae4611d6bc238a77f23552a01ca7cf4534eb5a256e725a",
+          "sha256_lf": "92da382eba89b077ffd6f9f4991ba54bf38d94a983c25c6e070af1716c99c276"
+        },
+        {
+          "path": "results/g1r_minimal_screen_20261112_02/per_seed_attacks.csv",
+          "bytes": 25008,
+          "sha256": "16388e09a47d38bd0b4497762716843832f7bd06d308d30e8b5d213a7a29d9a7",
+          "sha256_lf": "e70ac91f187022dcfd67b0ee88081a50abedb53aa91d27f8270784eb0e63e4f2"
+        },
+        {
+          "path": "results/g1r_minimal_screen_20261112_02/per_seed_methods.csv",
+          "bytes": 121463,
+          "sha256": "2b8e0f2246d1999243e2bda1710593486715188483bb9797d6827b1ea1558e83",
+          "sha256_lf": "15ef289eed2d53e31eadca9dd8a7bbde8830bb540b8008c063a0d4c296cdf89a"
+        },
+        {
+          "path": "results/g1r_minimal_screen_20261112_02/source_hashes.json",
+          "bytes": 463,
+          "sha256": "68bf468577b1db2f2ea621c7b8c79bb61be94de73aa56c204ed21188dc15ba78",
+          "sha256_lf": "72b248d545dc7957f6328614c3eb37d9bb82704560f2a24230957e236f335fc1"
+        },
+        {
+          "path": "results/g1r_minimal_screen_20261112_02/summary.json",
+          "bytes": 5648,
+          "sha256": "3647e6c305347d72eab1380e9e951e09d1b062a2c7613118f4a0392e7be05820",
+          "sha256_lf": "0f6c4dfa5d4cce8b9b6c615c89fc585bf7eb0712837476130f46a7d9d7d28f6c"
+        }
+      ]
+    },
+    {
+      "run_id": "g1r_p0_final_audit_20261112_01",
+      "status": "FAILED_NO_RESULT",
+      "reason": "Missing summary key; empty directory. Failure stage recorded from execution history, no saved traceback.",
+      "files": []
+    },
+    {
+      "run_id": "g1r_p0_final_audit_20261112_02",
+      "status": "PASS_WITHDRAWN",
+      "reason": "Validator missed response-matrix multiplication error. Historical PASS is not current acceptance.",
+      "files": [
+        {
+          "path": "results/g1r_p0_final_audit_20261112_02/p0_acceptance.json",
+          "bytes": 4106,
+          "sha256": "9bceb535bda9cf277163051ea0b8d032f0f20f9e2df21fecadf65727aea767eb",
+          "sha256_lf": "534ec0defa4e51f167cca18a989766ec907169e367b74967ec728514e2a65a89"
+        }
+      ]
+    },
+    {
+      "run_id": "g1r_p0_final_audit_20261112_03",
+      "status": "PASS_WITHDRAWN",
+      "reason": "Validator missed response-matrix multiplication error. Historical PASS is not current acceptance.",
+      "files": [
+        {
+          "path": "results/g1r_p0_final_audit_20261112_03/p0_acceptance.json",
+          "bytes": 4165,
+          "sha256": "7d6c41f49dcf1cfecd9f13765f67be0324fe963ac2d7bdc0924b7304b499051c",
+          "sha256_lf": "fd589942445df8ee8c3e0a8d0ccbe542a2fe17966d7f7fcaf301c9768d3b6cb6"
+        }
+      ]
+    },
+    {
+      "run_id": "g1r_p0_final_audit_20261112_04",
+      "status": "PASS_WITHDRAWN",
+      "reason": "Validator missed response-matrix multiplication error. Historical PASS is not current acceptance.",
+      "files": [
+        {
+          "path": "results/g1r_p0_final_audit_20261112_04/p0_acceptance.json",
+          "bytes": 4211,
+          "sha256": "f258af4bc56cd50643e69ee5c61e4699120fb4da20c956539a64e09ca1229571",
+          "sha256_lf": "4979a21ed1bbfdfc2a37078da52f7ee5261638eeff9e8f7d5cf72ee16f7f6540"
+        }
+      ]
+    },
+    {
+      "run_id": "g1r_p0_final_audit_20261112_05",
+      "status": "PASS_WITHDRAWN",
+      "reason": "Validator missed response-matrix multiplication error. Historical PASS is not current acceptance.",
+      "files": [
+        {
+          "path": "results/g1r_p0_final_audit_20261112_05/p0_acceptance.json",
+          "bytes": 4211,
+          "sha256": "6b29b8c767bfde06d49c2cd06b25dc0b2a3dc11c92f5679545827cb9520b5d0b",
+          "sha256_lf": "48c9d007b159005ed9a7e5820a0a5ae67e92f30e3d6f9c4d9fb92300429fd13b"
+        }
+      ]
+    },
+    {
+      "run_id": "g1r_p0_verified_20261113_v1",
+      "status": "FINAL_VALID",
+      "reason": "Full-horizon/cache/response/permission audit; MSE exploratory only.",
+      "files": [
+        {
+          "path": "results/g1r_p0_verified_20261113_v1/acceptance.json",
+          "bytes": 2077,
+          "sha256": "f5ab57715f257615e7bd63034296b3e31cdede8e2409a2a435347679a3ae4431",
+          "sha256_lf": "673d1803f4c63e1587de9a86fd7ec1cf60e6e48e2a0f1b1c9ed775b61b528feb"
+        },
+        {
+          "path": "results/g1r_p0_verified_20261113_v1/cache_components.csv",
+          "bytes": 26000281,
+          "sha256": "e88fdddf59c276fcbb075db0ed19d5d77feabb0cb00e840fdbfc01bca4d14ca2",
+          "sha256_lf": "c3d8aab77996a9505286f256062a6a6e2cb84a8f36277c4ea768b24d042e2d1a"
+        },
+        {
+          "path": "results/g1r_p0_verified_20261113_v1/comparisons.json",
+          "bytes": 2903,
+          "sha256": "d7b499b0cf2b5e22fc2fa1f3414ab25f30f196bbeab816f766c57d8d424acb8f",
+          "sha256_lf": "650b508a4e6397fda2f2266dec9ad078573539a1f93a0e665c6f54884121aa56"
+        },
+        {
+          "path": "results/g1r_p0_verified_20261113_v1/config.json",
+          "bytes": 7003,
+          "sha256": "69833ec9501128a60e9fa3ff1dab8dfe483c25d538110cec8020f66422b34e77",
+          "sha256_lf": "07bc0b4b93551f859b1cd97e9de2e873d385db9b30d7d6f6785c029dfb2f0d29"
+        },
+        {
+          "path": "results/g1r_p0_verified_20261113_v1/method_summary.csv",
+          "bytes": 1991,
+          "sha256": "252e2d1a7e07e3ed6b1490158d8baacae40102c3133edebad93b092a7a92165a",
+          "sha256_lf": "d8fb6125ded18445dd406d58dd566eaf5a29c9babd42ab6a3458442ca0522199"
+        },
+        {
+          "path": "results/g1r_p0_verified_20261113_v1/model_response_and_fits.npz",
+          "bytes": 73892,
+          "sha256": "18f4b3c532d7f335ab3319d8e6cd2b717b30de560238f8accf77d7ce682afb12",
+          "sha256_lf": null
+        },
+        {
+          "path": "results/g1r_p0_verified_20261113_v1/network_components.csv",
+          "bytes": 7610894,
+          "sha256": "daeb20713f60386b32b3d898632484a85d2a04a78c4393b537ec556a671ce618",
+          "sha256_lf": "908ef2799fe7ec2624f3b27b23c75bc64d7873b62ad5bc307416d3a5f721627c"
+        },
+        {
+          "path": "results/g1r_p0_verified_20261113_v1/per_seed_metrics.csv",
+          "bytes": 127023,
+          "sha256": "b554beae65b1cd0834f35d34923a1d3f8d9d0d4807f0f019a364323b94bc7dde",
+          "sha256_lf": "6e7aafa6d59bdb9a783172a6ee08a00b9e05649d804e8df20074de6da639f999"
+        },
+        {
+          "path": "results/g1r_p0_verified_20261113_v1/sender_transmissions.csv",
+          "bytes": 91074,
+          "sha256": "ec89dd3856dcbf08e18860362c64c185bbc6c73acef688c66aff5eec8588deca",
+          "sha256_lf": "579d334a5571e43f9c2d44d0d35bd257facf4a1285337e7fe3872c944e4be4b3"
+        },
+        {
+          "path": "results/g1r_p0_verified_20261113_v1/source_hashes.json",
+          "bytes": 604,
+          "sha256": "3e7c4c77700ec3af47175e8f5b84da57338452f16d925ce10385d921d150bcba",
+          "sha256_lf": "6fd1729b79ca901756471a0dc46b8991030ebd6fe562e7f3407c654cbeaef29c"
+        },
+        {
+          "path": "results/g1r_p0_verified_20261113_v1/summary.json",
+          "bytes": 8829,
+          "sha256": "1639c30df08338904efa6bdc863c2ddd91fe69960e6a28ea54568e2bd0a53d34",
+          "sha256_lf": "99e9d9bf3342abba8d5b49aecb0ea30ea4dd18bc481910694b4ec41f476b3370"
+        }
+      ]
+    },
+    {
+      "run_id": "g1r_p1_structure_20261113_v1",
+      "status": "FINAL_VALID_STRUCTURE_ONLY",
+      "reason": "Error/output equations verified; no designed Deghat tracker.",
+      "files": [
+        {
+          "path": "results/g1r_p1_structure_20261113_v1/config.json",
+          "bytes": 3955,
+          "sha256": "a0d27e685045f1e782a9a7028a7692d94b853ff42cbd5e83a578c9c02c90d285",
+          "sha256_lf": "ba297956b2ae21626e716f4d711317107a3a784bf5c1aafd032d21844d6ab4c1"
+        },
+        {
+          "path": "results/g1r_p1_structure_20261113_v1/per_seed_mapping.csv",
+          "bytes": 15298,
+          "sha256": "238685931012411109c4979c2035bb13c6dd1bedf66cb1fb5787d3ed5b1859ff",
+          "sha256_lf": "ecf9e32b7ecf30eb4b6cef56586af16898fb5215308154ad5e8755e9c9e56508"
+        },
+        {
+          "path": "results/g1r_p1_structure_20261113_v1/source_hashes.json",
+          "bytes": 460,
+          "sha256": "82e23353c57c1b897d4e79426505e53aef2f95e1c67dcc1f14c172ca03478186",
+          "sha256_lf": "8c98c79bf059365b409584354d4094c7ceecf4248032adaeff5d373deadeb543"
+        },
+        {
+          "path": "results/g1r_p1_structure_20261113_v1/summary.json",
+          "bytes": 1584,
+          "sha256": "8348feb6f155a5170e68d0e1444df5bac3236adf6b83bcf7d9d4544c60d50e53",
+          "sha256_lf": "0d71ca8d5fe200c46133d2e88f88faa77cc3f66adacb70ecfb7d44be1bb2d9ec"
+        }
+      ]
+    }
+  ]
+}

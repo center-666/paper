@@ -1,0 +1,270 @@
+{
+  "propagation": {
+    "single_step": {
+      "state_max": 2.0188904259303697e-13,
+      "raw_max": 2.0188904259303697e-13,
+      "aligned_max": 2.0244668842792773e-13,
+      "before_q_state_max": 7.844419558367122e-14,
+      "at_after_q_state_max": 2.0188904259303697e-13
+    },
+    "replay_packet": {
+      "state_max": 2.3054648468079364e-13,
+      "raw_max": 1.9754337055033488e-13,
+      "aligned_max": 2.0509982601168986e-13,
+      "before_q_state_max": 7.105427357601002e-14,
+      "at_after_q_state_max": 2.3054648468079364e-13
+    }
+  },
+  "methods": [
+    {
+      "scenario": "clean",
+      "method": "full_prefix_local",
+      "alarm_rate": 0.041666666666666664,
+      "receiver_mse": 0.20685133161811262,
+      "network_mse": 0.1842785044772162,
+      "receiver_excess": -4.776525165554648e-05,
+      "network_excess": -0.00017618786234861505,
+      "receiver_change_vs_uncorrected": {
+        "n_seed": 48,
+        "mean": -4.7765251655546405e-05,
+        "ci95": [
+          -0.0015000903102467403,
+          0.0014045598069356475
+        ]
+      },
+      "batch_compute_seconds": 0.000445699999545468,
+      "feature_history_bytes_per_seed": 272,
+      "fit_numeric_table_bytes": 10608
+    },
+    {
+      "scenario": "clean",
+      "method": "full_prefix_cache",
+      "alarm_rate": 0.0625,
+      "receiver_mse": 0.20677088968839932,
+      "network_mse": 0.1843877093229494,
+      "receiver_excess": -0.00012820718136884868,
+      "network_excess": -6.698301661541605e-05,
+      "receiver_change_vs_uncorrected": {
+        "n_seed": 48,
+        "mean": -0.00012820718136884865,
+        "ci95": [
+          -0.0005049964858491644,
+          0.000248582123111467
+        ]
+      },
+      "batch_compute_seconds": 0.0003132999991066754,
+      "feature_history_bytes_per_seed": 544,
+      "fit_numeric_table_bytes": 39712
+    },
+    {
+      "scenario": "clean",
+      "method": "post_cache_local",
+      "alarm_rate": 0.020833333333333332,
+      "receiver_mse": 0.20767661654012573,
+      "network_mse": 0.18446957421004834,
+      "receiver_excess": 0.0007775196703575739,
+      "network_excess": 1.488187048355145e-05,
+      "receiver_change_vs_uncorrected": {
+        "n_seed": 48,
+        "mean": 0.0007775196703575738,
+        "ci95": [
+          -0.0007866481507225698,
+          0.002341687491437717
+        ]
+      },
+      "batch_compute_seconds": 0.00024979999943752773,
+      "feature_history_bytes_per_seed": 128,
+      "fit_numeric_table_bytes": 2688
+    },
+    {
+      "scenario": "clean",
+      "method": "post_cache_cache",
+      "alarm_rate": 0.0,
+      "receiver_mse": 0.20689909686976818,
+      "network_mse": 0.1844546923395648,
+      "receiver_excess": 0.0,
+      "network_excess": 0.0,
+      "receiver_change_vs_uncorrected": {
+        "n_seed": 48,
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "batch_compute_seconds": 0.00026369999977760017,
+      "feature_history_bytes_per_seed": 256,
+      "fit_numeric_table_bytes": 9472
+    },
+    {
+      "scenario": "single_step",
+      "method": "full_prefix_local",
+      "alarm_rate": 0.1875,
+      "receiver_mse": 0.20522429001512305,
+      "network_mse": 0.18410625798168415,
+      "receiver_excess": -0.001674806854645117,
+      "network_excess": -0.0003484343578806446,
+      "receiver_change_vs_uncorrected": {
+        "n_seed": 48,
+        "mean": -0.0023934299647361983,
+        "ci95": [
+          -0.005788724895581843,
+          0.0010018649661094467
+        ]
+      },
+      "batch_compute_seconds": 0.0003508000008878298,
+      "feature_history_bytes_per_seed": 272,
+      "fit_numeric_table_bytes": 10608
+    },
+    {
+      "scenario": "single_step",
+      "method": "full_prefix_cache",
+      "alarm_rate": 1.0,
+      "receiver_mse": 0.20697330472125774,
+      "network_mse": 0.18450536367854428,
+      "receiver_excess": 7.420785148957888e-05,
+      "network_excess": 5.06713389794904e-05,
+      "receiver_change_vs_uncorrected": {
+        "n_seed": 48,
+        "mean": -0.0006444152586015028,
+        "ci95": [
+          -0.0017429337197056574,
+          0.00045410320250265177
+        ]
+      },
+      "batch_compute_seconds": 0.0002903000022342894,
+      "feature_history_bytes_per_seed": 544,
+      "fit_numeric_table_bytes": 39712
+    },
+    {
+      "scenario": "single_step",
+      "method": "post_cache_local",
+      "alarm_rate": 0.020833333333333332,
+      "receiver_mse": 0.20839918712289587,
+      "network_mse": 0.18492906589513894,
+      "receiver_excess": 0.0015000902531276904,
+      "network_excess": 0.00047437355557416273,
+      "receiver_change_vs_uncorrected": {
+        "n_seed": 48,
+        "mean": 0.0007814671430366087,
+        "ci95": [
+          -0.000790641968758791,
+          0.0023535762548320084
+        ]
+      },
+      "batch_compute_seconds": 0.0002720000011322554,
+      "feature_history_bytes_per_seed": 128,
+      "fit_numeric_table_bytes": 2688
+    },
+    {
+      "scenario": "single_step",
+      "method": "post_cache_cache",
+      "alarm_rate": 0.0625,
+      "receiver_mse": 0.2076242605458597,
+      "network_mse": 0.18480484930475943,
+      "receiver_excess": 0.000725163676091509,
+      "network_excess": 0.00035015696519464764,
+      "receiver_change_vs_uncorrected": {
+        "n_seed": 48,
+        "mean": 6.540566000427274e-06,
+        "ci95": [
+          -0.0005708029724505537,
+          0.0005838841044514083
+        ]
+      },
+      "batch_compute_seconds": 0.0002626999994390644,
+      "feature_history_bytes_per_seed": 256,
+      "fit_numeric_table_bytes": 9472
+    },
+    {
+      "scenario": "replay_packet",
+      "method": "full_prefix_local",
+      "alarm_rate": 0.9375,
+      "receiver_mse": 0.20385067690040204,
+      "network_mse": 0.18323899561010656,
+      "receiver_excess": -0.003048419969366147,
+      "network_excess": -0.001215696729458233,
+      "receiver_change_vs_uncorrected": {
+        "n_seed": 48,
+        "mean": -0.819428971218254,
+        "ci95": [
+          -1.1350070178873413,
+          -0.5038509245491666
+        ]
+      },
+      "batch_compute_seconds": 0.0003450999975029845,
+      "feature_history_bytes_per_seed": 272,
+      "fit_numeric_table_bytes": 10608
+    },
+    {
+      "scenario": "replay_packet",
+      "method": "full_prefix_cache",
+      "alarm_rate": 1.0,
+      "receiver_mse": 0.20697330472125783,
+      "network_mse": 0.18450536367854484,
+      "receiver_excess": 7.420785148966461e-05,
+      "network_excess": 5.067133898002613e-05,
+      "receiver_change_vs_uncorrected": {
+        "n_seed": 48,
+        "mean": -0.8163063433973982,
+        "ci95": [
+          -1.13173911785389,
+          -0.5008735689409063
+        ]
+      },
+      "batch_compute_seconds": 0.000283499997749459,
+      "feature_history_bytes_per_seed": 544,
+      "fit_numeric_table_bytes": 39712
+    },
+    {
+      "scenario": "replay_packet",
+      "method": "post_cache_local",
+      "alarm_rate": 0.8125,
+      "receiver_mse": 0.21665064012133578,
+      "network_mse": 0.18722111628890997,
+      "receiver_excess": 0.009751543251567638,
+      "network_excess": 0.002766423949345157,
+      "receiver_change_vs_uncorrected": {
+        "n_seed": 48,
+        "mean": -0.8066290079973203,
+        "ci95": [
+          -1.1228811161695722,
+          -0.49037689982506827
+        ]
+      },
+      "batch_compute_seconds": 0.0002624000007926952,
+      "feature_history_bytes_per_seed": 128,
+      "fit_numeric_table_bytes": 2688
+    },
+    {
+      "scenario": "replay_packet",
+      "method": "post_cache_cache",
+      "alarm_rate": 0.9791666666666666,
+      "receiver_mse": 0.2077740568870474,
+      "network_mse": 0.1839924083113444,
+      "receiver_excess": 0.0008749600172792446,
+      "network_excess": -0.0004622840282204032,
+      "receiver_change_vs_uncorrected": {
+        "n_seed": 48,
+        "mean": -0.8155055912316088,
+        "ci95": [
+          -1.1309647605234856,
+          -0.5000464219397321
+        ]
+      },
+      "batch_compute_seconds": 0.00025720000121509656,
+      "feature_history_bytes_per_seed": 256,
+      "fit_numeric_table_bytes": 9472
+    }
+  ],
+  "communications": {
+    "node_broadcasts": 179,
+    "edge_packets": 358,
+    "payload_bytes": 5728,
+    "extra_feature_messages": 0,
+    "all_node_shadow_output": "offline evaluation only, not a broadcast protocol"
+  },
+  "normal_loss": "clean receiver_change_vs_uncorrected is false-correction MSE cost",
+  "uncertainty": "paired seed, exploratory CI, conditional on fitted covariance, reused tests, no multiplicity correction",
+  "runtime_seconds": 4.835178999997879
+}

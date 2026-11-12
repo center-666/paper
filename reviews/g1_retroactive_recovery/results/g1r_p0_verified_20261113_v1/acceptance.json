@@ -1,0 +1,64 @@
+{
+  "status": "PASS",
+  "P0_1": {
+    "single_step": {
+      "state_max": 2.0188904259303697e-13,
+      "raw_max": 2.0188904259303697e-13,
+      "aligned_max": 2.0244668842792773e-13,
+      "before_q_state_max": 7.844419558367122e-14,
+      "at_after_q_state_max": 2.0188904259303697e-13
+    },
+    "replay_packet": {
+      "state_max": 2.3054648468079364e-13,
+      "raw_max": 1.9754337055033488e-13,
+      "aligned_max": 2.0509982601168986e-13,
+      "before_q_state_max": 7.105427357601002e-14,
+      "at_after_q_state_max": 2.3054648468079364e-13
+    }
+  },
+  "tolerance": 1e-10,
+  "last_state_checked": 280,
+  "first_state_checked": 201,
+  "seed_count": 48,
+  "unit_response_checks": [
+    {
+      "direction": 0,
+      "state_max_error": 1.8853408417784934e-13,
+      "aligned_max_error": 1.514280237660537e-13
+    },
+    {
+      "direction": 1,
+      "state_max_error": 1.4887180030398461e-13,
+      "aligned_max_error": 1.6411503232782731e-13
+    }
+  ],
+  "receiver_cache_checks": [
+    {
+      "scenario": "clean",
+      "seeds": 48,
+      "held_payload_and_age_prediction": "PASS"
+    },
+    {
+      "scenario": "single_step",
+      "seeds": 48,
+      "held_payload_and_age_prediction": "PASS"
+    },
+    {
+      "scenario": "replay_packet",
+      "seeds": 48,
+      "held_payload_and_age_prediction": "PASS"
+    }
+  ],
+  "online_feature_signature": "local_y, own, received_aligned, H",
+  "future_values_poisoned_without_prefix_effect": true,
+  "feature_labels_and_unsent_neighbor_estimates_not_inputs": true,
+  "logger_vs_vanilla": 0.0,
+  "shared_files_unchanged": {
+    "simulation/engine.py": "05fb3f19d457e103d7c1665ccd1087ea4b27076d6a39b57ac7e0d16cfdb35c97",
+    "simulation/g2_replay_runner.py": "d78da43cc502e9f05d18c7f1f3e8006bd06877e5e1b399c1b4a86f5a75092d57",
+    "reviews/fdi_replay_20261112/g2_screen_plan.json": "f07cae7c3fcaa6ba9d0f7e53f2870aaa82bd0fe47eb5dd1345ce81dcb910efc5"
+  },
+  "old_result_file_count_preserved": 92,
+  "state_component_rows": 76800,
+  "edge_component_rows": 153600
+}

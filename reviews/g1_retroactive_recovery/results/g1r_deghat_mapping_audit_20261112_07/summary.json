@@ -1,0 +1,44 @@
+{
+  "run_id": "g1r_deghat_mapping_audit_20261112_07",
+  "results": {
+    "single_step": {
+      "seeds": 48,
+      "mean_later_contaminated_sender_sends": 9.0,
+      "mean_max_later_sender_estimate_difference": 0.03333519969570491,
+      "mean_receiver_estimate_difference_rms_after_q": 0.05012990367280484,
+      "mean_network_estimate_difference_rms_after_q": 0.05343897525533601,
+      "all_next_packets_unmodified": true,
+      "mean_direct_cache_consensus_input_norm": 0.27043614155051204,
+      "first_update_direct_formula_max_abs_error": 1.9470536294363683e-14,
+      "full_network_difference_recursion_max_abs_error": 2.018880126009731e-13,
+      "all_link_payload_recursion_max_abs_error": 2.018880126009731e-13,
+      "all_link_aligned_cache_recursion_max_abs_error": 2.018880126009731e-13,
+      "max_error_before_q": 7.855521788613373e-14,
+      "max_error_at_and_after_q": 2.018880126009731e-13
+    },
+    "replay_packet": {
+      "seeds": 48,
+      "mean_later_contaminated_sender_sends": 9.0,
+      "mean_max_later_sender_estimate_difference": 1.4423861522966048,
+      "mean_receiver_estimate_difference_rms_after_q": 2.748429446266812,
+      "mean_network_estimate_difference_rms_after_q": 2.839749579449721,
+      "all_next_packets_unmodified": true,
+      "mean_direct_cache_consensus_input_norm": 9.219638689489663,
+      "first_update_direct_formula_max_abs_error": 1.7763568394002505e-14,
+      "full_network_difference_recursion_max_abs_error": 2.305551582981735e-13,
+      "all_link_payload_recursion_max_abs_error": 1.9757112612595051e-13,
+      "all_link_aligned_cache_recursion_max_abs_error": 2.025601908428598e-13,
+      "max_error_before_q": 7.105427357601002e-14,
+      "max_error_at_and_after_q": 2.305551582981735e-13
+    }
+  },
+  "elapsed_seconds": 2.691149399999631,
+  "paired_seed_unit": "seed",
+  "interpretation": "independent recursive check: only the attacked payload difference at r is injected; every later unmodified transmission uses the recursion's predicted sender estimate difference. At fusion iteration r the age-zero payload is consumed immediately, so the extra update epsilon*A*delta enters estimate index r+1. Later indirect feedback is predicted by the full network error/cache recursion.",
+  "source_hashes": {
+    "audit_attack_input_mapping.py": "be5e0adf2f431d8282e4b82be3459ad2cf270e75b9d105e24a4e4ab1d5a4c02e",
+    "minimal_recovery_screen.py": "23824443eabb9615d3a4e158c92d8f86a3ad7c3bd8de55bfb982eccd5af7f38f",
+    "engine.py": "05fb3f19d457e103d7c1665ccd1087ea4b27076d6a39b57ac7e0d16cfdb35c97",
+    "model.py": "5b674a4cc274fca42d52d00f15490d5e3952231df98146a90cb28a62b4a9aeca"
+  }
+}

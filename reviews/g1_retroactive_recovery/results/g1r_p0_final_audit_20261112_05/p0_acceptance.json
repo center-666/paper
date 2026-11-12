@@ -1,0 +1,101 @@
+{
+  "run_id": "g1r_p0_final_audit_20261112_05",
+  "P0_1_full_horizon": {
+    "run_id": "g1r_deghat_mapping_audit_20261112_08",
+    "status": "PASS",
+    "seeds": 48,
+    "scenarios": [
+      "replay_packet",
+      "single_step"
+    ],
+    "fusion_iterations": [
+      200,
+      279
+    ],
+    "updated_state_indices": [
+      201,
+      280
+    ],
+    "network_rows": 7680,
+    "edge_cache_rows": 76800,
+    "max_full_horizon_node_component_error": 2.305551582981735e-13,
+    "max_full_horizon_cache_or_aligned_error": 2.025601908428598e-13,
+    "tolerance": 1e-10,
+    "boundary_errors": {
+      "single_step_t207": 4.838143774499315e-14,
+      "single_step_t208": 5.331846075762314e-14,
+      "single_step_t209": 7.560618797697316e-14,
+      "single_step_cache_replacement_pre_error": 1.1324274851176597e-14,
+      "single_step_cache_replacement_post_error": 4.838143774499315e-14,
+      "replay_packet_t207": 6.497580251618729e-14,
+      "replay_packet_t208": 6.822320486321587e-14,
+      "replay_packet_t209": 5.823119764158946e-14,
+      "replay_packet_cache_replacement_pre_error": 0.0,
+      "replay_packet_cache_replacement_post_error": 3.863576125695545e-14
+    },
+    "preregistered_before_simulation": true,
+    "age_zero_first_update_formula_max_error": 1.9470536294363683e-14,
+    "no_future_attacked_clean_difference_fed_to_recursion": true
+  },
+  "P0_2_information_permissions": {
+    "run_id": "g1r_deghat_output_channels_20261112_07",
+    "status": "PASS",
+    "seed_count": 48,
+    "online_feature_sources": [
+      "receiver_log.local",
+      "receiver_log.aligned",
+      "y",
+      "model.H"
+    ],
+    "forbidden_simulator_fields_absent_from_feature_function": [
+      "estimates",
+      "injected",
+      "replay_source",
+      "state_truth",
+      "true_state"
+    ],
+    "receiver_logging_vanilla_equivalence_max_error": 0.0,
+    "all_attack_cache_logs_reconstruct_from_delivered_packets": true,
+    "offline_simulator_state_access_scope": "MSE scoring, attack source legality audit, and independent validation only",
+    "schedule": "same Yang-form heterogeneous five-node model, same gap8 exogenous schedule",
+    "event_localization": "known edge/time remains an explicit oracle condition"
+  },
+  "P0_3_csv_schema": {
+    "new_run_csv": "PASS",
+    "csv_files_scanned": 41,
+    "historical_mislabeled_csv_files_preserved": [
+      {
+        "path": "reviews\\g1_retroactive_recovery\\results\\g1r_deghat_mapping_audit_20261112_01\\per_seed_propagation.csv",
+        "content_type": "JSON_ARRAY"
+      },
+      {
+        "path": "reviews\\g1_retroactive_recovery\\results\\g1r_deghat_mapping_audit_20261112_02\\per_seed_propagation.csv",
+        "content_type": "JSON_ARRAY"
+      },
+      {
+        "path": "reviews\\g1_retroactive_recovery\\results\\g1r_deghat_mapping_audit_20261112_03\\per_seed_propagation.csv",
+        "content_type": "JSON_ARRAY"
+      },
+      {
+        "path": "reviews\\g1_retroactive_recovery\\results\\g1r_deghat_mapping_audit_20261112_04\\per_seed_propagation.csv",
+        "content_type": "JSON_ARRAY"
+      },
+      {
+        "path": "reviews\\g1_retroactive_recovery\\results\\g1r_deghat_mapping_audit_20261112_05\\per_seed_propagation.csv",
+        "content_type": "JSON_ARRAY"
+      },
+      {
+        "path": "reviews\\g1_retroactive_recovery\\results\\g1r_deghat_mapping_audit_20261112_06\\per_seed_propagation.csv",
+        "content_type": "JSON_ARRAY"
+      }
+    ],
+    "correction": "earlier six JSON-array files remain untouched and are identified by Run ID; new full-horizon Run 08 writes a correctly serialized CSV at a new path"
+  },
+  "run_sources_sha256": {
+    "final_p0_audit.py": "bcc1fd12a5792f2b6d835ec9723713e6b44aa76a4bdfac8173b8e8d9a6eb5001",
+    "audit_attack_input_mapping.py": "88450b46663237edf57636383199b479da459ff02de108ea37257af22e619ea0",
+    "compare_deghat_outputs.py": "d0762030523dbfef571236ad567ff4ab5946334547a2712566d7534538fd77cf",
+    "config.json": "6fe9d392301c81fc82322cae0d72063fdce6b3c8e6cd8aea4d916aa9c7d2d69d",
+    "summary.json": "2d3912c32bdcd18fed5292f11a949ccb6dfa8b122f8a9c6fb473ea5d805f3e9f"
+  }
+}
