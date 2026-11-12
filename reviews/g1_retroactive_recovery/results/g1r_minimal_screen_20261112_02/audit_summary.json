@@ -1,0 +1,160 @@
+{
+  "run_id": "g1r_minimal_screen_20261112_02",
+  "primary_effects": [
+    {
+      "scenario": "replay_packet",
+      "candidate": "candidate_gls_receiver_only",
+      "baseline": "attack_no_defense",
+      "metric": "receiver_excess_mse",
+      "candidate_minus_baseline": {
+        "n": 48,
+        "mean": -0.806308503167037,
+        "ci95": [
+          -1.1226114970474024,
+          -0.4900055092866714
+        ]
+      },
+      "negative_favors_candidate": true,
+      "descriptive_only": true
+    },
+    {
+      "scenario": "replay_packet",
+      "candidate": "candidate_gls_receiver_only",
+      "baseline": "receiver_drop_and_replay",
+      "metric": "receiver_excess_mse",
+      "candidate_minus_baseline": {
+        "n": 48,
+        "mean": -0.13623885875865618,
+        "ci95": [
+          -0.19680007033633143,
+          -0.07567764718098094
+        ]
+      },
+      "negative_favors_candidate": true,
+      "descriptive_only": true
+    },
+    {
+      "scenario": "replay_packet",
+      "candidate": "candidate_gls_receiver_only",
+      "baseline": "receiver_local_filter_from_checkpoint",
+      "metric": "receiver_excess_mse",
+      "candidate_minus_baseline": {
+        "n": 48,
+        "mean": -0.05274864537076531,
+        "ci95": [
+          -0.09201027111013466,
+          -0.01348701963139596
+        ]
+      },
+      "negative_favors_candidate": true,
+      "descriptive_only": true
+    },
+    {
+      "scenario": "replay_packet",
+      "candidate": "receiver_drop_and_replay",
+      "baseline": "attack_no_defense",
+      "metric": "receiver_excess_mse",
+      "candidate_minus_baseline": {
+        "n": 48,
+        "mean": -0.6700696444083808,
+        "ci95": [
+          -0.9309203500521761,
+          -0.4092189387645854
+        ]
+      },
+      "negative_favors_candidate": true,
+      "descriptive_only": true
+    },
+    {
+      "scenario": "replay_packet",
+      "candidate": "receiver_local_filter_from_checkpoint",
+      "baseline": "attack_no_defense",
+      "metric": "receiver_excess_mse",
+      "candidate_minus_baseline": {
+        "n": 48,
+        "mean": -0.7535598577962718,
+        "ci95": [
+          -1.0744509920362009,
+          -0.4326687235563427
+        ]
+      },
+      "negative_favors_candidate": true,
+      "descriptive_only": true
+    },
+    {
+      "scenario": "single_step",
+      "candidate": "candidate_gls_receiver_only",
+      "baseline": "attack_no_defense",
+      "metric": "receiver_excess_mse",
+      "candidate_minus_baseline": {
+        "n": 48,
+        "mean": 0.0007665954103301197,
+        "ci95": [
+          -0.000775595634270276,
+          0.0023087864549305153
+        ]
+      },
+      "negative_favors_candidate": true,
+      "descriptive_only": true
+    },
+    {
+      "scenario": "replay_packet",
+      "candidate": "candidate_gls_global_with_correction_broadcast",
+      "baseline": "attack_no_defense",
+      "metric": "network_excess_mse",
+      "candidate_minus_baseline": {
+        "n": 48,
+        "mean": -0.24188135974100536,
+        "ci95": [
+          -0.3369182445485019,
+          -0.14684447493350883
+        ]
+      },
+      "negative_favors_candidate": true,
+      "descriptive_only": true
+    }
+  ],
+  "candidate_detection_trigger_rate": {
+    "single_step": 0.020833333333333332,
+    "replay_packet": 0.7916666666666666
+  },
+  "normal_test_false_correction_rate": 0.020833333333333332,
+  "normal_test_receiver_mse_change": {
+    "n": 48,
+    "mean": 0.0007626479376511078,
+    "ci95": [
+      -0.000771601816234078,
+      0.0022968976915362935
+    ]
+  },
+  "packet_replacement_counts": {
+    "single_step": 48,
+    "replay_packet": 48
+  },
+  "mean_replacement_count_per_seed": {
+    "single_step": 1.0,
+    "replay_packet": 1.0
+  },
+  "mean_replay_content_age": 64.0,
+  "communication": {
+    "common_schedule": "gap8 exogenous",
+    "broadcasts_per_seed": 179,
+    "directed_edge_packets_per_seed": 358,
+    "estimate_payload_bytes_per_seed": 5728,
+    "correction_message": "not implemented or charged; at least one event ID/time plus 2D estimate-influence vector and routing/authentication overhead"
+  },
+  "environment": {
+    "python": "3.14.9 | packaged by Anaconda, Inc. | (main, Oct 23 2026, 01:07:17) [MSC v.1942 64 bit (AMD64)]",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "source_hashes": {
+    "minimal_recovery_screen.py": "23824443eabb9615d3a4e158c92d8f86a3ad7c3bd8de55bfb982eccd5af7f38f",
+    "model.py": "5b674a4cc274fca42d52d00f15490d5e3952231df98146a90cb28a62b4a9aeca",
+    "engine.py": "05fb3f19d457e103d7c1665ccd1087ea4b27076d6a39b57ac7e0d16cfdb35c97",
+    "config.json": "cf801650e2527a409ebb4730e894e6d3fcb3602a08259bfeda1cb529d7ebb62b",
+    "reference_exploration_plan.json": "244d7788a3d2b097d571e32626431be05ef8b9f3ac3f4c788f238dca05761fab"
+  },
+  "note": "Run 01 had a reporting-index bug for the receiver component of the global oracle row; Run 02 is the corrected same-seed rerun, not an independent replication."
+}
