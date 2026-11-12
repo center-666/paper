@@ -1,0 +1,28 @@
+{
+  "scope": "Frozen NORMAL sender streams; no receiver feedback damage claim",
+  "seeds_start": 740000,
+  "count": 64,
+  "methods": [
+    "fixed_lag",
+    "nearest",
+    "risk_greedy"
+  ],
+  "risk_budgets": [
+    0.25,
+    1.0
+  ],
+  "dictionary": "all earlier actual sends, latest64 packets; current packet excluded",
+  "attacker_information": [
+    "current transmitted state estimate",
+    "previously transmitted same-sender estimates and times",
+    "last delivered substituted payload",
+    "public A,H,calibration constants"
+  ],
+  "hidden": [
+    "receiver current measurement",
+    "receiver estimate",
+    "true state",
+    "future sends/values"
+  ],
+  "proxy_warning": "spatial projection cost is not a guarantee of actual spatial detector acceptance"
+}

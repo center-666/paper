@@ -17,6 +17,8 @@
 - [研究与文献索引](research/README.md)
 - [部分观测候选的精读比较和立项判断](research/literature_comparison.md)
 - [第二轮核心定理复审：执行摘要与研究决策](reviews/executive_summary.md)
+- [FDI / Replay分布式估计：精华报告及网页版GPT审阅材料](reviews/fdi_replay_20261112/research_digest.md)
+- [FDI / Replay分布式估计：精华报告及网页版GPT审阅包](reviews/fdi_replay_20261112/research_digest.md)
 - [文献证据矩阵](research/references/文献证据矩阵_42篇.md) 与 [BibTeX](research/references/survey_references.bib)
 - [实验工程说明](simulation/README.md)
 

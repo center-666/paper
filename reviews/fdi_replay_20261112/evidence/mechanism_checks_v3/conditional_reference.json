@@ -1,0 +1,37 @@
+{
+  "status": "PROVED_FOR_STATED_JOINT_GAUSSIAN_TOY_MODEL",
+  "normal_covariance": "[[1,c],[c,1]] for [private local innovation r, neighbor difference d]",
+  "reflection": "d -> -d with r unchanged",
+  "conditional_statistic": "(d-c*r)^2/(1-c^2)",
+  "rows": [
+    {
+      "normal_correlation": 0.0,
+      "state_difference_energy_distribution_unchanged": true,
+      "conditional_statistic_normal_mean": 1.0,
+      "conditional_statistic_reflection_mean": 1.0,
+      "KL_joint_reflection_vs_normal": 0.0
+    },
+    {
+      "normal_correlation": 0.25,
+      "state_difference_energy_distribution_unchanged": true,
+      "conditional_statistic_normal_mean": 1.0,
+      "conditional_statistic_reflection_mean": 1.2666666666666666,
+      "KL_joint_reflection_vs_normal": 0.13333333333333333
+    },
+    {
+      "normal_correlation": 0.5,
+      "state_difference_energy_distribution_unchanged": true,
+      "conditional_statistic_normal_mean": 1.0,
+      "conditional_statistic_reflection_mean": 2.3333333333333335,
+      "KL_joint_reflection_vs_normal": 0.6666666666666666
+    },
+    {
+      "normal_correlation": 0.8,
+      "state_difference_energy_distribution_unchanged": true,
+      "conditional_statistic_normal_mean": 1.0,
+      "conditional_statistic_reflection_mean": 8.111111111111114,
+      "KL_joint_reflection_vs_normal": 3.5555555555555576
+    }
+  ],
+  "limitation": "does not prove advantage over Zhou spatial residual, fitted-covariance window tests or adaptive attackers; no network simulation performed"
+}

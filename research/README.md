@@ -5,6 +5,8 @@
 ## 当前结论
 
 - [第二轮定理复审与研究决策](../reviews/executive_summary.md)：独立证明、必要性反向例子、11篇全文定理排重与A/B/C路线评估；第一轮记录保留。
+- [FDI / Replay全文精读与小问题筛选](../reviews/fdi_replay_20261112/research_digest.md)：28篇全文来源、两项候选、网页版GPT审阅材料和攻击权限边界。
+- [FDI / Replay全文精读与小问题筛选](../reviews/fdi_replay_20261112/research_digest.md)：28篇全文来源、两个候选问题、网页版GPT审阅材料和攻击权限边界。
 - [研究方向与项目状态](current_status.md)：两篇稿件状态、已否定方向、当前候选、贡献与工作量判断。
 - [部分观测候选的文献精读与差异](literature_comparison.md)：系统、攻击权限、记录对象、定理对象的逐项对照，以及真实新意判断。
 - [42 篇文献证据矩阵](references/文献证据矩阵_42篇.md)、[CSV](references/文献证据矩阵_42篇.csv)、[BibTeX](references/survey_references.bib)。
