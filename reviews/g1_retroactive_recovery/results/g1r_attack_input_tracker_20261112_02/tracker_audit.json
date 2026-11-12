@@ -1,0 +1,78 @@
+{
+  "run_id": "g1r_attack_input_tracker_20261112_02",
+  "paired_comparisons": [
+    {
+      "scenario": "single_step",
+      "metric": "receiver_recovery_excess_mse_after",
+      "causal_tracker_mean": -0.002504294004805673,
+      "post_cache_gls_mean": 0.0014852185204212015,
+      "tracker_minus_gls_paired": {
+        "n_seed": 48,
+        "mean": -0.003989512525226874,
+        "ci95": [
+          -0.008078189902675012,
+          9.916485222126459e-05
+        ]
+      },
+      "negative_favors_full_window_tracker": true,
+      "known_event_edge_and_time": true
+    },
+    {
+      "scenario": "single_step",
+      "metric": "network_recovery_excess_mse_after",
+      "causal_tracker_mean": -0.0006847163395124095,
+      "post_cache_gls_mean": 0.00047032098112850714,
+      "tracker_minus_gls_paired": {
+        "n_seed": 48,
+        "mean": -0.0011550373206409166,
+        "ci95": [
+          -0.002575363565720667,
+          0.0002652889244388341
+        ]
+      },
+      "negative_favors_full_window_tracker": true,
+      "known_event_edge_and_time": true
+    },
+    {
+      "scenario": "replay_packet",
+      "metric": "receiver_recovery_excess_mse_after",
+      "causal_tracker_mean": -0.0032769146838117643,
+      "post_cache_gls_mean": 0.010072048081850908,
+      "tracker_minus_gls_paired": {
+        "n_seed": 48,
+        "mean": -0.013348962765662673,
+        "ci95": [
+          -0.023869482642909785,
+          -0.0028284428884155586
+        ]
+      },
+      "negative_favors_full_window_tracker": true,
+      "known_event_edge_and_time": true
+    },
+    {
+      "scenario": "replay_packet",
+      "metric": "network_recovery_excess_mse_after",
+      "causal_tracker_mean": -0.001294475942994215,
+      "post_cache_gls_mean": 0.0028133728453683,
+      "tracker_minus_gls_paired": {
+        "n_seed": 48,
+        "mean": -0.004107848788362516,
+        "ci95": [
+          -0.007921090780419877,
+          -0.00029460679630515397
+        ]
+      },
+      "negative_favors_full_window_tracker": true,
+      "known_event_edge_and_time": true
+    }
+  ],
+  "normal_false_correction_rates": {
+    "causal_input_tracker_full_residual_200_to_216": 0.0625,
+    "post_cache_GLS_209_to_216": 0.020833333333333332
+  },
+  "batch_recursive_endpoint_abs_error": 2.842170943040401e-14,
+  "independent_unit": "seed",
+  "claim_scope": "exploratory, oracle event localization, fixed exogenous communication schedule; not a Deghat implementation",
+  "normal_seed_count": 48,
+  "interpretation": "Recursive whitening plus information/score accumulation is numerically equivalent to batch GLS on the same full residual window. The post-cache GLS is a shorter-window subset of this standard attack-input estimate."
+}

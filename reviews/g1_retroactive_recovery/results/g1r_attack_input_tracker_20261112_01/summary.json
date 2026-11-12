@@ -1,0 +1,47 @@
+{
+  "run_id": "g1r_attack_input_tracker_20261112_01",
+  "results": [
+    {
+      "scenario": "single_step",
+      "method": "causal_input_tracker_full_residual_200_to_216",
+      "n_seed": 48,
+      "trigger_rate": 0.20833333333333334,
+      "receiver_excess_before": 0.0007186231100910816,
+      "receiver_excess_after": -0.002504294004805673,
+      "network_excess_before": 0.0004848544170603547,
+      "network_excess_after": -0.0006847163395124095
+    },
+    {
+      "scenario": "single_step",
+      "method": "post_cache_GLS_209_to_216",
+      "n_seed": 48,
+      "trigger_rate": 0.020833333333333332,
+      "receiver_excess_before": 0.0007186231100910816,
+      "receiver_excess_after": 0.0014852185204212015,
+      "network_excess_before": 0.0004848544170603547,
+      "network_excess_after": 0.00047032098112850714
+    },
+    {
+      "scenario": "replay_packet",
+      "method": "causal_input_tracker_full_residual_200_to_216",
+      "n_seed": 48,
+      "trigger_rate": 0.9375,
+      "receiver_excess_before": 0.816380551248888,
+      "receiver_excess_after": -0.0032769146838117643,
+      "network_excess_before": 0.24469473258637367,
+      "network_excess_after": -0.001294475942994215
+    },
+    {
+      "scenario": "replay_packet",
+      "method": "post_cache_GLS_209_to_216",
+      "n_seed": 48,
+      "trigger_rate": 0.7916666666666666,
+      "receiver_excess_before": 0.816380551248888,
+      "receiver_excess_after": 0.010072048081850908,
+      "network_excess_before": 0.24469473258637367,
+      "network_excess_after": 0.0028133728453683
+    }
+  ],
+  "elapsed_seconds": 0.6670685000001413,
+  "interpretation": "This tests whether the post-cache GLS is only a shorter-window version of standard recursive unknown-input estimation. Both use an oracle-known event; no novelty inference is permitted from this alone."
+}

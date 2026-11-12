@@ -1,35 +1,50 @@
-# 历史包追溯与估计污染修正：直接文献排重
+# 历史包追溯与估计污染修正：文献排重及修订审计
 
-日期：2026-11-12。范围是分布式状态估计中，一枚邻居状态估计包被替换后已退出接收缓存，但其影响仍留在接收节点及下游估计中的延迟发现与修正。此报告依据本地原文全文和所列页码；未将摘要证据当成定理证据。公开 DOI 与页码见[来源索引](sources/README.md)；全文附件及 SHA-256 清单保留在本地工作区。
+日期：2026-11-12。范围为邻居状态估计包在链路上被替换、其直接缓存驻留结束后才发现异常的分布式估计恢复问题。全文来源、DOI和核读页码见 [来源索引](sources/README.md)。
 
-证据标签：`LITERATURE` 指原文；`DERIVED` 指本轮从模型直接推导；`EXPERIMENTAL` 指项目试验；`HYPOTHESIS` 指待检验；`OPEN` 指未完成；`DISPROVED` 指反例。
+证据标签：LITERATURE 为原文结论；DERIVED 为项目模型推导；EXPERIMENTAL 为本地试验；OPEN 为未解决。
 
-## 结论先行
+## 当前判断
 
-目前检索到的工作没有一篇在本项目的五节点 Yang-form、Send-on-Delta 缓存和“检测时恶意包早已被干净新包替换”的精确协议下，给出带通信/记忆计量的迟到修正方案。但“利用未来量测回看历史攻击”与“分布式网络估计误差修正”本身都已有强近邻。尤其 Deghat 等 2019 的公式明确允许把邻居链路上的估计偏置等效成节点估计器攻击输入，并通过分布式动态跟踪器构造校正估计；这不是仅因架构不同就能排除的先例。现有证据支持一个窄的实现问题，不支持“首次提出历史影响修正”或把固定点平滑、GLS/最小二乘和缓存回放重新命名为创新。
+历史 Replay 风险会延续到被替换缓存之后，但当前 post-cache GLS / 灵敏度扣除没有显示独立方法增量。最强直接竞争是 Deghat et al. 2019：原文明确把邻居估计链路偏置等效成接收节点观测器攻击输入，并用分布式攻击跟踪器修正估计。当前连续闭环网络的后续未篡改传输还会携带发送者估计的间接污染，因此其网络级 tracker 更接近实际传播。
 
-## 定理级比较
+递推攻击输入估计的终值与同一完整窗口 batch GLS 数值相等，最大差 \(2.84\times10^{-14}\)。这是标准递推最小二乘充分统计量恒等式，不是新算法。G1-R 当前应**停止作为独立论文主贡献开发**。如需判断现有网络防御是否覆盖 Replay，只可把 Deghat tracker 的离散缓存适配作为竞争基线复核，不得先包装成候选创新。
 
-| 论文与全文位置 | 攻击对象、信息与方法 | 原文保证 | 与候选问题的关系及排重判断 |
+## 定理级直接比较
+
+| 论文与定位 | 攻击对象、信息与方法 | 原文保证 | 相对 G1-R 的边界 |
 |---|---|---|---|
-| **Deghat et al., 2019, Automatica 99, 369–381, DOI 10.1016/j.automatica.2018.10.052**。本地公开作者稿 PDF pp.3–9，尤其 p.3 式(4)及 Remark、pp.4–6 式(5)–(22)、p.8 式(30)与 Theorem 3。 | 节点观测器可被加性攻击输入 (F_i f_i) 驱动；接收节点使用本地量测创新 (zeta_i=y_i-C_ihat x_i) 和邻居分歧 (\barzeta_i=sum_j H(hat x_j-hat x_i))，为攻击输入设计动态跟踪模型 (G_i(s))，再以分布式 (H_infty) 观测器估计网络状态误差和攻击跟踪状态。p.3 Remark 明确指出：若链路 (i\leftarrow k) 把 (hat x_k) 替换为 (hat x_k+\ell_{ik})，该情形可纳入其攻击模型，令 (F_i=K_iH, f_i=\ell_{ik})。攻击类（p.4 式(5)–(9)）包含常值加指数暂态及 (L_2) 分量；各节点需本地量测、邻居估计和模型。 | Theorem 1（PDF p.6）给攻击跟踪误差的 (L_2) 性质，附加稳定条件时跟踪误差渐近收敛；Theorem 2（p.7）给满足耦合 LMI 的充分设计条件；Theorem 3（pp.8–9）对 (hat x_i^c=hat x_i+hat e_i) 给出攻击下渐近恢复及 (H_\infty) 误差保证，针对 admissible biasing inputs。 | **最直接的算法挑战。** 一次缓存驻留期间的偏置可建模成有限时长输入；有限支撑脉冲属于 (L_2)，并可按其输入类表示，因此常规离散化/事件触发扩展可能已覆盖候选 A 的“跟踪历史影响并修正估计”。原文未显式建模缓存年龄、事件触发模式切换、迟到报警或有限记忆成本；Theorem 3 是渐近结论，不是检测时刻 (d) 的有限时域历史回滚界。要主张增量，必须证明对这类切换/缓存模式有 Deghat 动态跟踪器没有的有限内存或同资源恢复优势。不能只说它是连续时间或它描述受攻节点。 |
-| **Zhang et al., 2022, Automatica 141, 110262, DOI 10.1016/j.automatica.2022.110262**。全文 PDF pp.2–10，重点 p.3 系统及攻击模型、p.7 式(24)及 Theorem 1、pp.8–10 smoother 与 Theorems 2–4。 | 对非线性 CPS 的控制/传感通信信号完整性攻击建立“攻击前固定时刻的等效增量”；攻击者起点未知，攻击可以是 replay、covert 或零动态类。检测器在线接收当前和历史控制/输出测量；H∞ fixed-point smoother 从 (t_b) 后到当前的输出估计攻击前的等效增量。 | Theorem 1（PDF p.7）证明无攻击时 backward residual 保持健康阈值；在指定 stealthy attack 假设下，存在 (t_b<T_0) 使 residual 超阈并给出等效增量界。Theorem 2–4（pp.9–10）分别涉及有限窗 (H_\infty) smoother 设计、无攻击阈值鲁棒性及可检测攻击幅度/延迟条件。 | **回溯机制的直接先例。** 原文目标是攻击检测，不重写任何分布式估计器状态，也不恢复原发送包；对象是 CPS 输入/输出增量，不是邻居估计缓存误差。可用作“后续量测回推历史影响”的强方法基线；不能声称未来量测回溯历史攻击是新。 |
-| **Zhang et al., 2023, IEEE/CAA JAS 10(4), 898–915, DOI 10.1109/JAS.2023.123177**。全文 PDF pp.1–12、15，重点 pp.5–7 Theorems 1–2 与 backward-in-time residual，pp.7–12 smoother Theorem 3、robustness Theorem 4、detectability Theorem 5 与 Algorithm 1。 | 间歇 stealthy integrity attack；每次攻击后由稳定攻击动力学产生过去时刻的等效量。fixed-point smoother 用后续传感测量估该量；协方差重置提高对间歇攻击的敏感度。需要攻击检测模型、Lipschitz/稳定性条件、扰动与噪声已知界。 | Theorem 1（PDF p.5）描述 stealthiness 和等效量增长性质；Theorem 2（p.6）给理想回溯检测条件；Theorem 3（pp.9–10）给分段 fixed-point smoother 的 (H_\infty) 性质；Theorem 4（p.11）给无攻击阈值鲁棒性；Theorem 5（PDF p.12）给满足指定攻击间隔/幅度条件时的检测保证。Algorithm 1（p.12）实现 smoother、重置和判决。 | **与 Zhang 2022 同族，不能重复包装。** 处理的是间歇攻击回溯报警，不是修正 Yang 型滤波器的缓存状态；但后续量测建模和固定点平滑几乎完全是候选核心工具。任何方案必须直接比较其回溯估计方法，且评价攻击识别后真实 MSE，而不能只换成通信包。 |
-| **Tabatabaei et al., 2025, Automatica 180, 112460, DOI 10.1016/j.automatica.2025.112460**。作者最终稿 PDF pp.3–7, 9–11；式(3)、Assumptions 2.1/3.1–3.3、Theorem 3.1（PDF p.7）、Theorem 3.2（p.7）、Theorem 4.1（p.9）、Algorithm 1–2（pp.7/10）。 | LSS 子系统间通信输出满足 (\tilde y_{ki}=y_k+Gamma_{ki})。对 non-stealthy FDI 使用 UIO 与 Luenberger-like observer 级联，重构 (y_k,Gamma_{ki},x_k)，并将重构输出用于控制；对 stealthy FDI 借助物理耦合实现全/部分状态重构。需要本地可检测性、邻居模型 (A_k,B_k,A_{kj},C_k)、rank/observer 稳定条件及 stealthy 情况的额外 coupling 条件。 | Theorem 3.1 在 Assumptions 2.1、3.2、3.3 和 observer 稳定、攻击分量满足渐近条件下渐近重构邻居状态、输出与攻击；Theorem 3.2 给安全控制稳定性；Theorem 4.1 给 stealthy attack 下全/部分重构与稳定条件。 | **直接通信链路竞争。** 数学上“恶意通信载荷 + 由本地量测和动态模型恢复”的职责已存在。与共同全局状态 Yang 估计器不同，Tabatabaei 有物理耦合、受攻子系统输出和 UIO 分解；它重构在线真实发送输出，而非追溯某一缓存退出后的滤波器误差。仍需验证其 UIO 对当前网络可否离散/共同状态化；若可直接适配，它会显著提高候选门槛。 |
-| **Caballero-Águila et al., 2025, Information Fusion 120, 103044, DOI 10.1016/j.inffus.2025.103044**。Zotero 全文 13 PDF 页，模型/攻击 pp.3–4，Theorems 1–3（pp.5–6），递推算法 pp.7–8。 | 线性随机网络，节点测量量化、时相关噪声，随机 deception 和 DoS；分两阶段计算 early filters，再将邻居 early estimates 组合成最优 distributed filter/fixed-point smoother；需完整交叉协方差和统计攻击模型。 | Theorem 1–2 给 early filtering/smoothing，Theorem 3（PDF p.6）给 (h\ge k) 的最优分布式滤波与固定点平滑估计及误差协方差递推。 | **标准平滑强基线。** 已有后续测量用于回估过去状态的分布式滤波架构；它没有对实现中的恶意历史估计包做事件归责或改写在线估计轨迹，攻击按随机过程统计建模。候选必须证明专用事件修正优于该类 smoother 或减少其数据保留成本。 |
-| **Sun et al., 2025, Automatica 176, 112243, DOI 10.1016/j.automatica.2025.112243**。Zotero 全文 PDF pp.1–8 主要模型与结果，pp.9–13 证明。 | 离散提升系统的攻击 mode/攻击输入，研究攻击影响可达而输出保持零的脆弱性；定义 (y)-nulling subspace 与 mode discernibility。不是对 Yang 缓存包的恢复器。 | Theorem 1（PDF p.5）给攻击 mode 脆弱性的充要条件；后续 Proposition 1–3 / Theorem 2（pp.6–7）给 mode 可识别、检测阈值与有界扰动讨论。 | **理论边界对手而非修正器。** 提醒需要区分“攻击是否可观察”和“可归责到哪种 mode”；未提供估计器状态的迟到纠正。不能用其检测理论直接推出 MSE 恢复。 |
-| **Yang et al., 2019, Automatica 102, 34–44, DOI 10.1016/j.automatica.2018.12.027**。全文 pp.36–40，尤其式(3)–(13)、Theorems 3/6/7。 | 估计/innovation 包传输时遭 FDI；接收节点随机保护器根据邻居估计与局部 innovation 选择融合权，联合误差协方差递推。 | 给攻击下误差/稳定性性质与保护器行为，不回看已替换包并改写过去的分布式状态。 | 直接的防御基线；若 G1-R 的退化只发生于接收端未隔离，就应先与同权限 Zhou/Yang 保护及事件后历史删除比较。 |
-| **Yang et al., 2014, Automatica 50(8), 2070–2076, DOI 10.1016/j.automatica.2014.05.025**。全文 PDF pp.2071–2076，式(1)–(11)、Lemma 7–9、Theorem 1。 | 诚实分布式估计下传感器独立 Bernoulli 激活；递推联合误差协方差并保留节点间交叉协方差，据此选择局部增益。 | Theorem 1及相关 LMI 给随机激活无攻击场景的稳定/MSE 条件。 | **估计器来源而非攻击后恢复对手**。当前工程是 Yang-form 改编，触发/缓存/攻击模式变化后不能直接继承原最优或稳定定理；G1-R需对增广模式重推，不应把复现 Yang 当成恢复创新。 |
-| **Zhou et al., 2022, Automatica 138, 110151, DOI 10.1016/j.automatica.2021.110151**。全文 PDF pp.2–6；Theorem 1 讨论局部量测零空间脆弱性，Theorems 2–3 讨论随机保护及误差性质。 | 对受攻击邻居估计包，以本地量测残差门控及随机保护器抵御 FDI。 | 保护当前消息的融合影响与误差性质；不将后续量测用于重新估计历史攻击源，也不重算已受污染的估计状态。 | 是首要现实安全估计强基线；必须检验其自身已抑制多少缓存退出后的污染。 |
+| **Deghat et al., 2019, Automatica 99:369–381, DOI 10.1016/j.automatica.2018.10.052。** 作者稿 PDF pp.3–9；p.3 式(4)/Remark，pp.4–6 式(5)–(22)，p.8 式(30)/Theorem 3。 | 观测器状态受加性攻击输入 \(F_i f_i\) 驱动。节点使用本地创新 \(\zeta_i=y_i-C_i\hat x_i\) 和邻居分歧 \(\bar\zeta_i=\sum_jH(\hat x_j-\hat x_i)\)，以动态模型 \(G_i(s)\) 跟踪攻击输入，并用分布式 \(H_\infty\) 观测器估计网络状态误差。p.3 Remark 明确指出链路 \(i\leftarrow k\) 把 \(\hat x_k\) 替换为 \(\hat x_k+\ell_{ik}\)，可令 \(F_i=K_iH,\ f_i=\ell_{ik}\) 纳入其模型。攻击类 p.4 式(5)–(9)含常值加指数暂态与有限能量输入；节点需本地量测、邻居估计和模型。 | Theorem 1（p.6）给 detector 误差能量性质及附加稳定条件下渐近跟踪；Theorem 2（p.7）给耦合 LMI 设计条件；Theorem 3（pp.8–9）对 \(\hat x_i^c=\hat x_i+\hat e_i\) 给 admissible biasing inputs 下渐近恢复和 \(H_\infty\) 误差保证。 | 最直接算法挑战。单次缓存替换的直接链路偏置是有限支撑输入，属于有限能量攻击类；但其定理假设固定连续观测器网络，没有显式建模 \(A^{age}\) 缓存外推、异步更新、Send-on-Delta 模式切换、迟到报警和有限记忆成本。反向边的网络级误差跟踪可能覆盖后续 sender estimate 污染，不能仅以架构名称不同排除。 |
+| **Zhang et al., 2022, Automatica 141, 110262, DOI 10.1016/j.automatica.2022.110262。** PDF pp.2–10；p.3 攻击模型，p.7 式(24)/Theorem 1，pp.8–10 Theorems 2–4。 | CPS 控制/传感通道完整性攻击，包括 replay、covert、zero-dynamics。后续输出测量经 H-infinity fixed-point smoother 回估攻击前时刻的等效增量。 | Theorem 1 给指定 stealthy attack 下的回溯残差及等效增量界；Theorems 2–4 给有限窗 smoother、阈值鲁棒性及可检测幅度/延迟条件。 | 未来量测回看历史攻击已有直接先例；目标是检测，不重算 Yang 网络估计器或修复其当前状态。 |
+| **Zhang et al., 2023, IEEE/CAA JAS 10(4):898–915, DOI 10.1109/JAS.2023.123177。** PDF pp.1–12、15；pp.5–7 Theorems 1–2，pp.7–12 Theorems 3–5/Algorithm 1。 | 间歇 stealthy integrity attack；以固定点平滑从后续传感测量估攻击前等效量，并重置协方差。需稳定/Lipschitz 条件和已知扰动/噪声界。 | Theorems 1–2 给理想回溯检测性质；Theorem 3 给分段 fixed-point smoother 的 \(H_\infty\) 性质；Theorems 4–5 给无攻击鲁棒阈值与指定攻击条件下的检出保证。 | 与 Zhang 2022 同族，目标是回溯报警，不是重写分布式当前状态；固定点平滑器不能作为新工具。 |
+| **Tabatabaei et al., 2025, Automatica 180:112460, DOI 10.1016/j.automatica.2025.112460。** PDF pp.3–7、9–11；Theorems 3.1、3.2、4.1。 | 大规模子系统通信输出 \(\tilde y_{ki}=y_k+\Gamma_{ki}\)。用 UIO/Luenberger observer 重构通信信号、攻击和状态，并用于控制；需子系统模型、可检测性/rank 与 coupling 条件。 | Theorem 3.1 给 non-stealthy FDI 下渐近重构；Theorem 3.2 给安全控制稳定性；Theorem 4.1 给特定 stealthy FDI 下全/部分状态重构条件。 | 通信信号重构与恢复已有直接相近职责；其 physical coupling/LSS 架构不同，但需核查离散化后能否覆盖 Yang 网络，不能只以架构差异排除。 |
+| **Caballero-Águila et al., 2025, Information Fusion 120:103044, DOI 10.1016/j.inffus.2025.103044。** PDF pp.3–8；Theorems 1–3。 | 分布式随机系统、量化/时相关噪声及随机 deception/DoS；用 early filters 组合最优 distributed filter/fixed-point smoother，需交叉协方差和随机攻击模型。 | Theorems 1–3 给 early filtering/smoothing 与最优分布式 filter/smoother 协方差递推。 | 后续观测的分布式平滑已有；不是实际缓存攻击事件的在线轨迹修正器，需作为 smoothing 基线。 |
+| **Sun et al., 2025, Automatica 176:112243, DOI 10.1016/j.automatica.2025.112243。** PDF pp.4–7，证明 pp.9–13。 | 提升系统攻击 mode、输出零化子空间与 mode discernibility。 | Theorem 1 给攻击脆弱性的充要条件；后续结果给检测/辨识条件。 | 是检测理论边界，不提供历史估计修正器；提醒区分攻击可观测性和来源归责。 |
 
-## 2024–2026 定向补查
+Yang et al. 2014（Automatica 50(8):2070–2076, DOI 10.1016/j.automatica.2014.05.025）是诚实随机激活/联合误差协方差基线；Yang et al. 2019（Automatica 102:34–44, DOI 10.1016/j.automatica.2018.12.027）和 Zhou et al. 2022（Automatica 138:110151, DOI 10.1016/j.automatica.2021.110151）对当期邻居估计 FDI 用随机保护/本地残差门控。它们不回滚过去估计，但需测试是否已抑制当前 Replay 损失。
 
-另外两篇已在本地库、与扩展防御路线相关但非历史回滚直接方法：Güzey & Güzey 2026（SMP&T 152, 103318）在融合中心 SISMF bearing tracker 中组合 NIS/似然信任、滞回恢复和 WLS/IRLS；Theorems 3.1–3.2 在可分性、几何丰富性与驻留条件下保证有限延迟 trust separation/有界跟踪。它不是 Yang 邻居估计包架构，却说明“回放陈旧度+恢复门控+鲁棒融合”不能作为组合新点。Zhang & Yang 2026（J. Franklin Inst. 363, 108914）交换局部残差作 FDI 检测，Theorem 3/4 对非实时/实时残差信息攻击分别给检测性质，后一情形需 private Gaussian watermark；它不是历史状态修正器，但若加入验证投影/邻居残差，必须计通信并与其比较。
+## 闭环传播审计
 
-本轮对“post-detection state correction / retrospective measurement reconstruction / fixed-point secure smoothing”作了窄范围题名与全文索引检索。上述 Tabatabaei 2025、Caballero-Águila 2025、Sun 2025 是找到并精读的最直接全文。补充边界文献包括 Huang et al. 2024, IEEE TCyb 54(6):3526–3539（Replay sensor measurements 的稳定性/残差分析）；Xing et al. 2025, IEEE TIFS 20:4541–4550 和 Ge et al. 2026, IEEE TCyb, DOI 10.1109/TCYB.2026.3721072（历史 innovation 隐蔽攻击设计）。这些分别不是邻居状态估计包迟到修正，或属于攻击端设计；不能据此断言已覆盖候选，也不能忽略它们已经使用历史信号。另检到 **A Replay-Attack-Resilient Power System State Estimation Scheme**, IEEE TASE, DOI 10.1109/TASE.2025.3555488，以及 **μ-stealthy deception attack against distributed state estimation**, Nonlinear Analysis: Hybrid Systems, DOI 10.1016/j.nahs.2026.101725（本地均无全文，仅元数据/摘要层级）；当前没有足够证据判定它们处理“缓存退出后的迟到修正”，因此不据题名作排重结论。若方向继续，优先补 TASE 全文，核查是否恢复历史攻击或直接修正当前状态。
+当前仿真器在发送迭代 \(r\) 立即消费该包并更新状态 \(r+1\)。若缓存载荷差为 \(\Delta m\)，在迭代 \(t=r+a\) 的直接单边共识增量为
 
-## 已有工程证据及剩余缺口
+\[
+\Delta u_i(t)=\varepsilon A A^a\Delta m,\qquad a=0,\ldots,q-r-1.
+\]
 
-`EXPERIMENTAL` 当前小筛选运行见 [05_minimal_experiment.md](05_minimal_experiment.md)：历史 Replay 一枚包造成明显恢复期损失；检测时缓存已由正常包替换，直接隔离新包反而降低估计质量。单步 FDI 则几乎没有持续损失。候选后续残差 GLS 在已知边与事件时刻条件下有初步收益，但并未与离散化 Deghat tracker 或完整固定点 smoother 比较，故不能形成方法新颖性结论。
+因此 age 为零表示不额外外推，不表示共识项乘零。迭代 \(r\) 当场将 \(\varepsilon A\Delta m\) 加入下一状态 \(\hat x_i(r+1)\)；状态索引 \(r\) 自身尚未受影响。直接替换输入在 \(q\) 后结束，但总网络状态差不必归零：q 包虽未被再次篡改，其 sender estimate 可已被反向边污染。
 
-**当前排重判断：**“后来测量回溯”“攻击输入跟踪”“后验 MSE 修正”“观测矩阵秩条件”均属 `STANDARD`。可争取的 `NEW` 仅可能是：对事件触发、缓存外推、包到达更换和分布式污染传播的协议级结合，证明/实测相同信息和记忆成本下具有有限时域修正收益。该主张仍是 `HYPOTHESIS`。
+修订后的独立传播 Run ID 为 g1r_deghat_mapping_audit_20261112_04。递推器仅在 r 注入一次事件载荷差；之后所有未篡改发送均使用递推预测的 sender estimate 差，不从攻击/健康仿真轨迹回灌差值，再逐拍与两条完整仿真比较。48个相同seed、固定 gap8 下，Replay 后续9次 sender 估计均偏离健康反事实；q后 receiver/network 差 RMS 为2.748/2.840。单次 FDI 对应 sender 最大后续偏差0.033、receiver RMS 0.050。直接首更新误差低于 \(2.0\times10^{-14}\)，全网络递推逐拍误差低于 \(7.9\times10^{-14}\)。Run 03 虽有相同摘要量级，但其后续未篡改发送使用了攻击/健康仿真估计差作回灌输入，不能称独立递推；Run 01/02 的公式核验也属于循环核验。03留档，04为有效闭环映射审计。
+
+Deghat 原文描述 observer-node compromise。将链路扰动写成接收端误差方程中的等效输入是 input-output 映射，不代表攻击者实际控制了节点状态或发送端；整个反向传播仍须 network-level tracker 处理。Run g1r_deghat_mapping_audit_20261112_01/02 的早期公式核查将预期和“实测”值由相同表达式构造，是循环核验，已作废；数据仅归档，不作证据。最终审计是 03。
+
+## 递推 GLS 强基线
+
+Run ID g1r_attack_input_tracker_20261112_02 将完整 \(r{:}d\) 联合残差经固定训练协方差 Cholesky 白化，递推累积信息矩阵/得分。其终值与同窗口 batch GLS 差 \(2.84\times10^{-14}\)，是标准递推最小二乘恒等式，**不是 Deghat H-infinity/LMI tracker 的复现**。Replay 下完整窗口递推的 receiver/network recovery excess 为 \(-0.00328/-0.00129\)，只用 \(q+1{:}d\) 的 post-cache GLS 为 \(0.01007/0.00281\)。两者窗口信息不同，不能据此宣称递推方法性能胜出；此结果只说明 post-cache GLS 是标准输入估计的截窗实现。同窗递推与 batch 的数值等价则足以否定“递推记忆本身是新算法”。
+
+## 2024–2026 补查与结论
+
+额外输出通道筛选 Run g1r_deghat_output_channels_20261112_02 将接收端本地 innovation 与本地 innovation 加邻居 disagreement 分别输入正常校准的 GLS。Replay 完整窗下，加入 disagreement 后 receiver/network recovery excess 均值为 \(-0.000636/-0.000314\)，本地 innovation-only 为 \(-0.003048/-0.001216\)；48-seed 配对差区间跨零，未显示稳定 MSE 优势。其 offset 参数估计误差更小但未转化为 MSE 改善。该试验用已知边/时刻，不是 Deghat 的 H-infinity observer 实现，只核实其所用的两类输出确有不同信息。
+
+Güzey & Güzey 2026（SMP&T 152:103318）组合中心融合 bearing 的 NIS/似然信任、滞回恢复与 WLS/IRLS；Zhang & Yang 2026（J. Franklin Inst. 363:108914）交换局部残差检测 FDI，实时残差信息版本用 private Gaussian watermark。这些非历史回滚器，但相关组合不新。Huang et al. 2024 研究 sensor-measurement Replay；Xing et al. 2025 与 Ge et al. 2026 研究历史 innovation 隐蔽攻击，均不是接收端历史状态修正。IEEE TASE 2025 DOI 10.1109/TASE.2025.3555488 和 2026 DOI 10.1016/j.nahs.2026.101725 当前只有元数据/摘要，未据题名推断其方法；若后续仍研究，应优先获取 TASE 全文。
+
+**结论：**准确缓存协议的资源化迟到修正问题尚无已核实的完全同型定理，但标准攻击输入跟踪、固定点平滑和增广误差传播重叠很高。当前 post-cache GLS / influence capsule 没有显示不可由现有方法替代的能力，停止作为论文主创新开发。最多继续一次离散 Deghat tracker 的同协议适配，目的仅为竞争基线审计。

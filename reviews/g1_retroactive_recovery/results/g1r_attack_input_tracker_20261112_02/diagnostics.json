@@ -1,0 +1,22 @@
+{
+  "max_recursive_batch_endpoint_abs_error": 2.842170943040401e-14,
+  "prefix_innovation_rows": 17,
+  "post_cache_innovation_rows": 8,
+  "prefix_sensitivity_singular_values": [
+    0.35604221778538225,
+    0.12337872528479514
+  ],
+  "post_cache_sensitivity_singular_values": [
+    0.08605855617139858,
+    0.04553915488300478
+  ],
+  "prefix_gate": 18.37281260563593,
+  "post_cache_gate": 12.605911823125751,
+  "per_seed_methods": 192,
+  "paired_independent_seed_unit": true,
+  "normal_test_false_correction_rate": {
+    "causal_input_tracker_full_residual_200_to_216": 0.0625,
+    "post_cache_GLS_209_to_216": 0.020833333333333332
+  },
+  "cost_note": "recursive tracker and post-cache GLS retain only 2x2 information and 2-vector score online if Cholesky whitening is precomputed; offline 34x34 / 16x16 covariance tables shared by model/schedule."
+}
