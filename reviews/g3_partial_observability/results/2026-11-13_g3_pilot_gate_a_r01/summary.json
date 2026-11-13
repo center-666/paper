@@ -1,0 +1,81 @@
+{
+  "run_id": "2026-11-13_g3_pilot_gate_a_r01",
+  "geometries": [
+    {
+      "geometry": "partial",
+      "status": "STOP Gate A pilot did not pass",
+      "cooperation_gain_mean": 0.9060896434705328,
+      "cooperation_ci": [
+        0.8431596517353145,
+        0.9387655692457814
+      ],
+      "rules": [
+        {
+          "rule": "fixed_lag8",
+          "cap_clean_cost_upper_le_5pct": true,
+          "cap_attack_excess_lower_ge_20pct": true,
+          "gates_with_proved_tradeoff": [],
+          "gates_with_proved_failure": [
+            "cap_plus_spatial_hard"
+          ],
+          "gates_covering_all_three_bounds": [],
+          "gate_A_pilot_pass": false
+        },
+        {
+          "rule": "nearest_current_sender",
+          "cap_clean_cost_upper_le_5pct": true,
+          "cap_attack_excess_lower_ge_20pct": true,
+          "gates_with_proved_tradeoff": [],
+          "gates_with_proved_failure": [
+            "cap_plus_zhou_random",
+            "cap_plus_spatial_hard"
+          ],
+          "gates_covering_all_three_bounds": [],
+          "gate_A_pilot_pass": false
+        }
+      ],
+      "gate_B": "not run",
+      "confirm": "not run"
+    },
+    {
+      "geometry": "full_rank_reference",
+      "status": "STOP Gate A pilot did not pass",
+      "cooperation_gain_mean": 0.276772714833061,
+      "cooperation_ci": [
+        0.20177393336941854,
+        0.3423264662790779
+      ],
+      "rules": [
+        {
+          "rule": "fixed_lag8",
+          "cap_clean_cost_upper_le_5pct": true,
+          "cap_attack_excess_lower_ge_20pct": true,
+          "gates_with_proved_tradeoff": [],
+          "gates_with_proved_failure": [],
+          "gates_covering_all_three_bounds": [],
+          "gate_A_pilot_pass": false
+        },
+        {
+          "rule": "nearest_current_sender",
+          "cap_clean_cost_upper_le_5pct": true,
+          "cap_attack_excess_lower_ge_20pct": true,
+          "gates_with_proved_tradeoff": [],
+          "gates_with_proved_failure": [
+            "cap_plus_spatial_hard"
+          ],
+          "gates_covering_all_three_bounds": [],
+          "gate_A_pilot_pass": false
+        }
+      ],
+      "gate_B": "not run",
+      "confirm": "not run"
+    }
+  ],
+  "partial_pilot_A_pass": false,
+  "gate_B": "not run; only applicable after partial Gate A prerequisites pass",
+  "confirm": "not run; only applicable after pilot prerequisites pass",
+  "elapsed_seconds": 6.373680299991975,
+  "no_test_retuning": true,
+  "preregistered_plan_unchanged": true,
+  "new_defense_developed": false
+}
