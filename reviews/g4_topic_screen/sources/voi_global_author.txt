@@ -1,0 +1,816 @@
+===== PDF PAGE 1 =====
+        VALUE  OF  INFORMATION  IN  FEEDBACK  CONTROL:
+                                   GLOBAL  OPTIMALITY
+
+
+TOURAJ SOLEYMANI, JOHN S. BARAS, SANDRA HIRCHE, AND KARL H. JOHANSSON
+
+
+
+
+
+           Abstract.   The rate-regulation tradeoﬀ, deﬁned  between two objective func-
+           tions,  one penalizing the packet  rate and one the regulation cost,  can express
+           the  fundamental  performance bound  of  networked  control  systems.  However,
+           the characterization of the set of globally optimal solutions in this tradeoﬀ for
+           multi-dimensional Gauss–Markov processes has been an open problem.  In the
+           present article, we characterize a policy proﬁle that belongs to this set without
+           imposing any restrictions on the information structure or the policy structure.
+           We prove that such a policy proﬁle consists  of a symmetric threshold trigger-
+           ing policy based on the value of information and a certainty-equivalent control
+           policy based on a non-Gaussian linear estimator.  These policies are determin-
+           istic  and  can  be  designed  separately.  Besides,  we  provide a  global  optimality
+           analysis  for  the  value  of  information  VoIk,  a  semantic  metric  that  emerges
+           from the rate-regulation tradeoﬀ as the diﬀerence between the beneﬁt and the
+           cost of a data packet.  We prove that it is globally optimal that a data packet
+           containing sensory information at time k be transmitted to the controller only
+           if  VoIk  becomes  nonnegative.   These  results  have  important  implications  in
+           the areas of communication and control.
+           Keywords.   decision  policies,  globally  optimal  solutions,  networked  control
+           systems, rate-regulation tradeoﬀ, semantic communications, semantic metrics,
+           value of information.
+
+                                           1.  Introduction
+   The  rate-regulation tradeoﬀ,  deﬁned  between  two  objective  functions,  one  pe-
+nalizing the  packet rate and one the regulation cost, can express the fundamental
+performance  bound  of networked control systems.  Such a  tradeoﬀ naturally leads
+to the adoption of an event trigger that is collocated with the sensor and of a con-
+troller that is collocated with the actuator as the distributed decision makers, and
+is formulated as a stochastic optimization problem over the space of causal decision
+policy proﬁles.  Unfortunately, this optimization problem for the joint design of the
+event trigger and the controller is in general intractable [1,2].  Despite lack of a gen-
+eral theory for coping with this diﬃculty, our goal here is to ﬁnd a globally optimal
+solution in the rate-regulation tradeoﬀ, and provide a global optimality analysis for
+the value of information, a quantity that emerges from the rate-regulation tradeoﬀ
+and systematically captures the semantics  of data packets by  taking into  account
+their potential impacts.  We previously argued in [3] that the value of information
+as  a  semantic  metric  determines  the  right  piece  of  information,  a  concept  that  is
+not deﬁned in classical data communication, while it is crucial to the development
+of  future  communication  networks.   In  this  respect,  the  goal  we  pursue  here  not
+
+   Corresponding  Author:  Touraj  Soleymani  (touraj@kth.se).   Journal:  IEEE  Transactions  on
+Automatic  Control.
+                                                       1
+
+===== PDF PAGE 2 =====
+2      TOURAJ  SOLEYMANI, JOHN  S.  BARAS,  SANDRA  HIRCHE,  AND  KARL  H.  JOHANSSON
+
+only is  interesting  on its  own from a theoretical perspective,  but,  if achieved, has
+important implications in the areas of communication and control.
+   In what follows, we ﬁrst review and categorize the previous studies on networked
+systems  that  are  closely  related  to  our  work,  and  then  provide  an  overview  of
+our results.
+
+1.1.  Related Work.  There exist a number of studies that have explored a tradeoﬀ
+between the packet rate and the mean-square error, and characterized the optimal
+triggering  policy  [4–9].   The  intrinsic  diﬃculty  in  these  studies  is  due  to  a  non-
+classical  information  structure,  which  complicates  the  derivation  of  the  optimal
+triggering policy.  Notably, Imer and Ba¸sar [4] studied the optimal event-triggered
+estimation  of  a  scalar  Gauss–Markov process  based  on  dynamic  programming  by
+assuming  that  the  triggering  policy  is  symmetric  threshold,  and  derived  the  op-
+timal  threshold  value  of  the  policy.   Lipsa  and  Martins  [5]  analyzed  the  optimal
+event-triggered  estimation  of  a  scalar  Gauss–Markov  process  based  on  majoriza-
+tion theory, and proved that the optimal triggering policy is symmetric threshold.
+Molin and Hirche [6] studied  the convergence properties of an iterative  algorithm
+for the optimal event-triggered estimation of a scalar Markov process with symmet-
+ric noise distribution, and found a result coinciding with that in [5].  Chakravorty
+and Mahajan [7]  addressed the  optimal event-triggered estimation  of a  scalar au-
+toregressive  Markov  process  with  symmetric  noise  distribution  based  on  renewal
+theory, and proved that the optimal triggering policy remains symmetric threshold.
+In addition, Rabi et al. [8] formulated the optimal event-triggered estimation of the
+scalar Ornstein–Uhlenbeck  process as  an optimal  multiple  stopping  time  problem
+by  assuming  that  the  estimator  is  linear,  and  showed that  the  optimal  triggering
+policy is symmetric threshold.  Guo and Kostina [9] also contributed to this area by
+studying the optimal event-triggered estimation of the scalar Ornstein–Uhlenbeck
+process  without  any  assumption  on  the  estimator,  and  obtained  a  similar  result
+as in [8].
+   Aside  from  the  above  line  of  research,  several works have  investigated  optimal
+event-triggered estimation when the triggering policy is ﬁxed [1, 10–12].  The main
+challenge  in  these  works  is  to  ﬁnd  a  procedure  for  dealing  with  a  signaling  ef-
+fect, which can cause a nonlinearity in the structure of the optimal estimator.  To
+that  end,  Sijs  and  Lazar  [10]  used  a  sum  of  Gaussian  approximation,  and  devel-
+oped  an  estimator  that  has  an  asymptotically  bounded  estimation  error  covari-
+ance for a Gauss–Markov process subject to a ﬁxed deterministic triggering policy.
+Wu  et  al.  [1]  used  a  Gaussian  approximation,  and  found  a  suboptimal  estimator
+for  a  Gauss–Markov  process  subject  to  a  ﬁxed  deterministic  threshold  triggering
+policy.  He et al. [11] took one step further, and adopted the generalized closed skew
+normal distribution to characterize the optimal estimator for a Gauss–Markov pro-
+cess subject to a similar triggering policy.  Han et al. [12] also took advantage of a
+ﬁxed stochastic triggering policy that preserves the Gaussianity of the conditional
+distribution, and obtained the optimal estimator for a Gauss–Markov process.
+   Furthermore,  several  works  have  investigated  optimal  event-triggered  control
+when the triggering policy is ﬁxed [2, 13, 14].  Note that this problem is more com-
+plicated than the estimation counterpart because of a dual eﬀect, which can lead to
+a coupling between estimation and control.  In this context, Molin and Hirche [13]
+studied the optimal event-triggered control of a Gauss–Markov process, and showed
+that the optimal control policy is certainty equivalent when the triggering policy is
+
+===== PDF PAGE 3 =====
+        VALUE  OF  INFORMATION  IN  FEEDBACK  CONTROL:  GLOBAL  OPTIMALITY              3
+
+reparametrizable in terms of primitive random variables.  Ramesh et al. [2] studied
+the  dual eﬀect  in the optimal event-triggered control of a  Gauss–Markov process,
+and  proved that  the  dual  eﬀect  in  general exists.  They  also  proved that  the  cer-
+tainty equivalence principle holds if and only if the triggering policy is independent
+of the control policy.  Later, Demirel et al. [14] addressed the optimal event-triggered
+control of a Gauss–Markov process by adopting a stochastic triggering policy that
+preserves the Gaussianity of the conditional distribution, and showed that the op-
+timal control policy remains certainty equivalent.
+   On the contrary to the above vein of research, there exist a few studies that have
+considered  a  tradeoﬀ  between  the  packet  rate  and  the  trace  of  variance  [15, 16].
+In  this  case,  one  instead  of  an  observation-based  triggering  policy,  i.e.,  the  type
+used  in  [1–14],  searches  for  a  variance-based  triggering  policy.   These  studies  are
+somehow related to sensor scheduling, which dates back to a few decades ago [17].
+Previously,  Kushner  [17]  studied  the  optimal  control  of  a  Gauss–Markov  process
+subject to a limited number of observations, and found the optimal triggering pol-
+icy  that  does  not  depend  on  the  observations.  Recently,  Leong  et  al.  [15, 16]  ad-
+dressed the optimal variance-based event-triggered estimation of a Gauss–Markov
+process,  and  showed  that  the  optimal  triggering  policy  is  a  threshold  policy  that
+can  be  expressed  in  terms  of  the  estimation  error  covariance.   Note  that  when  a
+variance-based triggering policy is used, the certainty equivalence principle simply
+holds  [18].   Nevertheless,  variance-based  triggering  policies  are  generally  outper-
+formed by  observation-based triggering policies,  as they  do not take advantage of
+realized sensory information.
+   Moreover, there exist a few studies that have considered a tradeoﬀ between the
+bit  rate  and  the  mean-square  error  in  a  causal  setting  [19–21].   In  this  case,  one
+instead of a triggering policy searches for a quantization policy.  In particular, Wit-
+senhausen [19] addressed the sequential coding of a discrete-time k-th order Markov
+process over a ﬁnite time horizon, and showed that the optimal code depends on the
+last k  process states and the current decoder state.  Walrand and Varaiya [20] in-
+vestigated the sequential coding of a discrete-time ﬁnite-state Markov process over
+a noisy channel with feedback, and showed that there exists a separation in the de-
+sign of the encoder and the decoder through the conditional distribution.  Borkar et
+al. [21] also studied the sequential coding of a discrete-time Markov process without
+ﬁxing the quantization levels, and provided a procedure based on dynamic program-
+ming for the computation of the optimal partition.  Later, Y¨uksel [22] extended the
+above results to optimal control, and showed that for a Gauss–Markov process the
+globally optimal quantization policy is predictive and the globally optimal control
+policy  is  certainty  equivalent.   Note  that  all  these  studies  assume  that  quantized
+sensory information is transmitted in a periodic way.
+
+1.2.  Overview  and  Outline.  Despite  a  considerable  body  of  research  in  the
+area of  networked systems,  the  characterization of  the  set  of  globally  optimal  so-
+lutions  in  the  rate-regulation  tradeoﬀ,  as  described  above,  for  multi-dimensional
+Gauss–Markov  processes  has  been  an  open  problem.   In  the  present  article,  we
+characterize  for  the  ﬁrst  time  a  policy  proﬁle  that  belongs  to  this  set  without
+imposing  any  restrictions  on  the  information  structure  or  the  policy  structure.
+We  prove  that  such  a  policy  proﬁle  consists  of  a  symmetric  threshold  trigger-
+ing  policy  and  a  certainty-equivalent  control  policy.   More  speciﬁcally,  we  show
+that  the  rate-regulation  tradeoﬀ  attains  a  globally  optimal  solution  of  the  form
+
+===== PDF PAGE 4 =====
+4      TOURAJ  SOLEYMANI, JOHN  S.  BARAS,  SANDRA  HIRCHE,  AND  KARL  H.  JOHANSSON
+
+(π⋆, µ⋆) = ({1VoIk≥0}Nk=0, {−Lkˆxk}Nk=0), where1VoIk≥0 denotes the indicator func-
+tion  of  VoIk ≥ 0,  VoIk  is  the  value  of  information,  Lk  is  the  linear-quadratic-
+regulator  gain,  and  ˆxk  is  the  minimum  mean-square-error  state  estimate  at  the
+controller.  Clearly,  our  study  is  diﬀerent  from  the  studies  in  [4–9],  where  the  re-
+sults  apply  to  the  estimation  of  scalar  processes.   Here,  the  results  apply  to  the
+control of multi-dimensional Gauss–Markov processes.  Our study  is  also diﬀerent
+from the  studies  in  [1, 2, 10–14],  where  an  estimation  policy  or  a  control policy  is
+derived when the  triggering policy  is  ﬁxed  and subject to  some conditions.  Here,
+we  search  for  a  globally  optimal  triggering  policy  and  a  globally  optimal  control
+policy  jointly  and  without  any  restrictions.   Finally,  our  study  diﬀers  from  the
+studies  in  [15, 16, 18–22],  where  a  variance-based  triggering  policy  or  a  quantiza-
+tion  policy  is  derived.   Here,  we  are  particularly  interested  in  observation-based
+triggering policies.
+   Besides, in this article, we provide for the ﬁrst time a global optimality analysis
+for  the  value  of  information  VoIk,  which  in  fact  measures  the  diﬀerence  between
+the  beneﬁt  and  the  cost  of  a  data  packet.   We  prove  that  it  is  globally  optimal
+that  a  data  packet  containing  sensory  information  at  time  k  be  transmitted  to
+the controller only if VoIk  becomes nonnegative.  Using backward induction in [3],
+we  quantiﬁed  and  approximated  the  value  of  information  for  multi-dimensional
+Gauss–Markov processes at a Nash equilibrium, where neither decision maker has
+a  unilateral  incentive  to  change  its  policy.   However, a  question  that  was  not  ad-
+dressed there is whether this equilibrium is globally optimal.  The importance of this
+question  cannot  be  overstated,  as  the  rate-regulation  tradeoﬀ  might  admit  other
+Nash equilibria with better  performance.  We address this  question in the  present
+article by developing new techniques, and prove that the previously characterized
+Nash  equilibrium  has  zero  optimality  gap.   Throughout  our  analysis,  we  will  use
+the existence result and some of the mathematical derivations of [3].
+   The article is organized in the following way.  We formulate the rate-regulation
+tradeoﬀ in Section 2, and present our main result in Section 3.  Finally, we conclude
+the article in Section 4.
+
+1.3.  Preliminaries.  In  the sequel,  the sets  of real numbers and non-negative in-
+tegers are denoted by R and N, respectively.  For x, y ∈ N and x ≤ y, the set N[x,y]
+denotes {z  ∈ N|x ≤ z  ≤ y}.  The  sequence of vectors x0, . . . , xk  is  represented by
+xk.  For matrices X  and Y , the relations X  ≻ 0 and Y  ≽ 0 denote that X  and Y
+are positive deﬁnite and positive semi-deﬁnite, respectively.  The indicator function
+of a subset A of a set X  is denoted by 1A : X  → {0, 1}.  The symmetric decreasing
+rearrangement of  a  Borel measurable  function  f(x)  vanishing  at  inﬁnity  is  repre-
+sented by f ∗(x).  The probability measure of a random variable x is represented by
+P(x), its probability density or probability mass function by p(x), and its expected
+value and covariance by E[x] and cov[x], respectively.
+Deﬁnition  1.  (Stochastic  kernels)  Let  (X , BX )  and  (Y, BY)  be  two  measurable
+spaces.   A  Borel  measurable  stochastic  kernel  P  :  BY  × X  →  [0, 1]  is  a  mapping
+such  that  A  ↦→  P(A|x)  is  a  probability  measure  on  (Y, BY)  for  any  x  ∈  X ,  and
+x ↦→ P(A|x) is a Borel measurable function for any A ∈ BY.
+Deﬁnition 2.  (Globally optimal solutions) For a given team game with two decision
+makers,  let  γ1  ∈  G1  and  γ2  ∈  G2  be  the  decision  policies  of  the  decision  makers,
+where G1  and G2  are the sets of admissible policies, and L(γ1, γ2) be the associated
+
+===== PDF PAGE 5 =====
+        VALUE  OF  INFORMATION  IN  FEEDBACK  CONTROL:  GLOBAL  OPTIMALITY              5
+
+loss function.  A policy proﬁle (γ1⋆, γ2⋆) is globally  optimal if
+
+                      L(γ1⋆, γ2⋆) ≤ L(γ1, γ2),  for all γ1 ∈ G1, γ2 ∈ G2.
+
+Note that  globally  optimal  solutions  express a  stronger solution  concept  than  Nash
+equilibria.
+
+
+                               2.  Rate-Regulation  Tradeoff
+   Consider  a  networked  control  system  in  its  basic  form.   The  dynamics  of  the
+underlying process is given by the discrete-time state and output equations
+
+(1)                                 xk+1 = Akxk + Bkuk + wk,
+
+(2)                                    yk = Ckxk + vk,
+
+for k ∈ N[0,N]  with initial condition x0, where xk ∈ Rn  is the state of the process,
+Ak  ∈ Rn×n  is  the  state  matrix,  Bk  ∈ Rn×m  is  the  input  matrix,  uk  ∈ Rm  is  the
+control input applied by an actuator and decided by a controller that is collocated
+with the actuator, wk ∈ Rn is a Gaussian white noise with zero mean and covariance
+Wk ≻ 0, yk ∈ Rp is the output of the process observed by a sensor, Ck ∈ Rp×n is the
+output matrix, vk  ∈ Rp  is a  Gaussian white  noise with  zero mean and covariance
+Vk  ≻  0,  and  N  ∈ N  is  a  ﬁnite  time  horizon.  It  is  assumed that  x0  is  a  Gaussian
+vector  with  mean  m0  and  covariance  M0,  and  that  x0,  wk,  and  vk  are  mutually
+independent  for  all  k  ∈  N[0,N].   The  feedback  control loop  is  closed  via  a  reliable
+but  costly  communication  channel,  and  the  sensory  information  in  this  channel
+is  carried  in  the  form  of  data  packets  subject  to  one-step  delay.   Let  ak  and  bk
+represent the  input  and  the  output  of  the  channel  at  time  k,  respectively.  Then,
+we have
+                                              {  ak,     if δk = 1,
+(3)                                 bk+1 =       ∅,      otherwise,
+
+for k ∈ N[0,N]  with b0 = ∅, where δk  ∈ {0, 1} is the transmission decision decided
+by an event trigger that is collocated with the sensor.  It is assumed that the data
+packet that can be transmitted at time k contains the minimum mean-square-error
+state  estimate  at  the  event  trigger  at  time  k,  and  that  the  quantization  error  is
+negligible.
+   The  event trigger and the  controller, as two  distributed decision makers, make
+their  decisions  based  on  their  causal  information  sets,  which  are  given  by  Iek  :=
+{yt, bt, δs, us|t  ∈  N[0,k], s  ∈  N[0,k−1]}  and  Ick  :=  {bt, δs, us|t  ∈  N[0,k], s  ∈  N[0,k−1]},
+respectively.  We say that a triggering policy π and a control policy µ are admissible
+if  π  =  {P(δk|Iek)}Nk=0  and  µ  =  {P(uk|Ick)}Nk=0,  where  P(δk|Iek)  and  P(uk|Ick)  are
+Borel measurable stochastic kernels.  We represent the sets of admissible triggering
+policies and admissible control policies by P  and M, respectively.
+   Our  goal  in  this  study  is  to  ﬁnd  a  globally  optimal  solution  (π⋆, µ⋆)  to  the
+following stochastic optimization problem:
+
+(4)                    minimize
+                       π∈P,µ∈M Φ(π, µ) := (1 − λ)R(π, µ) + λJ(π, µ),
+
+===== PDF PAGE 6 =====
+6      TOURAJ  SOLEYMANI, JOHN  S.  BARAS,  SANDRA  HIRCHE,  AND  KARL  H.  JOHANSSON
+
+for the tradeoﬀ multiplier λ ∈ (0, 1) and
+                                          [ ∑N            ]
+(5)                R(π, µ) :=      1N+1 E      k=0 ℓkδk    ,
+                                          [ ∑N                                        ]
+(6)                J(π, µ) :=      1N+1 E      k=0 xTk+1Qk+1xk+1 + uTk Rkuk            ,
+
+where  ℓk  ≥  0  is  a  weighting  coeﬃcient  and  Qk  ≽  0  and  Rk  ≻  0  are  weighting
+matrices.
+Remark 1.  The optimization problem in (4) formulates the rate-regulation tradeoﬀ
+between the packet rate and the regulation cost for multi-dimensional Gauss–Markov
+processes.   Note  that  the  set  of  globally  optimal  solutions  in  this  tradeoﬀ  cannot
+be  empty  following  our  results  in  [3],  where  the  existence  of  a  Nash  equilibrium
+is  proved.    In  the  sequel,  we  in  fact  investigate  the  optimality  gap  of  this  very
+equilibrium.  Our study focuses on the soft-constraint version  of the rate-regulation
+tradeoﬀ,  where  the  packet  rate  appears  in  the  loss  function.   The  hard-constraint
+version of the rate-regulation tradeoﬀ, where the packet rate appears as a constraint,
+attains the same solutions as long as there exists an associated Lagrange multiplier.
+
+                            3.  Global Optimality Analysis of
+                                 the  Value of  Information
+   The main result of this article is provided in this section.  We ﬁrst introduce two
+distinct value functions from the perspectives of the event trigger and the controller,
+and then provide the general formula of the value of information.
+Deﬁnition 3 (Value functions).  The value functions V ek (Iek) and V ck (Ick) are deﬁned
+as                                                [ ∑N                    ⏐⏐⏐Iek]
+(7)                   V ek (Iek) :=     minπ∈P:µ=µ⋆ E   t=k θtδt + ςt+1        ,
+                                                   [ ∑N                       ⏐⏐⏐Ick]
+(8)                   V ck (Ick) :=      min            t=k θt−1δt−1 + ςt          ,
+                                    µ∈M:π=π⋆ E
+for  k  ∈  N[0,N]  given  a  policy  proﬁle  (π⋆, µ⋆),  where  θk  =  ℓk(1 − λ)/λ  and  ςk  =
+(uk + (BTk Sk+1Bk + Rk)−1BTk Sk+1Akxk)T (BTk Sk+1Bk + Rk)(uk + (BTk Sk+1Bk +
+Rk)−1BTk Sk+1Akxk) with the exception of θ−1 = 0 and ςN+1 = 0, and Sk ≽ 0 obeys
+the algebraic Riccati equation
+                          Sk = Qk + ATk Sk+1Ak − ATk Sk+1Bk
+(9)
+                                    × (BTk Sk+1Bk + Rk)−1BTk Sk+1Ak,
+for  k  ∈  N[0,N]  with  initial  condition  SN+1  =  QN+1  and  with  the  exception  of
+SN+2 = 0.
+Deﬁnition 4 (Value of Information).  The value of information at time k is deﬁned
+as the variation in the value function V ek (Iek) with respect to the sensory information
+ak  that can be communicated to the controller at time k, i.e.,
+(10)                          VoIk := V ek (Iek)|δk=0 − V ek (Iek)|δk=1,
+where V ek (Iek)|δk  denotes the value function V ek (Iek) when the transmission decision
+δk  is enforced.
+
+===== PDF PAGE 7 =====
+        VALUE  OF  INFORMATION  IN  FEEDBACK  CONTROL:  GLOBAL  OPTIMALITY              7
+
+   Let  ˇxk  := E[xk|Iek]  and  ˆxk  := E[xk|Ick]  denote  the  minimum  mean-square-error
+state  estimates  at  the  event  trigger  and  the  controller,  respectively.   In  addition,
+let  us  deﬁne  the  estimation  error  from  the  perspective  of  the  event  trigger  ˇek  :=
+xk − E[xk|Iek],  the  estimation  error  from  the  perspective  of  the  controller  ˆek  :=
+xk − E[xk|Ick],  and  the  estimation  mismatch  ˜ek  :=  E[xk|Iek] − E[xk|Ick].   The  next
+theorem states our main result on the characterization of a globally optimal solution
+in the rate-regulation tradeoﬀ.
+Theorem 1.  The rate-regulation tradeoﬀ attains a globally optimal solution (π⋆, µ⋆)
+such that                               ({1VoIk≥0}N                              )
+(11)                      (π⋆, µ⋆) =                    k=0, { − Lk ˆxk}Nk=0      ,
+
+with
+(12)                            VoIk = ˜eTk ATk Γk+1Ak˜ek − θk + ̺k,
+
+(13)                            ˆxk+1 = Ak ˆxk + Bkuk + δkAk˜ek,
+for k ∈ N[0,N], where Lk = (BTk Sk+1Bk+Rk)−1BTk Sk+1Ak is the control gain, Γk =
+ATk Sk+1Bk(BTk Sk+1Bk+Rk)−1BTk Sk+1Ak is a weighting matrix, ̺k = E[V ek+1(Iek+1)|
+Iek, δk = 0] − E[V ek+1(Iek+1)|Iek, δk = 1] is a symmetric function of  ˜ek, and  ˆx0 = m0
+is the initial condition.
+Remark  2.  The  globally  optimal  solution  (π⋆, µ⋆)  in  (11)  consists  of  a  symmet-
+ric  threshold  triggering  policy  based  on  the  value  of  information  and  a  certainty-
+equivalent control policy based on a non-Gaussian linear state estimator.  This result
+is important as it shows that the characterized Nash equilibrium in [3] has zero opti-
+mality gap.  Observe that the decision policies π⋆ and µ⋆ are deterministic, implying
+that randomization does not improve the system performance, and that they can be
+designed  separately.   Moreover,  note  that  VoIk(Iek)  in  (12),  which  is  a  symmetric
+function of the estimation mismatch ˜ek, measures the diﬀerence between the beneﬁt
+of  transmitting  a  data  packet,  i.e.,  ˜eTk ATk Γk+1Ak˜ek + ̺k,  and  its  associated  cost,
+i.e.,  θk.   This  means  that  it  is  globally  optimal  that  a  data  packet  containing  the
+sensory information  ˇxk  be transmitted to the controller only if its beneﬁt surpasses
+its cost, i.e.,  VoIk ≥ 0.  Furthermore, note that the state estimate  ˆxk  in (13) obeys
+a linear recursive equation with no residual ık := Ak E[ˆek|Ick, δk = 0] (see Lemma 2
+in the Appendix for the general equation of the optimal estimator at the controller).
+This  implies  that  the  controller’s  inference  about  the  state  of  the  process  when  no
+data  packet  is  delivered  has  no contribution  from  the  minimum  mean-square-error
+perspective.   Finally,  we  remark  that  at  the  globally  optimal  solution  (π⋆, µ⋆)  the
+transmission  of  the  state  estimate  ˇxk  is  equivalent  to  that  of  the  estimation  mis-
+match  ˜ek, whose magnitude is comparatively smaller.
+Proof.  Let (πo, µo) denote a policy proﬁle in the set of globally optimal solutions.
+As  we  said  earlier,  this  set  cannot  be  empty.   We  prove  that  the  policy  proﬁle
+(π⋆, µ⋆)  in  the  claim  is  globally  optimal  by  showing  that  Φ(π⋆, µ⋆)  cannot  be
+greater  than  Φ(πo, µo).   Our  proof  is  structured  in  the  following  way.   We  ﬁrst
+ﬁnd an innovation-based triggering policy σ such that Φ(σ, µo) = Φ(πo, µo).  Then,
+we derive a certainty-equivalent control policy ξ  such that Φ(σ, ξ) ≤ Φ(σ, µo).  Af-
+terwards, we construct a symmetric triggering policy ω such that Φ(ω, ξ) ≤ Φ(σ, ξ).
+Finally, we show that for the policy proﬁle in the claim we have Φ(π⋆, µ⋆) ≤ Φ(ω, ξ).
+
+===== PDF PAGE 8 =====
+8      TOURAJ  SOLEYMANI, JOHN  S.  BARAS,  SANDRA  HIRCHE,  AND  KARL  H.  JOHANSSON
+
+Throughout our analysis, without loss of generality, we assume that m0 = 0.  Sim-
+ilar arguments can be made for m0 ⁄= 0 following a coordinate transformation.
+   In the ﬁrst step, we will show that, given the control policy µo, we can ﬁnd an
+innovation-based triggering policy σ  that is equivalent to the triggering policy πo.
+Note that the  innovation νk  := yk − Ck E[xk|Iek−1] is a white Gaussian noise with
+zero mean and covariance Nk  = CkMkCTk  + Vk,  where  Mk  = cov[xk|Iek−1].  From
+this deﬁnition, we have yk = νk + Ekˇxk−1 + Fkuk−1, where Ek and Fk are matrices
+of proper dimensions.  By Lemma 1, we have ˇxk = Gkνk + Hkuk−1, where Gk  and
+Hk  are matrices of proper dimensions.  In addition, from (3), we know that bk  is a
+function of  ˇxk−1  and δk−1.  As a result, it is possible to write
+
+                           pπo(δk|Iek) = pπo(δk|νk, δk−1, uk−1),
+
+                           pµo(uk|Ick) = pµo(uk|νk−1, δk−1, uk−1).
+
+Accordingly, any realizations of δk and uk can be expressed as δk = δk(ηk; νk, δk−1,
+uk−1) and uk  = uk(ζk; νk−1, δk−1, uk−1),  respectively, where ηk  and ζk  represent
+random variables that are independent of any other variables.  Hence, it is possible
+to  recursively construct σ  with  pσ(δk|νk, δk−1, ζk−1)  such that  it  is  equivalent  to
+pπo(δk|Iek).   This  proves  that  Φ(σ, µo)  =  Φ(πo, µo).   Note  that  although  the  trig-
+gering policy σ has been constructed associated with the control policy µo, it now
+depends only on νk, δk−1, and ζk−1  at each time k.
+   In the  second step, given the triggering policy σ,  we will search for an optimal
+control policy ξ, and prove that ξ is certainty equivalent.  Using (1) and (9), we can
+derive the following identities:
+
+                     xTk+1Sk+1xk+1 = (Akxk + Bkuk + wk)T
+(14)
+                                             × Sk+1(Akxk + Bkuk + wk),
+                     xTk Skxk = xTk   (Qk + ATk Sk+1Ak
+(15)
+                                          − LTk (BTk Sk+1Bk + Rk)Lk)xk,
+
+                     xTN+1SN+1xN+1 − xT0 S0x0
+(16)
+                               = ∑Nk=0 xTk+1Sk+1xk+1 − ∑Nk=0 xTk Skxk.
+
+Then, incorporating the identities  (14) and (15) into the identity  (16), taking the
+expectation of both sides of (16), and using the facts that wk  is independent of xk
+and uk  and that the terms xT0 S0x0 and wTk Sk+1wk  are independent of the decision
+policies, we ﬁnd the following loss function:
+                                                [ ∑N                 ]
+(17)                            Ψ(σ, µ) := E         k=0 θkδk + ςk    ,
+
+for σ  that was obtained in the ﬁrst step and for any µ ∈ M.  Note that Ψ(σ, µ) is
+equivalent to Φ(σ, µ).  Associated with Ψ(σ, µ), we deﬁne the value function V ck (Ick)
+when σ is given as
+                                              [ ∑N                      ⏐⏐⏐Ick]
+(18)                     V ck (Ick) := minµ∈M E    t=k θt−1δt−1 + ςt         ,
+
+===== PDF PAGE 9 =====
+        VALUE  OF  INFORMATION  IN  FEEDBACK  CONTROL:  GLOBAL  OPTIMALITY              9
+
+for k ∈ N[0,N]  with initial condition V cN+1(IcN+1) = 0.  By Lemmas 1 and 2 in the
+Appendix, we observe that ˆek  and ˜ek  obey
+(19)                   ˆek+1 = Akˆek − δkAk˜ek + wk − (1 − δk)ık,
+
+(20)                   ˜ek+1 = (1 − δk)Ak˜ek + Kk+1νk+1 − (1 − δk)ık,
+
+for k ∈ N[0,N] with initial conditions ˆe0 = x0 and ˜e0 = K0ν0, where ık = Ak E[ˆek|Ick,
+δk = 0].  It is easy to deduce from (19) and (20) that ˆek  and ˜ek  are independent of
+the control inputs under σ.  Now, following a similar argument used in the proof of
+Theorem 1 in [3], we ﬁnd that the value function V ck (Ick) should obey
+                                        {
+                   V ck (Ick) =   min     θk−1 E[δk−1|Ick] + tr(ΓkZk)
+                                uk∈Rm
+                                        + (uk + Lk ˆxk)T (BTk Sk+1Bk + Rk)
+                                                                                    }
+                                        × (uk + Lk ˆxk) + E[V ck+1(Ick+1)|Ick]        ,
+
+for  k  ∈  N[0,N],  where  δk−1  and  Zk  =  cov[ˆek|Ick]  are  independent  of  the  control
+inputs.   As  a  result,  the  minimizer  is  obtained  by  u⋆k  =  −Lk ˆxk.   This  establishes
+that Φ(σ, ξ) ≤ Φ(σ, µo).
+   In the third step, given the control policy ξ, we will prove that Φ(ω, ξ) ≤ Φ(σ, ξ),
+where ω  is  a  special form of  σ  that  is  symmetric with  respect to  νk  at each time
+k.   Let  N  be  the  set  on  which  νk  is  deﬁned,  B(r)  be  a  ball  of  radius  r  centered
+at the origin and of proper dimension, and ̟k ∈ N  be a variable obtained by the
+transformation Tkνk  for a given Tk.  We recursively construct ω  such that at each
+time k the following conditions are satisﬁed:∫
+
+
+                       N pω(δk = 0|̟k, δk−1 = 0) sk(̟k)d̟k
+(21)
+                              = ∫N pσ(δk = 0|̟k, δk−1 = 0) qk(̟k)d̟k,
+and                  ∫
+
+                      B(r) pω(δk = 0|̟k, δk−1 = 0) sk(̟k)d̟k
+(22)                              ( pσ(δk = 0|̟k, δk−1 = 0) qk(̟k))∗d̟k,
+                        ≥ ∫B(r)
+
+for all r ≥ 0 with pω(δk = 0|̟k, δk−1 = 0) sk(̟k) as a radially symmetric function
+of ̟k, where sk(.) := pω(.|δk−1 = 0) and qk(.) := pσ(.|δk−1 = 0).  Note that while
+the ﬁrst condition states that pω(δk = 0|̟k, δk−1 = 0) sk(̟k) has the same volume
+under the curve as (pσ(δk = 0|̟k, δk−1 = 0) qk(̟k))∗, the second condition in fact
+states  that  the  former  is  equally  or  more  concentrated  near  the  origin  than  the
+latter.  This concentration near the origin, as we will see, leads to better estimation
+performance of the innovation, which is a Gaussian vector with zero mean.
+   Observe that
+
+                  sk+1(νk+1) =  p(νk+1) pω(δk = 0|νk, δk−1 = 0) sk(νk)pω(δk = 0|δk−1 = 0)                ,
+
+
+                  qk+1(νk+1) =  p(νk+1) pσ(δk = 0|νk, δk−1 = 0) qk(νk)pσ(δk = 0|δk−1 = 0)                 ,
+
+===== PDF PAGE 10 =====
+10   TOURAJ  SOLEYMANI, JOHN  S.  BARAS,  SANDRA  HIRCHE,  AND  KARL  H.  JOHANSSON
+
+with  initial  conditions  s0(ν0)  =  q0(ν0)  =  p(ν0).   Hence,  given  Tk,  we  can  obtain
+sk(̟k) and pσ(δk = 0|̟k, δk−1 = 0) qk(̟k) based on sk(νk) and qk+1(νk+1)/ p(νk+1),
+respectively.  Moreover, observe that
+                   pσ(δk = 0|δk−1 = 0)
+
+                    = ∫N pσ(δk = 0|̟k, δk−1 = 0) pσ(̟k|δk−1 = 0)d̟k
+
+                    = ∫N pω(δk = 0|̟k, δk−1 = 0) pω(̟k|δk−1 = 0)d̟k
+
+                    = pω(δk = 0|δk−1 = 0),
+where  in  the  second  equality  we  used  (21).    This  relation  will  be  useful  in  the
+following derivation.
+   To adopt the above construction, we need to introduce an equivalent loss func-
+tion.  It is possible to write
+                                      [ ∑N                 ]
+                      Ψ(σ, ξ) = E          k=0 θkδk + ςk
+                                      [ ∑N                        ]
+                                = E        k=0 θkδk + ˆeTk Γkˆek
+                                              [                          ]
+                                = ∑Nk=0 E      θkδk + E[ˆeTk Γkˆek|Iek]
+                                              [                                 ]
+                                = ∑Nk=0 E      θkδk + ˜eTk Γk˜ek + tr(ΓkYk)      ,
+
+for any σ ∈ P  that is innovation-based and for ξ  that was obtained in the second
+step, where in the second equality we incorporated the control inputs uk = −Lkˆxk,
+and in the  third equality  we  used the  tower property of conditional expectations.
+Note that Ψ(σ, ξ) is equivalent to Φ(σ, ξ).  Let us deﬁne the loss function ΩMσ  (˜e0) as
+                                                      [                  ]
+                             ΩMσ  (˜e0) := ∑Mk=0 E     θkδk + ˜eTk Γk˜ek   ,
+
+for M  ∈ N[0,N]  given ˜e0.  Since tr(ΓkYk) is independent of the decision policies, to
+prove the claim in the third step, it is enough to prove that ΩMω  (˜e0) ≤ ΩMσ  (˜e0) for
+any M  ∈ {0, . . . , N} and for any Gaussian vector  ˜e0.  Note that  ˜e0 = K0ν0  under
+both σ and ω.  Moreover, using the fact that pσ(δ0 = 0) = pω(δ0 = 0), we obtain
+                                 [   ]
+                             Eσ    δ0   = 1 − pσ(δ0 = 0)
+                                                                     [   ]
+                                        = 1 − pω(δ0 = 0) = Eω         δ0  .
+
+Hence, the claim holds for the time horizon 0.  We assume that it also holds for all
+time horizons from 1 to  M − 1.  Observe that by  the law of total probability, the
+following identities hold:
+                         pσ(δ0 = 1) + pσ(δt = 0)
+(23)
+                                     + ∑ts=1 pσ(δs−1 = 0, δs = 1) = 1,
+for any t ∈ N[0,N].  Applying the law of total expectation for the terms E[θkδk] and
+E[˜eTk Γk˜ek] in ΩMσ  (˜e0) on a partition provided by the identity (23) for t = k − 1, and
+
+===== PDF PAGE 11 =====
+        VALUE  OF  INFORMATION  IN  FEEDBACK  CONTROL:  GLOBAL  OPTIMALITY           11
+
+repeating this procedure for all k ∈ N[1,M], we can obtain{     [    ⏐⏐⏐δk−1 = 0]
+
+               ΩMσ  (˜e0) = ∑Mk=0      θk pσ(δk−1 = 0) Eσ         δk
+                                                                 [          ⏐⏐⏐δk−1 = 0]
+                                        + pσ(δk−1 = 0) Eσ         ˜eTk Γk˜ek
+
+                                        + pσ(δk−1 = 0, δk = 1)
+                                               [                  ⏐⏐⏐δk−1 = 0, δk = 1]}
+                                        × Eσ    Ωk+1,Mσ        (˜ek+1)                      ,
+
+for M  ∈ N[0,N], where the cost-to-go Ωk,Mσ    (˜ek) is deﬁned as
+                                                         [                  ]
+                              Ωk,Mσ    (˜ek) := ∑Mt=k E    θtδt + ˜eTt Γt˜et ,
+given  ˜ek.   Now,  we  will  show  that  the  probability  coeﬃcients,  the  transmission
+decision terms, the estimation mismatch terms, and the cost-to-go terms in ΩMσ  (˜e0)
+under  σ  cannot be  less  than those  when ω  is  used  instead.  First,  note  that  since
+pσ(δk = 0|δk−1 = 0) = pω(δk = 0|δk−1 = 0), we have pσ(δk−1 = 0) = pω(δk−1 = 0)
+and  pσ(δk−1  =  0, δk  =  1)  =  pω(δk−1  =  0, δk  =  1).   Hence,  all  the  probability
+coeﬃcients remain the same.  Moreover, for the transmission decision terms, we get[⏐⏐⏐δk−1 = 0]
+                         Eσ   δk                = 1 − pσ(δk = 0|δk−1 = 0)
+
+                                                = 1 − pω(δk = 0|δk−1 = 0)
+                                                       [    ⏐⏐⏐δk−1 = 0]
+                                                = Eω     δk               .
+We  continue  the  proof  for  the  estimation  mismatch  terms  by  ﬁrst  showing  that
+ık = 0 for all k ∈ N[0,N]  under ω.  We assume that ıt = 0 for all t ∈ N[0,k−1].  It is
+possible to write               [   ⏐⏐⏐Ick, δk]     [                ⏐⏐⏐Ick, δk]
+                              E  ˆek           = E    E[ˆek|Iek, δk]
+                                                    [            ⏐⏐⏐Ick, δk]
+                                               = E    E[ˆek|Iek]
+                                                    [    ⏐⏐⏐Ick, δk]
+                                               = E    ˜ek         ,
+where  the  ﬁrst  equality  comes  from  the  tower  property  of  the  conditional  expec-
+tations  and  the  second equality  from the  fact  that  δk  is  a  function  of  Iek.  Hence,
+ık = Ak E[ˆek|Ick, δk = 0] = Ak E[˜ek|Ick, δk = 0].  Let τk denote the time elapsed since
+the last delivery when we are at time k.  We have  ˜ek−τk  = Kk−τkνk−τk, and from
+(20), we can express ık  under ω as[ ∑τkt=0 Dk−tνk−t⏐⏐⏐δk−τk  = 0, . . . , δk = 0]
+
+                    ık = Ak Eω
+                                                  [      ⏐⏐⏐δk−τk  = 0, . . . , δk = 0]
+                       = Ak ∑τkt=0 Dk−t Eω         νk−t                                ,
+where  Dk−t  is  a  matrix  depending  on  As  for  s  ∈  N[k−t,k−1]  and  Kk−t.    Since
+pω(νk|δk = 0) has zero mean, we deduce that pω(νk−τk, . . . , νk|δk−τk  = 0, . . . , δk =
+0) has also zero mean.  This implies that ık  = 0 for all k ∈ N[0,N]  under ω.  Given
+this observation, from (20) when δk−1 = 0, we ﬁnd that ˜ek = Xkνk−1 + Kkνk + ck
+
+===== PDF PAGE 12 =====
+12   TOURAJ  SOLEYMANI, JOHN  S.  BARAS,  SANDRA  HIRCHE,  AND  KARL  H.  JOHANSSON
+
+under σ,  and that  ˜ek  = Xkνk−1 + Kkνk  under ω, for a suitable matrix Xk  and a
+suitable vector ck  both independent of νk.  We can then write
+                         [         ⏐⏐⏐δk−1 = 0]
+                     Eσ    ˜eTk Γk˜ek
+                                  [(Xkνk−1 + Kkνk + ck)T Γk
+                           = Eσ
+                                                                            ]
+                                 × (Xkνk−1 + Kkνk + ck)⏐⏐⏐δk−1 = 0
+                                  [
+                           = Eσ    νTk−1XTk ΓkXkνk−1 + νTk KTk ΓkKkνk
+                                                                  ⏐⏐⏐δk−1 = 0]
+                                 + cTk Γkck + 2νTk−1XTk Γkck                   ,
+
+where in the  second equality we used the fact that νk  has zero mean and is  inde-
+pendent  of νk−1  and δk−1.  Let  us  now use  the  decomposition Γk  = LTk UkU Tk Lk,
+choose Tk−1  = U Tk LkXk,  and deﬁne  fσ(̟k−1, νk) := (̟k−1 + U Tk Lkck)T (̟k−1 +
+U Tk Lkck) + νTk KTk ΓkKkνk, fω(̟k−1, νk) := ̟Tk−1̟k−1 + νTk KTk ΓkKkνk, gσ( . ) :=
+z − minz{z, fσ( . )},  and  gω( . )  :=  z − minz{z, fω( . )}.   Clearly,  for  any  ﬁxed  z,
+gσ(̟k−1, νk) and gω(̟k−1, νk) vanish at inﬁnity.  It follows that
+                    [         ⏐⏐⏐δk−1 = 0]         ∫
+                Eσ   ˜eTk Γk˜ek             = ∫N    N fσ(̟k−1, νk)
+
+                                       × pσ(̟k−1|δk−1 = 0) p(νk)d̟k−1dνk.
+In addition, we can write
+                ∫
+                 N gσ(̟k−1, νk)
+                    × pσ(δk−1 = 0|̟k−1, δk−2 = 0) qk−1(̟k−1)d̟k−1
+
+                ≤ ∫N g∗σ(̟k−1, νk)
+
+                    × ( pσ(δk−1 = 0|̟k−1, δk−2 = 0) qk−1(̟k−1))∗d̟k−1
+
+                = ∫N gω(̟k−1, νk)
+
+                    × ( pσ(δk−1 = 0|̟k−1, δk−2 = 0) qk−1(̟k−1))∗d̟k−1
+
+                ≤ ∫N gω(̟k−1, νk)
+
+                    × pω(δk−1 = 0|̟k−1, δk−2 = 0) sk−1(̟k−1)d̟k−1,
+
+where in the ﬁrst inequality we used the Hardy-Littlewood inequality (see Lemma 3
+in the Appendix) with respect to ̟k−1, in the equality the fact that g∗σ(̟k−1, νk) =
+gω(̟k−1, νk), and in the second inequality Lemma 4 in the Appendix and (22).  This
+implies that
+                 ∫
+                  N minz{z, fσ(̟k−1, νk)} pσ(̟k−1|δk−1 = 0)d̟k−1
+
+                 ≥ ∫N minz{z, fω(̟k−1, νk)} pω(̟k−1|δk−1 = 0)d̟k−1,
+
+===== PDF PAGE 13 =====
+        VALUE  OF  INFORMATION  IN  FEEDBACK  CONTROL:  GLOBAL  OPTIMALITY           13
+
+where we used the facts that
+                     pσ(̟k−1|δk−1 = 0)
+
+
+                            =  pσ(δk−1 = 0|̟k−1, δk−2 = 0) qk−1(̟k−1)pσ(δk−1 = 0|δk−2 = 0)                 ,
+
+and  that  pσ(δk−1  =  0|δk−2  =  0)  =  pω(δk−1  =  0|δk−2  =  0).   Now,  taking  z  to
+inﬁnity, we conclude that∫
+
+                         N fσ(̟k−1, νk) pσ(̟k−1|δk−1 = 0)d̟k−1
+                        ≥ ∫N fω(̟k−1, νk) pω(̟k−1|δk−1 = 0)d̟k−1.
+Therefore,                [          ⏐⏐⏐δk−1 = 0]          [          ⏐⏐⏐δk−1 = 0]
+
+                      Eσ    ˜eTk Γk˜ek              ≥ Eω     ˜eTk Γk˜ek              .
+Finally, for the cost-to-go terms, we have[⏐⏐⏐δk−1 = 0, δk = 1]
+                 Eσ    Ωk+1,Mσ        (˜ek+1)
+
+                  = ∫N k+2 Ωk+1,Mσ        (˜ek+1) pσ(νk+1|δk−1 = 0, δk = 1)dνk+1.
+Note that ˜ek+1 = Kk+1νk+1  under both σ and ω when δk = 1.  Let  ¯ΩMσ  (˜e0) denote
+a loss function that is structurally similar to ΩMσ  (˜e0) but with diﬀerent parameters.
+Clearly, if ΩMσ  (˜e0) ≥ ΩMω  (˜e0), then  ¯ΩMσ  (˜e0) ≥  ¯ΩMω  (˜e0).  We can write∫
+
+                            N k+2 Ωk+1,Mσ         (Kk+1νk+1)
+                                    × pσ(νk+1|δk−1 = 0, δk = 1)dνk+1
+
+                           = ∫N  ¯ΩM−k−1σ          (Kk+1νk+1) p(νk+1)dνk+1
+
+                           ≥ ∫N  ¯ΩM−k−1ω          (Kk+1νk+1) p(νk+1)dνk+1
+
+                           = ∫N k+2 Ωk+1,Mω        (Kk+1νk+1)
+
+                                    × pω(νk+1|δk−1 = 0, δk = 1)dνk+1,
+where  in  the  equalities  we  used  the  facts  that  Ωk+1,Mσ        (˜e)  =  ¯ΩM−k−1σ          (˜e)  for  any
+Gaussian  vector  ˜e  and  a  suitable  selection  of  the  parameters  in  ¯ΩM−k−1σ          (˜e),  and
+that νk+1 is independent of δk, and the Fubini’s theorem; and in the inequality we
+used the hypothesis ΩM−k−1σ          (˜e) ≥ ΩM−k−1[ω          (˜e) for any Gaussian vector ˜e.  Therefore,⏐⏐⏐δk−1 = 0, δk = 1]
+                         Eσ   Ωk+1,Mσ        (˜ek+1)
+                                       [                  ⏐⏐⏐δk−1 = 0, δk = 1]
+                               ≥ Eω     Ωk+1,Mω        (˜ek+1)                    .
+
+This establishes that ΩMω  (˜e0) ≤ ΩMσ  (˜e0) and Φ(ω, ξ) ≤ Φ(σ, ξ).
+   In the  ﬁnal step,  we will conclude  global optimality  of the policy  proﬁle in the
+claim.  Consider the following loss function:[ ∑N                       ]
+
+                                  Ψ(ω, ξ) = E          k=0 θkδk + ςk     ,
+
+===== PDF PAGE 14 =====
+14   TOURAJ  SOLEYMANI, JOHN  S.  BARAS,  SANDRA  HIRCHE,  AND  KARL  H.  JOHANSSON
+
+for  any  ω  ∈  P  that  is  of  the  form  speciﬁed  in  the  third  step  and  for  ξ  that  was
+obtained  in  the  second  step.    Again  note  that  Ψ(ω, ξ)  is  equivalent  to  Φ(ω, ξ).
+Associated with Ψ(ω, ξ), we deﬁne the value function V ek (Iek) when ξ is given as[ ∑N⏐⏐⏐Iek]
+
+                           V ek (Iek) := min          t=k θtδt + ςt+1         ,
+                                         ω∈P E
+for  k  ∈  N[0,N]  with  initial  condition  V eN+1(IeN+1)  =  0  and  with  ıt  =  0  for  all
+t ∈ N[0,N].  Now, following a similar argument used in the proof of Theorem 1 in [3],
+we ﬁnd that the value function V ek (Iek) should obey{
+                 V ek (Iek) =    min       θkδk + (1 − δk)˜eTk ATk Γk+1Ak˜ek
+                               δk∈{0,1}
+                                          + tr(ATk Γk+1AkYk)
+                                                                                      }
+                                          + tr(Γk+1Wk) + E[V ek+1(Iek+1)|Iek]           ,
+for k ∈ N[0,N].  As a result, the minimizer is obtained by δ⋆k =1VoIk≥0, where
+                 VoIk = ˜eTk ATk Γk+1Ak˜ek − θk + E[V ek+1(Iek+1)|Iek, δk = 0]
+
+                           − E[V ek+1(Iek+1)|Iek, δk = 1].
+This certiﬁes that Φ(π⋆, µ⋆) ≤ Φ(ω, ξ), and completes the proof.                             □
+
+                                           4.  Conclusion
+   In this article, we characterized a globally optimal solution in the rate-regulation
+tradeoﬀ  for  multi-dimensional  Gauss–Markov  processes,  and  showed  that  such  a
+solution  consists  of  a  symmetric  threshold  triggering  policy  based  on  the  value
+of information and  a  certainty-equivalent control policy  based on  a  non-Gaussian
+linear estimator.  Besides, we provided a global optimality analysis for the value of
+information, and showed that it is globally optimal that the minimum mean-square-
+error state estimate at the event trigger or equivalently the estimation mismatch be
+transmitted to the controller only if the value of information becomes nonnegative.
+We  suggest  that  future  research  should  extend  the  framework  developed  in  this
+study to more complex classes of systems.
+
+                                              Appendix
+   In this section, we present a few lemmas that are used in our main analysis.  The
+next two lemmas characterize the optimal estimators at the event trigger and the
+controller.  For the proofs of these lemmas, see e.g., [23] and [3].
+Lemma 1.  The conditional mean E[xk|Iek] is the minimum mean-square-error es-
+timator at the event trigger, and obeys
+                     ˇxk+1 = Ak ˇxk + Bkuk
+(24)
+                               + Kk+1(yk+1 − Ck+1(Ak ˇxk + Bkuk)),
+
+(25)                 Yk+1 = ((AkYkATk  + Wk)−1 + CTk+1V −1k+1Ck+1)−1,
+for  k  ∈ N[0,N]  with  initial  conditions  ˇx0  = m0 + Y0CT0 V −10    (y0 − C0m0)  and  Y0  =
+(M −10    +CT0 V −10    C0)−1, where ˇxk = E[xk|Iek], Yk = cov[xk|Iek], and Kk = YkCTk V −1k    .
+
+===== PDF PAGE 15 =====
+         VALUE  OF  INFORMATION  IN  FEEDBACK  CONTROL:  GLOBAL  OPTIMALITY           15
+
+Lemma 2.  The conditional mean E[xk|Ick] is the minimum mean-square-error es-
+timator at the controller, and obeys
+(26)                        ˆxk+1 = Ak ˆxk + Bkuk + δkAk˜ek + (1 − δk)ık,
+for  k  ∈  N[0,N]  with  initial  condition  ˆx0  =  m0,  where  ˆxk  =  E[xk|Ick]  and  ık  =
+Ak E[ˆek|Ick, δk = 0].  In addition,  the conditional covariance  cov[xk|Ick] obeys
+                           Zk+1 = AkZkATk  + Wk
+(27)
+                                         − δkAk(Zk − Yk)ATk  − (1 − δk)Ξk,
+for  k  ∈  N[0,N]  with  initial  condition  Z0  =  M0,  where  Zk  =  cov[xk|Ick]  and  Ξk  =
+Ak(Zk − cov[ˆek|Ick, δk = 0])ATk .
+   Moreover,  the  next  two  lemmas  are  pertaining  to  symmetric  decreasing  rear-
+rangements of non-negative functions.  For the proofs of these lemmas, see e.g., [24]
+and [25].
+Lemma  3  (Hardy-Littlewood inequality).  Let  f  and  g  be  non-negative  functions
+deﬁned on Rn  that vanish at inﬁnity.  Then,
+(28)                            ∫
+                                  Rn f(x)g(x)dx ≤ ∫Rn f ∗(x)g∗(x)dx.
+
+Lemma  4.  Let  B(r) ⊆ Rn  be  a  ball  of  radius  r  centered at  the  origin,  and  f  and
+g  be non-negative functions deﬁned on Rn  that vanish at inﬁnity and obey∫
+(29)                                  B(r) f ∗(x)dx ≤ ∫B(r) g∗(x)dx,
+for all r ≥ 0.  Then,    ∫
+(30)                            B(r) h(x)f ∗(x)dx ≤ ∫B(r) h(x)g∗(x)dx,
+for any symmetric non-increasing function h.
+
+                                                 References
+
+ [1]  J. Wu, Q.-S. Jia, K. H. Johansson, and L. Shi, “Event-based sensor data scheduling:  Trade-oﬀ
+     between  communication  rate  and  estimation  quality,”  IEEE  Trans.  on  Automatic  Control,
+     vol. 58, no. 4, pp. 1041–1046,  2013.
+ [2]  C.  Ramesh,  H.  Sandberg,  and  K.  H.  Johansson,  “Design  of  state-based  schedulers  for  a
+     network of control loops,” IEEE Trans. on Automatic Control, vol. 58, no. 8, pp. 1962–1975,
+     2013.
+ [3]  T. Soleymani,  J.  S.  Baras,  and  S.  Hirche,  “Value  of  information in feedback  control:  Quan-
+     tiﬁcation,” IEEE  Trans.  on  Automatic  Control,  2021.
+ [4]  O. C. Imer and T. Ba¸sar, “Optimal estimation with limited measurements,” Intl.  Journal  of
+     Systems,  Control  and  Communications,  vol. 2, no. 1-3, pp. 5–29,  2010.
+ [5]  G.  M.  Lipsa  and  N.  C.  Martins,  “Remote  state  estimation  with  communication  costs  for
+     ﬁrst-order LTI systems,” IEEE  Trans.  on  Automatic  Control,  vol. 56,  no. 9, pp. 2013–2025,
+     2011.
+ [6]  A.  Molin  and  S.  Hirche,  “Event-triggered  state  estimation:  An  iterative  algorithm  and  op-
+     timality  properties,”  IEEE  Trans.  on  Automatic  Control,  vol.  62,  no.  11,  pp.  5939–5946,
+     2017.
+ [7]  J. Chakravorty and A. Mahajan, “Fundamental limits of remote estimation of autoregressive
+     Markov  processes  under  communication  constraints,”  IEEE  Trans.  on  Automatic  Control,
+     vol. 62, no. 3, pp. 1109–1124,  2016.
+ [8]  M. Rabi, G. V. Moustakides, and J. S. Baras, “Adaptive sampling for linear state estimation,”
+     SIAM  Journal  on  Control  and  Optimization, vol. 50, no. 2, pp. 672–702,  2012.
+
+===== PDF PAGE 16 =====
+16   TOURAJ  SOLEYMANI, JOHN  S.  BARAS,  SANDRA  HIRCHE,  AND  KARL  H.  JOHANSSON
+
+
+ [9]  N. Guo and V. Kostina, “Optimal causal rate-constrained sampling for a class of continuous
+      Markov  processes,”  IEEE  Trans.  on  Information  Theory,  vol.  67,  no.  12,  pp.  7876–7890,
+      2021.
+[10]  J. Sijs and M. Lazar, “Event based state estimation with time synchronous  updates,” IEEE
+      Trans.  on  Automatic  Control, vol. 57, no. 10, pp. 2650–2655,  2012.
+[11]  L. He, J. Chen, and Y. Qi, “Event-based state estimation:  Optimal algorithm with generalized
+      closed skew normal distribution,” IEEE Trans. on Automatic Control, vol. 64, no. 1, pp. 321–
+      328, 2018.
+[12]  D. Han,  Y.  Mo,  J.  Wu,  S.  Weerakkody,  B.  Sinopoli,  and  L.  Shi,  “Stochastic  event-triggered
+      sensor  schedule  for  remote  state  estimation,”  IEEE  Trans.  on  Automatic  Control,  vol.  60,
+      no. 10, pp. 2661–2675,  2015.
+[13]  A. Molin and S. Hirche, “On the optimality of certainty equivalence for event-triggered control
+      systems,” IEEE  Trans.  on  Automatic  Control,  vol. 58, no. 2, pp. 470–474,  2013.
+[14]  B.  Demirel,  A.  S.  Leong,  V.  Gupta,  and  D.  E.  Quevedo,  “Tradeoﬀs  in  stochastic  event-
+      triggered control,” IEEE  Trans.  on  Automatic  Control, vol. 64, no. 6, pp. 2567–2574,  2018.
+[15]  A. S. Leong, S. Dey, and D. E. Quevedo, “Sensor scheduling in variance based event triggered
+      estimation with packet drops,” IEEE Trans.  on Automatic  Control, vol. 62, no. 4, pp. 1880–
+      1895, 2017.
+[16]  A. S. Leong, S. Dey, and D. E. Quevedo, “Transmission scheduling for remote state estimation
+      and control with an energy harvesting sensor,” Automatica,  vol. 91, pp. 54–60,  2018.
+[17]  H.  J.  Kushner,  “On  the  optimum  timing  of  observations  for  linear  control  systems  with
+      unknown initial state,” IEEE  Trans. on  Automatic  Control, vol. 9, no. 2, pp. 144–150, 1964.
+[18]  A.  S.  Leong,  D.  E.  Quevedo,  T.  Tanaka,  S.  Dey,  and  A.  Ahl´en,  “Event-based  transmission
+      scheduling  and  LQG  control  over  a  packet  dropping  link,”  Proc.  IFAC  World  Congress,
+      vol. 50, no. 1, pp. 8945–8950,  2017.
+[19]  H. Witsenhausen, “On the structure of real-time source coders,” Bell System Technical Jour-
+      nal, vol. 58, no. 6, pp. 1437–1451,  1979.
+[20]  J.  Walrand  and  P.  Varaiya,  “Optimal  causal  coding-decoding  problems,”  IEEE  Trans.  on
+      Information  Theory, vol. 29, no. 6, pp. 814–820,  1983.
+[21]  V.  S.  Borkar,  S.  K.  Mitter,  and  S.  Tatikonda,  “Optimal  sequential  vector  quantization  of
+      Markov  sources,”  SIAM  journal  on  control  and  optimization,  vol.  40,  no.  1,  pp.  135–148,
+      2001.
+[22]  S.  Y¨uksel,  “Jointly  optimal  LQG  quantization  and  control  policies  for  multi-dimensional
+      systems,” IEEE  Trans.  on  Automatic  Control,  vol. 59, no. 6, pp. 1612–1617,  2013.
+[23]  R. F. Stengel, Optimal  Control  and  Estimation. Courier Corporation, 1994.
+[24]  F. Brock, “A general rearrangement inequality `a la Hardy–Littlewood,” Journal  of  Inequali-
+      ties and  Applications,  vol. 2000, no. 4, pp. 309–320,  2000.
+[25]  A.  Alvino,  P.  L.  Lions,  and  G.  Trombetti,  “Comparison  results  for  elliptic  and  parabolic
+      equations  via  symmetrization:  a  new  approach,”  Diﬀerential  and  Integral  equations,  vol.  4,
+      no. 1, pp. 25–50,  1991.

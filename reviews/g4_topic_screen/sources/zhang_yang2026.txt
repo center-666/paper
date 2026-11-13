@@ -1,0 +1,1000 @@
+===== PDF PAGE 1 =====
+                                                     Journal of the Franklin Institute 363 (2026) 108914
+
+
+                                                           Contents lists available at ScienceDirect
+
+                                                Journal of the Franklin Institute
+
+
+                                                     journal homepage: www.elsevier.com/locate/fi
+
+
+Distributed secure state estimation for cyber-physical systems: A
+residual-exchanging approach under FDI attacks
+Xin-Yu Zhanga, Guang-Hong Yanga,b,∗
+
+
+aCollege of Information Science and Engineering, Northeastern University, Shenyang, 110819, China
+bState Key Laboratory of Synthetical Automation of Process Industries, Northeastern University, Shenyang, 110819, China
+
+
+a  r  t  i  c  l  e   i  n  f  o                         a  b  s  t  r  a  c  t
+
+Keywords:                                                This paper investigates the secure state estimation problem for cyber-physical systems monitored
+Cyber-physical systems                                   by sensor networks subject to false data injection attacks. First, local residuals are constructed
+Distributed state estimation                             at each sensor using local measurements and estimates and then exchanged among neighboring
+False data injection attacks                             nodes. Second, the 𝜒2 detectors are deployed for each node to verify the integrity of received
+Security                                                 residuals. Subsequently, a distributed estimation scheme is proposed, where the estimation pro-
+
+                                                         cess integrates local measurements and veriﬁed residuals received from neighbors. The detection
+                                                         performance is analyzed across two attack scenarios, characterized by the knowledge of the at-
+                                                         tacker. Moreover, it is proved that the estimation error is mean-square bounded under a closed-
+                                                         loop Lyapunov stability condition. Diﬀerent from existing distributed estimation methods that
+                                                         rely on exchanging estimates, the proposed method reduces communication overhead without
+                                                         introducing potential vulnerabilities. Numerical simulations demonstrate the eﬀectiveness and
+                                                         enhanced resilience of the proposed method.
+
+
+
+
+1.  Introduction
+
+    Over the past decade, research on cyber-physical systems (CPSs) has received increasing attention [1–3]. These systems are becom-
+ing more common in all areas of modern society, including smart grids, robotics, and intelligent transportation systems. However, due
+to the open connectivity of communication networks, CPSs are often vulnerable to cyber-attacks [4–6]. Since high-precision feedback
+control fundamentally hinges on the accuracy of sensed information, the integrity of measurement data and the subsequent state
+estimation process essentially dictate the overall system reliability. Once the estimation accuracy is compromised, the operation of
+CPSs can be severely disrupted by such malicious attacks. This motivates the study of secure state estimation against cyber-attacks.
+    Among various cyber-attacks, denial-of-service (DoS) attacks and false data injection (FDI) attacks are two widely studied classes.
+The former blocks information exchange, aiming to exhaust the communication resources of the system [7,8]. In response to DoS
+attacks and to ensure the normal operation of the system, various secure control and scheduling methods were developed [9–11].
+Diﬀerent from DoS attacks, FDI attacks can compromise the integrity of the data and then degrade the accuracy of state estimation
+results [12–14]. Moreover, by employing meticulously designed attack vectors, FDI attacks can inject erroneous data that circumvents
+bad data detection mechanisms. This makes the design of secure state estimation schemes against FDI attacks particularly crucial.
+    The existing research on secure state estimation against FDI attacks adopts two perspectives: attacker and defender. From the
+perspective of the attacker, various problems have been investigated, such as identifying vulnerabilities and attack design [15,16].
+From the perspective of the defender, some problems, such as resilience estimation and attack detection, have been studied [17].
+
+
+
+  ∗  Corresponding author.
+      E-mail addresses: neu_zhangxinyu@163.com (X.-Y. Zhang), yangguanghong@ise.neu.edu.cn (G.-H. Yang).
+
+https://doi.org/10.1016/j.jfranklin.2026.108914
+Received 17 March 2026; Received in revised form 12 May 2026; Accepted 14 July 2026
+Available online 15 July 2026
+0016-0032/© 2026 The Franklin Institute. Published by Elsevier Inc. All rights are reserved, including those for text and data mining, AI training,
+and similar technologies.
+
+===== PDF PAGE 2 =====
+X.-Y. Zhang and G.-H. Yang                                                                                        Journal of the Franklin Institute 363 (2026) 108914
+
+However, these results primarily focus on centralized frameworks, which may become computationally ineﬃcient and less scalable
+as the system scale grows and the sensor population increases [18,19]. Speciﬁcally, the centralized processing center often faces a
+communication and computation bottleneck, necessitating the transition to distributed estimation. In distributed cases, sensors can
+only rely on local information from neighboring nodes. Furthermore, limited computational and communication resources coupled
+with sparse communication links make secure estimation strategies under distributed frameworks more challenging.
+    In the ﬁeld of distributed secure state estimation against FDI attacks, conventional research often prioritizes resilient estimation
+[20]. These schemes typically use robust gain design or nonlinear weighting strategies to suppress the inﬂuence of malicious data
+and keep estimation errors within a controllable range by limiting the impact of compromised information on the fusion process.
+However, such passive resilience often comes at the cost of estimation precision, driving the need for active detection-based strategies
+that can identify and isolate malicious data. To enhance the resilience of consensus-based distributed estimation against FDI attacks, a
+localized protection mechanism leveraging online innovation sequences was introduced in [21]. However, an attacker can circumvent
+this defense by manipulating the estimate alone while keeping the transmitted innovation unchanged. To counter stealthy attacks
+that independently manipulate estimates and innovations, [22] introduces a novel 𝜒2-like detection mechanism designed to monitor
+both signals simultaneously. Notably, their scheme requires the dual transmission of innovations for detection and local estimates for
+consensus-based fusion. However, the dual transmission of these signals increases the communication burden and complicates the
+fusion process in heterogeneous networks, posing scalability challenges for large-scale applications. An alternative strategy involves
+constructing a local residual using the received estimates and performing FDI attack detection, thereby mitigating the vulnerabilities
+associated with transmitting both residuals and estimates [23,24]. However, the authors in [25] revealed that an attacker can bypass
+the detector and degrade state estimation performance when using the aforementioned local residual construction method. Speciﬁ-
+cally, this vulnerability emerges for a rank-deﬁcient measurement matrix, i.e., when the measurement dimension is smaller than the
+state dimension. In practical distributed architectures, a rank-deﬁcient measurement matrix is common due to sensors not being able
+to always capture the full state vector [26]. In light of the unresolved security vulnerabilities, the conventional approach of trans-
+mitting state estimates in existing methods has been reassessed. Since residuals are directly related to measurement inconsistencies,
+they are more suitable for integrity veriﬁcation than state estimates.
+    This paper proposes a distributed secure estimation scheme against FDI attacks by exchanging residuals instead of estimates. Since
+neighboring sensors may generate dimension-mismatched residuals [27], a regularization mapping is introduced for the fusion. The
+contributions of this paper are summarized as follows.
+
+1.  In contrast to the existing estimates-exchanging distributed secure estimation scheme [21–24], a residual-exchanging scheme is
+    introduced. By deploying standard 𝜒2 detectors to verify the integrity of these residuals directly, the proposed scheme signiﬁcantly
+    reduces communication bandwidth requirements.
+2.  A distributed estimator is proposed that integrates the regularized mapping mechanism to fuse the residuals received from neigh-
+    boring sensor nodes. It is proved that the estimation error is mean-square bounded under a closed-loop Lyapunov stability condi-
+    tion.
+3.  For attackers without real-time residual access, it is shown that any nonzero independent bias increases the expected detection
+    statistic. For attackers with real-time residual access, a dynamic watermarking mechanism is introduced to reveal a representative
+    reﬂection-type stealthy attack.
+
+    The remainder of this paper is organized as follows. Section 2 presents the system model and formulates the problem. In Section 3,
+a distributed estimator is proposed, and the boundedness of the state estimation error is analyzed. Section 4 investigates the security
+of the proposed distributed estimator. An illustrative example based on a constant velocity model is presented in Section 5, and
+Section 6 concludes the paper.
+    Notations: ℕ denotes the set of positive integers. ℝ𝑛 is the Euclidean space of 𝑛 dimensions. 𝔼(⋅) is the mathematical expectation.
+ (𝑥, 𝑌 ) denotes a Gaussian distribution with mean 𝑥 and covariance 𝑌                . ‖⋅‖ is the Euclidean norm for vectors or matrices. 𝑋 ⪰ 0 (𝑋 ≻ 0)
+denotes a positive semideﬁnite (positive deﬁnite) matrix. Tr(⋅) is the trace of a matrix. 𝑋𝑇                       denotes the transpose of 𝑋. rank(𝑋) is
+the rank of 𝑋. 𝐼𝑛 denotes the identity matrix of size 𝑛. ⊗ is the Kronecker product. blkdiag(𝑋1, … , 𝑋𝑁) denotes a block diagonal
+matrix where the 𝑖th block is 𝑋𝑖. The vectors 𝟏 and 𝟎 consist of all elements equal to 1 and 0, respectively. The cardinality of a set 𝕊
+is denoted by |𝕊|. ∅ denotes the empty set.
+
+2.  Problem statement
+
+2.1.  System description
+
+    The communication topology is modeled as a directed graph  = ( ,).   = {1, … , 𝑁} is the set of vertices representing the
+sensors, and  ⊆  ×  is the set of edges. Self-loops are excluded throughout this paper. A directed graph is said to be strongly
+connected if there exists a directed path between every pair of nodes, where a directed path is a sequence of vertices connected by
+directed edges, each pointing from one vertex to the next. The set of in-neighbors of node 𝑖 is deﬁned as 𝑖 ≜ {𝑗 ∈   ∶ (𝑗, 𝑖) ∈ }.
+Let 𝑑𝑖 ≜ |𝑖| and 𝑑max ≜ max𝑖∈ 𝑑𝑖. The adjacency matrix of  is denoted by 𝔸 = [𝑎𝑖𝑗], where 𝑎𝑖𝑗 = 1 if (𝑗, 𝑖) ∈  and 𝑎𝑖𝑗 = 0 otherwise.
+The corresponding in-degree matrix is  = diag(𝑑1, … , 𝑑𝑁), and the Laplacian matrix is deﬁned as  =  − 𝔸.
+    Consider a class of linear discrete-time systems with dynamics given by
+
+        𝑥𝑘+1 = 𝐴𝑥𝑘 + 𝑤𝑘                                                                                                                                        (1a)
+
+                                                                                 2
+
+===== PDF PAGE 3 =====
+X.-Y. Zhang and G.-H. Yang                                                                                        Journal of the Franklin Institute 363 (2026) 108914
+
+         𝑦𝑖,𝑘 = 𝐻𝑖𝑥𝑘 + 𝑣𝑖,𝑘,                                                                                                                                   (1b)
+
+where 𝑘 ∈ ℕ is the time step, 𝑥𝑘 ∈ ℝ𝑛 denotes the system state, 𝑤𝑘 ∈ ℝ𝑛 is the zero-mean process noise with covariance matrix 𝑄 ⪰ 0,
+and 𝐴 ∈ ℝ𝑛×𝑛 denotes the state transition matrix. Let 𝑁 ∈ ℕ denote the number of sensors. For each node 𝑖 ∈ {1, 2, … , 𝑁}, 𝑦𝑖,𝑘 ∈ ℝ𝑚𝑖
+denotes the measurement output, 𝐻𝑖 ∈ ℝ𝑚𝑖×𝑛 is the measurement matrix, and 𝑣𝑖,𝑘 ∈ ℝ𝑚𝑖 is the zero-mean measurement noise with
+covariance matrix 𝑅𝑖 ≻ 0. The initial state 𝑥0 follows a Gaussian distribution. 𝑥0 ∼  (0, Σ𝑥0), where Σ𝑥0 ⪰ 0 is a positive semideﬁnite
+covariance matrix. The process noise {𝑤𝑘}𝑘≥0 and measurement noises {𝑣𝑖,𝑘}𝑘≥0 are zero-mean white sequences with covariances
+𝑄 ⪰ 0 and 𝑅𝑖 ≻ 0, respectively. They are mutually independent across time and sensors, and are independent of ]𝑇                                 𝑥0. In addition,
+deﬁne 𝐻 ≜ [𝐻𝑇1 , … , 𝐻𝑇𝑁         . The following assumptions are made.
+
+Assumption 1  (see [18]).  The pair (𝐴, √𝑄) is controllable, and the pair (𝐴, 𝐻) is collectively observable.
+
+Assumption 2  (see [21]).  The communication graph  is strongly connected.
+
+2.2.  Distributed estimator model
+
+    The residual represents the diﬀerence between the actual measurements and the predictions based on the model, and under normal
+conditions, it usually appears as white noise with a zero mean [5]. However, when faults or attacks occur, this residual undergoes
+noticeable changes in its statistical behavior, which is then used as a key indicator for triggering alarms.
+    The residual for the 𝑖th sensor is deﬁned as
+        𝑧𝑖,𝑘 ≜ 𝑦𝑖,𝑘 − 𝐻𝑖 ̂𝑥𝑖,𝑘,                                                                                                                                 (2)
+
+where ̂𝑥𝑖,𝑘 denotes the local one-step prediction available before processing 𝑦𝑖,𝑘.
+    Since the measurement dimensions 𝑚𝑖 may vary across sensors, the residuals {𝑧𝑖,𝑘} generally belong to diﬀerent Euclidean spaces
+and hence cannot be fused directly. To address this issue, introduce the regularized mapping matrix
+
+        Ξ𝑖 = (𝐻𝑇𝑖  𝐻𝑖 + 𝜖𝑖𝐼𝑛)−1𝐻𝑇𝑖  ,                                                                                                                           (3)
+
+where 𝜖𝑖 > 0 is a scalar regularization parameter.
+
+Remark 1.  Since 𝐻𝑇𝑖  𝐻𝑖 + 𝜖𝑖𝐼𝑛 ≻ 0 for any 𝜖𝑖 > 0, the matrix Ξ𝑖 is well deﬁned even when 𝐻𝑖 is rank deﬁcient or 𝑚𝑖 < 𝑛. Therefore,
+the mapped residual Ξ𝑖𝑧𝑖,𝑘 always lies in the common state space ℝ𝑛, which makes the fusion of heterogeneous residuals feasible. The
+choice of 𝜖𝑖 balances numerical conditioning and mapping bias.
+
+    Based on the mapped residuals, the distributed estimator is described by
+        ̂𝑥𝑖,𝑘+1 = 𝐴 ̂𝑥𝑖,𝑘 + 𝐾𝑖,𝑘𝑧𝑖,𝑘 + 𝜏𝐴 ∑      (Ξ𝑖𝑧𝑖,𝑘 − Ξ𝑗𝑧𝑗,𝑘),                                                                                             (4)
+
+                                           𝑗∈𝑖
+where 𝐾𝑖,𝑘 ∈ ℝ𝑛×𝑚𝑖 is the estimator gain to be designed, and 𝜏 ∈ (0, 1∕𝑑max) is the consensus parameter.
+
+Remark 2. Under the nominal Gaussian-noise model and steady-state operation, the local residuals are zero-mean Gaussian with well-
+deﬁned covariance, which makes covariance-normalized residuals suitable for 𝜒2-based anomaly detection. Since 𝑧𝑖,𝑘 = 𝐻𝑖𝑒𝑖,𝑘 + 𝑣𝑖,𝑘,
+the residual also carries information about the local estimation error and can be used for estimator correction. Moreover, when 𝑚𝑖 < 𝑛,
+exchanging residuals instead of full state estimates reduces the communication bandwidth.
+
+2.3.  Attack model
+
+    In an adversarial environment, the potential attacks may compromise the data communication links between sensor nodes. Such
+erroneous data can disrupt the estimation process of the sensors. Consider the information exchange between nodes 𝑖 and 𝑗, where
+an attacker manipulates the residual signal during transmission. At node 𝑖, the received neighboring residual can be described as
+follows:
+
+        𝑧𝑎𝑗,𝑘 = 𝑧𝑗,𝑘 + 𝛽𝑖𝑗,𝑘,                                                                                                                                   (5)
+where 𝑧𝑎𝑗,𝑘 denotes the compromised residual, and 𝛽𝑖𝑗,𝑘 is the attack vector.
+    Following [21,22], two attacker knowledge patterns are considered in Section 4: 1) The attacker has real-time access to the
+transmitted residuals and can construct sophisticated stealthy signals. 2) The attacker has no such real-time access and can only
+inject bias-type perturbations.
+    To evaluate the authenticity of the received residuals, each node is equipped with a standard 𝜒2 detector, as follows:
+
+                    𝑘∑                    ℍ0≶
+        𝐽𝑖𝑗,𝑘 =          (𝑧𝑎𝑗,𝑡)𝑇 Ω−1𝑗  𝑧𝑎𝑗,𝑡𝜈,                                                                                                                 (6)
+                𝑡=𝑘−𝐿+1                   ℍ1
+
+where 𝐽𝑖𝑗,𝑘 is the detection statistic, Ω𝑗 is the steady-state covariance matrix of 𝑧𝑗,𝑘, 𝐿 denotes the window size of detection, 𝜈
+denotes the detection threshold, and ℍ0 and ℍ1 correspond to the hypotheses that the received information is normal and abnormal,
+respectively.
+
+                                                                                 3
+
+===== PDF PAGE 4 =====
+X.-Y. Zhang and G.-H. Yang                                                                                            Journal of the Franklin Institute 363 (2026) 108914
+
+    According to the detector decision, deﬁne the binary acceptance variable
+                 {1,    𝐽 auth
+        𝛾𝑖𝑗,𝑘 =           𝑖𝑗,𝑘  ≤ 𝜈,
+                    0,    𝐽 auth𝑖𝑗,𝑘  > 𝜈,
+
+where 𝐽 auth𝑖𝑗,𝑘  = 𝐽𝑖𝑗,𝑘 for the standard residual detector, and 𝐽 auth𝑖𝑗,𝑘  =  ̃𝐽 𝑎𝑖𝑗,𝑘 for the watermarking-based detector. Here, 𝛾𝑖𝑗,𝑘 = 1 means
+that the received residual from node 𝑗 is accepted by node 𝑖, and 𝛾𝑖𝑗,𝑘 = 0 means that it is discarded. Then the secure residual-fusion
+estimator can be written as
+                                                       (                   )
+         ̂𝑥𝑖,𝑘+1 = 𝐴 ̂𝑥𝑖,𝑘 + 𝐾𝑖,𝑘𝑧𝑖,𝑘 + 𝜏𝐴 ∑      𝛾𝑖𝑗,𝑘 Ξ𝑖𝑧𝑖,𝑘 − Ξ𝑗𝑧auth𝑗,𝑘  ,                                                                                       (7)
+                                            𝑗∈𝑖
+
+where 𝑧auth𝑗,𝑘   = 𝑧𝑎𝑗,𝑘 for the standard residual detector, and 𝑧auth𝑗,𝑘   = ̃𝑧𝑎𝑗,𝑘 for the watermarking-based detector. In the nominal attack-free
+case, 𝛾𝑖𝑗,𝑘 = 1 and 𝑧auth𝑗,𝑘   = 𝑧𝑗,𝑘, and thus (7) reduces to the nominal estimator (4).
+
+2.4.  Problem of interest
+
+    This paper aims to develop a secure distributed estimation scheme for CPSs against FDI attacks. Speciﬁcally, attack detection is
+performed by leveraging the statistical properties of the exchanged residuals, followed by the use of authenticated residuals for state
+estimation.
+    The problems addressed in this paper are formulated as follows.
+
+1.  Develop a distributed estimator that fuses local residuals and veriﬁed neighboring residuals, and derive the optimal gain 𝐾⋆𝑖,𝑘 by
+    minimizing the trace of the local estimation error covariance.
+2.  Analyze the security performance of the proposed scheme and analyze the expected detection statistic under two attacker knowl-
+    edge patterns.
+
+3.  Distributed estimator design and convergence analysis
+
+    This section focuses on the synthesis of the optimal estimator gain and provides a rigorous analysis of the resulting error dynamics,
+establishing the mean-square boundedness of the estimation error. This forms the basis for the security analysis presented in the next
+section.
+
+3.1.  Optimal estimator gain
+
+    For each node, the estimation error is deﬁned as follows:
+
+        𝑒𝑖,𝑘 ≜ 𝑥𝑘 − ̂𝑥𝑖,𝑘.                                                                                                                                           (8)
+
+Using (1a) and (4), the dynamics of the estimation error can be computed as follows:
+        𝑒𝑖,𝑘+1 = (𝐴 − 𝐾𝑖,𝑘𝐻𝑖)𝑒𝑖,𝑘 + 𝑤𝑘 − 𝐾𝑖,𝑘𝑣𝑖,𝑘 − 𝜏𝐴 ∑(𝑀𝑖𝑒𝑖,𝑘 − 𝑀𝑙𝑒𝑙,𝑘 + Ξ𝑖𝑣𝑖,𝑘 − Ξ𝑙𝑣𝑙,𝑘),                                                                         (9)
+
+                                                                𝑙∈𝑖
+where
+
+        𝑀𝑖 ≜ Ξ𝑖𝐻𝑖 = (𝐻𝑇𝑖  𝐻𝑖 + 𝜖𝑖𝐼𝑛)−1𝐻𝑇𝑖  𝐻𝑖 ∈ ℝ𝑛×𝑛.                                                                                                              (10)
+
+For node 𝑖, deﬁne the local estimation error covariance matrix as
+
+        𝑃𝑖,𝑘 ≜ 𝔼[𝑒𝑖,𝑘𝑒𝑇𝑖,𝑘].                                                                                                                                       (11)
+
+Then, the local covariance recursion is
+
+        𝑃𝑖,𝑘+1 = 𝐶𝑖,𝑘𝑃𝑖,𝑘𝐶𝑇𝑖,𝑘 + 𝑄
+                   − 𝜏𝐶𝑖,𝑘   ∑   (𝑃𝑖,𝑘𝑀𝑇                 )𝐴𝑇
+                                          𝑖   − 𝑃𝑖𝑙,𝑘𝑀𝑇𝑙
+                            𝑙∈𝑖
+                   − 𝜏𝐴 ∑      (𝑀𝑖𝑃𝑖,𝑘 − 𝑀𝑙𝑃𝑙𝑖,𝑘)𝐶𝑇
+                                                        𝑖,𝑘
+                          𝑙∈𝑖
+                                  ∑   (                                                                 )
+                   + 𝜏2𝐴 ∑              𝑀𝑖𝑃𝑖,𝑘𝑀𝑇𝑖   − 𝑀𝑖𝑃𝑖𝑞,𝑘𝑀𝑇𝑞  − 𝑀𝑙𝑃𝑙𝑖,𝑘𝑀𝑇𝑖   + 𝑀𝑙𝑃𝑙𝑞,𝑘𝑀𝑇𝑞             𝐴𝑇
+                           𝑙∈𝑖  𝑞∈𝑖
+                   + 𝜏𝑑𝑖𝐾𝑖,𝑘𝑅𝑖Ξ𝑇𝑖 𝐴𝑇  + 𝜏𝑑𝑖𝐴Ξ𝑖𝑅𝑖𝐾𝑇𝑖,𝑘 + 𝐾𝑖,𝑘𝑅𝑖𝐾𝑇𝑖,𝑘
+                           (                               )
+                   + 𝜏2𝐴    𝑑2𝑖 Ξ𝑖𝑅𝑖Ξ𝑇𝑖  + ∑     Ξ𝑙𝑅𝑙Ξ𝑇𝑙     𝐴𝑇 ,                                                                                                  (12)
+                                            𝑙∈𝑖
+
+                                                                                   4
+
+===== PDF PAGE 5 =====
+X.-Y. Zhang and G.-H. Yang                                                                                           Journal of the Franklin Institute 363 (2026) 108914
+
+where 𝐶𝑖,𝑘 ∈ ℝ𝑛×𝑛 is deﬁned as 𝐶𝑖,𝑘 ≜ 𝐴 − 𝐾𝑖,𝑘𝐻𝑖, and 𝑑𝑖 = |𝑖|. Moreover, the matrix 𝑃𝑖𝑗,𝑘 in (12) is the cross state estimation error
+covariance matrix between nodes 𝑖 and 𝑗, deﬁned as
+
+        𝑃𝑖𝑗,𝑘 ≜ 𝔼[𝑒𝑖,𝑘𝑒𝑇𝑗,𝑘].                                                                                                                                      (13)
+Next, the optimal estimator gain is derived in the following theorem.
+
+Theorem 1.  For the system (1) and the distributed estimator (4), the one-step optimal estimator gain that minimizes Tr(𝑃𝑖,𝑘+1) for node 𝑖 is
+given by
+                   {[                 (𝑀𝑖𝑃𝑖,𝑘 − 𝑀𝑙𝑃𝑙𝑖,𝑘)]                      }
+        𝐾⋆𝑖,𝑘 = 𝐴      𝑃𝑖,𝑘 − 𝜏 ∑                             𝐻𝑇𝑖   − 𝜏𝑑𝑖Ξ𝑖𝑅𝑖     Ω−1𝑖,𝑘,                                                                          (14)
+                                 𝑙∈𝑖
+        Ω𝑖,𝑘 ≜ 𝐻𝑖𝑃𝑖,𝑘𝐻𝑇𝑖  +𝑅𝑖,        𝑖 = 1, 2, … , 𝑁.
+
+Proof.  From (12), the gradient of Tr(𝑃𝑖,𝑘+1) with respect to 𝐾𝑖,𝑘 is derived as
+         𝜕 Tr(𝑃𝑖,𝑘+1)
+            𝜕𝐾𝑖,𝑘       =  − 2𝐴𝑃𝑖,𝑘𝐻𝑇𝑖   + 2𝐾𝑖,𝑘𝐻𝑖𝑃𝑖,𝑘𝐻𝑇𝑖   + 2𝐾𝑖,𝑘𝑅𝑖
+                           + 2𝜏𝐴 ∑      (𝑀𝑖𝑃𝑖,𝑘 − 𝑀𝑙𝑃𝑙𝑖,𝑘)𝐻𝑇                                                                                                       (15)
+                                                                 𝑖   + 2𝜏𝑑𝑖𝐴Ξ𝑖𝑅𝑖.
+                                   𝑙∈𝑖
+Setting the gradient to zero yields
+        𝐾𝑖,𝑘(𝐻𝑖𝑃𝑖,𝑘𝐻𝑇            ) = 𝐴𝑃𝑖,𝑘𝐻𝑇                 (𝑀𝑖𝑃𝑖,𝑘 − 𝑀𝑙𝑃𝑙𝑖,𝑘)𝐻𝑇                                                                                  (16)
+                        𝑖   + 𝑅𝑖               𝑖   − 𝜏𝐴 ∑                             𝑖   − 𝜏𝑑𝑖𝐴Ξ𝑖𝑅𝑖.
+                                                        𝑙∈𝑖
+
+Since 𝑃𝑖,𝑘 ⪰ 0, one has 𝐻𝑖𝑃𝑖,𝑘𝐻𝑇𝑖   ⪰ 0. Furthermore, since 𝑅𝑖 ≻ 0,
+        Ω𝑖,𝑘 = 𝐻𝑖𝑃𝑖,𝑘𝐻𝑇𝑖   + 𝑅𝑖 ≻ 0.
+
+Multiplying both sides of (16) by Ω−1𝑖,𝑘 on the right gives
+                 [                                                                  ]
+        𝐾𝑖,𝑘 =    𝐴𝑃𝑖,𝑘𝐻𝑇𝑖   − 𝜏𝐴 ∑       (𝑀𝑖𝑃𝑖,𝑘 − 𝑀𝑙𝑃𝑙𝑖,𝑘)𝐻𝑇𝑖   − 𝜏𝑑𝑖𝐴Ξ𝑖𝑅𝑖          Ω−1
+                                                                                        𝑖,𝑘
+                                     𝑙∈𝑖
+                   {[                 (𝑀𝑖𝑃𝑖,𝑘 − 𝑀𝑙𝑃𝑙𝑖,𝑘)]                      }
+              = 𝐴      𝑃𝑖,𝑘 − 𝜏 ∑                             𝐻𝑇𝑖   − 𝜏𝑑𝑖Ξ𝑖𝑅𝑖     Ω−1𝑖,𝑘,                                                                          (17)
+                                 𝑙∈𝑖
+which corresponds to (14). This completes the proof.
+
+    Solving for 𝐾𝑖,𝑘 relies on the cross error covariance matrix, as detailed below. For any distinct nodes 𝑖, 𝑗 ∈ , the cross state
+estimation error covariance matrix in (13) is updated as
+        𝑃𝑖𝑗,𝑘+1 = 𝐶𝑖,𝑘𝑃𝑖𝑗,𝑘𝐶𝑇𝑗,𝑘 + 𝑄 − 𝛿𝑖𝑗𝜏𝐾𝑖,𝑘𝑅𝑖Ξ𝑇𝑖 𝐴𝑇
+                    − 𝜏𝐶𝑖,𝑘   ∑    (𝑃𝑖𝑗,𝑘𝑀𝑇                 )𝐴𝑇
+                                            𝑗  − 𝑃𝑖𝑠,𝑘𝑀𝑇𝑠
+                             𝑠∈𝑗
+                    − 𝜏𝐴 ∑      (𝑀𝑖𝑃𝑖𝑗,𝑘 − 𝑀𝑙𝑃𝑙𝑗,𝑘)𝐶𝑇
+                                                          𝑗,𝑘
+                           𝑙∈𝑖
+                                   ∑   (                                                                  )
+                    + 𝜏2𝐴 ∑              𝑀𝑖𝑃𝑖𝑗,𝑘𝑀𝑇𝑗  − 𝑀𝑖𝑃𝑖𝑠,𝑘𝑀𝑇𝑠  − 𝑀𝑙𝑃𝑙𝑗,𝑘𝑀𝑇𝑗  + 𝑀𝑙𝑃𝑙𝑠,𝑘𝑀𝑇𝑠               𝐴𝑇
+                            𝑙∈𝑖  𝑠∈𝑗
+                    + 𝜏2𝐴  ∑       Ξ𝑟𝑅𝑟Ξ𝑇𝑟 𝐴𝑇  − 𝜚𝑖𝑗𝜏𝐴Ξ𝑗𝑅𝑗𝐾𝑇𝑗,𝑘
+                            𝑟∈𝑖𝑗
+                    − 𝛿𝑖𝑗𝜏2𝑑𝑖𝐴Ξ𝑖𝑅𝑖Ξ𝑇𝑖 𝐴𝑇  − 𝜚𝑖𝑗𝜏2𝑑𝑗𝐴Ξ𝑗𝑅𝑗Ξ𝑇𝑗 𝐴𝑇 ,                                                                                                   (18)
+where 𝑖𝑗 is deﬁned as 𝑖𝑗 = 𝑖 ∩ 𝑗. The variables 𝛿𝑖𝑗 and 𝜚𝑖𝑗 are binary indicators. Speciﬁcally, if 𝑖 ∈ 𝑗, then 𝛿𝑖𝑗 = 1; otherwise,
+𝛿𝑖𝑗 = 0. If 𝑗 ∈ 𝑖, then 𝜚𝑖𝑗 = 1; otherwise, 𝜚𝑖𝑗 = 0.
+
+3.2.  Convergence analysis
+
+    Deﬁne the stacked vectors and block-diagonal matrices as
+
+         𝑒𝑘 ≜ [𝑒𝑇1,𝑘, 𝑒𝑇2,𝑘, … , 𝑒𝑇𝑁,𝑘]𝑇 ,                                                                                                                         (19)
+         𝑣𝑘 ≜ [𝑣𝑇1,𝑘, 𝑣𝑇2,𝑘, … , 𝑣𝑇𝑁,𝑘]𝑇 ,                                                                                                                         (20)
+          Γ ≜ blkdiag(Ξ1, Ξ2, … , Ξ𝑁),                                                                                                                             (21)
+          𝑅 ≜ blkdiag(𝑅1, 𝑅2, … , 𝑅𝑁),                                                                                                                             (22)
+
+                                                                                   5
+
+===== PDF PAGE 6 =====
+X.-Y. Zhang and G.-H. Yang                                                                                           Journal of the Franklin Institute 363 (2026) 108914
+
+          ≜ blkdiag(𝐻1, 𝐻2, … , 𝐻𝑁),                                                                                                                             (23)
+         ≜ blkdiag(𝑀1, 𝑀2, … , 𝑀𝑁),                                                                                                                              (24)
+        𝑘 ≜ blkdiag(𝐾1,𝑘, 𝐾2,𝑘, … , 𝐾𝑁,𝑘).                                                                                                                       (25)
+
+Let
+
+         ≜ 𝐼𝑁 ⊗ 𝐴,        𝐺 ≜ 𝟏𝑁 ⊗ 𝐼𝑛.
+
+The following analysis is conducted for the nominal attack-free case in which all neighboring residuals are accepted by the detector.
+Then the stacked error dynamics can be written as
+
+        𝑒𝑘+1 = 𝐹𝑘𝑒𝑘 + 𝐺𝑤𝑘 + Υ𝑘𝑣𝑘,                                                                                                                                 (26)
+
+where
+
+        𝐹𝑘 ≜  − 𝑘 − 𝜏( ⊗ 𝐼𝑛),                                                                                                                               (27)
+
+and              (                        )
+
+        Υ𝑘 ≜ −     𝑘 + 𝜏( ⊗ 𝐼𝑛)Γ        .                                                                                                                      (28)
+
+To make the boundedness proof rigorous, the following closed-loop stability assumption is introduced.
+Assumption 3.  The gain sequence {𝑘}𝑘≥0 is bounded, and there exist matrices                           ̄𝑃  ≻ 0 and 𝑆 ≻ 0 such that
+
+        𝐹 𝑇𝑘  ̄𝑃 𝐹𝑘 −  ̄𝑃  ⪯ −𝑆,        ∀𝑘 ≥ 0.                                                                                                                   (29)
+
+Lemma 1.  Under Assumption 3, the noise-free error system 𝑒𝑘+1 = 𝐹𝑘𝑒𝑘 is uniformly exponentially stable.
+
+Proof.  Consider the Lyapunov function
+
+        𝑉𝑘 ≜ 𝑒𝑇𝑘  ̄𝑃 𝑒𝑘.
+
+From (29),
+
+        𝑉𝑘+1 − 𝑉𝑘 = 𝑒𝑇𝑘 (𝐹 𝑇𝑘  ̄𝑃 𝐹𝑘 −  ̄𝑃 )𝑒𝑘 ≤ −𝑒𝑇𝑘 𝑆𝑒𝑘.
+Moreover, since 𝐹 𝑇𝑘  ̄𝑃 𝐹𝑘 ⪰ 0 and 𝐹 𝑇𝑘  ̄𝑃 𝐹𝑘 ⪯  ̄𝑃 − 𝑆, it follows that         ̄𝑃 − 𝑆 ⪰ 0. Hence, 𝑆 ⪯  ̄𝑃. Let
+        𝜂 ≜ 𝜆min( ̄𝑃 −1∕2𝑆 ̄𝑃 −1∕2).
+
+Then 0 < 𝜂 ≤ 1 and 𝑆 ⪰ 𝜂 ̄𝑃       . Therefore,
+
+        𝑉𝑘+1 ≤ 𝑉𝑘 − 𝑒𝑇𝑘 𝑆𝑒𝑘 ≤ (1 − 𝜂)𝑉𝑘.
+
+Let 𝜌 ≜ 1 − 𝜂 ∈ [0, 1). By recursion,
+
+        𝑉𝑘 ≤ 𝜌𝑘𝑉0.
+
+Since
+
+        𝜆min( ̄𝑃 )‖𝑒𝑘‖2 ≤ 𝑉𝑘 ≤ 𝜆max( ̄𝑃 )‖𝑒𝑘‖2,
+
+one has          √
+
+        ‖𝑒𝑘‖ ≤       𝜆max( ̄𝑃 )
+                     𝜆min( ̄𝑃 ) 𝜌𝑘∕2‖𝑒0‖.
+Thus, the noise-free error system is uniformly exponentially stable.
+    We can now establish mean-square boundedness under stochastic disturbances.
+
+Theorem 2.  Under Assumption 3 and the stated noise assumptions, suppose that 𝔼[‖𝑒0‖2] < ∞. Then there exists a constant 𝜋 > 0 such that
+
+        sup                                                                                                                                                       (30)
+        𝑘≥0 𝔼[‖𝑒𝑘‖2] ≤ 𝜋.
+Proof.  Consider the Lyapunov function
+
+        𝑘 ≜ 𝑒𝑇𝑘  ̄𝑃 𝑒𝑘.
+
+Let ℱ𝑘 denote the information generated by the initial condition and all noises up to time 𝑘 − 1. The matrices 𝐹𝑘 and Υ𝑘 are deter-
+ministic or ℱ𝑘-measurable, while 𝑤𝑘 and 𝑣𝑘 are zero mean and independent of ℱ𝑘. From the stacked dynamics (26), we obtain
+
+        𝔼[𝑘+1 ∣ ℱ𝑘] = 𝑒𝑇𝑘 𝐹 𝑇𝑘  ̄𝑃 𝐹𝑘𝑒𝑘 + Tr(𝐺𝑇  ̄𝑃 𝐺𝑄) + Tr(Υ𝑇𝑘  ̄𝑃 Υ𝑘𝑅),
+
+where the cross terms vanish due to the zero-mean and independence properties of 𝑤𝑘 and 𝑣𝑘.
+
+                                                                                   6
+
+===== PDF PAGE 7 =====
+X.-Y. Zhang and G.-H. Yang                                                                                             Journal of the Franklin Institute 363 (2026) 108914
+
+    Since {𝑘} is bounded by Assumption 3, the sequence {Υ𝑘} is also bounded. Hence, there exists a constant 𝜗 > 0 such that
+
+        Tr(𝐺𝑇  ̄𝑃 𝐺𝑄) + Tr(Υ𝑇𝑘  ̄𝑃 Υ𝑘𝑅) ≤ 𝜗,        ∀𝑘 ≥ 0.
+
+Using (29) and the deﬁnition of 𝜌 in Lemma 1, we obtain
+
+        𝔼[𝑘+1 ∣ ℱ𝑘] ≤ 𝜌𝑘 + 𝜗.
+
+Taking total expectations gives
+
+        𝔼[𝑘+1] ≤ 𝜌𝔼[𝑘] + 𝜗.
+
+By recursion,
+
+        𝔼[𝑘] ≤ 𝜌𝑘𝔼[0] +    𝜗1 − 𝜌 ,        ∀𝑘 ≥ 0.
+
+Since
+
+        𝜆min( ̄𝑃 )‖𝑒𝑘‖2 ≤ 𝑘 ≤ 𝜆max( ̄𝑃 )‖𝑒𝑘‖2,
+
+one has
+                                 (                     )
+        𝔼[‖𝑒𝑘‖2] ≤       1𝜆min( ̄𝑃 )𝜌𝑘𝔼[0] +    𝜗1 − 𝜌  .
+
+Therefore,
+                                     (                   )
+        sup                 𝜆min( ̄𝑃 )  𝔼[0] +    𝜗1 − 𝜌   ≜ 𝜋,
+        𝑘≥0 𝔼[‖𝑒𝑘‖2] ≤       1
+which proves (30).
+
+
+4.  Security analysis
+
+    This section analyzes the detectability of FDI attacks on the exchanged residuals under the two attacker knowledge patterns
+introduced in Section 2.3. The focus is on the detector statistics associated with compromised neighboring residuals.
+    For a communication link (𝑗, 𝑖) ∈ , deﬁne the nominal windowed statistic as
+
+                     𝑘∑
+        𝐽 0𝑖𝑗,𝑘 ≜          𝑧𝑇𝑗,𝑡Ω−1𝑗  𝑧𝑗,𝑡,                                                                                                                          (31)
+                 𝑡=𝑘−𝐿+1
+where Ω𝑗 ≻ 0 is the steady-state covariance matrix of the nominal residual 𝑧𝑗,𝑘. Under the nominal steady-state model, 𝑧𝑗,𝑘 is zero-
+mean Gaussian, and therefore
+
+        𝔼[𝐽 0𝑖𝑗,𝑘] = 𝐿𝑚𝑗.                                                                                                                                            (32)
+
+If the residual sequence is temporally white, then 𝐽 0𝑖𝑗,𝑘 follows a 𝜒2 distribution with 𝐿𝑚𝑗 degrees of freedom.
+
+
+4.1.  Case 1: Attackers without real-time access to residuals
+
+    In this case, the attacker cannot access the current residual sequence in real time and can only inject a bias-type signal into
+the transmitted data. Since the injected signal cannot depend on the current residual, 𝛽𝑖𝑗,𝑡 is assumed independent of 𝑧𝑗,𝑡 for 𝑡 =
+𝑘 − 𝐿 + 1, … , 𝑘.
+    Under attack, the received residual and the corresponding windowed statistic are given by
+
+          𝑧𝑎𝑗,𝑡 = 𝑧𝑗,𝑡 + 𝛽𝑖𝑗,𝑡,                                                                                                                                      (33)
+
+                     𝑘∑
+        𝐽 𝑎𝑖𝑗,𝑘 ≜         (𝑧𝑎𝑗,𝑡)𝑇 Ω−1𝑗  𝑧𝑎𝑗,𝑡.                                                                                                                      (34)
+                 𝑡=𝑘−𝐿+1
+Here, stealthiness in expectation means that the attacked and nominal detection statistics have the same expectation.
+
+Theorem 3.  Consider the secure residual-fusion estimator (7) equipped with the detector (6). In Case 1,
+
+                                     𝑘∑     [              ]
+        𝔼[𝐽 𝑎𝑖𝑗,𝑘] = 𝔼[𝐽 0𝑖𝑗,𝑘] +          𝔼 𝛽𝑇𝑖𝑗,𝑡Ω−1𝑗  𝛽𝑖𝑗,𝑡.                                                                                                      (35)
+                                 𝑡=𝑘−𝐿+1
+Consequently, the attack is stealthy in expectation if and only if 𝛽𝑖𝑗,𝑡 = 0 almost surely for all 𝑡 ∈ {𝑘 − 𝐿 + 1, … , 𝑘}. In particular, any nonzero
+independent bias increases the expected detection statistic over the detection window.
+
+                                                                                    7
+
+===== PDF PAGE 8 =====
+X.-Y. Zhang and G.-H. Yang                                                                                                 Journal of the Franklin Institute 363 (2026) 108914
+
+Proof.  Expanding the attacked statistic yields
+
+                          𝑘∑     [                                    ]
+         𝔼[𝐽 𝑎𝑖𝑗,𝑘] =           𝔼  (𝑧𝑗,𝑡 + 𝛽𝑖𝑗,𝑡)𝑇 Ω−1𝑗  (𝑧𝑗,𝑡 + 𝛽𝑖𝑗,𝑡)
+                      𝑡=𝑘−𝐿+1
+                          𝑘∑                               𝑘∑
+                   =            𝔼[𝑧𝑇𝑗,𝑡Ω−1𝑗  𝑧𝑗,𝑡] + 2          𝔼[𝛽𝑇𝑖𝑗,𝑡Ω−1𝑗  𝑧𝑗,𝑡]
+                      𝑡=𝑘−𝐿+1                          𝑡=𝑘−𝐿+1
+                                𝑘∑
+                         +            𝔼[𝛽𝑇𝑖𝑗,𝑡Ω−1𝑗  𝛽𝑖𝑗,𝑡].
+                            𝑡=𝑘−𝐿+1
+Since 𝛽𝑖𝑗,𝑡 is independent of 𝑧𝑗,𝑡 and 𝔼[𝑧𝑗,𝑡] = 0, the cross term vanishes. Hence,
+
+                                      𝑘∑
+         𝔼[𝐽 𝑎𝑖𝑗,𝑘] = 𝔼[𝐽 0𝑖𝑗,𝑘] +          𝔼[𝛽𝑇𝑖𝑗,𝑡Ω−1𝑗  𝛽𝑖𝑗,𝑡],
+                                  𝑡=𝑘−𝐿+1
+which proves (35). Because Ω−1𝑗   ≻ 0, each term 𝛽𝑇𝑖𝑗,𝑡Ω−1𝑗  𝛽𝑖𝑗,𝑡 is nonnegative. Therefore,
+
+         𝔼[𝐽 𝑎𝑖𝑗,𝑘] = 𝔼[𝐽 0𝑖𝑗,𝑘]
+holds if and only if 𝛽𝑖𝑗,𝑡 = 0 almost surely for all 𝑡 in the detection window. This completes the proof.
+
+4.2.  Case 2: Attackers with real-time access to residuals
+
+    We next consider an attacker that can intercept the transmitted residual in real time. To prevent such an attacker from exploiting
+the instantaneous transmitted value, a dynamic watermarking mechanism is introduced.
+    Each sensor node 𝑗 adds a private Gaussian watermark to its transmitted residual:
+         ̄𝑧𝑗,𝑘 = 𝑧𝑗,𝑘 + 𝜉𝑗,𝑘,                                                                                                                                              (36)
+
+where 𝜉𝑗,𝑘 ∼  (0, Σ𝜉,𝑗), Σ𝜉,𝑗 ⪰ 0, Σ𝜉,𝑗 ≠ 0, and the sequence {𝜉𝑗,𝑘} is i.i.d. and independent of {𝑧𝑗,𝑘}. The watermark is generated from
+a secret pseudorandom seed shared only between node 𝑗 and its authorized neighbors.
+    In the presence of an FDI attack 𝛽𝑖𝑗,𝑘, the signal received by node 𝑖 is
+         ̄𝑧𝑎𝑗,𝑘 =  ̄𝑧𝑗,𝑘 + 𝛽𝑖𝑗,𝑘.                                                                                                                                          (37)
+Upon reception, node 𝑖 subtracts the known watermark and forms the authenticated residual
+         ̃𝑧𝑎𝑗,𝑘 ≜  ̄𝑧𝑎𝑗,𝑘 − 𝜉𝑗,𝑘.                                                                                                                                          (38)
+The corresponding authenticated detector is
+
+                      𝑘∑
+          ̃𝐽 𝑎𝑖𝑗,𝑘 ≜       (̃𝑧𝑎𝑗,𝑡)𝑇 Ω−1𝑗   ̃𝑧𝑎𝑗,𝑡.                                                                                                                        (39)
+                  𝑡=𝑘−𝐿+1
+Only if    ̃𝐽 𝑎𝑖𝑗,𝑘 is declared normal is ̃𝑧𝑎𝑗,𝑘 admitted into the fusion term of (7).
+    We focus on a representative reﬂection-type attack that exploits the transmitted watermarked residual.
+Theorem 4.  Under the dynamic watermarking scheme, suppose that the attacker can observe the transmitted watermarked residual ̄𝑧𝑗,𝑘, but
+cannot separately access the private watermark 𝜉𝑗,𝑘. If the attacker launches the reﬂection attack 𝛽𝑖𝑗,𝑘 = −2 ̄𝑧𝑗,𝑘, then
+         𝔼[ ̃𝐽 𝑎𝑖𝑗,𝑘] − 𝔼[𝐽 0𝑖𝑗,𝑘] = 4𝐿 Tr(Ω−1𝑗  Σ𝜉,𝑗) > 0.                                                                                                                (40)
+
+Hence, the considered reﬂection attack is detectable in expectation.
+Proof.  Under the reﬂection attack, one has
+         ̄𝑧𝑎𝑗,𝑘 =  ̄𝑧𝑗,𝑘 − 2 ̄𝑧𝑗,𝑘 = − ̄𝑧𝑗,𝑘 = −𝑧𝑗,𝑘 − 𝜉𝑗,𝑘.
+After subtracting the watermark, the authenticated residual becomes
+         ̃𝑧𝑎𝑗,𝑘 =  ̄𝑧𝑎𝑗,𝑘 − 𝜉𝑗,𝑘 = −𝑧𝑗,𝑘 − 2𝜉𝑗,𝑘.
+Therefore,
+
+                      𝑘∑
+          ̃𝐽 𝑎𝑖𝑗,𝑘 =        (−𝑧𝑗,𝑡 − 2𝜉𝑗,𝑡)𝑇 Ω−1𝑗  (−𝑧𝑗,𝑡 − 2𝜉𝑗,𝑡)
+                  𝑡=𝑘−𝐿+1
+                      𝑘∑                           𝑘∑
+               =            𝑧𝑇𝑗,𝑡Ω−1𝑗  𝑧𝑗,𝑡 + 4          𝜉𝑇𝑗,𝑡Ω−1𝑗  𝜉𝑗,𝑡
+                  𝑡=𝑘−𝐿+1                      𝑡=𝑘−𝐿+1
+                           𝑘∑
+                  + 4            𝑧𝑇𝑗,𝑡Ω−1𝑗  𝜉𝑗,𝑡.
+                       𝑡=𝑘−𝐿+1
+
+                                                                                       8
+
+===== PDF PAGE 9 =====
+X.-Y. Zhang and G.-H. Yang                                                                                              Journal of the Franklin Institute 363 (2026) 108914
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                     Fig. 1. Communication topology of the sensor network.
+
+
+Taking expectations and using the independence and zero-mean properties of 𝑧𝑗,𝑡 and 𝜉𝑗,𝑡, the cross term vanishes. Moreover,
+        𝔼[𝜉𝑇𝑗,𝑡Ω−1𝑗  𝜉𝑗,𝑡] = Tr(Ω−1𝑗  Σ𝜉,𝑗).
+Hence,
+        𝔼[ ̃𝐽 𝑎𝑖𝑗,𝑘] = 𝔼[𝐽 0𝑖𝑗,𝑘] + 4𝐿 Tr(Ω−1𝑗  Σ𝜉,𝑗),
+which proves (40). Since Ω−1𝑗   ≻ 0 and Σ𝜉,𝑗 ⪰ 0, Σ𝜉,𝑗 ≠ 0, the trace term is strictly positive, and the attack is detectable in expectation.
+Remark 3.  The security assumption behind the watermarking mechanism is that the seed used to generate 𝜉𝑗,𝑘 is not available to the
+attacker. Under perfect seed synchronization, the watermark is removed before both detection and fusion, so the nominal estimator
+dynamics are unchanged. Moreover, the expected detection margin grows linearly with the window length 𝐿 and with Tr(Ω−1𝑗  Σ𝜉,𝑗).
+When 𝐿 = 1, (40) reduces to 𝔼[ ̃𝐽 𝑎𝑖𝑗,𝑘] − 𝔼[𝐽 0𝑖𝑗,𝑘] = 4 Tr(Ω−1𝑗  Σ𝜉,𝑗).
+
+5.  Simulation examples
+
+    In this section, an example is presented to evaluate the eﬀectiveness of the proposed distributed state estimation algorithm.
+    Consider an object whose motion follows a kinematic nearly constant velocity model [25], described in discrete-time state-space
+form as follows:[  𝐼2         ̄𝐴]
+
+        𝑥𝑘+1 =     02×2      𝐼2  𝑥𝑘 + 𝑤𝑘,                                                                                                                              (41)
+
+where     ̄𝐴 = 0.5𝐼2 and the process noise covariance matrix 𝑄 = 1.5𝐼4. Assume that the system in (41) is monitored by 5 sensors, each
+with its own measurement matrix, given by
+                [ℏ𝑖       0      0      0]
+         𝐻𝑖 =     0      ℏ𝑖      0      0,    for 𝑖 ∈ {1, 2, 5}
+
+                ⎡⎢⎢⎣ℏ3      0      1       0⎤⎥⎥⎦     [ 0      ℏ4      0      0]
+        𝐻3 =      0       1      0     ℏ3,    𝐻4 =    ℏ4       0       0      0,
+                  0       0      0     ℏ3
+where ℏ𝑖 ∈ [0.5, 1.5] for 𝑖 ∈ {1, 2, … , 5}. Set 𝑅𝑖 = 𝐼2 for all 𝑖 ∈ {1, 2, 4, 5}, 𝑅3 = 𝐼3, and 𝜏 = 0.1. The communication topology is shown
+in Fig. 1. In the absence of attacks, the tracking performance of the proposed distributed estimator is shown in Fig. 2, where each
+of the four subplots corresponds to a diﬀerent state dimension. It can be observed that the proposed distributed estimator accurately
+tracks the system state 𝑥true. In Fig. 3, the time evolution of the traces of the estimation error covariance is shown, where all traces
+converge to steady-state values.
+    The steady-state value of the root mean square error (RMSE) for each node is shown in Fig. 4, with the dash-dotted line denoting
+the average RMSE across all nodes.
+    In the proposed scheme, each node transmits the raw residual 𝑧𝑖,𝑘 ∈ ℝ𝑚𝑖, while the mapping Ξ𝑖𝑧𝑖,𝑘 is performed locally using the
+known matrix Ξ𝑖. To highlight the communication bandwidth eﬃciency of the proposed method, a comparison is made with the ∑
+method that exchanges estimates [21–24] (Strategy 1). Deﬁne the average measurement dimension of all sensors as 𝑚 ≜   1𝑁                                           𝑖∈ 𝑚𝑖.
+It is shown in Fig. 5 that as 𝑚 decreases, the data volume per transmission decreases accordingly.
+    Based on (3), the mapping matrices for each node can be computed as
+               [0.95𝐼2]           [0.78𝐼2]           [0.91𝐼2]
+        Ξ1 =      02×2    , Ξ2 =     02×2    , Ξ5 =     02×2    ,
+
+               ⎡⎢⎢⎢⎢⎣0.48        0           0⎤⎥⎥⎥⎥⎦⎡⎢⎢⎢⎢⎣0        0.99⎤⎥⎥⎥⎥⎦
+        Ξ3 =      0        0.84      −0.76  , Ξ4 =    0.99        0   .
+                 0.48        0           0              0          0
+                  0        0.08       0.84              0          0
+
+                                                                                     9
+
+===== PDF PAGE 10 =====
+X.-Y. Zhang and G.-H. Yang                                                                                          Journal of the Franklin Institute 363 (2026) 108914
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                             Fig. 2. Tracking performance in the attack-free case: true state versus the ﬁve local estimates.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+               Fig. 3. Comparative evolution of Tr(𝑃𝑖) of ﬁve distributed estimators. All traces rapidly converge to steady-state values.
+
+
+These computed mapping matrices Ξ𝑖 are the direct numerical outputs of (3) given the measurement matrices 𝐻𝑖 and the regularization
+parameter 𝜖 = 0.1. Next, consider FDI attacks targeting the communication link between nodes 4 and 1, i.e., the edge (4, 1), launched
+at 𝑘 = 80. In Fig. 6, the comparison of the detection statistic between Strategy 2 (i.e., the method in [21]) and the proposed strategy
+is shown. After 𝑘 > 80, the detection statistic for Strategy 2 (yellow line) remains below the detection threshold, while ours increases
+sharply and exceeds the 95% conﬁdence threshold. In this scenario, the RMSE of the distributed estimator in Strategy 2 and the
+proposed strategy are shown in Fig. 7. After the attack occurs, the RMSE of Strategy 2 increases signiﬁcantly, whereas the RMSE of
+the proposed strategy remains stably low without obvious degradation.
+    In Fig. 8, the detection performance of the 𝜒2 detector is illustrated. Here, the attack intensity (Int) is deﬁned as the norm of
+the attack vector, denoted by ‖𝛽𝑖𝑗,𝑘‖. The standard receiver operating characteristic (ROC) curve is shown in Fig. 8 (a), where the
+horizontal axis represents the false alarm probability (𝑃FA) and the vertical axis represents the detection probability (𝑃D). It includes
+performance curves for attack intensities ranging from 0.5 to 5, with a black dashed line representing the random guessing baseline
+for reference. In Fig. 8 (b), the trend of the area under the curve (AUC) with attack intensity is illustrated, where higher AUC values
+closer to 1 indicate better detection performance. Key performance thresholds are marked in the ﬁgure: random guessing (AUC= 0.5),
+good performance (AUC= 0.8), and excellent performance (AUC= 0.9). The detection probability heatmap is shown in Fig. 8 (c),
+which adopts a two-dimensional color-coding scheme to display the relationship between 𝑃D, 𝑃FA, and attack intensity. The colorbar
+indicates the empirical detection probability under each pair of false alarm probability and attack intensity. Fig. 8 (d) shows the
+trend of detection probability with attack intensity at diﬀerent false alarm probability thresholds (𝑃FA = 0.01, 0.05, 0.1, 0.2, 0.3). The
+90% and 95% detection target (DT) lines are included as performance references.
+
+
+
+
+
+
+
+
+
+
+
+                                                                                  10
+
+===== PDF PAGE 11 =====
+X.-Y. Zhang and G.-H. Yang                                                                                                       Journal of the Franklin Institute 363 (2026) 108914
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                Fig. 4. RMSE comparison across the sensor network without attacks.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                           Fig. 5. Comparison of per-transmission data volume versus average total dimension (𝑚 =   1                           ∑          ).
+                                                                                                                                             𝑁     𝑖∈ 𝑚𝑖
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                     Fig. 6. Detection statistics comparison between the proposed strategy and Strategy 2 in [21] under FDI attacks.
+
+
+
+                                                                                          11
+
+===== PDF PAGE 12 =====
+X.-Y. Zhang and G.-H. Yang                                                                                            Journal of the Franklin Institute 363 (2026) 108914
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      Fig. 7. Average RMSE comparison between Strategy 2 in [21] and the proposed strategy under FDI attacks.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig. 8. Comprehensive detection performance analysis of the proposed distributed estimator with a 𝜒2 detector: (a) ROC curves of detection
+probability versus false alarm probability under diﬀerent attack intensities. (b) AUC value trend with diﬀerent attack intensities. (c) Detection
+probability heatmap in attack intensity-false alarm probability plane. (d) Detection probability comparison with attack intensity under diﬀerent
+false alarm probability settings, with detection threshold (DT) references.
+
+
+
+6.  Conclusion
+
+    This paper studies the problem of distributed secure state estimation for cyber-physical systems under false data injection attacks.
+A distributed estimation scheme is developed in which sensor nodes exchange local residuals to enable both attack detection and
+estimation updates. To handle dimensional mismatches among residuals from heterogeneous sensors, a regularization mapping is
+applied. The optimal estimator gain is derived by minimizing the trace of the estimation error covariance. Furthermore, it is shown
+that the estimation error is mean-square bounded under a closed-loop Lyapunov stability condition. The integrated 𝜒2 detector
+identiﬁes anomalies for attackers without real-time residual access. For attackers with real-time access, a dynamic watermarking
+
+                                                                                   12
+
+===== PDF PAGE 13 =====
+X.-Y. Zhang and G.-H. Yang                                                                                                              Journal of the Franklin Institute 363 (2026) 108914
+
+mechanism reveals stealthy FDI attacks that bypass the 𝜒2 test. Numerical results demonstrate that the proposed residual-exchange
+method reduces communication overhead compared with conventional estimate-exchange methods. Future work will extend the
+proposed framework to switching network topologies and more general attack scenarios.
+
+CRediT authorship contribution statement
+
+     Xin-Yu Zhang: Writing – review & editing, Writing – original draft, Methodology, Formal analysis; Guang-Hong Yang: Visual-
+ization, Resources, Investigation, Funding acquisition.
+
+Declaration of competing interest
+
+     The authors declare that they have no known competing ﬁnancial interests or personal relationships that could have appeared to
+inﬂuence the work reported in this paper.
+
+References
+
+ [1]  Z. Lian, P. Shi, M. Chen, A survey on cyber-attacks for cyber-physical systems: modeling, defense, and design, IEEE Internet Things J. 12 (2) (2025) 1471–1483.
+ [2]  Y. Li, L. He, X. Wang, Synthesis of covert command attackers at the supervisory layer of cyber-physical systems, J. Frankl. Inst. 361 (10) (2024) 106887.
+ [3]  B. Chen, D.W.C. Ho, G. Hu, L. Yu, Delay-dependent distributed kalman fusion estimation with dimensionality reduction in cyber-physical systems, IEEE Trans.
+      Cybern. 52 (12) (2022) 13557–13571.
+ [4]  D. Jin, M. Hu, B. Chen, L. Yu, Secure H∞ control against time-delay attacks in cyber-physical systems, J. Contr. Decis. 9 (4) (2021) 420–430.
+ [5]  Y. Li, L. Shi, T. Chen, Detection against linear deception attacks on multi-sensor remote state estimation, IEEE Trans. Contr. Netw. Syst. 5 (3) (2018) 846–856.
+ [6]  J. Li, J.J.R. Liu, P. Cheng, C. Liu, Y. Zhang, B. Chen, Event-based obstacle avoidance control for time-varying UAV formation under cyber-attacks, J. Franklin
+      Inst. 361 (13) (2024) 107019.
+ [7]  Y.-P. Sun, G.-H. Yang, G.M. Dimirovski, Dynamic event-triggered control for multi-channel cyber-physical systems under denial-of-service attacks, J. Franklin
+      Inst. 361 (11) (2024) 106915.
+ [8]  J. Qin, M. Li, J. Wang, L. Shi, Y. Kang, W.X. Zheng, Optimal denial-of-Service attack energy management against state estimation over an SINR-based network,
+      Automatica 119 (2020) 109090.
+ [9]  L. Yin, C. Wu, H. Zhu, Y. Chen, Q. Zhang, Secure control for cyber-physical systems subject to aperiodic DoS attacks, IEEE Trans. Syst. Man Cybern. Syst. 54 (11)
+      (2024) 7106–7116.
+[10]  M. Xing, J. Lu, J. Qiu, H. Shen, Synchronization of complex dynamical networks subject to DoS attacks: an improved coding-decoding protocol, IEEE Trans.
+      Cybern. 53 (1) (2023) 102–113.
+[11]  P. Jia, J. Lian, F. Wu, X. Pei, Optimal energy transmission scheduling in event-triggered redundant channel of cyber-physical systems against DoS attacks, IEEE
+      Trans. Circuits Syst. II Exp. Briefs 71 (6) (2024) 3136–3140.
+[12]  X. Li, P. Zhang, H. Dong, Model reference observer based stealthy covert attack on cyber-physical systems, J. Franklin Inst. 363 (1) (2026) 108271.
+[13]  K. Ma, N. He, C. Shen, Adaptive reconstruction-based model predictive control for networked stochastic systems under false data injection attacks, IEEE Trans.
+      Cybern. (2026). In press. https://doi.org/10.1109/TCYB.2026.3668284
+[14]  X.-C. Shangguan, M.-H. Yu, C.-K. Zhang, Y. He, Detection and defense against multi-point false data injection attacks of load frequency control in smart grid,
+      IEEE Trans. Smart Grid 16 (5) (2025) 4143–4154.
+[15]  T.-Y. Zhang, D. Ye, Y. Shi, Decentralized false-data injection attacks against state omniscience: existence and security analysis, IEEE Trans. Autom. Contr. 68 (8)
+      (2023) 4634–4649.
+[16]  T.-T. Wang, G.-H. Yang, G.M. Dimirovski, Stealthy false data injection attack scheduling design for multi-sensor systems with resource constraints, J. Franklin
+      Inst. 362 (1) (2025) 107445.
+[17]  X. Luo, M. Zhu, X. Wang, X. Guan, Detection and isolation of false data injection attack via adaptive Kalman ﬁlter bank, J. Contr. Decis. 11 (1) (2022) 60–72.
+[18]  J. Qian, P. Duan, Z. Duan, G. Chen, L. Shi, Consensus-based distributed ﬁltering with fusion step analysis, Automatica 142 (2022) 110408.
+[19]  W. Yang, G. Chen, X. Wang, L. Shi, Stochastic sensor activation for distributed state estimation over a sensor network, Automatica 50 (8) (2014) 2070–2076.
+[20]  J. Li, G.-H. Yang, Disturbance decoupled secure state estimation: an orthogonal projection-based method, Automatica 147 (2023) 110740.
+[21]  W. Yang, Y. Zhang, G. Chen, C. Yang, L. Shi, Distributed ﬁltering under false data injection attacks, Automatica 102 (2019) 34–44.
+[22]  Y. Lv, J. Lu, Y. Liu, J. Lou, Resilient distributed state estimation under stealthy attack, IEEE Trans. Inf. Forensics Security 17 (2022) 3254–3263.
+[23]  J. Zhou, W. Yang, W. Ding, W.X. Zheng, Y. Xu, Watermarking-based protection strategy against stealthy integrity attack on distributed state estimation, IEEE
+      Trans. Autom. Contr. 68 (1) (2023) 628–635.
+[24]  Q. He, X.-J. Li, A security protection scheme for distributed state estimation based on double-watermarks, IEEE Trans. Autom. Sci. Eng. 22 (2025) 18659–18672.
+[25]  J. Zhou, W. Yang, H. Zhang, W.X. Zheng, Y. Xu, Y. Tang, Security analysis and defense strategy of distributed ﬁltering under false data injection attacks,
+      Automatica 138 (2022) 110151.
+[26]  R.M.G. Ferrari, T. Parisini, M.M. Polycarpou, Distributed fault detection and isolation of large-scale discrete-time nonlinear systems: an adaptive approximation
+      approach, IEEE Trans. Autom. Contr. 57 (2) (2012) 275–290.
+[27]  X. Yu, F. Xi-an, Multitarget federated fusion tracking using heterogeneous sonar measurements, IEEE Sensors J. 25 (5) (2025) 8907–8920.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                               13

@@ -1,0 +1,426 @@
+===== PDF PAGE 1 =====
+506                                                                      IEEE CONTROL SYSTEMS LETTERS, VOL. 6, 2022
+
+   Trust-Based Distributed State Estimation in the
+               Presence of Cyber-Attacks Tested With
+                                           Hardware-in-the-Loop
+
+                          A. Rodríguez del Nozal               , L. Orihuela, J. B. Romaine                , and P. Millán
+
+
+
+
+   Abstract—This letter  tackles  the  problem  of  estimating                  considered random changes in the interconnection network due
+the state of a plant when communications are corrupted by                       to loss of agents or network links [3].
+cyber-attacks or sensor faults occur. An observer structure                        In  this  letter,  we  study  the  distributed  estimation  problem
+based on multi-hop subspace decomposition is proposed,                          when the information provided by some agents can be altered
+which  allows  each  agent  to  identify  its  observable  and                  by cyber-attacks or faults affecting the estimation performance
+unobservable subspaces and to reconstruct them based on
+its own measurements and on the information exchanged                           of the rest of the agents. The main objective of the proposed
+with the rest of agents. To deal with cyber-attacks, this let-                  method is to minimize the impact of false or corrupt commu-
+ter proposes a method based on weighting the information                        nications on the agents’ estimates by dynamically updating the
+provided  by  agents  according  to  an  assessment  of  its                    observation  law  according  to  assigned  trustworthiness.  Thus,
+trustworthiness.  An  algorithm  to  dynamically  adjust  the                   the main contributions of this letter are the following:
+weighting parameters is provided and the performance of
+the proposed technique is assessed using a hardware-in-                            •  Introduction of a formal method to quantify the trustwor-
+the-loop platform.                                                                    thiness of the exchanged information.
+   Index Terms—Cyber-attacks, distributed estimation, fault                        •  Modiﬁcation   of   a   recent   distributed   observer   [4],   to
+detection, linear systems, multi-agent systems, hardware-                             dynamically  update  the  observers  when  altered  data  is
+in-the-loop.                                                                          detected  based  on  the  trustworthiness  in  the  received
+                                                                                      information.
+                                                                                   •  Demonstration   of   the   algorithm   performance   in   a
+                          I. INTRODUCTION                                             Hardware-In-the-Loop    (HIL)    platform,    where    the
+   N  THE  last  decades,  the  cheapening  of  electronic  com-                      dynamical system is simulated but the estimating agents
+I  ponents  has  triggered  an  increase  in  the  production  of                     are implemented in real embedded computers.
+intelligent  monitoring  and  control  devices.  This  is  leading  to             This  letter  is  organized  as  follows.  Section  I-A  presents
+an  evolution  from  the  classical  centralized  control  architec-            related  work.  Section  II  introduces  the  models  for  the  plant
+tures  to  distributed  schemes,  which  offer  advantages  such  as            and   the   network   of   agents   and   some   deﬁnitions   needed
+ﬂexibility, scalability and fault tolerance [1].                                throughout this letter. Section III presents the proposed obser-
+   However,  distributed  schemes  also  have  their  weakness                  vation structure together with the observer setup, the standing
+and  challenges.  Perhaps,  one  of  the  main  drawbacks  comes                assumptions and the design goal. In Section IV, the dynamical
+from  inter-agent  communications.  To  tackle  these  problems,                trust  algorithm  is  introduced.  Section  V  presents  the  robust
+analyses  of  distributed  estimation  algorithms  with  unreliable             observer design and Section VI demonstrates its performance
+communication,  in  which  delays  and  dropouts  can  happen,                  in  a  simulation  with  HIL.  Finally,  conclusions  are  drawn  in
+have  been  made  (see  for  instance  [2]),  whereas  others  have             Section VII.
+
+
+  Manuscript received March 3, 2021; revised April 28, 2021; accepted
+May 12, 2021. Date of publication May 20, 2021; date of current ver-            A.  Related Work
+sion June 28, 2021. This work was supported in part by Junta de
+Andalucía/FEDER through the Laboratorio de Simulación Hardware-                    In  the  context  of  cyber-attacks  in  distributed  agent-based
+in-the-Loop de Sistemas Ciberfísicos (LaSSiC) under Grant 0056.                 estimation,  a  network  of  agents  collaborate  to  estimate  the
+Recommended by Senior Editor V. Ugrinovskii. (Corresponding author:
+A. Rodríguez del Nozal.)                                                        state of a dynamical system, but some of them may be attacked
+  A.  Rodríguez  del  Nozal  is  with  the  Department  of  Electrical          and communicate wrong information. For the rest, the goal is
+Engineering, Universidad de Sevilla, 41004 Seville, Spain (e-mail:              still to reconstruct the whole state of the plant, detecting and
+arnozal@us.es).
+  L. Orihuela, J. B. Romaine, and P. Millán are with the Departamento           rejecting information from corrupted agents.
+de Ingeniería, Universidad Loyola Andalucía, 41704 Sevilla, Spain                  The literature about this topic is broad and many approaches
+(e-mail:         dorihuela@uloyola.es;         jromaine@uloyola.es;             can  be  found.  A  recent  example  can  be  found  in  [5],  which
+pmillan@uloyola.es).
+  Digital Object Identiﬁer 10.1109/LCSYS.2021.3082309                           presents  a  secure  distributed  estimation  algorithm  subject  to
+
+                   2475-1456 c© 2021 IEEE. Personal use is permitted, but republication/redistribution requires IEEE permission.
+                                     See https://www.ieee.org/publications/rights/index.html for more information.
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 10,2026 at 09:54:43 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 2 =====
+RODRÍGUEZ DEL NOZAL et al.: TRUST-BASED DISTRIBUTED STATE ESTIMATION IN PRESENCE OF CYBER-ATTACKS TESTED                         507
+
+
+worst-case adversarial attacks and establishes sufﬁcient condi-                      such that:                [       Ci,ρ−1        ]
+tions for the success of the algorithm. Another approach can be                                      Ci,ρ :=                           ,    ∀ρ ≥ 1,
+found  in  [6],  which  adapts  a  clustering  technique  to  remove                                             col(Cj,ρ−1)j∈Ni
+bad  data  and  inaccurate  estimates  by  using  a  Kalman  ﬁlter-                  where Ci,0 := Ci.
+ing scheme. Moreover, [7] considers the problem of detecting                             Intuitively  speaking,  the ρ-hop  output  matrix  of  agent  i,
+Byzantine  adversaries  in  a  network  of  agents  trying  to  reach                Ci,ρ, is composed by its output matrix Ci and the output matri-
+a consensus. The trust model considers both local trust based                        ces  of  all  the  agents  j  with  a  direct  path  to  i  involving ρ  or
+on local evidences and global trust based on exchanging trust                        less edges.
+values.  A  guaranteed  approach  can  be  found  in  [8],  where  it                    There  always  exists  a  coordinate  transformation  matrix
+is assumed that the system state is always contained in a com-                       [ ¯Vi,ρVi,ρ] ∈   Rn×n  according  to  pair (Ci,ρ, A)  such  that  the
+pact set. In [9], model-based techniques  capable of detecting                       change  of  variable  ξi,ρ  ≜   [ ¯Vi,ρVi,ρ]⊤x  ∈     Rn   transforms
+integrity attacks on the sensors of a control system are intro-
+duced. This letter presents countermeasures that optimize the                        the  original  state-space  representation  into  the  observability
+probability of detection by conceding control performance.                           staircase form [15, Th. 16.1].
+   In addition to these general purpose algorithms, there is also                        Deﬁnition 2:  The ρ-hop unobservable subspace from agent
+a number of relevant developments oriented towards particular                        i,  denoted  ¯Oi,ρ,  is  composed  of  all  system  modes  that  can-
+applications, most of them centered on power electric systems                        not be observed from the output locally measured by agent i
+such as [10], [11], [12], [13] or [14].                                              and  those  measured  by  all  the  agents  belonging  to  the  s-
+   Notation:  A  graph  is  a  pair G = (V,E)  comprising  a  set                    hop  reachable  set  of  i,  ∀s ∈{0,...,ρ}.  Equivalently,  the
+V ={1, 2,...,p} of vertices or agents, and a set E ⊂ V × V                           ρ-hop unobservable subspace from agent i is the unobservable
+of edges or links.Adirected graph is a graph in which edges                          subspace  related  to  pair (Ci,ρ, A)  using  the  above  coordinate
+have  orientations,  so  that  if (j, i) ∈ E,  then  agent  i  obtains               transformation:  ¯Oi,ρ := Im( ¯Vi,ρ). The orthogonal complement
+information from agent j. A directed path from node i1 to node                       of  ¯Oi,ρ, with some abuse of notation, is denoted ρ-hop observ-
+ik is a sequence of edges such as (i1, i2), (i2, i3), ..., (ik−1, ik)                able  subspace  from  agent  i,  Oi,ρ   :=  Im(Vi,ρ).  We  denote
+in a directed graph. The neighborhood of i, Ni ≜ {j:(j, i) ∈ E},                     noi,ρ = dim(Oi,ρ).
+is deﬁned as the set of nodes with edges incoming to node i.                             According   to   Deﬁnition   2,   it   is   clear   that:  Oi,ρ−1   ⊆
+Given ρ  ∈    Z  >  0,  the ρ-hop  reachable  set  of  i, Ni,ρ,is                    Oi,ρ,    ∀i  ∈  V,ρ  ≥   0,  where  we  consider  Oi,−1 =∅.
+deﬁned as the set of nodes with a direct path to i involving ρ                       Then,  the  vectors  of  the  “innovation"  basis  that  generates
+edges.  Note  that  the  1-hop  reachable  set  of  i  corresponds  to               Oi,ρ ∩(Oi,ρ−1)⊥ can be stacked into a matrix Wi,ρ ∈  Rn×ni,ρ ,
+the neighborhood of i. The operator col(·,·) stacks subsequent                       where ni,ρ = noi,ρ − noi,ρ−1, in such a way that:
+matrices  into  a  column  vector,  e.g.,  for  A ∈  Rm1×n  and  B ∈                               Im(Wi,ρ) := Oi,ρ ∩ (Oi,ρ−1)⊥,ρ≥ 0,
+Rm2×n,  col(A, B) = [A⊤ B⊤]⊤ ∈  R(m1+m2)×n.  Im(A)  denotes
+the  image  of  matrix  A,  i.e.,  the  subspace  generated  by  the                 Let  us,  to  be  selected  later,  deﬁne 𝓁i ∈   Z>0  as  an  arbitrary
+columns of matrix A.                                                                 number of hops. From these deﬁnitions it is clear that for all
+                                                                                     ρ ∈{0,...,𝓁i} and all i ∈ V, it holds that
+            II. PROBLEM DATA AND PRELIMINARIES                                                              Im(Vi,ρ) = Im([Wi,ρ  Vi,ρ−1]),
+   Consider  a  set  of  agents  Vg ={1, 2,...,p}  connected                                            Im( ¯Vi,ρ−1) = Im([Wi,ρ  ¯Vi,ρ]),
+according to a given directed graph G = (Vg,E), intended to
+distributedly  estimate  the  state  of  a  discrete-time  LTI  system               with  ¯Vi,−1 := In.
+whose  state-space  representation  is  given  by  the  following                        It  is  worth  pointing  out  that  Im(Wi,ρ)  corresponds  to  the
+equations:                                                                           innovation introduced by the ρ-hop reachable set Ni,ρ of agent
+                     x(k + 1) = Ax(k),                                        (1)    i,  that  is,  the  observable  modes  for  agent  i  at  hop ρ  that  are
+                          yi(k) = Cix(k),    ∀i ∈ V,                      (2)        not observable at hop ρ − 1. Accordingly, the transformation
+                                                                                     matrix Ti ∈  Rn×n, deﬁned as Ti = [ ¯Vi,𝓁iVi,𝓁i], can be divided
+where  x ∈   Rn  is  the  state  vector,  A ∈   Rn×n  is  the  system                using the innovations at each hop:
+matrix, yi ∈    Rmi  is the output locally measured by each agent                                Ti := [Vi,𝓁iWi,𝓁i ...,Wi,ρ+1/bracehtipupleft¯Wi,ρ ...,Wi,0],            (3)
+i and Ci ∈  Rmi×n  is the output matrix of agent i.                                                       /bracehtipupleft/bracehtipdownright/bracehtipdownleft/bracehtipupright/bracehtipdownright/bracehtipdownleft/bracehtipupright
+   We  consider  that  the  agents  might  receive  false  data  from                                                 Vi,ρ¯                 Vi,ρ
+some  neighbors,  either  due  to  faulty  sensors  or  the  inﬂuence                for all ρ ∈{0,...,𝓁i}, where it is easy to identify the observ-
+of non-authorized entities (cyber-attacks). We denote V ⊆ Vg                         able  and  unobservable  subspaces  of  the  system  by  agent  i  at
+to be the (unknown) set of non-faulty agents. In order to deal                       hop ρ.
+with these unexpected events, in the following section we pro-                           Deﬁnition 3:  System (1)-(2) is collectively detectable if for
+pose an algorithm based on an observation structure previously                       any i ∈ V, there exists a ﬁnite number of hops 𝓁i ∈    Z>0 such
+presented  by  the  authors.  Prior  to  that,  it  is  necessary  to                that pair (Ci,𝓁i, A) is detectable  (in the sense of [15, Deﬁnition
+introduce some preliminary notions.                                                  16.1]).
+   Deﬁnition 1:  The ρ-hop  output  matrix  of  agent  i,  Ci,ρ,is                       Thus,  system  (1)-(2)  is  collectively  detectable  if  for  each
+a matrix that stacks the (ρ − 1)-hop output matrix of agent i                        agent, the complete information provided by the network (that
+and the (ρ − 1)-hop output matrices of its neighborhood, Ni.                         is, the ρ-hop output matrix with ρ arbitrarily large) is sufﬁcient
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 10,2026 at 09:54:43 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 3 =====
+508                                                                                                 IEEE CONTROL SYSTEMS LETTERS, VOL. 6, 2022
+
+
+to  build  such  an  observation  law.  Due  to  this  fact,  collective                            IV. DYNAMICAL TRUST MECHANISM
+detectability is a necessary assumption.                                                As  explained  in  [12],  trust  can  be  found  in  the  literature
+   Assumption 1:  System (1)-(2) is collectively detectable.                         in  various  forms  and  meanings.  In  this  letter,  we  deﬁne  the
+           III. OBSERVER STRUCTURE AND DESIGN                                        trustworthiness of an agent as the conﬁdence that other agents
+                                                                                     can give  to the information  provided  by itself.   In particular,
+   The proposed observer is based on the one proposed by the                         weighting  parameter  ci,j,ρ(k)  measures  the  trust  that  agent  i
+authors in [4] (for a more detailed explanation of its structure,                    sets  to  the  information  received  from  agent  j  at  hop ρ  and
+the  reader  should  refer  to  that  citation),  but  modiﬁed  with                 instant k. It is considered ci,j,ρ(k) as a dynamical variable that
+the  inclusion  of  the  variables  ci,j,ρ(k) ∈  R,  which  enable  the              might change at every instant k.
+agents to weigh information received by their neighbors:                                In  order  to  assign  values  to  ci,j,ρ(k),  agent  i  compares  its
+  xi(k + 1) = Aˆˆ   xi(k) + Wi,0Li(yi(k)−ˆyi(k))                         (4)         own  estimates  with  the  ones  received  from  agent  j  at  hop
+      +∑𝓁i        ∑                                         xj(k)−ˆxi(k))            ρ.  To  do  so,  let  us  deﬁne  ei,j,ρ(k)  :=  W⊤i,ρ(ˆxi(k)−ˆxj(k))  as
+             ρ=1     j∈Ni ci,j,ρ(k)Wi,ρNi,j,ρW⊤j,ρ−1(ˆ                               the  difference  between  the  estimates  of  agents  i  and  j,pro-
+where ˆxi  is the estimation of system state x by agent i and Li                     jected  into  the  innovation  subspace  of  agent  i  at  hop ρ.L√            et
+and  Ni,j,ρ  are,  respectively,  the  local  and  consensus  gains  to              dQi,ρ(ei,j,ρ(k)) :=       e⊤i,j,ρ(k)Qi,ρei,j,ρ(k) be the matrix-induced
+be designed.                                                                         distance  between  both  estimates,  being  Qi,ρ   a  matrix  that
+                                                                                     allows the designer to assign different weights to the different
+A.  Design Goal                                                                      directions estimated at hop ρ.
+   The  design  goal  is  to  tune  the  gain  matrices  Li,  Ni,j,ρ,                   Remark 1:  The  deﬁnition  of  ei,j,ρ(k)  as  a  function  of  the
+and  the  time-varying  weighting  costs  ci,j,ρ(k),tosolvethe                       particular  hop ρ  represents  an  important  improvement  with
+following problem:                                                                   respect  to  other  papers,  such  as  [12]  or  [13].  Now,  agent  i
+   Problem 1  (Trust-Based   Distributed   Estimation):   Given                      might have different trust weights for the information incom-
+plant  (1)-(2),  the  interconnection  graph G  =  (V,E),  and  a                    ing  from  agent  j  at  each  hop.  This  means  that  eventually,
+set V  of  agents  implementing  observer  structure  (4),  design                   agent  i  might  distrust  the  information  received  at  one  given
+gain  matrices  Li  and  Ni,j,ρ  in  a  resilient  way  and  deﬁne  an               hop ρ  (discard it), but makes use of the rest of the exchanged
+algorithm  to  dynamically  modify  weights  ci,j,ρ(k)  such  that,                  information  with  this  same  agent.  This  can  be  useful  when
+if Assumption 1 holds, every agent correctly working, i ∈ V,                         the attacked or faulty agent is not the agent j itself, but some
+is able to:                                                                          other agent in a path to i that involves agent j.
+   •  Estimate the state of the plant in the presence of attacked                       According to the error ei,j,ρ(k) and distance dQi,ρ(ei,j,ρ(k))
+      or faulty agents j ∈ Vg\V.                                                     three trust regions are deﬁned.
+   •  Reduce   the  impact  of  j  ∈  Vg\V   on  the  estimation                        Deﬁnition 4:  The conﬁdence region Ri, alert region Ai and
+      performance.                                                                   distrust region Di  are deﬁned as:
+   •  Dynamically  discard  the  information  from  j ∈ Vg\V,or                                 Ri ≜ {ei,j,ρ(k):dQi,ρ(ei,j,ρ(k)) < ri,j,ρ}                     (5)
+      regain  trust  in  the  transmission  of  previously  attacked                            Ai ≜ {ei,j,ρ(k):ri,j,ρ ≤ dQi,ρ(ei,j,ρ(k)) < ai,j,ρ}        (6)
+      agents, based on a trust-based mechanism.
+   In  the  following  sections,  a  solution  for  this  problem  is                           Di ≜ {ei,j,ρ(k):ai,j,ρ ≤ dQi,ρ(ei,j,ρ(k))},                    (7)
+presented.                                                                           where ri,j,ρ, ai,j,ρ are a set of positive scalars such that ai,j,ρ >
+
+B.  Distributed Setup, Design and Operation                                          ri,j,ρ,∀i, j,ρ.
+   The  design  and  operation  is  completely  distributed  and                        This way, the information received from agent j at hop ρ is
+consists of three phases.                                                            considered to be reliable if ei,j,ρ(k) belongs to the conﬁdence
+   The ﬁrst phase is the distributed observer setup, which con-                      region Ri.  If  distance  dQi,ρ(ei,j,ρ(k))  grows,  the  conﬁdence
+sists of determining innovation matrices Wi,ρ  and variables 𝓁i                      is  reduced  by  including  this  information  in  the  alert  region
+by the network of agents under the assumption that no faults                         Ai.  Eventually,  this  information  will  be  considered  to  be
+or cyber-attacks occur during this period. This step is detailed                     completely compromised in the distrust region Di.
+in [4, Sec. 6].                                                                         By  making  use  of  the  previous  trust  regions,  the  weights
+   The second phase consists of designing (Li, Ni,j,ρ) suitably                      ci,j,ρ(k) are assigned as in Property 1.
+to guarantee the robustness of the estimation. A resilient design                       Property 1:  The  weighting  costs  ci,j,ρ(k)  that  agent  i  sets
+method  able  to  deal  with  agents  of  different  trust  will  be                 for the information received from agent j at hop ρ and instant
+introduced in Section V.                                                             k are given by:            { 1,                   ei,j,ρ(k) ∈ Ri,
+   Finally, the third phase is the running phase. In this phase
+the  distributed  observer  developed  by  each  agent  computes                                  ci,j,ρ(k) =           ri,j,ρ
+estimates of the state x. In addition, a distributed mechanism                                                     dQi,ρ (ei,j,ρ(k)), ei,j,ρ(k) ∈ Ai.               (8)
+to  detect  and  mitigate  the  inﬂuence  of  malicious  agents  is                     From   Property   1   and   Deﬁnition   4,   it   is   ensured   that
+implemented  in  parallel.  This  mechanism  is  detailed  in  the                   ci,j,ρ(k) ∈ [ci,j,ρ, 1], with ci,j,ρ = ri,j,ρ/ai,j,ρ,whilstinregions
+next section.                                                                        Ri  or Ai.
+   The last two phases constitute the main novelty with respect                         Whenever  the  error  ei,j,ρ(k)  belongs  to  the  distrust  region
+to the estimation algorithm presented in [4].                                        Di,  the  information  received  from  agent  j  at  hop  ρ  won’t
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 10,2026 at 09:54:43 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 4 =====
+RODRÍGUEZ DEL NOZAL et al.: TRUST-BASED DISTRIBUTED STATE ESTIMATION IN PRESENCE OF CYBER-ATTACKS TESTED                         509
+
+
+                                                                                                                          TABLE I
+                                                                                                            DYNAMICAL TRUST ALGORITHM
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig.1. Schematicofapossibleevolutionof ei,j,ρ(k).Initially(step(1)),it
+belongs to the conﬁdence region. After that, the distance dQi,ρ(ei,j,ρ(k))
+increases, moving into the alert region (2)-(3). If the distance continues
+increasing, ei,j,ρ walks into the distrust region, forcing a new execution
+ofthesetupalgorithminordertoadaptthesubspacedecomposition(4).
+After some time, the agent recovers from the malicious attack and enter
+againinthealertregion(5).Nevertheless,thisfactisnotenoughtotrust                      on the innovation matrices Wi,ρ, as it will be illustrated later.
+itagain.Itisonlywhenthedistancedecreasesevenmore,making ei,j,ρ                        Anyway, Assumption 1 remains as a necessary condition.
+go within the re-trust region (6) when the agent rerun the distributed
+setup algorithm again.                                                                   Let us deﬁne the estimation error of any agent i as ei :=  x−
+                                                                                      xi. Similarly, the transformed estimation error can be deﬁnedˆ
+be  considered  for  state  estimation,  i.e.,  ci,j,ρ(k) =  0.  In  that             as εi := T⊤i  ei, that can be particularized for a hop ρ as εi,ρ  :=
+scenario,  it  will  be  necessary  to  rerun  the  setup  algorithm                  W⊤i,ρei. Then, it is possible to follow [4, Th. 12] to obtain the
+mentioned  in  Section  III-B,  but  this  time,  considering  a  new                 expression  of  the  error  dynamics  for  an  agent  i  at  a  certain
+innovation  matrix  W′i,ρ  that  excludes  the  basis  vector  related                hop ρ:                       (                             )
+to the portion of the state provided by that agent. Of course,                                   εi,0(k + 1) =       W⊤                            εi,0(k),       (10)
+Assumption 1 must be preserved or, otherwise, there won’t be                                                            i,0AW i,0 − LiCiWi,0
+enough reliable information to reconstruct the complete state                                                      ∑ρ
+vector.                                                                                          εi,ρ(k + 1) =          Di,(ρ,r)(k)εi,r(k)                         (11)
+   Finally, consider a faulty agent (or a subspace of that agent)                                                  r=0
+that is able to recover from its problems (attacks or faults) and,                                                 + ∑      ci,j,ρ(k)Ni,j,ρεj,ρ−1(k),
+therefore,  it  becomes  again  a  reliable  source  of  information.                                                 j∈Ni
+To  consider  this  situation,  we  deﬁne  the  re-trust  region  (see                where
+Fig. 1 for graphical representation of the trust regions).                                                 ⎛                                             ⎞
+   Deﬁnition 5:  The re-trust region  ˜Ri  is deﬁned as:                                                   ⎝W⊤                                           ⎠Wi,r.
+              Ri ≜ {ei,j,ρ(k):dQi,ρ(ei,j,ρ(k)) < ˜˜       ri,j,ρ}                (9)     Di,(ρ,r)(k) =          i,ρA − ∑       ci,j,ρ(k)Ni,j,ρW⊤j,ρ−1
+                                                                                                                         j∈Ni
+with ˜ri,j,ρ < ai,j,ρ.                                                                   In  [4],  no  cyber-attacks  are  considered  and  thus  observers
+   As  before,  the  setup  algorithm  must  be  rerun  again  to                     gains  Li  and  Ni,j,ρ  are  designed  in  such  a  way  that,  for  all
+include  this  new  source  of  information.  To  avoid  multiple                     ρ ∈{1,...,𝓁i}, the matrices:
+reruns of the setup algorithm, the re-trust region is deﬁned with                             Di,(0,0) = W⊤
+hysteresis, as ˜ri,j,ρ < ai,j,ρ. It is possible to further reduce the                                          i,0AW i,0 − LiCiWi,0,                               (12)
+frequency in the execution of the setup algorithm while setting                           Di,(ρ,ρ)(k) = W⊤i,ρ AW i,ρ − ∑ci,j,ρ(k)Ni,j,ρW⊤j,ρ−1Wi,ρ,
+ri,j,ρ < ri,j,ρ,  this  is,  including  the  re-trust  region  within  the˜                                                  j∈Ni
+conﬁdence region.                                                                     with all ci,j,ρ(k) ≡ 1, are Schur stable.
+   The complete dynamical trust algorithm to be executed by                              When  the  observation  structure  is  modiﬁed  to  include  the
+each agent is the one exposed in Table I.                                             trust-based  mechanism,  the  local  dynamics  are  not  affected,
+  V. TRUST-BASED DISTRIBUTED ESTIMATION DESIGN                                        due to the upper triangular structure of the multi-hop decom-
+                                                                                      position,  and  thus  the  local  observer  gains  Li  can  be  easily
+   In  order  to  design  gain  matrices  Li  and  Ni,j,ρ,  this  section             designed  since  the  pair (W⊤i,0AW i,0, CiWi,0)  is  detectable  by
+proposes a robust observer design that takes into account the                         Assumption 1.
+trustworthiness (and associated changes in ci,j,ρ(k)) described                          However, since the value of weights ci,j,ρ(k) evolve with time,
+in the previous section.                                                              the design of the gains Ni,j,ρ  must be robust to every possible
+   In  particular,  it  is  assumed  that  ci,j,ρ(k) ∈  [ci,j,ρ, 1],  this            combination of values of ci,j,ρ(k) ∈ [ci,j,ρ, 1]. Observe that the
+is, all the errors belong to the conﬁdence or alert regions. As                       dynamics of εi,ρ  can be viewed as that of a switched system,
+explained  before,  once  in  the  distrust  region  or  after  a  trust              being ci,j,ρ(k) the switching signal. In this context, it is well-
+recovery,  the  setup  algorithm  will  need  to  be  executed  again                 known that, if the individual systems share a Common Quadratic
+to ﬁnd new innovation matrices Wi,ρ. In addition, matrices Li                         Lyapunov Function (CQLF), then the switched system is expo-
+and Ni,j,ρ  will need to be computed again, since they depend                         nentially stable for an arbitrary switching sequence. Thus, the
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 10,2026 at 09:54:43 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 5 =====
+510                                                                                                 IEEE CONTROL SYSTEMS LETTERS, VOL. 6, 2022
+
+
+design  method  proposed  in  the  following  developments  will
+rely  on  a  CQLF.  However,  it  needs  to  be  taken  into  account
+that ci,j,ρ(k) can take inﬁnite distinct values, so the family of
+switched dynamics is inﬁnite, thus avoiding the design of indi-
+vidual Ni,j,ρ for each switched mode. However, please note that
+Di,(ρ,ρ) is linear with ci,j,ρ(k). According to [16], the problem
+can be solved by ﬁnding a unique CQLF valid for the extreme
+points or vertices of the polytope containing all possible values
+of ci,j,ρ(k),∀j,ρ.
+   The  following  compact  notation  is  used  in  what  follows:
+Ni,ρ   =   col(N⊤¯  i,j,ρ)⊤j∈Ni,  /Lambda1i,ρ   =   col(W⊤j,ρ−1)j∈NiWi,ρ   and
+Ci,ρ(k) = diag(Inj,ρ−1 · ci,j,ρ(k))j∈Ni.  Now,  given  that  ci,j,ρ ≤
+ci,j,ρ(k)  ≤   1,  let  us  deﬁne  Ci,ρ   as  a  set  of  2‖Ni‖  matri-
+ces  combining  the  extreme  values  of  the  weights  ci,j,ρ(k),                  Fig. 2.  Schematic of the HIL simulation platform.
+that  is, Ci,ρ ={Ci,ρ:ci,j,ρ={ci,j,ρ, 1}},  and  let  Cτi,ρ,for
+τ ={1, 2,...,2‖Ni‖}  be  a  explicit  enumeration  of  these
+matrices.                                                                                     VI. HARDWARE-IN-THE-LOOP SIMULATION
+   The sequel theorem presents a design method for the gains                        A.  HIL Platform Description
+Ni,j,ρ.                                                                                This  section  describes  the  HIL  Simulation  Laboratory  for
+   Theorem 1:  For every agent i, if the consensus gains Ni,j,ρ                     Cyber-Physical  Systems1  in  which  the  algorithms  are  tested.
+are  chosen  as  Ni,j,ρ = P−1i,ρ Yi,ρ,  with  Yi,ρ  and  Pi,ρ  satisfying           The structure of the lab is schematically shown in Fig. 2.
+the  following  Linear  Matrix  Inequalities  (LMI)  for  all ρ  ∈                     • Server: It simulates system (1) in real time and provides
+{1,...,𝓁[Pi,ρ      W⊤i}                                     ]                       the outputs (2) to the nodes using UDP/IP over Ethernet.
+
+                       i,ρA⊤Wi,ρPi,ρ − /Lambda1⊤i,ρCτi,ρY⊤i,ρ  > 0,       (13)         •  Raspberry  Pi:  They  are  in  charge  of  implementing  the
+            ⋆                             Pi,ρ                                      proposed  estimation  algorithm  in  Sections  III–IV,  and  the
+and   for   each   vertex  τ ∈{1,...,2|Ni|}   of   the   polytope                   one  in  [5]  which  will  serve  as  comparison.  They  measure
+formed with matrices Cτ                                                             the  outputs  from  the  system  using  the  UDP/IP  over  Ethernet
+                               i,ρ, then dynamics induced by system                 connection with the server. The estimates computed by other
+matrices (12) is stable.                                                            neighbors are sent/received by means of an UDP/IP over WiFi
+   Proof: The LMI (13) stems from a CQLF for all the states of                      connection.
+the switching system. Let Vi,ρ(k) = εi,ρ(k)⊤Pi,ρεi,ρ(k) be the                         • Support PC: It takes no role in the estimation algorithms.
+Lyapunov  function  considered.  Imposing  that  the  Lyapunov                      its  function  is  to  simply  prepare  the  hardware  for  simulation
+function is decreasing yields to:                                                   (setting  the  network  conﬁguration,  deploying  the  algorithms,
+     /Delta1Vi,ρ(k) = Vi,ρ(k + 1) − Vi,ρ(k)                                         stating the duration of the experiment, etc.) and recollect data
+                  = εi,ρ(k)⊤Di,(ρ,ρ)(k)⊤Pi,ρDi,(ρ,ρ)(k)εi,ρ(k)                      after the experiment.
+                  − εi,ρ(k)⊤Pi,ρεi,ρ(k)<0,                                          B.  System and Network Description
+where  we  have  particularized  expression  (11)  for  the  case  in                  Consider the following LTI system:
+which εi,r = 0for0≤ r<ρ, ∀i ∈ V. Note that this expression                               ⎡       ⎤+       ⎡                                     ⎤⎡        ⎤
+is equivalent to:                                                                        ⎢x(1)⎥           ⎢0.95      0            0           0 ⎥⎢x(1)⎥
+              Pi,ρ − Di,(ρ,ρ)(k)⊤Pi,ρDi,(ρ,ρ)(k)>0.                                      ⎢x(2)⎥       =   ⎢   00.8606 −1.3368     0             ⎥⎢x(2)⎥
+                                                                                         ⎣x(3)⎦           ⎣   00.0941   0.9315      0           ⎦⎣x(3)⎦,
+   Applying the Schur complement it yields that:[Pi,ρ      Di,(ρ,ρ)(k)⊤Pi,ρ]                x(4)              0001.015                               x(4)
+                                                     > 0.                           which  is  observed  by  ﬁve  agents,  whose  outputs  are  y1  =
+                      ⋆                 Pi,ρ                                        x(1), y2  =  x(2), y3  =  x(3), y4  =  x(4), y5  =    [x(1), x(2)]⊤.
+   Lastly,    by    substituting    Di,(ρ,ρ)(k)    =     W⊤                         The   communication   links   considered   are  E ={(1, 2),
+                                                                 i,ρ AW i,ρ  −      (1, 3),(2, 1),(2, 4),(3, 1),(3, 4),(4, 2),(4, 3),(4, 5),(5, 1)}.
+Ni,ρCi,ρ(k)/Lambda1i,ρ   and   introducing   the   change   of   variables¯
+Yi,ρ =  Pi,ρ ¯Ni,ρ, an LMI with the structure of (13) is obtained,                  C.  HIL Simulation Results
+being  the  only  difference  the  presence  of  Ci,ρ(k)  instead  of
+Cτi,ρ.  The  last  step  is  substituting  the  former  matrix  by  the                Let us assume a scenario in which the link (2, 1) has been
+latter set of matrices that forms the polytope in (13).                             compromised.  This  is  modeled  as  an  additive  perturbation,
+   Remark 2:  In the proposed design, the variables are Pi,ρ ∈                      starting  at  k =  40,  with  increasing  energy  to  the  estimated
+Rni,ρ×ni,ρ   and  Yi,ρ,  which  has  ni,ρ   rows  but  a  number  of                vector  ˆx2  sent  to  agent  1.  Note  that  agents  3  and  5  locally
+columns  that  grows  with  the  number  of  neighbors.  Besides,                   observe the same subspace (the oscillatory modes) than agent
+every  agent  i  ∈  V  must  solve  𝓁i × 2‖Ni‖  LMI  problems.                         1Laboratorio      de      simulación      HIL      para      sistemas      ciberfísicos
+Therefore,  the  computational  complexity  increases  with  the                    https://eventos.uloyola.es/59990/section/28308/laboratorios-de-optimizacion-
+number of neighbors.                                                                y-control -de-sistemas-distribuidos.html.
+
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 10,2026 at 09:54:43 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 6 =====
+RODRÍGUEZ DEL NOZAL et al.: TRUST-BASED DISTRIBUTED STATE ESTIMATION IN PRESENCE OF CYBER-ATTACKS TESTED                         511
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                            Fig. 4.  Evolution of metrics dQ1,2(e1,2,2) and weights c1,2,2.
+
+
+
+                                                                                                                          VII. CONCLUSION
+                                                                                                This  letter  proposes  and  analyzes  a  trust-based  distributed
+Fig. 3.  Evolution of current state and estimates of agent 1 under an                       estimation  algorithm.  The  approach  is  based  on  an  observer
+additive cyber-attack.                                                                      design  and  a  security  mechanism  aimed  at  protecting  the
+                                                                                            agents against faulty or attacked nodes. To do that, the concept
+                                                                                            of trustworthiness is deﬁned and quantiﬁed. The performance
+2 so, even if agent 2 falls into the distrust region, Assumption 1                          of  the  proposed  algorithm  is  tested  and  compared  in  a  HIL
+still  holds.  The  resilient  algorithm  in  [5]  requires,  for  each                     platform.
+dynamical mode, the existence of at least two reliable agents
+with  direct  access  to that  mode  per  faulty  agent.  This  is  met                                                       REFERENCES
+with the chosen topology for the oscillatory modes for agent 1.
+However, the rest of agents/modes do not fulﬁll this necessary                                [1]   A.   H.   Sayed,   “Adaptive   networks,”   Proc.   IEEE,   vol. 102,   no.   4,
+condition.  So,  instead  of  introducing  additional  links,  we  are                             pp. 460–497, Apr. 2014.
+going to assume that all agents but agent 1 do not execute the                                [2]   P.   Millán,   L.   Orihuela,   C.   Vivas,   and   F.   R.   Rubio,   “Distributed
+discarding mechanism, as they do not receive false data from                                       consensus-based  estimation  considering  network  induced  delays  and
+                                                                                                   dropouts,” Automatica, vol. 48, no. 10, pp. 2726–2729, 2012.
+agent 2.                                                                                      [3]   P.  Di  Lorenzo  and  S.  Barbarossa,  “Distributed  estimation  and  con-
+   Finally, and pursuing a more enriching comparison between                                       trol of algebraic connectivity over random graphs,” IEEE Trans. Signal
+both  algorithms,  additive  measurement  noises  ni,∀i  ∈  V                                      Process., vol. 62, no. 21, pp. 5615–5628, Nov. 2014.
+                                                                                              [4]   A.  R.  del  Nozal,  P.  Millán,  L.  Orihuela,  A.  Seuret,  and  L.  Zaccarian,
+are  introduced:  n1  ∼   U(−0.2, 0.2),  n2, n3  ∼   U(−1, 1),                                     “Distributed  estimation  based  on  multi-hop  subspace  decomposition,”
+n4 ∼ U(−0.1, 0.1), n5 ∼ [U(−0.2, 0.2), U(−1, 1)]⊤.                                                 Automatica, vol. 99, pp. 213–220, Jan. 2019.
+   Let us ﬁx a value of ri,j,ρ = 0.15, ˜ri,j,ρ = 0.2, ai,j,ρ = 0.7                            [5]   A. Mitra and S. Sundaram, “Byzantine-resilient distributed observers for
+and  Qi,ρ = Inoi  for  every  agent  i ∈ V,everyj ∈ Ni  and  hop                                   LTI systems,” Automatica, vol. 108, Oct. 2019, Art. no. 108487.
+                                                                                              [6]   C. Liang, F. Wen, and Z. Wang, “Trust-based distributed Kalman ﬁltering
+ρ ∈{1, 2}.  Fig.  3  shows  the  evolution  of  the  current  state                                for target tracking under malicious cyber attacks,” Inf. Fusion, vol. 46,
+of  the  system  and  the  estimates  computed  by  agent  1  with                                 pp. 44–50, Mar. 2019.
+both  algorithms.  Several  conclusions  can  be  obtained  from                              [7]   X. Liu and J. S. Baras, “Using trust in distributed consensus with adver-
+this  ﬁgure.  First  of  all,  in  the  absence  of  cyber-attacks  (k <                           saries in sensor and other networks,” in Proc. 17th Int. Conf. Inf. Fusion
+                                                                                                   (FUSION), Salamanca, Spain, Jul. 2014, pp. 1–7.
+40),  both  algorithms  are  able  to  reconstruct  the  whole  state                         [8]   Y.  Chen,  S.  Kar,  and  J.  M.  F.  Moura,  “Resilient  distributed  estima-
+vector. Note that the locally observable mode (state 1) behaves                                    tion:  Sensor  attacks,”  IEEE  Trans.  Autom.  Control,  vol.  64,  no.  9,
+identically, since we have set the poles of the local dynamics                                     pp. 3772–3779, Sep. 2019.
+                                                                                              [9]   Y. Mo, R. Chabukswar, and B. Sinopoli, “Detecting integrity attacks on
+equal for both algorithms.                                                                         SCADA  systems,”  IEEE  Trans.  Control  Syst.  Technol.,  vol.  22,  no.  4,
+   Secondly, since the method in [5] discards (componentwise)                                      pp. 1396–1407, Jul. 2014.
+two of the incoming data from agents 2, 3 and 5, it does not                                [10]  O. Vukovi´c and G. Dán, “Security of fully distributed power system state
+exhibit the ﬁltering capabilities that the proposed method has.                                    estimation: Detection and mitigation of data integrity attacks,” IEEE J.
+                                                                                                   Sel. Areas Commun., vol. 32, no. 7, pp. 1500–1508, Jul. 2014.
+This is seen in the estimation of states 2 and 3.                                           [11]  D. Wang, X. Guan, T. Liu, Y. Gu, C. Shen, and Z. Xu, “Extended dis-
+   Finally,  when  the  attack  takes  place  (after  k  =  40),  the                              tributed state estimation: A detection method against tolerable false data
+proposed trust-based algorithm reduces its performance, since                                      injection attacks in smart grids,” Energies, vol. 7, no. 3, pp. 1517–1538,
+                                                                                                   2014.
+it continues to trust agent 2 for some instants (it still belongs                           [12]  I. Matei, J. S. Baras, and V. Srinivasan, “Trust-based multi-agent ﬁltering
+to the  alert region).  However,  when  agent  2 ﬁnally  moves  to                                 for increased smart grid security,” in Proc. 20th Mediterr. Conf. Control
+the  distrust  region,  agent  1  is  able  to  recover  well  from  the                           Autom.  (MED), Barcelona, Spain, Jul. 2012, pp. 716–721.
+attack, and the performance is similar to that of [5].                                      [13]  B. Xie, C. Peng, M. Yang, X. Kong, and T. Zhang, “A novel trust-based
+                                                                                                   false data detection method for power systems under false data injection
+   Fig.  4  plots  the  evolution  of  metric  dQ1,2(e1,2,2)  computed                             attacks,” J. Franklin Inst., vol. 358, pp. 56–73, Jan. 2021.
+by agent 1 and the trust weight c1,2,2  that this agent sets for                            [14]  Y. Guan and X. Ge, “Distributed attack detection and secure estimation
+its  communication  with  agent  2  at  hop ρ = 2.  Note  that  the                                of networked cyber-physical systems against false data injection attacks
+                                                                                                   and  jamming  attacks,”  IEEE  Trans.  Signal  Inf.  Process.  Netw.,vol.4,
+metric  starts  growing  when  the  cyber-attacks  affect  the  com-                               no. 1, pp. 48–59, Mar. 2018.
+munication, but when they cross the ﬁrst threshold (given by                                [15]  J. P. Hespanha, Linear Systems Theory. Princeton, NJ, USA: Princeton
+ri,j,ρ),  the  trust  weight  reduces  its  value.  If  they  eventually                           Univ. Press, 2009.
+crosses the second threshold (given by ai,j,ρ), the weights are                             [16]  S.  Boyd,  L.  El  Ghaoui,  E.  Feron,  and  V.  Balakrishnan,  Linear  Matrix
+                                                                                                   Inequalities in System and Control Theory. Philadelphia, PA, USA: Soc.
+set to zero.                                                                                       Ind. Appl. Math., 1994.
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 10,2026 at 09:54:43 UTC from IEEE Xplore.  Restrictions apply.

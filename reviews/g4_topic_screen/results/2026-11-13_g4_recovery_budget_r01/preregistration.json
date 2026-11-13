@@ -1,0 +1,107 @@
+{
+  "run_id": "2026-11-13_g4_recovery_budget_r01",
+  "baseline_commit": "ce5923164aee083769eb5f5b2bfb8af1c4585124",
+  "registered_before_trajectories": true,
+  "source_run": "2026-11-13_g2_replay_effectiveness_v3",
+  "purpose": "Limited recovery-value exploration; not independent confirmation or a new defense algorithm",
+  "seeds": [
+    9500000,
+    9500001,
+    9500002,
+    9500003,
+    9500004,
+    9500005,
+    9500006,
+    9500007
+  ],
+  "seed_selection": "first eight existing G2 test seeds; already seen, exploratory only",
+  "methods": [
+    "raw_yang",
+    "cap_only",
+    "spatial_hard",
+    "zhou_random"
+  ],
+  "attack_rules": [
+    "fixed_lag8",
+    "nearest_current"
+  ],
+  "known_stop": 249,
+  "first_extra_tick": 250,
+  "extra_action_slots": [
+    [
+      250,
+      1
+    ],
+    [
+      250,
+      2
+    ],
+    [
+      250,
+      3
+    ],
+    [
+      254,
+      0
+    ],
+    [
+      254,
+      1
+    ],
+    [
+      254,
+      2
+    ],
+    [
+      254,
+      3
+    ],
+    [
+      258,
+      0
+    ],
+    [
+      258,
+      1
+    ],
+    [
+      258,
+      3
+    ],
+    [
+      258,
+      4
+    ]
+  ],
+  "allowed_schedule_count": 67,
+  "budget": "at most two EXTRA node broadcasts within these 11 slots; each node has two outgoing edges, 32 payload bytes/broadcast",
+  "fixed_frequency_action": [
+    [
+      254,
+      0
+    ],
+    [
+      258,
+      0
+    ]
+  ],
+  "random_seeded_action_ids": [
+    26,
+    54,
+    57,
+    47,
+    46,
+    15,
+    59,
+    64
+  ],
+  "oracle": "exact enumeration in the declared finite action set only; includes empty action; per-seed future true errors permitted ONLY for offline upper envelope",
+  "not_global_upper_bound": "Does not upper-bound all schedules/times, budgets>2, changing gains, or new secure messages",
+  "primary_loss": "network cumulative squared error, states251..300; receiver cumulative squared error separately",
+  "normal_mistrigger_cost": "same extra action applied once to same-seed CLEAN run at tick250; conditional on false activation, no false-activation probability assumed",
+  "recovery": "first five states from251 with attacked norm <= passive healthy norm+0.1; finite horizon/right censoring; not permanent recovery",
+  "go_threshold": "Exploratory only: on BOTH frozen Replay rules, network-oracle relative reduction >=10% in at least one strong capped baseline, and predeclared fixed or uniform-random mean network gain >=5% with conditional clean cumulative cost <=2%; otherwise do not develop a residual scheduler this round",
+  "comparability": "same pre-250 noise/packets/actual attack counts; new sends after250 contain actual polluted states; frozen nominal gains/cap/controls; report shifted normal risk",
+  "numerical_tolerance": 1e-10,
+  "not_executed": "No RL, parameter sweep, new detector, trusted-state reset or receiver-private information in attack selector"
+}

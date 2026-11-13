@@ -1,0 +1,1373 @@
+===== PDF PAGE 1 =====
+2852                                                                                                                                                IEEE TRANSACTIONS ON NETWORK SCIENCE AND ENGINEERING, VOL. 13, 2026
+       Secure State Estimation: A Novel Retransmission
+                                           and Roll-Back Mechanism
+
+       Hongyuan Xu             ,WeiWang             , Senior Member, IEEE,JiaqiYan                      , and Qing Gao            , Senior Member, IEEE
+
+
+
+   Abstract—As the scale of networked control systems gradually                         topic. It is well-known that state estimation in NCSs has been
+expands, an increasing number of sensors are installed to monitor                       applied into numerous diverse domains, such as regional natural
+the operational status of the systems. This paper focuses on the                        gas assessment [2], environmental and temperature monitor [3],
+problem of secure state estimation for multi-sensor networked con-                      space object tracking [4], etc. To cope with the challenges posed
+trol systems under cyber attacks, utilizing available retransmitted                     by  the  system  and  measured  sensor  noises,  Kalman  ﬁltering
+information.  Firstly,  we  establish  retransmission  rules  for  data
+considered suspicious due to additive external attacks, based on                        (KF)  [5],  [6]  can  effectively  operate  in  linear  systems  under
+which a novel state estimation method called distributed retrans-                       Gaussian noise and achieve the optimal estimation in terms of
+mission  and  roll-back  estimator  (DRR-Estimator)  is  proposed.                      the minimum mean square error. With regard to nonlinear sys-
+More speciﬁcally, this designed estimator incorporates a term for                       tems, extended Kalman ﬁltering (EKF) and unscented Kalman
+historical discarded data, which is able to enhance the estimation                      ﬁltering  (UKF)  are  the  predominant  estimation  methods  [7],
+performance. Using linear matrix inequalities, we prove that the
+estimation error converges to a ﬁnite bound exponentially in mean                       [8], [9]. In scenarios involving non-Gaussian noise, specialized
+square, even in the presence of attacks. It is further demonstrated                     techniques such as set-membership ﬁltering and particle ﬁltering
+that the proposed estimator works effectively under time delays.                        offer tailored solutions [10], [11], [12].
+Finally,  the  proposed  method  is  tested  effectively  in  a  regional                  In general, the aforementioned methods all necessitate a cen-
+temperature monitoring system.
+   Index Terms—Secure state estimation, retransmission strategy,                        tral fusion node to process measurements received from multiple
+roll-back mechanism, DRR-Estimator, time delays.                                        sensors. To alleviate the computational  demands  and security
+                                                                                        vulnerabilities  inherent  to  centralized  processing,  distributed
+                              I.  INTRODUCTION                                          estimation  design  based  on  multiple  local  smart  sensors  has
+                                                                                        gained  signiﬁcant  attention  in  recent  research  [3],  [13],  [14],
+     N RECENT years, communication technology has advanced                              [15], [33], [34]. In this framework, each sensor is equipped with
+I    rapidly, shifting the transmission of large amounts of data                        edge computing capabilities that facilitate rapid local computa-
+from wired networks to wireless networks. This transition sig-                          tions, thus enabling each local node to obtain a global fusion
+niﬁcantly enhances data transfer efﬁciency among components,                            estimate. For instance, in collaborative multi-agent localization
+particularly  in  industrial  systems  with  stringent  real-time  re-                  under  severe  environments  with  limited  sensing  ranges,  each
+quirements, commonly referred to as networked control systems                           node  updates  its  global  coordinates  by  integrating  local  mea-
+(NCSs)  [1].  With  the  ever-increasing  complexity  of  systems,                      surements and relative position data from neighbors, which can
+there  is  a  greater  need  to  monitor  system  operations,  which                    achieve globally asymptotic convergence to the true values [16].
+makes  the  problem  of  state  estimation  an  essential  research                     Moreover, [17] effectively solved the problem of target tracking
+                                                                                        with cooperative sensors subject to data-exchange delays with a
+   Received 11 July 2025; revised 11 September 2025; accepted 6 October 2025.           lower computational complexity. By utilizing coupled measure-
+Date of publication 14 October 2025; date of current version 11 December 2025.          ments and exchanged information from neighbors, [33] achieved
+This work was supported in part by the National Key Research and Development            estimation  performance  equivalent  to  that  of  the  centralized
+Program of China under Grant 2022YFB3104900, in part by the Fundamental                 weighted least-squares technique through ﬁnite iterations. Gen-
+Research Funds for the Central Universities under Grant JKF-2025033060898               erally speaking, we refer to this type of method that requires data
+and Grant JKF-2025078134573, and in part by the National Natural Science
+Foundation  of  China  under  Grant  62373019  and  Grant  92367204.  Recom-            transmission over multiple steps between two sampling instants
+mended  for acceptance  by  Dr.  Weiting  Zhang.  (Corresponding  author:  Jiaqi        as a double time-scale estimation strategy, such as [13], [21],
+Yan.)
+   Hongyuan  Xu  is  with  the  School  of  Automation  Science  and  Electrical        [22], [23].In[13], the authors introduced a distributed hybrid
+Engineering, Beihang University, Beijing 100191, China, and also with Zhong-            double time-scale ﬁlter to achieve simultaneous consensus on
+guancun Laboratory, Beijing 100190, China (e-mail: xhybuaa@buaa.edu.cn).                information  and  measurements,  providing  effective  solutions
+   Wei  Wang  and  Qing  Gao  are  with  the  School  of  Automation  Science
+and  Electrical  Engineering,  Beihang  University,  Beijing  100191,  China,  and      for  linear  and  nonlinear  systems,  which  was  veriﬁed  by  the
+with  Hangzhou  Innovation  Institute,  Beihang  University,  Hangzhou  310051,         single-target tracking problem over a distributed sensor network.
+China, and also with Zhongguancun Laboratory, Beijing 100190, China (e-mail:            To  alleviate  the  communication  overhead  caused  by  multiple
+w.wang@buaa.edu.cn; jqyan@buaa.edu.cn).
+   Jiaqi  Yan  is  with  the  School  of  Automation  Science  and  Electrical  Engi-   transmissions,  [34]  designed  a  single  time-scale  distributed
+neering, Beihang University, Beijing 100191, China, and also with Hangzhou              estimator, which only requires transmitting data once to each
+Innovation  Institute,  Beihang  University,  Hangzhou  310051,  China  (e-mail:        neighbor  at  each  sampling  instant,  and  it  achieved  real-time
+gaoqing@buaa.edu.cn).                                                                   tracking of the mobile target as well. Further, [14] developed a
+   Digital Object Identiﬁer 10.1109/TNSE.2025.3621283
+
+      2327-4697 © 2025 IEEE. All rights reserved, including rights for text and data mining, and training of artiﬁcial intelligence and similar technologies.
+Personal use is permitted, but republication/redistribution requires IEEE permission. See https://www.ieee.org/publications/rights/index.html for more information.
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:22 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 2 =====
+XU et al.: SECURE STATE ESTIMATION: A NOVEL RETRANSMISSION AND ROLL-BACK MECHANISM                                                                                                            2853
+
+
+
+                                                                               TA B L E  I
+                                             COMPARISON WITH THE RELEVANT SECURE STAT E ESTIMATION METHODS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+KF-like consensus and innovations-based distributed estimator,                       developed a distributed resilient estimator that ensured mean-
+where both the consensus and innovation gain matrices can be                         square exponential convergence of estimation errors. To enhance
+optimized to minimize the mean square error. By lossless de-                         the computational efﬁciency of the algorithm, [22] also designed
+composition of KF, [3] obtained a high-efﬁciency local estimator                     an  adaptive  event-triggered  mechanism,  and  ensured  that  the
+with limited information, signiﬁcantly reducing communication                        estimates  remained  unaffected.  To  address  the  non-triggering
+overhead through an event-triggered mechanism. This method                           misbehavior caused by attackers, [56] proposed an attack detec-
+has been successfully applied to distributed monitoring of re-                       tor based on the information-theoretic approach and guaranteed
+gional  temperature.  It  is  noteworthy  that  the  aforementioned                  reliable estimation performance through the meta-Bayesian es-
+studies operate under the conditions of reliable data. However,                      timator. Moreover, with a sharp condition on the network topol-
+the exposure of data in open wireless networks introduces sig-                       ogy and an excitation condition on some benign sensors, [23]
+niﬁcant risks due to the potential for cyber attacks [18], [19].                     guaranteed that each benign sensor exponentially estimated the
+These attacks, unpredictable in timing, location and magnitude,                      true values by a resilient combine-then-adapt diffusion method.
+pose substantial  challenges  to state estimation,  as extensively                       Compared  to  attacks  on  sensors,  attacks  that  affect  trans-
+examined in the literature [21], [22], [23], [24], [25], [26], [35],                 mitted data manifest malicious behaviors during data transmis-
+[36], [37], [38], [39], [40], [41], [42], [43], [44], [45], [57], [58],              sion instants, demonstrating higher randomness that can escape
+[59].  In  practice,  a  compromised  state  estimation  can  result                 from traditional node-behavior-monitoring based defense mech-
+in severe consequences, especially when the system relies on                         anisms [27], [28]. Since wireless communication technologies
+the estimated states for decision-making.  For example, in the                       have introduced higher security uncertainties in data transmis-
+context of a power grid, inaccurate assessments of power ﬂow                         sion,  we  focus  on  the  estimation  strategies  under  attacks  on
+and network conﬁguration could cause improper load balanc-                           transmitted data in this paper. As the easiest attack to launch, the
+ing, voltage instability, or even equipment damage [18].More                         primary goal of adversaries that launch denial-of-service (DoS)
+seriously, unreliable system state estimation results can pose sig-                  attacks  is  to  deplete  system  resources  and  compromise  data
+niﬁcant operational risks, and damage to critical infrastructure                     availability [35], [36], [37], [57]. When DoS attacks occur, nodes
+or personal1 safety.                                                                 cannot  receive  any  information  transmitted  from  neighboring
+   Related  work:  Existing  solutions  can  generally  be  catego-                  nodes.  Therefore,  the  zero-order  holder  is  typically  used  to
+rized  into  two  groups:  secure  state  estimation  methods  that                  maintain  data  from  the  previous  step.  As  for  single-channel
+address  attacks  compromising  sensors  [21],  [22],  [23],  [58],                  multi-agent  systems,  a  switching  strategy  for  communication
+[59], and methods that counter attacks directly affecting trans-                     channels was developed in [36] to mitigate the effects of DoS
+mitted  data  [24],  [25],  [26],  [35],  [36],  [37],  [38],  [39],  [40],          attacks. For energy-constrained DoS attacks, a neural-network
+[57].  A  comparison  of  the  relevant  references  is  provided  in                (NN)-based state estimator was provided in [37], which guaran-
+Table  I.  For  systems  with  up  to s  compromised  nodes,  [21]                   teed the exponentially ultimate boundedness of state estimation
+introduced a saturation-based ﬁlter that achieved asymptotically                     errors.  The  NN-based  estimator  framework  was  applied  into
+bounded estimation under time-varying sets of malicious nodes.                       secure control in the presence of DoS attacks in [57].Onthe
+Simultaneously,  the  designed  attack  detector  guaranteed  zero                   other  hand,  adversaries  can  tamper  with  the  transmitted  data.
+false-alarm rate when the malicious node set remains known and                       This type of attack is more stealthy and will pose greater security
+time-invariant. As at mosts neighbors were compromised, [22]                         challenges  to  defenders.  Generally,  a  detection  mechanism  is
+                                                                                     designed for the transmitted data to verify the availability, such
+                                                                                     as χ2  detector  [60],  [61],  Kullback-Leibler  divergence  detec-
+
+  1All mentioned algorithms are calculable in polynomial time. Due to space          tor  [40],  [62],  deep  learning  based  detector  [63],  etc.  In  such
+limitations,  a  more  detailed  complexity  analysis  will  be  elaborated  later  inscenario, if the data passes the check of the detector, it will be
+Remark 7.                                                                            used in the estimator; otherwise, this data will be discarded.
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:22 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 3 =====
+2854                                                                                                                                                IEEE TRANSACTIONS ON NETWORK SCIENCE AND ENGINEERING, VOL. 13, 2026
+
+
+   To  further  resist  the  data  outliers,  [38]  developed  a  satu-               [39],  [42]  by  incorporating  a  correction  term  in  the  update
+ration  function-based  secure  state  estimator,  followed  with  a                  equation,  aiming  to  mitigate  performance  degradation  due  to
+round-robin protocol to alleviate the communication burden. For                       cyber attacks and time delays. To sum up, the main contributions
+distributed implementations, [39] developed a linear estimator                        of this paper are concluded as threefold:r  Instead of completely discarding suspicious data, a retrans-
+in the presence of Gaussian attacks on transmitted data among
+nodes,  where  cross-covariance  matrix  was  introduced  for  the                           mission strategy is ﬁrstly introduced to request and extract
+update  of  the  estimator,  as  well  as  the  bounded  convergence                         useful  information  from  this  data  with  designed  attack
+was analyzed. When the attacks are stealthy, [24] proposed a                                 detectors. In contrast to the timeout-based retransmission
+distributed consensus estimator with limited and enough ener-                                mechanism  used  in  network  communication  [48],  [49],
+gies, and the boundedness of error covariance was derived. The                               we propose an active retransmission strategy, which can
+results were extended to nonlinear systems in [25]. Moreover,                                handle suspicious data and does not rely on predetermined
+a Kullback-Leibler divergence attack detector was introduced                                 retransmission  time.  To  the  best  of  our  knowledge,  this
+in [40] to resist the linear attacks on innovations, where a sufﬁ-                           is the ﬁrst time that the retransmission request strategy is
+cient condition was established which guaranteed convergence                                 implemented to address the issue of secure state estimation
+of error covariance matrices. It is noteworthy that, in [24], [25],                       r  By integrating retransmitted neighboring information, wein the presence of cyber attacks.
+[40], the linear transformation matrices of attacks must remain
+known, and the injected state deviations must follow Gaussian                                have developed a secure state estimator augmented with
+distributions. Moreover, in [42], both neighboring states and in-                            a correction term based on the retransmitted data, which
+novations were considered to enhance the distributed estimation                              is  robust  to  time-varying,  nonuniform  and  bounded  de-
+performance under Gaussian attacks. For up to s failed sensors                               lays, and more general than the delays considered in [64],
+or communication channels, [43] proposed a single time-scale                                 [66].  This  design  contrasts  with  previous  studies  [24],
+resilient distributed algorithm and effectively ensured the Schur                            [25],  [60],  [61],  which  did  not  integrate  attack  detectors
+stability  of  the  estimator  with  the  given  graph  condition.  In                       for  both  real-time  and  retransmitted  data.  Moreover,  the
+addition,  secure  state  estimation  algorithms  have  also  been                           external injected attack signals in this work do not have
+extended  to  more  complex  dynamics  and  network  scenarios,                              to be Gaussian-offset. Unlike [24], [25], [32], [39], [42],
+such as nonlinear complex networks [44], fuzzy systems [45],                                 our  attack  model  uniquely  considers  both  the  predicted
+etc.                                                                                         state and its associated error covariance data as potentially
+   Typically, the transmitted data may be also subjected to com-                          r  Compared with [25], [32], [43], the introduction of a cor-unreliable, making it more practical.
+munication delays, such as those studied in [17], [23], [64], [65],
+[66].  A  state  estimation  algorithm  with  ﬁxed  state-delay  step                        rection  term  in  the  DRR-Estimator  results  in  additional
+was  developed  in  [66],  while  the  one-step  stochastic  delayed                         coupled cross-terms in the estimation error covariance ma-
+estimator was further provided in [64]. However, none of them                                trices, posing new analytical challenges. We address these
+have  considered  the  impact  of  data  manipulation  caused  by                            by  employing  essential  linear  matrix  inequalities,  ulti-
+attacks. In addition, as observed in studies like those by [25],                             mately proving that the estimator is exponentially bounded
+[39],  [40],  local  nodes  utilize  an  attack  detector  to  verify  the                   in mean square, which is practically exampled by an es-
+credibility  of  data  received  from  neighboring  nodes.  Flagged                          timation problem in the regional temperature monitoring
+data,  identiﬁed  as  compromised,  is  then  discarded.  However,                           application.
+completely discarding such data could also result in a loss of                           The rest of this paper is arranged as follows. In Section II,the
+estimation performance, as it may contain certain information                         preliminary preparations are presented, including notations, for-
+on  the  global  state  or  make  the  observable  condition  invalid.                mulation of the system and attack models, as well as basic con-
+In [25] and related covariance-transmission-based secure state                        cepts of the distributed estimator. The mechanism for requesting
+estimation literature [24], [32], [39], [42], the neighboring error                   the retransmission of suspicious neighboring data is designed
+covariance  matrix,  which  is  transmitted  for  local  updates,  is                 in  Section  III,  followed  by  a  new  KF-like  state  estimator.  In
+assumed  to  be  attack-resistant.  This  assumption  is  unrealistic                 Section IV, stability of estimation error is rigorously analyzed,
+in many applications and limits the applicability of these works                      and  the  effectiveness  under  time  delays  is  demonstrated.  An
+in real-world scenarios. Furthermore, the assumptions of linear                       example of regional temperature monitoring system is provided
+and Gaussian-distributed attack patterns adopted in [25], [39]                        in Section V, while Section VI concludes the paper.
+for  data  tampering  are  overly  restrictive  for  practical  attack
+modeling.                                                                                      II.  PRELIMINARIES AND PROBLEM FORMULATION
+   To  address  these  issues,  this  paper  introduces  a  distributed                  In this section, we introduce the normative notations, system
+retransmission  and  roll-back  estimator  (DRR-Estimator).  The                      and attack models, and the basic concepts of distributed estima-
+proposed  estimator  operates  under  the  assumption  that  both                     tors, which will be used in the rest of this paper.
+the transmitted predicted states and error covariance matrices
+are  susceptible  to  attacks  with  tampered  signals.  We  design                   A.  Notations
+retransmission rules for suspiciously received data and develop
+a novel attack detector speciﬁcally for retransmitted data. This                         1)  1n is the column vector with all-one elements.
+differs  from  typical  KF-like  estimators  [24],  [25],  [26],  [32],                  2)  In is the identity matrix of dimensions n×n.
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:22 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 4 =====
+XU et al.: SECURE STATE ESTIMATION: A NOVEL RETRANSMISSION AND ROLL-BACK MECHANISM                                                                                                            2855
+
+
+   3) ||x||, ||X||  denote  2-norm  of  the  vector x  and  induced               expressed as
+       2-norm of the matrix X, respectively.                                                     xiˆ            xi
+   4)  For a matrix X, XT  is the transpose of X; X−1  is the                                      k+1|k = Aˆk,                                                       (3)
+       inverse ofX;Tr(X) is the trace of X.                                                      xiˆk+1=ˆxik+1|k +Kik+1(yik+1 − ˆyik+1)
+   5)  diag{X1,X2,...,XN}  denotes  a  diagonal  matrix  with
+       elements X1,X2,...,XN ; X1 ⊗X2  denotes their Kro-                                                   +ϵ∑(ˆxjk+1|k − ˆxik+1|k),                    (4)
+       necker product.                                                                                           j∈Ni
+   6) X>0(X ≥ 0) ifX is a positive deﬁnite (positive semi-                        where ˆyi                  xi        xi              xi
+       deﬁnite) matrix.                                                           tion  and  estimation  of  system  state  for  time  instant k+1k+1 = Cik+1ˆk+1|k, ˆk+1|k  and ˆk+1  are  the  predic-,
+   7)  For a setS,|S| denotes the cardinality of S.                               respectively. The scale factor ϵ ∈ (0,  1
+   8)  For a random variable w, E[w] refers to the expectation;                                                                  D), with D=maxi|Ni|,
+       E[w|y] refers to the conditional expectation of w  under                   i∈V. Combining it with Assumption 2 and designed weights,
+       event y; P[w] refers to the probability of w.                              it  directly  guarantees  consensus  of  the  estimator  (3)-(4)  with
+                                                                                  appropriate  estimator gain Kik+1  [14].  Further, the prediction
+B.  System Model                                                                  error covariance Pik+1|k  and estimation error covariance Pik+1
+                                                                                  are deﬁned as
+   For a class of discrete-time multi-sensor NCSs, the dynamics                            Pi                         xi                   xi
+can be modeled as                                                                            k+1|k = E[(xk+1 − ˆk+1|k)(xk+1 − ˆk+1|k)T],      (5)
+                  xk = Axk−1 +wk−1,                                       (1)                Pik+1 = E[(xk+1 − ˆxik+1)(xk+1 − ˆxik+1)T].            (6)
+                  yi                         =1,...,N,                   (2)         However,  as  demonstrated  in  previous  research  [25],  [32],
+                   k = Cikxk +vik,i                                               we cannot derive Pik+1  directly. Consequently, we instead fo-
+where xk ∈ Rn  is the system state, yi                                            cus on identifying upper bounded sequences {Sik+1|k}k≥0 and
+                                               k ∈ Rmp  is the measure-
+ment of sensori at time instantk,i∈{1,2,...,N}.wk,vik are                         {Sik+1}k≥0, which are denoted by
+mutually uncorrelated Gaussian process noise and measurement                                         Si                        i
+noise, respectively, satisfying                                                                        k+1|k ≥ Pik+1|k,Sk+1 ≥ Pik+1                     (7)
+
+                                          i                                       with  Si0 ≥ Pi0,k≥ 0,   and   it   follows   that Tr(Pik+1) ≤
+                  wk∼N(0,Qk),vk∼N(0,Rik).                                         Tr(Si
+                                                                                         k+1),  where Tr(Pik+1)  and Tr(Sik+1)  denote  the  trace
+   The  initial  state x0  is  a  Gaussian  random  vector  with  zero            of  the  sum  of  squared  estimation  errors  and  its  upper  bound,
+mean, and is mutually uncorrelated with wk  and vi                                respectively. The optimal estimator gain matrixKi,∗k+1 is solved
+                                                                 k. Besides,      by
+the matrices Qk,Rik,A,Cik are supposed to satisfy that
+              qIn ≤ Qk ≤       qIn,rImp ≤ Ri            rImp,                                  Ki,∗k+1 = argmin     Tr(Sik+1),i∈V,k≥ 0.            (8)
+                                                   k ≤                                                      Kik+1
+                  a  ≤||A|| ≤     a, c  ≤||Cik|| ≤     c,                            As  smaller Tr(Si
+                                                                                                            k+1)  leads  to  smaller Tr(Pik+1),  it  thus
+where q,   q,r,  r,a,  a,c,c are positive constants.                              reduces the estimation error. Under Assumptions 1-2, the dis-
+   Assume  that  the  network  topology  of  sensors  is  described               tributed estimator is convergent. We refer the readers to [30],
+by  an  undirected  graph G=(V,E),  with V = {1,2,...,N}                          [31] for details.
+being the set of sensor nodes (for simplicity, nodes), andE⊆                      D.  Attack Model
+{(i.j)|i ⁄= j}  being  the  set  of  edges.  The  node j  is  called  a
+neighbor of node i if node i can receive messages from j, and                        Due to the wireless communication in sensor networks, the
+the neighbor set of nodei is typically expressed asNi. Further,                   transmitted data is easily hijacked and manipulated by external
+deﬁne the adjacent matrix ofG asA=[aij] ∈ RN×N , requiring                        adversaries. In this paper, we consider that the adversaries launch
+that aij=1ifj∈Ni; aij=0, otherwise.                                               tampered signals while maintaining stealthy behavior [24], [39];
+   The following assumptions are satisﬁed.                                        that is, they aim to avoid being detected as much as possible. In
+   Assumption 1:  The system (1)-(2) is collectively observable,                  many scenarios, when certain channels experience frequent at-
+i.e., (A,Ck) is observable, where Ck=[(C1k)T,...,(CNk )T]T ,                      tacks, system operators can quickly detect the issue and establish
+and (A,Cik) is not supposed to be observable.                                     new channels, which greatly complicates the implementation of
+   Assumption 2:  The graph G is connected.                                       the attacks. First, an attack signal ηijk   can be injected into the
+                                                                                  transmitted state, that is
+C.  Distributed Estimator                                                                                xj,aˆ        xj
+                                                                                                           k+1|k=ˆk+1|k +αijk ηijk ,                         (9)
+   To  alleviate  computational  burden  on  a  central  node  and                whereαij
+enhance scalability of the sensor network, distributed estimators                           k  is a binary variable that indicates whether an attack has
+are studied; see [13], [25], [29], [30], [31], [32], for instance.                been launched, whereαijk =1if the channel from nodej toi has
+   For each nodei, the KF-like prediction and update processes                    been attacked for the dataˆxjk+1|k; otherwise,αijk =0. As deﬁned
+in  distributed  deployments  such  as  [25],  [32]  are  commonly                in (7), the upper bound of covariance matrix is also transmitted
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:22 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 5 =====
+2856                                                                                                                                                IEEE TRANSACTIONS ON NETWORK SCIENCE AND ENGINEERING, VOL. 13, 2026
+
+
+and can be tampered with arbitrary positive semi-deﬁnite attack                         Deﬁnition 1:  [7]: For any stochastic processMk withk ≥ 0,
+signal Hijk  , denoted by                                                            if there exist real numbers ρ,ν > 0 and 0 < λ < 1 such that
+                      Sj,ak+1|k = Sjk+1|k +αijk Hijk .                      (10)                       E{||Mk||2}≤ρE{||M0||2}λk +ν,
+   Considering  that  the  information {ˆxj                                          the stochastic process Mk is deﬁned as exponentially bounded
+                                                    k+1|k,Sjk+1|k}  will  be         in mean square.
+transmitted in the same data packet, without loss of generality,                        In  summary,  the  core  objective  of  this  paper  is  detailed  as
+the decision of attacks in (10) is still represented by αijk , which                 follows:
+is easy to be extended to different cases. As discussed in [24],                        1)  Design algorithms to deal with potentially suspicious data
+[25], [26], [39], [40], adversaries with enough energy can carry                             in  the  presence  of  external  attacks,  based  on  which  to
+out persistent attack strategies, i.e., αijk =1,k≥ 0; while the                              develop a new distributed secure state estimator.
+attack decision will be 0 or 1 when the energy is limited. For                          2)  Prove that the estimation error is mean square exponen-
+launching  a  successful  attack,  the  adversaries  must  carefully                         tially bounded under given parameters, and validate that
+balance  stealthiness  when  pursuing  predetermined  objectives,                            the  proposed  estimator  has  higher  estimation  accuracy
+and the simplest and most effective strategy for being stealthy is                           than  existing  works  [25],  [30]  through  multiple  trials,
+to be random, which we refer readers to [24] for more details. In                            which is also robust to time delays.
+this case, denote the probability of attack as P[αijk =1]=θij,
+andαijk  is independent ofαpqk   when(i,j) ⁄=(p,q),k ≥ 0 [25],                                     III.  DESIGN OF DISTRIBUTED ESTIMATOR
+[39], [40]. Unlike the sensor fault model in [46] or the actuator                       In  this  section,  we  focus  on  establishing  a  retransmission
+fault model in [68], the injected bias αijk ηijk  can be an arbitrary                request  strategy,  and  then  introduce  a  distributed  estimator
+value chosen by the adversary, whereαijk  only indicates whether                     that incorporates a correction term based on the retransmitted
+the attack occurs or not. Moreover, the cyber attacks are assumed                    information.
+to target the communication channels during data transmission.
+   Remark  1:  In practice, the probability of attack θij  can be                    A.  Retransmission Strategy
+inferred  by  historical  data  or  even  substituted  by  its  arbitrary               As  stated  in  the  previous  section,  the  complete  discarding
+upper bound¯θij ≥ θij with¯θij ≤ 1. On the other hand, when the                      of  neighboring  data  by  the  detector  may  result  in  diminished
+attack prior is unknown and the attack signalsαijk  andαpqk  are not                 estimation performance. Here, the real-time detector of node i
+independent, we will provide an additional result in Corollary                       is designed as
+1 later, which actually relaxes constraints within the framework                                    ⎧
+in [24], [25], [26], [39], [40].                                                                    ⎪1,  ||ˆxj,a            xi
+   Remark 2:  Contrasting our attack models with those in [24],                                     ⎨            k+1|k − ˆk+1|k|| ≤ τ1,
+[25], we consider not only attacks targeting the transmission of                         γijk+1 =   ⎪        ||Sj,ak+1|k −Sik+1|k|| ≤ √nτ1,k≥ 0,                 (12)
+states, but also potential tampering with the covariance matrix                                     ⎩0,    otherwise,
+
+Sjk+1|k, which is more practical in real-world applications.                         for each time instantk+1, whereτ1 > 0 is a predeﬁned thresh-
+                                                                                     old. Further, the data packet sent from nodej and the potentially
+E.  Overall Objective                                                                attacked data packet received by its neighbors are, respectively,
+   To implement distributed state estimation in unreliable net-                      denoted by
+works, conventional algorithms (such as [24], [25], [39]) outline                                      T jk+1 = {j,k+1,ˆxjk+1|k,Sjk+1|k},                (13)
+the following steps: 1) design attack detectors to verify whether
+the transmitted data is compromised; 2) discard the data if the                                        T j,ak+1 = {j,k+1,ˆxj,ak+1|k,Sj,ak+1|k}.                (14)
+residual of predicted and received data exceeds a given threshold.                      To compensate for the information loss caused by the discard-
+Hence, the secure state estimators in these works are revised as                     ing of suspicious data, the unadopted neighboring data (when
+              xiˆk+1=ˆxik+1|k +Kik+1(yik+1 − ˆyik+1)                                 γijk+1=0)  is  required  to  be  retransmitted  in  our  setting,  i.e.,
+                                                                                     the  data  (13)  will  be  retransmitted  from  node j  to i,  and  the
+                         +γijk+1ϵ∑(ˆxj,ak+1|k − ˆxik+1|k),           (11)            retransmitted data received by node i is denoted by
+                                     j∈Ni                                                               ˇ
+                                                                                                       T j,ak+1 = {j,k+1,ˇxj,ak+1|k, ˇSj,ak+1|k},                (15)
+whereγijk+1 is a designed detection signal, withγijk+1=0if the
+system operator decides to discard ˆxj,a                                             where ˇT j,ak+1,ˇxj,ak+1|k, ˇSj,ak+1|k are the retransmitted data that might
+                                                k+1|k, and γijk+1=1oth-              be  distinct  from  those  of  real  time  due  to  the  uncertainty  of
+erwise. However, completely discarding data would inevitably                         cyber  attacks  with  attack  injections ¯αijηij                  αijHij        e
+result in performance loss of the distributed estimation, partic-                    further design a retransmission indicator signal for nodei, whichk ¯k   and ¯k ¯k .W
+ularly in cases of signiﬁcant changes in system states or when                       represents its proactive request for retransmitting the data for the
+sensors are sparse. Hence, it is imperative to develop novel algo-
+rithms for processing suspicious data in the presence of attacks
+(9)-(10), and design a distributed secure state estimator such that                     2The  mark  [·]∗  represents  corresponding  variables  or  sets  for  each  time
+the estimation error is exponentially bounded as deﬁned below.                       instant ∗.
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:22 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 6 =====
+XU et al.: SECURE STATE ESTIMATION: A NOVEL RETRANSMISSION AND ROLL-BACK MECHANISM                                                                                                            2857
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig. 1.     An example of the retransmission strategy.2
+
+(k+1)-th step from node j, expressed as                                                When nodej receives the indicatorIijk+1, it will immediately
+                          Iijk+1 = {i,j,k+1}.                            (16)       retransmit the data T jk+1. In reality, the retransmitted data may
+                                                                                    also be compromised by external attacks as deﬁned in (15).For
+   In  view  of  bandwidth  requirements  of  the  communication                    each nodei, deﬁne the attack detector for the retransmitted ˇT j,ak+1
+network, when certain real-time neighboring data is identiﬁed                       as
+as suspicious by detector (12), it will be retransmitted for only                              ⎧
+once, namely, one retransmission request will be sent for each                                 ⎪1,  ||ˇxj,ak+1|k − ˆxik+1|k|| ≤ τ2,ˇxj,ak+1|k=ˆxj,ak+1|k,
+                                                                                               ⎪
+                                                                                               ⎪
+discarded  message.  To  facilitate  understanding,  the  following                            ⎪
+                                                                                               ⎪        ||ˇSj,a                         nτ2, ˇSj,a
+example illustrates the proposed retransmission strategy.                                      ⎨            k+1|k −Sik+1|k|| ≤ √                k+1|k = Sj,ak+1|k,
+   As  shown  in  Fig.  1,  node j  sends  a  data  packet T j,a                    γijk+1 =   ⎪        or||ˇxj,ak+1|k − ˆxik+1|k|| ≤ τ1,
+                                                                        k−1  to                ⎪
+                                                                                               ⎪
+                                                                                               ⎪        ||ˇSj,a                         nτ1,k≥ 0,
+                                                                                               ⎪            k+1|k −Sik+1|k|| ≤ √
+node i for time instant k −1 after ˆxjk−1|k−2 and Sjk−1|k−2 have                               ⎩0,    otherwise,
+been calculated, which is compromised by an external adversary                                                                                                  (17)
+via the wireless network channel. The detector γijk−1 of node i
+deﬁned in (12) judges that the received data fromj is unreliable,                   where the ﬁnite constant τ2 ≥ τ1  denotes the given threshold.
+and then discards it. By sending back an indicator signal Iijk−1,                   Even though retransmission increases the risk of exposing more
+the  retransmitted  data ˇT j,ak−1  will  be  immediately  resent  once             data, it can enhance the security and reliability of the available
+node j  receives  the  indicator,  where  the  subscript k −1  here                 data by the reasonable selection of the threshold. In practice,
+is to inform that node j  needs to retransmit the data from the                     the  detection  threshold τ1  can  be  approximated  based  on  the
+previousk −1 time instant. In the meantime, other data packets                      noise level of the NCSs when there are no attacks. Combined
+may  have  been  transmitted  by  node j,  for  instance, T j,ak     has            τ2 ≥ τ1 with ˇxj,a             xj,a           Sj,a
+reached nodei beforeT j,a                                                                              k+1|k=ˆk+1|k and ˇk+1|k = Si,ak+1|k, the given
+                              k−1 is transmitted. Once again, we have               τ2  is  designed  to  compensate  for  data  loss  caused  by  false
+to emphasize that the subscripts of detectors (γijk+1  and               γijk+1)    positives, i.e., the data ˇT j,ak+1 is considered trustworthy when it
+and  retransmission  indicator Iijk+1  should  represent  the  time                 satisﬁes the threshold condition onτ2 and the equality conditions
+indicator when the data is supposed to be utilized, rather than                     in (17) simultaneously, even if the threshold condition on τ1 is
+indicating the current instant.                                                     not satisﬁed.
+   To ensure higher real-time performance, the transmitted state                       Remark  3:  Motivated by the timeout retransmission mech-
+and covariance matrix in NCSs typically lack of thorough secu-                      anism  of  TCP  protocol  in  computer  network  [48],  [49],we
+rity measures, e.g. data encryption. However, as the transmission                   design a retransmission strategy for neighboring suspicious data.
+of  indicator Iijk+1  requires  only  a  minimal  amount  of  com-                  For  the  TCP  communication,  in  fact,  the  receiver i  sends  an
+munication bandwidth, symmetric and asymmetric encryption                           acknowledgment (ACK) packet to the sender j upon receiving
+algorithms  [50],  [51]  can  be  easily  applied  to  guarantee  the               the  data  packet T jk+1,  and  the  data  packet  will  be  considered
+security of indicator. Here, we assume that the indicator signal                    lost and be resent if the ACK packet is not received by j after
+is encrypted and secure over communication channel, which is                        the  timeout.  Different  from  the  timeout-based  retransmission
+also adopted in [32] and can be ensured by the method proposed                      for a sender with a timer [48], our proposed strategy exhibits the
+in [47].                                                                            following characteristics:
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:22 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 7 =====
+2858                                                                                                                                                IEEE TRANSACTIONS ON NETWORK SCIENCE AND ENGINEERING, VOL. 13, 2026
+
+    r  The retransmission of suspicious data is an active strategy                where Lmax  denotes  the  maximum  distance  between  sensor
+      initiated through the indicator (16), independent of speciﬁc                neighbors, vcm  denotes  the  communication  rate  and Tsample
+    r  Compared  to  timeout-based  retransmission,  which  cantime intervals.    is the sampling time interval. When communication conditions
+                                                                                  change constantly, the predeﬁned window size m can be time-
+      only  handle  packet  loss  scenarios,  our  strategy  includes             varying. Accordingly, the varying value m can be selected as
+      effective responses to various types of data attacks in [20].               the upper bound of the ratio in (20) at each time instant.
+                                                                                     In the next section, we will derive the estimator gain matrix
+B.  Roll-Back Estimator                                                           Kik,i∈V,  and  provide  a  sufﬁcient  condition  such  that  the
+   Using the retransmission strategy outlined in Section III.A,                   estimation  error  of  our  estimator  is  exponentially  bounded  in
+each  node  can  obtain  retransmitted  values  for  the  suspicious              mean square.
+
+data  from  its  neighbors.  Subsequently,  we  will  design  a  new                                         IV.  MAIN RESULTS
+distributed  state  estimator  that  incorporates  both  the  received               This section aims to present the estimator gain and conduct the
+real-time and retransmitted data, referred to as the data roll-back               stability analysis. Initially, by several linear matrix inequalities,
+mechanism.                                                                        we obtain the estimator gain and the upper bound of estimation
+   For each node i, the retransmission and roll-back based esti-                  error covariance sequentially. After that, the estimation error is
+mator is designed as                                                              demonstrated to be exponentially bounded in the sense of mean
+
+           xiˆk+1=ˆxik+1|k +Kik+1(yik+1 − ˆyik+1)                                 square. Further, we present that the designed estimator is robust
+                                                                                  to time delays.
+                      +γijk+1ϵ∑       (ˆxj,ak+1|k − ˆxik+1|k)
+                                 j∈Ni                                             A.  Iterative Process of the Estimator
+                      +  γijp ϵ ∑      Am(ˇxj,ap|p−1 − ˆxip|p−1),        (18)        Firstly,  several  essential  lemmas  are  introduced  for  subse-
+                               j∈N p,ai                                           quent analysis.
+                                                                                     Lemma 1:  [52] For any given n-dimensional vectors M, N,
+whereNp,ai     denotes the set of suspicious neighbors (when           γijp =     the following inequality holds:
+0) for time instantp, the scale factorϵ ∈ (0,   12D), andKik+1 is the                           MNT +NMT ≤ ϵMMT +ϵ−1NNT,
+estimator gain. The real-time and retransmitted data detectors
+γijk+1  and  γijp   are  respectively  deﬁned  in  (12)  and  (17).  Each         where ϵ is an arbitrary positive constant.
+correction item depends on the message at time p, where p =                          Lemma 2:  [53] For the matrices A,B,C,D withCCT ≤ I,
+k+1−m  and m  is  a  predeﬁned  window  size.  Considering                        it follows that
+that the update equation (18) utilizes data from up to m steps                        (A+BCD)P(A+BCD)T ≤ A(P−1 −ϵDTD)−1AT
+prior, a data storage buffer Bik+1 is introduced for each node i
+to temporarily store the data, represented as                                                                                 +ϵ−1BBT,
+
+           Bik+1 = {ˆxip|p−1,ˆxip+1|p,...,ˆxik|k−1,ˆxik+1|k,                      where P   is   a   positive   deﬁnite   matrix   that   satisﬁes I −
+                                                                                  ϵ−1DPD >0 with a positive constantϵ>0.
+                         xj,aˆp|p−1,ˆxj,ap+1|p,..,ˆxik|k−1,ˆxj,ak+1|k,               Lemma 3:  [54] For0 ≤ k ≤ K,letM andN be positive def-
+                         xj,aˇ     xj,a        xj,a      xj,a                     inite matrices such thatN>M>0. Furthermore, let Mk,Nk
+                           p|p−1,ˇp+1|p,..,ˇk|k−1,ˇk+1|k,                         be two matrix functions such that
+                         γijp ,γijp+1,..,γijk−1, γijk,j∈Ni},         (19)                      Mk(M)=Mk(M)T,Mk(N) ≥ Mk(M),
+
+which is also shown in Fig. 1.                                                                 Nk(M)=Nk(M)T,Nk(M) ≥ Mk(M).
+   Remark 4:  The correction term in (19) uses the data that is                   Then, the solutions Mk and Nk to the difference equations
+m steps ahead of the current time. Therefore, the parameter m
+is a window size indicating how long a node should wait for the                         Mk+1=Mk(Mk),Nk+1=Nk(Nk),M0 = N0 > 0
+retransmitted data to reach. In practice,m should be chosen large                 satisfy Mk ≤ Nk, 0 ≤ k ≤ K, where K is an arbitrary positive
+enough to ensure the successful receipt of the retransmitted data.                constant.
+On the other hand,m also reﬂects how effective the retransmitted                     Lemma 4:  For n-dimensional vectors M, N, O and positive
+data is. A larger value ofm in (18) indicates that the retransmitted              constant Γ which satisfy that ||M −N −O|| ≤ Γ, it yields
+information becomes more outdated, and more additional space                                              (√                            )
+will be used to store historical data. This underscores a trade-off                  OOT ≤ LLT +                Tr(LLT)+1                 Γ2In,
+between  the  data  efﬁciency  and  communication  resources.  In                                                     Γ     +1
+practice, the integerm can be set as an upper bound of the ratio:                                                        √
+                               2Lmax/vcm                                             LLT =MMT +NNT +2                       Tr(MMT)Tr(NNT)In.
+                                  Tsample  ,                                   (20)  Proof:  See Appendix A.                                   ■
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:22 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 8 =====
+XU et al.: SECURE STATE ESTIMATION: A NOVEL RETRANSMISSION AND ROLL-BACK MECHANISM                                                                                                            2859
+
+
+   For  each  node i,  deﬁne  the  state  prediction  and  estimation            Algorithm  1:  Distributed  Retransmission  and  Roll-back
+errors  as eik+1|k = xk+1 − ˆxik+1|k  and eik+1 = xk+1 − ˆxik+1,                 based  Estimator  (DRR-Estimator)  For  each  node i,  and
+respectively. Based on (1) and (18),wehave                                       j∈Ni.
+    eik+1|k = Aeik +wk,                                                          (21)Initialization
+                                                                                   1: Given initial conditions ˆxi0,Si0,setk=0.
+    eik+1=(In −Kik+1Cik+1)eik+1|k −Kik+1vik+1                                     Prediction Step
+             −ϵ∑       γij                                                         1: Compute predicted state ˆxik+1|k by (3);
+                         k+1(eik+1|k −ejk+1|k +αijk ηijk )                         2: Compute the upper bound of prediction error covariance
+                  j∈Ni                                                                Si
+                                                                                        k+1|k by (24);
+             −ϵ ∑         γijp Am(eip|p−1 −ej             αijp−1¯ηijp−1).         Detection Step
+                                                p|p−1+¯                            1: Detect the real-time data packets T j,a
+                  j∈N p,ai                                                                                                       k+1 transmitted from
+                                                                                      the neighbors by attack detector (12) and send back
+                                                                       (22)           Iijk+1 when γijk+1=0;
+   Together with (5) and (6), it follows that error covariances are                2: Ifp ≥ 1:
+evolved as                                                                           Detect the data packets ˇT j,ap     retransmitted from the
+                                                                                    neighbors by attack detector (17);
+Pik+1|k = E[eik+1|k ·(eik+1|k)T]=APikAT +Qk,                                       3: Store and update the data buffer by (19).
+  Pi                                                                              Update Step
+    k+1 = E[eik+1 ·(eik+1)T]                                                       1: Compute estimator gain Kik+1 by (23);
+             [⎛                                         ⎞                          2: Compute estimated state ˆxik+1 by (18);
+         =    ⎝In −Kik+1Cik+1 −ϵ∑                γijk+1I⎠eik+1|k                   3: Compute the upper bound of estimation error covariance
+                                           j∈Ni                                       Sik+1 by (25);
+                                                (                    )             4: k := k+1, return to Prediction Step.
+             −Kik+1vik+1 +ϵ∑             γijk+1  ejk+1|k −αijk ηijk
+                                   j∈Ni                                                                ∑
+                                                                        )]                   +mi             γij
+             +ϵ ∑         γijp Am(ejp|p−1 −eip|p−1 − ¯αijp−1¯ηijp−1                                6           p θijAmΞSi,2p  (Am)T                     (25)
+                  j∈N p,a                                                                            j∈N p,ai
+                       i
+             [  ]T,                                                             with the parameter 0<β≤ βik ≤              β<1 and the initial values
+            ·  ∗                                                                Si                         , β are positive constants andΞSi,1
+                                                                                  0 ≥ Pi0 > 0, whereβ                                           k+1,ΞSi,2p
+where [∗]T  denotes  the  transpose  of  all  the  preceding  terms             are  deﬁned  in  (53)  and  (54).  The  parameters mi1,...,mi6  are
+on  the  right  hand  side.  Now,  we  give  the  iterative  formulas           chosen  as  shown  in  Appendix, Aik+1 = In −Kik+1Cik+1 −
+of the estimator gain and the upper bound of estimation error                   ϵ∑j∈Ni γijk+1In.
+covariance through the following proposition.                                      Proof:  See Appendix B.                                   ■
+   Proposition  1:  Consider  the  dynamical  system  (1)-(2)  and                 The  proposed  distributed  estimator,  referred  to  as  DRR-
+assume  that  the  attacks  satisfy  (9)-(10).  For  each  node i,the           Estimator, is detailed in Algorithm 1.
+optimal  estimator  gain Kik+1  in  (18)  can  be  solved,  which  is              Remark 5:  Current literature primarily comprises two meth-
+presented as                                                                    ods of covariance updates: the ﬁrst method introduces an ad-
+ Ki                                             γij                             ditional cross-covariancePijk+1 between each neighboring node
+    k+1 = mi1(Sik+1|k(Cik+1)T −ϵ∑                 k+1Sik+1|k(Cik+1)T)           pair(i,j) [39]. Since more data will be transmitted, it raises the
+                                          j∈Ni                                  vulnerability to external attacks, thereby increasing the estima-
+             ×(mi1Cik+1Sik+1|k(Cik+1)T +Rik+1)−1             (23)               tion error. Different from this method, our work only requires
+in the sense of minimizingTr(Si                                                 Sjk+1 (an upper bound of estimation error covariance Pjk+1)to
+                                        k+1), where Sik+1|k, Sik+1 are          be exchanged, thereby reducing the data expose. In this case, the
+respectively calculated as                                                      estimator gain Kik+1 can be solved in the sense of minimizing
+   Sik+1|k=(1−βik)−1ASikAT +Qk,                                 (24)            Tr(Sik+1), i∈{1,2,...,N}.
+                                                                                   Remark    6:  In   Proposition   1,   the   parameters  ap,p=
+   Sik+1 = mi1Aik+1Sik+1|k(Aik+1)T +Kik+1Rik+1(Kik+1)T                          {1,2,...,19} inmil,l= {1,2,...,6} can be obtained by solv-
+                     ∑                            ∑                             ing the following optimization problem:
+             +mi2         γijk+1Sj,ak+1|k +mi3         γijk+1θijΞSi,1k+1
+                     j∈Ni                        j∈Ni                                  minap Tr(Sik+1),
+                      ∑                                                                         (         )
+             +mi4            γijp AmˇSj,ap|p−1(Am)T                                    s.t. ϵ ∈   0, 1       ,a
+                     j∈N p,a                                                                                    p > 0,p= {1,2,...,19},         (26)
+                         i                                                                            2D
+             +mi      ∑      γij                                                for each node i and time instant k+1. The non-convex opti-
+                   5           p AmSip|p−1(Am)T
+                     j∈N p,ai                                                   mization problem (26) can be handled by heuristic algorithms.
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:22 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 9 =====
+2860                                                                                                                                                IEEE TRANSACTIONS ON NETWORK SCIENCE AND ENGINEERING, VOL. 13, 2026
+
+
+In fact, as long as the values of ap  and ϵ meet the constraints,                 information, we can then employ Proposition 1 to estimate the
+it can achieve good estimation effects, as will be presented in                   system state with enhanced accuracy.
+Section V.
+   Remark 7:  The complexity of Algorithm 1 at each iteration                     B.  Stability Analysis
+is  polynomial.  More  explicitly,  the  computational  complexity                   This  subsection  analyzes  the  stability  of  the  proposed  dis-
+of our proposed DRR-Estimator for node i is of order 3, i.e.,                     tributed  estimator.  Firstly,  to  demonstrate  the  convergence  of
+O(|Ni|(n3 +mpn2 +m2pn+m3p)),  which  is  primarily  from                          the estimation error, we assume that the following assumption
+solving the estimator gain matrix, with mp-dimensional mea-                       holds.
+surements, n-dimensional states, and the number of neighbors                         Assumption  3:  There  exist  positive  constants s             s1,s    s2,
+|Ni|. This is the same as the complexity in [25], [39]. Moreover,                 such that the following constraints are satisﬁed:               1,      2,
+the computational complexities of other algorithms in Table I
+are,  respectively, O(r|Ni|+n2)  [21],  [23], O(nr|Ni|2 +n2)                                s                      s1In,s                       s2In,
+[22], andO(p2|Ni|(n3 +mpn2 +m2pn)) [38] with r being the                                      1In ≤ Sik+1|k ≤               2In ≤ Sik+1 ≤
+consensus  step.  Also,  a  seventh-order  polynomial  complexity                 for  each i∈{1,2,...,N}  and k ≥ 0.InAssumption3,the
+arises  in  [37],  [57]  due  to  the  use  of  a  neural  network.  Al-          constraints onSi
+though  the  computational  complexity  of  algorithms  in  [21],                 tic  stability  of  the  error,  a  condition  extensively  employed  ink+1|k andSik+1 are required to analyze stochas-
+[22],  [23]  seems  lower,  they  are  actually  double  time-scale               the literature [7], [25], [32]. Further, we introduce an essential
+algorithms,  which  signiﬁcantly  increase  the  communication                    lemma as follows.
+complexity. In contrast, we only need to transmit the predicted                      Lemma 5:  [7] For some real numbers             ρ,ρ,ϱand 0 < λ ≤ 1,
+data  once  at  each  time  instant.  As  for  the  given  graph  struc-          consider a stochastic processMk(Mk) such that
+ture  and  the  estimator  matrix,  [43]  achieved  lower  computa-
+tional complexity of O(|Ni|n2). However, verifying the node                                      ρ||Mk||2 ≤ Mk(Mk) ≤            ρ||Mk||2,
+connectivity  and  solving  the  estimator  gain  matrix  via  linear
+matrix inequalities will result in higher polynomial complexity                     E{Mk(Mk)|Mk−1}−Mk−1(Mk−1) ≤ ϱ− λMk−1(Mk−1).
+for [43].
+   In practice, prior knowledge of attacks in Proposition 1 can                      Then the stochastic process Mk(Mk) achieves exponentially
+be inferred based on historical data records from estimators and                  bounded in mean square, i.e.,
+characteristics of speciﬁc attack patterns. For entirely unknown                                                                            ∑k−1
+attacks, we propose a corollary as follows.                                           E{||Mk||2}≤ρE{||M0||2}(1− λ)k + ϱ                          (1− λ)m
+   Corollary 1:  Consider the dynamical system (1)-(2) and at-                                           ρ                               ρ m=1
+tacks in (9)-(10) with unknown prior. For each nodei, the optimal
+estimator gain Kik+1  is also calculated by (23), where Sik+1|k                   is satisﬁed for anyk ≥ 0. Since the parameter0 < λ ≤ 1 and the∑k−1
+and Sik+1 are presented recursively as                                            term ϱρ     m=1(1− λ)m is convergent, Lemma 5 is conducive to
+   Si                                                                             analyze stochastic stability deﬁned in Deﬁnition 1. Now, we are
+     k+1|k=(1−βik)−1ASikAT +Qk,                                                   prepared to present the core theorem, which demonstrates the
+   Sik+1 = mi1Aik+1Sik+1|k(Aik+1)T +Kik+1Rik+1(Kik+1)T                            exponentially bounded convergence of the DRR-Estimator.
+                      ∑                            ∑                                 Theorem  1:  Consider  the  given  system  model  (1)-(2),  and
+              +mi2         γijk+1Sj,ak+1|k +mi3          γijk+1ΞSi,1k+1           the attack detector adopts (12), (17). Let Assumptions 1-3 be
+                     j∈Ni                          j∈Ni                           satisﬁed.  For  each  node i∈V,  the  estimator  (18)  deﬁned  in
+              +mi      ∑      γij      Sj,a                                       Algorithm  1  can  guarantee  that  the  estimation  error eik+1  is
+                    4           p Amˇp|p−1(Am)T                                   exponentially bounded in mean square, that is,
+                     j∈N p,ai
+                       ∑                                                                      E{||ei               s2                       )k +ν,
+              +mi5            γijp AmSip|p−1(Am)T                                                    k+1||2}≤s               0||2}(1−β
+                                                                                                                    2 E{||ei
+                     j∈N p,ai
+                       ∑                                                          where ν is a ﬁnite positive scalar.
+              +mi6            γijp AmΞSi,2p  (Am)T                                   Proof:  Firstly, select a stochastic process as
+                     j∈N p,ai
+with deﬁnitions of the variables being the same as in Proposition                                                 ∑N
+1.                                                                                            Mk+1(ek+1)=              (eik+1)T(Sik+1)−1eik+1,         (27)
+                                                                                                                   i=1
+   Proof:  By resorting to (47)-(51) in the proof of Proposition 1
+and considering the binary variable αijk ∈{0,1}, the result is                    where ek+1=[(e1k+1)T,(e2k+1)T,...,(eNk+1)T]T  is the aggre-
+readily derived and omitted here for space saving.            ■                   gated error vector of N  sensors. Combined it with Assumption
+   The aforementioned corollary further relaxes the assumptions                   3, it yields
+on attacks. In the application, after collecting sufﬁcient historical                            1
+data,  the  estimator  can  analyze  and  infer  the  statistical  char-
+acteristics  of  the  attacks.  Leveraging  this  known  attack  prior                          s2||ek+1||2 ≤ Mk(ek+1) ≤ 1s2||ek+1||2.
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:22 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 10 =====
+XU et al.: SECURE STATE ESTIMATION: A NOVEL RETRANSMISSION AND ROLL-BACK MECHANISM                                                                                                            2861
+
+
+  Taking the conditional expectation of Mk+1(ek+1) given ek,                                rk2
+we have                                                                               ≤ Ns
+                                                                                             2  := n1.                                                         (31)
+                             ∑N
+ E{Mk+1(ek+1)|ek} =              E{(eik+1)T(Sik+1)−1eik+1|ek}.                 Similarly, by revisiting the deﬁnition of (9) and together with
+                             i=1                                            inequality (30) and Assumption 3, the third to the seventh terms
+  Speciﬁcally,  according  to  the  deﬁnition  of eik+1  and Sik+1          on the right side of equation (28) can be individually rearranged
+presented in (22), (25),wehave                                              as follows:
+ E{Mk+1(ek+1)|ek}                                                                   ⎧                                             ⎫
+                                                                               ∑N   ⎨      ∑                                      ⎬
+      N   {                                                                              2      γijk+1(ejk)TAT(Sik+1)−1Aejk
+     ∑                                                                              ⎩mi                                           ⎭
+  =         mi1(eik)TAT(Aik+1)T(Sik+1)−1Aik+1Aeik                               i=1        j∈Ni
+
+     i=1                                                                           ∑N   ∑
+    + E{(vik+1)T(Kik+1)T(Sik+1)−1Kik+1vik+1}                                    ≤           (ejk)TAT(Sj,ak+1|k)−1Aejk
+            ∑                                                                      i=1 j∈Ni
+    +mi2         γijk+1(ejk)TAT(Sik+1)−1Aejk                                       ∑N   ∑
+           j∈Ni                                                                                                           s2
+            ∑                                                                   ≤            Tr(Pjk(Sjk)−1) ≤ NDns
+    +mi          γij                                                               i=1 j∈Ni                             2   := n2,                 (32)
+          3       k+1(αijk ηijk )T(Sik+1)−1αijk ηijk                                ⎧                                                ⎫
+           j∈Ni                                                                ∑N   ⎨      ∑                                         ⎬
+             ∑                                                                                  γij
+    +mi4           γijp (ejp−1)T(Am+1)T(Sjp)−1Am+1ejp−1                             ⎩mi3          k+1(αijk ηijk )T(Sik+1)−1αijk ηijk ⎭
+           j∈N p,a                                                              i=1        j∈Ni
+               i
+    +mi      ∑     γij                                                          ≤ θijND(ηijk )T(ΞSi,1k+1)−1ηijk ≤ θijND:= n3,              (33)
+          5          p (eip−1)T(Am+1)T(Sip)−1Am+1eip−1                              ⎧                                                            ⎫
+           j∈N p,ai                                                            ∑N   ⎨        ∑                                                   ⎬
+    +mi      ∑     γij  αij   ηij                           αij   ηij               ⎩mi4           γijp (ejp−1)T(Am+1)T(Sjp)−1Am+1ejp−1⎭
+          6          p(¯p−1¯p−1)T(Am)T(Sip)−1Am¯p−1¯p−1                         i=1        j∈N p,ai
+           j∈N p,ai
+                                                                                   ∑N   ∑
+    + E{wTk(I −Kik+1Cik+1)T(Sik+1)−1                                            ≤           (ejp−1)TAT(ˇSj,ap|p−1)−1Aejp−1
+                                                                                   i=1 j∈Ni
+           ×(I −Kik+1Cik+1)wk}},                                     (28)          ∑N   ∑                                      s2
+                                                                                ≤            Tr(Pjp−1(Sjp−1)−1) ≤ NDns
+                                                                                   i=1 j∈Ni                                  2   := n4,         (34)
+wheremil,l∈{1,2,...,6} is deﬁned in Appendix B. Next, we                            ⎧                                                            ⎫
+will analyze each term on the right hand side of equation (28).                ∑N   ⎨        ∑                                                   ⎬
+Combined with (24), (25), Assumption 3 and the restriction of                       ⎩mi5           γijp (eip−1)T(Am+1)T(Sip)−1Am+1eip−1⎭
+βik, the ﬁrst term on the right side of equation (28) is formulated             i=1        j∈N p,ai
+as                                                                                 ∑N   ∑
+         N                                                                                                                     s2
+        ∑    {mi                                               }                ≤            Tr(Pip−1(Sip−1)−1) ≤ NDns
+                 1(eik)TAT(Aik+1)T(Sik+1)−1Aik+1Aeik                               i=1 j∈Ni                                  2   := n5,         (35)
+        i=1                                                                         ⎧
+              T(1−βi                                                           ∑N   ⎨        ∑
+        ≤ eik           k)(Sik)−1eik                                                ⎩mi6           γijp(¯αijp−1¯ηijp−1)T(Am)T(Sip)−1Am
+        ≤ (1−β)Mk(ek).                                                      (29)i=1        j∈N p,ai
+                                                                                             ⎫
+  Deﬁne       mp=max                                                                         ⎬
+                            imip,      and   mp=minimip,   i ∈                  ×¯αijp−1¯ηijp−1              ηijp−1)T(ΞSi,2p  )−1¯ηijp−1
+{1,2,...,N},p= {1,2,...,6}.   Combined   with   (23)   and                                   ⎭ ≤ θijND(¯
+Assumption 3, we have
+                              m1(1+ϵD)s1c                                       ≤ θijND:= n6.                                                                 (36)
+                ||Kik+1|| ≤      m    2s          :=  k.                (30)
+                                   1c   1 +r                                   For the last term on the right side of equation (28), recalling
+  Hence, the second term on the right side of equation (28) can             that E[wkwTk]=Qk and one has
+be scaled as
+         ∑N                                                   }              ∑N
+             E{(vik+1)T(Kik+1)T(Sik+1)−1Kik+1vik+1                                E{wTk(I −Kik+1Cik+1)T(Sik+1)−1(I −Kik+1Cik+1)wk}
+         i=1                                                                 i=1
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:22 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 11 =====
+2862                                                                                                                                                IEEE TRANSACTIONS ON NETWORK SCIENCE AND ENGINEERING, VOL. 13, 2026
+
+              kc2)                                  kc2)r                                ⎛  ∑    γ1j                                                  ⎞
+ ≤ N(1+                          k]) ≤ Nn(1+                                             ⎜j∈N1     k+1(1−α1jk )  ···   −γ1jk+1(1−α1Nk )               ⎟
+          s2   Tr(E[wkwT                        s2      := n7.                           ⎜                                                            ⎟
+                                                                      (37)               ⎜   −γ21                                                     ⎟
+                                                                               Λ1        ⎜       k+1(1−α21k )       ...    −γ2Nk+1(1−α2Nk )           ⎟   ,
+                                                                                 k+1=⎜                 .                                              ⎟
+   Hence, combined with (28)-(37), we can derive the following                           ⎜             .                .                .            ⎟
+                                                                                         ⎜             .                       ..                        ..⎟
+inequality:                                                                              ⎝  −γN1                                    γNj               ⎠
+                                                                                                k+1(1−αN1k )  ···  ∑j∈NN             k+1(1−αNjk )
+          E{Mk+1(ek+1)|ek}≤(1−β)Mk(ek)+nall,
+i.e.,                                                                          and Λ2k+1   is   deﬁned   in   the   same   manner   as Λ1k+1,ex-
+       E{Mk+1(ek+1)|ek}−Mk(ek) ≤ nall −βMk(ek),                                cept  that −γijp (1− ¯αijp−1)  replaces −γijk+1(1−αijk ), i,j =
+                                                                               1,2,...,N,i⁄= j,   accordingly.   Moreover, ζk   is   a   2-norm
+where nall = n1 +n2 +n3 +n4 +n5 +n6 +n7 is bounded.                            bounded  vector  with  appropriate  dimension  which  is  omit-
+According  to  Lemma  5  and  Deﬁnition  1,  it  follows  that  the            ted   here   for   saving   space.   To   analyze   the   effects   of   in-
+estimation erroreik+1 is exponentially bounded in mean square,                 jected  attacks  and  designed  detectors,  further  deﬁne        ek+1p−1 =
+for each i∈{1,2,...N}.Letν =              s2nall∑k−1m=1(1−β)m,we               [(ep−1)T,(ep)T,...,(ek+1)T]T , which follows
+have                                                                                      ek+1       Λk+1      Kk+1Ck+1       ek       Wk
+            E{||ei             s2                      )k +ν,                              p−1 =(      p−1 −      p−1    p−1)   p−2 −      p−2,        (39)
+                  k+1||2}≤s2 E{||ei0||2}(1−β                                   where
+
+where ν is a ﬁnite scalar. The proof is completed.            ■                      Kk+1
+   Remark  8:  It  should  be  emphasized  that  the  values  of βik                    p−1 = diag{0,0,...,0,Kk+1},
+and Θik  in  (52)  are  not  unique.  In  this  paper,  we  present  a               Ck+1p−1 = diag{0,0,...,0,       Ck+1},
+sufﬁcient condition that ensures the stability of the estimator,√
+i.e., 0<βi                           Si −1.  Based  on  (29)  and  (52),             Wkp−2=[0,0,...,0,(−wk +Kk+1vk+1 +ζk)T]T,
+             k < 1  and Θik =          k
+when it satisﬁes{(βi                                                           Λk+1
+                                                                                 p−1 =
+                       k)−1I −ΘikSik(Θik)T > 0,                                ⎛                                                                      ⎞
+                    0<βikΘik(Θik)TSik<I,                                                    0                InN   0  ···         0
+                                                                               ⎜            00InN ···         0                                       ⎟
+then, the stability of the estimator can be guaranteed.                        ⎜                                                                      ⎟
+                                                                               ⎜            .                            ...                    .     ⎟
+   Remark  9:  As  stated  after  Assumption  3,  the  boundedness             ⎜            .                                             .           ⎟  .
+                                                                               ⎜            .  00                                         .           ⎟
+of error covariance upper bounded matrix Si                                    ⎜                                                                      ⎟
+                                                     k+1  is critical and      ⎝            000···               InN                                  ⎠
+commonly  adopted  for  stochastic  analysis  which  can  be  ver-                −ϵΛ2                                          IN −ϵΛ1
+iﬁed  at  each  step,  and  has  been  widely  utilized  in  stability                 k+1 ⊗Am+1   0  ··· 0(                               k+1)⊗A
+analysis of estimators under attacks [7], [25], [32]. In practice,                For given estimator gainKi
+the implemented attack strategy can render the data in certain                                                    k+1 in (23), referring to [24], [39],
+channels  unreliable,  which  leads  to  data  being  discarded  and           the boundedness of Sik+1 holds if {Λk+1p−1,        Ck+1p−1} is detectable,
+disrupts  the  connectivity  of  the  networks.  Therefore,  we  in-           where   Λk+1p−1 and Ck+1p−1 are matrices related to the network struc-
+vestigate  the  relationship  between Sik+1  and  graph  structure,            ture, which are provided above. Generally speaking, the higher
+as well as how the proposed estimator enhances observability                   the degree of network connectivity, the easier it is to satisfy the
+of  the  system  and  facilitates  the  boundedness  of Sik+1.Let              detectability of{Λk+1p−1,   Ck+1p−1} for the whole networked system,
+Δijk = eik −ejk +ηijk , ¯Δijp−1 = eip−1 −ejp−1+¯ηijp−1. According              thus ensuring the boundedness of Sik+1. As directly observed
+to (12) and (17), it follows that||Δijk || ≤ τ1 and||¯Δijp−1|| ≤ τ2.           from the structure of     Λk+1p−1 , the additionally introduced correc-
+Deﬁne ek+1=[(e1k+1)T,(e2k+1)T,...,(eNk+1)T]T .  Combined                       tion item in this work enhances the connectivity of the network
+it  with  (21),  (22),  the  integrated  form  of  estimation  error  is       and the detectability of the error system, since the retransmis-
+denoted by                                                                     sion strategy effectively extrapolates previously discarded yet
+   ek+1 =((IN −ϵΛ1                               Ck+1)ek                       valid  data  (due  to  attacks)  to  the  current  instant.  This  further
+                          k+1)⊗A−Kk+1                                          demonstrates that the proposed DRR-Estimator facilitates easier
+        −ϵΛ2k+1 ⊗Am+1ep−1 +            wk −Kk+1vk+1 −ζk,     (38)              satisfaction  of  boundedness  of Sik+1  via  retransmission  and
+where                                                                          roll-back mechanism compared with previous works [24], [25],
+                                                                               [30],  [39],  [55].  Notably,  when     γijp =0 for  each i ⁄= j  (i.e.,
+Kk+1 = diag{K1k+1,K2k+1,...,KNk+1},                                            removing  the  correction  item),  the  estimator  in  Algorithm  1
+vk+1=[(v1                                                                      degrades into the case in [25].
+             k+1)T,(v2k+1)T,...,(vNk+1)T]T,                                       Remark 10:  Although our proposed distributed secure esti-
+Ck+1 = diag{C1                                                                 mator  is  primarily  designed  for  linear  NCSs,  it  can  be  easily
+                    k+1A,C2k+1A,...,CNk+1A},                                   extended  to  nonlinear  scenarios.  By  incorporating  the  Taylor
+wk=(InN −Kk+1Ck+1)(1N ⊗wk),                                                    expansion  method  for  nonlinear  systems,  as  described  in  the
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:22 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 12 =====
+XU et al.: SECURE STATE ESTIMATION: A NOVEL RETRANSMISSION AND ROLL-BACK MECHANISM                                                                                                            2863
+
+
+literature  [25],  [32],  the  distributed  state  estimation  of  non-             Algorithm  2:  Distributed  Retransmission  and  Roll-back
+linear  NCSs  can  be  effectively  integrated  into  the  framework                based  Estimator  under  Time  Delays  (DRR-TD-Estimator)
+of Algorithm 1. Furthermore, compared to the existing results                       For each node i, and j∈Ni.
+in [25], [39], Theorem 1 also achieves mean square exponentially                    Initialization/ Prediction Step
+bounded convergence under system noise and external attacks.                          1: The same as in Algorithm 1.
+However,  [25]  and  [39]  additionally  require  that  the  external               Detection Step
+injected attack signals to be Gaussian-offset, which is relaxed                       1: Ifμij          :
+in this work. In view of the opposing transmission directions of                              k+1=0
+the predicted data packet T j                                                          Detect the real-time data packets T j,ak+1 transmitted from
+                                  k+1, which is transmitted from j to                  the neighbors by attack detector (12) and send back Iij
+node i, and the retransmission indicator signal Iijk+1, which is                                                                                          k+1
+transmitted from node i to node j, we have actually designed                           when γijk+1=0;
+our  retransmission  framework  for  undirected  connected  net-                      2: Ifμijk+1 ≥ 1 and μijk+1 ≤ m:
+works as deﬁned in Assumption 2. By considering a redundant                            Detect the delayed data packets ˇT j,ak+1−μij
+transmission scheme that eliminates the retransmission indicator                       from the neighbors by attack detector (40);k+1 transmitted
+signal Iijk+1, extending this approach to directed networks will                      3: Ifp ≥ 1:
+be investigated for further work.                                                      Detect the data packets ˇT j,a
+                                                                                                                       p     retransmitted from the
+C.  Robust to Time Delays                                                              neighbors by attack detector (17);
+                                                                                      4: Store and update the data buffer by (19).
+   In this subsection, we will further demonstrate that the pro-                    Update Step
+posed DRR-Estimator is applicable under communication time                            1: The same as in Algorithm 1.
+delays.  Speciﬁcally,  for  each  node i,  we  introduce  the  time-
+varying, nonuniform and bounded delays, which are bounded
+by an unknown positive constant ¯μ, and k ≥ ¯μ. With a slight                      detector adopts (12), (17), and (40). Let Assumptions 1-3 be sat-
+abuse of notation, assume that the delayed data packet received                    isﬁed. For each node i∈V, the estimator deﬁned in Algorithm
+at time k+1is denoted by                                                           2 can guarantee that the estimation error eik+1 is exponentially
+                        {                                                          bounded in mean square.
+     T j,aˇ               j,k+1−μijk+1,ˇxj,a                                          Proof:  The proof is similar to that of Theorem 1, which only
+       k+1−μijk+1 =                               k+1−μijk+1|k−μijk+1,
+                                                }                                  integrates (40) for delayed data.                              ■
+                        Sj,aˇ                     ,                                   Compared  with  our  prior  work  [23],  we  have  dealt  with
+                          k+1−μijk+1|k−μijk+1                                      secure  state  estimation  subject  to  attacks  on  communication
+where μij                                                                          channels  via  Algorithm  2.  Similar  to  [17],  we  also  obtain  a
+          k+1 is the delayed steps. Notice that we have designed                   stable estimation result under delays. By a speciﬁc design for the
+a  data  storage  buffer Bik+1  in  (19).  When μijk+1=0,  i.e.,  no               gain matrix, [17] achieved computational complexity of O(n2)
+delays, the estimation process is the same as in Algorithm 1.                      under attack-free scenarios. In our setting, both time-varying,
+For μijk+1 ≥ 1, the delayed data is directly stored in the buffer                  nonuniform  delays  and  cyber  attacks  are  introduced,  which
+without  retransmission  if μijk+1 ≤ m;  otherwise,  the  data  is                 requires the gain matrixKik+1 to be updated at each instant. This
+discarded.  Actually,  enlarging  the  window  size m  can  allow                  inevitably introduces a higher complexity ofO(n3). Besides, our
+capturing more delayed data. Correspondingly, the data detector                    method extends the assumption of time delays to time-varying
+in (17) has degenerated and been amended for delayed data as                       and nonuniform cases, and cyber attacks can be also dealt with.
+              ⎧
+              ⎪1,  ||ˇxj,a           xi
+              ⎨           k+1|k − ˆk+1|k|| ≤ τ1,                                                         V.      N UMERICAL EXAMPLES
+   γijk+1 =   ⎪        ||ˇSj,ak+1|k −Sik+1|k|| ≤ √nτ1,k≥ 0,               (40)
+              ⎩0,    otherwise,                                                       In this section, we provide a numerical case study to verify
+                                                                                   the effectiveness of our retransmission and roll-back based esti-
+since  the  delayed  data  is  stored  in Bik+1  and  will  be  directly           mation method.
+used by the correction term in (18). Meanwhile, if node i fails                       Example:  To  ensure  that  the  temperature  of  a  region  (for
+to receive the real-time packetsT j,ak+1 before time instantk+1,                   instance, the greenhouse) remains within an appropriate range,
+one hasγijk+1=0. Intuitively, when delay steps are excessively                     it is crucial to accurately monitor the temperature changes and
+large, data availability will decrease signiﬁcantly. For a com-                    precisely  control  the  temperature.  Consider  a  sensor  network
+pletely time-delayed system, we assume that ¯μ ≤ m. Based on                       with 20 temperature sensors randomly placed in a closed region
+this, even if all real-time packets cannot be obtained, as long as                 divided  into  10 ×  10  grids,  as  shown  in  Fig.  2.  Therefore,
+Assumptions 1-3 are satisﬁed, the designed estimator remains                       n = 100, m=20. The heat transfer process in the region can
+valid. The speciﬁc process is detailed in Algorithm 2, followed                    be modeled as a partial differential equation and denoted by
+with a stability theorem below.                                                                        ∂u         ( ∂2u                    )
+   Theorem  2:  Consider  the  given  system  model  (1)-(2)  with                                     ∂t = α        ∂(x1)2 +  ∂2u∂(x2)2
+time-varying, nonuniform and bounded delays, and the attack
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:22 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 13 =====
+2864                                                                                                                                                IEEE TRANSACTIONS ON NETWORK SCIENCE AND ENGINEERING, VOL. 13, 2026
+
+
+                                                                                                   By introducing measurement noise, the measured vector of
+                                                                                                sensor i is rewritten as
+
+                                                                                                                                Y ik = CiUk +vik,
+                                                                                                where vik  is the additive Gaussian white noise with Rik=0.8,
+                                                                                                Ci ∈ R1×100  denotes  the  measurement  matrix  and  see  refer-
+                                                                                                ence [67] for the detailed construction.
+
+                                                                                                A.  Initialization of Algorithm Parameters
+                                                                                                   The sensors employ the distributed method proposed in this
+                                                                                                paper,  assuming  a  communication  radius  of  5.  The  following
+                                                                                                initial values and parameters are speciﬁed:
+
+                                                                                                           U0 = [24.0,24.0,...,24.0/bracehtipupleft/bracehtipdownright/bracehtipdownleft/bracehtipupright/bracehtipupleft/bracehtipdownright/bracehtipdownleft/bracehtipupright
+                                                                                                                                 10       ,31.0,31.0,...,31.010       ,
+                                                                                                               31.3,31.3,...,31.3
+                                                                                                               /bracehtipupleft/bracehtipdownright/bracehtipdownleft/bracehtipupright/bracehtipupleft/bracehtipdownright/bracehtipdownleft/bracehtipupright
+Fig. 2.     The topology of 20 random temperature sensors in the grid region.                                              10       ,31.6,31.6,...,31.610       ,
+                                                                                                               31.9,31.9,...,31.9
+                                                                                                               /bracehtipupleft/bracehtipdownright/bracehtipdownleft/bracehtipupright/bracehtipupleft/bracehtipdownright/bracehtipdownleft/bracehtipupright
+with boundary conditions                                                                                                   10       ,32.2,32.2,...,32.210       ,
+      ∂u   ⏐⏐⏐t,0,x2 = ∂u      ⏐⏐⏐t,l,x2 = ∂u      ⏐⏐⏐t,x1,0 = ∂u      ⏐⏐⏐t,x1,l=0                             32.5,32.5,...,32.5
+     ∂x1                 ∂x1                 ∂x1                 ∂x1                  ,                        /bracehtipupleft/bracehtipdownright/bracehtipdownleft/bracehtipupright/bracehtipupleft/bracehtipdownright/bracehtipdownleft/bracehtipupright
+where u(t,x1,x                                                                                                             10       ,32.8,32.8,...,32.810       ,
+                        2)  represents  the  temperature  of  the  location
+(x1,x2) at time instant t with l being the width of this square                                                33.1,33.1,...,33.1
+region, α is the speed of diffusion process and set to 1 herein.                                               /bracehtipupleft/bracehtipdownright/bracehtipdownleft/bracehtipupright/bracehtipupleft/bracehtipdownright/bracehtipdownleft/bracehtipupright
+After discretizing the model, we have                                                                                      10       ,33.4,33.4,...,33.4]T10        ,
+                                                                                                            Uiˆ                                i
+u(k+1,i,j)−u(k,i,j)                                                                                           0∼N(U0,10I100),S0 = I100,
+         [u(k,i−1,j)−u(k,i,j)                                                                               Qk=0.5I100,Ri                     .8,i= {1,2,...,N},
+                                                                                                                                     k=0
+ = αh                        h          + u(k,i,j)−u(k,i,j −1)h                                             ϵ=0.03,a                 .1,j∈{1,2,...,19}.
+                                                                                                                             j=0
+                                                                                       ]
+    +u(k,i+1,j)−u(k,i,j)                                                                 .         In addition, assume that the communication channel may be
+                         h          − u(k,i,j)−u(k,i,j+1)h                                      susceptible to cyber attacks, with a probability of 0.2 that the
+                                                                                     (41)       transmitted data is compromised. Without loss of generality, the
+    Deﬁne  the  compact  form  of  100  grid-temperature  values                                attack signal is set to
+asUk=[u(k,0,0),u(k,0,1),...,u(k,9,9)]T ∈ R100 andh =                                                     ηk=5sin(0.1k)· 1100,Hk=5|sin(0.1k)|·I100
+l/N, it follows that
+                               Uk+1 = AUk +wk,                                                  as the attack occurs for each i∈V at time instant k+1.L2Lmax/vcm                         et
+                                                                                                  Tsample  ≤ 2 and m=2.
+where wk  is  the  additive  Gaussian  white  noise  with Qk =
+0.5I100,A ∈ R100×100 denotes the system matrix derived from                                     B.  Estimation Performance
+(41). The speciﬁc derivative process is omitted for brevity, which                                 The  real  and  estimated  temperatures  of  the  region  at  time
+is detailed in [3], [67].                                                                       instant k=60 are  displayed  in  Fig.  3,  where  the  estimated
+    Let us assume that the temperature measurable by each sensor                                temperature at each grid is the average of estimated values from
+is the linear combination of the surrounding grid-temperatures.                                 20 sensors. It can be observed that the designed DRR-Estimator
+Hence, the measured temperature of sensori∈{1,2,...,20} is                                      can effectively estimate the temperature changes in the region.
+denoted by                                                                                      Fig.  4  shows  the  convergence  performance  from  20  sensors
+     yi(k)= 1                             x1)((j+1)h− ˆx2)u(k,i,j)                              over  60  steps,  which  can  illustrate  the  bounded  convergence
+                  h2 [((i+1)h− ˆ                                                                of estimation error in mean square for all the nodes.
+                  +(ˆx1 −ih)((j+1)h− ˆx2)u(k,i+1,j)                                                At time instant k, deﬁne the average estimation error for N
+                  +((i+1)h− ˆx1)(ˆx2 −jh)u(k,i,j+1)                                             sensors as
+                                                                                                                                           ∑N
+                  +(ˆx1 −ih)(ˆx2 −jh)u(k,i+1,j+1)].      (42)                                                                 Ek              i=1||eik||
+                                                                                                                                 ave =           N    .                            (43)
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:22 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 14 =====
+XU et al.: SECURE STATE ESTIMATION: A NOVEL RETRANSMISSION AND ROLL-BACK MECHANISM                                                                                                            2865
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig. 3.     Thermodynamic-diagram of real regional temperatures and estimated
+temperatures at time instant k =60.
+                                                                                       Fig. 6.     Estimation performance of proposed estimators with different delayed
+                                                                                       steps and priors of the attack.
+
+
+                                                                                       estimator in [30] considers a distributed estimation framework
+                                                                                       which  is  the  same  as  in  (4),  where  the  transmitted  neighbor-
+                                                                                       ing  data {ˆxj,ak+1,Sj,ak+1}  is  utilized  directly  without  detections.
+                                                                                       Therefore, the average estimation error of [30] in Fig. 5 exhibits
+                                                                                       signiﬁcant divergence in the form of injection attacks (sinusoidal
+                                                                                       signals), which results from the lack of security measures against
+                                                                                       corroded data. As for the classical secure state estimator in [25],
+                                                                                       the linearized distributed estimator is the same as in (11), where
+                                                                                       an  attack  detector  similar  to  the  one  in  (12)  is  introduced.
+                                                                                       Moreover, the attack model is denoted by
+
+                                                                                               xj,aˆk+1|k = αijk [xk+1 +Tijk+1(ˆxjk+1|k −xk+1)+ηijk ]
+Fig.  4.     The  variation  of  estimation  error  based  on  our  proposed  DRR-                           +(1−αij         xj
+Estimator obtained from 20 sensors over 60 time steps.                                                                    k )ˆk+1|k,
+                                                                                       and attack energy is also limited. Here, we let the transformation
+                                                                                       matrixTijk+1 = I100, and deﬁne the attack bias the same as above.
+                                                                                       Since the introduced attack detector, the estimation error of [25]
+                                                                                       remains bounded. However, the direct discarding of suspicious
+                                                                                       data  leads  to  the  loss  of  partially  global  information  in  [25].
+                                                                                       Conversely, our proposed DRR-Estimator can effectively sup-
+                                                                                       press  the  ﬂuctuations  of  error  and  achieve  better  estimation
+                                                                                       performance  through  efﬁcient  utilization  of  retransmitted  in-
+                                                                                       formation. Compared to these distributed estimation methods,
+                                                                                       the  performance  of  our  DRR-Estimator  shows  commendable
+                                                                                       robustness to attacks.
+
+                                                                                       C.  Estimation Error Under Different Values of Parameters
+                                                                                           Under identical experimental conditions as above, we evaluate
+Fig. 5.     Comparison of estimation performance with different algorithms.            the estimators with different upper bounds of delays ¯μ=0,2 in
+                                                                                       Theorem 2, and consider cases with known and unknownθij in
+                                                                                       Corollary 1, which is explicitly presented in Fig. 6.Fromthe
+                                                                                       ﬁgure, it is observed that the estimation performance remains
+   Next, we compare the average estimation error Ekave  of the                         effective  under  attacks  with  unknown  priors  and  time  delays.
+proposed  DRR-Estimator  with  the  distributed  estimator  pre-                       Speciﬁcally, compared to scenarios with known prior probabil-
+sented in literature [25], [30]. The results are shown in Fig. 5,                      ity, the results under unknown priors are somewhat conservative,
+where the black dotted line denotes an optimal estimation by                           which is in line with the theoretical result. We further discuss
+the KF-like centralized estimator in the absence of attacks. The                       the impact of window size m on estimation performance. For
+
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:22 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 15 =====
+2866                                                                                                                                                IEEE TRANSACTIONS ON NETWORK SCIENCE AND ENGINEERING, VOL. 13, 2026
+
+
+                                                                                                               APPENDIX A
+                                                                                                          PROOF OF LEMMA 4
+                                                                                   Let Z = M −N −O.  According  to ||M −N −O|| ≤ Γ,
+                                                                                we have
+                                                                                OOT=(M−N −Z)(M −N −Z)T=(M −N)(M −N)T
+                                                                                          −(M −N)ZT −Z(M −N)T +ZZT.               (44)
+                                                                                For arbitrary unit vector x,ityields
+                                                                                         xT(−(M −N)ZT −Z(M −N)T +ZZT)x
+
+                                                                                          ≤−2(xT(M −N))(xTZ)+(xTZ)2
+                                                                                          ≤ 2||M −N||Γ+Γ2,
+Fig. 7.     Estimation performance of Algorithm 1 under different data storage  which follows that
+window m.
+                                                                                           −(M −N)ZT −Z(M −N)T +ZZT
+different values of m and predeﬁned communication rate such                                      √
+that  2Lmax/vcm         .5,Fig.7 illustrates the average estimation                        ≤ (2     Tr((M −N)(M −N)T)/Γ+1)Γ2,       (45)
+        Tsample =1
+error E60ave,  which  is  obtained  through  500-run  Monte  Carlo              where Cauchy-schwarz inequality and(M −N)T(M −N)=
+trials. In Fig. 7, the notches in the boxes represent the median                Tr((M −N)(M −N)T) are utilized in above scaling. One the
+of  the  data,  the  ends  of  the  boxes  represent  the  upper  and           other hand, we have
+lower quartiles respectively, and the ends of whiskers indicates
+the extreme points of the data. The red dashed line shows the                    (M −N)(M −N)T =MMT +NNT −NMT −MNT,
+trend of the estimation error as m varies. It is not hard to see                                            ≤MMT +NNT
+that  when  the  communication  rate  is  given,  a  smaller m  will                                                √
+result in retransmitted data being unused, which in turn degrades                                              +2      Tr(MMT)Tr(NNT)In. (46)
+estimation performance. Conversely, asm exceeds the ratio (20)
+and increases, more storage space is required, and the transmitted                 Synthesizing (44), (45), and (46), it completes the proof of
+data may be valueless. This also illustrates the trade-off between              Lemma 4.                                                    ■
+the required storage space of buffers, estimation performance
+and communication rate as shown in Remark 4.                                                                   APPENDIX B
+                                                                                                       PROOF OF PROPOSITION 1
+                           VI.  CONCLUSION                                         First, combined (22) with (9), the estimation error covariance
+   This paper has proposed a modiﬁed KF-like estimator, termed                  for each node i can be expanded as
+as  DRR-Estimator,  for  estimating  real-time  system  states  in               P i
+distributed multi-sensor NCSs under cyber attacks. Depending                       k+1 = Aik+1P ik+1|k(Aik+1)T +Ki{      k+1Rik+1(Kik+1)T
+on  the  request  for  retransmission  of  suspicious  neighboring                         +ϵ ∑     γij             ei
+information,  the  correction  term  composed  of  historical  data                                   k+1Aik+1E       k+1|k(ejk+1|k −αijk ηijk )T}
+                                                                                               j∈Ni
+is contained in the state estimator. By minimizing the trace of                                             {
+an upper bound of the estimation error covariance, the optimal                             +ϵ ∑     γij       (ej                               (Ai
+estimator gain and parameters are presented. Furthermore, the                                         k+1E      k+1|k −αijk ηijk )(eik+1|k)T}      k+1)T
+                                                                                               j∈Ni
+mean square exponentially bounded convergence of estimation                                                        {
+error has been rigorously proven, and we demonstrate that the                              +ϵ ∑        γijp Aik+1E   ei
+                                                                                                                      k+1|k(ejp|p−1 −eip|p−1)T(Am)T}
+estimator is robust to time delays. Finally, the numerical example                             j∈N p,a
+                                                                                                   i
+of  regional  temperature  monitoring  is  provided  to  verify  the                                               {
+effectiveness of our method.                                                               −ϵ ∑        γijp Aik+1E   eik+1|k(¯αijp−1¯ηijp−1)T(Am)T}
+   In fact, this paper discusses how to utilize the historical re-                             j∈N p,a
+                                                                                                   i
+transmitted data in the presence of cyber attacks. Future research                                          {
+may  comprise  the  design  of  secure  estimators  when  facing                           +ϵ ∑        γij    Am(ej                           T}(Ai
+                                                                                                        p E          p|p−1 −eip|p−1)eik+1|k          k+1)T
+simultaneous  channel  and  sensor  attacks,  as  well  as  identify-                          j∈N p,ai
+ing  conditions  under  which  estimators  remain  stable,  such  as                                        {
+the  number  of  attacked  nodes,  duration  of  attacks,  and  more.                      −ϵ ∑        γij    Am(¯αij     ηij          T}(Ai
+                                                                                                        p E           p−1¯p−1)eik+1|k          k+1)T
+Moreover, it is likely to design a lighter-weight data detection                               j∈N p,ai
+mechanism to reduce the data pre-processing delays and thus                                +X +X T +Y +Z,
+mitigate the estimation performance loss to some extent.
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:22 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 16 =====
+XU et al.: SECURE STATE ESTIMATION: A NOVEL RETRANSMISSION AND ROLL-BACK MECHANISM                                                                                                            2867
+
+where                                                                                                          √
+           {[∑                                 ]                             ξP,ik+1 = Pik+1|k +Pjk+1|k+2         Tr(Pik+1|k)Tr(Pjk+1|k)In.
+  X = E             ϵγijk+1(ejk+1|k −αijk ηijk ) ×                         Similarly,Y, Z,X +XT  are respectively rewritten as
+              j∈Ni
+     [ ∑                                                                          {                                  }{   }T
+               ϵγijp (ejp|p−1 −eip|p−1 − ¯αijp−1¯ηijp−1)T(Am)T]},          Y = E    ϵ∑     γijk+1(ejk+1|k −αijk ηijk )   ∗
+       j∈N p,a                                                                        j∈Ni
+           i
+          {∑                                 }   {   }T                       ≤ 1                   γij           γij
+  Y = E           ϵγij                          ·   ∗    ,                       2(a6 +a−16 )∑        k+1ϵ2∑       k+1Pjk+1|k
+                    k+1(ejk+1|k −αijk ηijk )                                                   j∈Ni          j∈Ni
+            j∈Ni
+          { ∑                                                                    + 1          7 )∑      γijk+1ϵ2∑    γijk+1θijΞPi,1k+1
+  Z = E             ϵγij                                                            2(a7 +a−1     j∈Ni          j∈Ni
+                       p Am(ejp|p−1 −eip|p−1)
+             j∈N p,ai
+                                            }   {   }T                           + a82 (a6 +a−16 )∑      γijk+1ϵ2∑     γijk+1Pjk+1|k
+                                                                                                    j∈Ni         j∈Ni
+             − ∑        ϵγijp Am¯αijp−1¯ηijp−1 ·   ∗    .
+                j∈N p,ai                                                         + a−18          7 )∑      γijk+1ϵ2∑    γijk+1θijΞPi,1k+1,
+                                                                                      2 (a7 +a−1     j∈Ni          j∈Ni
+  By applying Lemma 1, the formulas spanning from the second
+to the third lines (denoted asU) and from the fourth to the seventh                                                                           (49)
+lines (denoted as W)inPik+1 can be re-expressed as                                      { ∑
+              ∑                                                                  Z = E            ϵγijp Am(ejp|p−1 −eip|p−1)
+     U≤a1          γijk+1Aik+1Pik+1|k(Aik+1)T                                             j∈N p,ai
+              j∈Ni                                                                                                       }   {  }T
+           +a−1            γij                                                             − ∑       ϵγijp Am¯αijp−1¯ηijp−1·   ∗
+               1 ϵ2∑        k+1Pjk+1|k                                                       j∈N p,a
+                     j∈Ni                                                                        i
+                  ∑                                                           ≤ 1                      γij           γij
+           +a2         γijk+1Aik+1Pik+1|k(Aik+1)T                                2(a9 +a−19 ) ∑         p ϵ2 ∑        p AmPjp|p−1(Am)T
+                 j∈Ni                                                                          j∈N p,ai      j∈N p,ai
+                                                                                                    ∑
+           +a−12 ϵ2∑       γijk+1θijΞPi,1k+1,                                   (47)+ϵ2 ∑     γijp        γijp AmPip|p−1(Am)T
+                     j∈Ni                                                              j∈N p,ai   j∈N p,ai
+          W≤a3        ∑     γij
+                              p Aik+1Pik+1|k(Aik+1)T                             + 12(a10 +a−110) ∑        γijp ϵ2 ∑     γijp θijAmΞPi,2p  (Am)T
+                     j∈N p,ai                                                                       j∈N p,ai     j∈N p,ai
+
+                 +a−13 ϵ2 ∑        γijp AmPjp|p−1(Am)T                           + a112 (a9 +a−19 ) ∑        γijp ϵ2 ∑    γijp AmPjp|p−1(Am)T
+                           j∈N p,ai                                                                  j∈N p,ai      j∈N p,ai
+                         ∑                                                                              ∑
+                 +a4           γijp Aik+1Pik+1|k(Aik+1)T                         +a−111ϵ2 ∑       γijp        γijp AmPip|p−1(Am)T
+                       j∈N p,ai                                                            j∈N p,ai   j∈N p,ai
+
+                 +a−14 ϵ2 ∑        γijp AmPip|p−1(Am)T                           + a122 (a9 +a−19 ) ∑        γijp ϵ2 ∑    γijp AmPjp|p−1(Am)T
+                           j∈N p,ai                                                                  j∈N p,ai      j∈N p,ai
+                         ∑
+                 +a5           γijp Aik+1Pik+1|k(Aik+1)T                         + a−112          10) ∑       γijp ϵ2 ∑    γijp θijAmΞPi,2p  (Am)T
+                       j∈N p,a                                                        2 (a10 +a−1
+                           i                                                                          j∈N p,ai     j∈N p,ai
+                 +a−1              γij                                                                  ∑
+                     5 ϵ2 ∑          p θijAmΞPi,2p  (Am)T,       (48)            +a13ϵ2 ∑         γijp        γijp AmPip|p−1(Am)T
+                           j∈N p,ai                                                       j∈N p,ai    j∈N p,ai
+
+where ap,p= {1,2,3,4,5} are positive constants. According                        + a−113                      γij
+to (12), (17) and Lemma 4, the matricesΞPi,1                                          2 (a10 +a−110) ∑         p ϵ2 ∑
+                                               k+1,ΞPi,2k+1 is obtained                               j∈N p,ai      j∈N p,ai
+as
+                     ((√                    )           )                        ×    γijp θijAmΞPi,2p  (Am)T,                                               (50)
+  ΞPi,1k+1 = ξP,ik+1 +      Tr(ξP,ik+1)+1      /τ1+1      τ 21 In,               X +XT
+                     ((√                    )           )
+  ΞPi,2                     Tr(ξP,i            /τ2+1       τ 2                ≤ a14          6 )∑      γijk+1ϵ2∑     γijk+1Pjk+1|k
+    k+1 = ξP,ik+1 +               k+1)+1                    2 In,                 2 (a6 +a−1      j∈Ni         j∈Ni
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:22 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 17 =====
+2868                                                                                                                                                IEEE TRANSACTIONS ON NETWORK SCIENCE AND ENGINEERING, VOL. 13, 2026
+
+                                                                                      [            ∑
+      +a−114                    γijp ϵ2 ∑     γijp AmPj                        mi3 =    a−12  + 1       γij          8  +a17 +a18 +a19)
+          2 (a9+a−19 ) ∑                                p|p−1(Am)T                              2        k+1(1+a−1
+                         j∈N p,ai      j∈N p,ai                                                   j∈Ni
+                                                                                                        ]
+      + a152 (a6 +a−16 )∑      γijk+1ϵ2∑     γijk+1Pjk+1|k                              ×(a7 +a−17 )      ϵ2
+                          j∈Ni          j∈Ni
+                             ∑                                                        [             ∑
+      +a−115ϵ2 ∑        γijp       γijp AmPip|p−1(Am)T                         mi4 =    a−13  + 1         γijp (1+a11 +a12 +a−114 +a−117)
+                j∈N p,a     j∈N p,a                                                             2
+                    i           i                                                                 j∈N p,ai
+      + a16                    γij           γij                                                        ]
+          2 (a6 +a−16 )∑         k+1ϵ2∑        k+1Pjk+1|k                               ×(a9 +a−1         ϵ2
+                          j∈Ni          j∈Ni                                                        9 )
+                                                                                      [                                                       ]
+      +a−116          10)∑      γijp ϵ2 ∑    γijp θijAmΞPi,2p  (Am)T           mi       a−1             γij                                     ϵ2
+          2 (a10+a−1                                                             5 =     4  + ∑          p (1+a−111 +a13 +a−115 +a−118)
+                         j∈N p,ai     j∈N p,ai                                                  j∈N p,a
+                                                                                                    i
+      + a17                    γij           γij                                      [             ∑
+          2 (a7 +a−17 )∑         k+1ϵ2∑        k+1θijΞPi,1k+1                  mi       a−1               γij
+                          j∈Ni          j∈Ni                                     6 =     5  + 12            p (1+a−112 +a−113 +a−116 +a−119)
+                                                                                                  j∈N p,ai
+      +a−117                     γij          γij                                                        ]
+          2 di(a9+a−19 )∑          p ϵ2 ∑       p AmPjp|p−1(Am)T                        ×(a10 +a−1         ϵ2.
+                          j∈N p,ai     j∈N p,ai                                                      10)
+
+      + a182 (a7 +a−17 )∑      γijk+1ϵ2∑     γijk+1θijΞPi,1k+1              By applying Lemma 2, it yields
+                          j∈Ni          j∈Ni                                                                               )−1AT +Qk       (52)
+                             ∑                                                   Pik+1|k ≤ A((Pik)−1 −βik(Θik)TΘik
+      +a−118ϵ2 ∑        γijp       γijp AmPip|p−1(Am)T
+                j∈N p,ai    j∈N p,ai                                        with (βik)−1I −ΘikSik(Θik)T > 0. Here, taking into consider-
+      + a19                    γij           γij                            ation  the  possibility  of  cyber  attacks  on  the  prediction  error
+          2 (a7 +a−17 )∑         k+1ϵ2∑        k+1θijΞPi,1k+1               covariance  matrix  which  considers  in  (10),  we  deﬁne Sik+1|k
+                          j∈Ni          j∈Ni                                and Si
+                                                                                   k+1 as in (24) and (25), where
+      +a−119                     γij         γij                                                  (  √                             )
+          2 (a10+a−110)∑          p ϵ2 ∑      p θijAmΞPi,2p  (Am)T,            ΞSi,1                (   Tr(ξS,i                      τ 2
+                         j∈N p,ai     j∈N p,ai                                   k+1 = ξS,ik+1 +              k+1)+1)/τ1+1             1 In,       (53)
+                                                                    (51)                         (  √                           )
+where ap,p= {6,7,...,19} are positive constants. Synthesiz-                    ΞSi,2p   = ξS,ip  + (   Tr(ξS,ip )+1)/τ2+1          τ 22 In,
+ing the above formulas (47)-(51),wehave                                                                          √
+                                                                               ξS,ik+1 = Sik+1|k +Sj,ak+1|k+2       Tr(Sik+1|k)Tr(Sj,ak+1|k)In,
+   Pik+1 ≤ mi1Aik+1Pik+1|k(Aik+1)T +Kik+1Rik+1(Kik+1)T                                                         √
+                     ∑                          ∑                              ξS,ip  = Sip|p−1 + ˇSj,ap|p−1+2    Tr(Sip|p−1)Tr(ˇSj,ap|p−1)In,
+             +mi2         γijk+1Pjk+1|k +mi3         γijk+1θijΞPi,1k+1                                                                          (54)
+                     j∈Ni                       j∈Ni
+             +mi      ∑      γij                                            whereSj,a                        Sj,a
+                   4          p AmPjp|p−1(Am)T                                        k+1|k ≥ Sjk+1|k and ˇp|p−1 ≥ Sjp|p−1 are the potentially
+                     j∈N p,a                                                attacked  covariance  matrices  in  term  of  equation  (10).  Then,
+                         i
+                      ∑                                                     combining  it  with  Lemma  3,  it  follows  that Sik+1|k ≥ Pik+1|k
+             +mi5            γijp AmPip|p−1(Am)T                            andSik+1 ≥ Pik+1 withSi0 ≥ Pi0 > 0 for each nodei,k ≥ 0.To
+                     j∈N p,ai                                               obtain an optimal estimator gain in the sense of minimized mean
+                      ∑                                                     square error, let ∂Tr(Sik+1)        , it yields
+             +mi6            γijp θijAmΞPi,2p  (Am)T,                                            ∂Kik+1 =0
+
+                     j∈N p,ai
+                                                                                −2mi1Sik+1|k(Cik+1)T +2mi1ϵ∑              γijk+1Sik+1|k(Cik+1)T
+where                                                                                                                j∈Ni
+  mi1=1+∑           γijk+1(a1 +a2)+ ∑            γijp (a3 +a4 +a5)              +2mi1Kik+1Cik+1Sik+1|k(Cik+1)T +2Kik+1Rik+1=0.
+
+               j∈Ni                      j∈N p,ai                           Hence,  for  each  node i,  the  optimal  estimator  gain  can  be
+          [           ∑                                                     expressed as in (23). The proof is completed.                 ■
+  mi2 =    a−11  + 12      γijk+1(1+a8 +a14 +a15 +a16)
+                      j∈Ni                                                                                  REFERENCES
+                            ]
+            ×(a6 +a−16 )     ϵ2                                              [1]   X. Ge, F. Yang, and Q. Han, “Distributed networked control systems: A
+                                                                                  brief overview,” Inf. Sci., vol. 380, pp. 117–131, Feb. 2017.
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:22 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 18 =====
+XU et al.: SECURE STATE ESTIMATION: A NOVEL RETRANSMISSION AND ROLL-BACK MECHANISM                                                                                                            2869
+
+
+
+ [2]   L.  Chen,  Y.  Li,  M.  Huang,  X.  Hui,  and  S.  Gu,  “Robust  dynamic  state                  [27]   A. A. Abdallah et al., “Enhancing mobile ad hoc network security: An
+       estimator of integrated energy systems based on natural gas partial differ-                             anomaly detection approach using support vector machine for black-hole
+       ential equations,”     IEEE Trans. Ind. Appl., vol. 58, no. 3, pp. 3303–3312,                           attack detection,”     Int. J. Saf. Secur. Eng., vol. 14, no. 4, pp. 1015–1028,
+       May/Jun. 2022.                                                                                          Aug. 2024.
+ [3]   J.  Yan,  Y.  Mo,  and  H.  Ishii,  “A  framework  for  distributed  estimation                  [28]   S. Gao, T. Yu, J. Zhu, and W. Cai, “T-PBFT: An EigenTrust-based practical
+       with limited information and event-based communications,”                   IEEE Trans.                 byzantine fault tolerance consensus algorithm,”              China Commun., vol. 16,
+       Autom. Control, vol. 69, no. 6, pp. 3544–3559, Jun. 2024.                                               no. 12, pp. 111–123, Dec. 2019.
+ [4]   B.   Jia,   K.   Pham,   E.   Blasch,   D.   Shen,   Z.   Wang,   and   G.   Chen,               [29]   Y. Sun and G. Yang, “Distributed unscented Kalman ﬁltering for nonlinear
+       “Cooperative space object tracking using space-based optical sensors via                                systems:  A  mixed  event-triggered  strategy,”             Int.  J.  Robust  Nonlinear
+       consensus-based ﬁlters,”IEEE Trans. Aerosp. Electron. Syst., vol. 52, no. 4,                            Control, vol. 31, no. 10, pp. 4647–4663, Apr. 2021.
+       pp. 1908–1936, Aug. 2016.                                                                        [30]   R. Olfati-Saber, “Kalman-consensus ﬁlter: Optimality, stability, and per-
+ [5]   R. E. Kalman, “A new approach to linear ﬁltering and prediction prob-                                   formance,”  in     Proc.  48th  IEEE  Conf.  Decis.  Control,  Shanghai,  China,
+       lems,”  ASME. J. Basic Eng., vol. 82, no. 1, pp. 35–45, Mar. 1960.                                      2009, pp. 7036–7042.
+ [6]   G. Welch and G. Bishop, “An introduction to the Kalman ﬁlter,” 1995.                             [31]   W. Yang, C. Yang, H. Shi, L. Shi, and G. Chen, “Stochastic link activa-
+       [Online]. Available:      https://perso.crans.org/club-krobot/doc/kalman.pdf                            tion for distributed ﬁltering under sensor power constraint,”                Automatica,
+ [7]   K. Reif, S. Gunther, E. Yaz, and R. Unbehauen, “Stochastic stability of                                 vol. 75, pp. 109–118, Jan. 2017.
+       the discrete-time extended Kalman ﬁlter,”              IEEE Trans. Autom. Control,               [32]   W. Song, J. Wang, C. Wang, and J. Shan, “A variance-constrained approach
+       vol. 44, no. 4, pp. 714–728, Apr. 1999.                                                                 to  event-triggered  distributed  extended  Kalman  ﬁltering  with  multiple
+ [8]   F.  Gustafsson  and G.  Hendeby,  “Some  relations  between  extended and                               fading measurements,”         Int.  J.  Robust  Nonlinear  Control, vol. 29, no. 5,
+       unscented Kalman ﬁlters,”          IEEE  Trans.  Signal  Process., vol. 60, no. 2,                      pp. 1558–1576, Jan. 2019.
+       pp. 545–555, Feb. 2012.                                                                          [33]   M.  Zhu,  R.  Wang,  and  X.  Sun,  “The  optimal  distributed  weighted
+ [9]   W.  Li,  G.  Wei,  F.  Han,  and  Y.  Liu,  “Weighted  average  consensus-                              least-squares  estimation  in  ﬁnite  steps  for  networked  systems,”                IEEE
+       based unscented Kalman ﬁltering,”            IEEE Trans. Cybern., vol. 46, no. 2,                       Trans. Circuits  Syst. II Exp. Briefs, vol. 70, no. 3, pp. 1069–1073, Mar.
+       pp. 558–567, Feb. 2016.                                                                                 2023.
+[10]   D.  Bertsekas  and  I.  Rhodes,  “Recursive  state  estimation  for  a  set-                     [34]   M. Doostmohammadian, A. Taghieh, and H. Zarrabi, “Distributed esti-
+       membership  description  of  uncertainty,”            IEEE  Trans.  Autom.  Control,                    mation  approach  for  tracking  a  mobile  target  via  formation  of  UAVs,”
+       vol. 16, no. 2, pp. 117–128, Apr. 1971.                                                                 IEEE  Trans.  Autom.  Sci.  Eng.,  vol.  19,  no.  4,  pp. 3765–3776,  Oct.
+[11]   Z. Zhao, Z. Wang, L. Zou, Y. Chen, and W. Sheng, “Event-triggered set-                                  2022.
+       membership state estimation for complex networks: A zonotopes-based                              [35]   K.  Ding,  Y.  Li,  D.  E.  Quevedo,  S.  Dey,  and  L.  Shi,  “A  multi-channel
+       method,”     IEEE  Trans.  Netw.  Sci.  Eng.,  vol.  9,  no.  3,  pp. 1175–1186,                        transmission  schedule  for  remote  state  estimation  under  DoS  attacks,”
+       May/Jun. 2022.                                                                                          Automatica, vol. 78, pp. 194–201, Apr. 2017.
+[12]   M. Djuric et al., “Particle ﬁltering,”        IEEE Signal Process Mag., vol. 20,                 [36]   Z.  Han,  W.  Wang,  M.  Ran,  C.  Wen,  and  L.  Wang,  “Switching-based
+       no. 5, pp. 19–38, Sep. 2003.                                                                            distributed adaptive secure formation control for mobile robots with denial-
+[13]   G.   Battistelli,   L.   Chisci,   G.   Mugnai,   A.   Farina,   and   A.   Graziano,                   of-service attacks,”     IEEE Trans. Syst. Man Cybern., Syst., vol. 54, no. 7,
+       “Consensus-based  linear  and  nonlinear  ﬁltering,”              IEEE  Trans.  Autom.                  pp. 4126–4138, Jul. 2024.
+       Control, vol. 60, no. 5, pp. 1410–1415, May 2015.                                                [37]   Y. Zhang, Z. Wang, L. Zou, H. Dong, and X. Yi, “Neural-network-based
+[14]   S. Das and J. M. F. Moura, “Consensus innovations distributed kalman                                    secure state estimation under energy-constrained denial-of-service attacks:
+       ﬁlter with optimized gains,”        IEEE Trans. Signal Process., vol. 65, no. 2,                        An  encoding-decoding  scheme,”            IEEE  Trans.  Netw.  Sci.  Eng.,  vol.  10,
+       pp. 467–481, Jan. 2017.                                                                                 no. 4, pp. 2002–2015, Jul./Aug. 2023.
+[15]   P. Duan, Y. Lv, Z. Duan, and G. Chen, “Distributed state estimation for                          [38]   H. Geng, Z. Wang, J. Hu, Q.-L. Han, and Y. Cheng, “Variance-constrained
+       uncertain linear systems with a recursive architecture,”             IEEE Trans. Netw.                  ﬁlter  design  with  sensor  resolution  under  round-Robin  communication
+       Sci. Eng., vol. 9, no. 3, pp. 1163–1174, May/Jun. 2022.                                                 protocol: An outlier-resistant mechanism,”IEEE Trans. Syst. Man Cybern.,
+[16]   G. Chai, C. Lin, Z. Lin, and M. Fu, “Single landmark based collabora-                                   Syst., vol. 53, no. 6, pp. 3762–3773, Jun. 2023.
+       tive multi-agent localization with time-varying range measurements and                           [39]   W.  Yang,  Y.  Zhang,  G.  Chen,  C.  Yang,  and  L.  Shi,  “Distributed  ﬁlter-
+       information sharing,”       Syst. Control Lett., vol. 87, pp. 56–63, Jan. 2016.                         ing under false data injection attacks,”          Automatica, vol. 102, pp. 34–44,
+[17]   M. Doostmohammadian and T. Charalambous, “Distributed target tracking                                   Apr. 2019.
+       based on localization with linear time-difference-of-arrival measurements:                       [40]   W.  Yang,  W.  Luo,  and  X.  Zhang,  “Distributed  secure  state  estimation
+       A  delay-tolerant  networked  estimation  approach,”               Syst.  Control  Lett.,               under stochastic linear attacks,”IEEE Trans. Netw. Sci. Eng., vol. 8, no. 3,
+       vol. 196, Feb. 2025, Art. no. 106009.                                                                   pp. 2036–2047, July–Sep. 2021.
+[18]   S. Soltan, M. Yannakakis, and G. Zussman, “React to cyber attacks on                             [41]   D.  Liu,  D.  Ye,  and  X.  Zhao,  “Fully  distributed  secure  state  estima-
+       power  grids,”    IEEE  Trans.  Netw.  Sci.  Eng.,  vol.  6,  no.  3,  pp. 459–473,                     tion  for  nonlinear  multi-agent  systems  against  DoS  attacks:  An  edge-
+       Jul.–Sep. 2019.                                                                                         pinning-based  method,”         IEEE  Trans.  Autom.  Sci.  Eng.,  vol.  21,  no.  3,
+[19]   K. Jain, M. Jain, and J. Borade, “A survey on man in the middle attack,”                                pp. 4237–4246, Jul. 2024.
+       Int. J. Sci. Tech. Eng., vol. 2, pp. 277–80, 2016.                                               [42]   Y. Yang, X. Gao, S. Song, and Z. Li, “Distributed consensus-based ﬁltering
+[20]   T.  Liu  et  al.,  “Integrated  security  threats  and  defense  of  cyber-physical                     against false data injection attacks,”        IEEE Trans. Netw. Sci. Eng., vol. 12,
+       systems,”    Acta Automatica Sinica, vol. 45, no. 1, pp. 5–24, 2019.                                    no. 1, pp. 110–121, Jan./Feb. 2025.
+[21]   X.  He,  X.  Ren,  H.  Sandberg,  and  K.  H.  Johansson,  “How  to  secure                      [43]   M. Doostmohammadian and M. Pirani, “On the design of resilient dis-
+       distributed  ﬁlters  under  sensor  attacks,”         IEEE  Trans.  Autom.  Control,                    tributed single time-scale estimators: A graph-theoretic approach,”                   IEEE
+       vol. 67, no. 6, pp. 2843–2856, Jun. 2022.                                                               Trans.  Netw.  Sci.  Eng.,  vol.  12,  no.  5,  pp. 3975–3984,  Sep./Oct.  2025,
+[22]   L.  An  and  G.-H.  Yang,  “Mean-square  exponential  convergence  for                                  doi:  10.1109/TNSE.2025.3538491.
+       Byzantine-resilient  distributed  state  estimation,”           Automatica,  vol.  163,          [44]   Y.  Shen,  Z.  Wang,  H.  Dong,  H.  Liu,  and  Y.  Chen,  “Set-membership
+       May 2024, Art. no. 111592.                                                                              state estimation for multirate nonlinear complex networks under ﬂexRay
+[23]   J.  Yan,  K.  Li,  and  H.  Ishii,  “Distributed  parameter  estimation  under                          protocols: A neural-network-based approach,”               IEEE Trans. Neural Netw.
+       Byzantine nodes in sensor networks,”             IEEE Trans. Netw. Sci. Eng.,vol.                       Learn. Syst., vol. 36, no. 3, pp. 4922–4933, Mar. 2025.
+       12, no. 6, pp. 4331–4344, Nov.-Dec. 2025.                                                        [45]   Z.-H. Li and G.-H. Yang, “Interval observer-based secure estimation for
+[24]   J. Huang, Y. Tang, W. Yang, and F. Li, “Resilient consensus-based dis-                                  T–S fuzzy systems under stealthy attacks,”IEEE Trans. Fuzzy Syst., vol. 33,
+       tributed  ﬁltering:  Convergence  analysis  under  stealthy  attacks,”               IEEE               no. 7, pp. 2251–2260, Jul. 2025.
+       Trans. Ind. Informat., vol. 16, no. 7, pp. 4878–4888, Jul. 2020.                                 [46]   Y.  Zou,  C.  Deng,  and  M.  Lu,  “Distributed  output  feedback  consensus
+[25]   H. Ren, Z. Cheng, J. Qin, and R. Lu, “Deception attacks on event-triggered                              tracking  control  of  multiple  nonholonomic  mobile  robots  with  directed
+       distributed  consensus  estimation  for  nonlinear  systems,”                Automatica,                communication graphs and sensor faults,”             Nonlinear Dyn., vol. 105, no. 3,
+       vol. 154, Aug. 2023, Art. no. 111100.                                                                   pp. 2327–2339, Jul. 2021.
+[26]   D. Ding, Z. Wang, D. W. Ho, and G. Wei, “Distributed recursive ﬁltering                          [47]   A. Sinnhofer, F. Oppermann, K. Potzmader, C. Orthacker, C. Steger, and
+       for stochastic systems under uniform quantizations and deception attacks                                C.  Kreiner,  “Patterns  to  establish  a  secure  communication  channel,”  in
+       through sensor networks,”         Automatica, vol. 78, pp. 231–240, Apr. 2017.                          Proc. 21st Eur. Conf. Pattern Lang. Programs, Jul. 2016, pp. 1–21.
+
+
+
+
+
+ Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:22 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 19 =====
+2870                                                                                                                                                IEEE TRANSACTIONS ON NETWORK SCIENCE AND ENGINEERING, VOL. 13, 2026
+
+
+
+[48]   N. Seddigh and M. Devetsikiotis, “Studies of TCP’s retransmission time-                                                          Hongyuan Xu received the B.Sc. degree in informa-
+       out mechanism,” in  Proc.  IEEE  Int.  Conf.  Commun., Helsinki, Finland,                                                        tion and computing science, and the B.Eng. degree
+       Aug. 2001, pp. 1834–1840.                                                                                                        in computer science and technology from the Hebei
+[49]   P. Sarolahti, M. Kojo, and K. Raatikainen, “F-RTO: An enhanced recovery                                                          University  of  Technology,  Tianjin,  China,  in  2019,
+       algorithm for TCP retransmission timeouts,” ACM SIGCOMM Comput.                                                                  and the M.Eng. degree in control science and engi-
+       Commun. Rev., vol. 33, no. 2, pp. 51–63, Apr. 2003.                                                                              neering from Nankai University, Tianjin, in 2022. He
+[50]   A.  M.  Abdullah,  “Advanced  encryption  standard  (AES)  algorithm  to                                                         is currently working toward the Ph.D. degree in con-
+       encrypt  and  decrypt  data,”  Cryptography  Netw.  Secur.,  vol.  16,  no.  1,                                                  trol theory and control engineering with the School
+       Jun. 2017, Art. no. 11.                                                                                                          of  Automation  Science  and  Electrical  Engineering,
+[51]   M. Shand and J. Vuillemin, “Fast implementations of RSA cryptography,”                                                           Beihang University, Beijing, China. His research in-
+       in  Proc.  IEEE  11th  Symp.  Comput.  Arithmetic,  Windsor,  ON,  Canada,                                                       terests include secure state estimation in networked
+       Aug. 1993, pp. 252–259.                                                                         control systems, distributed cooperative control, and attack detection.
+[52]   J. Hu, Z. Wang, H. Gao, and L. K. Stergioulas, “Extended Kalman ﬁl-
+       tering with stochastic nonlinearities and multiple missing measurements,”
+       Automatica, vol. 48, no. 9, pp. 2007–2015, Sep. 2012.                                                                            Wei   Wang   (Senior  Member,  IEEE)  received  the
+[53]   C. E. de Souza, M. Fu, and L. Xie, “H∞ analysis and synthesis of discrete-                                                       B.Eng. degree in electrical engineering and automa-
+       time systems with time-varying uncertainty,” IEEE Trans. Autom. Control,                                                         tion  from  Beihang  University,  Beijing,  China,  in
+       vol. 38, no. 3, pp. 459–462, Mar. 1993.                                                                                          2005,  and  the  M.Sc.  (with  distinction)  degree  in
+[54]   Y.  Theodor  and  U.  Shaked,  “Robust  discrete-time  minimum-variance                                                          radio  frequency  communication  systems  from  the
+       ﬁltering,”  IEEE  Trans.  Signal  Process.,  vol.  44,  no.  2,  pp. 181–189,                                                    University  of  Southampton,  Southampton,  U.K.,  in
+       Feb. 1996.                                                                                                                       2006. From 2012 to 2015, she was a Lecturer with
+[55]   W.  Chen,  Z.  Wang,  D.  Ding,  X.  Yi,  and  Q.-L.  Han,  “Distributed  state                                                  the Department of Automation, Tsinghua University,
+       estimation over wireless sensor networks with energy harvesting sensors,”                                                        Beijing.  Since  2015,  she  has  been  with  the  School
+       IEEE Trans. Cybern., vol. 53, no. 5, pp. 3311–3324, May 2023.                                                                    of  Automation  Science  and  Electrical  Engineering,
+[56]   A. Mustafa, M. Mazouchi, and H. Modares, “Secure event-triggered dis-                                                            Beihang University, Beijing, where she is currently
+       tributed Kalman ﬁlters for state estimation over wireless sensor networks,”                     a  Full  Professor.  Her  research  interests  include  adaptive  control  of  uncertain
+       IEEE  Trans.  Syst.  Man  Cybern.,  Syst.,  vol.  53,  no.  2,  pp. 1268–1283,                  systems, distributed cooperative control of multiagent systems, secure control
+       Feb. 2023.                                                                                      of cyber–physical systems, fault tolerant control, and robotic control systems.
+[57]   H. Xie, G. Zong, D. Yang, X. Zhao, and K. Shi, “Observer-based adaptive                         Dr. Wang was the recipient of Zhang Si-Ying Outstanding Youth Paper Award
+       NN security control for switched nonlinear systems against DoS attacks:                         in the 25th and 36th Chinese Control and Decision Conference, in 2013 and
+       An ADT approach,” IEEE Trans. Cybern., vol. 53, no. 12, pp. 8024–8034,                          2024, respectively, First Prize of Science and Technology Progress Award by
+       Dec. 2023.                                                                                      the Chinese Institute of Command and Control in 2018, and Second Prize of
+[58]   L.  Xin,  G.  He,  and  Z.  Long,  “Secure  state  estimation  for  multi-sensor                National Teaching Achievement Award (Higher Education). She is the Principle
+       cyber–physical systems using virtual sensor and deep reinforcement learn-                       Investigator of a number of research projects, including National Science Fund
+       ing under multiple attacks on major sensor,”  IEEE  Trans.  Neural  Netw.                       for  Excellent  Young  Scholars  of  China  (2021–2023)  and  Associate  Editor
+       Learn. Syst., vol. 12, no. 3, pp. 1470–1481, May/Jun. 2025.                                     for  IEEE  TRANSACTIONS  ON  INDUSTRIAL  ELECTRONICS,  ISA  Transactions,
+[59]   Z.-H. Li and G.-H. Yang, “Distributed asymptotic secure estimation for                          IEEE OPEN JOURNAL OF CIRCUITS AND SYSTEMS,andJournal of Control and
+       cyber–physical systems under stealthy attacks: An interval observer-based                       Decision.
+       method,”  IEEE  Internet  Things  J.,  vol.  12,  no.  13,  pp. 23627–23635,
+       Jul. 2025.
+[60]   L.  Sun  et  al.,  “Optimum  placement  of  phasor  measurement  units  in                                                       Jiaqi Yan received the bachelor’s degree in automa-
+       power systems,” IEEE Trans. Instrum. Meas., vol. 68, no. 2, pp. 421–429,                                                         tion from Xi’an Jiaotong University, Xi’an, China, in
+       Feb. 2019.                                                                                                                       2016, and the Ph.D. degree from Nanyang Technolog-
+[61]   D.   Du   et   al.,   “A   review   on   cybersecurity   analysis,   attack   detec-                                             ical University, Singapore, in 2021. She was a Postdoc
+       tion,  and  attack  defense  methods  in  cyber-physical  power  systems,”                                                       with ETH Zurich, Zurich, Switzerland, Research Fel-
+       J.  Mod.  Power  Syst.  Clean  Energy,  vol.  11,  no.  3,  pp. 727–743,  May                                                    low with the Tokyo Institute of Technology, Research
+       2023.                                                                                                                            Assistant with Tsinghua University, Beijing, China,
+[62]   J.  Dong,  L.  Jiang,  C.  Zhang,  and  K.  Peng,  “A  novel  quality-related                                                    and Visiting Scholar with the California Institute of
+       incipient fault detection method based on canonical variate analysis and                                                         Technology,  Pasadena,  CA,  USA.  She  is  currently
+       Kullback–Leibler divergence for large-scale industrial processes,” IEEE                                                          a  Professor  with  Beihang  University.  Her  research
+       Trans. Instrum. Meas., vol. 71, Aug. 2022, Art. no. 3520410.                                                                     interests  include  distributed  estimation,  security  of
+[63]   J. Zhang, L. Pan, Q.-L. Han, C. Chen, S. Wen, and Y. Xiang, “Deep learning                      cyber-physical systems, and data-driven control. Dr. Yan was the recipient of
+       based attack detection for cyber-physical system cybersecurity: A survey,”                      the JSPS Postdoctoral Fellowship for Research in Japan (Standard) in 2021.
+       IEEE/CAA J. Automatica Sinica, vol. 9, no. 3, pp. 377–391, Mar. 2022.
+[64]   Z.  Cheng,  H.  Ren,  J.  Qin,  and  R.  Lu,  “Security  analysis  for  dynamic
+       state estimation of power systems with measurement delays,” IEEE Trans.                                                          Qing  Gao  (Senior  Member,  IEEE)  received  the
+       Cybern., vol. 53, no. 4, pp. 2087–2096, Apr. 2023.                                                                               B.Eng.  and  Ph.D.  degrees  in  mechanical  and  elec-
+[65]   Y.  Shen,  Z.  Wang,  B.  Shen,  and  Q.  -L.  Han,  “Recursive  state  estima-                                                  trical engineering from the University of Science and
+       tion for networked multirate multisensor systems with distributed time-                                                          Technology of China, Hefei, China, in 2008 and 2013,
+       delays under round-Robin protocol,” IEEE Trans. Cybern., vol. 52, no. 6,                                                         respectively,  and  the  Ph.D.  degree  in  mechatronics
+       pp. 4136–4146, Jun. 2022.                                                                                                        engineering from The City University of Hong Kong,
+[66]   L. Xu, X. Zhang, F. Ding, and Q. Zhu, “A delta operator state estimation                                                         Hong Kong, in 2014. Since 2018, he has been a Full
+       algorithm for discrete-time systems with state time-delay,” IEEE Signal                                                          Professor with the School of Automation Science and
+       Process Lett., vol. 32, pp. 391–395, 2025.                                                                                       Electrical Engineering, Beihang University, Beijing,
+[67]   Y. Mo, R. Ambrosino, and B. Sinopoli, “Network energy minimization                                                               China. His research interests include Industrial Inter-
+       via sensor selection and topology control,” IFAC Proc. Volumes, vol. 42,                                                         net, intelligent control, and quantum control. Dr. Gao
+       no. 20, pp. 174–179, Sep. 2009.                                                                 was  the  recipient  of  the  Outstanding  Research  Thesis  Award  from  The  City
+[68]   W. Wang, C. Wen, J. Huang, and J. Zhou, “Adaptive consensus of uncertain                        University of Hong Kong in 2013, Outstanding Doctoral Dissertation  Award
+       nonlinear systems with event triggered communication and intermittent                           from  The  Chinese  Academy  of  Sciences  in  2015,  Alexander  von  Humboldt
+       actuator faults,” Automatica, vol. 111, Jan. 2020, Art. no. 108667.                             Fellowship of Germany, and 21st Guan Zhao-Zhi Award.
+
+
+
+
+
+
+
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:22 UTC from IEEE Xplore.  Restrictions apply.

@@ -1,0 +1,1009 @@
+===== PDF PAGE 1 =====
+562                                                                                                                                                            IEEE TRANSACTIONS ON SMART GRID, VOL. 17, NO. 1, JANUARY 2026
+                 A Trust-Aware Consensus Mechanism for
+                  Post-Attack Restoration of Power System
+                                         Distributed State Estimation
+
+               Saeed Nasiri          , Hossein Seiﬁ            , Senior Member, IEEE, and Hamed Delkhosh                                   , Member, IEEE
+
+
+
+   Abstract—The resilience of Distributed State Estimation (DSE)                               I                           Identity matrix.
+in  power  systems  depends  not  only  on  detecting  cyber-attacks                           |θi|                         States vector length associated with agent
+but also on the ability to robustly recover accurate system states                                                      i.
+during persistent malicious data injections. While existing trust-                             |oi|                        Observations    vector    length    associated
+based  frameworks  can  identify  compromised  nodes,  they  often                                                      with agent i.
+lack  a  mechanism  for  continuous  state  restoration,  a  critical                           ˆΣi                          Innovation   error   covariance   matrix   for
+vulnerability  under  persistent  attacks.  This  paper  proposes  a
+Generalized  Distributed  Information  Kalman  Filter  (G-DIKF),                                                        agent i.
+a novel security scheme designed speciﬁcally for the post-attack                                ¯Σi                          Predicted    innovation    error    covariance
+restoration  phase.  When  an  agent  is  deemed  untrustworthy  by                                                     matrix for agent i.
+a  cooperative  trust  management  system,  the  G-DIKF  activates                             ki                          Kalman correction gain for agent i.
+a  robust  recovery  protocol.  This  protocol  employs  an  iterative,
+batch-mode  regression  that  adaptively  reweights  all  available                            Ni                         Interacting peers set of agent i.
+information—including  historical  data,  local  observations,  and                            o j,i                        Observations  of  agent   j  associated  with
+data  from  trusted  neighbors—based  on  dynamically  assessed                                                         agent i.
+trust  scores.  This  approach  ensures   that  state  variables  are                          ˆo j,i                        Transmitted  observations  of  agent  j  with
+corrected  without  discarding  potentially  valuable  information.                                                     agent i.
+A  key  feature  of  the  G-DIKF  is  its  scalability;  the  computa-
+tionally  intensive  recovery  process  is  localized,  involving  only                        M j,i                      Agent   j’s  observation  matrix  associated
+the  compromised  agents  and  their  immediate  neighbors.  The                                                        with agent i.
+eﬃcacy and robustness of this trust-aware restoration mechanism                                M j,i′                      Agent  j’s observation matrix unrelated to
+are   validated   through   simulations   on   the   IEEE   14-bus   and                                                agent i.
+118-bus test systems, demonstrating signiﬁcant improvements in                                 θ j,i                        Agent  j’s mutual states with agent i.
+estimation accuracy during multi-time-step attack scenarios.
+   Index Terms—Decentralized decision making, false data injec-                                θ j,i′                        Agent   j’s   exclusive   states   (non-shared
+tion, power system state estimation, post-attack state recovery.                                                        with agent i).
+                               NOMENCLATURE                                                    θni                          The nth state of agent i.
+   i, j                        Indices for agents.                                             ε j,i                        Agent  j’s observation process error asso-
+   k/n                       Indices for observations/states.                                                           ciated with agent i.
+   A                       Set of agents.                                                      Ei                          Observation covariance matrix of agent i.
+   t                            Indicator for time step.                                       Ci                         Consensus factor gain for agent i.
+   θi                          State vector of agent i.                                        —λmax                    Largest eigenvalue.
+   ¯θi                          Predicted state vector of agent i.                             ϑni                          Individual  coherence  for  the  nth  state  of
+   ˆθi                          Estimated state vector of agent i.                                                      agent i.
+   oi                          Observation vector of agent i.                                  µi                          The   multivariate   coherence   associated
+   Ti                          State transition matrix of agent i.                                                      with agent i.
+   Mi                        Observation matrix of agent i.                                    δ j,i                        Agent  j’s transmitted observations coher-
+   ϕi                          System dynamic noise of agent i.                                                         ence from agent i’s point of view.
+   εi                          Observation process error of agent i.                           det(.)                   Matrix determinant operator.
+                                                                                               okj,i                        Agent  j’s  kth  mutual  observation  associ-
+   σ2ϕ/σ2ε                   The noise/error variance.                                                                  ated with agent i.
+  Received  21  October  2024;  revised  9  March  2025  and  21  July  2025;                  mkj,i                       Agent  j’s  kth  row  of  observation  matrix
+accepted   10   September   2025.   Date   of   publication   15   September   2025;                                    associated with agent i.
+date  of  current  version  23  December  2025.  Paper  no.  TSG-01798-2024.                   Si, j                        Set of mutual states between agents i and
+(Corresponding author: Hossein Seiﬁ.)                                                                                    j.
+  The   authors   are   with   the   Faculty   of   Electrical   and   Computer   Engi-        ψni, j                        Agent  j’s nth mutual state coherence from
+neering,   Tarbiat   Modares   University,   Tehran   14115-111,   Iran   (e-mail:
+seiﬁ  ho@modares.ac.ir).                                                                                                agent i’s point of view.
+  Color  versions  of  one  or  more  ﬁgures  in  this  article  are  available  at            ηi                          The trust value of agent i.
+https://doi.org/10.1109/TSG.2025.3609891.                                                      E(.)                     Expected value operator.
+  Digital Object Identiﬁer 10.1109/TSG.2025.3609891
+
+               1949-3053 © 2025 IEEE. All rights reserved, including rights for text and data mining, and training of artiﬁcial intelligence and
+                             similar technologies. Personal use is permitted, but republication/redistribution requires IEEE permission.
+                                             See https://www.ieee.org/publications/rights/index.html for more information.
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:28 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 2 =====
+NASIRI et al.: TRUST-AWARE CONSENSUS MECHANISM FOR POST-ATTACK RESTORATION OF POWER SYSTEM DSE                                                                         563
+
+
+   σ(.)                     Standard deviation operator.                               perspectives[10].           First, attack feasibility, Second, attack detec-
+   Ωi                         The alarm value indicator for agent i.                   tion performance, Third, intrinsic vulnerability of the internal
+   ρi                          Detection  sensitivity  parameter  for  agent           operation  to  attacks  and,  Fourth,  post-attack  restoration  per-
+                           i.                                                          formance. Recently, Blockchain technology has been focused,
+   ai                          False   data   injection   vector   in   agent          as  it  can  provide  promising  security  features  for  distributed
+                           i’sestimation.                                              systems.  Although  it  can  be  used  in  diﬀerent  power  system
+   Υij                         The verdict of agent  j for trustworthiness             applications, the main challenges involve application speciﬁc
+                           of agent i.                                                 designs  to  cover  the  four-fold  mentioned  perspectives.  Our
+   ϕi, j                        System  dynamics  noise  of  mutual  states            previous work[10], while e           ﬀective at detection, the framework
+                           between agents i and  j.                                    was  not  designed  to  address  the  subsequent,  and  equally
+   Θi                         Cholesky decomposition matrix for agent                  critical,  phase  of  post-attack  state  restoration,  particularly
+                           i.                                                          when  attacks  persist  over  consecutive  intervals.  In  contrast,
+   τHuber                    Huber loss function constant.                             the current paper proposes a restoration-aware DSE framework
+   ri,k                         kth  residual  value  in  agent  i’s  estimation       that  focuses  on  the  post-attack  stage,  where  estimators  are
+                           model.                                                      reinitialized  using  a  trust-guided  estimator  recovery  mecha-
+   ri                           Residual  vector  of  agent  i’s  estimation           nism, thus addressing a critical gap in the resilience lifecycle
+                           model.                                                      of power system DSE. The primary challenges are as follows:
+   wi,k                       Weight  of  kth  observation  in  agent  i’s                Limited precision in attack detection: The recovery of state
+                           estimation model.                                           estimation  necessitates  consideration  of  the  aﬀected  regions
+   γi                          Down-weight    intensity    coeﬃcient    of             by attacks and speciﬁcation of the incorrectly estimated state
+                           agent i.                                                    variables that require correction.
+   βi                          Down-weight   dead   band   coeﬃcient   of                 Maintaining the integrity of true state variables: The correct
+                           agent i.                                                    state  variables  should  remain  unchanged  after  recovering  the
+   yi                          Normalized  batch-mode  observation  vec-               attacked state variables. This requires the precise identiﬁcation
+                           tor of agent i.                                             of  distrusted  regions.  Additionally,  the  computational  burden
+   ‖.‖∞                      Inﬁnity norm.                                             inherent  in  the  state  estimation  recovery  needs  to  be  taken
+   oi,i                         Observation     vector     associated     with         into  account.  Methods  that  involve  altering  or  involving  true
+                           installed meters in agent i’s area.                         state  variables  in  the  recovery  process  may  constrain  system
+   Mi,i                       Observation   matrix   related   to   meters             scalability and lead to computational resource ineﬃciencies.
+                           installed in agent i’s area.                                   Temporal dynamics integration: A signiﬁcant challenge lies
+                            I.  INTRODUCTION                                           in the incapability of most state estimation recovery methods
+                                                                                       to integrate temporal dynamics of the system. These methods
+A.  Motivations                                                                        typically  perform  state  estimation  recovery  for  a  single  time
+       ISTRIBUTED   nature   of   future   power   systems   and                       step.  In  scenarios  where  attacks  persist  continuously  over
+Dgrowing information technologies such as the industrial                               multiple time steps, the residual error’s impact on subsequent
+internet  of  things  (IIoT)  have  led  to  distributed  decision-                    state estimation recovery may render such methods generally
+making  approaches[1], [2], [3], [4], [5], [6].  However,  the                         ineﬀective.
+decentralization of power systems leads to security problems                           B.  Related Work
+such as information privacy, data integrity and trust manage-
+ment,  since  the  desired  performance  of  the  system  depends                         While   defensive   strategies   must   include   multi   layers
+on  cooperation  of  distrusted  agents.  The  main  motivation                        according  to  the  aforementioned  security  perspectives,  var-
+of  this  paper  is  the  inadequacy  of  existing  DSE  security                      ious   researches   have   been   only   focused   on   detection   of
+frameworks  in  handling  persistent,  multi-time-step  attacks.                       cyber-attacks[11].  Particularly,  less  attention  has  been  paid
+Moreover, distributed systems diﬀer with respect to the type of                        to   post-attack   restoration   of   the   system.   In   general,   two
+exchanged  information  among  agents,  computational  burden,                         approaches are introduced for defense against FDIAs in power
+communication costs, and the way the agents reach to an opti-                          systems.  Some  researches  propose  to  protect  a  few  critical
+mal solution. Hence, the latency and scalability of mechanisms                         meters, locate new ones or physically change network param-
+are  signiﬁcant.  In  this  direction,  DSE  has  been  focused  by                    eters so that the attack is not eﬀective without compromising
+many researchers.                                                                      those  observations[12], [13], [14], [15].  The  other  approach
+   In  addition  to  the  aforementioned  issues,  DSE  must  be                       deals with changing state variables after the attack, based on
+resilient  to  cyber-attacks,  as  recent  real-world  attacks  and                    such methods as optimization, machine learning, robust statics,
+studies  have  proven  their  consequences.  False  data  injection                    etc.  In  fact,  the  ﬁrst  approach  involves  feasibility  of  attack
+attacks (FDIAs) are cyber-attacks against power networks state                         while there is no guarantee to eliminate the possibility of the
+estimation  which  can  endanger  security  of  power  systems                         attacks. Moreover, these approaches are costly due to the need
+and  disrupt  main  functions  of  the  control  centers[7], [8],                      for installation of physical assets like D-FACTS or new meters.
+[9]. In this way, DSE faces speciﬁc challenges, as distributed                         On  the  other  hand,  the  second  approach  entails  post  attack
+agents work cooperatively. Under this circumstances, an end-                           recovery which is reviewed in more details as follows. Some
+to-end  security  scheme  must  take  into  account  the  following                    works, such as[16], propose a conservative yet straightforward
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:28 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 3 =====
+564                                                                                                                                                            IEEE TRANSACTIONS ON SMART GRID, VOL. 17, NO. 1, JANUARY 2026
+
+
+approach  to  cope  with  the  attacked  state  estimation.  These                         the past system values and leverages accurate estimations
+works  recommend  using  the  last  valid  values  as  the  correct                        from neighboring agents to improve state estimation.
+values  during  the  attack  period.  Clearly,  this  method  has                      •  The  proposed  method  requires  minimal  information  and
+fundamental drawbacks because all state values after the attack                            exchange of data for convergence. Additionally, due to its
+may  not  be  incorrect.  Moreover,  there  are  natural  variations                       activation only during abnormal periods and speciﬁcally
+in  state  variables  over  time  which  are  exacerbated  by  the                         for  anomalous  agents,  the  scalability  of  the  method  is
+integration of renewable energy sources and rapid changes in                               guaranteed.
+consumption and production intensity[17].                                              •  The utilization of the trust management in this paper for
+   In[18]and[19],  similar  optimization-based  methods  have                              weighting  various  observations  contributes  to  a  proper
+been  proposed  for  recovering  attacked  state  variables.  These                        technical valuation of the information of each region. This
+methods  tend  to  alter  the  correct  variables  in  the  unaﬀected                      ensures that, even during an attack, all information is not
+regions  or  those  not  susceptible  to  the  attack.  More  impor-                       indiscriminately discarded, preserving both favorable and
+tantly,  these  methods  recover  the  attacked  state  variables  for                     unfavorable data.
+only  a  single  time  step  along  with  a  recovery  error.  If  the                  The  remaining  of  the  paper  is  organized  as  follows.  Sec-
+attack  continues,  this  error  will  increase  for  subsequent  time               tionIIprovides preliminaries of blockchian and the proposed
+steps. In[20], a method based on neural networks and machine                         model. SectionIIIdescribes problem formulation. SectionIV
+learning  is  proposed,  where  a  generative  adversarial  network                  explains the proposed restoration strategy. SectionVdiscuses
+(GAN) is utilized for recovering the correct observation values                      numerical  results.  SectionVIproposes  future  works.  Finally,
+after an attack. The machine learning-based methods require a                        sectionVIIconcludes the paper.
+suﬃciently rich dataset that covers various network operating
+conditions and diﬀerent types of attacks to achieve satisfactory
+performance.  Additionally,  they  need  adequate  hardware  for                                                II.  PRELIMINARIES
+training neural networks and may require adjustments in attack                       A.  Cyber Security in Power System DSE
+modeling and network conditions with new changes over time.
+   Another  category  of  research  in  this  ﬁeld  is  rooted  in                      In   every   fully   distributed   processes   in   power   systems
+robust statistics[21]. State estimation methods based on robust                      without  intermediaries,  the  participating  agents,  while  being
+techniques can exhibit good performance against non-Gaussian                         susceptible  to  cyber  threats  themselves,  must  collaborate  to
+noise, highlighting a strength of this research category. Refer-                     secure the system[28]. Each agent relies on information from
+ence[22]stands out as a pioneering work where a statistical                          other agents to achieve accurate state estimation, emphasizing
+approach is employed to identify observation anomalies. Sub-                         the  critical  aspect  of  data  integrity.  To  tackle  this  challenge,
+sequently,  using  an  M-estimator,  the  state  variables  of  the                  blockchain  technology  oﬀers  a  solution  by  leveraging  its
+power  system  are  estimated.  This  method  was  evolved  in                       inherent features such as encryption, message veriﬁcation, and
+[23]and  was  integrated  with  the  Kalman  ﬁlter,  enhancing                       a distributed ledger system.
+its  performance.  References[24], [25], [26],  and[27]have                             Blockchain is a technology that guarantees secure and trans-
+utilized  this  approach,  combining  it  with  various  Kalman                      parent data storage and sharing. It operates as a digital ledger,
+ﬁlters,  including  EKF  and  UKF,  as  well  as  the  H-inﬁnity                     recording  transactions  across  a  network  of  interconnected
+ﬁlter, for dynamic state estimation in power systems. However,                       agents. Data are packed into blocks, which are then connected
+these methods are centralized and need appropriate parameters                        sequentially to form transactions chain, creating an immutable
+tuning and the weighting scheme for observations.                                    record  of  historical  data.  The  veriﬁcation  process  involves
+   To  this  end,  this  paper  proposes  a  distributed  recovery                   agents  employing  encryption  and  decryption  techniques  to
+method  that  activates  only  for  compromised  agents.  This                       validate  the  authenticity  of  transactions,  thus  ensuring  data
+method leverages an iterative, trust-aware batch-mode regres-                        security.
+sion   model   that   intelligently   weights   various   information                   Blockchain’s security is further strengthened by employing
+sources  based  on  their  dynamically  assessed  credibility.  By                   cryptographic algorithms to connect the blocks. Any attempt to
+integrating  prior  state  information  with  current  observations                  alter data within a block would impact the entire chain, making
+from  both  local  and  neighboring  agents,  and  by  weighting                     unauthorized modiﬁcations easily detectable. This mechanism
+this  information  according  to  a  trust  metric,  the  G-DIKF                     creates a highly secure database accessible to all agents in the
+can  eﬀectively  restore  the  integrity  of  the  state  estimation                 network.  Additionally,  blockchain  utilizes  trust  mechanisms
+process.  This  targeted  activation  ensures  the  method  remains                  like proof-of-work or proof-of-stake (commonly used in cryp-
+highly scalable, minimizing communication and computational                          tocurrencies)  to  verify  the  reliability  and  trustworthiness  of
+overhead in large-scale systems.                                                     agents.
+                                                                                        However, trust management in the context of power system
+C.  Contributions and Organization                                                   DSE  requires  additional  power  system-speciﬁc  mechanisms
+                                                                                     to  address  other  security  aspects,  including  detection,  func-
+   Clearly, the main contributions of this paper are as follows:                     tional  robustness,  and  post-attack  restoration,  on  top  of  the
+  •  The   proposed   method   is   capable   of   state   estimation                blockchain. Malicious behaviors by agents need to be promptly
+      recovery  for  consecutive  time  steps.  In  instances  where                 identiﬁed and mitigated before they are accepted. More infor-
+      observations exhibit low trust, the proposed method uses                       mation of this can be found in[10].
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:28 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 4 =====
+NASIRI et al.: TRUST-AWARE CONSENSUS MECHANISM FOR POST-ATTACK RESTORATION OF POWER SYSTEM DSE                                                                         565
+
+
+                                                                                         where Ti is the state transition matrix.ϕi(t) is system dynamics
+                                                                                         noise  vector  described  as ϕi(t) ∼  N(0,σ2ϕI|θi|).  I|θi|  is  the
+                                                                                         identity matrix with the size of|θi| and|θi| is the length ofθi(i.e.
+                                                                                         states numbers). Similarly,εi(t) is the observation process error
+                                                                                         described  as εi(t)∼ N(0,σ2εI|oi|)  in  which  I|oi|  is  the  identity
+                                                                                         matrix  with  the  size  of |oi|  and |oi|  is  the  length  of  oi(i.e.
+                                                                                         observations samples). Now, deﬁne
+
+                                                                                                          Ni =˚ j|θi (t)∩θ j (t) , ∅, j∈{A− i}	                (2)
+                                                                                         as the set of agent i’s interacting neighbors. These agents have,
+                                                                                         at least, one mutual state with agent i. Let agent  j be a neighbor
+                                                                                         of agent i, a decomposition can then be made as:
+                                                                                                          o j,i(t)= M j,iθ j,i(t)+M j,i′θ j,i′(t)+ε j,i(t)               (3)
+                                                                                         where o j,i(t) is a sub-vector of o j(t) composed of observations
+                                                                                         of  agent  j  associated  with  the  mutual  states  of  agent  i.θ j,i(t)
+                                                                                         and θ j,i′(t)  are  the  mutual  and  exclusive  states  of  agents  j  in
+                                                                                         relation  to  agent  i,  respectively.  M j,i  is  a  sub-matrix  of  the
+                                                                                         observation  matrix  of  agent  j,  corresponding  to  the  mutual
+                                                                                         states of agent i.M j,i′  is a sub-matrix of the observation matrix
+                                                                                         of  agent  j,  corresponding  to  the  exclusive  states  of  agent  j.
+Fig. 1.   The proposed G-DIKF workﬂow.                                                   Deﬁning  ˆ∆i(t) = ˆθi(t)−θi(t) and  ¯∆i(t) = ¯θi(t)−θi(t), in which,
+                                                                                         ¯θi(t)  and  ˆθi(t)  are  predicated  and  estimated  states,  two  error
+B.  The Proposed Method’s Workﬂow                                                        covariance matrices can be written as:
+   The proposed method for state estimation recovery in power                                                         ˆΣi(t) = E[ ˆ∆i(t) ˆ∆i(t)T ]
+systems  involves  a  comprehensive  process.  It  starts  with  the                                                  ¯Σi(t) = E[ ¯∆i(t) ¯∆i(t)T ]                             (4)
+prediction  of  states  and  covariance  matrices  using  Kalman                            As a result, let  j∈ A and  p∈ A be the neighbors of agent
+ﬁlter  equations,  followed  by  the  collection  of  local  obser-                      i, and knowing that θ− ¯θ∼ N(0, ¯Σ(t)), the local estimation for
+vations  and  their  decomposition  into  mutual  and  exclusive                         agent i is modeled as
+parts.  Each  agent  then  forms  observation  vectors,  matrices,
+and  observation  error  covariance  based  on  the  local  and                                                     θi(t)= Tiθi(t− 1)+ϕi(t)
+neighbor’s  information.  In  the  next,  state  estimates  by  each                                                oi(t)= Miθi(t)+ei(t)                                (5)
+agent  are  obtained  and  broadcasted  to  all  agents.  Trustwor-
+thiness  validation  is  checked  by  calculating  trust  levels  for                    where              2                             3            2        3
+each agent using metrics for univariate individual states coher-                                               oi,i(t)                                    Mi,i
+ence,  multivariate  states  coherence,  transmitted  observations                                 oi(t)=   4o j,i(t)− M j,i′ ¯θ j,i′(t)  5, Mi =      4  M j,i 5,
+coherence, and mutual states coherence. Once the trust levels                                                  op,i(t)− Mp,i′ ¯θp,i′(t)                   Mp,i
+are  determined,  the  malicious  agents  are  identiﬁed  based  on                                          2  εi,i(t) 3
+trust  votes.  State  estimation  recovery  is  achieved  through  a                               ei(t) =   4  ε j,i(t)5                                                        (6)
+batch-mode  regression,  which  is  pre-whitened  and  assigned                                                 εp,i(t)
+observation  weights  based  on  trust  levels.  The  optimization
+problem  is  solved  to  recover  state  estimates,  and  the  process                      Therefore,  agent  i  ﬁrst  collects  observations  from  its  local
+includes  convergence  checks.  After  exchanging  information                           meters  and  then  all  the  observations  about  the  mutual  states
+with  neighbors  and  re-checking  convergence,  the  recovered                          from  interacting  neighbors.  The  observation  error  covariance
+state estimates are broadcasted to all agents, ensuring a secure                         matrix can then be deﬁned as2                               3
+and accurate state estimation even in the presence of malicious                                                            σ2εI|oi|    0        0
+agents. Fig.1illustrates the process of the proposed method.                                                  Ei(t) =   4  0       Ψ j,i(t)    0     5                      (7)
+                                                                                                                           0            0    Ψp,i(t)
+                     III.  PROBLEM FORMULATION                                                              Ψ j,i(t) = M j,i′(¯Σ j,i′(t))MTj,i′ +ε j,i(t)                  (8)
+A.  Distributed Information Kalman Filter                                                   Hence,  Kalman  estimator  with  consensus  on  the  mutual
+   Suppose agent i∈ A describes its local DSE at time step t                             states is derived as the following[10]:
+as:                                                                                                          ¯Σi(t) = Ti ˆΣi(t− 1)TTi + Iσ2ϕ
+                          θi(t)= Tiθi(t− 1)+ϕi(t)                                                            ¯θi(t) = Ti ˆθi(t− 1)
+                               oi(t)= Miθi(t)+εi(t)                           (1)                            ˆΣi(t) = (¯Σi(t)−1 + Di(t))−1
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:28 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 5 =====
+566                                                                                                                                                            IEEE TRANSACTIONS ON SMART GRID, VOL. 17, NO. 1, JANUARY 2026
+                                                                                                               Z         −|o j,i|
+                    ˆθi(t) =  ˆΣi(t)(Zi(t)− Di(t)¯θi(t))                                                                                       −1  −1
+                                                                                                      = 1−         (2π)    2    det(Ψ j,i(t))  2 e  2  (o j,i(t)−M j,iθi, j(t))T
+                              + Ci(t)X(¯θ j,i(t)− ¯θi, j(t))                  (9)                    Ψ j,i(t)−1(o j,i(t)− M j,iθi, j(t))                                       (14)
+                                         j∈𝓁i
+where  Ci  is  the  consensus  factor  gain  for  agent  i,Di(t)  =                        where mkj,i  is the kth row of  M j,i, respectively.
+MTi Ei(t)−1Mi  and  Zi(t) = MTi Ei(t)−1oi(t).The consensus gain                                The  last  hypothesis  tests  the  cooperation  discrepancy  of
+Ci  is also determined by                                                                  neighboring  agents  using  mutual  states.  From  a  statistical
+                                                                                           point of view, such a discrepancy can be modeled as follows.
+                       Ci(t) = Li(t)         1                                             Suppose  that Si, j ={θi(t)∩θ j(t), j∈ Ni}  is  the  set  of  mutual
+                                         —λmax(Li(t)) ¯Σi(t)                    (10)       states between agents i and j. Then we can write:
+where Li(t) = I− ki(t)Mi  and  ki(t) =  ˆΣi(t)MTi Ei(t)−1                                        ψni, j(t)p((θni (t)−θni (t− 1))− (θnj(t)−θnj(t− 1))
+                                                                                                  > ((ˆθni (t)− ˆθni (t− 1))− (ˆθnj(t)− ˆθnj(t− 1)))
+B.  Cooperative Trust Management and FDIAs Detection                                                                                                                 !2
+                                                                                                       Z                1              − 1   (θni (t)−θni (t−1))−(θnj (t)−θnj (t−1))√
+                                                                                                                                         2          Σ(n,n)
+   Note  that  the  estimation  results  of  each  agent  must  be                               =1−       √                                          i   +Σ(n,n)j           (15)
+veriﬁed  before  being  stored  in  blockchain.  All  the  agents                                             2π(Σ(n,n)i    + Σ(n,n)j    )e
+cooperatively do such a veriﬁcation process as follows.                                    where ψni, j(t)  is  a  metric  that  shows  the  perturbation  of  the
+   Due   to   security   provided   by   blockchain,   database   of                       mutual state n between agents i and  j at time step t  from its
+blockchain-based DSE is highly reliable. Hence, the states at                              expected  value.  By  taking  all  the  mutual  states  into  account,
+latest  time  step  (i.e. θ(t− 1))  are  consensual.  Thus,  we  can                       the overall mutual states coherence is obtained as:
+write
+              ϑni (t)p(θni (t)−θni (t− 1)> ˆθni (t)− ˆθni (t− 1))                                                          ψi, j(t) Y      ψni, j(t)                              (16)
+                                                              !2                                                                    n∈Si, j
+                       Z            1          − 1  θni (t)−θni (t−1)√                     Finally,  The  trust  (ηi(t))  of  agent  i  at  time  step  t  can  be
+                                                 2     ¯Σ(n,n)
+               = 1−         √                           i       (t)              (11)      materialized by including all the metrics:
+                               2π¯Σ(n,n)i     (t)e                                                                   0                                             1
+
+where   ¯Σ(n,n)i       and ϑni (t)  are  the  diagonal  entry  (n,n)  of  the                           ηi(t) =  f   @ϑi(t),µi(t),X         δ j,i(t),X     ψi, j(t)A         (17)
+predication  innovation  error  covariance  matrix  and  individ-                                                                      j∈Ni           j∈Ni
+ual  coherence  for  the  n  th  state  of  agent  i  at  time  step  t,                       Following   that,   a   CUSUM-based   method   is   used   for
+respectively.incorporating all the states of agent i, a coherence                          anomaly  detection.  ﬁrst,  the  trust  function  needs  to  be  nor-
+metric for the estimates of agent i at time step t can be deﬁned                           malized:
+as
+                                  ϑi(t)Yϑni (t)                                 (12)                                 ¯ηi(t) = ηi(t)− E(ηi(1 :τi))σ(ηi(1 :τi))                            (18)
+                                          n
+The  second  hypothesis  is  a  multivariate  coherence  metric                            where  ¯ηi(t)  is  the  normalized  trust  for  agent  i  at  time  step
+formulated as                                                                              t,  E(ηi(1  : τi)),  and σ(ηi(1  : τi))  are  the  mean  and  standard
+                                                                                           deviation of trust values up to time stepτi. Note that trust can
+           µi(t)p(θ1i (t)−θ1i (t− 1)> ˆθ1i (t)− ˆθ1i (t− 1),...,                           be higher than expected, which is ﬁne. Hence, it is necessary
+           θ|θi|                                                                           to  identify  points  where  the  normalized  trust  function  has
+             i   (t)−θ|θi|Zi   (t− 1)>|θi|i    (t)− ˆθ|θi|i   (t− 1))                      dropped, by eliminating positive values. Doing so ﬁlters time
+
+                            −|θi|            −1   −1                                       steps at which trust is anomalous because of being much less
+            = 1−      (2π)   2   det(¯Σi(t))  2 e 2
+                                                                                           than average trust history. Mathematically, we need to obtain
+           (θi(t)−θi(t− 1))T ¯Σi(t)−1(θi(t)−θi(t− 1))               (13)                   negative trust values as:
+   This hypothesis shows the perturbation of all states of agent                                                          χi(t) = min(0, ¯ηi(t))                            (19)
+i form their expected values by considering covariance of the                                  Then, an anomaly alert function can be deﬁned as follows:
+states. It moves beyond evaluating individual state variables in
+isolation and instead examines the integrity of the entire state                                              Ωi(t) = max(0, Ωi(t− 1)−χi(t)−ρi)              (20)
+vector.
+   The third hypothesis is the transmitted observations coher-                             where Ωi(t) is an alarm function for anomaly detection and ρi
+ence  metric  between  two  agents  with,  at  least,  one  mutual                         is a tuning parameter to adjust the balance between the false
+state. It assesses whether the information provided by node  j                             alert rate and the detection sensitivity for agent i. Note that τi
+about  their  mutual  states  aligns  with  node  i’s  own  estimate                       can be determined as:
+of  those  same  states.  This  can  be  mathematically  expressed                                                Λi = min{t : Ωi(t)> 0}                                (21)
+as                                                                                                                 τi = max{t : Ωi(t) = 0, t< Λi}                   (22)
+
+         δ j,i(t)p(o1j,i(t)− m1j,iθi, j(t)> o1j,i(t)− m1j,i ˆθi, j(t),                     where  Λi  is  the  time  step  at  which  the  anomaly  detection
+          ..., o|o j,i|j,i   (t)− m|o j,i|j,i θi, j(t)> o|o j,i|j,i   (t)− m|o j,i|j,i   ˆθi, j(t))function  ﬁrst  indicates  a  value  greater  than  zero. τi  is  also
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:28 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 6 =====
+NASIRI et al.: TRUST-AWARE CONSENSUS MECHANISM FOR POST-ATTACK RESTORATION OF POWER SYSTEM DSE                                                                         567
+
+
+the time step before which no alerts existed. Finally, the trust                        when two of them are added or subtracted, the overall covari-
+verdict of agent  j for agent i at time step t can be determined                        ance matrix for these equations can be expressed as follows.
+as follows:                        (                                                                       2  ¯Σi(t)    0            0         3
+                        Υij(t) =     1 i f Ωi(t)> 0                                         Ebatch         4  0       Ei(t)        0           5 = Θi(t)Θi(t)T    (30)
+                                     0 else                                        (23)       i     (t) =     0        0    ¯Σi, j(t) + ¯Σ j,i(t)
+
+and agent i is untrustworthy at time step t if                                          where Θi(t)  is  the  lower  triangular  matrix  obtained  from  the
+                                XΥij(t)>|A|                                             Cholesky decomposition. Note that, as all components of the
+                                                 2                                 (24) matrix  is  positive  deﬁnite,  the  Cholesky  decomposition  can
+                                j∈A                                                     be  applied.  Its  application  will  be  explained  in  subsequent
+which  indicates  a  vote  of  distrust  by  more  than  half  of  the                  sections.
+agents  plus  one  in  the  network  towards  agent  i  [10].  |A|  is
+also the cardinality of A.                                                              B.  State Estimation Recovery
+    IV.  THE PROPOSED G-DIKF FOR STATE RECOVERY                                             In this section, the proposed distributed estimator for attack
+                                                                                        times  is  presented.  The  Huber  loss  function[21]is  utilized
+A.  System Model During Attack Period                                                   for state recovery. This function is a convex function that can
+   To describe G-DIKF, assume that the system consists of|A|                            switch between a quadratic error function and an absolute error
+agents,  where  agent  i  is  identiﬁed  as  a  distrusted  agent  for                  function  based  on  the  relative  error  magnitude.  In  fact,  for
+time step k based on the distrust votes of other agents. In this                        observations  with  low  error,  the  Huber  cost  function  trans-
+scenario, the following equations can be written for this agent:                        forms  into  the  least  squares  error  estimator,  which  performs
+                                                                                        better  under  conditions  of  low  error.  However,  this  function
+                             ¯θi(t)=θi(t)−ϕi(t)                                         transforms  into  the  least  absolute  value  estimator  for  large
+                            oi(t)= Miθi(t)+ei(t)                           (25)         errors,  which  is  known  to  provide  better  estimates  under
+                                                                                        conditions of high error. This function is expressed as follows:
+   These  equations  essentially  represent  the  same  equations                           ℏ(rei,k(t))
+described  in  the  previous  section  for  modeling  the  system.                              8ˆ<
+Note that oi(t) includes information from neighboring agents.                                      1
+In addition, we have:                                                                        =     2(rei,k(t))2 f orˇˇrei,k(t)ˇˇ<τHuberˇˇrei,k(t)ˇˇ− 1                  (31)
+                                  ¯θi, j(t)=θi, j(t)−ϕi, j(t)                                   ˆ:τHuber
+                                                                                                                         2τ2Huber  f orˇˇrei,k(t)ˇˇ≥τHuber
+                                  ¯θ j,i(t)=θ j,i(t)−ϕ j,i(t)                     (26)  where τHuber   is  a  constant  determining  which  part  of  the
+           ¯θi, j(t)− ¯θ j,i(t) +θ j,i(t)=θi, j(t) +ϕ j,i(t)−ϕi, j(t)       (27)        Huber  cost  function  for  the  optimization  function  activates.
+   With the equations above, a combined package of dynamic                              Additionally,  rei,k(t)  (scaled  error  or  residual)  is  determined
+distributed  state  estimation  equations  can  be  presented.  Con-                    as follows:
+
+sequently, a regression package can be written as follows:                                                  rei,k(t) =     ri,k(t)si(t)wi,k(t)
+
+                    obatchi      (t) = Mbatchi  θi(t) + ebatchi      (t)                  (28)                  si(t) = bk1.4826· median(ri(t))
+   in  which  the  matrices  and  vectors  correspond  with  the                                                ri(t) = yi(t)−φiθi(t)                                   (32)
+following relationships:                                                                where  ri,k(t)  is  the  residual  corresponding  to  agent  i  and
+                 2  ¯θi(t)                        3     2  I|θi| 3                      observation m.si(t) is referred to as robust scale and, ultimately,
+                 4  oi(t)                         5 =4     Mi    5                      ri(t)  is  the  residual  vector  for  agent  i  which  is  obtained
+                    ¯θi, j(t)− ¯θ j,i(t) +θ j,i(t)         I|θi, j|                     considering  equations(29)–(30)and  through  pre-whitening.
+                         2−ϕi(t)                3                                       Pre-whitening   is   a   statistical   technique   that   leads   to   de-
+                θi(t)+4ei(t)                    5                                  (29) correlating and standardizing a set of statistical equations[29].
+                             ϕ j,i(t)−ϕi, j(t)                                          Cholesky decomposition is used for pre-whitening as follows:
+where I|θi, j| is the identity matrix with a size ofˇˇθi, jˇˇ, which is                        Θi(t)−1obatchi      (t) = Θi(t)−1Mbatchi  θi(t) + Θi(t)−1ebatchi      (t)
+the number of shared state variables with neighboring agent j.                                               yi(t) =φiθi(t) + Φi(t)                                   (33)
+   To describe the overall error covariance matrix of(29), It is                            Then,  the  objective  function  for  state  estimation  recovery,
+worth mentioning that it is consisted of three parts including                          which needs to be minimized, can be expressed as follows:
+error covariance between state estimates and predicted states,                                                                  MTiX
+error covariance between observations and model (observation                                                      f i(θi(t)) =       (wi,k(t))2.ℏ(rei,k(t))
+error),  and  error  covariance  of  mutual  states  estimates  and
+predicted  states  between  two  neighboring  agents.  Hence,  as                                                             ˇˇ +Xk=1   ˇˇo j,iˇˇ +Xˇˇθi, jˇˇ           (34)
+we  know θ− ¯θ∼ N(0, ¯Σ(t)),  the  observation  error  covariance                                       MTi =|θi| +ˇˇoi,i
+described  as(7),  and  normal  distribution  function  properties                                                                  j∈Ni           j∈Ni
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:28 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 7 =====
+568                                                                                                                                                            IEEE TRANSACTIONS ON SMART GRID, VOL. 17, NO. 1, JANUARY 2026
+
+
+                                                                                        which can be expressed in matrix form as follows:
+                                                                                                φTi Qi(t)(yi(t)−φiθi(t)) = 0                  1
+                                                                                                                       Qi(t) = diag                 ∂ℏ(rei,k(t))
+                                                                                                                                           rei,k(t)   ∂rei,k(t)
+                                                                                                                       for k = 1, 2,... MTi                          (37)
+                                                                                            By  writing  the  ﬁrst-order  Taylor  expansion  and  using  suc-
+                                                                                        cessive iterations, for the (u + 1)th iteration, we have:
+                                                                                               ∆ˆθu+1i     (t) = ˆθu+1i     (t)− ˆθui (t)
+                                                                                               ∆ˆθu+1i     (t) = (φTi Qui (t)φi)−1φTi Qui (t)(yui (t)−φi ˆθui (t))        (38)
+Fig. 2.   The weighting function based on diﬀerent trust levels and settings.               The termination condition can also be deﬁned as follows:
+                                  ˇˇ,   and ˇˇθi, jˇˇ   are   total   observations                                     ∆ˆθu+1
+where   MTi,|θi|,|oi|,ˇˇo j,i                                                                                                i     (t)∞≤ε                              (39)
+number of agent i in batch-mode recovery, the length of states                          It  is  worth  mentioning  that  the  above  process  is  for  each
+vector for agent i, number of installed observations for agent                          of the anomalous agents. After internal convergence, each of
+i,  number  of  processed  observations  of  agent   j  sent  from                      them must exchange information with anomalous neighboring
+agent  j,  and  number  of  mutual  states  of  agent  i  with  agent                   agents. Therefore, using the IRLS method[21],[30], each of
+j, respectively.                                                                        the anomalous agents has two internal loops, and an external
+   As  the  state  estimation  recovery  model  indicates,  vari-                       loop is related to exchanging information and constructing new
+ous  observations  related  to  predicted  state  variables,  agent’s                   observations based on new estimates with neighboring agents.
+self-observations,  information  from  its  neighbors,  and  state                      Obviously, at each iteration, state estimates changes which, in
+variables predicted by its neighbors are used for state estima-                         turn, leads to change in trust values and observation weights.
+tion  recovery.  In  this  regard,  it  is  essential  to  identify  which              As a result, the iterative loops are as follows:
+observations  are  present  in  the  model  from  abnormal  agents                         •  The iteration loop related to exchanging information with
+and which observations are from trustworthy agents.                                            other anomalous agents with index U1.
+   Intuitively,  we  know  that  the  state  variables  of  abnormal                       •  The  internal  iteration  loop  related  to  weighting  each
+agent  i,  which  are  shared  with  trustworthy  agents,  should                              anomalous agent with index U2.
+be  biased  towards  the  values  obtained  by  the  trustworthy                           •  The internal iteration loop related to the convergence of
+agent.  Therefore,  based  on  the  prior  knowledge  provided                                 new estimates for each anomalous agent with index U3.
+by  the  proposed  trust  management  method,  it  is  possible  to                         With  the  above  deﬁnitions,  Equation(38)is  rewritten  as
+determine which observations should have larger coeﬃcients.                             (40), shown at the bottom of the next page, with the following
+Additionally, attention to the consensus issue is necessary and                         stopping condition.
+should  be  somehow  considered  in  the  model.  Given  these                                                   ∆ˆθ(u1)(u2)(u3+1)    ∞≤ε3                       (41)
+considerations, a weight assignment of observation k of agent
+i at time step t is proposed as follows.                                                                               i                 (t)
+                            (ηi(t)− E(ηi(1 :τi)))2 −βi,m(k)                  !              Then the results are returned to the second loop to update the
+    wi,k(t) = min       1,                                            + LB              new estimates using(42), as shown at the bottom of the next
+                                  γiσ(ηi(1 :τi))2                                       page,  with  the  new  internal  weighting,  and  the  convergence
+     βi,k(t) = Γi|ri.k(t)|                                                             (35)condition  for  the  second  loop  is  satisﬁed  with  the  following
+                                                                                        relation:
+                                                                                                                ∆ˆθ(u1)(u2+1)(u3+1)     ∞≤ε2                     (43)
+where τi  is  the  last  time  step  when  the  anomaly  detection                                                   i                     (t)
+function  for  agent  i  is  zero.  Also, γi  is  a  positive  predeﬁned                    Note  that  after  satisfying  this  condition,  observations  for
+constant  for  adjusting  the  dead-band,  and βi,k(t)  is  the  slope                  the  abnormal  agent  i  must  be  constructed  with  the  following
+for  adjusting  the  intensity  of  observation  weighting,  which                      relation, as new estimates are obtained for agent i which must
+depends on the latest state estimates residual and a predeﬁned                          be  used  to  generate  new  observations  to  be  replaced  with
+coeﬃcient Γi.  As Γi  and βi,k(t)  are  always  positive,  wi,k(t)  is                  previous suspicious ones.
+always  between  0  and  1.  LB  is  a  constant  lower  bound  to                          Then,   information   related   to   the   shared   state   variables
+stabilize the Huber function and prevent division by near zero                          should be sent to neighboring agents:
+values.  Fig.2illustrates  the  curve  of  observation  weighting
+based on diﬀerent values.                                                                                               oi,i(t) = Mi,iθi(t)                               (44)
+   Finally, agents  with anomalies should minimize  the objec-                              Finally, the convergence condition for the outer loop related
+tive function(34)as follows:                                                            to information exchange ((45)), as shown at the bottom of the
+
+
+                             MTiX                                                       next page, must be satisﬁed by:
+            ∂ f i(θi(t))          −wi,k(t)(φki )T   ∂ℏ(rei,k(t))                                              ∆ˆθ(u1+1)(u2+1)(u3+1)      ∞≤ε1                   (46)
+              ∂θi(t)    =    k=1        si(k)         ∂rei,k(t)    = 0       (36)                                  i                         (t)
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:28 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 8 =====
+NASIRI et al.: TRUST-AWARE CONSENSUS MECHANISM FOR POST-ATTACK RESTORATION OF POWER SYSTEM DSE                                                                         569
+
+
+                                                                                         In  steady-state  conditions,  the  system’s  behavior  is  primarily
+                                                                                         determined by the current operating point, and the inﬂuence of
+                                                                                         the other state variables’ past becomes less signiﬁcant. There-
+                                                                                         fore, the state estimation process can be eﬀectively performed
+                                                                                         by  considering  each  state  variable  independently,  based  on
+                                                                                         its  most  recent  observation  and  the  previous  state  estimate.
+                                                                                         Moreover,  all  elements  of  the  innovation  error  covariance
+                                                                                         matrix of each agent are initialized to zero, and the standard
+                                                                                         deviation  of  observations  and  state  errors  is  determined  as
+                                                                                         σv = 0.01 andσw = 0.01. Furthermore, in the Huber function,
+                                                                                         based  on  various  simulations  and  multiple[25],         τHuber  = 1.5
+Fig. 3.   The IEEE 14-bus test system divided into four regions as the agents.           is   assigned   for   all   agents.   For   each   anomalous   agent   in
+                                                                                         the  proposed  weighting  function,  constants  are  assigned  as
+                       V.  NUMERICAL ANALYSIS                                            γi = 1, Γi = 1 and LB= 0.2. The value of bk is set to 1 for each
+   The IEEE 14-bus test system as shown in Fig.3is employed                              agent.  The  convergence  condition  is  also  considered  as ε1 =
+as  the  ﬁrst  standard  test  network  to  benchmark  the  proposed                     ε2 =ε3 = 0.001 for each agent. It is supposed that the attacker
+methods.  For  each  time  step,  all  active  loads  are  randomly                      has complete or incomplete information of the network, mean-
+changed  by  an  average  of  zero  and  a  standard  deviation  of                      ing  that  the  network  parameters  (M  matrices)  are  entirely
+5% of the previous time step value. For each time step, DC-                              or  partially  known  to  him.  Hence  the  attacker  can  conduct
+OPF  of  MATPOWER[31]is  used  for  generating  values  of                               stealth FDIAs without being noticed by conventional bad data
+observations  and  actual  state  variables.  All  simulations  are                      detection units in power system control centers, as it is proven
+conducted by MATLAB 2016. While PMUs lead state estima-                                  by some researches[32],[33]. Therefore, the attacker injects
+tion process to linearity and ease of use of the proposed model,                         false data multiplied by matrix H which is modeled as follows:
+here,  Observations  include  active  power  injections  and  line                                              oi,i(t)= Mi,iθi(t)+εi(t)+ai(t∈ T)              (47)
+ﬂows,  as  legacy  SCADA  systems  provide.  Linearized  power                                             ai(t∈ T) = Mi,iui(t∈ T)                                  (48)
+ﬂow  model  is  also  justiﬁed  due  to  a  few  reasons.  linearized
+models  are  acceptable  in  power  systems,  where  deviations                          where T is the attack time steps set and ui(t∈ T) is normally
+are  small  in  adequate  time  intervals,  especially  when  the                        distributed random vector ui(t∈ T)∼ N(0,σ2λI|θi|) to produce
+focus  is  the  restoration  of  attacked  power  system,  to  obtain                    the  attack  vector  ai(t ∈   T).  The  detection  parameters  are
+an  estimate  of  states  with  an  acceptable  margin.  Besides,                        tuned as Λ1 = Λ2 = Λ3 = Λ4 = 103  and ρi = 3
+using  a  non-linearized  power  ﬂow  model  does  not  aﬀect  the
+fundamentals of the proposed method. EKF and UKF can be                                  A.  G-DIKF Performance in the Presence of FDIAs
+adopted by the proposed method in the future works. The state
+transition  matrix  is  considered  as  the  identity  matrix.  This                         To  evaluate  the  proposed  estimator  for  state  estimation
+assumption  is  justiﬁed  in  steady-state  conditions,  where  the                      against attacks, a local stealth FDI attack has been conducted
+power  system  operates  at  a  stable  equilibrium  point,  and  the                    on the injected power observations to buses1, 3, and 5, as well
+state variables do not exhibit signiﬁcant temporal correlations                          as the line power ﬂows on lines 3-4, 2-5 and 7-9 at agents 1
+or long-term dependencies. It is also computationally eﬃcient                            and 2 from time step 30 onwards, with σλ = 0.03 and based
+which enables real-time monitoring. The focus on steady-state                            on(47)and(48).
+values  in  power  system  state  estimation  aligns  well  with  the                        Theoretically, the attack can lead to directly distortion in the
+DC model and the assumption of an identity transition matrix.                            state  estimates  of  agents  which  utilize  attacked  observations
+
+
+
+                     ∆ˆθ(u1)(u2)(u3+1)i                 (t) = ˆθ(u1)(u2)(u3+1)i                 (t)− ˆθ(u1)(u2)(u3)i             (t)
+                     ∆ˆθ(u1)(u2)(u3+1)i                 (t) = (φTi Q(u1)(u2)(u3+1)i                 (t)φi)−1φTi Q(u1)(u2)(u3+1)i                 (t)(y(u1)(u2)(u3+1)i                 (t)−φi ˆθ(u1)(u2)(u3+1)i                 (t))                  (40)
+
+
+
+             ∆ˆθ(u1)(u2+1)(u3+1)i                     (t) = ˆθ(u1)(u2+1)(u3+1)i                     (t)− ˆθ(u1)(u2)(u3+1)i                 (t)
+             ∆ˆθ(u1)(u2+1)(u3+1)i                     (t) = (φTi Q(u1)(u2+1)(u3+1)i                     (t)φi)−1φTi Q(u1)(u2+1)(u3+1)i                     (t)(y(u1)(u2+1)(u3+1)i                     (t)−φi ˆθ(u1)(u2+1)(u3+1)i                     (t))         (42)
+
+
+
+                      ∆ˆθ(u1+1)(u2+1)(u3+1)i                         (t) = ˆθ(u1+1)(u2+1)(u3+1)i                         (t)− ˆθ(u1)(u2+1)(u3+1)i                     (t)
+                      ∆ˆθ(u1+1)(u2+1)(u3+1)i                         (t) = (φTi Q(u1+1)(u2+1)(u3+1)i                         (t)φi)−1φTi Q(u1+1)(u2+1)(u3+1)i                         (t)(y(u1+1)(u2+1)(u3+1)i                         (t)
+                                                       −φi ˆθ(u1+1)(u2+1)(u3+1)i                         (t))                                                                                                (45)
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:28 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 9 =====
+570                                                                                                                                                            IEEE TRANSACTIONS ON SMART GRID, VOL. 17, NO. 1, JANUARY 2026
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                     Fig. 6.   The trust levels with and without the proposed recovery method.
+
+
+Fig. 4.   The estimates of G-DIKF in comparison with the other methods.              DIKF,  LPE,  and[16]in  some  cases.  The  proposed  G-DIKF
+                                                                                     method demonstrates the best performance in most cases. As
+                                                                                     evident,  the  state  estimates  are  eﬀectively  recovered,  and  the
+                                                                                     continued attack over time does not signiﬁcantly compromise
+                                                                                     the performance of the proposed method. The average MAEs
+                                                                                     of  all  attacked  time  steps  state  estimation  of  all  agents  are
+                                                                                     12.2%,  25.8%,  46.9%,  20.9%,  57%,  and  49.7%  for  G-DIKF,
+                                                                                     R-ADMM, C-WLS, LPE,[16], and DIKF, respectively.
+                                                                                         It is worth noting that, for minimizing communication costs
+                                                                                     and achieving consensus, The G-DIKF estimator is only acti-
+                                                                                     vated for time steps and agents that have received distrust votes
+                                                                                     from  the  trust  management  method.  Otherwise,  in  normal
+                                                                                     time steps, G-DIKF needs consensus on the predicted mutual
+                                                                                     states and only once information exchange among neighboring
+                                                                                     agents,  similar  to  DIKF.  However,  R-ADMM  needs  much
+Fig. 5.  The estimation error of G-DIKF in comparison with the other methods.        more  rounds  of  observations  exchanges  for  both  normal  and
+                                                                                     attacked  time  steps,  as  it  must  reach  consensus  on  mutual
+information  in  their  estimation  model. Also  some  agents  can                   states with neighboring agents for the time step at which state
+be  indirectly  aﬀected,  as  they  may  not  be  neighbors  of  the                 estimation is performed. This results in an exponential increase
+attacked agents. The proposed method is benchmarked with a                           in  order  of  complexity  of  such  methods,  with  increasing
+few  methods  as  follows.  Reference[16]proposes  a  Kalman                         number of agents.
+ﬁlter  for  power  system  DSE  and,  like  many  others,  uses  the                     As depicted in the workﬂow in Fig.1, after the ﬁnal conver-
+latest values of state variables obtained before the attack as the                   gence  and  several  information  exchanges  among  agents  with
+correct values for time steps during the attack. We refer to such                    anomalies, agents need to reevaluate and reach a consensus on
+methods as the Latest Pre-attack Estimates (LPE), and it will                        the  trust  level  of  the  recovered  estimates.  Fig.6displays  the
+be  used  as  one  of  the  comparing  methods.  Also,  Centralized                  simple  5-step  moving  average  of  the  total  trust  function  for
+Weighted  Least  Squares  (C-WLS)  is  chosen  as  a  centralized                    each agent, as deﬁned in(49). In both DIKF and G-DIKF, all
+perspective  to  be  compared  with  proposed  method  and  show                     agents are reliable until time step 30. However, after that, due
+how  it  is  aﬀected  by  FDIAs.  More  importantly,  a  Robust                      to the FDI attack on agents 1 and 2, the trust function, for all
+Alternating Direction Method of Multipliers (R-ADMM)[34]                             the agents, decreases in the DIKF method.
+is  compared  with  the  proposed  method.  Fig.4illustrates  the                                  ηi(t)  1
+results of state estimation by the proposed resilient estimator                                          |θi|log(ϑi(t)) + log(µi(t))
+compared  to  other  methods  and  the  actual  values  for  some                                      +Xlog(δ j,i(t)) +X             ˇˇθi, j1ˇˇlog(ψi, j(t))          (49)
+state  variables  (indexed  by  superscript  notion)  representing
+each  agent  (indexed  by  subscript  notion).  As  shown,  the  G-                                       j∈Ni                   j∈Ni
+DIKF results are identical to DIKF[10]for time steps without                             As  can  be  seen,  trust  function  of  agent  1  is  aﬀected  more
+attacks. However, after the attack, the G-DIKF results show a                        than  the  others.  Generally,  the  eﬀect  of  an  attack  on  each
+signiﬁcant improvement compared to DIKF. While the attack                            agent depends on severity of the attack, the ratio of number of
+continues  for  10  time  steps,  in  most  cases,  G-DIKF  restores                 contaminated  observations  to  number  of  observations  within
+estimates during these time steps better than the other methods.                     a  agent,  connectivity  within  a  agent,  number  of  healthy  and
+   Fig.5shows the recovery Mean Absolute Error (MAE) lev-                            unhealthy neighbors and number of sharing states with each of
+els for the agents at diﬀerent time steps during the attack. As                      them, and so forth. Taking these into account, one can deduce
+depicted, the LPE method exhibits a general upward trend over                        that agent 1 is a weaker agent.
+time, as estimates become less reliable with changing network                            In the proposed G-DIKF, the estimates have been recovered
+operational points. R-ADMM performs well in comparison to                            in  a  way  that  the  trust  function  has  returned  to  around  its
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:28 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 10 =====
+NASIRI et al.: TRUST-AWARE CONSENSUS MECHANISM FOR POST-ATTACK RESTORATION OF POWER SYSTEM DSE                                                                         571
+
+
+                                                                                                                           TABLE I
+                                                                                       POST-ATTACK RECOVERY MAES OF ATTACKED PERIOD FOR EACH AGENT
+
+
+
+
+
+
+
+
+
+
+
+
+Fig. 7.   The improvement of trust for each time sample after attack.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig.  8.   The  sample-wised  recovery  performance  of  G-DIKF  in  comparison
+with the others.
+
+
+                                                                                                                           TABLE II
+                                                                                                IEEE 118-BUS TEST SYSTEM DIVIDED INTO 24 AGENTS
+
+
+
+
+
+
+
+
+
+
+Fig. 9.   The convergence rate of the G-DIKF for the distrusted agents.
+
+previous state for all agents. Fig.7depicts the statistical status
+of  samples  of  the  trust  function  for  each  time  step  in  the
+DIKF and G-DIKF methods. The horizontal axis is scaled to                              band  and  intensity  of  down-weighing,  respectively.  Indeed,
+the standard normal function, meaning a mean of zero and a                             these  can  be  viewed  as  standard  deviation  quantiles,  if  we
+standard deviation of 1. As shown, after the recovery of state                         take  a  closer  look  at  them.  down-weighting  activates  when
+estimates,  the  trust  function  has  improved  at  each  time  step.                 trust  falls  beyond  the  allowable  deviation  posed  by γi  and
+Fig.8is also provided to facilitate a better comparison among                          |ri.k(t)| is more than 1/Γi. Therefore, these two parameters can
+the  G-DIKF  and  the  other  methods.  It  depicts  the  estimation                   be  treated  as  allowable  standard  deviations.  TableIII,  shows
+MAEs  for  time  steps  aﬀected  by  the  attack.  As  evident  in                     average  MAEs  of  attacked  samples  for  diﬀerent  values  of
+the  ﬁgure,  the  proposed  adaptive  estimator  for  recovering                       γi  and  Γi.  It  can  be  deduced  that,  in  all  agents,  less  MAEs
+state estimates during attack shows a signiﬁcant improvement.                          correlate with less γi and more Γi. Moreover, the impact of γi
+Agents 3 and 4 obviously have less MAE values, as they are                             is more.
+indirectly contaminated.
+                                                                                       C.  G-DIKF Scalability
+B.  Weighting Function Impacts on G-DIKF                                                  One of the crucial topics in the design of the G-DIKF esti-
+   To explore sensitivity of G-DIKF to adjusting parameters of                         mator is attention to decentralization, scalability, and reduction
+weighting function (γi, Γi), a FDIA is conducted on the IEEE                           of  computational  and  communication  costs  at  all  levels.  The
+14 bus test system with same settings as discussed earlier with                        proposed   estimator,   in   addition   to   suﬃcient   security   due
+diﬀerent γi  and Γi.  As  stated,  these  are  for  regulating  dead-                  to  its  blockchain-based  framework,  leverages  consensus  on
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:28 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 11 =====
+572                                                                                                                                                            IEEE TRANSACTIONS ON SMART GRID, VOL. 17, NO. 1, JANUARY 2026
+
+
+                                                                                TABLE III
+                                                                  EXECUTION TIME PERFORMANCE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig. 10.   G-DIKF performance for selected state variables from untrusted agents.
+
+predicted  values  of  shared  state  variables  to  minimize  the                      for attacked time steps for agents 1 and 2. As evident, in most
+volume and frequency of information exchange among agents.                              time  steps,  the  convergence  condition  is  satisﬁed  after  only
+Therefore, the proposed distributed estimator has only minimal                          three information exchanges between agents 1 and 2. In some
+information  exchange  with  neighboring  agents  once  in  each                        cases,  four  information  exchanges  between  these  two  agents
+time step, and inherently, it is not iterative due to the consensus                     have been necessary.
+on predicted values of shared state variables.
+   This  approach  has  been  a  cornerstone  in  the  design  of                       D.  G-IDKF Large Scale Test
+the  G-DIKF  method  for  state  estimation  recovery.  Although,                          Here, the IEEE 118-bus standard test network has been used
+considering the risks of attack and the added value it provides                         to assess the eﬀectiveness of the proposed methods to examine
+to  the  system,  the  need  for  multiple  information  exchanges                      their  scalability.  This  network  is  divided  into  24  agents  and
+among  agents  is  justiﬁable.  Nevertheless,  in  the  proposed                        simulated  with  the  same  tuning  parameters  as  described  in
+method,  as  mentioned  earlier,  only  untrusted  agents  need                         the  previous  sections.  Buses  within  agents  are  speciﬁed  in
+to   exchange   information.   Thus,   scalability   and   minimum                      TableI.  Also,  it  is  assumed  that  all  buses  with  loads  and
+information exchange are preserved. Furthermore, simulations                            generators have active power injection observations, and both
+indicate  that  convergence  criteria,  despite  being  relatively                      ends of all lines have power ﬂow observations. The FDI attack
+stringent, still lead to convergence in very few iterations. Fig.9                      was  carried  out  on  agent  5  and  randomly  on  40  percent  of
+shows the convergence of the state estimation recovery process                          observations installed at this agent. Figure10shows the state
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:28 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 12 =====
+NASIRI et al.: TRUST-AWARE CONSENSUS MECHANISM FOR POST-ATTACK RESTORATION OF POWER SYSTEM DSE                                                                         573
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig. 11.   G-DIKF recovery error in comparison with the others.
+
+                                                                                       are  2.08%,  2.87%,  2.39%,  5.86%,  3.80%,  and  3.44%  for  G-
+                                                                                       DIKF, R-ADMM, C-WLS, LPE,[16], and DIKF, respectively.
+                                                                                          Figure12shows  the  trust  recovery  in  agents  with  no-trust
+                                                                                       votes.  As  shown,  the  results  in  the  large-scale  network  are
+                                                                                       signiﬁcant  and  eﬀective  in  terms  of  performance,  similar  to
+                                                                                       the  14-bus  network.  Fig.13indicates  the  statistical  status  of
+                                                                                       samples of the trust function for each time step in the DIKF
+                                                                                       and  G-DIKF  methods  for  the  IEEE  118  bus  test  system.  As
+                                                                                       shown, after the recovery of state estimates, the trust function
+                                                                                       has  improved  at  each  time  step.  Fig.14is  also  provided  to
+                                                                                       facilitate  a  better  sample-wised  comparison  among  the  G-
+                                                                                       DIKF and the other methods. It depicts the estimation MAEs
+Fig. 12.   The trust recovery with the proposed recovery method.                       for  time  steps  aﬀected  by  the  attack.  The  main  goal  here
+                                                                                       is  to  demonstrate  the  scalability  of  the  proposed  method  in
+                                                                                       large  scale  power  systems.  It  is  worth  noting  that,  in  real
+                                                                                       power  systems,  determining  number  and  territory  of  agents
+                                                                                       may be based on geographical criteria or area that each TSO
+                                                                                       has  under  operation.  However,  as  mentioned  earlier,  number
+                                                                                       of  agents  and  their  characteristics  such  as  number  of  states
+                                                                                       and number the sharing states, connectivity degree within each
+                                                                                       agent,  number  of  neighboring  agents  for  each  agent  etc.  are
+                                                                                       inﬂuential  in  all  distributed  approaches  for  state  estimation
+                                                                                       recovery.  Hence  it  could  be  an  area  of  research  for  further
+                                                                                       works.  Besides,  number  of  agents  directly  aﬀects  computa-
+                                                                                       tional  and  communication  costs.  Here,  we  have  determined
+                                                                                       each agent territory based on algorithm1.
+Fig. 13.   The improvement of trust for each time sample after attack.                    TableIIshows  the  average  execution  time  for  di        ﬀerent
+                                                                                       scenarios consisting of diﬀerent numbers of agents. Note that
+estimation by the G-DIKF and the other methods for selected                            until  time  step  30,  there  was  no  attack  and  no  need  for
+state  variables  from  agents  labeled  as  distrusted  by  votes.                    state estimation recovery, but for time steps 30 to 40 in each
+Also,  Figure11displays  the  recovery  MAE  of  the  proposed                         scenario, the state estimation recovery method was executed.
+method for state estimation recovery for the mentioned agents                          Finally,  the  average  time  indicates  the  execution  time  for  all
+in attacked time steps. As observed, almost in all attacked time                       time steps. It is obvious that most of the execution time in these
+steps,  G-IDIKF  has  the  lowest  recovery  error.  The  average                      scenarios  is  related  to  state  estimation  recovery.  However,
+MAEs of all attacked time steps state estimation of all agents                         the  time  obtained  in  the  large-scale  test  network  shows  that
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:28 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 13 =====
+574                                                                                                                                                            IEEE TRANSACTIONS ON SMART GRID, VOL. 17, NO. 1, JANUARY 2026
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig. 14.   The sample-wised recovery performance of G-DIKF in comparison with the others.
+
+Algorithm 1 Agent Determination                                                            •  Investigating  the  integration  of  the  G-DIKF  algorithm
+ 1-  specify number of agents (Nn)                                                            into  distributed  dynamic  state  estimation  within  power
+ 2-  divide total number of states (Nb) by Nn and round it to                                 systems holds signiﬁcant potential.
+     an integer value (Ns), set k= 0, create a state set for each
+     agent (Sn)                                                                                                     VII.  CONCLUSION
+ 3-  for i= 1 to Nn do
+ 4-  Sn{i}={k+ 1:min(k+ Ns, Nb)}                                                           This  paper  has  successfully  addressed  the  last  important
+ 5-  add states to Sn{i} if they are connected by injection obser-                      aspect  of  security  by  presenting  a  comprehensive  security
+     vations on Sn{i} or ﬂow observations on lines connected                            scheme  for  distributed  state  estimation.  This  paper  provided
+     to Sn{i}                                                                           a  distributed  method  for  recovering  state  estimates  of  agents
+ 6-  k=k+Ns                                                                             that  are  considered  untrustworthy.  This  method  eﬀectively
+ 7-  end for                                                                            addressed the challenges associated with recovering state esti-
+                                                                                        mates when an attack occurs for multiple time steps, providing
+                                                                                        accurate  estimates  in  such  cases.  Moreover,  the  presented
+the  G-DIKF  method  has  performed  the  estimation  recovery                          method  was  highly  scalable  and  only  required  the  exchange
+operation in a suitable time (considering the interval between                          of information among untrustworthy agents that are neighbors.
+time steps in real conditions, which are in the order of several                        Additionally,  a  trust  management  method  was  extended  to
+minutes). It is interesting to point out that R-ADMM average                            weighting of observations in the proposed recovery process.
+execution  time  is  50  seconds  for  each  time  step  (with  or                         Considering  various  factors  such  as  the  level  of  distrust
+without attack) when number of agents is 24, as it needs more                           and  the  role  of  each  observation,  weighted  and  adaptive
+than 500 interactions to converge, which is quite considerable                          information is used for state estimate recovery. The proposed
+computation and communication cost.                                                     method was numerically checked on the IEEE 14-bus and 118-
+                           VI.  FUTURE WORK                                             bus test systems and revealed its capabilities.
+
+   This  paper  speciﬁcally  addresses  the  restoration  of  fully                                                      REFERENCES
+distributed state estimation in power systems. The innovative
+G-DIKF  algorithm  proposes  a  comprehensive  solution  for                            [1]M.  P.  Moghaddam,  S.  Nasiri,  and  M.  Youseﬁan,  “5D  Giga  trends  in
+secure state estimation, covering attack prevention, detection,                               future power systems,” in Decentralized Frameworks for Future Power
+                                                                                              Systems. Amsterdam, The Netherlands: Elsevier, 2022, pp. 19–50.
+robustness,  and  post-attack  recovery.  However,  several  future                     [2]T.  Erseghe,  “Distributed  optimal  power  ﬂow  using  ADMM,”       IEEE
+research directions are worth exploring:                                                      Trans. Power Syst., vol. 29, no. 5, pp. 2370–2380, Sep. 2014.
+  •  Expanding   the   G-DIKF   algorithm   to   adopt   the   AC                       [3]L. Ding, Q.-L. Han, L. Y. Wang, and E. Sindi, “Distributed cooperative
+                                                                                              optimal  control  of  DC  microgrids  with  communication  delays,”  IEEE
+      model  of  state  estimation  is  feasible.  This  extension                            Trans. Ind. Informat., vol. 14, no. 9, pp. 3924–3935, Sep. 2018.
+      can  be  achieved  by  drawing  upon  the  principles  of  the                    [4]F.  Luo,  Z.  Y.  Dong,  G.  Liang,  J.  Murata,  and  Z.  Xu,  “A  distributed
+      Extended  Kalman  Filter  (EKF)  and  Unscented  Kalman                                 electricity trading system in active distribution networks based on multi-
+                                                                                              agent coalition and blockchain,” IEEE Trans. Power Syst., vol. 34, no. 5,
+      Filter (UKF), providing a broader application scope.                                    pp. 4097–4108, Sep. 2019.
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:28 UTC from IEEE Xplore.  Restrictions apply.
+
+===== PDF PAGE 14 =====
+NASIRI et al.: TRUST-AWARE CONSENSUS MECHANISM FOR POST-ATTACK RESTORATION OF POWER SYSTEM DSE                                                                         575
+
+
+[5]A.  Minot,  H.  Sun,  D.  Nikovski,  and  J.  Zhang,  “Distributed  estimation                      [19]J. Ruan, G. Liang, J. Zhao, J. Qiu, and Z. Y. Dong, “An inertia-based
+       and detection of cyber-physical attacks in power systems,” in Proc. IEEE                                data recovery scheme for false data injection attack,” IEEE Trans. Ind.
+       Int. Conf. Commun. Workshops (ICC Workshops), May 2019, pp. 1–6.                                        Informat., vol. 18, no. 11, pp. 7814–7823, Nov. 2022.
+[6]T. Chen, Y. Cao, X. Chen, L. Sun, J. Zhang, and G. A. J. Amaratunga,                                [20]Y. Li, Y. Wang, and S. Hu, “Online generative adversary network based
+       “A distributed maximum-likelihood-based state estimation approach for                                   measurement recovery in false data injection attacks: A cyber-physical
+       power systems,” IEEE Trans. Instrum. Meas., vol. 70, pp. 1–10, 2021.                                    approach,”  IEEE  Trans.  Ind.  Informat.,  vol. 16,  no. 3,  pp. 2031–2043,
+[7]H.-M.  Chung,  W.-T.  Li,  C.  Yuen,  W.-H.  Chung,  Y.  Zhang,  and  C.-                                   Mar. 2020.
+       K.  Wen,  “Local  cyber-physical  attack  for  masking  line  outage  and                       [21]P. J. Huber,        Robust Statistics. Hoboken, NJ, USA: Wiley, 2004.
+       topology attack in smart grid,” IEEE Trans. Smart Grid, vol. 10, no. 4,                         [22]L.   Mili,   M.   G.   Cheniae,   N.   S.   Vichare,   and   P.   J.   Rousseeuw,
+       pp. 4577–4588, Jul. 2019.                                                                               “Robust   state   estimation   based   on   projection   statistics   [of   power
+[8]J.  Zhang,  Z.  Chu,  L.  Sankar,  and  O.  Kosut,  “Can  attackers  with                                   systems],”  IEEE  Trans.  Power  Syst.,  vol. 11,  no. 2,  pp. 1118–1127,
+       limited information exploit historical data to mount successful false data                              May 1996.
+       injection attacks on power systems?,” IEEE Trans. Power Syst., vol. 33,                         [23]M.  A.  Gandhi  and  L.  Mili,  “Robust  Kalman  ﬁlter  based  on  a  general-
+       no. 5, pp. 4775–4786, Sep. 2018.                                                                        ized maximum-likelihood-type estimator,” IEEE Trans. Signal Process.,
+[9]J.    Zhao,    L.    Mili,    and    M.    Wang,    “A    generalized    false    data                      vol. 58, no. 5, pp. 2509–2520, May 2010.
+       injection   attacks   against   power   system   nonlinear   state   estimator                  [24]J.  Zhao  and  L.  Mili,  “A  framework  for  robust  hybrid  state  estimation
+       and   countermeasures,”   IEEE   Trans.   Power   Syst.,   vol. 33,   no. 5,                            with unknown measurement noise statistics,” IEEE Trans. Ind. Informat.,
+       pp. 4868–4877, Sep. 2018.                                                                               vol. 14, no. 5, pp. 1866–1875, May 2018.
+[10]S. Nasiri, H. Seiﬁ, and H. Delkhosh, “A secure power system distributed                            [25]J. Zhao and L. Mili, “Robust unscented Kalman ﬁlter for power system
+       state  estimation  via  a  consensus-based  mechanism  and  a  cooperative                              dynamic  state  estimation  with  unknown  noise  statistics,”  IEEE  Trans.
+       trust management strategy,” IEEE Trans. Ind. Informat., vol. 20, no. 2,                                 Smart Grid, vol. 10, no. 2, pp. 1215–1224, Mar. 2019.
+       pp. 3002–3014, Feb. 2024.                                                                       [26]J. Zhao and L. Mili, “A decentralized H-inﬁnity unscented Kalman ﬁlter
+[11]A.  S.  Musleh,  G.  Chen,  and  Z.  Y.  Dong,  “A  survey  on  the  detection                             for dynamic state estimation against uncertainties,” IEEE Trans. Smart
+       algorithms for false data injection attacks in smart grids,” IEEE Trans.                                Grid, vol. 10, no. 5, pp. 4870–4880, Sep. 2019.
+       Smart Grid, vol. 11, no. 3, pp. 2218–2234, May 2020.                                            [27]J.   Zhao   and   L.   Mili,   “A   theoretical   framework   of   robust   H-
+[12]M.  Higgins,  F.  Teng,  and  T.  Parisini,  “Stealthy  MTD  against  unsuper-                             inﬁnity  unscented  Kalman  ﬁlter  and  its  application  to  power  system
+       vised learning-based blind FDI attacks in power systems,” IEEE Trans.                                   dynamic state estimation,” IEEE Trans. Signal Process., vol. 67, no. 10,
+       Inf. Forensics Security, vol. 16, pp. 1275–1287, 2021.                                                  pp. 2734–2746, May 2019.
+[13]B.  Li,  G.  Xiao,  R.  Lu,  R.  Deng,  and  H.  Bao,  “On  feasibility  and                       [28]S.  Nasiri,  “A  peer-to-peer  energy  trading  framework  in  distribution
+       limitations  of  detecting  false  data  injection  attacks  on  power  grid                            systems considering network constraints,” 2023, arXiv:2309.03132.
+       state  estimation  using  D-FACTS  devices,”  IEEE  Trans.  Ind.  Informat.,                    [29]A.   Kessy,   A.   Lewin,   and   K.   Strimmer,   “Optimal   whitening   and
+       vol. 16, no. 2, pp. 854–864, Feb. 2020.                                                                 decorrelation,”  Amer.  Statistician,  vol. 72,  no. 4,  pp. 309–314,  Oct.
+[14]C. Liu, H. Liang, T. Chen, J. Wu, and C. Long, “Joint admittance pertur-                                   2018.
+       bation and meter protection for mitigating stealthy FDI attacks against                         [30]P.  W.  Holland  and  R.  E.  Welsch,  “Robust  regression  using  iteratively
+       power system state estimation,” IEEE Trans. Power Syst., vol. 35, no. 2,                                reweighted  least-squares,”  Commun.  Statist.-Theory  Methods,  vol. 6,
+       pp. 1468–1478, Mar. 2020.                                                                               no. 9, pp. 813–827, Jan. 1977.
+[15]Z.  Zhang,  R.  Deng,  P.  Cheng,  and  M.-Y.  Chow,  “Strategic  protection                       [31]R.   D.   Zimmerman,   C.   E.   Murillo-S       ´anchez,   and   R.   J.   Thomas,
+       against FDI attacks with moving target defense in power grids,” IEEE                                    “MATPOWER:  Steady-state  operations,  planning,  and  analysis  tools
+       Trans. Control Netw. Syst., vol. 9, no. 1, pp. 245–256, Mar. 2022.                                      for  power  systems  research  and  education,”  IEEE  Trans.  Power  Syst.,
+[16]M.  N.  Kurt,  Y.  Yilmaz,  and  X.  Wang,  “Secure  distributed  dynamic                                  vol. 26, no. 1, pp. 12–19, Feb. 2011.
+       state  estimation  in  wide-area  smart  grids,”  IEEE  Trans.  Inf.  Forensics                 [32]Md.  A.  Rahman  and  H.  Mohsenian-Rad,  “False  data  injection  attacks
+       Security, vol. 15, pp. 800–815, 2020.                                                                   with incomplete information against smart power grids,” in Proc. IEEE
+[17]S.  Nasiri,  A.  Ghadiri,  A.  Shahmirzaee,  and  M.  Parsa,  “Probabilistic                               Global Commun. Conf. (GLOBECOM), Dec. 2012, pp. 3153–3158.
+       and  fuzzy  modeling  of  charging  and  discharging  of  electric  vehicles                    [33]R.  Deng,  G.  Xiao,  R.  Lu,  H.  Liang,  and  A.  V.  Vasilakos,  “False
+       in  presence  of  uncertainties  applied  to  unit  commitment  problem,”  in                           data injection on state estimation in power systems—Attacks, impacts,
+       Proc. Power Syst. Conf. (PSC), 2014, pp. 1–10.                                                          and  defense:  A  survey,”  IEEE  Trans.  Ind.  Informat.,  vol. 13,  no. 2,
+[18]M. Jorjani, H. Seiﬁ, A. Y. Varjani, and H. Delkhosh, “An optimization-                                     pp. 411–423, Apr. 2017.
+       based  approach  to  recover  the  detected  attacked  grid  variables  after                   [34]V. Kekatos and G. B. Giannakis, “Distributed robust power system state
+       false  data  injection  attack,”  IEEE  Trans.  Smart  Grid,  vol. 12,  no. 6,                          estimation,”  IEEE  Trans.  Power  Syst.,  vol. 28,  no. 2,  pp. 1617–1626,
+       pp. 5322–5334, Nov. 2021.                                                                               May 2013.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Authorized licensed use limited to: East China Univ of Science and Tech. Downloaded on November 12,2026 at 09:40:28 UTC from IEEE Xplore.  Restrictions apply.
