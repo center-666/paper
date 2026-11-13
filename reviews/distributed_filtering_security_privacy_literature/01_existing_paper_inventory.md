@@ -33,10 +33,13 @@
 |Ye et al., *False Noise Attack Detection for Differentially-Private Distributed Control of Microgrids*, Automatica 179 (2025) 112387, DOI 10.1016/j.automatica.2025.112387|`reviews/g5_direct_competitor_audit/sources/ye2025_uvic_authorhosted.pdf`|FULLTEXT，作者大学托管的正式排版读本|
 |Wang et al., *Privacy and security trade-off in interconnected systems with known or unknown privacy noise covariance*, Automatica 173 (2025) 112071, DOI 10.1016/j.automatica.2024.112071|`reviews/g5_direct_competitor_audit/sources/wang_automatica_2025_arxiv2405.16905v2.pdf`|AUTHOR-VERSION，正式版未逐式比版|
 |Wan et al., *Privacy-Preserving Distributed Resilient Event-Triggered Platoon Control Under Hybrid Cyber Attacks*|项目检索记录有元数据，未找到本地完整 PDF|METADATA/摘要级|
+|Mo & Murray, *Privacy Preserving Average Consensus*, IEEE TAC 62(2) (2017) 753–765, DOI 10.1109/TAC.2016.2564339|`literature_review/distributed_security_privacy_20261114/mo_murray2017_author.pdf`|FULLTEXT / AUTHOR-VERSION，2016-08-25作者稿，34页；已完成11号补读|
+|Moradi et al., *Privacy-Preserving Distributed Kalman Filtering*, IEEE TSP 70 (2022) 3074–3089, DOI 10.1109/TSP.2022.3182590|`literature_review/distributed_security_privacy_20261114/moradi2022_accepted.pdf`|FULLTEXT / ACCEPTED-VERSION，NVA公开存档，16页；已完成11号补读|
+|Si, Li & Yuan, *Secure and Privacy-Preserving Distributed Kalman Filtering for Sensor Networks With Event-Triggered Mechanism*, IEEE TIFS 20 (2025) 7438–7453, DOI 10.1109/TIFS.2025.3588670|无本地PDF；`sources/si2025_tifs_metadata.json`登记出版社元数据|METADATA ONLY，不作算法/定理覆盖判断|
 
 ## 3. 已知缺失全文
 
-当前仍未在项目工作区确认以下列出的基础文献正式全文：Mo & Murray 的 privacy-preserving average consensus、若干动态掩码/状态分解分布式 Kalman 文献、Ye/Wang 之外的安全—隐私联合论文正式版。它们不能以摘要结论代替公式级证据。准确请求见 `09_missing_fulltext_requests.md`。
+Mo–Murray与Moradi的作者读本现已补齐，不要重复下载。仍未确认Si TIFS 2025、Si TAES 2025、Liang TCyb 2023等完整读本；它们不能以摘要结论代替公式级证据。准确请求见 `09_missing_fulltext_requests.md`。本次只新增两份本地全文，未更改Zotero数据库。
 
 补充核查：项目中已有的 `mo2015.pdf` 实际是 Mo, Weerakkody & Sinopoli 的 *Physical Authentication of Control Systems: Designing watermarked control inputs to detect counterfeit sensor outputs*，属于主动水印/认证，不是 Mo & Murray 2017 的隐私共识；`mo2016.pdf` 是 Mo & Sinopoli 的 *On the Performance Degradation of Cyber-Physical Systems under Stealthy Integrity Attacks*，属于攻击损伤分析。二者已在主动攻击材料中作为相关背景区分，不能替代缺失的隐私保护原文。
 

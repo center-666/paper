@@ -1,12 +1,20 @@
 ﻿# 09 缺失全文请求
 
-以下材料在当前工作区尚未确认可供逐式阅读。已有 Ye 2025、Wang 2025、Peng 2025、Yang/Wen/Zhou 等 PDF 不要重复下载。
+更新：2026-11-14。本轮核查Zotero存储、项目、附件及常用下载目录。已有Ye、Wang、Peng、Yang/Wen/Zhou及本轮补齐的Mo–Murray、Moradi不要重复下载。下面保留早期清单编号，并明确标记已解决项。
+
+## 当前最优先：只新增这一项直接全文请求
+
+**Si, Kang; Li, Peng; Yuan, Zhi-Peng. “Secure and Privacy-Preserving Distributed Kalman Filtering for Sensor Networks With Event-Triggered Mechanism.” IEEE Transactions on Information Forensics and Security 20 (2025), 7438–7453. DOI: 10.1109/TIFS.2025.3588670.**
+
+- 出版社入口：https://ieeexplore.ieee.org/document/11079751/ 。DOI：https://doi.org/10.1109/TIFS.2025.3588670 。
+- 出版社Crossref元数据已核验，登记见 `sources/si2025_tifs_metadata.json`；尚未取得全文，不作算法或定理结论。
+- 这是与“事件通信+隐私DKF+安全”最直接的待核查工作，与下列Si TAES 2025不是同一篇。
+- 重点核查：通信保持/缓存规则、隐私扰动时间相关、攻击权限、合法接收端掌握的参数、MSE/隐私定理。不再扩展到其他标题相似论文。
 
 ## 优先级 1：隐私保护基础直接竞争
 
 1. **Mo and Murray, “Privacy Preserving Average Consensus,” IEEE Transactions on Automatic Control 62 (2017) 753–765. DOI: 10.1109/TAC.2016.2564339.**
-   - 需要核对：动态/随机掩码的生成式、窃听者信息集、共识收敛与隐私定义、是否需要 trusted node 或安全终端。
-   - 下载入口：https://doi.org/10.1109/TAC.2016.2564339 。
+   - **已解决，不需下载。** 取得作者公开34页稿并完成11号精读。来源：https://yilinmo.github.io/public/papers/tac2014privacy.pdf 。本地 `literature_review/distributed_security_privacy_20261114/mo_murray2017_author.pdf`。
 2. **Si, Li, Yuan, Jiang & Wei, “Privacy-Preserving Distributed Kalman Filtering Based on State Decomposition and Dynamic Mask,” IEEE Transactions on Aerospace and Electronic Systems 61 (2025) 5839–5852. DOI: 10.1109/TAES.2024.3524215.**
    - 需要核对：状态分解、mask 是否跨时间复用、接收端是否知道 mask、MSE/隐私保证。
    - 下载入口：https://doi.org/10.1109/TAES.2024.3524215 。
@@ -17,8 +25,8 @@
    - 下载入口：https://doi.org/10.1109/TSIPN.2025.3563774 。
 
 5. **Moradi, Venkategowda, Talebi & Werner, “Privacy-Preserving Distributed Kalman Filtering,” IEEE Transactions on Signal Processing 70 (2022) 3074–3089. DOI: 10.1109/TSP.2022.3182590.**
-   - 开放存档入口：https://hdl.handle.net/11250/3039905；正式 DOI：https://doi.org/10.1109/TSP.2022.3182590 。需要核对隐私定义、噪声/掩码是否跨时复用、窃听者信息集和估计误差保证。
-   - 当前自动访问只到机构存档登记页，未获得可核对的 PDF；不能据此写全文结论。
+   - **已解决，不需下载。** 开放存档：https://hdl.handle.net/11250/3039905；已取得16页AcceptedVersion并完成11号精读。本地 `literature_review/distributed_security_privacy_20261114/moradi2022_accepted.pdf`。
+   - 历史访问问题已定位：不带明确JSON Accept头时返回NVA登记网页；按公开前端的 `filelink` 路由取得OpenFile，无需登录。完整来源及SHA256见 `sources/moradi2022_access.json`。保留此记录避免以后误报缺失。
 
 ## 优先级 2：交叉与最新工作
 
@@ -33,4 +41,6 @@
 
 ## 用户需要做的事
 
-请优先确认第 1–4 项 PDF 是否已在 Zotero；若已存在，直接告诉我 Zotero 条目或附件路径，我不会重复下载。若没有，请通过已登录 Edge 下载正式 PDF，放入 `reviews/distributed_filtering_security_privacy_literature/sources/` 或 Zotero，并告知文件名。拿到文件后我会逐式补充页码/公式号，不以摘要替代。
+请优先提供新增Si TIFS 2025全文，其次是第2项Si TAES 2025、第3项Liang TCyb 2023。其余保留为原清单，不要求一次全部下载。第8、9项已在Zotero，属于待读而非缺失，也不因此重启已结项恢复研究。
+
+若已下载，告知Zotero条目/附件路径即可；否则通过已登录Edge下载到Zotero或被Git忽略的 `literature_review/distributed_security_privacy_20261114/`。不会将出版社全文随报告推送GitHub。
