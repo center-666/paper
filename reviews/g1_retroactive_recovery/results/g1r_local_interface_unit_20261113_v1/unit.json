@@ -1,0 +1,47 @@
+{
+  "scope": "deterministic synthetic interface checks; no replay or statistical experiment",
+  "source_sha256": "998d860c931060236c4960a8514d96c4ae5e5b5f19f181db67921cd0d78158bb",
+  "checks": [
+    "GLS attribution",
+    "no-alarm path",
+    "missing reception rejection",
+    "four-edge command delivery",
+    "serialized packet lengths",
+    "local state and owned-cache writeback",
+    "foreign cache rejection"
+  ],
+  "extra_payload_bytes": 84,
+  "control_rounds": 2,
+  "transmissions": [
+    {
+      "sender": 1,
+      "receiver": 0,
+      "round": 1,
+      "payload_bytes": 21
+    },
+    {
+      "sender": 1,
+      "receiver": 2,
+      "round": 1,
+      "payload_bytes": 21
+    },
+    {
+      "sender": 2,
+      "receiver": 3,
+      "round": 2,
+      "payload_bytes": 21
+    },
+    {
+      "sender": 0,
+      "receiver": 4,
+      "round": 2,
+      "payload_bytes": 21
+    }
+  ],
+  "not_verified": [
+    "fitted real-data false-alarm rate",
+    "unknown-event localization accuracy",
+    "attacked closed-loop recovery",
+    "latency and failure of control communication"
+  ]
+}
