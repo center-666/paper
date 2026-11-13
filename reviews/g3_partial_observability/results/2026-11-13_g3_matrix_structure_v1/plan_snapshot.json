@@ -1,0 +1,131 @@
+{
+  "plan_id": "2026-11-13_g3_partial_observability_plan_v1",
+  "status": "PLAN_ONLY; Monte Carlo, detector fitting and algorithm development NOT RUN",
+  "scope": "One preregistered feasibility screen; no new defense, no parameter search, no reuse of G2/v4 test seeds",
+  "baseline_commit": "031d26eaf996b3583b2b2647b54702551466e20a",
+  "sources": {
+    "g2_plan": "reviews/fdi_replay_20261112/g2_screen_plan.json",
+    "model": "simulation/model.py",
+    "engine": "simulation/engine.py",
+    "prior_negative_report": "reviews/fdi_replay_20261112/evidence/prior_results/2026-11-11_partial_observability_probe_v4_REPORT.md"
+  },
+  "model": {
+    "N": 5, "n": 2, "T": 400,
+    "A": [[1.0, 0.1], [0.0, 1.01]],
+    "Q": [[0.02, 0.0], [0.0, 0.02]],
+    "P0": [[1.0, 0.0], [0.0, 1.0]],
+    "partial_H": [
+      [[1.0, 0.0], [0.0, 0.0]],
+      [[0.0, 0.0], [0.0, 1.0]],
+      [[1.0, 0.0], [0.0, 0.0]],
+      [[0.0, 0.0], [0.0, 1.0]],
+      [[1.0, 0.0], [0.0, 0.0]]
+    ],
+    "full_rank_reference_H": [
+      [[1.0, 0.0], [0.0, 0.15]],
+      [[0.15, 0.0], [0.0, 1.0]],
+      [[1.0, 0.0], [0.0, 0.15]],
+      [[0.15, 0.0], [0.0, 1.0]],
+      [[0.7, 0.0], [0.0, 0.7]]
+    ],
+    "R_variances": [0.05, 0.05, 0.05, 0.05, 0.05],
+    "edges_sender_receiver": [[0,1],[1,0],[1,2],[2,1],[2,3],[3,2],[3,4],[4,3],[4,0],[0,4]],
+    "epsilon": 0.08,
+    "warmup": 50,
+    "gain_policy": "Recompute current nominal instantaneous all-links joint-covariance gains once for each H geometry; retain them for all network methods. Local uses the existing epsilon=0 gains. These are not optimal sparse-cache/gated gains.",
+    "reuse_disclosure": "partial_H is the prior v4 pressure geometry, not a novel or unseen model; v4 main-edge FDI comparisons failed"
+  },
+  "communication": {
+    "mode": "common external periodic irregular schedule only",
+    "gap_pattern": [1,2,3,4,6,8,6,4,3,3],
+    "node_phase_step": 1,
+    "t0_all_nodes_send": true,
+    "same_opportunities_across_methods_and_seeds": true,
+    "max_interval_for_metadata_only": 10,
+    "closed_loop_send_on_delta_not_tested": true,
+    "payload_bytes_per_edge_message": 16,
+    "header_bytes": "not assumed zero; report payload only and separately state unmodelled identical protocol headers"
+  },
+  "attacks": {
+    "edge": [0,1], "interval_inclusive": [200,249],
+    "dictionary": "last 64 authentic packets actually sent and intercepted on target link; select before adding current authentic packet",
+    "rules": [
+      {"name":"fixed_lag8", "selection":"eighth most recent prior transmitted authentic packet; if fewer than eight exist use oldest; no skip when dictionary nonempty"},
+      {"name":"nearest_current_sender", "selection":"minimum Euclidean distance from current authentic transmitted packet among prior dictionary packets; earliest stored index breaks ties; no skip"}
+    ],
+    "opportunity_policy": "Both rules replace at every actual target-edge send inside attack interval. Report attempted replacement separately from changed payload. Never drop an opportunity from denominators.",
+    "allowed": ["current authentic actually transmitted packet", "prior actually transmitted authentic packets and times", "last actually delivered payload", "public model and elapsed time"],
+    "forbidden": ["true state", "future data", "receiver private measurement", "unsent sender estimate", "healthy counterfactual trajectory"],
+    "comparison_warning": "Common seeds, opportunities, rules and replacement counts do not imply identical Replay payloads across defense-dependent closed loops"
+  },
+  "methods": ["local", "raw_yang_no_cap", "cap_only", "cap_plus_zhou_random", "cap_plus_spatial_hard"],
+  "normal_calibration": {
+    "fit_seeds": {"start":11600000,"count":48},
+    "threshold_seeds": {"start":11700000,"count":48},
+    "cap": "0.995 empirical quantile of raw healthy neighbor-difference norms in fit split, warmup removed; one shared cap per geometry",
+    "residual_fit": "Reuse current spatial empirical mean/covariance calibration on independent healthy data; fixed ridge rule from simulation/config.json",
+    "rejection_target": 0.05,
+    "unit": "complete target-link cache-residency episode after warmup",
+    "control_fit": "At most 12 deterministic bisection iterations using normal threshold seeds and actual closed-loop gate dynamics; fit empirical 5% +/-0.5 percentage point if attainable. Freeze controls before pilot.",
+    "no_test_retuning": true,
+    "risk_matching_audit": "Report seed-cluster CIs and normal rejection/cap frequencies; if normal rejection risks differ by more than one percentage point or CI cannot establish comparability, do not claim matched-risk detection superiority"
+  },
+  "future_splits": {
+    "pilot": {"start":11800000,"count":24,"role":"model-selection-free feasibility and fixed Gate-B diagnostic fitting only; no model/attack/threshold changes"},
+    "confirm": {"start":11900000,"count":32,"role":"independent confirmation of the same frozen gates; diagnostic coefficients frozen from pilot"},
+    "no_optional_expansion": true,
+    "stop_if_pilot_inconclusive": true,
+    "confirm_runs_only_if_pilot_passes_all_applicable_prerequisites": true
+  },
+  "eligibility": {
+    "structural": "Local observability/PBH and actual fixed-schedule augmented-cache matrix audit. Joint observability alone is insufficient.",
+    "normal_raw_yang": "Before attacks, deterministic covariance recursion under actual schedule and gains must be finite and PSD; receiver and network mean error traces in [350,399] must not exceed 1.10 times [300,349]. Finite-horizon eligibility only, not asymptotic proof.",
+    "cooperation": "Receiver healthy raw Yang mean MSE at state indices [51,200] at least 10% below local; seed-bootstrap lower CI for relative gain exceeds 10% in pilot and confirm.",
+    "failure": "Stop without changing A/H/topology/gains or weakening local baseline. Local random-walk growth at nondetectable nodes is not itself a defense failure."
+  },
+  "metrics": {
+    "primary_receiver": 1,
+    "normal_window": [51,200], "attack_window": [201,250], "fixed_recovery_window": [251,300],
+    "state_index": "update at t uses y(t), age-zero received packets and produces estimate(t+1); error windows refer to state/estimate indices",
+    "all": ["receiver/network MSE", "paired attacked-minus-own-clean MSE", "signed cumulative recovery excess", "positive-part recovery excess, descriptive only", "post-cache-exit excess", "max estimation error", "normal false rejection and clipping", "recovery duration with censoring", "actual opportunities and replacement counts", "payload source times and ages", "broadcasts, edge messages, payload bytes, runtime and storage"],
+    "independent_unit": "seed; all timestep/packet/episode summaries clustered within seed; methods and attack/clean runs paired by seed",
+    "recovery_definition": "First 10 consecutive post-attack state indices with attacked receiver squared error <= own clean squared error + 0.10 times that method's pilot healthy MSE; pilot tolerance frozen for confirm. Report right censoring and restricted mean duration, never substitute zero for censored cases.",
+    "cache_exit": "first real target-edge send after last replacement; age-zero received successor affects update immediately; report both nominal interval-end and actual cache-exit timing"
+  },
+  "gate_A": {
+    "type": "preregistered practical screen, not established result or publication-level efficacy test",
+    "normalizer": "D = partial-model raw Yang healthy receiver mean MSE at state indices [51,200], estimated within split; ratios of paired seed means, not mean of per-seed ratios",
+    "pass": [
+      "cap-only healthy MSE cost vs raw <=5% of D (upper CI) and attack-minus-own-clean MSE >=20% of D (lower CI), for at least one frozen Replay rule",
+      "for the same rule, at least one of the two gated baselines reduces attack MSE vs cap-only by >=10% of D and raises healthy MSE vs cap-only by >=5% of D (both lower CIs)",
+      "for EACH gated baseline, a lower CI must establish at least one failure: healthy cost vs raw >5% of D, attack excess >10% of D, or recovery excess >10% of D. Merely failing to establish joint success is not evidence of a gap. If a baseline establishes all three upper bounds, it covers the scenario; if neither coverage nor failure is established, G3 is inconclusive and stops",
+      "same rule and same method contrast satisfy thresholds in pilot and confirm; all other outcomes remain reported"
+    ],
+    "inconclusive": "CI crosses any required practical threshold: gate NOT PASSED, no seed expansion or alternative model search"
+  },
+  "gate_B": {
+    "scope": "Diagnostic evidence audit only; cap-only trajectories FIXED for both models and all rules, never select a method from results; no fusion weights, correction, isolation, new detector or defense performance claim",
+    "candidate_rows": "every target-link actual send r in [50,349], not only true attacks; decision d = next target-link send after r + 3 ticks, provided d<=379",
+    "base_features": "legal local innovation, received-payload-minus-local-estimate, previous-payload dynamic difference, receive gap at r; use vectors and squared norms, fixed scaling from normal fit split",
+    "extra_features": "four local innovation vectors at next-send..next-send+3 and four age-aligned other-incoming-neighbor cache-minus-local-estimate vectors at those times; all available by d, no private neighbor estimates or additional messages",
+    "offline_target": "paired attacked-minus-own-clean receiver squared estimation error at d; truth and healthy counterfactual used ONLY for offline scoring/diagnostic training, never features or deployment inputs",
+    "diagnostic": "standard linear ridge regression with intercept, standardized columns, fixed penalty 1. Pilot uses leave-one-SEED-out fits (23 train, one held-out; normal-fit standardization fixed), never in-sample loss. If pilot gates pass, refit both diagnostics on all 24 pilot seeds, freeze coefficients and evaluate independent confirm seeds. No feature/model/hyperparameter selection. An ordinary regression diagnostic is not a new method.",
+    "pass": "At least 10% reduction in out-of-sample seed-weighted squared prediction loss for actual harm vs base features in BOTH pilot leave-one-seed-out and independent confirm, paired lower CI >10%, on the same Replay rule that passed A; also exhibit nonzero noise-whitened added sensitivity of actual augmented attack-to-local/received-output map. Conditional evidence is only relative to these frozen features, not all possible estimators.",
+    "known_event_caution": "Matrix impulse tests may fix a candidate event for mechanism checks; empirical diagnostic processes all candidate rows and does not receive actual attack source/index. This does not establish unknown-link localization or recover original payload.",
+    "information_limitation": "H1 A^ell e1=0 physically. Network feedback sensitivity may differ. Received neighbor histories are correlated and may be polluted, not trusted automatically.",
+    "inconclusive": "No added causal information, insufficient support or CI crosses threshold => gate NOT PASSED; no new module"
+  },
+  "inference": {
+    "bootstrap_unit": "paired seed; equal seed weight even when candidate counts differ",
+    "resamples": 5000,
+    "bootstrap_rng_seed": 11999999,
+    "gate_A_family_size": 19,
+    "gate_A_family": ["cap normal cost vs raw (1)", "cap attack excess for each rule (2)", "each gate normal cost vs raw (2)", "each gate normal cost vs cap (2)", "cap-minus-gate attacked MSE for each gate/rule (4)", "each gate own-clean attack excess by rule (4)", "each gate own-clean recovery excess by rule (4)"],
+    "intervals": "Gate A uses all 19 contrasts and both rules, Bonferroni percentile intervals of level 1-0.05/19 each (two-sided), recomputing ratio-of-means normalizer per resample. Gate B uses 97.5% per-rule intervals. Do not drop unfavorable contrasts or change multiplicity after results.",
+    "pilot_B_resampling": "Resample paired seed identities and RECOMPUTE the complete leave-one-seed-out procedure per replicate; copies of the same original held-out seed must all be excluded from training, using bootstrap multiplicity weights. Do not treat fixed cross-fit prediction rows as independent or ignore diagnostic fitting uncertainty. Confirm bootstraps seeds with pilot coefficients fixed.",
+    "small_sample_limit": "Screening evidence only. Insufficient CI precision is not a pass; no 1% improvement or 1% power claim. A formal later study would require a new paired-method estimand and separate power calculation."
+  },
+  "stop": ["raw normal eligibility fails", "cooperation benefit absent", "strong baselines already cover normal/attack/recovery tradeoff", "A or B inconclusive or failed", "benefit needs oracle location/original payload/extra information", "pilot-confirm pattern does not repeat"],
+  "future_artifacts": "new Run ID under reviews/g3_partial_observability/results/; immutable config, code hashes, seeds, full per-seed results, packet records, censoring, failures and source permissions",
+  "execution_status": {"structure_only":"permitted now", "normal_covariance_eligibility":"pending", "calibration":"pending", "pilot":"pending", "confirm":"pending", "new_defense":"not authorized"}
+}
