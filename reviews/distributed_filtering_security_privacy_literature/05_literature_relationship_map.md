@@ -23,6 +23,8 @@ graph TD
   P[Wang 2025: 隐私协方差/互信息/GLRT] -.-> F
   YP[Ye 2025: false-noise攻击检测] -.-> F
   SI[Si 2025 TIFS: 元数据已核 全文待补] -.-> F
+  KE[Ke 2026 TAC: 1bit静态参数估计与Fisher隐私] -.-> F
+  BA[Bahrami 2021 CDC: 中央局部观测器与拓扑切换] -.-> F
   T -.-> F
   W -.-> F
 ```

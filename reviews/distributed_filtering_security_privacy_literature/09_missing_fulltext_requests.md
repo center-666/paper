@@ -2,6 +2,8 @@
 
 更新：2026-11-14。本轮核查Zotero存储、项目、附件及常用下载目录。已有Ye、Wang、Peng、Yang/Wen/Zhou及本轮补齐的Mo–Murray、Moradi不要重复下载。下面保留早期清单编号，并明确标记已解决项。
 
+**访问纠正：** 进一步检索旧归档发现，Si TIFS/TAES、Liang等曾经下载，旧路径位于当前不存在的E盘或 `C:\Users\26626\Zotero\storage\`。因此优先请求迁移已有PDF，而非重复下载。历史路径不等于当前已取得全文；详情见14号报告和 `sources/legacy_attachment_locations_20261114.json`。
+
 ## 当前最优先：只新增这一项直接全文请求
 
 **Si, Kang; Li, Peng; Yuan, Zhi-Peng. “Secure and Privacy-Preserving Distributed Kalman Filtering for Sensor Networks With Event-Triggered Mechanism.” IEEE Transactions on Information Forensics and Security 20 (2025), 7438–7453. DOI: 10.1109/TIFS.2025.3588670.**
@@ -10,6 +12,7 @@
 - 出版社Crossref元数据已核验，登记见 `sources/si2025_tifs_metadata.json`；尚未取得全文，不作算法或定理结论。
 - 这是与“事件通信+隐私DKF+安全”最直接的待核查工作，与下列Si TAES 2025不是同一篇。
 - 重点核查：通信保持/缓存规则、隐私扰动时间相关、攻击权限、合法接收端掌握的参数、MSE/隐私定理。不再扩展到其他标题相似论文。
+- 已找到旧附件记录：`C:\Users\26626\Zotero\storage\MPQQ5ICG\` 下该论文PDF，当前目录不存在。请优先迁移这一份。
 
 ## 优先级 1：隐私保护基础直接竞争
 
@@ -42,5 +45,7 @@
 ## 用户需要做的事
 
 请优先提供新增Si TIFS 2025全文，其次是第2项Si TAES 2025、第3项Liang TCyb 2023。其余保留为原清单，不要求一次全部下载。第8、9项已在Zotero，属于待读而非缺失，也不因此重启已结项恢复研究。
+
+Si TAES与Liang旧原件目录为 `E:\硕士毕业论文\mypaper\reference paper\`，文件名分别是 `Privacy-Preserving_Distributed_Kalman_Filtering_Based_on_State_Decomposition_and_Dynamic_Mask.pdf`、`Secure_Estimation_With_Privacy_Protection.pdf`。若仍可访问旧电脑/磁盘，复制已有文件即可。
 
 若已下载，告知Zotero条目/附件路径即可；否则通过已登录Edge下载到Zotero或被Git忽略的 `literature_review/distributed_security_privacy_20261114/`。不会将出版社全文随报告推送GitHub。

@@ -13,3 +13,5 @@
 同日继续复读形成 [13号Yang/Zhou信息与证明审计](13_yang_zhou_information_and_proof_audit.md)：确认随机激活方差项、拒收条件分布及接收端矩信息来源。`checks/source_formula_checks.py`与`results/20261114_r02/claims.json`提供标准库精确算术复核，不是新防御实现或Monte Carlo。没有新增PDF下载，也未改共享仿真器。
 
 报告顺序为：范围、已有文献、主动攻击、被动隐私、交叉问题、关系图、竞争矩阵、候选问题、推荐方向、缺失全文、执行摘要。
+
+[14号指定文献与旧附件核查](14_assigned_papers_and_transfer_gaps.md)进一步识别了任务书的数字文件，并通过公开作者HTML读取Ke等TAC 2026与Bahrami等CDC 2021。未重复下载PDF。最直接的Si/Liang等全文已发现旧下载记录，应优先迁移旧附件；不把历史清单当作当前全文证据。

@@ -46,3 +46,16 @@ Mo–Murray与Moradi的作者读本现已补齐，不要重复下载。仍未确
 ## 4. 去重规则
 
 同一 DOI 的作者稿、预印本和出版社版只计为一篇；例如 Wang 2025 的 arXiv v2 与 Automatica 文章号 112071 是同一工作。G5 中的 Gao 2026 已在 Zotero 精读，但不重复下载。旧版本 PDF、OCR 文本和页面截图属于同一篇文献的阅读资产。
+
+## 5. 指定数字文件与旧库迁移核查
+
+旧 `local_pdf_screen.json` 记录了Si、Liang等已下载PDF，但路径位于当前不可访问的E盘及旧用户Zotero。具体位置见 `sources/legacy_attachment_locations_20261114.json`；这仅证明历史记录存在，不能计为当前全文已读。应优先迁移已有附件，避免再次要求用户下载。
+
+|任务书材料|身份与本轮读本|证据|
+|---|---|---|
+|`2510.12549v2.pdf`|Ke, Wang & Zhang，IEEE TAC 71(7) (2026) 4633–4648，DOI 10.1109/TAC.2026.3660110；实际读取arXiv v2公开HTML|ONLINE_AUTHOR_FULLTEXT_METHOD_AND_THEOREM_READ；出版社版未逐式比版|
+|*Privacy-Preserving Stealthy Attack Detection in Multi-Agent Control Systems*|Bahrami & Jafarnejadsani，CDC 2021，4194–4199，DOI 10.1109/CDC45484.2021.9683427；实际读取arXiv:2109.14094v1 HTML|ONLINE_AUTHOR_FULLTEXT_METHOD_AND_THEOREM_READ|
+|`2405.16905v2.pdf`|Wang作者稿，当前已有|不重复获取|
+|`2504000063.pdf`|旧记录有该文件，当前无法访问；不能按数字文件名确定身份|UNIDENTIFIED，不猜标题或DOI|
+
+本轮新增PDF下载0。两篇在线读本不再计作额外PDF资产，元数据、版本及阅读链接见 `sources/assigned_online_fulltexts_20261114.json`，方法对照见14号报告。
