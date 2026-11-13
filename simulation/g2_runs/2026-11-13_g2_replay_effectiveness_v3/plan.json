@@ -1,0 +1,228 @@
+{
+  "run_id": "2026-11-12_g2_replay_effectiveness_v1",
+  "status": "registered exploratory screen; not a confirmatory publication study",
+  "date": "2026-11-12",
+  "purpose": "Read-only literature/source audit plus a small closed-loop replay-impact screen; no new defense algorithm is proposed",
+  "model_source": "simulation/reference_exploration_plan.json:heterogeneous_sensing",
+  "model": {
+    "A": [
+      [
+        1.0,
+        0.1
+      ],
+      [
+        0.0,
+        1.01
+      ]
+    ],
+    "Q": [
+      [
+        0.02,
+        0.0
+      ],
+      [
+        0.0,
+        0.02
+      ]
+    ],
+    "P0": [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0
+      ]
+    ],
+    "H_matrices": [
+      [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.15
+        ]
+      ],
+      [
+        [
+          0.15,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.15
+        ]
+      ],
+      [
+        [
+          0.15,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      [
+        [
+          0.7,
+          0.0
+        ],
+        [
+          0.0,
+          0.7
+        ]
+      ]
+    ],
+    "measurement_variances": [
+      0.05,
+      0.05,
+      0.05,
+      0.05,
+      0.05
+    ],
+    "network": "same five-node bidirectional ring as simulation/config.json",
+    "primary_attack_edge": [
+      0,
+      1
+    ],
+    "attack_interval_inclusive": [
+      200,
+      249
+    ],
+    "horizon": 400
+  },
+  "communication": {
+    "mode": "exogenous common schedule",
+    "schedules": {
+      "gap8": [
+        8
+      ],
+      "irregular": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        8,
+        6,
+        4,
+        3,
+        3
+      ]
+    },
+    "node_phase_step": 1,
+    "same_schedule_for_every_selector_and_defense": true,
+    "local_measurement_every_tick": true,
+    "t0_forced_send": true
+  },
+  "attack_information": {
+    "allowed": [
+      "current authentic estimate packet actually sent by sender 0 on edge 0->1",
+      "previous authentic estimate packets actually sent by sender 0 and observed on that link",
+      "source send times and the attacker's own historical packet dictionary",
+      "public A, H, current receive interval, frozen public calibration data",
+      "previous payload actually delivered on attacked link"
+    ],
+    "forbidden": [
+      "receiver node 1 current local measurement",
+      "true state",
+      "future noise, future send decisions or future estimates",
+      "sender's unsent internal estimates",
+      "future or counterfactual sender trajectory"
+    ],
+    "attack_timing": "replace only after a real send opportunity; collect the current authentic packet after choosing this opportunity's replacement for later use",
+    "same_replacement_count_group": [
+      "fixed_lag8",
+      "random_history",
+      "nearest_current_sender",
+      "risk_greedy_forced_fallback"
+    ],
+    "same_opportunity_count_group": [
+      "risk_greedy_natural_budget_0.25",
+      "risk_greedy_natural_budget_1.0"
+    ],
+    "risk_proxy_warning": "the proxy uses only attacker-available packet history, current transmitted estimate, last delivered payload and public calibration; a lower proxy score is not a false-alarm guarantee"
+  },
+  "replay_selectors": [
+    "no_attack",
+    "fixed_lag8",
+    "random_history",
+    "nearest_current_sender",
+    "risk_greedy_forced_fallback",
+    "risk_greedy_natural_budget_0.25",
+    "risk_greedy_natural_budget_1.0"
+  ],
+  "equal_replacement_policy": "All four forced selectors replace every actual target-edge send opportunity inside the attack interval; the two natural risk-greedy policies may skip. Report attack-opportunity, attempted-replacement and distinct-payload rates separately. Do not delete skipped opportunities from denominators.",
+  "defenses": [
+    "raw_yang_no_cap",
+    "cap_only",
+    "zhou_random_protection",
+    "spatial_hard",
+    "episode_prefix_mean",
+    "energy_cusum"
+  ],
+  "calibration": {
+    "train_seeds": {
+      "start": 9000000,
+      "count": 48
+    },
+    "calibration_seeds": {
+      "start": 9100000,
+      "count": 48
+    },
+    "design_seeds": {
+      "start": 9200000,
+      "count": 48
+    },
+    "tune_seeds": {
+      "start": 9300000,
+      "count": 48
+    },
+    "normal_audit_seeds": {
+      "start": 9400000,
+      "count": 48
+    },
+    "test_seeds": {
+      "start": 9500000,
+      "count": 48
+    },
+    "all_splits_disjoint": true,
+    "detector_target": "5 percent; episode-prefix detectors tuned on complete normal episodes; packet-gate detectors report packet rejection separately",
+    "holdout_audit_and_test": true
+  },
+  "metrics": [
+    "actual send opportunities",
+    "attempted replacements and changed payloads",
+    "source packet time and content age",
+    "source-gap/current-gap equality and consecutive historical fragment indicator",
+    "receiver attack-window MSE",
+    "network attack-window MSE",
+    "maximum receiver and network estimation error",
+    "recovery-window MSE and first return to clean-error tolerance, right-censored at horizon",
+    "spatial residual ratios",
+    "temporal residual ratios",
+    "episode-mean and energy-CUSUM alarm indicators and detection delay",
+    "normal MSE, empirical false isolation, node broadcasts, edge messages and bytes",
+    "local-estimator baseline and no-attack baseline"
+  ],
+  "independent_unit": "seed; timesteps, packets and episodes are not independent replicates",
+  "test_scope": "small exploratory attack-consequence screen; 48 seeds is underpowered for a 1 percent MSE claim and is not a final confirmation",
+  "no_parameter_search": true,
+  "previous_test_results_seen": true,
+  "prohibited_claim": "A favorable curve or lower attacker-side score is not a method novelty or a security guarantee",
+  "stop": "Do not develop a new defense module from this exploratory screen; send any stable attack evidence to the G2 decision and apply the six G2 stop conditions"
+}

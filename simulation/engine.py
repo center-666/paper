@@ -20,7 +20,7 @@ class Run:
 
 def simulate(model: Model, x, y, seeds, method="yang", scenario="clean", schedule=None,
              calibration: Calibration|None=None, control=1.0, cap=np.inf,
-             collect=True, cache_monitor=None) -> Run:
+             collect=True, cache_monitor=None, replay_selector=None) -> Run:
     cfg=model.cfg
     S,T,N,n = len(seeds),cfg["T"],cfg["N"],cfg["n"]
     E=len(model.edges)
@@ -42,6 +42,8 @@ def simulate(model: Model, x, y, seeds, method="yang", scenario="clean", schedul
     weight=np.ones((S,E))
     bad=np.zeros((S,E),bool)
     rngs=[np.random.default_rng(int(seed)+9100000) for seed in seeds]
+    attacker_rngs=[np.random.default_rng(np.random.SeedSequence([int(seed),0x475232])) for seed in seeds]
+    packet_history=[([],[]) for _ in range(S)]
     # Zhou 2022 draws one random threshold per RECEIVING NODE and time,
     # shared across its incoming edges. Independent edge coins would preserve
     # marginal acceptance rates but change the joint protection mechanism.
@@ -74,6 +76,7 @@ def simulate(model: Model, x, y, seeds, method="yang", scenario="clean", schedul
         fresh=transmit[:,src]
         incoming=hat[:,src].copy()
         injected_now=np.zeros((S,E),bool)
+        delta=np.where(last_receive>=0,t-last_receive,1)
         if scenario!="clean" and ah["start"]<=t<=ah["end_inclusive"]:
             selected=np.flatnonzero(fresh[:,edge_target])
             for s in selected:
@@ -100,10 +103,36 @@ def simulate(model: Model, x, y, seeds, method="yang", scenario="clean", schedul
                         incoming[s,edge_target]=estimates[s,source,src[edge_target]]
                         replay_source[s,t]=source
                         injected_now[s,edge_target]=True
+                elif scenario=="replay_selector":
+                    if replay_selector is None:
+                        raise ValueError("replay_selector is required for replay_selector scenario")
+                    history_times,history_values=packet_history[s]
+                    selected_time=replay_selector(
+                        t,hat[s,src[edge_target]].copy(),
+                        np.asarray(history_times,dtype=int),
+                        np.asarray(history_values,dtype=float).reshape(-1,n),
+                        payload[s,edge_target].copy(),int(delta[s,edge_target]),
+                        model.A.copy(),model.H[dst[edge_target]].copy(),
+                        model.powers[int(delta[s,edge_target])].copy(),
+                        attacker_rngs[s])
+                    if selected_time is not None:
+                        matches=np.flatnonzero(np.asarray(history_times,dtype=int)==int(selected_time))
+                        if len(matches)!=1:
+                            raise ValueError("Replay selector returned a packet not in the captured history")
+                        if int(selected_time)>=t:
+                            raise ValueError("Replay selector must choose a strictly historical packet")
+                        incoming[s,edge_target]=history_values[int(matches[0])].copy()
+                        replay_source[s,t]=int(selected_time)
+                        injected_now[s,edge_target]=True
                 else:
                     raise ValueError(scenario)
+        # The attacker observes each authentic packet after deciding whether to
+        # replace this opportunity's payload, so the current packet is eligible
+        # only at later send opportunities.
+        for s in np.flatnonzero(fresh[:,edge_target]):
+            packet_history[s][0].append(int(t))
+            packet_history[s][1].append(hat[s,src[edge_target]].copy())
         injected[:,t]=injected_now[:,edge_target]
-        delta=np.where(last_receive>=0,t-last_receive,1)
         time_valid=last_receive>=0
         temporal=incoming-np.einsum("seij,sej->sei",model.powers[delta],payload)
         space=y[:,t,dst]-np.einsum("emn,sen->sem",model.H[dst],incoming)
