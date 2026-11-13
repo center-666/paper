@@ -1,0 +1,383 @@
+{
+  "audit_id": "20261114_r02_source_formula_checks",
+  "reference_commit": "5cb72eeeac5bee00aa75527aa4a6558b97e74190",
+  "type": "EXACT_ARITHMETIC_AND_ANALYTIC_MOMENT_CHECKS",
+  "not_monte_carlo": true,
+  "seeds": [],
+  "source_code_sha256": "9584ea5cca8be9e1d2e244c408ba90d670e96e1b8681911f249d16c46bcaa7a1",
+  "sources": {
+    "yang2014": {
+      "path": "literature_review/fdi_replay_reread_20261112/yang2014.pdf",
+      "available": true,
+      "sha256": "098034662d93cdaa0e1816d71544cd07115867a4d8d45f46b51416ddf479635c"
+    },
+    "yang2019": {
+      "path": "literature_review/fdi_replay_reread_20261112/yang2019.pdf",
+      "available": true,
+      "sha256": "dc9b8c03ec5a61cbb50d600824c7537e255d395750cd7a2538da69a3f5955a6b"
+    },
+    "zhou2022": {
+      "path": "literature_review/fdi_replay_reread_20261112/zhou2022.pdf",
+      "available": true,
+      "sha256": "f81472e55eee70fdab3f65f9552095c898982face08ca0d72beec2706b66df8c"
+    }
+  },
+  "yang2014_random_activation": {
+    "q": "1/2",
+    "exact_next_second_moment": [
+      [
+        "7/4",
+        "25/16"
+      ],
+      [
+        "25/16",
+        "7/4"
+      ]
+    ],
+    "printed_mean_transition_expression": [
+      [
+        "27/16",
+        "25/16"
+      ],
+      [
+        "25/16",
+        "27/16"
+      ]
+    ],
+    "omitted_switching_term": [
+      [
+        "1/16",
+        "0"
+      ],
+      [
+        "0",
+        "1/16"
+      ]
+    ],
+    "printed_identity_holds": false,
+    "enumerated_modes": [
+      {
+        "gamma": [
+          0,
+          0
+        ],
+        "probability": "1/4",
+        "transition": [
+          [
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "1"
+          ]
+        ],
+        "noise_second_moment": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "1",
+            "1"
+          ]
+        ]
+      },
+      {
+        "gamma": [
+          0,
+          1
+        ],
+        "probability": "1/4",
+        "transition": [
+          [
+            "9/10",
+            "1/10"
+          ],
+          [
+            "0",
+            "1/2"
+          ]
+        ],
+        "noise_second_moment": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "1",
+            "5/4"
+          ]
+        ]
+      },
+      {
+        "gamma": [
+          1,
+          0
+        ],
+        "probability": "1/4",
+        "transition": [
+          [
+            "1/2",
+            "0"
+          ],
+          [
+            "1/10",
+            "9/10"
+          ]
+        ],
+        "noise_second_moment": [
+          [
+            "5/4",
+            "1"
+          ],
+          [
+            "1",
+            "1"
+          ]
+        ]
+      },
+      {
+        "gamma": [
+          1,
+          1
+        ],
+        "probability": "1/4",
+        "transition": [
+          [
+            "2/5",
+            "1/10"
+          ],
+          [
+            "1/10",
+            "2/5"
+          ]
+        ],
+        "noise_second_moment": [
+          [
+            "5/4",
+            "1"
+          ],
+          [
+            "1",
+            "5/4"
+          ]
+        ]
+      }
+    ]
+  },
+  "yang2014_all_active_control": {
+    "q": "1",
+    "exact_next_second_moment": [
+      [
+        "3/2",
+        "5/4"
+      ],
+      [
+        "5/4",
+        "3/2"
+      ]
+    ],
+    "printed_mean_transition_expression": [
+      [
+        "3/2",
+        "5/4"
+      ],
+      [
+        "5/4",
+        "3/2"
+      ]
+    ],
+    "omitted_switching_term": [
+      [
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0"
+      ]
+    ],
+    "printed_identity_holds": true,
+    "enumerated_modes": [
+      {
+        "gamma": [
+          0,
+          0
+        ],
+        "probability": "0",
+        "transition": [
+          [
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "1"
+          ]
+        ],
+        "noise_second_moment": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "1",
+            "1"
+          ]
+        ]
+      },
+      {
+        "gamma": [
+          0,
+          1
+        ],
+        "probability": "0",
+        "transition": [
+          [
+            "9/10",
+            "1/10"
+          ],
+          [
+            "0",
+            "1/2"
+          ]
+        ],
+        "noise_second_moment": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "1",
+            "5/4"
+          ]
+        ]
+      },
+      {
+        "gamma": [
+          1,
+          0
+        ],
+        "probability": "0",
+        "transition": [
+          [
+            "1/2",
+            "0"
+          ],
+          [
+            "1/10",
+            "9/10"
+          ]
+        ],
+        "noise_second_moment": [
+          [
+            "5/4",
+            "1"
+          ],
+          [
+            "1",
+            "1"
+          ]
+        ]
+      },
+      {
+        "gamma": [
+          1,
+          1
+        ],
+        "probability": "1",
+        "transition": [
+          [
+            "2/5",
+            "1/10"
+          ],
+          [
+            "1/10",
+            "2/5"
+          ]
+        ],
+        "noise_second_moment": [
+          [
+            "5/4",
+            "1"
+          ],
+          [
+            "1",
+            "5/4"
+          ]
+        ]
+      }
+    ]
+  },
+  "yang2014_printed_lmi": {
+    "laplacian": [
+      [
+        "1",
+        "-1"
+      ],
+      [
+        "-1",
+        "1"
+      ]
+    ],
+    "A": "1",
+    "epsilon": "1/10",
+    "q": "1/2",
+    "Phi": [
+      [
+        "1",
+        "0",
+        "19/20",
+        "1/20"
+      ],
+      [
+        "0",
+        "1",
+        "1/20",
+        "19/20"
+      ],
+      [
+        "19/20",
+        "1/20",
+        "1",
+        "0"
+      ],
+      [
+        "1/20",
+        "19/20",
+        "0",
+        "1"
+      ]
+    ],
+    "nonzero_test_vector": [
+      [
+        "1"
+      ],
+      [
+        "1"
+      ],
+      [
+        "-1"
+      ],
+      [
+        "-1"
+      ]
+    ],
+    "quadratic_form": "0",
+    "strict_positive_definite": false
+  },
+  "zhou2022_rejection_likelihood": {
+    "difference_variance": "1",
+    "threshold_scale_nu": "2/3",
+    "acceptance_probability": "1/2",
+    "rejected_second_moment": "7/4",
+    "rejected_fourth_moment": "93/16",
+    "gaussian_fourth_moment_at_same_variance": "147/16",
+    "rejected_fourth_cumulant": "-27/8",
+    "rejected_distribution_gaussian": false,
+    "scope": "Gate likelihood and conditional Gaussian proof step, not a full network performance test."
+  },
+  "all_arithmetic_assertions_passed": true,
+  "claim_scope": "Printed identities and missing assumptions; no claim that published simulations or archived project results are invalid."
+}
