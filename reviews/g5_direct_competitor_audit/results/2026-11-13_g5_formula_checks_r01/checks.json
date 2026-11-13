@@ -1,0 +1,97 @@
+{
+  "run_id": "2026-11-13_g5_formula_checks_r01",
+  "scope": "exact formulas only; no detector, no state trajectories, no Monte Carlo",
+  "source_sha256": "127c4b35418e2dca8ffc25520daca17fe9d796329949fa2e1d4c46fed8323ea3",
+  "ye_gain_limit": {
+    "rho": 0.9,
+    "r": 0.81,
+    "R": 1.0,
+    "P0": 1.0,
+    "k": 1000,
+    "gain": 0.18999999999999995,
+    "actual_limit": 0.18999999999999995,
+    "printed_lemma3_limit": 1.0,
+    "conclusion": "Printed gain-limit statement does not follow from scalar equations (29)-(32); P_k -> 0 remains possible."
+  },
+  "histogram_density_entropy_checks": [
+    {
+      "bins": 10,
+      "q": 0.1,
+      "probability_of_bin": 0.1,
+      "density": 1.0,
+      "discrete_entropy": 2.3025850929940455,
+      "differential_entropy": 0.0,
+      "corrected_entropy": 0.0
+    },
+    {
+      "bins": 100,
+      "q": 0.01,
+      "probability_of_bin": 0.01,
+      "density": 1.0,
+      "discrete_entropy": 4.605170185988091,
+      "differential_entropy": 0.0,
+      "corrected_entropy": 0.0
+    },
+    {
+      "bins": 1000,
+      "q": 0.001,
+      "probability_of_bin": 0.001,
+      "density": 1.0,
+      "discrete_entropy": 6.907755278982137,
+      "differential_entropy": 0.0,
+      "corrected_entropy": 0.0
+    }
+  ],
+  "total_risk_vs_risk_difference": {
+    "joint_moments": [
+      [
+        100.0,
+        10.0,
+        1.0
+      ],
+      [
+        1.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "passive_risks": [
+      100.0,
+      1.0
+    ],
+    "total_minimax_gamma": 1.0,
+    "total_minimax_risks": [
+      81.0,
+      2.0
+    ],
+    "risk_difference_minimax_gamma": 0.0,
+    "second_model_is_harmed_by_total_minimax": true
+  },
+  "same_law_need_not_preclude_robust_fusion": {
+    "p": 1.0,
+    "total_noise_variance_upper": 3.0,
+    "gain": 0.25,
+    "worst_mse": 0.75,
+    "baseline_mse": 1.0,
+    "required_condition": "independent zero-mean total noise; standard robust estimation, not a proposed new algorithm"
+  },
+  "shared_packet_noise": {
+    "A": 2,
+    "V": 1,
+    "ages": [
+      1,
+      2
+    ],
+    "cross_covariance": 8,
+    "conclusion": "Cannot replace a cached noisy packet by independent noise on each use."
+  },
+  "radial_counterexample": {
+    "definition": "U~chi2_m, J uniform coordinate, S random sign; z=S*sqrt(U)*e_J, independent U/J/S, m>=2",
+    "mean": "0",
+    "covariance": "I because E(U)=m and E(e_J e_J^T)=I/m",
+    "energy": "||z||^2=U is exactly chi2_m",
+    "support": "union of coordinate axes, non-Gaussian",
+    "scope": "Refutes inference non-Gaussian residual implies non-chi2 energy, not the stated energy-law premise of Ye Theorem 1."
+  },
+  "all_checks_passed": true
+}
