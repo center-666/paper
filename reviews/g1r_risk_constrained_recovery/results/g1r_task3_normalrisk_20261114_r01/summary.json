@@ -1,0 +1,87 @@
+{
+  "run_id": "g1r_task3_normalrisk_20261114_r01",
+  "case_decision": "B",
+  "J0": 0.25768080390191433,
+  "Ja_main": 8.856093823180371,
+  "normal_risk_budget_R": 0.0025768080390191433,
+  "alpha": 0.05,
+  "predictable_error_second_moment": 0.044603768842793136,
+  "predictable_fraction_of_J0": 0.17309697954750045,
+  "Sigma_m": [
+    [
+      0.03459050040385675,
+      0.013976252338881352
+    ],
+    [
+      0.013976252338881352,
+      0.010013268438936388
+    ]
+  ],
+  "Sigma_m_eigenvalues": [
+    0.003691518702140479,
+    0.04091225014065265
+  ],
+  "c_old_Cauchy": 0.11350788604804389,
+  "c_conditional_Cauchy": 0.04722487101241948,
+  "c_alpha": 0.023852539027148574,
+  "U_old": 0.011322552637530847,
+  "U_conditional_Cauchy": 0.02689927402035555,
+  "U_new": 0.05126125603866954,
+  "U_new_discretization_bracket": [
+    0.05125941922716025,
+    0.05126309291992136
+  ],
+  "U_new_over_U_old": 4.527358598338853,
+  "U_required_for_one_percent_gain": 0.014916981092988786,
+  "U_new_over_U_required": 3.436436348556018,
+  "remaining_any_capped_action_gain_ceiling": 0.03415399385525497,
+  "tail_integration": {
+    "method": "anisotropic 2D Gaussian polar integral + independent Bessel radial integral",
+    "quantile": 0.4013521989290853,
+    "tail_probability_at_quantile": 0.04999999999999633,
+    "tail_first_moment": 0.023852539027148574,
+    "root_converged": true,
+    "root_iterations": 10,
+    "quadrature_abs_error_estimates": {
+      "probability": 7.226884897330114e-16,
+      "moment": 3.360581587999649e-16,
+      "radial_probability": 2.1957863069164902e-14,
+      "radial_moment": 7.425704867918122e-14
+    },
+    "root_local_error_estimate": 2.4764179770609434e-13,
+    "moment_local_total_error_estimate": 5.850681685405116e-14,
+    "independent_radial_probability": 0.049999999999996346,
+    "independent_radial_moment": 0.023852539027148578,
+    "polar_radial_moment_difference": 3.469446951953614e-18,
+    "monotone_riemann_panels": 65536,
+    "quantile_discretization_bracket": [
+      0.40135037853189043,
+      0.40135401929400494
+    ],
+    "tail_moment_discretization_bracket": [
+      0.02385159249026707,
+      0.02385348559263545
+    ],
+    "bracket_note": "Riemann lower/upper sums bound discretization in exact arithmetic; NumPy/SciPy computations are not directed-rounding interval arithmetic"
+  },
+  "checks": {
+    "saved_vs_coefficient_Sigma_eta_absolute_error": 0.0,
+    "conditional_loading_covariance_absolute_error": 6.938893903907228e-18,
+    "unpredictable_error_innovation_cross_absolute": 7.37257477290143e-18,
+    "max_normal_C_reconstructed_from_24_attack_cases_error": 3.469446951953614e-18,
+    "Gaussian_degenerate_and_isotropic_tests": {
+      "isotropic_rayleigh_closed_form": "PASS",
+      "rank_one_half_normal": "PASS",
+      "rank_zero": "PASS"
+    },
+    "risk_positive_root_identities": "PASS",
+    "old_cap_reproduced": "PASS",
+    "conditional_Cauchy_alone_passes_required_amplitude": true,
+    "new_random_trajectories": 0
+  },
+  "interpretation": "B means old amplitude exclusion removed only; no actual attack benefit, no v2, no E2/E3",
+  "new_trajectories": 0,
+  "seeds_used": [],
+  "downloads": 0,
+  "elapsed_seconds": 0.059417699987534434
+}

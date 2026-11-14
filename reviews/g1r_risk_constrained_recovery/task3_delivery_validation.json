@@ -1,0 +1,80 @@
+{
+  "date": "2026-11-14",
+  "baseline_commit": "7f1a33a84a40d6b05b20702b0be5824b1916b3ca",
+  "task": "Task3 Exact Normal-Risk Refinement only",
+  "requirements": {
+    "3.1_extract_C_and_Sigma": "normal loadings product plus reconstruction from all 24 archived attack cases; checks.json",
+    "3.2_Sigma_m_c_alpha_U": "09 equations (3),(7),(9)-(11); normal_risk_moments.json and summary.json",
+    "numerical_error": "adaptive quadrature estimates, independent Bessel integral, stop-loss identity and monotone Riemann bounds with explicit roundoff limitation",
+    "3.3_compare_required_amplitude": "case B; also established by the coarser conditional-Cauchy formula without precise tail integration",
+    "do_not_run_E2_E3_or_v2": "no sampled paths, new seeds, algorithm design or v2 protocol",
+    "do_not_relax_risk_or_change_attack": "old protocol hash matches frozen_plan; same alpha=.05, R/J0=.01, h=(0,200), age64, target217",
+    "preserve_old_results": "all prior tracked files unchanged except a summary pointer; no old Run overwrites"
+  },
+  "decision": "B: old uniform-amplitude exclusion removed; no claim of achieved attack recovery or novelty",
+  "report_sha256": {
+    "09_exact_normal_risk_refinement.md": "6a5d409a62c17f1d7762fde19916303bd75ee7deac397ee09673d8d0f69fb6ae",
+    "EXECUTIVE_SUMMARY.md": "cd13baab8b71f89b852e02baade3fc825aa1cb71b48887db77caf8d29b10a363"
+  },
+  "artifacts": {
+    "results/g1r_task3_normalrisk_20261114_r01/checks.json": {
+      "sha256": "8d3c59710d7f6701fc579c0923900eba25b333aad6ea6c71895a5e0557074c5f",
+      "bytes": 615
+    },
+    "results/g1r_task3_normalrisk_20261114_r01/frozen_plan.json": {
+      "sha256": "c4e7f921c9d8e65af33dfae79018b307e468dcb55e406fb06a661c4d57a9df57",
+      "bytes": 2926
+    },
+    "results/g1r_task3_normalrisk_20261114_r01/normal_risk_moments.json": {
+      "sha256": "92aeab6a25085605e72d4091d50dfdefc1fdde474e0b4de8654c0af0b2b5f18b",
+      "bytes": 6271
+    },
+    "results/g1r_task3_normalrisk_20261114_r01/summary.json": {
+      "sha256": "a6c5520415023de8ea71efded08470b34ee47b831cd03e9815dda48f4fb4a4d3",
+      "bytes": 3204
+    },
+    "sources/task3_normalrisk_20261114/calculation_plan.json": {
+      "sha256": "147e0fab820e69764cf281c3149c46a4e4e20d4968c5f23d101c8b80af25f461",
+      "bytes": 1748
+    },
+    "sources/task3_normalrisk_20261114/protected_before.json": {
+      "sha256": "a2f3249c3a0c5f6e0a3bcccc50fea45072f3e9fcee45ee9fbde3b49d7cdabf03",
+      "bytes": 140600
+    },
+    "sources/task3_normalrisk_20261114/verification.json": {
+      "sha256": "c927e25d669bd48b2188edd80b9bc368a47df75c053686bde6e0089fae49fc3b",
+      "bytes": 926
+    }
+  },
+  "verification": {
+    "result": "PASS",
+    "task_scope": "Task3 only; no v2 protocol, E2/E3 or action-specific optimizer",
+    "validator_source_sha256": "16ce8affbbc4b04922fa2c281bf7a89de48ce93774474aa4ef3bbff816b2af3e",
+    "frozen_source_and_input_hashes": true,
+    "normal_moments_reconstructed": true,
+    "independent_stop_loss_c_alpha": 0.023852539027150045,
+    "stop_loss_vs_polar_absolute_difference": 1.4710455076283324e-15,
+    "stop_loss_integral_error_estimate": 4.60208246217442e-17,
+    "risk_root_equations": true,
+    "case_B_already_established_by_conditional_Cauchy_without_tail_integration": true,
+    "prior_tracked_files": 961,
+    "changed_existing_files": [
+      "reviews/g1r_risk_constrained_recovery/EXECUTIVE_SUMMARY.md"
+    ],
+    "all_other_old_files_unchanged": true,
+    "new_trajectories": 0,
+    "seeds_used": [],
+    "numerical_bounds_note": "No formal directed-rounding arithmetic claimed; case B does not rely on tight tail quadrature"
+  },
+  "c_alpha": 0.023852539027148574,
+  "U_new": 0.05126125603866954,
+  "U_required": 0.014916981092988786,
+  "protected_prior_files": 961,
+  "unchanged_prior_files": 960,
+  "new_trajectories": 0,
+  "seeds_used": [],
+  "new_downloads": 0,
+  "json_and_python_syntax": "PASS",
+  "local_markdown_links": "PASS",
+  "review_scope": "single agent, exact conditional expectation proofs and multiple deterministic integral identities; no new subagent review"
+}
