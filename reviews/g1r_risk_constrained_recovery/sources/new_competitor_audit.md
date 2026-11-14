@@ -1,5 +1,7 @@
 # 两篇新增直接竞争论文：来源核查及全文缺口
 
+**历史阶段记录，保留不覆盖：** 本页描述a06faea提交时的访问情况。用户随后下载了两篇出版社PDF，2026-11-14已完成正文精读，现行结论见[05号全文审计](../05_quickdet_palmdkf_fulltext_audit.md)及[新来源索引](fulltext_20261114/source_index.json)。下文“全文缺失/OPEN”仅指此前阶段。
+
 日期：2026-11-14。状态：**METADATA VERIFIED / FULL TEXT UNAVAILABLE / METHOD-LEVEL COMPARISON OPEN**。
 
 本轮只核查负责人指定的两篇论文，没有扩大文献数量。本报告不把标题、用户提供的摘要性介绍、索引关键词或Crossref引用关系当作全文证据。未下载任何PDF。
