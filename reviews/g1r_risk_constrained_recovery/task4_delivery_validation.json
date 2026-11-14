@@ -1,0 +1,75 @@
+{
+  "date": "2026-11-14",
+  "baseline_commit": "ed991eb965575af0c19ff67d2137459c3e3c7dbb",
+  "task": "Task 4 protocol v2 design only",
+  "result": "PASS_DESIGN_AUDIT_ONLY",
+  "requirements": {
+    "4.1_normal_risk_v2": "10 section2; shared U=.051261, R/J0=.01, alpha=.05; c_guard engineering uncertainty disclosed",
+    "4.2_Hard_Soft_Set_permissions": "11 section1; same z only; no true labels or unsent sender data",
+    "4.3_parameters_calibration": "protocol_v2.json; same 199 calibration trajectories, rank190 and strict greater; numeric thresholds intentionally null",
+    "4.4_solver_error_rejection": "11 sections3-6; primal-dual bounds, hard case, absolute tolerances, fixed iteration limits and fail closed",
+    "4.5_E2_E3": "10 sections6-7; original quantitative gates preserved; honest normal/attack gain decomposition and INCONCLUSIVE policy"
+  },
+  "prior_tracked_files": 972,
+  "unchanged_prior_files": 971,
+  "allowed_changed_existing_files": [
+    "reviews/g1r_risk_constrained_recovery/EXECUTIVE_SUMMARY.md"
+  ],
+  "checks": {
+    "syntax_and_json": true,
+    "frozen_source_and_input_sha256": true,
+    "v1_and_old_runs_unchanged": true,
+    "fixed_math_examples": true,
+    "risk_margin_positive": true,
+    "source_and_numeric_thresholds_not_falsely_claimed_frozen": true
+  },
+  "scope": {
+    "new_trajectories": 0,
+    "calibration_samples": 0,
+    "seeds_used": [],
+    "downloads": 0,
+    "online_policy_implementations": 0,
+    "E2_run": false,
+    "E3_run": false,
+    "subagents_used": false
+  },
+  "not_completed": [
+    "deployment implementation and source hashes",
+    "independent numeric normal calibration thresholds",
+    "complete old-run and ignored-archive seed collision check",
+    "solver performance/normal risk/attack MSE outcomes",
+    "algorithm and paper Go"
+  ],
+  "artifact_sha256": {
+    "reviews/g1r_risk_constrained_recovery/10_protocol_v2.md": "5ca91383a8fdecbd28655089d93bd129214339bda63c983aafd0644752a8b91a",
+    "reviews/g1r_risk_constrained_recovery/11_v2_solver_and_information_contract.md": "dcb29421cac74ee5f7f3ca9c6c6e60d0191abd1ab850f8a0e82ef7ab435a6233",
+    "reviews/g1r_risk_constrained_recovery/12_v2_mathematical_and_fairness_audit.md": "d784326966eb6cf77dbd3ac6ae5eeb5c5df4ec2b05250c1dc73a67196c232204",
+    "reviews/g1r_risk_constrained_recovery/EXECUTIVE_SUMMARY.md": "50a9b225b1e37195f1156977e9f371eca5ecc64219b8b8f21902f78ce1ede286",
+    "reviews/g1r_risk_constrained_recovery/protocol_v2.json": "7c7a2589c1f7d136886ea5a1d4c1664552d7d463cbd143f5fb0e8c455b3fbeab",
+    "reviews/g1r_risk_constrained_recovery/code/audit_protocol_v2.py": "80032b4465b571593addf560caa5abfc2ade5e3884f8442d234144a1ffbb94e7",
+    "reviews/g1r_risk_constrained_recovery/results/g1r_task4_protocol_v2_20261114_r01/checks.json": "492067599e6069d2b59d1fcab74abcd8933f89a47174839043adb23d755dc8af",
+    "reviews/g1r_risk_constrained_recovery/results/g1r_task4_protocol_v2_20261114_r01/frozen_plan.json": "5588e5977318354b41a1defd236a65c8c2c339d8b694c547a6c5edad48b8e739",
+    "reviews/g1r_risk_constrained_recovery/results/g1r_task4_protocol_v2_20261114_r01/risk_margin_check.json": "43ac4112796691bc61b92373fd01d67b3c24676b31edbc5073f177bed334def8",
+    "reviews/g1r_risk_constrained_recovery/results/g1r_task4_protocol_v2_20261114_r01/summary.json": "b45058d0549d884c1426404a2ee5a36c6a058ed2b6adbca192171d59f9ab5e34",
+    "reviews/g1r_risk_constrained_recovery/sources/task4_protocol_v2_20261114/protected_before.json": "feda64e137fd3a21ef3ec506d9504274388e32a6ac4c55451d16a8d9126e6dd0"
+  },
+  "run_summary": {
+    "run_id": "g1r_task4_protocol_v2_20261114_r01",
+    "result": "PASS_DESIGN_AUDIT_ONLY",
+    "risk_certificate": "CONDITIONAL_ON_EXACT_MODEL_INFORMATION_AND_NUMERICAL_UPPER",
+    "U_common": 0.051261,
+    "normal_risk_budget_R": 0.0025768080390191433,
+    "normal_risk_guarded_numeric_bound": 0.0025767967853964004,
+    "positive_budget_margin": 1.1253622742880831e-08,
+    "method_performance": "OPEN_NOT_TESTED",
+    "algorithm_go": false,
+    "paper_go": false,
+    "E2_E3_run": false,
+    "execution_authorized_by_this_design": false,
+    "new_trajectories": 0,
+    "seeds_used": [],
+    "downloads": 0,
+    "additional_communication_bytes": 0,
+    "elapsed_seconds": 0.26120870001614094
+  }
+}

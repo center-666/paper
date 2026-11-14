@@ -1,0 +1,297 @@
+{
+  "protocol_id": "g1r_risk_v2_design_20261114",
+  "date": "2026-11-14",
+  "baseline_commit": "ed991eb965575af0c19ff67d2137459c3e3c7dbb",
+  "status": "DESIGN_FROZEN_IMPLEMENTATION_AND_CALIBRATION_PENDING",
+  "current_delivery_scope": "Task 4 design and deterministic mathematical audit only",
+  "execution_authorization": {
+    "debug_trajectories": false,
+    "normal_calibration": false,
+    "E2": false,
+    "E3": false
+  },
+  "v1_preserved": true,
+  "model_config": "reviews/g1_retroactive_recovery/results/g1r_p0_verified_20261113_v1/config.json",
+  "saved_matrices": "reviews/cross_phase_identifiability_audit/results/c_phase_geometry_20261114_r01/pairwise_common_coordinates.npz",
+  "joint_statistics_npz": "reviews/g1r_risk_constrained_recovery/results/g1r_replay_joint_20261114_r01/replay_joint_matrices.npz",
+  "normalrisk_summary": "reviews/g1r_risk_constrained_recovery/results/g1r_task3_normalrisk_20261114_r01/summary.json",
+  "receiver": 1,
+  "decision": 216,
+  "target": 217,
+  "innovation_times": [
+    211,
+    212,
+    213,
+    214,
+    215,
+    216
+  ],
+  "gap": 8,
+  "events_edge_r": [
+    [
+      0,
+      176
+    ],
+    [
+      3,
+      178
+    ],
+    [
+      0,
+      184
+    ],
+    [
+      3,
+      186
+    ],
+    [
+      0,
+      192
+    ],
+    [
+      3,
+      194
+    ],
+    [
+      0,
+      200
+    ],
+    [
+      3,
+      202
+    ]
+  ],
+  "main_event": [
+    0,
+    200
+  ],
+  "nominal_replay_age": 64,
+  "pressure_ages": [
+    32,
+    96
+  ],
+  "alpha": 0.05,
+  "beta": 0.05,
+  "beta_parameter": 0.025,
+  "beta_compatibility": 0.025,
+  "W": [
+    [
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0
+    ]
+  ],
+  "primary_R_over_J0": 0.01,
+  "sensitivity_budgets_in_v2": [],
+  "J0": 0.25768080390191433,
+  "normal_risk_budget_R": 0.0025768080390191433,
+  "U_common": 0.051261,
+  "U_rule": "same fixed six-decimal hard cap for Hard/Soft/Set; verify alpha*U^2+2*U*c_alpha <= R using Task 3 normal conditional-risk structure",
+  "c_alpha_reference": 0.023852539027148574,
+  "c_guard_engineering": 0.0238525612,
+  "numerical_risk_margin_check": {
+    "method": "upper stop-loss at archived q; composite trapezoid deterministic discretization bound only",
+    "q_from_task3": 0.4013521989290853,
+    "angular_panels": 65536,
+    "roundoff_allowance": 1e-12,
+    "formal_directed_rounding_certificate": false,
+    "c_guard_decimal_places": 10
+  },
+  "minimum_practical_relative_gain": 0.01,
+  "budget_stop_rule": "Before implementation verify existing Ja and U do not analytically exclude 1% benefit; this is not mechanism Go",
+  "coverage_threshold_rule": "chi2.ppf(1-beta_component/8,df), df=2 parameter and df=10 compatibility",
+  "nominal_prior": {
+    "normal": 0.5,
+    "each_event": 0.0625,
+    "age": 64
+  },
+  "methods": [
+    "hard_gls_capped",
+    "correct_joint_soft_impact_capped",
+    "set_constrained_chebyshev"
+  ],
+  "normal_scores": [
+    "max_gls_explained_energy",
+    "norm_posterior_impact_mean",
+    "certified_nonnegative_lower_bound_distance_zero_convex_hull_of_effect_union"
+  ],
+  "online_information": {
+    "random_features": [
+      "z_12_dimensional_post_cache_innovation"
+    ],
+    "other_allowed": [
+      "public_frozen_model",
+      "fixed_dictionary",
+      "independent_normal_calibration_threshold"
+    ],
+    "forbidden": [
+      "true_state",
+      "true_event",
+      "true_theta",
+      "true_replay_age",
+      "replay_source",
+      "healthy_counterfactual",
+      "unsent_sender_estimates",
+      "future_measurements",
+      "whole_run_object"
+    ],
+    "receive_log_use": "validate fixed receive times only; no additional random payload feature"
+  },
+  "normal_calibration": {
+    "count": 199,
+    "order_index_1based": 190,
+    "comparison": "strictly greater",
+    "conditional_on_fixed_calibration_guarantee": false,
+    "shared_trajectories_all_methods": true,
+    "scores_include_fixed_numerical_rejection": true,
+    "thresholds": null,
+    "status": "NOT_RUN"
+  },
+  "training_count": 0,
+  "seed_reservations": {
+    "debug": {
+      "start": 141400000,
+      "count": 5
+    },
+    "normal_calibration": {
+      "start": 141410000,
+      "count": 199
+    },
+    "e2_normal": {
+      "start": 141420000,
+      "count": 200
+    },
+    "e2_attack": {
+      "start": 141430000,
+      "count": 200
+    },
+    "e3_normal": {
+      "start": 141440000,
+      "count": 200
+    },
+    "e3_attack": {
+      "start": 141450000,
+      "count": 200
+    },
+    "e3_statistics": {
+      "start": 141460000,
+      "count": 1
+    }
+  },
+  "seed_reservation_status": "NOT_USED; disjoint from v1; complete old-run and ignored-archive collision check required before any generation",
+  "paired_data_contract": {
+    "same_seed_health_and_all_attack_cases": true,
+    "shared_initial_state_process_measurement_noise_schedule": true,
+    "independent_statistical_unit": "seed; all eight events and three ages remain paired",
+    "independent_normal_group_separate_from_counterfactual_health_arm": true
+  },
+  "e2_gate": {
+    "primary_coverage_count_min": 190,
+    "coverage_cp_one_sided_95_lower_min": 0.9,
+    "primary_nonzero_count_min": 100,
+    "nonzero_cp_one_sided_95_lower_min": 0.4,
+    "normal_nonzero_cp_one_sided_95_upper_max": 0.1
+  },
+  "e2_gate_target": "Set main event age64; normal diagnostics reported for every method",
+  "e2_failure_handling": "STOP for actual model/solver/coverage mechanism failure; INCONCLUSIVE for insufficient statistical precision; never auto-extend seeds",
+  "e3_bootstrap_resamples": 1999,
+  "e3_main_comparators": [
+    "hard_gls_capped",
+    "correct_joint_soft_impact_capped"
+  ],
+  "e3_unit": "independent seed with all event/age/budget outcomes kept paired",
+  "e3_confirmatory_family": {
+    "comparisons": 2,
+    "one_sided_lower_percentile": 0.025,
+    "margin": "0.99*max_h(mean_loss_baseline_h)-max_h(mean_loss_set_h)",
+    "all_events_resampled_together": true,
+    "finite_sample_exact": false
+  },
+  "e3_yang_primary": "main event all-seed relative MSE improvement >=1%; report separate descriptive 95% interval",
+  "e3_diagnostics": {
+    "normal_risk_change": true,
+    "matched_prior_risk": true,
+    "net_gain_subtract_paired_healthy_gain": true,
+    "pollution_gain_and_healthy_cross_term": true,
+    "net_difference_CI": "exploratory 95%; no joint confirmatory guarantee",
+    "only_normal_gain_explains_advantage": "NO_MECHANISM_GO",
+    "uncertain_net_advantage": "INCONCLUSIVE"
+  },
+  "solver_spec": {
+    "implementation_status": "NOT_IMPLEMENTED_THIS_TASK",
+    "backend": "numpy+scipy.optimize.SLSQP for proposals with independent primal-dual bounds; no cvxpy",
+    "numpy_version": "2.5.4",
+    "scipy_version": "1.18.1",
+    "dtype": "float64",
+    "rank_relative_tolerance": 1e-12,
+    "maximum_condition_number": 1000000000000.0,
+    "score_interval_absolute_width": 1e-07,
+    "positive_separation_floor": 1e-10,
+    "center_squared_gap_absolute": 1e-10,
+    "center_action_error_bound": 1e-05,
+    "farthest_squared_gap_absolute": 1e-11,
+    "score_exchange_max_iterations": 2048,
+    "center_exchange_max_iterations": 256,
+    "slsqp_max_iterations": 512,
+    "slsqp_ftol": 1e-12,
+    "secular_bisection_max_iterations": 128,
+    "secular_bracket_max_expansions": 128,
+    "spectral_lambda_initial_epsilon_multiplier": 64,
+    "roundoff_guard_epsilon_multiplier": 128,
+    "roundoff_guard_is_formal_interval_proof": false,
+    "zero_proposal_norm": 1e-12,
+    "deterministic_initialization": "ellipse centers and four coordinate-direction support points; uniform feasible simplex weights",
+    "ties": "lexicographic (edge,r), then point insertion order",
+    "iteration_limit_not_wall_clock_timeout": true,
+    "compatibility_test": "retain if computed residual minus engineering error allowance <= t_r",
+    "score": "distance lower bound only after both geometry and center certificates pass; otherwise zero",
+    "common_final_cap": "radial projection to nextafter(U_common,0), verify norm <= U_common else zero",
+    "no_ridge": true,
+    "rejection_statuses": [
+      "INPUT_INVALID",
+      "MODEL_INVALID",
+      "EMPTY_UNION",
+      "ZERO_OR_UNRESOLVED",
+      "SOLVER_REJECT",
+      "ZERO_PROPOSAL",
+      "GATE_REJECT"
+    ]
+  },
+  "implementation_manifest": null,
+  "frozen_before_E2_required": [
+    "deployed_method_source_hashes",
+    "model_hashes",
+    "dependency_and_BLAS_manifest",
+    "all_old_run_seed_collision_check",
+    "independent_normal_threshold_manifest",
+    "protocol_review_authorization"
+  ],
+  "new_trajectories_in_current_delivery": 0,
+  "seeds_used": [],
+  "new_communication_bytes": 0,
+  "input_sha256": {
+    "reviews/g1r_risk_constrained_recovery/protocol_v1.json": "fa37a8d28537439e241c3e509d4a52ee74bf25a4a631f5f05da5ba38b3527b8f",
+    "reviews/g1r_risk_constrained_recovery/09_exact_normal_risk_refinement.md": "6a5d409a62c17f1d7762fde19916303bd75ee7deac397ee09673d8d0f69fb6ae",
+    "reviews/g1r_risk_constrained_recovery/results/g1r_task3_normalrisk_20261114_r01/summary.json": "a6c5520415023de8ea71efded08470b34ee47b831cd03e9815dda48f4fb4a4d3",
+    "reviews/g1r_risk_constrained_recovery/results/g1r_task3_normalrisk_20261114_r01/normal_risk_moments.json": "92aeab6a25085605e72d4091d50dfdefc1fdde474e0b4de8654c0af0b2b5f18b",
+    "reviews/g1r_risk_constrained_recovery/results/g1r_replay_joint_20261114_r01/replay_joint_matrices.npz": "c02f7d0041fa568246d2788084fe2c78b9a5f912ab03166a0bb7830f3efa7c0a",
+    "reviews/g1r_risk_constrained_recovery/results/g1r_replay_joint_20261114_r01/frozen_plan.json": "567184a0c1df6ef9ae2d9987e8320ef0f8ee92871cae55b93ac199920a0e31e5",
+    "reviews/g1_retroactive_recovery/results/g1r_p0_verified_20261113_v1/config.json": "69833ec9501128a60e9fa3ff1dab8dfe483c25d538110cec8020f66422b34e77",
+    "simulation/engine.py": "05fb3f19d457e103d7c1665ccd1087ea4b27076d6a39b57ac7e0d16cfdb35c97",
+    "simulation/model.py": "5b674a4cc274fca42d52d00f15490d5e3952231df98146a90cb28a62b4a9aeca"
+  },
+  "documents": [
+    "10_protocol_v2.md",
+    "11_v2_solver_and_information_contract.md",
+    "12_v2_mathematical_and_fairness_audit.md"
+  ],
+  "not_yet_frozen": [
+    "deployment_source_hashes",
+    "BLAS_runtime_manifest",
+    "numeric_independent_calibration_thresholds"
+  ],
+  "mathematical_claim_scope": "standard conditional expectation, confidence inversion and convex optimization; no novelty or performance claim"
+}
