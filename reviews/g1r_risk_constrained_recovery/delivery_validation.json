@@ -1,0 +1,75 @@
+{
+  "date": "2026-11-14",
+  "baseline_commit": "494ee4a4c24ff0c2fd4c4aa81d7011f5549c0759",
+  "request_file_sha256": "429ac36e9ecf43f5cd77b4a3fe617c61c831c538b6f5ffe682795eab279f6d24",
+  "decision": "KEEP FOR DELIMITED REVIEW; literature gate OPEN; no E2/E3 or project Go",
+  "completed": [
+    "existing competitor full-text audit",
+    "mathematical proofs and counterexamples",
+    "saved-matrix deterministic feasibility",
+    "implementation contract and minimal plan"
+  ],
+  "open": [
+    "QUICKDET full text",
+    "PALM-DKF full text",
+    "novelty equivalence",
+    "risk budget and final method freeze",
+    "observed set coverage and acceptance",
+    "strong-baseline MSE"
+  ],
+  "protected_tracked_files": 912,
+  "all_protected_unchanged": true,
+  "report_sha256": {
+    "01_scope_and_competitors.md": "4b0962a7da45c0b63529c342c89d3bde80540ac30f8fe8d854fa67a86b0b04f7",
+    "02_mathematical_audit.md": "aa6d084b52327d5113fe70838860542fc48b7b1b834de5f923d6657ad70751f3",
+    "03_problem_and_implementation_contract.md": "5e2efe2a82d190780588bf8b091555e4872e8ad59b2c1d66cc9c61278a760a5d",
+    "04_minimal_validation_plan.md": "f85c5e73bb581f7b731425be98948c9ab73997597888ba6ca1083ef32f5150d0",
+    "EXECUTIVE_SUMMARY.md": "3dd9fe18035243817a04f235fd9c6778bab4e60af5663b64c269667303979544"
+  },
+  "formal_run_id": "g1r_risk_formal_20261114_r01",
+  "frozen_source_and_input_match": true,
+  "independent_review": {
+    "date": "2026-11-14",
+    "reviewer": "risk_set_math independent read-only delivery review",
+    "scope": [
+      "01_scope_and_competitors.md",
+      "03_problem_and_implementation_contract.md",
+      "04_minimal_validation_plan.md",
+      "EXECUTIVE_SUMMARY.md",
+      "code/check_formal_claims.py",
+      "results/g1r_risk_formal_20261114_r01/checks.json",
+      "results/g1r_risk_formal_20261114_r01/frozen_plan.json",
+      "Saved input NPZ array shapes, event records and P-window time coordinates"
+    ],
+    "result": "SCOPED_PASS",
+    "required_fixes": [],
+    "checks": {
+      "eligible_event_count_eight_and_exclusions": "PASS",
+      "common_strict_post_cache_window_211_to_216": "PASS",
+      "target_state_index_217_distinguished_from_decision_216": "PASS",
+      "saved_covariance_submatrix_matches_innovation_coordinates": "PASS",
+      "parameter_ellipse_radius_uses_two_dimensional_gaussian_error_and_eight_event_bonferroni": "PASS",
+      "radius_is_not_claimed_to_be_observed_union_diameter_or_empirical_replay_coverage": "PASS",
+      "chebyshev_counterfactual_radius_is_not_presented_as_true_MSE_improvement": "PASS",
+      "normal_expectation_budget_is_distinguished_from_pathwise_healthy_error_bound": "PASS",
+      "standard_loss_difference_optimizer_is_not_falsely_frozen_as_new_method": "PASS",
+      "new_E2_E3_plan_explicitly_not_frozen_or_executed": "PASS",
+      "counterexamples_and_reported_saved_result_numbers_agree": "PASS",
+      "no_new_simulation_or_detector_implementation_in_checked_code": "PASS"
+    },
+    "limitations": [
+      "No new estimator trajectory or Monte Carlo was run.",
+      "The full saved-matrix extraction program was read but not rerun during this review.",
+      "Literature theorem claims were checked for scoped wording, not independently verified against every PDF by this reviewer.",
+      "SCOPED_PASS is mathematical and evidence consistency, not method novelty, coverage performance or research approval.",
+      "The only written file in this delivery-review follow-up is this JSON."
+    ]
+  },
+  "new_trajectories": 0,
+  "seeds_used": [],
+  "new_pdf_downloads": 0,
+  "local_only_original_texts": [
+    "sources/prior_deghat2019_publisher.txt",
+    "sources/prior_tabatabaei2025_publisher.txt"
+  ]
+}

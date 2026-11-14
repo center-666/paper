@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-14",
+  "reviewer": "risk_set_math independent read-only delivery review",
+  "scope": [
+    "01_scope_and_competitors.md",
+    "03_problem_and_implementation_contract.md",
+    "04_minimal_validation_plan.md",
+    "EXECUTIVE_SUMMARY.md",
+    "code/check_formal_claims.py",
+    "results/g1r_risk_formal_20261114_r01/checks.json",
+    "results/g1r_risk_formal_20261114_r01/frozen_plan.json",
+    "Saved input NPZ array shapes, event records and P-window time coordinates"
+  ],
+  "result": "SCOPED_PASS",
+  "required_fixes": [],
+  "checks": {
+    "eligible_event_count_eight_and_exclusions": "PASS",
+    "common_strict_post_cache_window_211_to_216": "PASS",
+    "target_state_index_217_distinguished_from_decision_216": "PASS",
+    "saved_covariance_submatrix_matches_innovation_coordinates": "PASS",
+    "parameter_ellipse_radius_uses_two_dimensional_gaussian_error_and_eight_event_bonferroni": "PASS",
+    "radius_is_not_claimed_to_be_observed_union_diameter_or_empirical_replay_coverage": "PASS",
+    "chebyshev_counterfactual_radius_is_not_presented_as_true_MSE_improvement": "PASS",
+    "normal_expectation_budget_is_distinguished_from_pathwise_healthy_error_bound": "PASS",
+    "standard_loss_difference_optimizer_is_not_falsely_frozen_as_new_method": "PASS",
+    "new_E2_E3_plan_explicitly_not_frozen_or_executed": "PASS",
+    "counterexamples_and_reported_saved_result_numbers_agree": "PASS",
+    "no_new_simulation_or_detector_implementation_in_checked_code": "PASS"
+  },
+  "limitations": [
+    "No new estimator trajectory or Monte Carlo was run.",
+    "The full saved-matrix extraction program was read but not rerun during this review.",
+    "Literature theorem claims were checked for scoped wording, not independently verified against every PDF by this reviewer.",
+    "SCOPED_PASS is mathematical and evidence consistency, not method novelty, coverage performance or research approval.",
+    "The only written file in this delivery-review follow-up is this JSON."
+  ]
+}

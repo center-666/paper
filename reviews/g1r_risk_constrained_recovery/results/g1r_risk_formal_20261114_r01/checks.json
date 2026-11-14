@@ -1,0 +1,268 @@
+{
+  "counterexamples": {
+    "unconstrained_radius_used_after_cap": {
+      "D": [
+        10.0
+      ],
+      "cap": 1.0,
+      "unconstrained_radius": 0.0,
+      "feasible_center": 1.0,
+      "actual_residual": 9.0
+    },
+    "chebyshev_does_not_minimize_loss_increment": {
+      "D_interval": [
+        1.0,
+        10.0
+      ],
+      "true_delta": 1.0,
+      "healthy_error": 0.0,
+      "center": 5.5,
+      "uncorrected_squared_error": 1.0,
+      "corrected_squared_error": 20.25
+    },
+    "small_set_can_still_hurt_true_MSE": {
+      "D_interval": [
+        1.0,
+        1.2
+      ],
+      "true_delta": 1.0,
+      "healthy_error": -1.0,
+      "center": 1.1,
+      "radius": 0.1,
+      "uncorrected_squared_error": 0.0,
+      "corrected_squared_error": 1.21
+    },
+    "distance_to_set_is_not_distance_to_convex_hull": {
+      "D": [
+        -2.0,
+        2.0
+      ],
+      "distance_to_D": 2.0,
+      "distance_to_conv_D": 0.0,
+      "nonzero_uniformly_safe_action": false
+    },
+    "finite_second_moment_does_not_give_pathwise_error_bound": {
+      "probability_large_error": 0.01,
+      "large_error_magnitude": 10.0,
+      "second_moment": 1.0,
+      "sqrt_second_moment": 1.0,
+      "large_error_exceeds_sqrt_second_moment": true
+    }
+  },
+  "exact_1d_robust_checks": [
+    {
+      "D_interval": [
+        1.0,
+        10.0
+      ],
+      "B": 0.0,
+      "cap": 20.0,
+      "projection": 1.0,
+      "action": 1.0,
+      "exact_worst_loss_increment": -1.0
+    },
+    {
+      "D_interval": [
+        1.0,
+        1.2
+      ],
+      "B": 1.0,
+      "cap": 20.0,
+      "projection": 1.0,
+      "action": 0.0,
+      "exact_worst_loss_increment": 0.0
+    },
+    {
+      "D_interval": [
+        2.0,
+        3.0
+      ],
+      "B": 0.5,
+      "cap": 0.7,
+      "projection": 2.0,
+      "action": 0.7,
+      "exact_worst_loss_increment": -1.6099999999999997
+    },
+    {
+      "D_interval": [
+        -2.0,
+        2.0
+      ],
+      "B": 0.0,
+      "cap": 20.0,
+      "projection": 0.0,
+      "action": 0.0,
+      "exact_worst_loss_increment": 0.0
+    }
+  ],
+  "eligible_count": 8,
+  "saved_matrix_geometry": [
+    {
+      "edge": 0,
+      "r": 176,
+      "q": 184,
+      "rank_white": 2,
+      "white_min_singular": 0.0051378816253342665,
+      "effect_error_covariance": [
+        [
+          0.2417864636893692,
+          0.020512130256950097
+        ],
+        [
+          0.020512130256950097,
+          0.01671214017052645
+        ]
+      ],
+      "ellipsoid_outer_radius_at_family_beta": 1.5725890741200406,
+      "zero_noise_assumed": false
+    },
+    {
+      "edge": 3,
+      "r": 178,
+      "q": 186,
+      "rank_white": 2,
+      "white_min_singular": 0.007533363324201712,
+      "effect_error_covariance": [
+        [
+          0.25349645850687363,
+          0.02203472405645331
+        ],
+        [
+          0.02203472405645331,
+          0.016675642336250414
+        ]
+      ],
+      "ellipsoid_outer_radius_at_family_beta": 1.6105000074730957,
+      "zero_noise_assumed": false
+    },
+    {
+      "edge": 0,
+      "r": 184,
+      "q": 192,
+      "rank_white": 2,
+      "white_min_singular": 0.010946614271453247,
+      "effect_error_covariance": [
+        [
+          0.2053350918132316,
+          0.019633866277148887
+        ],
+        [
+          0.019633866277148887,
+          0.015616392872199783
+        ]
+      ],
+      "ellipsoid_outer_radius_at_family_beta": 1.450734550182538,
+      "zero_noise_assumed": false
+    },
+    {
+      "edge": 3,
+      "r": 186,
+      "q": 194,
+      "rank_white": 2,
+      "white_min_singular": 0.01651775609809714,
+      "effect_error_covariance": [
+        [
+          0.17875023990643849,
+          0.014851189741478964
+        ],
+        [
+          0.01485118974147897,
+          0.015215837652090454
+        ]
+      ],
+      "ellipsoid_outer_radius_at_family_beta": 1.3520191228858789,
+      "zero_noise_assumed": false
+    },
+    {
+      "edge": 0,
+      "r": 192,
+      "q": 200,
+      "rank_white": 2,
+      "white_min_singular": 0.027114147180877433,
+      "effect_error_covariance": [
+        [
+          0.2511170034617532,
+          0.02215094694220325
+        ],
+        [
+          0.022150946942203226,
+          0.017449366432652897
+        ]
+      ],
+      "ellipsoid_outer_radius_at_family_beta": 1.6031378005637713,
+      "zero_noise_assumed": false
+    },
+    {
+      "edge": 3,
+      "r": 194,
+      "q": 202,
+      "rank_white": 2,
+      "white_min_singular": 0.048038268460418636,
+      "effect_error_covariance": [
+        [
+          0.26627200085972264,
+          0.02900268114563919
+        ],
+        [
+          0.029002681145639198,
+          0.018083843908270506
+        ]
+      ],
+      "ellipsoid_outer_radius_at_family_beta": 1.6542966508716097,
+      "zero_noise_assumed": false
+    },
+    {
+      "edge": 0,
+      "r": 200,
+      "q": 208,
+      "rank_white": 2,
+      "white_min_singular": 0.0426372411863579,
+      "effect_error_covariance": [
+        [
+          0.15496676431415535,
+          0.0267473162350916
+        ],
+        [
+          0.026747316235091585,
+          0.01729067195755855
+        ]
+      ],
+      "ellipsoid_outer_radius_at_family_beta": 1.2743070138359636,
+      "zero_noise_assumed": false
+    },
+    {
+      "edge": 3,
+      "r": 202,
+      "q": 210,
+      "rank_white": 2,
+      "white_min_singular": 0.1388335643681148,
+      "effect_error_covariance": [
+        [
+          0.0928056749264211,
+          -0.0004314346207431284
+        ],
+        [
+          -0.00043143462074312754,
+          0.0008941252539007478
+        ]
+      ],
+      "ellipsoid_outer_radius_at_family_beta": 0.9705825149026416,
+      "zero_noise_assumed": false
+    }
+  ],
+  "parameter_family_chi_square_threshold": 10.15034763046766,
+  "normal_risk_budget_illustration_only": {
+    "alpha": 0.05,
+    "Pbar": 1.0,
+    "Rmax": 0.01,
+    "U": 0.022305055849266637,
+    "bound": 0.009999999999999846,
+    "not_a_frozen_method_parameter": true
+  },
+  "interpretation": [
+    "Radii are unconditional known-event estimation-error scales with a finite-family union bound.",
+    "No observed centers, event selection, union diameter, coverage, acceptance rate or MSE was evaluated.",
+    "No data were generated and no extra seed was used.",
+    "The exact 1D examples are mathematical counterexamples, not evidence of failure on the five-node model."
+  ]
+}
