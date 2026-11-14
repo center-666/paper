@@ -4,6 +4,8 @@
 
 **访问纠正：** 进一步检索旧归档发现，Si TIFS/TAES、Liang等曾经下载，旧路径位于当前不存在的E盘或 `C:\Users\26626\Zotero\storage\`。因此优先请求迁移已有PDF，而非重复下载。历史路径不等于当前已取得全文；详情见14号报告和 `sources/legacy_attachment_locations_20261114.json`。
 
+**后续已解决：** Si TAES、Liang TCyb及2504000063也已取得并精读正式PDF，不再请求下载。最新版本/DOI见 [资产纠正](../final_candidate_feasibility/01_source_inventory_correction.md)。
+
 ## 已解决：Si TIFS 2025，不要重复下载
 
 **Si, Kang; Li, Peng; Yuan, Zhi-Peng. “Secure and Privacy-Preserving Distributed Kalman Filtering for Sensor Networks With Event-Triggered Mechanism.” IEEE Transactions on Information Forensics and Security 20 (2025), 7438–7453. DOI: 10.1109/TIFS.2025.3588670.**
@@ -18,10 +20,10 @@
 1. **Mo and Murray, “Privacy Preserving Average Consensus,” IEEE Transactions on Automatic Control 62 (2017) 753–765. DOI: 10.1109/TAC.2016.2564339.**
    - **已解决，不需下载。** 取得作者公开34页稿并完成11号精读。来源：https://yilinmo.github.io/public/papers/tac2014privacy.pdf 。本地 `literature_review/distributed_security_privacy_20261114/mo_murray2017_author.pdf`。
 2. **Si, Li, Yuan, Jiang & Wei, “Privacy-Preserving Distributed Kalman Filtering Based on State Decomposition and Dynamic Mask,” IEEE Transactions on Aerospace and Electronic Systems 61 (2025) 5839–5852. DOI: 10.1109/TAES.2024.3524215.**
-   - 需要核对：状态分解、mask 是否跨时间复用、接收端是否知道 mask、MSE/隐私保证。
+   - 已补齐正式版14页并完成精读，Zotero268YWHMV，不再请求下载。
    - 下载入口：https://doi.org/10.1109/TAES.2024.3524215 。
 3. **Liang, Lam & Lin, “Secure Estimation With Privacy Protection,” IEEE Transactions on Cybernetics 53 (2023) 4947–4961. DOI: 10.1109/TCYB.2022.3151234.**
-   - 下载入口：https://doi.org/10.1109/TCYB.2022.3151234 。
+   - 已补齐正式版15页并完成精读，ZoteroV7IZMDNA，归行为隐私，不再请求下载。
 4. **Yu, Yang, Ding, Yang & Wang, “Dual-Protection Method Against Eavesdroppers for Distributed State Estimation,” IEEE Transactions on Signal and Information Processing over Networks 11 (2025) 427–438. DOI: 10.1109/TSIPN.2025.3563774.**
    - 需要核对其双层保护究竟是加密/掩码/通信调度，及是否处理攻击与隐私共存。
    - 下载入口：https://doi.org/10.1109/TSIPN.2025.3563774 。
@@ -43,8 +45,8 @@
 
 ## 用户需要做的事
 
-本轮已完成并暂停，当前不要求新增下载。Si TIFS已读完。若负责人以后批准继续直接排重，可优先迁移第2项Si TAES 2025和第3项Liang TCyb 2023；其余只是原清单，不要求全部下载。第8、9项已在Zotero，属于待读而非缺失，也不因此重启恢复研究。剩余原件不是把本轮延长为无限搜索的理由。
+本轮指定三份PDF均已补齐，不要求新增下载或迁移；唯一候选已完成数学审查，判定NO-GO。其他条目保留旧清单，不因此扩大研究或重启恢复。
 
-Si TAES与Liang旧原件目录为 `E:\硕士毕业论文\mypaper\reference paper\`，文件名分别是 `Privacy-Preserving_Distributed_Kalman_Filtering_Based_on_State_Decomposition_and_Dynamic_Mask.pdf`、`Secure_Estimation_With_Privacy_Protection.pdf`。若仍可访问旧电脑/磁盘，复制已有文件即可。
+Si TAES、Liang及2504000063的旧E盘记录已由新Zotero附件取代，历史记录不删除，不再要求访问旧磁盘。
 
-若已下载，告知Zotero条目/附件路径即可；否则通过已登录Edge下载到Zotero或被Git忽略的 `literature_review/distributed_security_privacy_20261114/`。不会将出版社全文随报告推送GitHub。
+PDF和完整提取文本只保留在本地忽略目录，不将出版社全文推送GitHub。当前没有新增下载请求。

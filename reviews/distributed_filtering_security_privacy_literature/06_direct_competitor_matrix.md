@@ -15,6 +15,16 @@
 |隐私保护与隐蔽攻击联合检测|Bahrami等2021 CDC，作者v1 §III、Lemma III.1、Theorem III.3|局部UIO、中央观测器、可信私有输出与拓扑切换|结构隐私和特定攻击可检测条件|不是同权限一跳缓存安全融合|需改变资源与架构，不能作为免费输入|
 |攻击后的重新接入/信任恢复|Güzey 2026；Nasiri 2026元数据；Yang 2019保护器|历史NIS、leaky trust、恢复滞回|检测延迟后有界跟踪/信任分离|已有恢复逻辑，需具体资源差异才可能新|不建议当前优先|
 
+## 指定三篇全文补齐后的竞争分类
+
+|文献|方法/保证定位|实质排重|
+|---|---|---|
+|Si TAES2025|p.5841(10)–(15)分解+mask；p.5843(19)–(29)全网二阶矩；Theorems1–5|隐私DKF直接竞争；矩传播不是新操作|
+|Liang TCyb2023|p.4949(1)–(2)行为/披露；pp.4952–4955 Theorems1–3|行为隐私及估计性能，不是邻居链路防御|
+|Liang IJNDI2025 / 2504000063|PDFp.3(3)–(4)创新分解；pp.5–8 Theorems1–2矩上界/MCC；p.10 Theorem3|保守交叉项膨胀已有，不给通用FDI保证|
+
+全文与版本见 [资产核查](../final_candidate_feasibility/01_source_inventory_correction.md)。唯一候选已由 [解析比较](../final_candidate_feasibility/04_comparison_with_ci_and_correlated_kf.md) 判定NO-GO，不因架构不同或对方证明疑点认新。
+
 ## 竞争原则
 
 复读限定：表中“已有保证”首先指原文提出的结果。13号报告分别标注Yang2014与Zhou2022的原式缺陷和可复核反例，不能继续将这些印刷结论当作已独立验证的通用协方差/Gaussian证书。

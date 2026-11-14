@@ -1,0 +1,47 @@
+{
+  "baseline_commit": "8189cc802f6e92ba16c5f4a8bfdb81e195441fef",
+  "date": "2026-11-14",
+  "decision": "NO-GO",
+  "required_documents": {
+    "01_source_inventory_correction.md": "d90a1be4ba422f7a41973d2320435f2c66e4ba2fc426d62f27d03088b7be7a17",
+    "02_information_set_and_assumptions.md": "72c9750132151557ed0504cf67a84c659cdbd6d4e56ccefed2c5bdd390dcf86f",
+    "03_exact_joint_moment_model.md": "199d9598427da1c83186bb77760e1cdec49e62220db4c24de6d4d4183b0b320a",
+    "04_comparison_with_ci_and_correlated_kf.md": "63962862744931248e694a1c06988cc8bc2b3213a6930718a9dcdb69d6b21709",
+    "05_nontrivial_gain_or_counterexample.md": "7d34cb0db6861766c87ebe7980f493e3df99eabe8d0c7aea6e915536815d8f20",
+    "06_final_go_no_go.md": "dfc17260ac7ffb89985c9abd8f01a8aaeb2db10d9b40f3dc12a9695f8051d5a5"
+  },
+  "requirements_reviewed": {
+    "three_original_pdfs_metadata_versions_content_and_dedup": "01 and sources/source_inventory.json; actual local PDF hashes verified",
+    "A_B_C_D_online_config_forbidden_extra_information": "02 sections2-4; no unsent values or true labels used",
+    "cache_joint_covariance_means_and_all_cross_moments": "03 M1-M6",
+    "actual_Yang_update_and_feedback": "03 M7-M12 and M18-M19; independently checked against read-only engine.py",
+    "privacy_uncertainty_and_bounded_attack_finite_risk": "03 M13-M16; conditional on valid deployable bounds, no independence assumed",
+    "nonzero_weight_and_all_five_baselines": "04 sections2-4",
+    "strict_CI_comparison_for_parameter_region": "04 C5-C9; standard structured fusion, not new mechanism",
+    "counterexample_and_redundant_cache_information": "05 E1-E7; independent review and exact polynomial expansion",
+    "stopping_rules_and_unique_decision": "06 NO-GO, no new direction",
+    "protected_experiments": "380 protected source/experiment/report files byte hashes unchanged",
+    "git_scope": "Explicit file whitelist checked before commit; no PDFs or shared simulation files staged"
+  },
+  "checks": {
+    "required_documents": true,
+    "local_links": true,
+    "utf8_and_chinese_content": true,
+    "json_parse": true,
+    "source_pdf_hashes": true,
+    "pdf_ignore": true,
+    "independent_math_review": true,
+    "exact_polynomial_identities": true
+  },
+  "protected_file_count": 380,
+  "source_asset_count": 3,
+  "pdf_downloads_by_agent": 0,
+  "simulations": 0,
+  "algorithm_implementations": 0,
+  "encoding_correction": "Prior committed literature README and executive summary had lost Chinese text; restored as Chinese with final-decision pointers. No experimental result changed.",
+  "scope_limits": [
+    "Scalar fixed-weight marginal-envelope minimax is not every fully specified Yang reachable model",
+    "Conditional online risk requires conditional moment bounds",
+    "No claim that all security/privacy research opportunities are exhausted"
+  ]
+}

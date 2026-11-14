@@ -37,9 +37,19 @@
 |Moradi et al., *Privacy-Preserving Distributed Kalman Filtering*, IEEE TSP 70 (2022) 3074–3089, DOI 10.1109/TSP.2022.3182590|`literature_review/distributed_security_privacy_20261114/moradi2022_accepted.pdf`|FULLTEXT / ACCEPTED-VERSION，NVA公开存档，16页；已完成11号补读|
 |Si, Li & Yuan, *Secure and Privacy-Preserving Distributed Kalman Filtering for Sensor Networks With Event-Triggered Mechanism*, IEEE TIFS 20 (2025) 7438–7453, DOI 10.1109/TIFS.2025.3588670|Zotero `FYH5HRBR`，本地路径/哈希见 `sources/si2025_tifs_access.json`|FULLTEXT / PUBLISHER VERSION，16页，已完成15号公式级精读|
 
+### 指定三篇正式版已补齐（2026-11-14）
+
+|文献|DOI及分类|证据|
+|---|---|---|
+|Si TAES2025|10.1109/TAES.2024.3524215；分布式隐私DKF|正式版14页，Zotero268YWHMV|
+|Shi Liang/Lam/Lin TCyb2023|10.1109/TCYB.2022.3151234；行为隐私与估计性能|正式版15页，ZoteroV7IZMDNA|
+|Yan Liang等IJNDI2025|10.53941/ijndi.2025.100004；创新分解隐私熵滤波，即2504000063|正式版13页，Zotero5L98TQ8G|
+
+已全文精读，版本/哈希/公式见 [资产纠正](../final_candidate_feasibility/01_source_inventory_correction.md)。按DOI去重，PDF不上传GitHub。
+
 ## 3. 已知缺失全文
 
-Mo–Murray与Moradi作者读本、Si TIFS正式版均已补齐，不要重复下载。Si TAES 2025、Liang TCyb 2023等仍未确认当前可访问的完整读本，不能以摘要代替公式级证据。准确状态见 `09_missing_fulltext_requests.md`。早期补读新增两份作者PDF；本次Si补读由用户提供，代理新增PDF下载0，未更改Zotero数据库。
+Mo–Murray、Moradi、Si TIFS、Si TAES、Liang TCyb及旧2504000063均已补齐。其余缺失原件仍不以摘要代替。本轮三份由用户提供，代理下载PDF0，未更改Zotero数据库。
 
 补充核查：项目中已有的 `mo2015.pdf` 实际是 Mo, Weerakkody & Sinopoli 的 *Physical Authentication of Control Systems: Designing watermarked control inputs to detect counterfeit sensor outputs*，属于主动水印/认证，不是 Mo & Murray 2017 的隐私共识；`mo2016.pdf` 是 Mo & Sinopoli 的 *On the Performance Degradation of Cyber-Physical Systems under Stealthy Integrity Attacks*，属于攻击损伤分析。二者已在主动攻击材料中作为相关背景区分，不能替代缺失的隐私保护原文。
 
@@ -49,13 +59,13 @@ Mo–Murray与Moradi作者读本、Si TIFS正式版均已补齐，不要重复�
 
 ## 5. 指定数字文件与旧库迁移核查
 
-旧 `local_pdf_screen.json` 记录了Si、Liang等已下载PDF，但路径位于当前不可访问的E盘及旧用户Zotero。具体位置见 `sources/legacy_attachment_locations_20261114.json`；历史记录不计为全文已读。**Si TIFS已由新附件FYH5HRBR解决**，其余应优先迁移已有附件，避免重复下载。
+旧 `local_pdf_screen.json` 的E盘/旧Zotero访问失败保留为历史。Si TIFS、Si TAES、Liang TCyb及2504000063现已由新附件解决，不再要求迁移；以最新资产纠正中的版本和哈希为准。
 
 |任务书材料|身份与本轮读本|证据|
 |---|---|---|
 |`2510.12549v2.pdf`|Ke, Wang & Zhang，IEEE TAC 71(7) (2026) 4633–4648，DOI 10.1109/TAC.2026.3660110；实际读取arXiv v2公开HTML|ONLINE_AUTHOR_FULLTEXT_METHOD_AND_THEOREM_READ；出版社版未逐式比版|
 |*Privacy-Preserving Stealthy Attack Detection in Multi-Agent Control Systems*|Bahrami & Jafarnejadsani，CDC 2021，4194–4199，DOI 10.1109/CDC45484.2021.9683427；实际读取arXiv:2109.14094v1 HTML|ONLINE_AUTHOR_FULLTEXT_METHOD_AND_THEOREM_READ|
 |`2405.16905v2.pdf`|Wang作者稿，当前已有|不重复获取|
-|`2504000063.pdf`|旧记录有该文件，当前无法访问；不能按数字文件名确定身份|UNIDENTIFIED，不猜标题或DOI|
+|`2504000063.pdf`|Liang等IJNDI2025创新分解隐私熵滤波，DOI10.53941/ijndi.2025.100004|FULLTEXT / PUBLISHER VERSION，13页|
 
 本轮新增PDF下载0。两篇在线读本不再计作额外PDF资产，元数据、版本及阅读链接见 `sources/assigned_online_fulltexts_20261114.json`，方法对照见14号报告。
