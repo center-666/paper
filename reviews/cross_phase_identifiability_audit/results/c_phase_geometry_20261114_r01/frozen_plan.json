@@ -1,0 +1,39 @@
+{
+  "run_id": "c_phase_geometry_20261114_r01",
+  "baseline_commit": "bee4bbf928602a4e233ef7413f79d5a7b78aac9a",
+  "python": "3.14.9 | packaged by Anaconda, Inc. | (main, Oct 23 2026, 01:07:17) [MSC v.1942 64 bit (AMD64)]",
+  "python_executable": "C:\\Users\\zhongxin\\shixidoc\\mypaper\\.venv\\Scripts\\python.exe",
+  "numpy_version": "2.5.4",
+  "scope": "deterministic matrix geometry only; no generated trajectories, no random numbers, no new estimator",
+  "models": [
+    "existing_full_heterogeneous",
+    "existing_rank_one_pressure"
+  ],
+  "schedules": [
+    "gap8 phase1 original G1-R",
+    "existing irregular phase1 G1 pressure"
+  ],
+  "main_events": "all 10 directed edges; first actual sender transmission >=200; q=next sender transmission; d=q+8",
+  "frozen_candidates": "all 10 original gap8 candidate events at d=216; right censoring retained",
+  "pairwise_extension": "45 full/gap8 frozen candidate pairs in SAME fixed edge0 C200:207 / node1 P209:216 coordinates; kernel target and subspace audit only",
+  "covariance_internal_check": "two-time scalar analytic identity including current measurement-noise feedback; no random draw",
+  "ranks": {
+    "absolute": 1e-10,
+    "relative": 1e-10
+  },
+  "algebra_relative_acceptance": 1e-08,
+  "covariance_ridge": 0,
+  "Fisher_label": "O' Sigma^-1 O is Fisher only for deterministic exogenous FDI Gaussian location model; Replay design geometry only",
+  "random_seed": null,
+  "new_simulations": 0,
+  "source_hashes": {
+    "reviews\\cross_phase_identifiability_audit\\code\\phase_matrix_audit.py": "1e4f78d2f56f5f4a541f17a94e32edc2b9403ef915a2055a12974aed95a42fa2",
+    "reviews\\g1_retroactive_recovery\\results\\g1r_p0_verified_20261113_v1\\config.json": "69833ec9501128a60e9fa3ff1dab8dfe483c25d538110cec8020f66422b34e77",
+    "simulation\\partial_observability_probe_plan.json": "10f3fcf7ee17e1bae76ba7ba53a9aa82fc173e786be8b0e3093529d75cb6d876",
+    "reviews\\g1_retroactive_recovery\\results\\g1r_final_replay_20261113_v1\\frozen_plan.json": "a365dfb2ebf9887d206c9cfee1997cd5c87978b1c9d69d83e447fb6a98cf3446",
+    "simulation\\model.py": "5b674a4cc274fca42d52d00f15490d5e3952231df98146a90cb28a62b4a9aeca",
+    "simulation\\engine.py": "05fb3f19d457e103d7c1665ccd1087ea4b27076d6a39b57ac7e0d16cfdb35c97",
+    "reviews\\g1_retroactive_recovery\\code\\compare_deghat_outputs.py": "4fbf23c17760d6daa115ada113853dc5f943067757c57ecf897729626e578451",
+    "reviews\\g1_retroactive_recovery\\results\\g1r_p0_verified_20261113_v1\\model_response_and_fits.npz": "18f4b3c532d7f335ab3319d8e6cd2b717b30de560238f8accf77d7ce682afb12"
+  }
+}

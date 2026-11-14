@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-14",
+  "reviewer": "independent cross_phase_math_audit agent",
+  "scope": "Read actual code, four written reports, summary and CSV results. No rerun of main matrix audit, no Monte Carlo, no new algorithm, and no edits to audited code.",
+  "code": "code/phase_matrix_audit.py",
+  "code_sha256": "1e4f78d2f56f5f4a541f17a94e32edc2b9403ef915a2055a12974aed95a42fa2",
+  "run_id": "c_phase_geometry_20261114_r01",
+  "result": "SCOPED_PASS",
+  "required_code_fixes": [],
+  "checks": {
+    "initial_common_state_covariance": "PASS",
+    "receive_reset_before_observation_and_state_update": "PASS",
+    "shared_process_noise_in_node_and_cache_errors": "PASS",
+    "current_measurement_noise_feedback_cross_covariance": "PASS",
+    "healthy_covariance_without_sampling_or_ridge": "PASS",
+    "age_zero_injection_and_direct_cache_response": "PASS",
+    "raw_and_whitened_rank_and_target_kernel_test": "PASS",
+    "same_observation_coordinates_for_pairwise_hypotheses": "PASS",
+    "fixed_FDI_vs_endogenous_Replay_information_labels": "PASS",
+    "no_simulate_generate_data_or_random_calls_from_main": "PASS",
+    "written_claims_match_scoped_results": "PASS"
+  },
+  "independently_read_result_counts": {
+    "geometry_rows": 60,
+    "main_rows": 40,
+    "frozen_candidate_rows": 20,
+    "pairwise_rows": 45,
+    "all_pairwise_P_rank4": true,
+    "all_pairwise_P_target_d_identifiable": true,
+    "all_joint_rank_exceeds_both_false": true,
+    "all_referenced_matrix_files_exist": true,
+    "npz_count": 61
+  },
+  "limitations": [
+    "Pairwise C/P names refer to fixed reference-event windows, not each candidate's individual lifecycle phases.",
+    "No detection power, localization accuracy, MSE or global false alarm performance was tested.",
+    "Full-rank known-event observation does not by itself exclude improved noisy unknown-event discrimination.",
+    "Known-event unconditional GLS estimation-error covariance remains valid when K O = I, even if Replay amplitude and healthy noise are correlated; it is not a selected-event conditional posterior.",
+    "The scoped gate failure is not a theorem excluding every Yang network, window or same-information feature representation."
+  ],
+  "publication_check": "Ensure referenced NPZ assets are explicitly included in the final Git whitelist if global ignore rules exclude them."
+}
