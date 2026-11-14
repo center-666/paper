@@ -22,22 +22,26 @@
     {"key":"Ye2025","file":"reviews/g5_direct_competitor_audit/sources/ye2025_uvic_authorhosted.pdf","status":"FULLTEXT_LOCAL_READ_PUBLISHER_LAYOUT"},
     {"key":"Wang2025","file":"reviews/g5_direct_competitor_audit/sources/wang_automatica_2025_arxiv2405.16905v2.pdf","status":"FULLTEXT_LOCAL_READ_AUTHOR_VERSION"},
     {"key":"MoMurray2017","file":"literature_review/distributed_security_privacy_20261114/mo_murray2017_author.pdf","status":"FULLTEXT_LOCAL_READ_AUTHOR_VERSION","doi":"10.1109/TAC.2016.2564339","pages":34,"audit":"11_mo_moradi_fulltext_audit.md","access_record":"sources/mo_murray2017_access.json"},
-    {"key":"Moradi2022","file":"literature_review/distributed_security_privacy_20261114/moradi2022_accepted.pdf","status":"FULLTEXT_LOCAL_READ_ACCEPTED_VERSION","doi":"10.1109/TSP.2022.3182590","pages":16,"audit":"11_mo_moradi_fulltext_audit.md","access_record":"sources/moradi2022_access.json"}
+    {"key":"Moradi2022","file":"literature_review/distributed_security_privacy_20261114/moradi2022_accepted.pdf","status":"FULLTEXT_LOCAL_READ_ACCEPTED_VERSION","doi":"10.1109/TSP.2022.3182590","pages":16,"audit":"11_mo_moradi_fulltext_audit.md","access_record":"sources/moradi2022_access.json"},
+    {"key":"Si2025TIFS","file":"C:/Users/zhongxin/Zotero/storage/FYH5HRBR/Si 等 - 2025 - Secure and Privacy-Preserving Distributed Kalman Filtering for Sensor Networks With Event-Triggered.pdf","status":"FULLTEXT_READ_ALL_16_PAGES_WITH_FORMULA_AND_PROOF_AUDIT","version":"PUBLISHER_VERSION_VERIFIED_FROM_FIRST_PAGE","doi":"10.1109/TIFS.2025.3588670","pages":16,"audit":"15_si2025_tifs_formula_audit.md","access_record":"sources/si2025_tifs_access.json"}
   ],
   "pending_fulltext": [
-    {"key":"Si2025TIFS","doi":"10.1109/TIFS.2025.3588670","status":"METADATA_ONLY_FULLTEXT_MISSING","metadata_record":"sources/si2025_tifs_metadata.json","priority":1}
+    {"key":"Si2025TAES","doi":"10.1109/TAES.2024.3524215","status":"LEGACY_ATTACHMENT_NOT_CURRENTLY_ACCESSIBLE","request_deferred":true,"note":"No new download requested in this completed round; see 09 and historical attachment record."},
+    {"key":"Liang2023TCYB","doi":"10.1109/TCYB.2022.3151234","status":"LEGACY_ATTACHMENT_NOT_CURRENTLY_ACCESSIBLE","request_deferred":true,"note":"Distinct from Liang-Liu 2023 attack detection; no new download requested this round."}
   ],
   "followup_audits": [
-    {"keys":["Yang2014","Yang2019","Zhou2022"],"report":"13_yang_zhou_information_and_proof_audit.md","check_code":"checks/source_formula_checks.py","results":"results/20261114_r02/claims.json","scope":"Printed formula consistency and actual information permissions; not a new estimator or performance experiment","new_pdf_downloads":0}
+    {"keys":["Yang2014","Yang2019","Zhou2022"],"report":"13_yang_zhou_information_and_proof_audit.md","check_code":"checks/source_formula_checks.py","results":"results/20261114_r02/claims.json","scope":"Printed formula consistency and actual information permissions; not a new estimator or performance experiment","new_pdf_downloads":0},
+    {"keys":["Si2025TIFS"],"report":"15_si2025_tifs_formula_audit.md","check_code":"checks/si_tifs_bound_check.py","results":"results/20261114_si_tifs_r01/claims.json","scope":"Full publisher PDF, protocol timing, privacy/attack resources, all five theorems, and exact check of printed bound. No new estimator or simulation.","new_pdf_downloads":0}
   ],
   "online_fulltexts": [
     {"key":"Ke2026","doi":"10.1109/TAC.2026.3660110","url":"https://arxiv.org/html/2510.12549v2","version":"arXiv v2, 2026-01-10","status":"ONLINE_AUTHOR_FULLTEXT_METHOD_AND_THEOREM_READ","audit":"14_assigned_papers_and_transfer_gaps.md"},
     {"key":"Bahrami2021","doi":"10.1109/CDC45484.2021.9683427","url":"https://arxiv.org/html/2109.14094v1","version":"arXiv v1, 2021-09-28","status":"ONLINE_AUTHOR_FULLTEXT_METHOD_AND_THEOREM_READ","audit":"14_assigned_papers_and_transfer_gaps.md"}
   ],
   "historical_attachment_status": {
-    "record":"sources/legacy_attachment_locations_20261114.json",
-    "evidence":"Historical inventory only; files unavailable in current environment",
-    "request":"Transfer existing Si/Liang attachments before another download"
+    "record": "sources/legacy_attachment_locations_20261114.json",
+    "evidence": "Historical inventory only; files unavailable in current environment",
+    "request": "No new downloads requested this completed round. If separately authorized, transfer remaining TAES/Liang originals.",
+    "current_update": "Si TIFS resolved by user Zotero FYH5HRBR; other legacy attachment paths remain historical."
   },
   "unidentified_requested_files": [
     {"name":"2504000063.pdf","status":"HISTORICAL_PATH_FOUND_CURRENT_FILE_UNAVAILABLE_IDENTITY_UNVERIFIED"}

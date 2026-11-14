@@ -96,7 +96,9 @@ w_i(k)=\phi^kv_i(k)-\phi^{k-1}v_i(k-1),\quad 0<\phi<1.
 |从未知合法噪声中辨认恶意分量|两篇未提供当前权限下通用解|必须证明可辨识，不能靠增加窗口次数解决|
 |缓存接收风险有界且非零融合优于强基线|当前没有同权限方法或证据|OPEN，不批准实现新防御|
 
-## 5. 只新增一项最直接全文请求
+## 5. 当时新增的直接全文请求（现已解决）
+
+**后续状态2026-11-14：** 下列缺失判断是本报告形成时的访问记录；Si TIFS现已从Zotero新附件FYH5HRBR取得并精读，见15号。保留当时记录，不再要求重复下载。
 
 Si, Li & Yuan, *Secure and Privacy-Preserving Distributed Kalman Filtering for Sensor Networks With Event-Triggered Mechanism*, IEEE TIFS 20 (2025), 7438–7453，DOI **10.1109/TIFS.2025.3588670**，IEEE文献号 **11079751**。
 

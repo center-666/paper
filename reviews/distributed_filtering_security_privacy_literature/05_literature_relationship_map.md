@@ -22,7 +22,9 @@ graph TD
   MD -.-> F[条件候选F: 缓存融合风险 未立项]
   P[Wang 2025: 隐私协方差/互信息/GLRT] -.-> F
   YP[Ye 2025: false-noise攻击检测] -.-> F
-  SI[Si 2025 TIFS: 元数据已核 全文待补] -.-> F
+  SI[Si 2025 TIFS: 动态mask/事件保持/加密哈希] -.-> F
+  MM -->|Si原文参考37| SI
+  MD -->|Si原文参考21| SI
   KE[Ke 2026 TAC: 1bit静态参数估计与Fisher隐私] -.-> F
   BA[Bahrami 2021 CDC: 中央局部观测器与拓扑切换] -.-> F
   T -.-> F
@@ -43,6 +45,7 @@ graph TD
 4. 事件触发邻居残差/UIO：Qiu 2019、Liang-Liu 2023已有相近结构。
 5. 历史数据攻击：Huang 2024、Xing 2025、Ge 2026已有；历史污染传播恒等式属于标准线性系统理论。
 6. 协方差交集、膨胀和标准 Kalman correlated-noise 更新：属于成熟工具，不能单独包装。
+7. 事件保持+动态mask+安全DKF的组合：Si TIFS 2025已有；15号给实际协议/定理范围，不能再以标题组合立题。
 
 ## 4. 目前空白的证据状态
 

@@ -1,0 +1,133 @@
+{
+  "run_id": "20261114_si_tifs_r01",
+  "source": {
+    "doi": "10.1109/TIFS.2025.3588670",
+    "printed_page": 7445,
+    "formulas": [
+      "49",
+      "50",
+      "52",
+      "53"
+    ]
+  },
+  "scope": "Exact counterexample to printed universal second-moment bound; not Monte Carlo or new defense",
+  "parameters": {
+    "nodes": 2,
+    "A": "1/2",
+    "H": [
+      0,
+      0
+    ],
+    "Q_common": "1/10",
+    "R": [
+      1,
+      1
+    ],
+    "initial_error_second_moment": [
+      [
+        "1",
+        "0"
+      ],
+      [
+        "0",
+        "1"
+      ]
+    ],
+    "L": [
+      [
+        "1/4",
+        "-1/4"
+      ],
+      [
+        "-1/4",
+        "1/4"
+      ]
+    ],
+    "mask_identical": {
+      "phi": "1/10",
+      "gamma": 1,
+      "sigma": 1,
+      "delta": 1
+    },
+    "gain": 0,
+    "mask_additive_response": 0,
+    "consensus_updates": 1,
+    "all_a": [
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1"
+    ]
+  },
+  "G": [
+    [
+      "29/40",
+      "11/40"
+    ],
+    [
+      "11/40",
+      "29/40"
+    ]
+  ],
+  "prediction_second_moment": [
+    [
+      "7/20",
+      "1/10"
+    ],
+    [
+      "1/10",
+      "7/20"
+    ]
+  ],
+  "actual_second_moment": [
+    [
+      "801/3200",
+      "639/3200"
+    ],
+    [
+      "639/3200",
+      "801/3200"
+    ]
+  ],
+  "printed_b1": "-1",
+  "printed_upper_bound": [
+    [
+      "-801/3200",
+      "-639/3200"
+    ],
+    [
+      "-639/3200",
+      "-801/3200"
+    ]
+  ],
+  "test_vector": [
+    1,
+    1
+  ],
+  "actual_quadratic_form": "9/10",
+  "printed_bound_quadratic_form": "-9/10",
+  "bound_valid": false,
+  "assumptions_checked_analytically": [
+    "A stable and H=0 imply detectability",
+    "L connected, undirected, with positive edge weight",
+    "Initial error second moment positive definite",
+    "Q and R positive; common process noise modeled jointly",
+    "Identical nonzero gamma and positive phi/sigma/delta allowed",
+    "L times the all-ones mask is zero, so B_n=0",
+    "H=0 implies K=Theta=0 regardless of saturation",
+    "All a_m=1 meet the printed positivity requirement"
+  ],
+  "does_not_claim": [
+    "All paper simulations invalid",
+    "No corrected upper bound exists",
+    "Any new fusion mechanism or empirical advantage"
+  ],
+  "script_sha256": "bd1b454200237913d780b4753aa3a0fe77aa5f86f130a651fe9a8f9584cee696",
+  "seed": null
+}

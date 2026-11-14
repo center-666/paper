@@ -4,6 +4,8 @@
 
 ## 1. 缺失的首先是当前访问，不一定是用户尚未下载
 
+**后续状态：** Si TIFS已由用户新放入Zotero的FYH5HRBR附件解决，15号已完成正式全文精读。以下旧路径/访问失败保留为历史证据，不再代表该篇当前状态。
+
 旧归档 `references/interval_followup_20261012/local_pdf_screen.json` 记录了Si、Liang、Yu等PDF的历史路径及字节数。当前仅有C、D盘，记录中的E盘和旧Zotero用户目录不可访问；当前项目压缩包也未找到这些PDF。
 
 完整核查见 [`sources/legacy_attachment_locations_20261114.json`](sources/legacy_attachment_locations_20261114.json)。其中21条路径包含重复存放位置，不能算21篇新文献，也不能把旧清单中的 `exit_code=0` 当作本轮已经读到全文。

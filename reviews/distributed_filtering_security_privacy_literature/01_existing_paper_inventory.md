@@ -35,11 +35,11 @@
 |Wan et al., *Privacy-Preserving Distributed Resilient Event-Triggered Platoon Control Under Hybrid Cyber Attacks*|项目检索记录有元数据，未找到本地完整 PDF|METADATA/摘要级|
 |Mo & Murray, *Privacy Preserving Average Consensus*, IEEE TAC 62(2) (2017) 753–765, DOI 10.1109/TAC.2016.2564339|`literature_review/distributed_security_privacy_20261114/mo_murray2017_author.pdf`|FULLTEXT / AUTHOR-VERSION，2016-08-25作者稿，34页；已完成11号补读|
 |Moradi et al., *Privacy-Preserving Distributed Kalman Filtering*, IEEE TSP 70 (2022) 3074–3089, DOI 10.1109/TSP.2022.3182590|`literature_review/distributed_security_privacy_20261114/moradi2022_accepted.pdf`|FULLTEXT / ACCEPTED-VERSION，NVA公开存档，16页；已完成11号补读|
-|Si, Li & Yuan, *Secure and Privacy-Preserving Distributed Kalman Filtering for Sensor Networks With Event-Triggered Mechanism*, IEEE TIFS 20 (2025) 7438–7453, DOI 10.1109/TIFS.2025.3588670|无本地PDF；`sources/si2025_tifs_metadata.json`登记出版社元数据|METADATA ONLY，不作算法/定理覆盖判断|
+|Si, Li & Yuan, *Secure and Privacy-Preserving Distributed Kalman Filtering for Sensor Networks With Event-Triggered Mechanism*, IEEE TIFS 20 (2025) 7438–7453, DOI 10.1109/TIFS.2025.3588670|Zotero `FYH5HRBR`，本地路径/哈希见 `sources/si2025_tifs_access.json`|FULLTEXT / PUBLISHER VERSION，16页，已完成15号公式级精读|
 
 ## 3. 已知缺失全文
 
-Mo–Murray与Moradi的作者读本现已补齐，不要重复下载。仍未确认Si TIFS 2025、Si TAES 2025、Liang TCyb 2023等完整读本；它们不能以摘要结论代替公式级证据。准确请求见 `09_missing_fulltext_requests.md`。本次只新增两份本地全文，未更改Zotero数据库。
+Mo–Murray与Moradi作者读本、Si TIFS正式版均已补齐，不要重复下载。Si TAES 2025、Liang TCyb 2023等仍未确认当前可访问的完整读本，不能以摘要代替公式级证据。准确状态见 `09_missing_fulltext_requests.md`。早期补读新增两份作者PDF；本次Si补读由用户提供，代理新增PDF下载0，未更改Zotero数据库。
 
 补充核查：项目中已有的 `mo2015.pdf` 实际是 Mo, Weerakkody & Sinopoli 的 *Physical Authentication of Control Systems: Designing watermarked control inputs to detect counterfeit sensor outputs*，属于主动水印/认证，不是 Mo & Murray 2017 的隐私共识；`mo2016.pdf` 是 Mo & Sinopoli 的 *On the Performance Degradation of Cyber-Physical Systems under Stealthy Integrity Attacks*，属于攻击损伤分析。二者已在主动攻击材料中作为相关背景区分，不能替代缺失的隐私保护原文。
 
@@ -49,7 +49,7 @@ Mo–Murray与Moradi的作者读本现已补齐，不要重复下载。仍未确
 
 ## 5. 指定数字文件与旧库迁移核查
 
-旧 `local_pdf_screen.json` 记录了Si、Liang等已下载PDF，但路径位于当前不可访问的E盘及旧用户Zotero。具体位置见 `sources/legacy_attachment_locations_20261114.json`；这仅证明历史记录存在，不能计为当前全文已读。应优先迁移已有附件，避免再次要求用户下载。
+旧 `local_pdf_screen.json` 记录了Si、Liang等已下载PDF，但路径位于当前不可访问的E盘及旧用户Zotero。具体位置见 `sources/legacy_attachment_locations_20261114.json`；历史记录不计为全文已读。**Si TIFS已由新附件FYH5HRBR解决**，其余应优先迁移已有附件，避免重复下载。
 
 |任务书材料|身份与本轮读本|证据|
 |---|---|---|
