@@ -1,0 +1,85 @@
+{
+  "run_id": "g1r_replay_joint_20261114_r01",
+  "status": "COMPLETE_TASK1_TASK2",
+  "J0_actual_cached": 0.25768080390191433,
+  "P0_actual_cached": [
+    [
+      0.2025834578297518,
+      0.02013483384152866
+    ],
+    [
+      0.02013483384152866,
+      0.05509734607216253
+    ]
+  ],
+  "nominal_instantaneous_reported_J0": 0.14983088079204882,
+  "caps_by_budget_ratio": {
+    "0.01": 0.011322552637530849,
+    "0.005": 0.005668317739900873,
+    "0.02": 0.02258919040964075,
+    "0.05": 0.0560617188040385
+  },
+  "chi_square_parameter_threshold": 11.536641991587517,
+  "chi_square_compatibility_threshold": 26.498086492638055,
+  "main_case": {
+    "edge": 0,
+    "sender": 0,
+    "r": 200,
+    "q": 208,
+    "source": 136,
+    "age": 64,
+    "J0": 0.25768080390191433,
+    "theta_rms": 48.439912282314836,
+    "effect_rms": 2.9301430450955492,
+    "Ja": 8.856093823180371,
+    "MSE_excess_vs_healthy": 8.598413019278457,
+    "health_effect_cross_MSE_term": 0.012674754556628188,
+    "theta_eta_covariance_norm": 0.04982001179573104,
+    "max_theta_eta_canonical_correlation": 0.06697489147453202,
+    "independence_omission_relative_Szz": 0.0009890974042184638,
+    "unbounded_known_h_soft_impact_true_MSE_reference": 0.2912759201164907,
+    "unbounded_known_h_true_state_MMSE_reference": 0.25848972903050665,
+    "objective_gap": 0.03278619108598407,
+    "Sigma_zz_min_eigenvalue": 0.05202061344993864
+  },
+  "main_budget": {
+    "edge": 0,
+    "r": 200,
+    "age": 64,
+    "R_over_J0": 0.01,
+    "R": 0.0025768080390191433,
+    "U": 0.011322552637530849,
+    "U_over_effect_rms": 0.0038641637842502094,
+    "Ja": 8.856093823180371,
+    "any_capped_action_relative_gain_upper": 0.007594973576181885,
+    "excluded_at_one_percent": true
+  },
+  "pre_E2_budget_decision": "BUDGET_INFEASIBLE_STOP",
+  "matrix_file_sha256": "c02f7d0041fa568246d2788084fe2c78b9a5f912ab03166a0bb7830f3efa7c0a",
+  "checks": {
+    "coordinate_loading_max_errors": {
+      "eta": 3.127236729567924e-15,
+      "e0": 7.842942109400324e-15,
+      "x_target": 0.0,
+      "sender_snapshot_coefficients": 1.4210854715202004e-14
+    },
+    "archived_healthy_innovation_covariance_absolute_error": 1.3877787807814457e-17,
+    "posterior_covariance_relative_identity_max": 4.564418432186732e-16,
+    "scalar_correlation_sign_test": {
+      "theta_eta": -0.125,
+      "theta_z": -0.075,
+      "z_variance": 1.545,
+      "incorrect_independent_theta_z": 0.05,
+      "conditional_mean_coefficient_sign_would_flip": true
+    },
+    "cases": 24,
+    "legal_sources": true,
+    "all_joint_covariances_PSD": true,
+    "no_ridge": true,
+    "new_trajectories": 0
+  },
+  "elapsed_seconds": 0.3505384999734815,
+  "new_trajectories": 0,
+  "seeds_used": [],
+  "additional_communication_bytes": 0
+}

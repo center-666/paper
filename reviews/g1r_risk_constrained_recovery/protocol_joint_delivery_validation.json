@@ -1,0 +1,118 @@
+{
+  "date": "2026-11-14",
+  "baseline_commit": "dea5bab9d02ab961113de1815f1d84b1785ea44e",
+  "request_sha256": "ec733a538c09d88083d98a0d3ebfd547209b7a087f8481d9deb4264077624412",
+  "current_delivery": "Tasks 1 and 2 specified by final paragraph; E2/E3 gated and not executed",
+  "requirements": {
+    "freeze_protocol": "06_experiment_preregistration.md and protocol_v1.json, hashes frozen before numerical output",
+    "derive_replay_joint_covariance": "07 equations (8)-(11), 24 exact joint cases in NPZ, all cross terms retained",
+    "correct_soft_average": "07 equations (13)-(16) including normal model, exact marginal likelihood and Replay covariance",
+    "separate_impact_and_true_state_MMSE": "07 section 6; conditional optimum restricted to correction u(z), not full local-history estimator",
+    "budget_feasibility": "08, 24 effect scales and 96 budget rows; actual gap8 J0, not nominal reported covariance",
+    "meaningful_gain_gate": "minimum 1 percent written before output; main upper bound 0.759497 percent so STOP before E2",
+    "preserve_old_results_and_shared_code": "940 tracked-file manifest; only explicit summary and scoped Git-attribute updates",
+    "new_seed_splits": "1005 reserved, disjoint from explicit old configs and source literals; none used",
+    "no_extra_modules_or_large_simulation": "no E2 algorithm, no RNG/data generation, no new literature search"
+  },
+  "result": "COMPLETE_TASK1_TASK2; BUDGET_INFEASIBLE_STOP for protocol v1",
+  "protocol_sha256": "fa37a8d28537439e241c3e509d4a52ee74bf25a4a631f5f05da5ba38b3527b8f",
+  "report_sha256": {
+    "06_experiment_preregistration.md": "76d11c0095078e583a51e4cb6155af17856663287ee5c33b47dd7a8ea39569f6",
+    "07_replay_joint_probability_model.md": "2fc0564b59d47eb0e7fd911617160115a09f74b8e1d0d748d4a1b1826b966a7c",
+    "08_budget_precheck_and_stage_decision.md": "8ea264eb625a05be88cfd0d311cda35bb027d29dded08d3fecf1f29908fcf222",
+    "EXECUTIVE_SUMMARY.md": "f7f3255218d1ccfaf88b56d4147246eec1a5538f3cb4748353dbd264f7e64e68"
+  },
+  "source_sha256_match_frozen_run": true,
+  "json_and_python_syntax": true,
+  "local_markdown_links": true,
+  "matrix_checks": {
+    "result": "PASS",
+    "scope": "task1/task2 only; no E2 data or new attack propagation validation",
+    "validator_source_sha256": "6af9a279bae53add65d5406c9c8df5812b8055f1ee8e99b6b140f9d80e2e5ebe",
+    "frozen_protocol_source_hashes_match": true,
+    "stored_joint_formulas_and_posterior_orthogonality": true,
+    "max_scaled_posterior_noise_observation_cross": 4.451031026197776e-16,
+    "covariance_case_count": 24,
+    "budget_row_count": 96,
+    "all_24_replay_sources_legitimate": true,
+    "risk_bound_and_gain_ceiling_recomputed": true,
+    "new_seed_reservations_disjoint_from_explicit_old_config_seeds_and_source_literals": true,
+    "reserved_seed_count": 1005,
+    "seeds_actually_used": [],
+    "prior_tracked_files": 940,
+    "explicit_old_report_updates": [
+      "reviews/g1r_risk_constrained_recovery/.gitattributes",
+      "reviews/g1r_risk_constrained_recovery/EXECUTIVE_SUMMARY.md"
+    ],
+    "all_other_prior_files_unchanged": true,
+    "decision": "BUDGET_INFEASIBLE_STOP; E2/E3 not run"
+  },
+  "artifacts": {
+    "results/g1r_replay_joint_20261114_r01/budget_feasibility.csv": {
+      "sha256": "0411d683221da73c66cff0217ba5137f2e55f4a5690d21d4308bd48c8c03ebc7",
+      "bytes": 11889
+    },
+    "results/g1r_replay_joint_20261114_r01/checks.json": {
+      "sha256": "c66a261b7cda20c1c11bc044d4a58f7406cf0acd24e89d6b1c453ec78275b7a8",
+      "bytes": 682
+    },
+    "results/g1r_replay_joint_20261114_r01/frozen_plan.json": {
+      "sha256": "567184a0c1df6ef9ae2d9987e8320ef0f8ee92871cae55b93ac199920a0e31e5",
+      "bytes": 5323
+    },
+    "results/g1r_replay_joint_20261114_r01/joint_cases.csv": {
+      "sha256": "639c4c60576589c46ff85d8f85f90105a8b5bac0779e8312e9f61ead8052011d",
+      "bytes": 7067
+    },
+    "results/g1r_replay_joint_20261114_r01/replay_joint_matrices.npz": {
+      "sha256": "c02f7d0041fa568246d2788084fe2c78b9a5f912ab03166a0bb7830f3efa7c0a",
+      "bytes": 1174188
+    },
+    "results/g1r_replay_joint_20261114_r01/summary.json": {
+      "sha256": "51de8ff9e85df6a16e9364d4feaec90efddf305c2ef209022644471e68bf79a7",
+      "bytes": 2751
+    },
+    "sources/protocol_joint_20261114/budget_case_insensitive.csv": {
+      "sha256": "647325caab94733f43ab8ddca4496bdd0f1b083918f0f2fa653d42550323db98",
+      "bytes": 11909
+    },
+    "sources/protocol_joint_20261114/main_Sigma_theta_eta.csv": {
+      "sha256": "94ddab06cd980af422153912f46daa38c37b7c6b56bbf59ad45cfa3844432d77",
+      "bytes": 662
+    },
+    "sources/protocol_joint_20261114/main_Sigma_theta_z.csv": {
+      "sha256": "d4e974b321ba5684e4661c80dd464005421fd9e5a84eaeda1cf61bac13918602",
+      "bytes": 582
+    },
+    "sources/protocol_joint_20261114/main_Sigma_zz.csv": {
+      "sha256": "693ead199a2e59c06d767b82dc5dadb76d283475a05d270e5a61c6a0ed66cec8",
+      "bytes": 3146
+    },
+    "sources/protocol_joint_20261114/presentation_note.json": {
+      "sha256": "f7636f8aad782458665298dd33b976c59873fbe33921b9d2b1e365e3ee8cbde3",
+      "bytes": 378
+    },
+    "sources/protocol_joint_20261114/protected_before.json": {
+      "sha256": "ab70504d6a2363180084bb4bf30e4eff7ccd068e2d7945a5e0c6fe2bc6800a36",
+      "bytes": 137246
+    },
+    "sources/protocol_joint_20261114/verification.json": {
+      "sha256": "b2647e77a18b026663e452634110e9a6ac49379e2cbf815b09a00de6da777f7f",
+      "bytes": 978
+    },
+    "sources/protocol_joint_20261114/verification_startup_failure.json": {
+      "sha256": "fcb24bbe959f010341dabe5d2cb6515143fad75f868da0d8fa71590afd7f39b2",
+      "bytes": 298
+    }
+  },
+  "new_trajectories": 0,
+  "seeds_used": [],
+  "new_paper_downloads": 0,
+  "not_claimed": [
+    "E2 empirical coverage or nonzero action rate",
+    "E3 MSE competition",
+    "failure of set inference or Soft Average",
+    "impossibility under every risk controller with R/J0=1 percent"
+  ],
+  "review_method": "single agent derivation, independent error/raw-state coordinate checks, persisted-matrix algebra audit; no new subagents"
+}
