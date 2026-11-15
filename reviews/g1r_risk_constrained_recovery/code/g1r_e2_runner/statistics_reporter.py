@@ -4,6 +4,7 @@ import csv
 import json
 import statistics
 import sys
+import tempfile
 import time
 import tracemalloc
 from dataclasses import asdict
@@ -14,8 +15,9 @@ import numpy as np
 
 from .config_loader import BASE, FrozenConfig, read_json
 from .online_proposal import build_online_input, propose, record_dict
-from .result_writer import canonical_json_bytes
+from .result_writer import canonical_json_bytes, write_exclusive
 from .integrity_checker import validate_full_run
+from .checkpoint_manager import CheckpointManager
 
 
 def _bool(value) -> bool:
@@ -163,6 +165,32 @@ def benchmark_cached(config: FrozenConfig, public_model, cache_path: Path) -> di
     _, peak_memory = tracemalloc.get_traced_memory()
     tracemalloc.stop()
     serialized_sizes = [len(canonical_json_bytes(record_dict(record))) for record in batch_records]
+    with tempfile.TemporaryDirectory(prefix="g1r-e2-checkpoint-bench-") as directory:
+        checkpoint_root = Path(directory)
+        checkpoint_path = checkpoint_root / "checkpoint.json"
+        checkpoint = CheckpointManager(checkpoint_path, "checkpoint-fixture", "dry_run")
+        completed_paths = []
+        for fixture_seed in range(900000, 900020):
+            online_path = checkpoint_root / f"fixture_{fixture_seed}_online.jsonl"
+            offline_path = checkpoint_root / f"fixture_{fixture_seed}_offline.csv"
+            fixture_records = invoke(batch_inputs[fixture_seed % len(batch_inputs)])
+            online_bytes = b"".join(canonical_json_bytes(record_dict(record))
+                                     for record in fixture_records)
+            offline_bytes = f"fixture_seed,completed\\n{fixture_seed},true\\n".encode()
+            online_sha = write_exclusive(online_path, online_bytes)
+            offline_sha = write_exclusive(offline_path, offline_bytes)
+            checkpoint.mark_seed_complete("normal_fixture", fixture_seed,
+                                          online_path, online_sha,
+                                          offline_path, offline_sha)
+            completed_paths.append((fixture_seed, online_path, offline_path))
+        recovery_start = time.perf_counter()
+        recovered = CheckpointManager(checkpoint_path, "checkpoint-fixture", "dry_run")
+        verified = sum(recovered.seed_is_complete("normal_fixture", seed,
+                                                   online, offline)
+                       for seed, online, offline in completed_paths)
+        checkpoint_recovery_seconds = time.perf_counter() - recovery_start
+        if verified != 20:
+            raise RuntimeError("checkpoint benchmark did not recover all 20 synthetic shards")
     per_proposal = batch_seconds / len(batch_records)
     total_proposals = 200 * len(config.methods) + 200 * len(config.events) * len(config.ages) * len(config.methods)
     debug_summary_path = config.base / "results/g1r_task5_debug_20261115_r04/summary.json"
@@ -198,6 +226,9 @@ def benchmark_cached(config: FrozenConfig, public_model, cache_path: Path) -> di
         "twenty_normal_seed_batch_seconds_estimate": normal_batch_estimate,
         "twenty_attack_seed_batch_seconds_estimate": attack_batch_estimate,
         "twenty_seed_equivalent_peak_python_bytes": int(peak_memory),
+        "checkpoint_recovery_20_fixture_shards_seconds": checkpoint_recovery_seconds,
+        "checkpoint_recovery_verified_shards": verified,
+        "checkpoint_benchmark_seed_scope": "synthetic identifiers 900000-900019; no trajectories or study Seeds",
         "serialized_proposal_record_bytes_mean": float(statistics.mean(serialized_sizes)),
         "serialized_proposal_record_bytes_max": int(max(serialized_sizes)),
         "e2_proposal_calls_planned": total_proposals,

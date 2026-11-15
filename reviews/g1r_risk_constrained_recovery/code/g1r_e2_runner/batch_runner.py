@@ -212,6 +212,11 @@ class BatchRunner:
                         or sha256_file(batch_file) != completed_batch["result_sha256"]):
                     raise RuntimeError(f"completed batch integrity failure: {batch_id}")
                 rows = writer.read_offline_seed(batch_file)
+                validate_batch_rows(self.config, group, seeds, rows)
+                for seed in seeds:
+                    online_path, offline_path = writer.seed_paths(group, batch_index, seed)
+                    if not checkpoint.seed_is_complete(group, seed, online_path, offline_path):
+                        raise RuntimeError(f"completed batch has an incomplete seed shard: {group}:{seed}")
                 all_rows.extend(rows)
                 batch_paths[group].append(batch_file)
                 continue

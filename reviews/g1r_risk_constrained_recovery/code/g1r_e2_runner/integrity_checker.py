@@ -116,6 +116,7 @@ def source_hash_manifest(config: FrozenConfig, debug_cache: Path) -> dict[str, A
         config.base / "code/e2_statistics.py",
         config.base / "code/v2_estimators.py",
         config.base / "model_builder_inputs_addendum.json",
+        config.base / "results/.gitattributes",
         config.base / "results/g1r_e2_status_resolution_20261115_r01/e2_log_schema.json",
         config.base / "results/g1r_e2_status_resolution_20261115_r01/e2_run_manifest.template.json",
         config.base / "results/g1r_pre_e2_readonly_audit_20261115_r04/e2_seed_scan.json",
