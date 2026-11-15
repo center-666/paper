@@ -2,6 +2,8 @@
 
 **Task 4后续更新（2026-11-14）：v2设计冻结，未启动实验。** Hard、Soft、Set共同U=.051261、正常风险预算1%、边际非零概率5%；窗口、攻击及E2/E3原量化门槛不变。新增[10协议](10_protocol_v2.md)、[11信息与求解规范](11_v2_solver_and_information_contract.md)、[12数学及公平性审计](12_v2_mathematical_and_fairness_audit.md)和[机器配置](protocol_v2.json)。实现源码、独立正常数值门限及性能结果仍待完成；本轮0新轨迹、不运行E2/E3。以下各更新按原阶段保留，不能把历史“本轮”混作当前状态。
 
+**Task 5后续更新（2026-11-15）：实现与校准通过，E2未运行。** 固定几何测试5项通过；最终5个Debug Seed下Hard、Soft、Set均10/10有效。199条独立正常校准的门限为Hard 7.1305185044、Soft 0.2073714716、Set 0，均取第190顺序统计量、严格大于才动作。Set的199个校准分数全为0，是E2需核查的风险，不代表攻击收益或独立正常误动作率。E2性能门槛仍未知，需负责人另行审核/授权。详见[13号Task 5审计](13_task5_implementation_audit.md)、[校准记录](results/g1r_task5_calibration_20261115_r01/frozen_thresholds.json)及[最终验收清单](task5_final_validation.json)。E2/E3均未运行。
+
 **Task 3后续更新（2026-11-14）：情况B。** R/J0=1%、alpha=5%及攻击场景不变，正常条件风险的尾部积分给出U_new≈.0512613，高于所需.0149170；较保守的条件Cauchy上限.0268993也足够解除幅度排除。详见[09正常风险收紧](09_exact_normal_risk_refinement.md)。这不修改v1的原上限/停止结论，不代表已观察到恢复收益；本轮没有制定v2或执行E2/E3。
 
 **后续任务1/2更新（2026-11-14）：协议v1与Replay联合统计模型已完成；预算预检触发停止，不进入E2/E3。** 精确健康J0=.2576808，主预算给U=.01132255；主Replay Ja=8.8560938，同幅度动作的相对MSE改善上界仅.75950%，低于数值计算前冻结的1%最低收益。详见[06协议](06_experiment_preregistration.md)、[07联合模型](07_replay_joint_probability_model.md)、[08预算及决定](08_budget_precheck_and_stage_decision.md)。这否定当前保守幅度规则的可行性，不是集合方法已输给Soft，也不是风险预算本身的普遍不可能性证明。以下保留上一阶段全文排重摘要，旧“准备原型”建议已被本次预算门槛取代。

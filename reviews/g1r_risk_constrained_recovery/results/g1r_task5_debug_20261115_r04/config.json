@@ -1,0 +1,68 @@
+{
+  "run_id": "g1r_task5_debug_20261115_r04",
+  "date_utc": "2026-11-15T04:13:45.430912+00:00",
+  "baseline_commit": "07b9625e9062aeb9c2daccaf31fd86cef49adddc",
+  "scope": "Task 5.4 interface and numerical debug only",
+  "seeds": [
+    141400000,
+    141400001,
+    141400002,
+    141400003,
+    141400004
+  ],
+  "seed_count": 5,
+  "scenarios": [
+    "clean",
+    "replay_packet"
+  ],
+  "innovation_times": [
+    211,
+    212,
+    213,
+    214,
+    215,
+    216
+  ],
+  "receiver": 1,
+  "schedule": "fixed exogenous gap8, t=0 all nodes send",
+  "methods": [
+    "hard_gls_capped",
+    "correct_joint_soft_impact_capped",
+    "set_constrained_chebyshev"
+  ],
+  "U_common": 0.051261,
+  "normal_calibration": false,
+  "thresholds": null,
+  "E2": false,
+  "E3": false,
+  "mse_evaluation": false,
+  "proposal_input_whitelist": [
+    "z",
+    "frozen_public_model"
+  ],
+  "forbidden_proposal_inputs": [
+    "true_state",
+    "true_event",
+    "true_theta",
+    "true_replay_age",
+    "replay_source",
+    "healthy_counterfactual",
+    "unsent_sender_estimates",
+    "future_measurements",
+    "whole_run_object"
+  ],
+  "new_communication_bytes": 0,
+  "new_training_samples": 0,
+  "source_sha256": {
+    "reviews/g1r_risk_constrained_recovery/code/run_v2_debug.py": "14f53dc938004ef78c8cc3b75fd8481b22b8296700a9147217ab1330bd0f1f33",
+    "reviews/g1r_risk_constrained_recovery/code/v2_estimators.py": "a7ce558a5b5922f63f395bee8658efda23f86fd8f05ae190907c40d5b880e9c9",
+    "simulation/model.py": "5b674a4cc274fca42d52d00f15490d5e3952231df98146a90cb28a62b4a9aeca",
+    "simulation/engine.py": "05fb3f19d457e103d7c1665ccd1087ea4b27076d6a39b57ac7e0d16cfdb35c97",
+    "reviews/g1_retroactive_recovery/code/minimal_recovery_screen.py": "23824443eabb9615d3a4e158c92d8f86a3ad7c3bd8de55bfb982eccd5af7f38f",
+    "reviews/g1r_risk_constrained_recovery/protocol_v2.json": "7c7a2589c1f7d136886ea5a1d4c1664552d7d463cbd143f5fb0e8c455b3fbeab",
+    "reviews/g1r_risk_constrained_recovery/results/g1r_replay_joint_20261114_r01/replay_joint_matrices.npz": "c02f7d0041fa568246d2788084fe2c78b9a5f912ab03166a0bb7830f3efa7c0a"
+  },
+  "python": "3.14.9",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "numpy": "2.5.4"
+}

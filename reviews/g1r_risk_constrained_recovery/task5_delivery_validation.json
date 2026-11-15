@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-15",
+  "baseline_commit": "07b9625e9062aeb9c2daccaf31fd86cef49adddc",
+  "result": "TASK5_IMPLEMENTATION_AND_CALIBRATION_COMPLETE_E2_NOT_RUN",
+  "scope": "Task 5 only; no E2/E3 or performance claim",
+  "protected_tracked_files": 983,
+  "preexisting_tracked_files_modified": [
+    "reviews/g1r_risk_constrained_recovery/11_v2_solver_and_information_contract.md",
+    "reviews/g1r_risk_constrained_recovery/EXECUTIVE_SUMMARY.md"
+  ],
+  "debug_run_id": "g1r_task5_debug_20261115_r05",
+  "debug_seeds": [
+    141400000,
+    141400001,
+    141400002,
+    141400003,
+    141400004
+  ],
+  "debug_trajectories": 10,
+  "debug_status_counts": {
+    "hard_gls_capped": {
+      "VALID": 10
+    },
+    "correct_joint_soft_impact_capped": {
+      "VALID": 10
+    },
+    "set_constrained_chebyshev": {
+      "VALID": 10
+    }
+  },
+  "calibration_run_id": "g1r_task5_calibration_20261115_r01",
+  "calibration_seed_start": 141410000,
+  "calibration_seed_count": 199,
+  "calibration_thresholds": {
+    "hard_gls_capped": 7.130518504393956,
+    "correct_joint_soft_impact_capped": 0.20737147161542802,
+    "set_constrained_chebyshev": 0.0
+  },
+  "threshold_tie_audit": {
+    "hard_gls_capped": {
+      "greater": 9,
+      "equal": 1,
+      "positive_scores": 199
+    },
+    "correct_joint_soft_impact_capped": {
+      "greater": 9,
+      "equal": 1,
+      "positive_scores": 199
+    },
+    "set_constrained_chebyshev": {
+      "greater": 0,
+      "equal": 199,
+      "positive_scores": 0
+    }
+  },
+  "calibration_status_counts": {
+    "hard_gls_capped": {
+      "VALID": 199
+    },
+    "correct_joint_soft_impact_capped": {
+      "VALID": 199
+    },
+    "set_constrained_chebyshev": {
+      "VALID": 199
+    }
+  },
+  "calibration_sources_all_match": true,
+  "collision_scan": {
+    "files": 10711,
+    "archives": 24,
+    "collisions": 0,
+    "unreadable": 0,
+    "oversize": 0
+  },
+  "E2_readiness": {
+    "technical_preconditions": "PASS_FOR_OWNER_REVIEW",
+    "Set_score_degeneracy": "all 199 normal calibration scores are zero; threshold is zero",
+    "E2_performance_gates": "UNTESTED",
+    "E2_execution": "NOT_RUN",
+    "E3_execution": "NOT_RUN",
+    "authorization": "separate owner review required"
+  },
+  "performance_claim": "NONE"
+}
