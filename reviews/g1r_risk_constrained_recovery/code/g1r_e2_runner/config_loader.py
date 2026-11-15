@@ -4,6 +4,7 @@ from dataclasses import dataclass
 import hashlib
 import json
 from pathlib import Path
+from types import MappingProxyType
 from typing import Any
 
 import numpy as np
@@ -30,6 +31,14 @@ def canonical_sha256(value: Any) -> str:
 
 def read_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8-sig"))
+
+
+def _freeze(value):
+    if isinstance(value, dict):
+        return MappingProxyType({key: _freeze(item) for key, item in value.items()})
+    if isinstance(value, list):
+        return tuple(_freeze(item) for item in value)
+    return value
 
 
 @dataclass(frozen=True)
@@ -251,8 +260,9 @@ def load_frozen_config(root: Path = ROOT) -> FrozenConfig:
         "U_common": float(protocol["U_common"]), "batch_size": 20,
     }
     return FrozenConfig(
-        root=root, base=base, protocol=protocol, run_template=template, schema=schema,
-        thresholds=thresholds, normal_seeds=normal, attack_seeds=attack,
+        root=root, base=base, protocol=_freeze(protocol),
+        run_template=_freeze(template), schema=_freeze(schema),
+        thresholds=_freeze(thresholds), normal_seeds=normal, attack_seeds=attack,
         events=events, ages=ages, methods=methods, batch_size=20,
         attack_seed_scan_sha256=config_without_digest["seed_scan_sha256"],
         protocol_sha256=protocol_sha, thresholds_sha256=thresholds_sha,

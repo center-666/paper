@@ -163,7 +163,10 @@ class BatchRunner:
             prior_config = json.loads(config_path.read_text(encoding="utf-8"))
             if (prior_config.get("mode") != "formal_e2"
                     or prior_config.get("frozen_config_sha256") != self.config.runner_config_sha256
-                    or prior_config.get("authorization_id") != self.authorization.authorization_id):
+                    or prior_config.get("authorization_id") != self.authorization.authorization_id
+                    or prior_config.get("owner") != self.authorization.owner
+                    or prior_config.get("authorization_file_sha256") != self.authorization.authorization_file_sha256
+                    or prior_config.get("authorization_bindings") != dict(self.authorization.bindings)):
                 raise FileExistsError("existing Run ID is bound to a different config/authorization")
         plan = self._batch_plan()
         debug_cache_path = (self.config.base /

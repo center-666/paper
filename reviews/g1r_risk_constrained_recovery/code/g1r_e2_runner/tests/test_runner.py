@@ -375,6 +375,27 @@ class RunnerAcceptanceTests(unittest.TestCase):
         self.assertEqual(bindings["protocol_sha256"], self.config.protocol_sha256)
         self.assertEqual(bindings["calibration_thresholds_sha256"], self.config.thresholds_sha256)
 
+    def test_frozen_config_is_deeply_immutable(self):
+        with self.assertRaises(TypeError):
+            self.config.thresholds[self.config.methods[0]] = 0.0
+        with self.assertRaises(TypeError):
+            self.config.protocol["U_common"] = 999.0
+        with self.assertRaises(TypeError):
+            self.config.protocol["nominal_prior"]["normal"] = 0.0
+
+    def test_owner_bound_authorization_receipt_is_verified_without_running(self):
+        from ..authorization_guard import authorization_bindings
+        with tempfile.TemporaryDirectory() as directory:
+            auth_path = Path(directory) / "owner_authorization.json"
+            document = {"scope": "E2", "authorized": True,
+                        "owner": "test-owner", "authorization_id": "test-id",
+                        "bindings": authorization_bindings(self.config)}
+            auth_path.write_text(json.dumps(document), encoding="utf-8")
+            receipt = authorize("formal_e2", self.config, auth_path)
+            require_formal_e2(receipt, self.config)
+            self.assertEqual(receipt.authorization_file_sha256,
+                             __import__("hashlib").sha256(auth_path.read_bytes()).hexdigest())
+
     def test_official_seed_cannot_enter_fixture_generation(self):
         from unittest.mock import Mock
         original = self.builder._generate_data
