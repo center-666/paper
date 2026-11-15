@@ -29,9 +29,9 @@ def dump(path, value):
 
 
 def main(out: Path):
-    if out.exists():
+    if out.exists() and any(out.iterdir()):
         raise FileExistsError(f"Preserve previous final status package: {out}")
-    out.mkdir(parents=True)
+    out.mkdir(parents=True, exist_ok=True)
     # Reuse the already verified cached-input run; no proposal is recomputed.
     for name in ["cached_debug_features.npz", "proposal_equivalence.csv",
                  "equivalence_manifest.json"]:
