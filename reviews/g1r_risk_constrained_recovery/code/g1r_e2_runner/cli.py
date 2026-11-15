@@ -5,7 +5,8 @@ import json
 from pathlib import Path
 import sys
 
-from .authorization_guard import AuthorizationError, authorize
+from .authorization_guard import (AuthorizationError, authorization_bindings,
+                                  authorize)
 from .batch_runner import BatchRunner
 from .config_loader import BASE, ROOT, load_frozen_config
 
@@ -17,6 +18,8 @@ def build_parser() -> argparse.ArgumentParser:
                       help="use existing Debug cache and fixture seed 0 only (default)")
     mode.add_argument("--formal-e2", action="store_true",
                       help="requires a valid separately supplied owner authorization file")
+    mode.add_argument("--show-authorization-bindings", action="store_true",
+                      help="print current hashes for an owner-reviewed authorization record")
     parser.add_argument("--authorization", type=Path,
                         help="owner-provided E2 authorization JSON; never created by this runner")
     parser.add_argument("--out", type=Path,
@@ -30,9 +33,16 @@ def execution_mode(args) -> str:
 
 def main(argv=None) -> int:
     args = build_parser().parse_args(argv)
-    mode = execution_mode(args)
     try:
         config = load_frozen_config(ROOT)
+        if args.show_authorization_bindings:
+            print(json.dumps({
+                "scope": "E2", "authorized": False,
+                "bindings": authorization_bindings(config),
+                "note": "Hash report only; no authorization is created and no trajectory is generated.",
+            }, ensure_ascii=False, indent=2))
+            return 0
+        mode = execution_mode(args)
         receipt = authorize(mode, config, args.authorization)
         if mode == "dry_run":
             out = args.out or (BASE / "results/g1r_e2_runner_dryrun_20261115_r01")

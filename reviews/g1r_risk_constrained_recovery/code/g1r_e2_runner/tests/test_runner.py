@@ -386,11 +386,15 @@ class RunnerAcceptanceTests(unittest.TestCase):
         finally:
             self.builder._generate_data = original
 
-    def test_cli_defaults_to_dry_run(self):
+    def test_cli_defaults_to_dry_run_and_can_print_bindings_read_only(self):
         from ..cli import execution_mode
         args = build_parser().parse_args([])
         self.assertEqual(execution_mode(args), "dry_run")
         self.assertIsNone(args.authorization)
+        args = build_parser().parse_args(["--show-authorization-bindings"])
+        self.assertTrue(args.show_authorization_bindings)
+        self.assertEqual(execution_mode(args), "dry_run")
+        self.assertFalse(args.formal_e2)
 
 
 def run_tests() -> dict:
