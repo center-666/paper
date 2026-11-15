@@ -181,6 +181,12 @@ def load_frozen_config(root: Path = ROOT) -> FrozenConfig:
     attack = tuple(range(int(template["seeds"]["attack"]["start"]),
                          int(template["seeds"]["attack"]["start"])
                          + int(template["seeds"]["attack"]["count"])))
+    for group, protocol_key, seeds in (
+            ("normal", "e2_normal", normal), ("attack", "e2_attack", attack)):
+        reservation = protocol["seed_reservations"][protocol_key]
+        if (int(reservation["start"]) != seeds[0]
+                or int(reservation["count"]) != len(seeds)):
+            raise ValueError(f"{group} E2 seeds differ from the frozen protocol reservation")
     if len(set(normal) & set(attack)):
         raise ValueError("formal normal and attack seed groups overlap")
     events = tuple(tuple(map(int, event)) for event in template["model_and_attack"]["candidate_events"])
