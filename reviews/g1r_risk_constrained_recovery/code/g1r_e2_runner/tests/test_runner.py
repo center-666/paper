@@ -19,7 +19,7 @@ from ..integrity_checker import IntegrityError, validate_batch_rows
 from ..offline_evaluator import evaluate, set_union_covers
 from ..online_proposal import (OnlineInput, build_online_input, failed_proposal_record,
                                propose, record_dict)
-from ..result_writer import write_exclusive
+from ..result_writer import RESULT_FIELDS, csv_bytes, write_exclusive
 from ..scenario_builder import ScenarioBuilder
 
 
@@ -246,6 +246,106 @@ class RunnerAcceptanceTests(unittest.TestCase):
         self.assertEqual(plan[9][2][-1], self.config.normal_seeds[-1])
         self.assertEqual(plan[10][2][0], self.config.attack_seeds[0])
         self.assertEqual(plan[19][2][-1], self.config.attack_seeds[-1])
+
+    def test_independent_twenty_csv_statistics_recompute_on_synthetic_rows(self):
+        import sys
+        sys.path.insert(0, str(BASE / "code"))
+        import e2_statistics
+        from ..statistics_reporter import independent_recompute
+
+        normal_seeds = tuple(range(710000, 710200))
+        attack_seeds = tuple(range(810000, 810200))
+        synthetic_config = replace(self.config, normal_seeds=normal_seeds,
+                                   attack_seeds=attack_seeds)
+
+        def make_row(group, seed, seed_index, event, age, method):
+            is_normal = group == "normal"
+            main = is_normal or (event == self.config.main_event and age == 64)
+            solver_reject = (
+                (group == "attack" and main and method == "set_constrained_chebyshev"
+                 and seed_index == 0)
+                or (is_normal and method == "set_constrained_chebyshev" and seed_index == 12)
+                or (group == "attack" and event == self.config.events[0] and age == 32
+                    and method == "hard_gls_capped" and seed_index == 1))
+            active = (
+                (group == "attack" and main and method == "set_constrained_chebyshev"
+                 and 1 <= seed_index <= 100)
+                or (is_normal and method == "set_constrained_chebyshev" and seed_index < 12))
+            action = [0.001, 0.0] if active else [0.0, 0.0]
+            status = "SOLVER_REJECT" if solver_reject else "VALID"
+            gate = "SOLVER_REJECT" if solver_reject else "EXECUTED" if active else "GATE_REJECT"
+            row = {field: "" for field in RESULT_FIELDS}
+            row.update({
+                "sample_id": (f"normal:{seed}:{method}" if is_normal else
+                              f"replay:{seed}:{event[0]}:{event[1]}:{age}:{method}"),
+                "trial_run_id": f"synthetic:{group}:{seed}",
+                "seed": seed, "scenario": "normal" if is_normal else "replay",
+                "main_case": main, "event": None if is_normal else list(event),
+                "age": None if is_normal else age, "method": method,
+                "raw_status": status, "proposal_status": status, "gate_status": gate,
+                "score": 1.0 if active else 0.0,
+                "threshold": 0.0 if method == "set_constrained_chebyshev" else 1.0,
+                "proposal_vector_json": json.dumps(action),
+                "final_action_json": json.dumps(action),
+                "set_proposal_norm": float(np.linalg.norm(action)),
+                "set_action_norm": float(np.linalg.norm(action)),
+                "coverage_confirmed": None if is_normal else seed_index < 190,
+                "compatible_event_count": None if is_normal else 8,
+                "zero_or_unresolved": False,
+                "solver_stage": "center" if solver_reject else "",
+                "solver_gap": 1.0 if solver_reject else "",
+                "solver_reject_reason": "synthetic_reject" if solver_reject else "",
+                "execution_success": bool(active and not solver_reject),
+                "replay_source_time": "" if is_normal else event[1] - age,
+                "actual_replay_age": "" if is_normal else age,
+                "cache_replacement_time": "" if is_normal else event[1] + 8,
+                "first_pollution_state": "" if is_normal else event[1] + 1,
+                "first_receiver_pollution_state": "" if is_normal else event[1] + 1,
+                "true_impact_x": "" if is_normal else 0.01,
+                "true_impact_y": "" if is_normal else -0.01,
+                "simulation_status": "PASS",
+                "statistical_cluster": f"{'normal' if is_normal else 'attack'}:{seed}",
+                "online_record_sha256": "0" * 64,
+                "online_record_ordinal": 0,
+            })
+            return row
+
+        normal_files, attack_files = [], []
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            for batch_index in range(10):
+                batch_normal = normal_seeds[batch_index * 20:(batch_index + 1) * 20]
+                batch_attack = attack_seeds[batch_index * 20:(batch_index + 1) * 20]
+                normal_rows = [make_row("normal", seed, index, None, None, method)
+                               for index, seed in enumerate(batch_normal, batch_index * 20)
+                               for method in self.config.methods]
+                attack_rows = [make_row("attack", seed, index, event, age, method)
+                               for index, seed in enumerate(batch_attack, batch_index * 20)
+                               for event in self.config.events
+                               for age in self.config.ages
+                               for method in self.config.methods]
+                normal_path = root / f"normal_{batch_index:02d}.csv"
+                attack_path = root / f"attack_{batch_index:02d}.csv"
+                normal_path.write_bytes(csv_bytes(normal_rows))
+                attack_path.write_bytes(csv_bytes(attack_rows))
+                normal_files.append(normal_path)
+                attack_files.append(attack_path)
+
+            with patch.object(e2_statistics, "FROZEN_NORMAL_SEEDS", frozenset(normal_seeds)), \
+                 patch.object(e2_statistics, "FROZEN_ATTACK_SEEDS", frozenset(attack_seeds)):
+                summary = independent_recompute(synthetic_config, tuple(normal_files),
+                                                tuple(attack_files))
+            set_stats = summary["methods"]["set_constrained_chebyshev"]
+            self.assertEqual(set_stats["n"], 200)
+            self.assertEqual(set_stats["coverage_count"], 190)
+            self.assertEqual(set_stats["nonzero_count"], 100)
+            self.assertEqual(set_stats["normal_n"], 200)
+            self.assertEqual(set_stats["normal_nonzero_count"], 12)
+            self.assertEqual(set_stats["diagnostics"]["attack_main_solver_rejects"], 1)
+            self.assertEqual(set_stats["diagnostics"]["attack_main_denominator"], 200)
+            self.assertEqual(set_stats["diagnostics"]["normal_solver_rejects_all_rows"], 1)
+            self.assertEqual(set_stats["diagnostics"]["normal_denominator"], 200)
+            self.assertEqual(summary["event_age_strata"]["hard_gls_capped"]["0:176@32"]["solver_reject_count"], 1)
 
     def test_checkpoint_resumes_without_replacing_completed_seed(self):
         with tempfile.TemporaryDirectory() as directory:
