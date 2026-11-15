@@ -105,7 +105,9 @@ def main(out: Path | None = None):
              stat_tests.test_beta_and_binomial_tail_formulas_agree,
              stat_tests.test_frozen_e2_count_boundaries,
              stat_tests.test_gate_uses_full_denominator_and_frozen_counts,
-             stat_tests.test_seed_or_row_deletion_is_rejected]
+             stat_tests.test_failed_rows_stay_in_count_denominators,
+             stat_tests.test_seed_or_row_deletion_is_rejected,
+             stat_tests.test_frozen_seed_contract_is_not_injectable]
     for fn in tests:
         fn()
         print(fn.__name__, "PASS")

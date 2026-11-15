@@ -1,0 +1,43 @@
+{
+  "schema_id": "g1r_e2_per_seed_log_v1",
+  "schema_status": "PROPOSED_FOR_OWNER_REVIEW_NOT_AN_E2_RUN",
+  "online_offline_separation": {
+    "online_fields": ["seed", "scenario", "main_case", "method", "raw_status", "proposal_status", "gate_status", "score", "threshold", "set_proposal_norm", "set_action_norm", "zero_or_unresolved", "compatible_event_count", "solver_stage", "solver_gap", "solver_reject_reason", "execution_success"],
+    "offline_evaluator_only_fields": ["event", "age", "coverage_confirmed"],
+    "rule": "Offline labels are joined after proposal and frozen gate complete; never pass them to propose(z, frozen_public_model, method)."
+  },
+  "record_cardinality": {
+    "normal_main_case": "Exactly one row per frozen normal seed per method.",
+    "attack_main_case": "Exactly one row per frozen attack seed, event, age, and method; the statistical unit remains seed.",
+    "missing_or_duplicate_seed": "Hard validation failure, never silently drop."
+  },
+  "fields": {
+    "seed": {"type": "integer", "required": true, "source": "frozen run manifest"},
+    "scenario": {"type": "enum", "values": ["normal", "replay"], "required": true},
+    "main_case": {"type": "boolean", "required": true, "source": "frozen scenario table"},
+    "event": {"type": "[edge_id, replay_time] or null", "required": true, "provenance": "offline evaluator only"},
+    "age": {"type": "integer or null", "required": true, "provenance": "offline evaluator only"},
+    "method": {"type": "enum", "values": ["hard_gls_capped", "correct_joint_soft_impact_capped", "set_constrained_chebyshev"], "required": true},
+    "raw_status": {"type": "string or NO_RAW_PROPOSAL", "required": true, "source": "unmodified Proposal.status when a Proposal exists"},
+    "proposal_status": {"type": "string enum", "values": ["INPUT_INVALID", "MODEL_INVALID", "EMPTY_UNION", "ZERO_OR_UNRESOLVED", "ZERO_PROPOSAL", "SOLVER_REJECT", "VALID"], "required": true, "source": "status adapter"},
+    "gate_status": {"type": "string", "required": true, "source": "frozen apply_gate(raw_proposal, threshold)"},
+    "score": {"type": "finite float", "required": true, "meaning": "pre-gate score"},
+    "threshold": {"type": "finite float", "required": true, "meaning": "frozen normal calibration order statistic"},
+    "set_proposal_norm": {"type": "finite nonnegative float", "required": true, "meaning": "pre-gate raw proposal norm"},
+    "set_action_norm": {"type": "finite nonnegative float", "required": true, "meaning": "actual post-gate action norm; determines attack and normal nonzero rates"},
+    "coverage_confirmed": {"type": "boolean for replay; null for normal", "required": true, "provenance": "offline evaluator; independent of center solver success"},
+    "compatible_event_count": {"type": "nonnegative integer for Set; null for Hard/Soft", "required": true, "source": "proposal certificate when Set runs"},
+    "zero_or_unresolved": {"type": "boolean", "required": true, "source": "raw certificate; mapped status stored separately"},
+    "solver_stage": {"type": "string", "required": true},
+    "solver_gap": {"type": "finite nonnegative float or null", "required": true},
+    "solver_reject_reason": {"type": "string", "required": true},
+    "execution_success": {"type": "boolean", "required": true, "rule": "gate_status==EXECUTED AND proposal_status==VALID AND post-gate action norm>1e-12"}
+  },
+  "sample_denominators": {
+    "coverage": "200 attack main-case seeds; failed construction counts false.",
+    "attack_nonzero": "200 attack main-case seeds; use set_action_norm>1e-12.",
+    "normal_nonzero": "200 normal seeds; use set_action_norm>1e-12.",
+    "solver_rejects": "Remain rows and count as zero action; never remove from denominator."
+  },
+  "not_executed": true
+}

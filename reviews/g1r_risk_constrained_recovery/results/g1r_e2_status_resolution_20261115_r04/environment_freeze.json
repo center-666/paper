@@ -1,0 +1,102 @@
+{
+  "status": "PREPARED_FOR_OWNER_REVIEW_E2_NOT_EXECUTED",
+  "worktree_path": "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract",
+  "worktree_branch": "g1r-e2-status-contract-20261115",
+  "worktree_head": "490e5b8f1212004407a0cdbfde224bf90a691da4",
+  "required_baseline_commit": "490e5b8f1212004407a0cdbfde224bf90a691da4",
+  "checkout_created_clean_at_frozen_baseline": true,
+  "is_worktree_clean_at_asset_generation": false,
+  "design": {
+    "v2_protocol_sha256": "7c7a2589c1f7d136886ea5a1d4c1664552d7d463cbd143f5fb0e8c455b3fbeab",
+    "task5_calibration_threshold_sha256": "3c1255122f15c1efb9eaee284e00135247da2b16961c7b50c0ecbb3ecd244e00",
+    "task5_calibration_source_manifest_sha256": "7ccd2a04d94e464a4f4b2b0ef67c134bbd3c613d73f08b95e1b0aa91663ee813",
+    "task5_calibration_manifest_originally_omitted_inputs": {
+      "created_after_original_task5_calibration": true,
+      "calibration_manifest_modified": false,
+      "purpose": "Record two model-construction inputs read by build_model but omitted from the original calibration manifest.",
+      "task5_start_snapshot": "reviews/g1r_risk_constrained_recovery/sources/task5_completion_20261114/protected_start.json",
+      "original_calibration_manifest": "reviews/g1r_risk_constrained_recovery/results/g1r_task5_calibration_20261115_r01/calibration_manifest.json",
+      "original_manifest_sha256": "7ccd2a04d94e464a4f4b2b0ef67c134bbd3c613d73f08b95e1b0aa91663ee813",
+      "inputs": [
+        {
+          "path": "simulation/config.json",
+          "current_sha256": "cf801650e2527a409ebb4730e894e6d3fcb3602a08259bfeda1cb529d7ebb62b",
+          "task5_start_snapshot_sha256": "cf801650e2527a409ebb4730e894e6d3fcb3602a08259bfeda1cb529d7ebb62b",
+          "unchanged_since_task5_start": true,
+          "present_in_original_calibration_manifest": false
+        },
+        {
+          "path": "simulation/reference_exploration_plan.json",
+          "current_sha256": "244d7788a3d2b097d571e32626431be05ef8b9f3ac3f4c788f238dca05761fab",
+          "task5_start_snapshot_sha256": "244d7788a3d2b097d571e32626431be05ef8b9f3ac3f4c788f238dca05761fab",
+          "unchanged_since_task5_start": true,
+          "present_in_original_calibration_manifest": false
+        }
+      ],
+      "provenance_note": "Post hoc provenance addendum; these hashes were not recorded in the original Task5 calibration manifest."
+    }
+  },
+  "runtime": {
+    "python": "3.14.9",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "blas_configuration": "Build Dependencies:\n  blas:\n    detection method: pkgconfig\n    found: true\n    include directory: C:/Users/runneradmin/AppData/Local/Temp/cibw-run-x7xez3kh/cp314-win_amd64/build/venv/Lib/site-packages/scipy_openblas64/include\n    lib directory: C:/Users/runneradmin/AppData/Local/Temp/cibw-run-x7xez3kh/cp314-win_amd64/build/venv/Lib/site-packages/scipy_openblas64/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY\n      Haswell MAX_THREADS=24\n    pc file directory: D:/a/numpy-release/numpy-release/.openblas\n    version: 0.3.34.106.0\n  lapack:\n    detection method: pkgconfig\n    found: true\n    include directory: C:/Users/runneradmin/AppData/Local/Temp/cibw-run-x7xez3kh/cp314-win_amd64/build/venv/Lib/site-packages/scipy_openblas64/include\n    lib directory: C:/Users/runneradmin/AppData/Local/Temp/cibw-run-x7xez3kh/cp314-win_amd64/build/venv/Lib/site-packages/scipy_openblas64/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.34.106.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY\n      Haswell MAX_THREADS=24\n    pc file directory: D:/a/numpy-release/numpy-release/.openblas\n    version: 0.3.34.106.0\nCompilers:\n  c:\n    commands: cl\n    linker: link\n    name: msvc\n    version: 19.44.35229\n  c++:\n    commands: cl\n    linker: link\n    name: msvc\n    version: 19.44.35229\n  cython:\n    commands: cython\n    linker: cython\n    name: cython\n    version: 3.3.0\nMachine Information:\n  build:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: windows\n  host:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: windows\nPython Information:\n  path: C:\\Users\\runneradmin\\AppData\\Local\\Temp\\build-env-d_u7wnpv\\Scripts\\python.exe\n  version: '3.14'\nSIMD Extensions:\n  baseline:\n  - X86_V2\n  found:\n  - X86_V3\n\n"
+  },
+  "runtime_and_task5_assets_match_calibration": {
+    "python": true,
+    "numpy": true,
+    "scipy": true,
+    "blas_exact": true,
+    "reviews/g1r_risk_constrained_recovery/code/calibrate_v2_normal.py": true,
+    "reviews/g1r_risk_constrained_recovery/code/v2_estimators.py": true,
+    "reviews/g1r_risk_constrained_recovery/protocol_v2.json": true,
+    "reviews/g1r_risk_constrained_recovery/code/test_v2_estimators.py": true,
+    "reviews/g1r_risk_constrained_recovery/code/run_v2_debug.py": true,
+    "simulation/model.py": true,
+    "simulation/engine.py": true,
+    "reviews/g1_retroactive_recovery/code/minimal_recovery_screen.py": true,
+    "reviews/g1r_risk_constrained_recovery/results/g1r_replay_joint_20261114_r01/replay_joint_matrices.npz": true,
+    "reviews/g1r_risk_constrained_recovery/11_v2_solver_and_information_contract.md": true,
+    "reviews/g1r_risk_constrained_recovery/sources/task5_v2_20261114_r06/seed_collision_scan.json": true,
+    "reviews/g1r_risk_constrained_recovery/results/g1r_task5_debug_20261115_r04/config.json": true,
+    "reviews/g1r_risk_constrained_recovery/results/g1r_task5_debug_20261115_r04/summary.json": true,
+    "simulation/config.json": true,
+    "simulation/reference_exploration_plan.json": true
+  },
+  "all_calibration_assets_and_runtime_match": true,
+  "source_sha256": {
+    "reviews/g1r_risk_constrained_recovery/code/e2_status_adapter.py": "adb86d0882371d6b290e2c43f2971bf3c4d1936218255c1aad3c4eb54b40707b",
+    "reviews/g1r_risk_constrained_recovery/code/verify_e2_adapter_equivalence.py": "3059e8bdf91944d0e8a62b100b16829a64d59bcaa5ccaf87eb7ab12350a07165",
+    "reviews/g1r_risk_constrained_recovery/code/test_e2_status_adapter.py": "a75498a544fc941adc78127628dfac62e939d6de338c338eddbdad80e7f5770a",
+    "reviews/g1r_risk_constrained_recovery/code/e2_statistics.py": "dac3b0e69f42926a684bbe96182b2aa8a23ebc987ecde76982181a736aa99b51",
+    "reviews/g1r_risk_constrained_recovery/code/test_e2_statistics.py": "9935837d299e7c82702f3ee3038dcf278c25800afe2dcf1e21fdd31175a084e9",
+    "reviews/g1r_risk_constrained_recovery/code/test_e2_deterministic_validation.py": "3c25e9683121fa77326981066d1a4c62970da7608f7004837a7c82681cc280c7",
+    "reviews/g1r_risk_constrained_recovery/code/test_v2_data_mechanics.py": "9b3d48b53f8d671d89cef6f42b1da2b42caee26bb4c2a7291515a4eceb1fbd12",
+    "reviews/g1r_risk_constrained_recovery/code/v2_estimators.py": "a7ce558a5b5922f63f395bee8658efda23f86fd8f05ae190907c40d5b880e9c9",
+    "reviews/g1r_risk_constrained_recovery/code/calibrate_v2_normal.py": "edbd0326e6f81555ebfef8adae7e2be04438ecf7d732a54426cb534100d2410d",
+    "reviews/g1r_risk_constrained_recovery/protocol_v2.json": "7c7a2589c1f7d136886ea5a1d4c1664552d7d463cbd143f5fb0e8c455b3fbeab",
+    "reviews/g1r_risk_constrained_recovery/results/g1r_task5_calibration_20261115_r01/frozen_thresholds.json": "3c1255122f15c1efb9eaee284e00135247da2b16961c7b50c0ecbb3ecd244e00",
+    "reviews/g1r_risk_constrained_recovery/results/g1r_task5_calibration_20261115_r01/calibration_manifest.json": "7ccd2a04d94e464a4f4b2b0ef67c134bbd3c613d73f08b95e1b0aa91663ee813",
+    "reviews/g1r_risk_constrained_recovery/results/g1r_task5_calibration_20261115_r01/calibration_scores.csv": "773bcbb347feaf823232b878e6200a3e16bc27199b7ecd48863b4bce07004779",
+    "simulation/model.py": "5b674a4cc274fca42d52d00f15490d5e3952231df98146a90cb28a62b4a9aeca",
+    "simulation/engine.py": "05fb3f19d457e103d7c1665ccd1087ea4b27076d6a39b57ac7e0d16cfdb35c97",
+    "simulation/config.json": "cf801650e2527a409ebb4730e894e6d3fcb3602a08259bfeda1cb529d7ebb62b",
+    "simulation/reference_exploration_plan.json": "244d7788a3d2b097d571e32626431be05ef8b9f3ac3f4c788f238dca05761fab",
+    "reviews/g1r_risk_constrained_recovery/results/g1r_replay_joint_20261114_r01/replay_joint_matrices.npz": "c02f7d0041fa568246d2788084fe2c78b9a5f912ab03166a0bb7830f3efa7c0a",
+    "reviews/g1r_risk_constrained_recovery/model_builder_inputs_addendum.json": "22404c1153bc15c940cf73ba52f46aa0563006498fa767012426778cef521829",
+    "reviews/g1r_risk_constrained_recovery/results/g1r_e2_status_resolution_20261115_r04/equivalence_manifest.json": "df12992418fe092589801d9c74bd261c08fe0e929a94f611d202d38d24e3ea9a"
+  },
+  "e2_seeds": {
+    "normal": {
+      "start": 141420000,
+      "count": 200
+    },
+    "attack": {
+      "start": 141430000,
+      "count": 200
+    },
+    "seed_scan": "reviews/g1r_risk_constrained_recovery/results/g1r_pre_e2_readonly_audit_20261115_r04/e2_seed_scan.json"
+  },
+  "shared_engine_model_unchanged": true,
+  "note": "This environment record freezes the adapter audit/runtime. E2 requires a separate authorized run and its manifest must record the resulting commit SHA."
+}
