@@ -8,6 +8,7 @@ from typing import Any
 
 from .config_loader import FrozenConfig, canonical_sha256, sha256_file
 from . import RUNNER_VERSION
+from .environment_guard import verify_environment
 
 
 class AuthorizationError(RuntimeError):
@@ -53,10 +54,7 @@ def runner_source_sha256(config: FrozenConfig) -> str:
 
 
 def authorization_bindings(config: FrozenConfig) -> dict[str, str]:
-    key = (str(config.root.resolve()), config.runner_config_sha256)
-    cached = _BINDING_CACHE.get(key)
-    if cached is not None:
-        return dict(cached)
+    verify_environment(config)
     seed_manifest = {
         "normal": list(config.normal_seeds),
         "attack": list(config.attack_seeds),
@@ -68,14 +66,13 @@ def authorization_bindings(config: FrozenConfig) -> dict[str, str]:
         "seed_list_sha256": canonical_sha256(seed_manifest),
         "experiment_config_sha256": config.runner_config_sha256,
     }
-    _BINDING_CACHE[key] = dict(result)
     return result
 
 
-_BINDING_CACHE: dict[tuple[str, str], dict[str, str]] = {}
 
 
 def authorize(mode: str, config: FrozenConfig, authorization_file: Path | None = None) -> RunAuthorization:
+    verify_environment(config)
     if mode == "dry_run":
         return RunAuthorization("dry_run", None, None, (), None, _RECEIPT_SEAL)
     if mode != "formal_e2":
@@ -100,6 +97,7 @@ def authorize(mode: str, config: FrozenConfig, authorization_file: Path | None =
 
 
 def require_formal_e2(receipt: RunAuthorization, config: FrozenConfig) -> None:
+    verify_environment(config)
     if (type(receipt) is not RunAuthorization or receipt._seal is not _RECEIPT_SEAL
             or receipt.mode != "formal_e2" or not receipt.authorization_id or not receipt.owner
             or not receipt.authorization_file_sha256):

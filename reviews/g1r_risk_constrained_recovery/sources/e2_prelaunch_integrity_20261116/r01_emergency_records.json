@@ -1,0 +1,530 @@
+[
+  {
+    "emergency_source": "C:\\Users\\zhongxin\\AppData\\Local\\Temp\\g1r_e2_abort_markers\\0617aad769d58b60b9202e9f9a2f50470aa29d107f9624c3afc96e85a62a8a4a.json",
+    "record": {
+      "algorithm_outcome": false,
+      "automatic_retry": false,
+      "context": {
+        "age": null,
+        "batch": null,
+        "event": null,
+        "group": null,
+        "method": null,
+        "seed": null,
+        "stage": "preflight"
+      },
+      "exception_type": "ValueError",
+      "logging_failures": [
+        "FileNotFoundError(2, 'No such file or directory')"
+      ],
+      "message": "frozen batch plan must contain twenty batches",
+      "run_dir": "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_prelaunch_integrity_20261116_r01\\fault_fixtures\\test_model_builder_exception_aborts\\fixture_run",
+      "seed_marked_complete": false,
+      "status": "ABORTED_INCONCLUSIVE",
+      "timestamp_utc": "2026-11-16T03:05:09.362924+00:00",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 180, in _execute_checked_run\n    return self._execute_batches()\n           ~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 207, in _execute_batches\n    plan = self._batch_plan()\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 355, in _batch_plan\n    raise ValueError(\"frozen batch plan must contain twenty batches\")\nValueError: frozen batch plan must contain twenty batches\n"
+    },
+    "sha256": "48adbaf1b589a19430720b248e5d8860fd77b1aeca46cf5c466ffd0c6fa7e3a6"
+  },
+  {
+    "emergency_source": "C:\\Users\\zhongxin\\AppData\\Local\\Temp\\g1r_e2_abort_markers\\2e490e76e78e044433d8106f7e1a4bd45825cb235b3a3c4d93ef71e9e06a9560.json",
+    "record": {
+      "algorithm_outcome": false,
+      "automatic_retry": false,
+      "context": {
+        "age": null,
+        "batch": 0,
+        "event": null,
+        "group": "normal",
+        "method": "hard_gls_capped",
+        "seed": 710000,
+        "stage": "proposal"
+      },
+      "exception_type": "RuntimeError",
+      "logging_failures": [
+        "FileNotFoundError(2, 'No such file or directory')"
+      ],
+      "message": "unexpected proposal defect",
+      "run_dir": "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_prelaunch_integrity_20261116_r01\\fault_fixtures\\test_unexpected_frozen_proposal_exception_not_swallowed\\fixture_run",
+      "seed_marked_complete": false,
+      "status": "ABORTED_INCONCLUSIVE",
+      "timestamp_utc": "2026-11-16T03:05:10.617726+00:00",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 180, in _execute_checked_run\n    return self._execute_batches()\n           ~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 290, in _execute_batches\n    records, truths = self._process_seed(builder, group, seed, seeds, batch_index)\n                      ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 381, in _process_seed\n    record = propose(online)\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\online_proposal.py\", line 115, in propose\n    raw = v2_estimators.propose(z, online_input.frozen_public_model, online_input.method)\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nRuntimeError: unexpected proposal defect\n"
+    },
+    "sha256": "a0040845fc86ae3343eb765f7f3fa34a919743d952f7b93d3764cf54714964cc"
+  },
+  {
+    "emergency_source": "C:\\Users\\zhongxin\\AppData\\Local\\Temp\\g1r_e2_abort_markers\\50c06e4fdf4d5da2d8222b0b7d38b55d15e52886c0db33c8892e41575653314d.json",
+    "record": {
+      "algorithm_outcome": false,
+      "automatic_retry": false,
+      "context": {
+        "age": null,
+        "batch": null,
+        "event": null,
+        "group": null,
+        "method": null,
+        "seed": null,
+        "stage": "preflight"
+      },
+      "exception_type": "ValueError",
+      "logging_failures": [
+        "FileNotFoundError(2, 'No such file or directory')"
+      ],
+      "message": "frozen batch plan must contain twenty batches",
+      "run_dir": "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_prelaunch_integrity_20261116_r01\\fault_fixtures\\test_corrupt_checkpoint_aborts_and_is_preserved\\fixture_run",
+      "seed_marked_complete": false,
+      "status": "ABORTED_INCONCLUSIVE",
+      "timestamp_utc": "2026-11-16T03:05:06.106422+00:00",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 180, in _execute_checked_run\n    return self._execute_batches()\n           ~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 207, in _execute_batches\n    plan = self._batch_plan()\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 355, in _batch_plan\n    raise ValueError(\"frozen batch plan must contain twenty batches\")\nValueError: frozen batch plan must contain twenty batches\n"
+    },
+    "sha256": "547923d0ef2c945e806a61cd552ce01be40f20114292adac2a1642c362e6d416"
+  },
+  {
+    "emergency_source": "C:\\Users\\zhongxin\\AppData\\Local\\Temp\\g1r_e2_abort_markers\\65c80379a50d06c9c95d9394f6161e6f7c2c460cc32a91c868caf4e9cbdf0d0d.json",
+    "record": {
+      "algorithm_outcome": false,
+      "automatic_retry": false,
+      "context": {
+        "age": 64,
+        "batch": 0,
+        "event": [
+          0,
+          200
+        ],
+        "group": "attack",
+        "method": null,
+        "seed": 810000,
+        "stage": "scenario"
+      },
+      "exception_type": "RuntimeError",
+      "logging_failures": [
+        "FileNotFoundError(2, 'No such file or directory')"
+      ],
+      "message": "injected Yang Replay exception",
+      "run_dir": "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_prelaunch_integrity_20261116_r01\\fault_fixtures\\test_replay_simulator_exception_aborts\\fixture_run",
+      "seed_marked_complete": false,
+      "status": "ABORTED_INCONCLUSIVE",
+      "timestamp_utc": "2026-11-16T03:05:10.336053+00:00",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 180, in _execute_checked_run\n    return self._execute_batches()\n           ~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 290, in _execute_batches\n    records, truths = self._process_seed(builder, group, seed, seeds, batch_index)\n                      ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 374, in _process_seed\n    else builder.build_formal_replay(seed, event, age, self.authorization, context))\n         ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nRuntimeError: injected Yang Replay exception\n"
+    },
+    "sha256": "82188cc054e5b5df9ddcf0d88abf3abfa83713c1209bd46d32f15bdbdd7f1fa7"
+  },
+  {
+    "emergency_source": "C:\\Users\\zhongxin\\AppData\\Local\\Temp\\g1r_e2_abort_markers\\6deeee65793a3391c7c9e8cf0a2b76bf0c654dd01550fcb2ade069f6d4aeecd9.json",
+    "record": {
+      "algorithm_outcome": false,
+      "automatic_retry": false,
+      "context": {
+        "age": null,
+        "batch": 0,
+        "event": null,
+        "group": "normal",
+        "method": "hard_gls_capped",
+        "seed": 710000,
+        "stage": "partial_online_write"
+      },
+      "exception_type": "FileNotFoundError",
+      "logging_failures": [
+        "FileNotFoundError(2, 'No such file or directory')"
+      ],
+      "message": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\zhongxin\\\\shixidoc\\\\mypaper_g1r_e2_status_contract\\\\reviews\\\\g1r_risk_constrained_recovery\\\\results\\\\g1r_e2_prelaunch_integrity_20261116_r01\\\\fault_fixtures\\\\test_interrupt_resume_keeps_completed_seed_hashes\\\\fixture_run\\\\partial_online\\\\normal_710000_case_00_hard_gls_capped.json.ujkug9v7.tmp'",
+      "run_dir": "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_prelaunch_integrity_20261116_r01\\fault_fixtures\\test_interrupt_resume_keeps_completed_seed_hashes\\fixture_run",
+      "seed_marked_complete": false,
+      "status": "ABORTED_INCONCLUSIVE",
+      "timestamp_utc": "2026-11-16T03:05:09.342103+00:00",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 180, in _execute_checked_run\n    return self._execute_batches()\n           ~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 290, in _execute_batches\n    records, truths = self._process_seed(builder, group, seed, seeds, batch_index)\n                      ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 385, in _process_seed\n    write_exclusive(self.output_dir / \"partial_online\" / (stem + '.json'),\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                    canonical_json_bytes(record_dict(record)))\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\result_writer.py\", line 47, in write_exclusive\n    descriptor, temporary = tempfile.mkstemp(prefix=path.name + \".\", suffix=\".tmp\",\n                            ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                                             dir=path.parent)\n                                             ^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\tempfile.py\", line 408, in mkstemp\n    return _mkstemp_inner(dir, prefix, suffix, flags, output_type)\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\tempfile.py\", line 256, in _mkstemp_inner\n    fd = _os.open(file, flags, 0o600)\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\zhongxin\\\\shixidoc\\\\mypaper_g1r_e2_status_contract\\\\reviews\\\\g1r_risk_constrained_recovery\\\\results\\\\g1r_e2_prelaunch_integrity_20261116_r01\\\\fault_fixtures\\\\test_interrupt_resume_keeps_completed_seed_hashes\\\\fixture_run\\\\partial_online\\\\normal_710000_case_00_hard_gls_capped.json.ujkug9v7.tmp'\n"
+    },
+    "sha256": "4215bd3fd29bf79472b5e4e435ab39c8b5f435c780ec879cfbe9a3a39ed43951"
+  },
+  {
+    "emergency_source": "C:\\Users\\zhongxin\\AppData\\Local\\Temp\\g1r_e2_abort_markers\\768ba5fd65d15a27e59b26295b41f28b5641fd1a2cec1ae5e3c6519f2bcbaa4c.json",
+    "record": {
+      "algorithm_outcome": false,
+      "automatic_retry": false,
+      "context": {
+        "age": null,
+        "batch": 0,
+        "event": null,
+        "group": "normal",
+        "method": "hard_gls_capped",
+        "seed": 710000,
+        "stage": "partial_online_write"
+      },
+      "exception_type": "FileNotFoundError",
+      "logging_failures": [
+        "FileNotFoundError(2, 'No such file or directory')"
+      ],
+      "message": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\zhongxin\\\\shixidoc\\\\mypaper_g1r_e2_status_contract\\\\reviews\\\\g1r_risk_constrained_recovery\\\\results\\\\g1r_e2_prelaunch_integrity_20261116_r01\\\\fault_fixtures\\\\test_partial_online_records_survive_later_method_failure\\\\fixture_run\\\\partial_online\\\\normal_710000_case_00_hard_gls_capped.json.6v8lu6tu.tmp'",
+      "run_dir": "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_prelaunch_integrity_20261116_r01\\fault_fixtures\\test_partial_online_records_survive_later_method_failure\\fixture_run",
+      "seed_marked_complete": false,
+      "status": "ABORTED_INCONCLUSIVE",
+      "timestamp_utc": "2026-11-16T03:05:09.991591+00:00",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 180, in _execute_checked_run\n    return self._execute_batches()\n           ~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 290, in _execute_batches\n    records, truths = self._process_seed(builder, group, seed, seeds, batch_index)\n                      ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 385, in _process_seed\n    write_exclusive(self.output_dir / \"partial_online\" / (stem + '.json'),\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                    canonical_json_bytes(record_dict(record)))\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\result_writer.py\", line 47, in write_exclusive\n    descriptor, temporary = tempfile.mkstemp(prefix=path.name + \".\", suffix=\".tmp\",\n                            ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                                             dir=path.parent)\n                                             ^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\tempfile.py\", line 408, in mkstemp\n    return _mkstemp_inner(dir, prefix, suffix, flags, output_type)\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\tempfile.py\", line 256, in _mkstemp_inner\n    fd = _os.open(file, flags, 0o600)\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\zhongxin\\\\shixidoc\\\\mypaper_g1r_e2_status_contract\\\\reviews\\\\g1r_risk_constrained_recovery\\\\results\\\\g1r_e2_prelaunch_integrity_20261116_r01\\\\fault_fixtures\\\\test_partial_online_records_survive_later_method_failure\\\\fixture_run\\\\partial_online\\\\normal_710000_case_00_hard_gls_capped.json.6v8lu6tu.tmp'\n"
+    },
+    "sha256": "11947f7777eff7da3155899e562084f96bf1c6432c90a3619af95b2357d30662"
+  },
+  {
+    "emergency_source": "C:\\Users\\zhongxin\\AppData\\Local\\Temp\\g1r_e2_abort_markers\\848d2a4332c3f601c42744d8da4ad73c0fce1a7a232df7a3588425b18f19e8b9.json",
+    "record": {
+      "algorithm_outcome": false,
+      "automatic_retry": false,
+      "context": {
+        "age": null,
+        "batch": 0,
+        "event": null,
+        "group": "normal",
+        "method": null,
+        "seed": 710000,
+        "stage": "scenario"
+      },
+      "exception_type": "ValueError",
+      "logging_failures": [
+        "FileNotFoundError(2, 'No such file or directory')"
+      ],
+      "message": "scenario failed before proposal",
+      "run_dir": "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_prelaunch_integrity_20261116_r01\\fault_fixtures\\test_nonpass_scenario_never_becomes_completed_seed\\fixture_run",
+      "seed_marked_complete": false,
+      "status": "ABORTED_INCONCLUSIVE",
+      "timestamp_utc": "2026-11-16T03:05:09.539284+00:00",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 180, in _execute_checked_run\n    return self._execute_batches()\n           ~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 290, in _execute_batches\n    records, truths = self._process_seed(builder, group, seed, seeds, batch_index)\n                      ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 376, in _process_seed\n    raise ValueError(\"scenario failed before proposal\")\nValueError: scenario failed before proposal\n"
+    },
+    "sha256": "febe0638d9d75a8227405c644abee43716c7e65ded1bb5ecf818f9ae5ea375fc"
+  },
+  {
+    "emergency_source": "C:\\Users\\zhongxin\\AppData\\Local\\Temp\\g1r_e2_abort_markers\\900ca4ed3ebd116608c6f03cfc36ef7b42d364446f7f0a6ab07bfdb3dbcf8e44.json",
+    "record": {
+      "algorithm_outcome": false,
+      "automatic_retry": false,
+      "context": {
+        "age": null,
+        "batch": 0,
+        "event": null,
+        "group": "normal",
+        "method": "hard_gls_capped",
+        "seed": 710000,
+        "stage": "proposal"
+      },
+      "exception_type": "ValueError",
+      "logging_failures": [
+        "FileNotFoundError(2, 'No such file or directory')"
+      ],
+      "message": "online input must contain exactly twelve finite innovations",
+      "run_dir": "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_prelaunch_integrity_20261116_r01\\fault_fixtures\\test_nonfinite_innovation_aborts\\fixture_run",
+      "seed_marked_complete": false,
+      "status": "ABORTED_INCONCLUSIVE",
+      "timestamp_utc": "2026-11-16T03:05:09.449789+00:00",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 180, in _execute_checked_run\n    return self._execute_batches()\n           ~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 290, in _execute_batches\n    records, truths = self._process_seed(builder, group, seed, seeds, batch_index)\n                      ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 379, in _process_seed\n    online = build_online_input(case.online_input.z, self.public_model,\n                                self.config.thresholds[method], method)\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\online_proposal.py\", line 51, in build_online_input\n    raise ValueError(\"online input must contain exactly twelve finite innovations\")\nValueError: online input must contain exactly twelve finite innovations\n"
+    },
+    "sha256": "457410aa2856042953862c38350b52ffa4fbe0b3522e4abbee62b45178e04df7"
+  },
+  {
+    "emergency_source": "C:\\Users\\zhongxin\\AppData\\Local\\Temp\\g1r_e2_abort_markers\\a3eee50eae4bb9c4e468179766d30ce88ada0a06556a20366624be761dcbe783.json",
+    "record": {
+      "algorithm_outcome": false,
+      "automatic_retry": false,
+      "context": {
+        "age": null,
+        "batch": 0,
+        "event": null,
+        "group": "normal",
+        "method": null,
+        "seed": 710000,
+        "stage": "scenario"
+      },
+      "exception_type": "RuntimeError",
+      "logging_failures": [
+        "FileNotFoundError(2, 'No such file or directory')"
+      ],
+      "message": "abort fixture",
+      "run_dir": "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_prelaunch_integrity_20261116_r01\\fault_fixtures\\test_aborted_run_cannot_publish_or_recompute_gate\\fixture_run",
+      "seed_marked_complete": false,
+      "status": "ABORTED_INCONCLUSIVE",
+      "timestamp_utc": "2026-11-16T03:05:05.657107+00:00",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 180, in _execute_checked_run\n    return self._execute_batches()\n           ~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 290, in _execute_batches\n    records, truths = self._process_seed(builder, group, seed, seeds, batch_index)\n                      ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 373, in _process_seed\n    case = (builder.build_formal_normal(seed, self.authorization) if group == \"normal\"\n            ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nRuntimeError: abort fixture\n"
+    },
+    "sha256": "58349648bca0f0f386dc26808ff5203392d8c2790ad8552c8414423bd151bb92"
+  },
+  {
+    "emergency_source": "C:\\Users\\zhongxin\\AppData\\Local\\Temp\\g1r_e2_abort_markers\\a9d0a496080c9b9c28317a92afde943dcf89a4e2fec62bcb52ea66d7022d4dd9.json",
+    "record": {
+      "algorithm_outcome": false,
+      "automatic_retry": false,
+      "context": {
+        "age": 64,
+        "batch": 0,
+        "event": [
+          0,
+          200
+        ],
+        "group": "attack",
+        "method": "hard_gls_capped",
+        "seed": 810000,
+        "stage": "partial_online_write"
+      },
+      "exception_type": "FileNotFoundError",
+      "logging_failures": [
+        "FileNotFoundError(2, 'No such file or directory')"
+      ],
+      "message": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\zhongxin\\\\shixidoc\\\\mypaper_g1r_e2_status_contract\\\\reviews\\\\g1r_risk_constrained_recovery\\\\results\\\\g1r_e2_prelaunch_integrity_20261116_r01\\\\fault_fixtures\\\\test_replay_age_mismatch_aborts\\\\fixture_run\\\\partial_online\\\\attack_810000_case_00_hard_gls_capped.json.12fmxfrm.tmp'",
+      "run_dir": "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_prelaunch_integrity_20261116_r01\\fault_fixtures\\test_replay_age_mismatch_aborts\\fixture_run",
+      "seed_marked_complete": false,
+      "status": "ABORTED_INCONCLUSIVE",
+      "timestamp_utc": "2026-11-16T03:05:10.167558+00:00",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 180, in _execute_checked_run\n    return self._execute_batches()\n           ~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 290, in _execute_batches\n    records, truths = self._process_seed(builder, group, seed, seeds, batch_index)\n                      ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 385, in _process_seed\n    write_exclusive(self.output_dir / \"partial_online\" / (stem + '.json'),\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                    canonical_json_bytes(record_dict(record)))\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\result_writer.py\", line 47, in write_exclusive\n    descriptor, temporary = tempfile.mkstemp(prefix=path.name + \".\", suffix=\".tmp\",\n                            ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                                             dir=path.parent)\n                                             ^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\tempfile.py\", line 408, in mkstemp\n    return _mkstemp_inner(dir, prefix, suffix, flags, output_type)\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\tempfile.py\", line 256, in _mkstemp_inner\n    fd = _os.open(file, flags, 0o600)\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\zhongxin\\\\shixidoc\\\\mypaper_g1r_e2_status_contract\\\\reviews\\\\g1r_risk_constrained_recovery\\\\results\\\\g1r_e2_prelaunch_integrity_20261116_r01\\\\fault_fixtures\\\\test_replay_age_mismatch_aborts\\\\fixture_run\\\\partial_online\\\\attack_810000_case_00_hard_gls_capped.json.12fmxfrm.tmp'\n"
+    },
+    "sha256": "59be7dadce702d633a4e54644dc7e7402b80e842b053a403cc065a57276e7fd5"
+  },
+  {
+    "emergency_source": "C:\\Users\\zhongxin\\AppData\\Local\\Temp\\g1r_e2_abort_markers\\b7ce1ff41a837938c4cf2e60275da5fced4de78b1f37752a77b12fcecb1a10fb.json",
+    "record": {
+      "algorithm_outcome": false,
+      "automatic_retry": false,
+      "context": {
+        "age": null,
+        "batch": 0,
+        "event": null,
+        "group": "normal",
+        "method": "hard_gls_capped",
+        "seed": 710000,
+        "stage": "partial_online_write"
+      },
+      "exception_type": "FileNotFoundError",
+      "logging_failures": [
+        "FileNotFoundError(2, 'No such file or directory')"
+      ],
+      "message": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\zhongxin\\\\shixidoc\\\\mypaper_g1r_e2_status_contract\\\\reviews\\\\g1r_risk_constrained_recovery\\\\results\\\\g1r_e2_prelaunch_integrity_20261116_r01\\\\fault_fixtures\\\\test_online_write_failure_aborts\\\\fixture_run\\\\partial_online\\\\normal_710000_case_00_hard_gls_capped.json.948l6r70.tmp'",
+      "run_dir": "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_prelaunch_integrity_20261116_r01\\fault_fixtures\\test_online_write_failure_aborts\\fixture_run",
+      "seed_marked_complete": false,
+      "status": "ABORTED_INCONCLUSIVE",
+      "timestamp_utc": "2026-11-16T03:05:09.902209+00:00",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 180, in _execute_checked_run\n    return self._execute_batches()\n           ~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 290, in _execute_batches\n    records, truths = self._process_seed(builder, group, seed, seeds, batch_index)\n                      ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 385, in _process_seed\n    write_exclusive(self.output_dir / \"partial_online\" / (stem + '.json'),\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                    canonical_json_bytes(record_dict(record)))\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\result_writer.py\", line 47, in write_exclusive\n    descriptor, temporary = tempfile.mkstemp(prefix=path.name + \".\", suffix=\".tmp\",\n                            ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                                             dir=path.parent)\n                                             ^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\tempfile.py\", line 408, in mkstemp\n    return _mkstemp_inner(dir, prefix, suffix, flags, output_type)\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\tempfile.py\", line 256, in _mkstemp_inner\n    fd = _os.open(file, flags, 0o600)\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\zhongxin\\\\shixidoc\\\\mypaper_g1r_e2_status_contract\\\\reviews\\\\g1r_risk_constrained_recovery\\\\results\\\\g1r_e2_prelaunch_integrity_20261116_r01\\\\fault_fixtures\\\\test_online_write_failure_aborts\\\\fixture_run\\\\partial_online\\\\normal_710000_case_00_hard_gls_capped.json.948l6r70.tmp'\n"
+    },
+    "sha256": "39e20dd9336a7b05a1143ad75109918d992ae9d54ff0c4292a1f370cea308fe8"
+  },
+  {
+    "emergency_source": "C:\\Users\\zhongxin\\AppData\\Local\\Temp\\g1r_e2_abort_markers\\d167928d070ca9b9145f3f64416b27c719cd5363a461b4ed985a886954ec0a48.json",
+    "record": {
+      "algorithm_outcome": false,
+      "automatic_retry": false,
+      "context": {
+        "age": null,
+        "batch": 0,
+        "event": null,
+        "group": "normal",
+        "method": null,
+        "seed": 710000,
+        "stage": "scenario"
+      },
+      "exception_type": "RuntimeError",
+      "logging_failures": [
+        "FileNotFoundError(2, 'No such file or directory')"
+      ],
+      "message": "injected Yang normal exception",
+      "run_dir": "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_prelaunch_integrity_20261116_r01\\fault_fixtures\\test_normal_simulator_exception_aborts\\fixture_run",
+      "seed_marked_complete": false,
+      "status": "ABORTED_INCONCLUSIVE",
+      "timestamp_utc": "2026-11-16T03:05:09.630410+00:00",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 180, in _execute_checked_run\n    return self._execute_batches()\n           ~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 290, in _execute_batches\n    records, truths = self._process_seed(builder, group, seed, seeds, batch_index)\n                      ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 373, in _process_seed\n    case = (builder.build_formal_normal(seed, self.authorization) if group == \"normal\"\n            ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nRuntimeError: injected Yang normal exception\n"
+    },
+    "sha256": "d335bc80cfb4624d145b4fcd06da16e70700f0174e674813c0aa5f03dbc8d248"
+  },
+  {
+    "emergency_source": "C:\\Users\\zhongxin\\AppData\\Local\\Temp\\g1r_e2_abort_markers\\dafb4341cadb001ef7f3309ebab9c51df9c2b96b206939976683b59b9d1315fa.json",
+    "record": {
+      "algorithm_outcome": false,
+      "automatic_retry": false,
+      "context": {
+        "age": null,
+        "batch": 0,
+        "event": null,
+        "group": "normal",
+        "method": "hard_gls_capped",
+        "seed": 710000,
+        "stage": "partial_online_write"
+      },
+      "exception_type": "FileNotFoundError",
+      "logging_failures": [
+        "FileNotFoundError(2, 'No such file or directory')"
+      ],
+      "message": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\zhongxin\\\\shixidoc\\\\mypaper_g1r_e2_status_contract\\\\reviews\\\\g1r_risk_constrained_recovery\\\\results\\\\g1r_e2_prelaunch_integrity_20261116_r01\\\\fault_fixtures\\\\test_checkpoint_write_failure_never_completes_seed\\\\fixture_run\\\\partial_online\\\\normal_710000_case_00_hard_gls_capped.json.sxtz1qmy.tmp'",
+      "run_dir": "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_prelaunch_integrity_20261116_r01\\fault_fixtures\\test_checkpoint_write_failure_never_completes_seed\\fixture_run",
+      "seed_marked_complete": false,
+      "status": "ABORTED_INCONCLUSIVE",
+      "timestamp_utc": "2026-11-16T03:05:06.087246+00:00",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 180, in _execute_checked_run\n    return self._execute_batches()\n           ~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 290, in _execute_batches\n    records, truths = self._process_seed(builder, group, seed, seeds, batch_index)\n                      ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 385, in _process_seed\n    write_exclusive(self.output_dir / \"partial_online\" / (stem + '.json'),\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                    canonical_json_bytes(record_dict(record)))\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\result_writer.py\", line 47, in write_exclusive\n    descriptor, temporary = tempfile.mkstemp(prefix=path.name + \".\", suffix=\".tmp\",\n                            ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                                             dir=path.parent)\n                                             ^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\tempfile.py\", line 408, in mkstemp\n    return _mkstemp_inner(dir, prefix, suffix, flags, output_type)\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\tempfile.py\", line 256, in _mkstemp_inner\n    fd = _os.open(file, flags, 0o600)\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\zhongxin\\\\shixidoc\\\\mypaper_g1r_e2_status_contract\\\\reviews\\\\g1r_risk_constrained_recovery\\\\results\\\\g1r_e2_prelaunch_integrity_20261116_r01\\\\fault_fixtures\\\\test_checkpoint_write_failure_never_completes_seed\\\\fixture_run\\\\partial_online\\\\normal_710000_case_00_hard_gls_capped.json.sxtz1qmy.tmp'\n"
+    },
+    "sha256": "251f275d9887561156ffe954a7420fb21384e2b9cc509a99139444ad50709917"
+  },
+  {
+    "emergency_source": "C:\\Users\\zhongxin\\AppData\\Local\\Temp\\g1r_e2_abort_markers\\e45523dd03e4869dc8d18ce83f582cf17bdd1cf315f7929dd8d57c9e383c7305.json",
+    "record": {
+      "algorithm_outcome": false,
+      "automatic_retry": false,
+      "context": {
+        "age": null,
+        "batch": null,
+        "event": null,
+        "group": null,
+        "method": null,
+        "seed": null,
+        "stage": "preflight"
+      },
+      "exception_type": "FileNotFoundError",
+      "logging_failures": [
+        "FileNotFoundError(2, '\u6587\u4ef6\u540d\u6216\u6269\u5c55\u540d\u592a\u957f\u3002')"
+      ],
+      "message": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\zhongxin\\\\shixidoc\\\\mypaper_g1r_e2_status_contract\\\\reviews\\\\g1r_risk_constrained_recovery\\\\results\\\\g1r_e2_prelaunch_integrity_20261116_r01\\\\fault_fixtures\\\\test_coverage_program_exception_aborts_instead_of_uncovered\\\\fixture_run\\\\source_hashes.json.06x_7op9.tmp'",
+      "run_dir": "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_prelaunch_integrity_20261116_r01\\fault_fixtures\\test_coverage_program_exception_aborts_instead_of_uncovered\\fixture_run",
+      "seed_marked_complete": false,
+      "status": "ABORTED_INCONCLUSIVE",
+      "timestamp_utc": "2026-11-16T03:05:06.169828+00:00",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 180, in _execute_checked_run\n    return self._execute_batches()\n           ~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 246, in _execute_batches\n    write_exclusive(source_hashes_path, source_hashes_payload)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\result_writer.py\", line 47, in write_exclusive\n    descriptor, temporary = tempfile.mkstemp(prefix=path.name + \".\", suffix=\".tmp\",\n                            ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                                             dir=path.parent)\n                                             ^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\tempfile.py\", line 408, in mkstemp\n    return _mkstemp_inner(dir, prefix, suffix, flags, output_type)\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\tempfile.py\", line 256, in _mkstemp_inner\n    fd = _os.open(file, flags, 0o600)\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\zhongxin\\\\shixidoc\\\\mypaper_g1r_e2_status_contract\\\\reviews\\\\g1r_risk_constrained_recovery\\\\results\\\\g1r_e2_prelaunch_integrity_20261116_r01\\\\fault_fixtures\\\\test_coverage_program_exception_aborts_instead_of_uncovered\\\\fixture_run\\\\source_hashes.json.06x_7op9.tmp'\n"
+    },
+    "sha256": "ca0b09abb886cb095d41a782733ff9162c1052fb88f590bc77f270b29a6242a3"
+  },
+  {
+    "emergency_source": "C:\\Users\\zhongxin\\AppData\\Local\\Temp\\g1r_e2_abort_markers\\e8a6d94a39e969158924ec23726273471d25a0e127093cc8938c035b2a5d78be.json",
+    "record": {
+      "algorithm_outcome": false,
+      "automatic_retry": false,
+      "context": {
+        "age": null,
+        "batch": 0,
+        "event": null,
+        "group": "normal",
+        "method": "hard_gls_capped",
+        "seed": 710000,
+        "stage": "partial_online_write"
+      },
+      "exception_type": "FileNotFoundError",
+      "logging_failures": [
+        "FileNotFoundError(2, 'No such file or directory')"
+      ],
+      "message": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\zhongxin\\\\shixidoc\\\\mypaper_g1r_e2_status_contract\\\\reviews\\\\g1r_risk_constrained_recovery\\\\results\\\\g1r_e2_prelaunch_integrity_20261116_r01\\\\fault_fixtures\\\\test_offline_evaluator_failure_aborts\\\\fixture_run\\\\partial_online\\\\normal_710000_case_00_hard_gls_capped.json.7k4pfwah.tmp'",
+      "run_dir": "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_prelaunch_integrity_20261116_r01\\fault_fixtures\\test_offline_evaluator_failure_aborts\\fixture_run",
+      "seed_marked_complete": false,
+      "status": "ABORTED_INCONCLUSIVE",
+      "timestamp_utc": "2026-11-16T03:05:09.724347+00:00",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 180, in _execute_checked_run\n    return self._execute_batches()\n           ~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 290, in _execute_batches\n    records, truths = self._process_seed(builder, group, seed, seeds, batch_index)\n                      ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 385, in _process_seed\n    write_exclusive(self.output_dir / \"partial_online\" / (stem + '.json'),\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                    canonical_json_bytes(record_dict(record)))\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\result_writer.py\", line 47, in write_exclusive\n    descriptor, temporary = tempfile.mkstemp(prefix=path.name + \".\", suffix=\".tmp\",\n                            ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                                             dir=path.parent)\n                                             ^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\tempfile.py\", line 408, in mkstemp\n    return _mkstemp_inner(dir, prefix, suffix, flags, output_type)\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\tempfile.py\", line 256, in _mkstemp_inner\n    fd = _os.open(file, flags, 0o600)\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\zhongxin\\\\shixidoc\\\\mypaper_g1r_e2_status_contract\\\\reviews\\\\g1r_risk_constrained_recovery\\\\results\\\\g1r_e2_prelaunch_integrity_20261116_r01\\\\fault_fixtures\\\\test_offline_evaluator_failure_aborts\\\\fixture_run\\\\partial_online\\\\normal_710000_case_00_hard_gls_capped.json.7k4pfwah.tmp'\n"
+    },
+    "sha256": "3b89cb531104e0d585c2dd1f153693a260d406bd937b4b2783e505a498424503"
+  },
+  {
+    "emergency_source": "C:\\Users\\zhongxin\\AppData\\Local\\Temp\\g1r_e2_abort_markers\\ebf4ecb9be74d364e9fcbc336d531fb9802e69ceec1bd55ad62121933c85c29b.json",
+    "record": {
+      "algorithm_outcome": false,
+      "automatic_retry": false,
+      "context": {
+        "age": 64,
+        "batch": 0,
+        "event": [
+          0,
+          200
+        ],
+        "group": "attack",
+        "method": "hard_gls_capped",
+        "seed": 810000,
+        "stage": "partial_online_write"
+      },
+      "exception_type": "FileNotFoundError",
+      "logging_failures": [
+        "FileNotFoundError(2, 'No such file or directory')"
+      ],
+      "message": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\zhongxin\\\\shixidoc\\\\mypaper_g1r_e2_status_contract\\\\reviews\\\\g1r_risk_constrained_recovery\\\\results\\\\g1r_e2_prelaunch_integrity_20261116_r01\\\\fault_fixtures\\\\test_replay_source_mismatch_aborts\\\\fixture_run\\\\partial_online\\\\attack_810000_case_00_hard_gls_capped.json.y4fh58l9.tmp'",
+      "run_dir": "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_prelaunch_integrity_20261116_r01\\fault_fixtures\\test_replay_source_mismatch_aborts\\fixture_run",
+      "seed_marked_complete": false,
+      "status": "ABORTED_INCONCLUSIVE",
+      "timestamp_utc": "2026-11-16T03:05:10.436753+00:00",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 180, in _execute_checked_run\n    return self._execute_batches()\n           ~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 290, in _execute_batches\n    records, truths = self._process_seed(builder, group, seed, seeds, batch_index)\n                      ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 385, in _process_seed\n    write_exclusive(self.output_dir / \"partial_online\" / (stem + '.json'),\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                    canonical_json_bytes(record_dict(record)))\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\result_writer.py\", line 47, in write_exclusive\n    descriptor, temporary = tempfile.mkstemp(prefix=path.name + \".\", suffix=\".tmp\",\n                            ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                                             dir=path.parent)\n                                             ^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\tempfile.py\", line 408, in mkstemp\n    return _mkstemp_inner(dir, prefix, suffix, flags, output_type)\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\tempfile.py\", line 256, in _mkstemp_inner\n    fd = _os.open(file, flags, 0o600)\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\zhongxin\\\\shixidoc\\\\mypaper_g1r_e2_status_contract\\\\reviews\\\\g1r_risk_constrained_recovery\\\\results\\\\g1r_e2_prelaunch_integrity_20261116_r01\\\\fault_fixtures\\\\test_replay_source_mismatch_aborts\\\\fixture_run\\\\partial_online\\\\attack_810000_case_00_hard_gls_capped.json.y4fh58l9.tmp'\n"
+    },
+    "sha256": "13952d61bfaefc47abb25006278830a2db268e4df84ce8bacb1429235ce91f98"
+  },
+  {
+    "emergency_source": "C:\\Users\\zhongxin\\AppData\\Local\\Temp\\g1r_e2_abort_markers\\ef1131bda7f431f2619af32f4ee8f0d4733698c07bef9af61dea36a8f0ceced0.json",
+    "record": {
+      "algorithm_outcome": false,
+      "automatic_retry": false,
+      "context": {
+        "age": 64,
+        "batch": 0,
+        "event": [
+          0,
+          200
+        ],
+        "group": "attack",
+        "method": "hard_gls_capped",
+        "seed": 810000,
+        "stage": "partial_online_write"
+      },
+      "exception_type": "FileNotFoundError",
+      "logging_failures": [
+        "FileNotFoundError(2, 'No such file or directory')"
+      ],
+      "message": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\zhongxin\\\\shixidoc\\\\mypaper_g1r_e2_status_contract\\\\reviews\\\\g1r_risk_constrained_recovery\\\\results\\\\g1r_e2_prelaunch_integrity_20261116_r01\\\\fault_fixtures\\\\test_replay_cache_replacement_mismatch_aborts\\\\fixture_run\\\\partial_online\\\\attack_810000_case_00_hard_gls_capped.json.b4ycosoy.tmp'",
+      "run_dir": "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_prelaunch_integrity_20261116_r01\\fault_fixtures\\test_replay_cache_replacement_mismatch_aborts\\fixture_run",
+      "seed_marked_complete": false,
+      "status": "ABORTED_INCONCLUSIVE",
+      "timestamp_utc": "2026-11-16T03:05:10.253418+00:00",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 180, in _execute_checked_run\n    return self._execute_batches()\n           ~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 290, in _execute_batches\n    records, truths = self._process_seed(builder, group, seed, seeds, batch_index)\n                      ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 385, in _process_seed\n    write_exclusive(self.output_dir / \"partial_online\" / (stem + '.json'),\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                    canonical_json_bytes(record_dict(record)))\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\result_writer.py\", line 47, in write_exclusive\n    descriptor, temporary = tempfile.mkstemp(prefix=path.name + \".\", suffix=\".tmp\",\n                            ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                                             dir=path.parent)\n                                             ^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\tempfile.py\", line 408, in mkstemp\n    return _mkstemp_inner(dir, prefix, suffix, flags, output_type)\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\tempfile.py\", line 256, in _mkstemp_inner\n    fd = _os.open(file, flags, 0o600)\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\zhongxin\\\\shixidoc\\\\mypaper_g1r_e2_status_contract\\\\reviews\\\\g1r_risk_constrained_recovery\\\\results\\\\g1r_e2_prelaunch_integrity_20261116_r01\\\\fault_fixtures\\\\test_replay_cache_replacement_mismatch_aborts\\\\fixture_run\\\\partial_online\\\\attack_810000_case_00_hard_gls_capped.json.b4ycosoy.tmp'\n"
+    },
+    "sha256": "7d5356a4bb5e247f5293af9106cba2eaebd3ce3ac29274e6fe16bbf540764664"
+  },
+  {
+    "emergency_source": "C:\\Users\\zhongxin\\AppData\\Local\\Temp\\g1r_e2_abort_markers\\fd67ca6abdccc243d96fc99d26a610fdab82565dc54e53febd49a3f57f7a0300.json",
+    "record": {
+      "algorithm_outcome": false,
+      "automatic_retry": false,
+      "context": {
+        "age": null,
+        "batch": 0,
+        "event": null,
+        "group": "attack",
+        "method": null,
+        "seed": 810000,
+        "stage": "attack_data_and_healthy_pair"
+      },
+      "exception_type": "RuntimeError",
+      "logging_failures": [
+        "FileNotFoundError(2, 'No such file or directory')"
+      ],
+      "message": "injected data generator exception",
+      "run_dir": "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_prelaunch_integrity_20261116_r01\\fault_fixtures\\test_data_generation_exception_aborts\\fixture_run",
+      "seed_marked_complete": false,
+      "status": "ABORTED_INCONCLUSIVE",
+      "timestamp_utc": "2026-11-16T03:05:06.240738+00:00",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 180, in _execute_checked_run\n    return self._execute_batches()\n           ~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 290, in _execute_batches\n    records, truths = self._process_seed(builder, group, seed, seeds, batch_index)\n                      ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 369, in _process_seed\n    context = builder.prepare_formal_attack_seed(seed, self.authorization)\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nRuntimeError: injected data generator exception\n"
+    },
+    "sha256": "7eb98f9a48f62e09853de58cc7ba30a6c7573f2b2b999b7ee19910fdf9971cb5"
+  },
+  {
+    "emergency_source": "C:\\Users\\zhongxin\\AppData\\Local\\Temp\\g1r_e2_abort_markers\\fdb2b91b916d161fcf947e3899a69d82abff6ec31702b28522bc6c5ed0e32af4.json",
+    "record": {
+      "algorithm_outcome": false,
+      "automatic_retry": false,
+      "context": {
+        "age": 64,
+        "batch": 0,
+        "event": [
+          0,
+          200
+        ],
+        "group": "attack",
+        "method": "hard_gls_capped",
+        "seed": 810000,
+        "stage": "partial_online_write"
+      },
+      "exception_type": "FileNotFoundError",
+      "logging_failures": [
+        "FileNotFoundError(2, 'No such file or directory')"
+      ],
+      "message": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\zhongxin\\\\shixidoc\\\\mypaper_g1r_e2_status_contract\\\\reviews\\\\g1r_risk_constrained_recovery\\\\results\\\\g1r_e2_prelaunch_integrity_20261116_r01\\\\fault_fixtures\\\\test_true_impact_required_even_if_coverage_false\\\\fixture_run\\\\partial_online\\\\attack_810000_case_00_hard_gls_capped.json.5m86lplr.tmp'",
+      "run_dir": "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_prelaunch_integrity_20261116_r01\\fault_fixtures\\test_true_impact_required_even_if_coverage_false\\fixture_run",
+      "seed_marked_complete": false,
+      "status": "ABORTED_INCONCLUSIVE",
+      "timestamp_utc": "2026-11-16T03:05:10.531605+00:00",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 180, in _execute_checked_run\n    return self._execute_batches()\n           ~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 290, in _execute_batches\n    records, truths = self._process_seed(builder, group, seed, seeds, batch_index)\n                      ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py\", line 385, in _process_seed\n    write_exclusive(self.output_dir / \"partial_online\" / (stem + '.json'),\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                    canonical_json_bytes(record_dict(record)))\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\result_writer.py\", line 47, in write_exclusive\n    descriptor, temporary = tempfile.mkstemp(prefix=path.name + \".\", suffix=\".tmp\",\n                            ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                                             dir=path.parent)\n                                             ^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\tempfile.py\", line 408, in mkstemp\n    return _mkstemp_inner(dir, prefix, suffix, flags, output_type)\n  File \"C:\\Users\\zhongxin\\miniconda3\\Lib\\tempfile.py\", line 256, in _mkstemp_inner\n    fd = _os.open(file, flags, 0o600)\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\zhongxin\\\\shixidoc\\\\mypaper_g1r_e2_status_contract\\\\reviews\\\\g1r_risk_constrained_recovery\\\\results\\\\g1r_e2_prelaunch_integrity_20261116_r01\\\\fault_fixtures\\\\test_true_impact_required_even_if_coverage_false\\\\fixture_run\\\\partial_online\\\\attack_810000_case_00_hard_gls_capped.json.5m86lplr.tmp'\n"
+    },
+    "sha256": "1c793e57921ccd938be013bef12957144af38e8b5ea83fc0f9f42ef7217e431e"
+  }
+]

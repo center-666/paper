@@ -12,7 +12,8 @@ from typing import Any
 import numpy as np
 import scipy
 
-from .config_loader import FrozenConfig
+from .config_loader import FrozenConfig, read_json
+from .environment_guard import verify_environment
 
 
 class IntegrityError(ValueError):
@@ -59,7 +60,10 @@ def validate_batch_rows(config: FrozenConfig, group: str, seeds: tuple[int, ...]
                     for method in config.methods:
                         expected.add((int(seed), "replay", event, age, method))
     observed = []
+    model_cfg = read_json(config.model_config_path)["model"]
     for row in rows:
+        if row.get("simulation_status") != "PASS":
+            raise IntegrityError("non-PASS simulation cannot enter a completed batch")
         scenario = str(row["scenario"])
         event = _event(row)
         age = None if row.get("age") in (None, "", "null") else int(row["age"])
@@ -73,8 +77,19 @@ def validate_batch_rows(config: FrozenConfig, group: str, seeds: tuple[int, ...]
             raise IntegrityError(f"main-case label mismatch for {key}")
         norm = float(row["set_action_norm"])
         action = np.asarray(json.loads(row["final_action_json"]), dtype=float)
-        if not np.all(np.isfinite(action)) or abs(float(np.linalg.norm(action)) - norm) > 1e-10:
+        proposal = np.asarray(json.loads(row["proposal_vector_json"]), dtype=float)
+        proposal_norm = float(row["set_proposal_norm"])
+        numbers = [norm, proposal_norm, float(row["score"]), float(row["threshold"])]
+        if (action.shape != (2,) or proposal.shape != (2,)
+                or not np.all(np.isfinite(action)) or not np.all(np.isfinite(proposal))
+                or not np.all(np.isfinite(numbers)) or norm < 0 or proposal_norm < 0):
+            raise IntegrityError(f"nonfinite or malformed proposal/action for {key}")
+        if abs(float(np.linalg.norm(proposal)) - proposal_norm) > 1e-10:
+            raise IntegrityError(f"pre-gate proposal norm mismatch for {key}")
+        if abs(float(np.linalg.norm(action)) - norm) > 1e-10:
             raise IntegrityError(f"post-gate action norm mismatch for {key}")
+        if float(row["threshold"]) != config.thresholds[str(row["method"])]:
+            raise IntegrityError(f"calibration threshold mismatch for {key}")
         if norm > float(config.protocol["U_common"]) + 1e-12:
             raise IntegrityError(f"post-gate action exceeds common cap for {key}")
         executed = (str(row["gate_status"]) == "EXECUTED"
@@ -84,15 +99,22 @@ def validate_batch_rows(config: FrozenConfig, group: str, seeds: tuple[int, ...]
         if (str(row["proposal_status"]) != "VALID" or str(row["gate_status"]) != "EXECUTED") and norm > 1e-12:
             raise IntegrityError(f"rejected proposal has a nonzero executed action for {key}")
         if group == "attack":
-            if _bool(row["coverage_confirmed"]) and row.get("true_impact_x") in (None, ""):
-                raise IntegrityError(f"coverage marked without OfflineTruth for {key}")
-            if row.get("simulation_status") == "PASS":
-                source = int(row["replay_source_time"])
-                actual_age = int(row["actual_replay_age"])
-                if source != event[1] - age or actual_age != age:
-                    raise IntegrityError(f"actual Replay source/age mismatch for {key}")
-                if int(row["cache_replacement_time"]) <= event[1]:
-                    raise IntegrityError(f"cache replacement must follow Replay time for {key}")
+            try:
+                impact = np.asarray([row["true_impact_x"], row["true_impact_y"]], dtype=float)
+            except (KeyError, TypeError, ValueError) as exc:
+                raise IntegrityError(f"missing Replay true impact for {key}") from exc
+            if not np.all(np.isfinite(impact)):
+                raise IntegrityError(f"nonfinite Replay true impact for {key}")
+            source = int(row["replay_source_time"])
+            actual_age = int(row["actual_replay_age"])
+            sender = model_cfg["edges_sender_receiver"][event[0]][0]
+            gap = int(config.protocol["gap"])
+            if (source != event[1] - age or actual_age != age or source < 0
+                    or event[1] % gap != sender
+                    or (source != 0 and source % gap != sender)):
+                raise IntegrityError(f"actual Replay source/age/send mismatch for {key}")
+            if int(row["cache_replacement_time"]) != event[1] + gap:
+                raise IntegrityError(f"incorrect cache replacement time for {key}")
         if str(row["statistical_cluster"]) != f"{group}:{int(row['seed'])}" and group == "attack":
             raise IntegrityError(f"attack rows lost within-seed cluster label for {key}")
     if len(set(observed)) != len(observed):
@@ -109,6 +131,7 @@ def validate_full_run(config: FrozenConfig, normal_rows: list[dict[str, Any]],
 
 
 def source_hash_manifest(config: FrozenConfig, debug_cache: Path) -> dict[str, Any]:
+    runtime_validation = verify_environment(config)
     runner_dir = Path(__file__).resolve().parent
     paths = list(runner_dir.rglob("*.py")) + [runner_dir / "authorization_template.json"] + [
         config.base / "protocol_v2.json",
@@ -151,6 +174,7 @@ def source_hash_manifest(config: FrozenConfig, debug_cache: Path) -> dict[str, A
         "numpy": np.__version__, "scipy": scipy.__version__,
         "platform": platform.platform(),
         "blas_configuration": blas.getvalue(),
+        "live_environment_validation": runtime_validation,
         "protocol_sha256": config.protocol_sha256,
         "thresholds_sha256": config.thresholds_sha256,
         "calibration_manifest_sha256": config.calibration_manifest_sha256,

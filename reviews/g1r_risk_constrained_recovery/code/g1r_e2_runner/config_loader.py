@@ -9,6 +9,8 @@ from typing import Any
 
 import numpy as np
 
+from .environment_guard import reference_environment, verify_environment
+
 ROOT = Path(__file__).resolve().parents[4]
 BASE = ROOT / "reviews/g1r_risk_constrained_recovery"
 RUNNER_DIR = Path(__file__).resolve().parent
@@ -62,6 +64,7 @@ class FrozenConfig:
     matrix_sha256: str
     schema_sha256: str
     run_template_sha256: str
+    environment_fingerprint: dict[str, Any]
     runner_config_sha256: str
 
     @property
@@ -102,7 +105,8 @@ class FrozenConfig:
             "events": [list(event) for event in self.events],
             "ages": list(self.ages),
             "methods": list(self.methods),
-            "thresholds": self.thresholds,
+            "thresholds": dict(self.thresholds),
+            "environment_fingerprint": dict(self.environment_fingerprint),
             "U_common": float(self.protocol["U_common"]),
             "batch_size": self.batch_size,
         }
@@ -252,7 +256,9 @@ def load_frozen_config(root: Path = ROOT) -> FrozenConfig:
     if int(protocol["gap"]) != 8:
         raise ValueError("runner supports only the frozen gap-8 schedule")
 
+    environment_fingerprint = reference_environment(base)
     config_without_digest = {
+        "environment_fingerprint": environment_fingerprint,
         "protocol_sha256": protocol_sha,
         "thresholds_sha256": thresholds_sha,
         "calibration_manifest_sha256": calibration_sha,
@@ -265,7 +271,7 @@ def load_frozen_config(root: Path = ROOT) -> FrozenConfig:
         "methods": list(methods), "thresholds": thresholds,
         "U_common": float(protocol["U_common"]), "batch_size": 20,
     }
-    return FrozenConfig(
+    config = FrozenConfig(
         root=root, base=base, protocol=_freeze(protocol),
         run_template=_freeze(template), schema=_freeze(schema),
         thresholds=_freeze(thresholds), normal_seeds=normal, attack_seeds=attack,
@@ -274,8 +280,12 @@ def load_frozen_config(root: Path = ROOT) -> FrozenConfig:
         protocol_sha256=protocol_sha, thresholds_sha256=thresholds_sha,
         calibration_manifest_sha256=calibration_sha, matrix_sha256=matrix_sha,
         schema_sha256=schema_sha, run_template_sha256=run_template_sha,
+        environment_fingerprint=_freeze(environment_fingerprint),
         runner_config_sha256=canonical_sha256(config_without_digest),
     )
+
+    verify_environment(config)
+    return config
 
 
 def freeze_public_model(value: Any) -> Any:

@@ -33,22 +33,35 @@ def set_union_covers(z, public_model, true_impact) -> tuple[bool, int]:
     """Offline-only membership check; it does not depend on center-solver success."""
     value = np.asarray(z, dtype=np.float64)
     if value.shape != (12,) or not np.all(np.isfinite(value)):
-        return False, 0
+        raise ValueError("offline evaluator received an invalid innovation")
     point = np.asarray(true_impact, dtype=np.float64)
     if point.shape != (2,) or not np.all(np.isfinite(point)):
-        return False, 0
+        raise ValueError("Replay has no finite two-dimensional true impact")
     try:
         sigma = np.asarray(public_model["Sigma_eta"], dtype=np.float64)
         chol = np.linalg.cholesky(sigma)
         ellipses, _, _ = v2_estimators._build_set_ellipses(value, chol, public_model)
-    except Exception:
+    except ArithmeticError as exc:
+        # Only explicitly returned/modelled set-construction failures count
+        # as unconfirmed coverage. Unexpected evaluator exceptions abort.
+        if str(exc) not in {"MODEL_INVALID", "EMPTY_UNION", "SOLVER_REJECT"}:
+            raise
         return False, 0
+    if any(not np.all(np.isfinite(e.center)) or not np.all(np.isfinite(e.shape))
+           for e in ellipses):
+        return False, len(ellipses)
     return any(_point_in_ellipse(point, ellipse) for ellipse in ellipses), len(ellipses)
 
 
 def evaluate(proposal: ProposalRecord, truth: OfflineTruth,
              public_model, coverage_cache: dict | None = None) -> dict[str, Any]:
     """Join a persisted online record with OfflineTruth only after proposal."""
+    if truth.simulation_status != "PASS":
+        raise ValueError("non-PASS simulation cannot enter offline evaluation")
+    if truth.scenario == "replay":
+        impact = np.asarray(truth.true_impact, dtype=float)
+        if impact.shape != (2,) or not np.all(np.isfinite(impact)):
+            raise ValueError("Replay requires a finite true impact even when uncovered")
     certificate = json.loads(proposal.certificate_json)
     coverage, compatible_count = (False, 0)
     if truth.scenario == "replay" and truth.true_impact is not None:

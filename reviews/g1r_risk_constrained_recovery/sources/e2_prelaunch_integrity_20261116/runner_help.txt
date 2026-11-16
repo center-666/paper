@@ -1,0 +1,20 @@
+usage: python.exe -m reviews.g1r_risk_constrained_recovery.code.g1r_e2_runner.cli
+       [-h] [--dry-run | --formal-e2 | --show-authorization-bindings]
+       [--authorization AUTHORIZATION] [--out OUT]
+
+Guarded G1-R E2 runner
+
+options:
+  -h, --help            show this help message and exit
+  --dry-run             use existing Debug cache and fixture seed 0 only
+                        (default)
+  --formal-e2           requires a valid separately supplied owner
+                        authorization file
+  --show-authorization-bindings
+                        print current hashes for an owner-reviewed
+                        authorization record
+  --authorization AUTHORIZATION
+                        owner-provided E2 authorization JSON; never created by
+                        this runner
+  --out OUT             new dry-run or formal Run directory; existing results
+                        are never replaced

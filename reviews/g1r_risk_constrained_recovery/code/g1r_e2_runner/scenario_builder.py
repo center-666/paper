@@ -128,6 +128,10 @@ class ScenarioBuilder:
         self._verify_frozen_model(model)
         data_seed = np.asarray([int(seed)], dtype=np.int64)
         x, y = self._generate_data(model, data_seed)
+        if (x.shape != (1, model.cfg["T"] + 1, model.cfg["n"])
+                or y.shape != (1, model.cfg["T"], model.cfg["N"], model.cfg["n"])
+                or not np.all(np.isfinite(x)) or not np.all(np.isfinite(y))):
+            raise ValueError("data generator produced invalid/nonfinite arrays")
         schedule = self._common_schedule(model, 1)
         ticks = np.arange(model.cfg["T"])
         expected = np.zeros_like(schedule)
@@ -143,7 +147,10 @@ class ScenarioBuilder:
         times = np.asarray(self.config.protocol["innovation_times"], dtype=int)
         estimates = run.estimates[0, times, receiver]
         measurements = y[0, times, receiver]
-        return (measurements - np.einsum("ab,tb->ta", model.H[receiver], estimates)).reshape(-1)
+        value = (measurements - np.einsum("ab,tb->ta", model.H[receiver], estimates)).reshape(-1)
+        if value.shape != (12,) or not np.all(np.isfinite(value)):
+            raise ValueError("generated innovation contains nonfinite values")
+        return value
 
     @staticmethod
     def _first_different_state(reference, candidate, receiver: int | None = None,
@@ -228,7 +235,7 @@ class ScenarioBuilder:
         truth = OfflineTruth(
             "normal", 0, True, None, None, None, None, None, None, None, None,
             tuple(map(float, healthy.estimates[0, target, receiver])), None,
-            "PASS_FIXTURE", "fixture:0")
+            "PASS", "fixture:0")
         return ScenarioCase(online, truth)
 
     def build_formal_normal(self, seed: int, authorization: RunAuthorization) -> ScenarioCase:
@@ -273,7 +280,20 @@ class ScenarioBuilder:
             int(seed), authorization=authorization, fixture=fixture)
         healthy = self._simulate(model, x, y, seeds, "yang", scenario="clean",
                                  schedule=schedule, collect=False)
+        self._validate_simulator_output(healthy, model, schedule)
         return AttackSeedContext(int(seed), model, x, y, seeds, schedule, healthy)
+
+    @staticmethod
+    def _validate_simulator_output(run, model, schedule):
+        # Frozen engine.Run has no status field. If an external wrapper adds
+        # one it must be PASS, and arrays must always be complete and finite.
+        if getattr(run, "simulation_status", "PASS") != "PASS":
+            raise ValueError("Yang simulator reported non-PASS status")
+        if (run.estimates.shape != (1, model.cfg["T"] + 1, model.cfg["N"], model.cfg["n"])
+                or not np.all(np.isfinite(run.estimates))):
+            raise ValueError("Yang simulator returned invalid states")
+        if not np.array_equal(run.sends, schedule):
+            raise ValueError("Yang simulator changed frozen send schedule")
 
     def _build_replay(self, context: AttackSeedContext, event: tuple[int, int],
                       age: int, fixture: bool):
@@ -284,6 +304,7 @@ class ScenarioBuilder:
         with self._replay_attack(model, event, age) as (sender, receiver, r):
             attacked = self._simulate(model, x, y, seeds, "yang", scenario="replay_packet",
                                       schedule=schedule, collect=False)
+        self._validate_simulator_output(attacked, model, schedule)
         source = int(attacked.replay_source[0, r])
         if not (schedule[0, r, sender] and source >= 0 and schedule[0, source, sender]):
             raise AssertionError("formal replay did not use a captured legitimate send")
@@ -307,7 +328,7 @@ class ScenarioBuilder:
             tuple(map(float, target_delta)),
             tuple(map(float, healthy.estimates[0, target, receiver])),
             tuple(map(float, attacked.estimates[0, target, receiver])),
-            "PASS_FIXTURE" if fixture else "PASS", f"attack:{int(context.seed)}")
+            "PASS", f"attack:{int(context.seed)}")
         checks = {
             "edge": event[0], "sender": sender, "receiver": receiver,
             "replay_time": r, "source_time": source, "actual_age": actual_age,

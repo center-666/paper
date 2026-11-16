@@ -103,9 +103,29 @@ def propose(online_input: OnlineInput) -> ProposalRecord:
         sys.path.insert(0, code_path)
     import e2_status_adapter
 
-    status = e2_status_adapter.propose_adapted(
-        np.asarray(online_input.z, dtype=np.float64), online_input.frozen_public_model,
-        online_input.threshold, online_input.method)
+    # The legacy convenience entry catches every Exception. Call the same
+    # frozen estimator and the same raw-object adapter without that catch:
+    # returned algorithm rejections survive, unexpected exceptions propagate.
+    import v2_estimators
+    z = np.asarray(online_input.z, dtype=np.float64)
+    if z.shape != (12,) or not np.all(np.isfinite(z)):
+        raise ValueError("generated innovation is nonfinite or not 12-dimensional")
+    if e2_status_adapter.validate_input(z, online_input.frozen_public_model) != "VALID":
+        raise ValueError("frozen public model is invalid")
+    raw = v2_estimators.propose(z, online_input.frozen_public_model, online_input.method)
+    if not isinstance(raw, v2_estimators.Proposal):
+        raise TypeError("estimator did not return a Proposal")
+    allowed_statuses = {"VALID", "INPUT_INVALID", "MODEL_INVALID", "EMPTY_UNION",
+                        "ZERO_OR_UNRESOLVED", "SOLVER_REJECT", "ZERO_PROPOSAL", "GATE_REJECT"}
+    if raw.status not in allowed_statuses:
+        raise ValueError("estimator returned an undocumented status: " + str(raw.status))
+    if (np.asarray(raw.action).shape != (2,) or not np.all(np.isfinite(raw.action))
+            or not np.isfinite(raw.score)):
+        raise ValueError("estimator returned nonfinite or malformed proposal")
+    status = e2_status_adapter.adapt(raw, z, online_input.frozen_public_model,
+                                    online_input.threshold)
+    if not np.all(np.isfinite(status.final_action)):
+        raise ValueError("gate returned a nonfinite action")
     raw = status.raw
     certificate = _jsonable((raw.certificate or {}) if raw is not None else {})
     raw_status = "NO_RAW_PROPOSAL" if raw is None else str(raw.status)
@@ -143,7 +163,7 @@ def propose(online_input: OnlineInput) -> ProposalRecord:
 
 def failed_proposal_record(method: str, threshold: float, reason: str,
                            z=()) -> ProposalRecord:
-    """Represent a failed case as an explicit zero-action, zero-success record."""
+    """Legacy synthetic-test helper only; never used for execution failures."""
     base = {
         "method": str(method), "z": tuple(map(float, z)), "threshold": float(threshold),
         "raw_status": "NO_RAW_PROPOSAL", "proposal_status": "MODEL_INVALID",

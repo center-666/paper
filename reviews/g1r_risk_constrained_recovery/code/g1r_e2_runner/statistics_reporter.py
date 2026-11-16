@@ -26,8 +26,14 @@ def _bool(value) -> bool:
     return str(value).strip().lower() in {"true", "1"}
 
 
-def summarize_rows(config: FrozenConfig, rows: list[dict[str, Any]]) -> dict[str, Any]:
+def summarize_rows(config: FrozenConfig, rows: list[dict[str, Any]], *,
+                   run_dir: Path | None = None) -> dict[str, Any]:
     """Compute E2 statistics only after all frozen seeds are present."""
+    if run_dir is not None:
+        from .execution_state import require_not_aborted
+        require_not_aborted(run_dir)
+    validate_full_run(config, [r for r in rows if r["scenario"] == "normal"],
+                      [r for r in rows if r["scenario"] == "replay"])
     code_path = str(config.base / "code")
     if code_path not in sys.path:
         sys.path.insert(0, code_path)
@@ -123,6 +129,9 @@ def independent_recompute(config: FrozenConfig, normal_batch_files: tuple[Path, 
                           attack_batch_files: tuple[Path, ...]) -> dict[str, Any]:
     if len(normal_batch_files) != 10 or len(attack_batch_files) != 10:
         raise ValueError("E2 statistical audit requires all twenty frozen batches")
+    from .execution_state import require_not_aborted
+    for directory in {p.parent for p in normal_batch_files + attack_batch_files}:
+        require_not_aborted(directory)
     rows = []
     for path in normal_batch_files + attack_batch_files:
         with path.open("r", encoding="utf-8", newline="") as stream:

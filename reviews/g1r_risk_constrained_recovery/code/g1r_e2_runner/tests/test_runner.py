@@ -190,6 +190,8 @@ class RunnerAcceptanceTests(unittest.TestCase):
             "seed": 900000, "scenario": "normal", "main_case": True,
             "event": None, "age": None, "method": self.config.methods[0],
             "final_action_json": "[0.0,0.0]", "set_action_norm": 0.0,
+            "proposal_vector_json": "[0.0,0.0]", "set_proposal_norm": 0.0,
+            "score": 0.0, "threshold": self.config.thresholds[self.config.methods[0]],
             "proposal_status": "ZERO_PROPOSAL", "gate_status": "GATE_REJECT",
             "execution_success": False, "simulation_status": "PASS",
             "statistical_cluster": "normal:900000",
@@ -216,10 +218,15 @@ class RunnerAcceptanceTests(unittest.TestCase):
                     "age": age, "method": method, "final_action_json": "[0.0,0.0]",
                     "set_action_norm": 0.0, "proposal_status": "SOLVER_REJECT",
                     "gate_status": "SOLVER_REJECT", "execution_success": False,
-                    "simulation_status": "FAIL:deterministic_fixture",
+                    "simulation_status": "PASS",
                     "statistical_cluster": f"{group}:{seed}",
                     "coverage_confirmed": None if group == "normal" else False,
-                    "true_impact_x": None,
+                    "true_impact_x": 0.01, "true_impact_y": -0.01,
+                    "replay_source_time": None if event is None else event[1]-age,
+                    "actual_replay_age": age,
+                    "cache_replacement_time": None if event is None else event[1]+8,
+                    "proposal_vector_json": "[0.0,0.0]", "set_proposal_norm": 0.0,
+                    "score": 0.0, "threshold": self.config.thresholds[method],
                 })
         return rows
 
@@ -284,7 +291,7 @@ class RunnerAcceptanceTests(unittest.TestCase):
                 "age": None if is_normal else age, "method": method,
                 "raw_status": status, "proposal_status": status, "gate_status": gate,
                 "score": 1.0 if active else 0.0,
-                "threshold": 0.0 if method == "set_constrained_chebyshev" else 1.0,
+                "threshold": self.config.thresholds[method],
                 "proposal_vector_json": json.dumps(action),
                 "final_action_json": json.dumps(action),
                 "set_proposal_norm": float(np.linalg.norm(action)),
@@ -484,17 +491,23 @@ class RunnerAcceptanceTests(unittest.TestCase):
             self.config.protocol["nominal_prior"]["normal"] = 0.0
 
     def test_owner_bound_authorization_receipt_is_verified_without_running(self):
+        # In-memory mock only: C0 legacy test used to write a valid auth file.
+        # E2-P0 explicitly forbids creating such a file, even temporarily.
+        from unittest.mock import Mock
         from ..authorization_guard import authorization_bindings
-        with tempfile.TemporaryDirectory() as directory:
-            auth_path = Path(directory) / "owner_authorization.json"
-            document = {"scope": "E2", "authorized": True,
-                        "owner": "test-owner", "authorization_id": "test-id",
-                        "bindings": authorization_bindings(self.config)}
-            auth_path.write_text(json.dumps(document), encoding="utf-8")
+        document = {"scope": "E2", "authorized": True,
+                    "owner": "test-owner", "authorization_id": "memory-only",
+                    "bindings": authorization_bindings(self.config)}
+        auth_path = Mock()
+        auth_path.is_file.return_value = True
+        auth_path.read_text.return_value = json.dumps(document)
+        from .. import authorization_guard
+        original_sha = authorization_guard.sha256_file
+        with patch.object(authorization_guard, "sha256_file",
+                          side_effect=lambda path: "memory-only" if path is auth_path else original_sha(path)):
             receipt = authorize("formal_e2", self.config, auth_path)
-            require_formal_e2(receipt, self.config)
-            self.assertEqual(receipt.authorization_file_sha256,
-                             __import__("hashlib").sha256(auth_path.read_bytes()).hexdigest())
+        require_formal_e2(receipt, self.config)
+        self.assertEqual(receipt.authorization_file_sha256, "memory-only")
 
     def test_official_seed_cannot_enter_fixture_generation(self):
         from unittest.mock import Mock

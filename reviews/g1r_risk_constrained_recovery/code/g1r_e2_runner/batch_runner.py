@@ -15,7 +15,7 @@ from .config_loader import FrozenConfig, canonical_sha256, load_public_model, sh
 from .integrity_checker import (source_hash_manifest, validate_batch_rows,
                                 validate_full_run)
 from .offline_evaluator import evaluate
-from .online_proposal import (ProposalRecord, build_online_input, failed_proposal_record,
+from .online_proposal import (ProposalRecord, build_online_input,
                               propose, record_dict)
 from .result_writer import ResultWriter, canonical_json_bytes, write_exclusive
 from .scenario_builder import OfflineTruth, ScenarioBuilder
@@ -153,15 +153,51 @@ class BatchRunner:
                 "performance": timings, "fixture_timing": fixture_timing}
 
     def run_formal_e2(self) -> dict[str, Any]:
-        """Future path; unreachable without a valid owner-bound RunAuthorization."""
+        # Both checks happen before creating output directories or a simulator.
         require_formal_e2(self.authorization, self.config)
+        return self._execute_checked_run()
+
+    def _execute_checked_run(self) -> dict[str, Any]:
+        """Shared execution transaction; tests supply only synthetic builders/data.
+
+        Public production access is run_formal_e2, with a live guard above.
+        The real ScenarioBuilder also independently requires an authorization.
+        """
+        from .execution_state import (ExecutionAborted, require_not_aborted,
+                                      record_failure, set_state)
+        from .environment_guard import verify_environment
+        verify_environment(self.config)
+        self._context = {"stage": "preflight", "group": None, "batch": None,
+                         "seed": None, "event": None, "age": None, "method": None}
+        try:
+            require_not_aborted(self.output_dir)
+        except ExecutionAborted:
+            raise  # Do not rewrite an earlier fatal failure record on relaunch.
+        except Exception as exc:
+            record_failure(self.output_dir, exc, self._context)
+            raise ExecutionAborted("ABORTED_INCONCLUSIVE: invalid run state") from exc
+        try:
+            return self._execute_batches()
+        except (KeyboardInterrupt, SystemExit) as exc:
+            record_failure(self.output_dir, exc, self._context, interrupted=True)
+            raise
+        except Exception as exc:
+            record_failure(self.output_dir, exc, self._context)
+            raise ExecutionAborted("ABORTED_INCONCLUSIVE: " + str(exc)) from exc
+
+    def _execute_batches(self):
+        from .environment_guard import verify_environment
+        from .execution_state import set_state
+        formal = self.authorization.mode == "formal_e2"
+        mode = "formal_e2" if formal else "synthetic_fixture"
         config_path = self.output_dir / "config.json"
         checkpoint_path = self.output_dir / "checkpoint.json"
+        prior_config = None
         if self.output_dir.exists() and any(self.output_dir.iterdir()):
             if not config_path.is_file():
-                raise FileExistsError(f"existing Run has no validated config: {self.output_dir}")
+                raise FileExistsError("existing Run has no validated config")
             prior_config = json.loads(config_path.read_text(encoding="utf-8"))
-            if (prior_config.get("mode") != "formal_e2"
+            if (prior_config.get("mode") != mode
                     or prior_config.get("frozen_config_sha256") != self.config.runner_config_sha256
                     or prior_config.get("authorization_id") != self.authorization.authorization_id
                     or prior_config.get("owner") != self.authorization.owner
@@ -169,20 +205,29 @@ class BatchRunner:
                     or prior_config.get("authorization_bindings") != dict(self.authorization.bindings)):
                 raise FileExistsError("existing Run ID is bound to a different config/authorization")
         plan = self._batch_plan()
-        debug_cache_path = (self.config.base /
-                            "results/g1r_e2_status_resolution_20261115_r01/cached_debug_features.npz")
+        debug_cache_path = self.config.base / "results/g1r_e2_status_resolution_20261115_r01/cached_debug_features.npz"
         source_hashes = source_hash_manifest(self.config, debug_cache_path)
         source_hashes_path = self.output_dir / "source_hashes.json"
-        source_hashes_payload = canonical_json_bytes(source_hashes)
-        source_hashes_sha = hashlib.sha256(source_hashes_payload).hexdigest()
+        # Keep the original run's Git snapshot on restart; compare actual inputs.
+        if prior_config is not None and source_hashes_path.is_file():
+            old_bytes = source_hashes_path.read_bytes()
+            if hashlib.sha256(old_bytes).hexdigest() != prior_config["source_hashes_sha256"]:
+                raise ValueError("original source manifest was corrupted")
+            old_sources = json.loads(old_bytes)
+            if old_sources["runner_and_frozen_source_sha256"] != source_hashes["runner_and_frozen_source_sha256"]:
+                raise ValueError("source files changed since original run")
+            source_hashes_payload = old_bytes
+        else:
+            source_hashes_payload = canonical_json_bytes(source_hashes)
         config_record = {
-            "run_id": self.output_dir.name, "mode": "formal_e2",
+            "run_id": self.output_dir.name, "mode": mode,
             "authorization_id": self.authorization.authorization_id,
             "owner": self.authorization.owner,
             "authorization_file_sha256": self.authorization.authorization_file_sha256,
             "authorization_bindings": dict(self.authorization.bindings),
             "frozen_config_sha256": self.config.runner_config_sha256,
-            "source_hashes_sha256": source_hashes_sha,
+            "source_hashes_sha256": hashlib.sha256(source_hashes_payload).hexdigest(),
+            "environment_fingerprint": dict(self.config.environment_fingerprint),
             "batch_size": self.config.batch_size,
             "protocol_sha256": self.config.protocol_sha256,
             "calibration_thresholds_sha256": self.config.thresholds_sha256,
@@ -200,195 +245,148 @@ class BatchRunner:
         write_exclusive(config_path, canonical_json_bytes(config_record))
         write_exclusive(source_hashes_path, source_hashes_payload)
         writer = ResultWriter(self.output_dir)
-        checkpoint = CheckpointManager(checkpoint_path,
-                                       self.output_dir.name, "formal_e2")
+        self._context["stage"] = "checkpoint_load"
+        if prior_config is not None and not checkpoint_path.is_file():
+            if any((self.output_dir / "seed_shards").glob("*")):
+                raise RuntimeError("checkpoint missing despite persisted seed outputs")
+        checkpoint = CheckpointManager(checkpoint_path, self.output_dir.name, mode)
+        set_state(self.output_dir, "RUNNING", self._context)
+        self._context["stage"] = "builder_init"
         builder = ScenarioBuilder(self.config, self.public_model)
-        all_rows = []
-        batch_paths = {"normal": [], "attack": []}
+        all_rows, batch_paths = [], {"normal": [], "attack": []}
         for group, batch_index, seeds in plan:
+            self._context = {"stage": "batch_preflight", "group": group, "batch": batch_index,
+                             "seed": None, "event": None, "age": None, "method": None}
+            verify_environment(self.config)
             batch_id = f"{group}_batch_{batch_index:02d}"
-            completed_batch = checkpoint.batch_entry(batch_id)
             batch_file = self.output_dir / f"{batch_id}.csv"
+            completed_batch = checkpoint.batch_entry(batch_id)
             if completed_batch is not None:
-                if (completed_batch["result_path"] != batch_file.as_posix()
+                if (completed_batch["seeds"] != list(seeds)
+                        or completed_batch["result_path"] != batch_file.as_posix()
                         or not batch_file.is_file()
                         or sha256_file(batch_file) != completed_batch["result_sha256"]):
-                    raise RuntimeError(f"completed batch integrity failure: {batch_id}")
+                    raise RuntimeError("completed batch integrity failure: " + batch_id)
                 rows = writer.read_offline_seed(batch_file)
                 validate_batch_rows(self.config, group, seeds, rows)
                 for seed in seeds:
+                    self._context["seed"] = seed
                     online_path, offline_path = writer.seed_paths(group, batch_index, seed)
                     if not checkpoint.seed_is_complete(group, seed, online_path, offline_path):
-                        raise RuntimeError(f"completed batch has an incomplete seed shard: {group}:{seed}")
+                        raise RuntimeError("completed batch has an incomplete seed shard")
+                    validate_batch_rows(self.config, group, (seed,), writer.read_offline_seed(offline_path))
                 all_rows.extend(rows)
                 batch_paths[group].append(batch_file)
                 continue
-
             batch_rows = []
             for seed in seeds:
+                self._context.update(stage="seed_checkpoint", seed=seed, event=None, age=None, method=None)
                 online_path, offline_path = writer.seed_paths(group, batch_index, seed)
                 if checkpoint.seed_is_complete(group, seed, online_path, offline_path):
-                    batch_rows.extend(writer.read_offline_seed(offline_path))
+                    rows = writer.read_offline_seed(offline_path)
+                    validate_batch_rows(self.config, group, (seed,), rows)
+                    batch_rows.extend(rows)
                     continue
                 records, truths = self._process_seed(builder, group, seed, seeds, batch_index)
-                online_saved_path, online_sha = writer.write_online_seed(
-                    group, batch_index, seed, records)
-                # No event, age, true impact, or health counterfactual enters this call.
-                rows = []
-                offline_coverage_cache = {}
+                self._context["stage"] = "online_seed_write"
+                online_saved, online_sha = writer.write_online_seed(group, batch_index, seed, records)
+                rows, coverage_cache = [], {}
                 for ordinal, (record, truth) in enumerate(zip(records, truths)):
-                    row = evaluate(record, truth, self.public_model,
-                                   offline_coverage_cache)
+                    self._context.update(stage="offline_evaluation", event=truth.event,
+                                         age=truth.age, method=record.method)
+                    row = evaluate(record, truth, self.public_model, coverage_cache)
                     row["online_record_ordinal"] = ordinal
                     row["trial_run_id"] = f"{self.output_dir.name}:{group}:{seed}"
                     rows.append(row)
+                self._context["stage"] = "seed_integrity"
                 validate_batch_rows(self.config, group, (seed,), rows)
-                offline_saved_path, offline_sha = writer.write_offline_seed(
-                    group, batch_index, seed, rows)
-                checkpoint.mark_seed_complete(group, seed, online_saved_path,
-                                              online_sha, offline_saved_path, offline_sha)
+                self._context["stage"] = "offline_seed_write"
+                offline_saved, offline_sha = writer.write_offline_seed(group, batch_index, seed, rows)
+                validate_batch_rows(self.config, group, (seed,), writer.read_offline_seed(offline_saved))
+                self._context["stage"] = "checkpoint_commit"
+                checkpoint.mark_seed_complete(group, seed, online_saved, online_sha, offline_saved, offline_sha)
                 batch_rows.extend(rows)
-
+            self._context.update(stage="batch_commit", seed=None, event=None, age=None, method=None)
             validate_batch_rows(self.config, group, seeds, batch_rows)
-            result_path, result_sha = writer.write_batch_csv(
-                group, batch_index, seeds, batch_rows)
+            result_path, result_sha = writer.write_batch_csv(group, batch_index, seeds, batch_rows)
             checkpoint.mark_batch_complete(batch_id, seeds, result_path, result_sha)
             all_rows.extend(batch_rows)
             batch_paths[group].append(result_path)
-
+        self._context.update(stage="statistics", seed=None, event=None, age=None, method=None)
         if len(checkpoint.state["completed_batches"]) != 20:
-            raise RuntimeError("statistics remain blocked until all twenty batches complete")
+            raise RuntimeError("statistics require all twenty completed batches")
         normal_rows = [row for row in all_rows if row["scenario"] == "normal"]
         attack_rows = [row for row in all_rows if row["scenario"] == "replay"]
         validate_full_run(self.config, normal_rows, attack_rows)
-        in_memory_summary = summarize_rows(self.config, all_rows)
-        write_exclusive(self.output_dir / "per_seed_metrics.csv",
-                        writer.serialize_offline(all_rows))
-        independently_recomputed = independent_recompute(
-            self.config, tuple(batch_paths["normal"]), tuple(batch_paths["attack"]))
-        independent_match = (
-            canonical_sha256(in_memory_summary["methods"])
-            == canonical_sha256(independently_recomputed["methods"])
-            and canonical_sha256(in_memory_summary["event_age_strata"])
-            == canonical_sha256(independently_recomputed["event_age_strata"]))
-        if not independent_match:
-            raise RuntimeError("independent CSV statistics do not match in-memory gate counts")
-        summary = independently_recomputed
-        summary["formal_experiment_executed"] = True
-        summary["e3_executed"] = False
-        write_exclusive(self.output_dir / "statistics_audit.json",
-                        canonical_json_bytes({
-                            "result": "PASS_INDEPENDENT_CSV_RECOMPUTE",
-                            "batch_count": 20,
-                            "normal_batch_files": len(batch_paths["normal"]),
-                            "attack_batch_files": len(batch_paths["attack"]),
-                            "in_memory_vs_csv_summary_match": True,
-                            "all_seed_rows_included": True,
-                            "e2_statistics_recomputed_from_batch_csv": True,
-                        }))
-        failures = [row for row in all_rows
-                    if str(row["simulation_status"]).startswith("FAIL:")
-                    or row["proposal_status"] in {"SOLVER_REJECT", "MODEL_INVALID", "EMPTY_UNION"}
-                    or row["gate_status"] == "GATE_REJECT"]
-        write_exclusive(self.output_dir / "failure_cases.json",
-                        canonical_json_bytes({"failure_or_rejection_rows": failures,
-                                              "count": len(failures),
-                                              "all_rows_remain_in_per_seed_metrics": True}))
+        summary = summarize_rows(self.config, all_rows, run_dir=self.output_dir)
+        write_exclusive(self.output_dir / "per_seed_metrics.csv", writer.serialize_offline(all_rows))
+        independent = independent_recompute(self.config, tuple(batch_paths["normal"]), tuple(batch_paths["attack"]))
+        for field in ("methods", "event_age_strata"):
+            if canonical_sha256(summary[field]) != canonical_sha256(independent[field]):
+                raise RuntimeError("STATISTICS_MISMATCH: " + field)
+        summary.update(formal_experiment_executed=formal, e3_executed=False)
+        write_exclusive(self.output_dir / "statistics_audit.json", canonical_json_bytes({
+            "result": "PASS_INDEPENDENT_CSV_RECOMPUTE", "batch_count": 20,
+            "all_seed_rows_included": True, "in_memory_vs_csv_summary_match": True,
+        }))
+        rejected = [row for row in all_rows if row["proposal_status"] != "VALID" or row["gate_status"] != "EXECUTED"]
+        write_exclusive(self.output_dir / "failure_cases.json", canonical_json_bytes({
+            "algorithm_rejection_rows": rejected, "count": len(rejected),
+            "execution_failures": 0, "all_rows_remain_in_per_seed_metrics": True,
+        }))
+        self._context["stage"] = "finalize"
         write_exclusive(self.output_dir / "gate_counts.json", canonical_json_bytes(summary))
+        set_state(self.output_dir, "COMPLETED", self._context)
         writer.write_run_artifact_manifest({
-            "run_id": self.output_dir.name,
-            "formal_e2_executed": True, "formal_e3_executed": False,
-            "authorized_by": self.authorization.owner,
-            "authorization_id": self.authorization.authorization_id,
-            "batch_count": 20,
+            "run_id": self.output_dir.name, "formal_e2_executed": formal,
+            "formal_e3_executed": False, "authorized_by": self.authorization.owner,
+            "authorization_id": self.authorization.authorization_id, "batch_count": 20,
         })
         return summary
 
     def _batch_plan(self):
         plan = []
-        for group, seeds in (("normal", self.config.normal_seeds),
-                             ("attack", self.config.attack_seeds)):
+        for group, seeds in (("normal", self.config.normal_seeds), ("attack", self.config.attack_seeds)):
             if len(set(seeds)) != len(seeds):
-                raise ValueError(f"duplicate frozen seed in {group} manifest")
+                raise ValueError("duplicate frozen seed in " + group)
             for index, start in enumerate(range(0, len(seeds), self.config.batch_size)):
                 plan.append((group, index, tuple(seeds[start:start + self.config.batch_size])))
         if len(plan) != 20:
-            raise ValueError(f"frozen batch plan contains {len(plan)} batches, expected 20")
+            raise ValueError("frozen batch plan must contain twenty batches")
         return tuple(plan)
 
     def _process_seed(self, builder: ScenarioBuilder, group: str, seed: int,
                       batch_seeds: tuple[int, ...], batch_index: int):
-        records: list[ProposalRecord] = []
-        truths: list[OfflineTruth] = []
-        auth = self.authorization
+        # No catch-and-zero conversion: every execution exception reaches the
+        # run transaction, which records its full traceback and aborts.
+        records, truths = [], []
         if group == "normal":
-            try:
-                case = builder.build_formal_normal(seed, auth)
-            except Exception as exc:
-                truth = OfflineTruth("normal", seed, True, None, None, None, None,
-                                     None, None, None, None, None, None,
-                                     f"FAIL:{type(exc).__name__}:{exc}", f"normal:{seed}")
-                records = [failed_proposal_record(method, self.config.thresholds[method],
-                                                  f"scenario_failure:{type(exc).__name__}:{exc}")
-                           for method in self.config.methods]
-                truths = [truth] * len(self.config.methods)
-                return records, truths
+            self._context.update(stage="normal_simulation", event=None, age=None)
+            cases = [(None, None)]
+            context = None
+        else:
+            self._context.update(stage="attack_data_and_healthy_pair", event=None, age=None)
+            context = builder.prepare_formal_attack_seed(seed, self.authorization)
+            cases = [(event, age) for event in self.config.events for age in self.config.ages]
+        for index, (event, age) in enumerate(cases):
+            self._context.update(stage="scenario", event=event, age=age, method=None)
+            case = (builder.build_formal_normal(seed, self.authorization) if group == "normal"
+                    else builder.build_formal_replay(seed, event, age, self.authorization, context))
+            if case.offline_truth.simulation_status != "PASS":
+                raise ValueError("scenario failed before proposal")
             for method in self.config.methods:
-                try:
-                    online = build_online_input(case.online_input.z, self.public_model,
-                                                self.config.thresholds[method], method)
-                    records.append(propose(online))
-                    truths.append(case.offline_truth)
-                except Exception as exc:
-                    records.append(failed_proposal_record(
-                        method, self.config.thresholds[method],
-                        f"proposal_failure:{type(exc).__name__}:{exc}"))
-                    truths.append(case.offline_truth)
-            return records, truths
-
-        try:
-            context = builder.prepare_formal_attack_seed(seed, auth)
-            for event in self.config.events:
-                for age in self.config.ages:
-                    try:
-                        case = builder.build_formal_replay(seed, event, age, auth, context)
-                    except Exception as exc:
-                        main = event == self.config.main_event and age == 64
-                        truth = OfflineTruth(
-                            "replay", seed, main, event, age, None, None, None, None, None,
-                            None, None, None,
-                            f"FAIL:{type(exc).__name__}:{exc}", f"attack:{seed}")
-                        records.extend([
-                            failed_proposal_record(method, self.config.thresholds[method],
-                                                   f"scenario_failure:{type(exc).__name__}:{exc}")
-                            for method in self.config.methods])
-                        truths.extend([truth] * len(self.config.methods))
-                        continue
-                    for method in self.config.methods:
-                        try:
-                            online = build_online_input(case.online_input.z, self.public_model,
-                                                        self.config.thresholds[method], method)
-                            records.append(propose(online))
-                        except Exception as exc:
-                            records.append(failed_proposal_record(
-                                method, self.config.thresholds[method],
-                                f"proposal_failure:{type(exc).__name__}:{exc}"))
-                        truths.append(case.offline_truth)
-        except Exception as exc:
-            records, truths = [], []
-            for event in self.config.events:
-                for age in self.config.ages:
-                    main = event == self.config.main_event and age == 64
-                    truth = OfflineTruth(
-                        "replay", seed, main, event, age, None, None, None, None, None,
-                        None, None, None,
-                        f"FAIL:{type(exc).__name__}:{exc}", f"attack:{seed}")
-                    for method in self.config.methods:
-                        records.append(failed_proposal_record(
-                            method, self.config.thresholds[method],
-                            f"seed_failure:{type(exc).__name__}:{exc}"))
-                        truths.append(truth)
-        expected = len(self.config.events) * len(self.config.ages) * len(self.config.methods)
+                self._context.update(stage="proposal", method=method)
+                online = build_online_input(case.online_input.z, self.public_model,
+                                            self.config.thresholds[method], method)
+                record = propose(online)
+                # Preserve completed online work even if a later method fails.
+                self._context["stage"] = "partial_online_write"
+                stem = f"{group}_{seed}_case_{index:02d}_{method}"
+                write_exclusive(self.output_dir / "partial_online" / (stem + '.json'),
+                                canonical_json_bytes(record_dict(record)))
+                records.append(record)
+                truths.append(case.offline_truth)
+        expected = len(cases) * len(self.config.methods)
         if len(records) != expected or len(truths) != expected:
-            raise RuntimeError("attack seed did not retain the full frozen event-age-method grid")
+            raise RuntimeError("incomplete event-age-method grid")
         return records, truths
