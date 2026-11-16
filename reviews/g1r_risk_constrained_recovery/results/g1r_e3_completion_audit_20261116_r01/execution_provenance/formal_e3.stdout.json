@@ -1,0 +1,1808 @@
+{
+  "scope": "FORMAL_E3",
+  "decision": "NO_GO_PERFORMANCE",
+  "n_attack_seeds": 200,
+  "n_normal_seeds": 200,
+  "bootstrap_resamples": 1999,
+  "resampling_unit": "whole seed; same indices across all events, ages and methods",
+  "bootstrap_indices_sha256": "499ccd16acfcbe7bbc1ead01c56b755dd2a70665977f36651834ebd627c10cf1",
+  "yang_primary": {
+    "relative_improvement": 0.02401941028094004,
+    "interval_95_descriptive": [
+      0.02234842485749736,
+      0.025944240543541955
+    ],
+    "pass": true
+  },
+  "confirmatory_worst_event_age64": {
+    "hard_gls_capped": {
+      "point": -0.20374462022468975,
+      "lower_97_5": -0.23869054100103018,
+      "pass": false,
+      "R_b": 19.66201300562828,
+      "R_set": 19.669137495796686
+    },
+    "correct_joint_soft_impact_capped": {
+      "point": -0.203207018945065,
+      "lower_97_5": -0.23797972195747583,
+      "pass": false,
+      "R_b": 19.66255603722386,
+      "R_set": 19.669137495796686
+    }
+  },
+  "exploratory_net_advantages": {
+    "hard_gls_capped": {
+      "point": -0.006572645957459853,
+      "interval_95": [
+        -0.010770022144171663,
+        -0.0027171268033960505
+      ],
+      "main_event_net_advantage": -0.004466937157540747,
+      "main_event_net_advantage_interval_95": [
+        -0.00806319901888372,
+        -0.0012359437832429974
+      ],
+      "event_net_advantages_age64": {
+        "0:176": {
+          "point": -0.00044359796964444005,
+          "interval_95": [
+            -0.0010957677347011995,
+            -2.050972192681937e-05
+          ]
+        },
+        "3:178": {
+          "point": -0.0009654968667252928,
+          "interval_95": [
+            -0.0022199750896764745,
+            -9.469949510683297e-05
+          ]
+        },
+        "0:184": {
+          "point": -0.0032204891116203588,
+          "interval_95": [
+            -0.005856178359057164,
+            -0.000906779247270037
+          ]
+        },
+        "3:186": {
+          "point": -0.0065144597660226474,
+          "interval_95": [
+            -0.010182525057797985,
+            -0.0031978533227962373
+          ]
+        },
+        "0:192": {
+          "point": -0.01765287974612631,
+          "interval_95": [
+            -0.024093227551427673,
+            -0.011701946864756157
+          ]
+        },
+        "3:194": {
+          "point": -0.018693238302287356,
+          "interval_95": [
+            -0.025652393966089895,
+            -0.011930029077587227
+          ]
+        },
+        "0:200": {
+          "point": -0.004466937157540747,
+          "interval_95": [
+            -0.00806319901888372,
+            -0.0012359437832429974
+          ]
+        },
+        "3:202": {
+          "point": -0.006572645957458711,
+          "interval_95": [
+            -0.01077002214416212,
+            -0.0027171268033865784
+          ]
+        }
+      },
+      "scope": "exploratory paired healthy-adjusted diagnostics; not confirmatory family"
+    },
+    "correct_joint_soft_impact_capped": {
+      "point": -0.005454372920117043,
+      "interval_95": [
+        -0.00986993852889518,
+        -0.0015171887022555875
+      ],
+      "main_event_net_advantage": -0.0064548937694335964,
+      "main_event_net_advantage_interval_95": [
+        -0.010557013634750782,
+        -0.002532703827547567
+      ],
+      "event_net_advantages_age64": {
+        "0:176": {
+          "point": -0.00010523176926682355,
+          "interval_95": [
+            -0.0006876455721872273,
+            0.00027616718774584086
+          ]
+        },
+        "3:178": {
+          "point": -0.00041683866469969513,
+          "interval_95": [
+            -0.0015845074793039591,
+            0.0005686099980812357
+          ]
+        },
+        "0:184": {
+          "point": -0.005106593368848124,
+          "interval_95": [
+            -0.008147690069051215,
+            -0.0024049282434702385
+          ]
+        },
+        "3:186": {
+          "point": -0.008999818397995742,
+          "interval_95": [
+            -0.012736440340985906,
+            -0.005489790335957015
+          ]
+        },
+        "0:192": {
+          "point": -0.023186553292554334,
+          "interval_95": [
+            -0.030771964583455623,
+            -0.015815778883045195
+          ]
+        },
+        "3:194": {
+          "point": -0.02298831629796956,
+          "interval_95": [
+            -0.03051546362014844,
+            -0.015315810219064883
+          ]
+        },
+        "0:200": {
+          "point": -0.0064548937694335964,
+          "interval_95": [
+            -0.010557013634750782,
+            -0.002532703827547567
+          ]
+        },
+        "3:202": {
+          "point": -0.005454372920113046,
+          "interval_95": [
+            -0.009869938528890027,
+            -0.001517188702245407
+          ]
+        }
+      },
+      "scope": "exploratory paired healthy-adjusted diagnostics; not confirmatory family"
+    }
+  },
+  "normal": {
+    "hard_gls_capped": {
+      "mse": 0.2863170279574094,
+      "mse_change_vs_yang": -0.00149666187832304,
+      "relative_change_vs_yang": -0.005200106635571434,
+      "nonzero_rate": 0.045,
+      "zero_action_rate": 0.955,
+      "rejection_rate": 0.955,
+      "saturation_rate": 0.045
+    },
+    "correct_joint_soft_impact_capped": {
+      "mse": 0.2861689812927534,
+      "mse_change_vs_yang": -0.0016447085429789937,
+      "relative_change_vs_yang": -0.005714490314612034,
+      "nonzero_rate": 0.075,
+      "zero_action_rate": 0.925,
+      "rejection_rate": 0.925,
+      "saturation_rate": 0.075
+    },
+    "set_constrained_chebyshev": {
+      "mse": 0.28781368983573247,
+      "mse_change_vs_yang": 0.0,
+      "relative_change_vs_yang": 0.0,
+      "nonzero_rate": 0.0,
+      "zero_action_rate": 1.0,
+      "rejection_rate": 1.0,
+      "saturation_rate": 0.0
+    },
+    "yang": {
+      "mse": 0.28781368983573247,
+      "mse_change_vs_yang": 0.0,
+      "relative_change_vs_yang": 0.0,
+      "nonzero_rate": 0.0,
+      "zero_action_rate": 1.0,
+      "rejection_rate": 0.0,
+      "saturation_rate": 0.0
+    }
+  },
+  "per_event_age": {
+    "0:176@32": {
+      "hard_gls_capped": {
+        "mse": 0.2585878866963011,
+        "attack_gain": 0.0009000904128804601,
+        "healthy_gain_paired": 0.00048280798282820963,
+        "net_gain": 0.00041728243005225053,
+        "net_gain_interval_95": [
+          1.2332609183951288e-05,
+          0.0010558982807222731
+        ],
+        "pollution_gain": -0.0001042588069519467,
+        "healthy_cross_term": 0.0010043492198324071,
+        "nonzero_rate": 0.05,
+        "saturation_rate": 0.05,
+        "zero_action_rate": 0.95,
+        "rejection_rate": 0.95
+      },
+      "correct_joint_soft_impact_capped": {
+        "mse": 0.25833383065447235,
+        "attack_gain": 0.001154146454709201,
+        "healthy_gain_paired": 0.001058049424587576,
+        "net_gain": 9.609703012162518e-05,
+        "net_gain_interval_95": [
+          -0.0002786734508118848,
+          0.0006804784296046577
+        ],
+        "pollution_gain": -0.00015997866873116652,
+        "healthy_cross_term": 0.0013141251234403684,
+        "nonzero_rate": 0.065,
+        "saturation_rate": 0.065,
+        "zero_action_rate": 0.935,
+        "rejection_rate": 0.935
+      },
+      "set_constrained_chebyshev": {
+        "mse": 0.25955361082471207,
+        "attack_gain": -6.563371553048136e-05,
+        "healthy_gain_paired": -6.903622812015277e-05,
+        "net_gain": 3.402512589671409e-06,
+        "net_gain_interval_95": [
+          0.0,
+          1.0207537769014226e-05
+        ],
+        "pollution_gain": -1.0105296080842832e-05,
+        "healthy_cross_term": -5.552841944963853e-05,
+        "nonzero_rate": 0.005,
+        "saturation_rate": 0.005,
+        "zero_action_rate": 0.995,
+        "rejection_rate": 0.995
+      },
+      "yang": {
+        "mse": 0.2594879771091816,
+        "attack_gain": 0.0,
+        "healthy_gain_paired": 0.0,
+        "net_gain": 0.0,
+        "net_gain_interval_95": [
+          0.0,
+          0.0
+        ],
+        "pollution_gain": 0.0,
+        "healthy_cross_term": 0.0,
+        "nonzero_rate": 0.0,
+        "saturation_rate": 0.0,
+        "zero_action_rate": 1.0,
+        "rejection_rate": 0.0
+      }
+    },
+    "0:176@64": {
+      "hard_gls_capped": {
+        "mse": 0.25905290484708215,
+        "attack_gain": 0.0009318299962237969,
+        "healthy_gain_paired": 0.00048280798282820963,
+        "net_gain": 0.0004490220133955873,
+        "net_gain_interval_95": [
+          2.579235485977373e-05,
+          0.0011036204849474826
+        ],
+        "pollution_gain": -7.776237415663371e-05,
+        "healthy_cross_term": 0.00100959237038043,
+        "nonzero_rate": 0.05,
+        "saturation_rate": 0.05,
+        "zero_action_rate": 0.95,
+        "rejection_rate": 0.95
+      },
+      "correct_joint_soft_impact_capped": {
+        "mse": 0.25881602960570044,
+        "attack_gain": 0.0011687052376055467,
+        "healthy_gain_paired": 0.001058049424587576,
+        "net_gain": 0.00011065581301797089,
+        "net_gain_interval_95": [
+          -0.00027235652769418714,
+          0.0006924599109731287
+        ],
+        "pollution_gain": -0.00014513511853224696,
+        "healthy_cross_term": 0.0013138403561377921,
+        "nonzero_rate": 0.065,
+        "saturation_rate": 0.065,
+        "zero_action_rate": 0.935,
+        "rejection_rate": 0.935
+      },
+      "set_constrained_chebyshev": {
+        "mse": 0.260048347027675,
+        "attack_gain": -6.361218436900541e-05,
+        "healthy_gain_paired": -6.903622812015277e-05,
+        "net_gain": 5.424043751147342e-06,
+        "net_gain_interval_95": [
+          0.0,
+          1.6272131253442027e-05
+        ],
+        "pollution_gain": -8.32886230432731e-06,
+        "healthy_cross_term": -5.5283322064678135e-05,
+        "nonzero_rate": 0.005,
+        "saturation_rate": 0.005,
+        "zero_action_rate": 0.995,
+        "rejection_rate": 0.995
+      },
+      "yang": {
+        "mse": 0.259984734843306,
+        "attack_gain": 0.0,
+        "healthy_gain_paired": 0.0,
+        "net_gain": 0.0,
+        "net_gain_interval_95": [
+          0.0,
+          0.0
+        ],
+        "pollution_gain": 0.0,
+        "healthy_cross_term": 0.0,
+        "nonzero_rate": 0.0,
+        "saturation_rate": 0.0,
+        "zero_action_rate": 1.0,
+        "rejection_rate": 0.0
+      }
+    },
+    "0:176@96": {
+      "hard_gls_capped": {
+        "mse": 0.2597548604076644,
+        "attack_gain": 0.000951473247274359,
+        "healthy_gain_paired": 0.00048280798282820963,
+        "net_gain": 0.0004686652644461495,
+        "net_gain_interval_95": [
+          3.3405042583682196e-05,
+          0.0011326530747212103
+        ],
+        "pollution_gain": -6.139070073760322e-05,
+        "healthy_cross_term": 0.001012863948011962,
+        "nonzero_rate": 0.05,
+        "saturation_rate": 0.05,
+        "zero_action_rate": 0.95,
+        "rejection_rate": 0.95
+      },
+      "correct_joint_soft_impact_capped": {
+        "mse": 0.25931124261382976,
+        "attack_gain": 0.001395091041108962,
+        "healthy_gain_paired": 0.001058049424587576,
+        "net_gain": 0.0003370416165213863,
+        "net_gain_interval_95": [
+          -0.0006482749860701235,
+          0.0014877178151799695
+        ],
+        "pollution_gain": -0.00011190124768688252,
+        "healthy_cross_term": 0.0015069922887958438,
+        "nonzero_rate": 0.07,
+        "saturation_rate": 0.07,
+        "zero_action_rate": 0.93,
+        "rejection_rate": 0.93
+      },
+      "set_constrained_chebyshev": {
+        "mse": 0.26076883096523573,
+        "attack_gain": -6.249731029698668e-05,
+        "healthy_gain_paired": -6.903622812015277e-05,
+        "net_gain": 6.538917823166075e-06,
+        "net_gain_interval_95": [
+          0.0,
+          1.9616753469498226e-05
+        ],
+        "pollution_gain": -7.388798922063168e-06,
+        "healthy_cross_term": -5.5108511374923535e-05,
+        "nonzero_rate": 0.005,
+        "saturation_rate": 0.005,
+        "zero_action_rate": 0.995,
+        "rejection_rate": 0.995
+      },
+      "yang": {
+        "mse": 0.2607063336549388,
+        "attack_gain": 0.0,
+        "healthy_gain_paired": 0.0,
+        "net_gain": 0.0,
+        "net_gain_interval_95": [
+          0.0,
+          0.0
+        ],
+        "pollution_gain": 0.0,
+        "healthy_cross_term": 0.0,
+        "nonzero_rate": 0.0,
+        "saturation_rate": 0.0,
+        "zero_action_rate": 1.0,
+        "rejection_rate": 0.0
+      }
+    },
+    "3:178@32": {
+      "hard_gls_capped": {
+        "mse": 0.25865962407696375,
+        "attack_gain": 0.0009317644833993508,
+        "healthy_gain_paired": 0.00048280798282820963,
+        "net_gain": 0.0004489565005711412,
+        "net_gain_interval_95": [
+          3.6767581273714914e-05,
+          0.0010780689985063223
+        ],
+        "pollution_gain": -7.294982236367737e-05,
+        "healthy_cross_term": 0.0010047143057630287,
+        "nonzero_rate": 0.05,
+        "saturation_rate": 0.05,
+        "zero_action_rate": 0.95,
+        "rejection_rate": 0.95
+      },
+      "correct_joint_soft_impact_capped": {
+        "mse": 0.2584049321197599,
+        "attack_gain": 0.0011864564406031705,
+        "healthy_gain_paired": 0.001058049424587576,
+        "net_gain": 0.00012840701601559462,
+        "net_gain_interval_95": [
+          -0.0002634133453910964,
+          0.0007046284367281665
+        ],
+        "pollution_gain": -0.00012752183419127204,
+        "healthy_cross_term": 0.0013139782747944423,
+        "nonzero_rate": 0.065,
+        "saturation_rate": 0.065,
+        "zero_action_rate": 0.935,
+        "rejection_rate": 0.935
+      },
+      "set_constrained_chebyshev": {
+        "mse": 0.2596480835329671,
+        "attack_gain": -5.6694972603983425e-05,
+        "healthy_gain_paired": -6.903622812015277e-05,
+        "net_gain": 1.2341255516169335e-05,
+        "net_gain_interval_95": [
+          0.0,
+          3.7023766548508006e-05
+        ],
+        "pollution_gain": -1.2367650264206803e-06,
+        "healthy_cross_term": -5.5458207577562727e-05,
+        "nonzero_rate": 0.005,
+        "saturation_rate": 0.005,
+        "zero_action_rate": 0.995,
+        "rejection_rate": 0.995
+      },
+      "yang": {
+        "mse": 0.2595913885603631,
+        "attack_gain": 0.0,
+        "healthy_gain_paired": 0.0,
+        "net_gain": 0.0,
+        "net_gain_interval_95": [
+          0.0,
+          0.0
+        ],
+        "pollution_gain": 0.0,
+        "healthy_cross_term": 0.0,
+        "nonzero_rate": 0.0,
+        "saturation_rate": 0.0,
+        "zero_action_rate": 1.0,
+        "rejection_rate": 0.0
+      }
+    },
+    "3:178@64": {
+      "hard_gls_capped": {
+        "mse": 0.25918242837046157,
+        "attack_gain": 0.0014690097370283941,
+        "healthy_gain_paired": 0.00048280798282820963,
+        "net_gain": 0.0009862017542001846,
+        "net_gain_interval_95": [
+          0.00011613219994795085,
+          0.0022417664762649746
+        ],
+        "pollution_gain": 6.424658703853103e-06,
+        "healthy_cross_term": 0.0014625850783245408,
+        "nonzero_rate": 0.055,
+        "saturation_rate": 0.055,
+        "zero_action_rate": 0.945,
+        "rejection_rate": 0.945
+      },
+      "correct_joint_soft_impact_capped": {
+        "mse": 0.2591558451307278,
+        "attack_gain": 0.0014955929767621631,
+        "healthy_gain_paired": 0.001058049424587576,
+        "net_gain": 0.0004375435521745871,
+        "net_gain_interval_95": [
+          -0.0005550802386689598,
+          0.0016049783810031376
+        ],
+        "pollution_gain": -1.1128571639551806e-05,
+        "healthy_cross_term": 0.0015067215484017165,
+        "nonzero_rate": 0.07,
+        "saturation_rate": 0.07,
+        "zero_action_rate": 0.93,
+        "rejection_rate": 0.93
+      },
+      "set_constrained_chebyshev": {
+        "mse": 0.2606997694481353,
+        "attack_gain": -4.8331340645260814e-05,
+        "healthy_gain_paired": -6.903622812015277e-05,
+        "net_gain": 2.0704887474891942e-05,
+        "net_gain_interval_95": [
+          0.0,
+          6.211466242467583e-05
+        ],
+        "pollution_gain": 6.831323224282591e-06,
+        "healthy_cross_term": -5.516266386954341e-05,
+        "nonzero_rate": 0.005,
+        "saturation_rate": 0.005,
+        "zero_action_rate": 0.995,
+        "rejection_rate": 0.995
+      },
+      "yang": {
+        "mse": 0.26065143810749,
+        "attack_gain": 0.0,
+        "healthy_gain_paired": 0.0,
+        "net_gain": 0.0,
+        "net_gain_interval_95": [
+          0.0,
+          0.0
+        ],
+        "pollution_gain": 0.0,
+        "healthy_cross_term": 0.0,
+        "nonzero_rate": 0.0,
+        "saturation_rate": 0.0,
+        "zero_action_rate": 1.0,
+        "rejection_rate": 0.0
+      }
+    },
+    "3:178@96": {
+      "hard_gls_capped": {
+        "mse": 0.25987879523928836,
+        "attack_gain": 0.0022222563252187076,
+        "healthy_gain_paired": 0.00048280798282820963,
+        "net_gain": 0.0017394483423904983,
+        "net_gain_interval_95": [
+          0.0004690021776289518,
+          0.003257800122754394
+        ],
+        "pollution_gain": 8.750178559406327e-05,
+        "healthy_cross_term": 0.0021347545396246436,
+        "nonzero_rate": 0.065,
+        "saturation_rate": 0.065,
+        "zero_action_rate": 0.935,
+        "rejection_rate": 0.935
+      },
+      "correct_joint_soft_impact_capped": {
+        "mse": 0.26011067040050384,
+        "attack_gain": 0.00199038116400326,
+        "healthy_gain_paired": 0.001058049424587576,
+        "net_gain": 0.0009323317394156841,
+        "net_gain_interval_95": [
+          -0.00016797895877483483,
+          0.0023055954689513184
+        ],
+        "pollution_gain": 5.4975634334274006e-05,
+        "healthy_cross_term": 0.001935405529668986,
+        "nonzero_rate": 0.08,
+        "saturation_rate": 0.08,
+        "zero_action_rate": 0.92,
+        "rejection_rate": 0.92
+      },
+      "set_constrained_chebyshev": {
+        "mse": 0.26214379910254126,
+        "attack_gain": -4.274753803416272e-05,
+        "healthy_gain_paired": -6.903622812015277e-05,
+        "net_gain": 2.628869008599004e-05,
+        "net_gain_interval_95": [
+          0.0,
+          7.886607025797012e-05
+        ],
+        "pollution_gain": 1.220187748710962e-05,
+        "healthy_cross_term": -5.494941552127238e-05,
+        "nonzero_rate": 0.005,
+        "saturation_rate": 0.005,
+        "zero_action_rate": 0.995,
+        "rejection_rate": 0.995
+      },
+      "yang": {
+        "mse": 0.2621010515645071,
+        "attack_gain": 0.0,
+        "healthy_gain_paired": 0.0,
+        "net_gain": 0.0,
+        "net_gain_interval_95": [
+          0.0,
+          0.0
+        ],
+        "pollution_gain": 0.0,
+        "healthy_cross_term": 0.0,
+        "nonzero_rate": 0.0,
+        "saturation_rate": 0.0,
+        "zero_action_rate": 1.0,
+        "rejection_rate": 0.0
+      }
+    },
+    "0:184@32": {
+      "hard_gls_capped": {
+        "mse": 0.266628213434705,
+        "attack_gain": 0.002743960411920517,
+        "healthy_gain_paired": 0.00048280798282820963,
+        "net_gain": 0.0022611524290923075,
+        "net_gain_interval_95": [
+          0.0004907179031443901,
+          0.0042633170619605825
+        ],
+        "pollution_gain": 0.000507185809506989,
+        "healthy_cross_term": 0.0022367746024135274,
+        "nonzero_rate": 0.08,
+        "saturation_rate": 0.08,
+        "zero_action_rate": 0.92,
+        "rejection_rate": 0.92
+      },
+      "correct_joint_soft_impact_capped": {
+        "mse": 0.26720992993819875,
+        "attack_gain": 0.002162243908426796,
+        "healthy_gain_paired": 0.001058049424587576,
+        "net_gain": 0.0011041944838392197,
+        "net_gain_interval_95": [
+          -0.000641564459647515,
+          0.003098223761281919
+        ],
+        "pollution_gain": 0.0006837540775846924,
+        "healthy_cross_term": 0.0014784898308421058,
+        "nonzero_rate": 0.08,
+        "saturation_rate": 0.08,
+        "zero_action_rate": 0.92,
+        "rejection_rate": 0.92
+      },
+      "set_constrained_chebyshev": {
+        "mse": 0.2693766676706707,
+        "attack_gain": -4.493824045182903e-06,
+        "healthy_gain_paired": -6.903622812015277e-05,
+        "net_gain": 6.454240407496986e-05,
+        "net_gain_interval_95": [
+          0.0,
+          0.00019362721222490956
+        ],
+        "pollution_gain": 5.06486026914529e-05,
+        "healthy_cross_term": -5.5142426736635796e-05,
+        "nonzero_rate": 0.005,
+        "saturation_rate": 0.005,
+        "zero_action_rate": 0.995,
+        "rejection_rate": 0.995
+      },
+      "yang": {
+        "mse": 0.26937217384662554,
+        "attack_gain": 0.0,
+        "healthy_gain_paired": 0.0,
+        "net_gain": 0.0,
+        "net_gain_interval_95": [
+          0.0,
+          0.0
+        ],
+        "pollution_gain": 0.0,
+        "healthy_cross_term": 0.0,
+        "nonzero_rate": 0.0,
+        "saturation_rate": 0.0,
+        "zero_action_rate": 1.0,
+        "rejection_rate": 0.0
+      }
+    },
+    "0:184@64": {
+      "hard_gls_capped": {
+        "mse": 0.28904370876874913,
+        "attack_gain": 0.0038155384768020105,
+        "healthy_gain_paired": 0.00048280798282820963,
+        "net_gain": 0.003332730493973801,
+        "net_gain_interval_95": [
+          0.0009787715685520082,
+          0.00598001868231173
+        ],
+        "pollution_gain": 0.0019203611542868463,
+        "healthy_cross_term": 0.001895177322515166,
+        "nonzero_rate": 0.11,
+        "saturation_rate": 0.11,
+        "zero_action_rate": 0.89,
+        "rejection_rate": 0.89
+      },
+      "correct_joint_soft_impact_capped": {
+        "mse": 0.2865823630697619,
+        "attack_gain": 0.006276884175789141,
+        "healthy_gain_paired": 0.001058049424587576,
+        "net_gain": 0.0052188347512015665,
+        "net_gain_interval_95": [
+          0.002451923221329751,
+          0.008264252957967674
+        ],
+        "pollution_gain": 0.0034291429613816727,
+        "healthy_cross_term": 0.0028477412144074675,
+        "nonzero_rate": 0.15,
+        "saturation_rate": 0.15,
+        "zero_action_rate": 0.85,
+        "rejection_rate": 0.85
+      },
+      "set_constrained_chebyshev": {
+        "mse": 0.29281604209131784,
+        "attack_gain": 4.3205154233289176e-05,
+        "healthy_gain_paired": -6.903622812015277e-05,
+        "net_gain": 0.00011224138235344194,
+        "net_gain_interval_95": [
+          0.0,
+          0.0003367241470603258
+        ],
+        "pollution_gain": 9.785735118394927e-05,
+        "healthy_cross_term": -5.4652196950660084e-05,
+        "nonzero_rate": 0.005,
+        "saturation_rate": 0.005,
+        "zero_action_rate": 0.995,
+        "rejection_rate": 0.995
+      },
+      "yang": {
+        "mse": 0.2928592472455511,
+        "attack_gain": 0.0,
+        "healthy_gain_paired": 0.0,
+        "net_gain": 0.0,
+        "net_gain_interval_95": [
+          0.0,
+          0.0
+        ],
+        "pollution_gain": 0.0,
+        "healthy_cross_term": 0.0,
+        "nonzero_rate": 0.0,
+        "saturation_rate": 0.0,
+        "zero_action_rate": 1.0,
+        "rejection_rate": 0.0
+      }
+    },
+    "0:184@96": {
+      "hard_gls_capped": {
+        "mse": 0.3110743412941567,
+        "attack_gain": 0.007375020190622048,
+        "healthy_gain_paired": 0.00048280798282820963,
+        "net_gain": 0.0068922122077938386,
+        "net_gain_interval_95": [
+          0.003834994020594716,
+          0.010242625177797825
+        ],
+        "pollution_gain": 0.004401065242106316,
+        "healthy_cross_term": 0.002973954948515729,
+        "nonzero_rate": 0.175,
+        "saturation_rate": 0.175,
+        "zero_action_rate": 0.825,
+        "rejection_rate": 0.825
+      },
+      "correct_joint_soft_impact_capped": {
+        "mse": 0.30845771146096007,
+        "attack_gain": 0.009991650023818641,
+        "healthy_gain_paired": 0.001058049424587576,
+        "net_gain": 0.008933600599231066,
+        "net_gain_interval_95": [
+          0.005571850239533442,
+          0.01273023483906147
+        ],
+        "pollution_gain": 0.006082715410960857,
+        "healthy_cross_term": 0.003908934612857781,
+        "nonzero_rate": 0.19,
+        "saturation_rate": 0.19,
+        "zero_action_rate": 0.81,
+        "rejection_rate": 0.81
+      },
+      "set_constrained_chebyshev": {
+        "mse": 0.3173462439205486,
+        "attack_gain": 0.0011031175642300774,
+        "healthy_gain_paired": -6.903622812015277e-05,
+        "net_gain": 0.0011721537923502301,
+        "net_gain_interval_95": [
+          -5.82890176690206e-05,
+          0.002882995235252874
+        ],
+        "pollution_gain": 0.000648641021098553,
+        "healthy_cross_term": 0.00045447654313152564,
+        "nonzero_rate": 0.02,
+        "saturation_rate": 0.02,
+        "zero_action_rate": 0.98,
+        "rejection_rate": 0.98
+      },
+      "yang": {
+        "mse": 0.3184493614847787,
+        "attack_gain": 0.0,
+        "healthy_gain_paired": 0.0,
+        "net_gain": 0.0,
+        "net_gain_interval_95": [
+          0.0,
+          0.0
+        ],
+        "pollution_gain": 0.0,
+        "healthy_cross_term": 0.0,
+        "nonzero_rate": 0.0,
+        "saturation_rate": 0.0,
+        "zero_action_rate": 1.0,
+        "rejection_rate": 0.0
+      }
+    },
+    "3:186@32": {
+      "hard_gls_capped": {
+        "mse": 0.2829897228351099,
+        "attack_gain": 0.002616850148586948,
+        "healthy_gain_paired": 0.00048280798282820963,
+        "net_gain": 0.0021340421657587384,
+        "net_gain_interval_95": [
+          0.00014465109061892307,
+          0.00438503662592832
+        ],
+        "pollution_gain": 0.0011281674562542345,
+        "healthy_cross_term": 0.0014886826923327101,
+        "nonzero_rate": 0.095,
+        "saturation_rate": 0.095,
+        "zero_action_rate": 0.905,
+        "rejection_rate": 0.905
+      },
+      "correct_joint_soft_impact_capped": {
+        "mse": 0.2816954517930759,
+        "attack_gain": 0.003911121190620994,
+        "healthy_gain_paired": 0.001058049424587576,
+        "net_gain": 0.002853071766033418,
+        "net_gain_interval_95": [
+          0.0006589588900917592,
+          0.00540609433854707
+        ],
+        "pollution_gain": 0.0020983669314249905,
+        "healthy_cross_term": 0.0018127542591960038,
+        "nonzero_rate": 0.115,
+        "saturation_rate": 0.115,
+        "zero_action_rate": 0.885,
+        "rejection_rate": 0.885
+      },
+      "set_constrained_chebyshev": {
+        "mse": 0.2855744675243293,
+        "attack_gain": 3.210545936760107e-05,
+        "healthy_gain_paired": -6.903622812015277e-05,
+        "net_gain": 0.00010114168748775383,
+        "net_gain_interval_95": [
+          0.0,
+          0.0003034250624632615
+        ],
+        "pollution_gain": 8.714904535056949e-05,
+        "healthy_cross_term": -5.504358598296844e-05,
+        "nonzero_rate": 0.005,
+        "saturation_rate": 0.005,
+        "zero_action_rate": 0.995,
+        "rejection_rate": 0.995
+      },
+      "yang": {
+        "mse": 0.2856065729836969,
+        "attack_gain": 0.0,
+        "healthy_gain_paired": 0.0,
+        "net_gain": 0.0,
+        "net_gain_interval_95": [
+          0.0,
+          0.0
+        ],
+        "pollution_gain": 0.0,
+        "healthy_cross_term": 0.0,
+        "nonzero_rate": 0.0,
+        "saturation_rate": 0.0,
+        "zero_action_rate": 1.0,
+        "rejection_rate": 0.0
+      }
+    },
+    "3:186@64": {
+      "hard_gls_capped": {
+        "mse": 0.3356288882534136,
+        "attack_gain": 0.00834342065544121,
+        "healthy_gain_paired": 0.00048280798282820963,
+        "net_gain": 0.007860612672613001,
+        "net_gain_interval_95": [
+          0.004463343275005909,
+          0.01165491474466996
+        ],
+        "pollution_gain": 0.0059234837973515,
+        "healthy_cross_term": 0.0024199368580897084,
+        "nonzero_rate": 0.17,
+        "saturation_rate": 0.17,
+        "zero_action_rate": 0.83,
+        "rejection_rate": 0.83
+      },
+      "correct_joint_soft_impact_capped": {
+        "mse": 0.33256828817968115,
+        "attack_gain": 0.01140402072917367,
+        "healthy_gain_paired": 0.001058049424587576,
+        "net_gain": 0.010345971304586095,
+        "net_gain_interval_95": [
+          0.006663705813363696,
+          0.014470425804685888
+        ],
+        "pollution_gain": 0.007701621965650738,
+        "healthy_cross_term": 0.0037023987635229306,
+        "nonzero_rate": 0.2,
+        "saturation_rate": 0.2,
+        "zero_action_rate": 0.8,
+        "rejection_rate": 0.8
+      },
+      "set_constrained_chebyshev": {
+        "mse": 0.3426951922303846,
+        "attack_gain": 0.0012771166784702006,
+        "healthy_gain_paired": -6.903622812015277e-05,
+        "net_gain": 0.0013461529065903533,
+        "net_gain_interval_95": [
+          -4.94664539590052e-06,
+          0.0031659330542654017
+        ],
+        "pollution_gain": 0.0008230035479831402,
+        "healthy_cross_term": 0.0004541131304870609,
+        "nonzero_rate": 0.02,
+        "saturation_rate": 0.02,
+        "zero_action_rate": 0.98,
+        "rejection_rate": 0.98
+      },
+      "yang": {
+        "mse": 0.34397230890885483,
+        "attack_gain": 0.0,
+        "healthy_gain_paired": 0.0,
+        "net_gain": 0.0,
+        "net_gain_interval_95": [
+          0.0,
+          0.0
+        ],
+        "pollution_gain": 0.0,
+        "healthy_cross_term": 0.0,
+        "nonzero_rate": 0.0,
+        "saturation_rate": 0.0,
+        "zero_action_rate": 1.0,
+        "rejection_rate": 0.0
+      }
+    },
+    "3:186@96": {
+      "hard_gls_capped": {
+        "mse": 0.3931676740160864,
+        "attack_gain": 0.012884088358455083,
+        "healthy_gain_paired": 0.00048280798282820963,
+        "net_gain": 0.012401280375626872,
+        "net_gain_interval_95": [
+          0.008169153421051284,
+          0.017143358501501227
+        ],
+        "pollution_gain": 0.010422136367482952,
+        "healthy_cross_term": 0.002461951990972134,
+        "nonzero_rate": 0.23,
+        "saturation_rate": 0.23,
+        "zero_action_rate": 0.77,
+        "rejection_rate": 0.77
+      },
+      "correct_joint_soft_impact_capped": {
+        "mse": 0.39050943305880864,
+        "attack_gain": 0.015542329315732819,
+        "healthy_gain_paired": 0.001058049424587576,
+        "net_gain": 0.014484279891145247,
+        "net_gain_interval_95": [
+          0.010035668210699213,
+          0.01915967821753759
+        ],
+        "pollution_gain": 0.014670894494864695,
+        "healthy_cross_term": 0.0008714348208681261,
+        "nonzero_rate": 0.295,
+        "saturation_rate": 0.295,
+        "zero_action_rate": 0.705,
+        "rejection_rate": 0.705
+      },
+      "set_constrained_chebyshev": {
+        "mse": 0.4021010416111238,
+        "attack_gain": 0.003950720763417593,
+        "healthy_gain_paired": -6.903622812015277e-05,
+        "net_gain": 0.004019756991537745,
+        "net_gain_interval_95": [
+          0.001396401581991111,
+          0.0071173617967396074
+        ],
+        "pollution_gain": 0.0034207294835042596,
+        "healthy_cross_term": 0.0005299912799133325,
+        "nonzero_rate": 0.055,
+        "saturation_rate": 0.055,
+        "zero_action_rate": 0.945,
+        "rejection_rate": 0.945
+      },
+      "yang": {
+        "mse": 0.40605176237454144,
+        "attack_gain": 0.0,
+        "healthy_gain_paired": 0.0,
+        "net_gain": 0.0,
+        "net_gain_interval_95": [
+          0.0,
+          0.0
+        ],
+        "pollution_gain": 0.0,
+        "healthy_cross_term": 0.0,
+        "nonzero_rate": 0.0,
+        "saturation_rate": 0.0,
+        "zero_action_rate": 1.0,
+        "rejection_rate": 0.0
+      }
+    },
+    "0:192@32": {
+      "hard_gls_capped": {
+        "mse": 0.552531056590376,
+        "attack_gain": 0.018850261991976657,
+        "healthy_gain_paired": 0.00048280798282820963,
+        "net_gain": 0.01836745400914845,
+        "net_gain_interval_95": [
+          0.012858190083756155,
+          0.024125506320687252
+        ],
+        "pollution_gain": 0.017814264799264876,
+        "healthy_cross_term": 0.0010359971927117841,
+        "nonzero_rate": 0.235,
+        "saturation_rate": 0.235,
+        "zero_action_rate": 0.765,
+        "rejection_rate": 0.765
+      },
+      "correct_joint_soft_impact_capped": {
+        "mse": 0.54828220641147,
+        "attack_gain": 0.02309911217088272,
+        "healthy_gain_paired": 0.001058049424587576,
+        "net_gain": 0.02204106274629514,
+        "net_gain_interval_95": [
+          0.016155144512412664,
+          0.028062749471633414
+        ],
+        "pollution_gain": 0.02165352026584896,
+        "healthy_cross_term": 0.0014455919050337565,
+        "nonzero_rate": 0.295,
+        "saturation_rate": 0.295,
+        "zero_action_rate": 0.705,
+        "rejection_rate": 0.705
+      },
+      "set_constrained_chebyshev": {
+        "mse": 0.5647976246894061,
+        "attack_gain": 0.006583693892946706,
+        "healthy_gain_paired": -6.903622812015277e-05,
+        "net_gain": 0.006652730121066859,
+        "net_gain_interval_95": [
+          0.003027949144705518,
+          0.011036826661058291
+        ],
+        "pollution_gain": 0.006068255288845059,
+        "healthy_cross_term": 0.0005154386041016415,
+        "nonzero_rate": 0.07,
+        "saturation_rate": 0.07,
+        "zero_action_rate": 0.93,
+        "rejection_rate": 0.93
+      },
+      "yang": {
+        "mse": 0.5713813185823526,
+        "attack_gain": 0.0,
+        "healthy_gain_paired": 0.0,
+        "net_gain": 0.0,
+        "net_gain_interval_95": [
+          0.0,
+          0.0
+        ],
+        "pollution_gain": 0.0,
+        "healthy_cross_term": 0.0,
+        "nonzero_rate": 0.0,
+        "saturation_rate": 0.0,
+        "zero_action_rate": 1.0,
+        "rejection_rate": 0.0
+      }
+    },
+    "0:192@64": {
+      "hard_gls_capped": {
+        "mse": 1.1506665742623223,
+        "attack_gain": 0.05515181163790178,
+        "healthy_gain_paired": 0.00048280798282820963,
+        "net_gain": 0.054669003655073566,
+        "net_gain_interval_95": [
+          0.044524811922003305,
+          0.06543777157153498
+        ],
+        "pollution_gain": 0.05335275947504378,
+        "healthy_cross_term": 0.0017990521628580042,
+        "nonzero_rate": 0.43,
+        "saturation_rate": 0.43,
+        "zero_action_rate": 0.57,
+        "rejection_rate": 0.57
+      },
+      "correct_joint_soft_impact_capped": {
+        "mse": 1.1445576592741349,
+        "attack_gain": 0.06126072662608917,
+        "healthy_gain_paired": 0.001058049424587576,
+        "net_gain": 0.060202677201501596,
+        "net_gain_interval_95": [
+          0.049334740057716604,
+          0.07101676998355108
+        ],
+        "pollution_gain": 0.059124437465494936,
+        "healthy_cross_term": 0.0021362891605942198,
+        "nonzero_rate": 0.49,
+        "saturation_rate": 0.49,
+        "zero_action_rate": 0.51,
+        "rejection_rate": 0.51
+      },
+      "set_constrained_chebyshev": {
+        "mse": 1.1688712982193972,
+        "attack_gain": 0.036947087680827106,
+        "healthy_gain_paired": -6.903622812015277e-05,
+        "net_gain": 0.037016123908947256,
+        "net_gain_interval_95": [
+          0.02748159961326297,
+          0.047025108331002714
+        ],
+        "pollution_gain": 0.036522507385416125,
+        "healthy_cross_term": 0.0004245802954109779,
+        "nonzero_rate": 0.23,
+        "saturation_rate": 0.23,
+        "zero_action_rate": 0.77,
+        "rejection_rate": 0.77
+      },
+      "yang": {
+        "mse": 1.205818385900224,
+        "attack_gain": 0.0,
+        "healthy_gain_paired": 0.0,
+        "net_gain": 0.0,
+        "net_gain_interval_95": [
+          0.0,
+          0.0
+        ],
+        "pollution_gain": 0.0,
+        "healthy_cross_term": 0.0,
+        "nonzero_rate": 0.0,
+        "saturation_rate": 0.0,
+        "zero_action_rate": 1.0,
+        "rejection_rate": 0.0
+      }
+    },
+    "0:192@96": {
+      "hard_gls_capped": {
+        "mse": 1.7823935955967516,
+        "attack_gain": 0.08212883995772265,
+        "healthy_gain_paired": 0.00048280798282820963,
+        "net_gain": 0.08164603197489444,
+        "net_gain_interval_95": [
+          0.06777275128001435,
+          0.09568109227838358
+        ],
+        "pollution_gain": 0.07880823428734898,
+        "healthy_cross_term": 0.0033206056703736497,
+        "nonzero_rate": 0.515,
+        "saturation_rate": 0.515,
+        "zero_action_rate": 0.485,
+        "rejection_rate": 0.485
+      },
+      "correct_joint_soft_impact_capped": {
+        "mse": 1.7759123993976669,
+        "attack_gain": 0.08861003615680753,
+        "healthy_gain_paired": 0.001058049424587576,
+        "net_gain": 0.08755198673221994,
+        "net_gain_interval_95": [
+          0.07381177875394623,
+          0.10084351692493419
+        ],
+        "pollution_gain": 0.08599859989155688,
+        "healthy_cross_term": 0.002611436265250634,
+        "nonzero_rate": 0.59,
+        "saturation_rate": 0.59,
+        "zero_action_rate": 0.41,
+        "rejection_rate": 0.41
+      },
+      "set_constrained_chebyshev": {
+        "mse": 1.8003797302255367,
+        "attack_gain": 0.06414270532893793,
+        "healthy_gain_paired": -6.903622812015277e-05,
+        "net_gain": 0.06421174155705808,
+        "net_gain_interval_95": [
+          0.05080320061849393,
+          0.07847226642488829
+        ],
+        "pollution_gain": 0.06380693766879066,
+        "healthy_cross_term": 0.0003357676601472781,
+        "nonzero_rate": 0.335,
+        "saturation_rate": 0.335,
+        "zero_action_rate": 0.665,
+        "rejection_rate": 0.665
+      },
+      "yang": {
+        "mse": 1.8645224355544743,
+        "attack_gain": 0.0,
+        "healthy_gain_paired": 0.0,
+        "net_gain": 0.0,
+        "net_gain_interval_95": [
+          0.0,
+          0.0
+        ],
+        "pollution_gain": 0.0,
+        "healthy_cross_term": 0.0,
+        "nonzero_rate": 0.0,
+        "saturation_rate": 0.0,
+        "zero_action_rate": 1.0,
+        "rejection_rate": 0.0
+      }
+    },
+    "3:194@32": {
+      "hard_gls_capped": {
+        "mse": 0.8348763617432382,
+        "attack_gain": 0.03544171268998893,
+        "healthy_gain_paired": 0.00048280798282820963,
+        "net_gain": 0.03495890470716072,
+        "net_gain_interval_95": [
+          0.02688170315102517,
+          0.0432187552590541
+        ],
+        "pollution_gain": 0.034045913706378245,
+        "healthy_cross_term": 0.0013957989836106777,
+        "nonzero_rate": 0.32,
+        "saturation_rate": 0.32,
+        "zero_action_rate": 0.68,
+        "rejection_rate": 0.68
+      },
+      "correct_joint_soft_impact_capped": {
+        "mse": 0.8299555755623215,
+        "attack_gain": 0.04036249887090561,
+        "healthy_gain_paired": 0.001058049424587576,
+        "net_gain": 0.039304449446318036,
+        "net_gain_interval_95": [
+          0.030794098810460517,
+          0.04785575914977604
+        ],
+        "pollution_gain": 0.03935768179329718,
+        "healthy_cross_term": 0.0010048170776084176,
+        "nonzero_rate": 0.395,
+        "saturation_rate": 0.395,
+        "zero_action_rate": 0.605,
+        "rejection_rate": 0.605
+      },
+      "set_constrained_chebyshev": {
+        "mse": 0.8493214532355136,
+        "attack_gain": 0.020996621197713533,
+        "healthy_gain_paired": -6.903622812015277e-05,
+        "net_gain": 0.02106565742583369,
+        "net_gain_interval_95": [
+          0.013911934958810506,
+          0.02844536279270068
+        ],
+        "pollution_gain": 0.01937939913192057,
+        "healthy_cross_term": 0.001617222065792957,
+        "nonzero_rate": 0.15,
+        "saturation_rate": 0.15,
+        "zero_action_rate": 0.85,
+        "rejection_rate": 0.85
+      },
+      "yang": {
+        "mse": 0.870318074433227,
+        "attack_gain": 0.0,
+        "healthy_gain_paired": 0.0,
+        "net_gain": 0.0,
+        "net_gain_interval_95": [
+          0.0,
+          0.0
+        ],
+        "pollution_gain": 0.0,
+        "healthy_cross_term": 0.0,
+        "nonzero_rate": 0.0,
+        "saturation_rate": 0.0,
+        "zero_action_rate": 1.0,
+        "rejection_rate": 0.0
+      }
+    },
+    "3:194@64": {
+      "hard_gls_capped": {
+        "mse": 2.015432008941384,
+        "attack_gain": 0.08930322715145352,
+        "healthy_gain_paired": 0.00048280798282820963,
+        "net_gain": 0.0888204191686253,
+        "net_gain_interval_95": [
+          0.07431828044938377,
+          0.10352009270113315
+        ],
+        "pollution_gain": 0.08575094958564501,
+        "healthy_cross_term": 0.003552277565808557,
+        "nonzero_rate": 0.525,
+        "saturation_rate": 0.525,
+        "zero_action_rate": 0.475,
+        "rejection_rate": 0.475
+      },
+      "correct_joint_soft_impact_capped": {
+        "mse": 2.0105616895039424,
+        "attack_gain": 0.09417354658889508,
+        "healthy_gain_paired": 0.001058049424587576,
+        "net_gain": 0.0931154971643075,
+        "net_gain_interval_95": [
+          0.07868875295824102,
+          0.10753252105666082
+        ],
+        "pollution_gain": 0.09157016416029695,
+        "healthy_cross_term": 0.0026033824285981743,
+        "nonzero_rate": 0.585,
+        "saturation_rate": 0.585,
+        "zero_action_rate": 0.415,
+        "rejection_rate": 0.415
+      },
+      "set_constrained_chebyshev": {
+        "mse": 2.0346770914546197,
+        "attack_gain": 0.0700581446382178,
+        "healthy_gain_paired": -6.903622812015277e-05,
+        "net_gain": 0.07012718086633796,
+        "net_gain_interval_95": [
+          0.055754515263489075,
+          0.08512637680407432
+        ],
+        "pollution_gain": 0.06996840578436915,
+        "healthy_cross_term": 8.973885384864211e-05,
+        "nonzero_rate": 0.345,
+        "saturation_rate": 0.345,
+        "zero_action_rate": 0.655,
+        "rejection_rate": 0.655
+      },
+      "yang": {
+        "mse": 2.1047352360928375,
+        "attack_gain": 0.0,
+        "healthy_gain_paired": 0.0,
+        "net_gain": 0.0,
+        "net_gain_interval_95": [
+          0.0,
+          0.0
+        ],
+        "pollution_gain": 0.0,
+        "healthy_cross_term": 0.0,
+        "nonzero_rate": 0.0,
+        "saturation_rate": 0.0,
+        "zero_action_rate": 1.0,
+        "rejection_rate": 0.0
+      }
+    },
+    "3:194@96": {
+      "hard_gls_capped": {
+        "mse": 3.2639230315717382,
+        "attack_gain": 0.12654148965030484,
+        "healthy_gain_paired": 0.00048280798282820963,
+        "net_gain": 0.12605868166747664,
+        "net_gain_interval_95": [
+          0.1077714334580416,
+          0.14428431425528868
+        ],
+        "pollution_gain": 0.12366587813366756,
+        "healthy_cross_term": 0.0028756115166372843,
+        "nonzero_rate": 0.62,
+        "saturation_rate": 0.62,
+        "zero_action_rate": 0.38,
+        "rejection_rate": 0.38
+      },
+      "correct_joint_soft_impact_capped": {
+        "mse": 3.2584451466265953,
+        "attack_gain": 0.132019374595447,
+        "healthy_gain_paired": 0.001058049424587576,
+        "net_gain": 0.1309613251708594,
+        "net_gain_interval_95": [
+          0.11298953602922861,
+          0.14780602835807666
+        ],
+        "pollution_gain": 0.12987212382456137,
+        "healthy_cross_term": 0.0021472507708855787,
+        "nonzero_rate": 0.68,
+        "saturation_rate": 0.68,
+        "zero_action_rate": 0.32,
+        "rejection_rate": 0.32
+      },
+      "set_constrained_chebyshev": {
+        "mse": 3.2805617807027665,
+        "attack_gain": 0.10990274051927627,
+        "healthy_gain_paired": -6.903622812015277e-05,
+        "net_gain": 0.10997177674739644,
+        "net_gain_interval_95": [
+          0.09167633633492657,
+          0.12860566858762573
+        ],
+        "pollution_gain": 0.10760446400784936,
+        "healthy_cross_term": 0.0022982765114269504,
+        "nonzero_rate": 0.455,
+        "saturation_rate": 0.455,
+        "zero_action_rate": 0.545,
+        "rejection_rate": 0.545
+      },
+      "yang": {
+        "mse": 3.390464521222043,
+        "attack_gain": 0.0,
+        "healthy_gain_paired": 0.0,
+        "net_gain": 0.0,
+        "net_gain_interval_95": [
+          0.0,
+          0.0
+        ],
+        "pollution_gain": 0.0,
+        "healthy_cross_term": 0.0,
+        "nonzero_rate": 0.0,
+        "saturation_rate": 0.0,
+        "zero_action_rate": 1.0,
+        "rejection_rate": 0.0
+      }
+    },
+    "0:200@32": {
+      "hard_gls_capped": {
+        "mse": 3.334568125526786,
+        "attack_gain": 0.13235817171109393,
+        "healthy_gain_paired": 0.00048280798282820963,
+        "net_gain": 0.13187536372826572,
+        "net_gain_interval_95": [
+          0.11348869988470428,
+          0.15019142456761073
+        ],
+        "pollution_gain": 0.12913986567495953,
+        "healthy_cross_term": 0.0032183060361343748,
+        "nonzero_rate": 0.66,
+        "saturation_rate": 0.66,
+        "zero_action_rate": 0.34,
+        "rejection_rate": 0.34
+      },
+      "correct_joint_soft_impact_capped": {
+        "mse": 3.3322467360440435,
+        "attack_gain": 0.13467956119383592,
+        "healthy_gain_paired": 0.001058049424587576,
+        "net_gain": 0.13362151176924836,
+        "net_gain_interval_95": [
+          0.1158230421668738,
+          0.15114709380545552
+        ],
+        "pollution_gain": 0.1332168299524382,
+        "healthy_cross_term": 0.0014627312413977467,
+        "nonzero_rate": 0.7,
+        "saturation_rate": 0.7,
+        "zero_action_rate": 0.3,
+        "rejection_rate": 0.3
+      },
+      "set_constrained_chebyshev": {
+        "mse": 3.3441410377347167,
+        "attack_gain": 0.122785259503163,
+        "healthy_gain_paired": -6.903622812015277e-05,
+        "net_gain": 0.12285429573128315,
+        "net_gain_interval_95": [
+          0.10392729152963495,
+          0.1416682803945717
+        ],
+        "pollution_gain": 0.11925633345920701,
+        "healthy_cross_term": 0.003528926043955971,
+        "nonzero_rate": 0.535,
+        "saturation_rate": 0.535,
+        "zero_action_rate": 0.465,
+        "rejection_rate": 0.465
+      },
+      "yang": {
+        "mse": 3.4669262972378796,
+        "attack_gain": 0.0,
+        "healthy_gain_paired": 0.0,
+        "net_gain": 0.0,
+        "net_gain_interval_95": [
+          0.0,
+          0.0
+        ],
+        "pollution_gain": 0.0,
+        "healthy_cross_term": 0.0,
+        "nonzero_rate": 0.0,
+        "saturation_rate": 0.0,
+        "zero_action_rate": 1.0,
+        "rejection_rate": 0.0
+      }
+    },
+    "0:200@64": {
+      "hard_gls_capped": {
+        "mse": 9.656828442793321,
+        "attack_gain": 0.2428020682427762,
+        "healthy_gain_paired": 0.00048280798282820963,
+        "net_gain": 0.24231926025994802,
+        "net_gain_interval_95": [
+          0.2123604471179994,
+          0.2710173381999206
+        ],
+        "pollution_gain": 0.2416178478415387,
+        "healthy_cross_term": 0.0011842204012377689,
+        "nonzero_rate": 0.785,
+        "saturation_rate": 0.785,
+        "zero_action_rate": 0.215,
+        "rejection_rate": 0.215
+      },
+      "correct_joint_soft_impact_capped": {
+        "mse": 9.654265244739669,
+        "attack_gain": 0.24536526629642844,
+        "healthy_gain_paired": 0.001058049424587576,
+        "net_gain": 0.24430721687184087,
+        "net_gain_interval_95": [
+          0.21527025735152,
+          0.27268684689506884
+        ],
+        "pollution_gain": 0.24397739241695804,
+        "healthy_cross_term": 0.0013878738794703782,
+        "nonzero_rate": 0.82,
+        "saturation_rate": 0.82,
+        "zero_action_rate": 0.18,
+        "rejection_rate": 0.18
+      },
+      "set_constrained_chebyshev": {
+        "mse": 9.66184722416181,
+        "attack_gain": 0.23778328687428713,
+        "healthy_gain_paired": -6.903622812015277e-05,
+        "net_gain": 0.23785232310240723,
+        "net_gain_interval_95": [
+          0.20727469531926576,
+          0.26736954094585375
+        ],
+        "pollution_gain": 0.23556171348575752,
+        "healthy_cross_term": 0.002221573388529656,
+        "nonzero_rate": 0.71,
+        "saturation_rate": 0.71,
+        "zero_action_rate": 0.29,
+        "rejection_rate": 0.29
+      },
+      "yang": {
+        "mse": 9.899630511036099,
+        "attack_gain": 0.0,
+        "healthy_gain_paired": 0.0,
+        "net_gain": 0.0,
+        "net_gain_interval_95": [
+          0.0,
+          0.0
+        ],
+        "pollution_gain": 0.0,
+        "healthy_cross_term": 0.0,
+        "nonzero_rate": 0.0,
+        "saturation_rate": 0.0,
+        "zero_action_rate": 1.0,
+        "rejection_rate": 0.0
+      }
+    },
+    "0:200@96": {
+      "hard_gls_capped": {
+        "mse": 16.28330185793761,
+        "attack_gain": 0.31854673452427695,
+        "healthy_gain_paired": 0.00048280798282820963,
+        "net_gain": 0.31806392654144877,
+        "net_gain_interval_95": [
+          0.27993168521393996,
+          0.35418855400433114
+        ],
+        "pollution_gain": 0.31800505668750567,
+        "healthy_cross_term": 0.0005416778367714625,
+        "nonzero_rate": 0.81,
+        "saturation_rate": 0.81,
+        "zero_action_rate": 0.19,
+        "rejection_rate": 0.19
+      },
+      "correct_joint_soft_impact_capped": {
+        "mse": 16.280871311666854,
+        "attack_gain": 0.32097728079503185,
+        "healthy_gain_paired": 0.001058049424587576,
+        "net_gain": 0.31991923137044426,
+        "net_gain_interval_95": [
+          0.28229254483301836,
+          0.3558921507707525
+        ],
+        "pollution_gain": 0.3204759867155914,
+        "healthy_cross_term": 0.0005012940794405618,
+        "nonzero_rate": 0.835,
+        "saturation_rate": 0.835,
+        "zero_action_rate": 0.165,
+        "rejection_rate": 0.165
+      },
+      "set_constrained_chebyshev": {
+        "mse": 16.28802228083432,
+        "attack_gain": 0.3138263116275638,
+        "healthy_gain_paired": -6.903622812015277e-05,
+        "net_gain": 0.313895347855684,
+        "net_gain_interval_95": [
+          0.2751931886808408,
+          0.35082749985276696
+        ],
+        "pollution_gain": 0.31217521239249846,
+        "healthy_cross_term": 0.0016510992350648457,
+        "nonzero_rate": 0.74,
+        "saturation_rate": 0.74,
+        "zero_action_rate": 0.26,
+        "rejection_rate": 0.26
+      },
+      "yang": {
+        "mse": 16.601848592461884,
+        "attack_gain": 0.0,
+        "healthy_gain_paired": 0.0,
+        "net_gain": 0.0,
+        "net_gain_interval_95": [
+          0.0,
+          0.0
+        ],
+        "pollution_gain": 0.0,
+        "healthy_cross_term": 0.0,
+        "nonzero_rate": 0.0,
+        "saturation_rate": 0.0,
+        "zero_action_rate": 1.0,
+        "rejection_rate": 0.0
+      }
+    },
+    "3:202@32": {
+      "hard_gls_capped": {
+        "mse": 6.6448974235593985,
+        "attack_gain": 0.19850208088868862,
+        "healthy_gain_paired": 0.00048280798282820963,
+        "net_gain": 0.19801927290586036,
+        "net_gain_interval_95": [
+          0.17340357492840944,
+          0.2221122291421888
+        ],
+        "pollution_gain": 0.19715948974343306,
+        "healthy_cross_term": 0.0013425911452556482,
+        "nonzero_rate": 0.77,
+        "saturation_rate": 0.77,
+        "zero_action_rate": 0.23,
+        "rejection_rate": 0.23
+      },
+      "correct_joint_soft_impact_capped": {
+        "mse": 6.643280963892121,
+        "attack_gain": 0.20011854055596623,
+        "healthy_gain_paired": 0.001058049424587576,
+        "net_gain": 0.1990604911313786,
+        "net_gain_interval_95": [
+          0.17469657563027838,
+          0.22294505053894922
+        ],
+        "pollution_gain": 0.1988160731995417,
+        "healthy_cross_term": 0.0013024673564245625,
+        "nonzero_rate": 0.785,
+        "saturation_rate": 0.785,
+        "zero_action_rate": 0.215,
+        "rejection_rate": 0.215
+      },
+      "set_constrained_chebyshev": {
+        "mse": 6.649812734169455,
+        "attack_gain": 0.19358677027863241,
+        "healthy_gain_paired": -6.903622812015277e-05,
+        "net_gain": 0.19365580650675254,
+        "net_gain_interval_95": [
+          0.1685370823751563,
+          0.217854837397354
+        ],
+        "pollution_gain": 0.1901167308993385,
+        "healthy_cross_term": 0.0034700393792940587,
+        "nonzero_rate": 0.67,
+        "saturation_rate": 0.67,
+        "zero_action_rate": 0.33,
+        "rejection_rate": 0.33
+      },
+      "yang": {
+        "mse": 6.843399504448087,
+        "attack_gain": 0.0,
+        "healthy_gain_paired": 0.0,
+        "net_gain": 0.0,
+        "net_gain_interval_95": [
+          0.0,
+          0.0
+        ],
+        "pollution_gain": 0.0,
+        "healthy_cross_term": 0.0,
+        "nonzero_rate": 0.0,
+        "saturation_rate": 0.0,
+        "zero_action_rate": 1.0,
+        "rejection_rate": 0.0
+      }
+    },
+    "3:202@64": {
+      "hard_gls_capped": {
+        "mse": 19.66201300562829,
+        "attack_gain": 0.3555534647473516,
+        "healthy_gain_paired": 0.00048280798282820963,
+        "net_gain": 0.35507065676452326,
+        "net_gain_interval_95": [
+          0.3142626858308397,
+          0.39427003070092603
+        ],
+        "pollution_gain": 0.3546377764796203,
+        "healthy_cross_term": 0.0009156882677318262,
+        "nonzero_rate": 0.86,
+        "saturation_rate": 0.86,
+        "zero_action_rate": 0.14,
+        "rejection_rate": 0.14
+      },
+      "correct_joint_soft_impact_capped": {
+        "mse": 19.662556037223876,
+        "attack_gain": 0.35501043315176534,
+        "healthy_gain_paired": 0.001058049424587576,
+        "net_gain": 0.3539523837271777,
+        "net_gain_interval_95": [
+          0.3131215525513966,
+          0.39349887803281486
+        ],
+        "pollution_gain": 0.3543913549280582,
+        "healthy_cross_term": 0.0006190782237076087,
+        "nonzero_rate": 0.86,
+        "saturation_rate": 0.86,
+        "zero_action_rate": 0.14,
+        "rejection_rate": 0.14
+      },
+      "set_constrained_chebyshev": {
+        "mse": 19.669137495796697,
+        "attack_gain": 0.3484289745789445,
+        "healthy_gain_paired": -6.903622812015277e-05,
+        "net_gain": 0.3484980108070646,
+        "net_gain_interval_95": [
+          0.3062619980460385,
+          0.38841537838468554
+        ],
+        "pollution_gain": 0.34777566162829726,
+        "healthy_cross_term": 0.000653312950647375,
+        "nonzero_rate": 0.775,
+        "saturation_rate": 0.775,
+        "zero_action_rate": 0.225,
+        "rejection_rate": 0.225
+      },
+      "yang": {
+        "mse": 20.01756647037564,
+        "attack_gain": 0.0,
+        "healthy_gain_paired": 0.0,
+        "net_gain": 0.0,
+        "net_gain_interval_95": [
+          0.0,
+          0.0
+        ],
+        "pollution_gain": 0.0,
+        "healthy_cross_term": 0.0,
+        "nonzero_rate": 0.0,
+        "saturation_rate": 0.0,
+        "zero_action_rate": 1.0,
+        "rejection_rate": 0.0
+      }
+    },
+    "3:202@96": {
+      "hard_gls_capped": {
+        "mse": 33.27740140181041,
+        "attack_gain": 0.46407921789725726,
+        "healthy_gain_paired": 0.00048280798282820963,
+        "net_gain": 0.463596409914429,
+        "net_gain_interval_95": [
+          0.41069137406356854,
+          0.514032710899288
+        ],
+        "pollution_gain": 0.4635768167867403,
+        "healthy_cross_term": 0.0005024011105177884,
+        "nonzero_rate": 0.885,
+        "saturation_rate": 0.885,
+        "zero_action_rate": 0.115,
+        "rejection_rate": 0.115
+      },
+      "correct_joint_soft_impact_capped": {
+        "mse": 33.27745040595777,
+        "attack_gain": 0.46403021374990006,
+        "healthy_gain_paired": 0.001058049424587576,
+        "net_gain": 0.4629721643253124,
+        "net_gain_interval_95": [
+          0.41062629334102696,
+          0.5134335623266486
+        ],
+        "pollution_gain": 0.46370351252252306,
+        "healthy_cross_term": 0.0003267012273774972,
+        "nonzero_rate": 0.88,
+        "saturation_rate": 0.88,
+        "zero_action_rate": 0.12,
+        "rejection_rate": 0.12
+      },
+      "set_constrained_chebyshev": {
+        "mse": 33.2832064574757,
+        "attack_gain": 0.4582741622319732,
+        "healthy_gain_paired": -6.903622812015277e-05,
+        "net_gain": 0.45834319846009336,
+        "net_gain_interval_95": [
+          0.4040604070633234,
+          0.5102419196844148
+        ],
+        "pollution_gain": 0.4584065131184596,
+        "healthy_cross_term": -0.00013235088648610337,
+        "nonzero_rate": 0.82,
+        "saturation_rate": 0.82,
+        "zero_action_rate": 0.18,
+        "rejection_rate": 0.18
+      },
+      "yang": {
+        "mse": 33.74148061970767,
+        "attack_gain": 0.0,
+        "healthy_gain_paired": 0.0,
+        "net_gain": 0.0,
+        "net_gain_interval_95": [
+          0.0,
+          0.0
+        ],
+        "pollution_gain": 0.0,
+        "healthy_cross_term": 0.0,
+        "nonzero_rate": 0.0,
+        "saturation_rate": 0.0,
+        "zero_action_rate": 1.0,
+        "rejection_rate": 0.0
+      }
+    }
+  },
+  "matched_prior_age64": {
+    "hard_gls_capped": 2.2448990115952685,
+    "correct_joint_soft_impact_capped": 2.2436509379418452,
+    "set_constrained_chebyshev": 2.2495813736947436,
+    "yang": 2.292982990699741
+  },
+  "interpretation": "Bootstrap intervals are approximate, not finite-sample exact guarantees."
+}

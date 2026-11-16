@@ -1,0 +1,95 @@
+{
+  "all_proposal_joins_verified": true,
+  "all_zero_and_rejected_rows_retained": true,
+  "bootstrap_indices_sha256": "499ccd16acfcbe7bbc1ead01c56b755dd2a70665977f36651834ebd627c10cf1",
+  "bootstrap_resamples": 1999,
+  "bootstrap_seed": 141460000,
+  "counts": {
+    "attack_rows": 14400,
+    "attack_seeds": 200,
+    "batches": 20,
+    "normal_rows": 600,
+    "normal_seeds": 200,
+    "online_files": 15600,
+    "paired_healthy_rows": 600,
+    "unique_attack_seed_event_age": 4800
+  },
+  "decision": "NO_GO_PERFORMANCE",
+  "execution_failures": 0,
+  "frozen_summary_exact_match": true,
+  "independent_vector_bootstrap": {
+    "algorithm": "scalar target-error reconstruction and bootstrap multinomial frequency weights",
+    "margins": {
+      "correct_joint_soft_impact_capped": {
+        "lower_97_5": -0.23797972195748915,
+        "point": -0.20320701894506144
+      },
+      "hard_gls_capped": {
+        "lower_97_5": -0.23869054100102324,
+        "point": -0.20374462022468975
+      }
+    },
+    "max_absolute_difference": 1.3322676295501878e-14,
+    "relative_yang_improvement": 0.024019410280940012,
+    "status": "PASS_INDEPENDENT_VECTOR_RISK_AND_FREQUENCY_WEIGHT_BOOTSTRAP"
+  },
+  "manifest_sha256": "4d6168edd274047c9e9ad0b1268ff121c03bb61e6eb1c67b8e654bcef5f48325",
+  "manifest_verified_files": 16026,
+  "max_abs_loss_reconstruction_error": 5.400124791776761e-13,
+  "no_new_trajectory_generation_in_audit": true,
+  "primary_descriptive": {
+    "correct_joint_soft_impact_capped": {
+      "mse": 9.654265244739669,
+      "relative_gain_vs_yang": 0.024785295372680483,
+      "relative_gain_vs_yang_ci95": [
+        0.023036395411308273,
+        0.026881387197282128
+      ]
+    },
+    "hard_gls_capped": {
+      "mse": 9.656828442793321,
+      "relative_gain_vs_yang": 0.024526376814983375,
+      "relative_gain_vs_yang_ci95": [
+        0.022786141450374185,
+        0.026543756179731096
+      ]
+    },
+    "set_constrained_chebyshev": {
+      "mse": 9.66184722416181,
+      "relative_gain_vs_yang": 0.024019410280940012,
+      "relative_gain_vs_yang_ci95": [
+        0.02234842485749736,
+        0.025944240543541955
+      ]
+    },
+    "yang": {
+      "mse": 9.899630511036099,
+      "relative_gain_vs_yang": 0.0,
+      "relative_gain_vs_yang_ci95": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "run_id": "g1r_e3_run_20261116_001",
+  "status": "PASS_COMPLETENESS_HASHES_AND_INDEPENDENT_STATISTICS",
+  "status_counts": {
+    "attack|correct_joint_soft_impact_capped|VALID|VALID|EXECUTED": 1872,
+    "attack|correct_joint_soft_impact_capped|VALID|VALID|GATE_REJECT": 2928,
+    "attack|hard_gls_capped|VALID|VALID|EXECUTED": 1719,
+    "attack|hard_gls_capped|VALID|VALID|GATE_REJECT": 3081,
+    "attack|set_constrained_chebyshev|VALID|VALID|EXECUTED": 1195,
+    "attack|set_constrained_chebyshev|VALID|ZERO_OR_UNRESOLVED|GATE_REJECT": 3605,
+    "normal|correct_joint_soft_impact_capped|VALID|VALID|EXECUTED": 15,
+    "normal|correct_joint_soft_impact_capped|VALID|VALID|GATE_REJECT": 185,
+    "normal|hard_gls_capped|VALID|VALID|EXECUTED": 9,
+    "normal|hard_gls_capped|VALID|VALID|GATE_REJECT": 191,
+    "normal|set_constrained_chebyshev|VALID|ZERO_OR_UNRESOLVED|GATE_REJECT": 200,
+    "paired_healthy|correct_joint_soft_impact_capped|VALID|VALID|EXECUTED": 16,
+    "paired_healthy|correct_joint_soft_impact_capped|VALID|VALID|GATE_REJECT": 184,
+    "paired_healthy|hard_gls_capped|VALID|VALID|EXECUTED": 10,
+    "paired_healthy|hard_gls_capped|VALID|VALID|GATE_REJECT": 190,
+    "paired_healthy|set_constrained_chebyshev|VALID|VALID|EXECUTED": 1,
+    "paired_healthy|set_constrained_chebyshev|VALID|ZERO_OR_UNRESOLVED|GATE_REJECT": 199
+  }
+}
