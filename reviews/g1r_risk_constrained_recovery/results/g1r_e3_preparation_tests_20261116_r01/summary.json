@@ -1,0 +1,34 @@
+{
+  "errors": [
+    {
+      "test": "test_confirmatory_two_bounds (reviews.g1r_risk_constrained_recovery.code.g1r_e3_runner.tests.test_preparation.PreparationTests.test_confirmatory_two_bounds)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e3_runner\\tests\\test_preparation.py\", line 136, in test_confirmatory_two_bounds\n    result=summarize(self.small,self.synthetic,indices=self.ix)\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e3_runner\\statistics_reporter.py\", line 84, in summarize\n    if yang<=0 or np.any(primary[indices,:,-1].mean(axis=1)<=0): raise ValueError('undefined Yang relative gain')\n                         ~~~~~~~^^^^^^^^^^^^^^\nIndexError: too many indices for array: array is 2-dimensional, but 3 were indexed\n"
+    },
+    {
+      "test": "test_synthetic_point_mse_manual (reviews.g1r_risk_constrained_recovery.code.g1r_e3_runner.tests.test_preparation.PreparationTests.test_synthetic_point_mse_manual)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e3_runner\\tests\\test_preparation.py\", line 148, in test_synthetic_point_mse_manual\n    result=summarize(self.small,self.synthetic,indices=self.ix)\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e3_runner\\statistics_reporter.py\", line 84, in summarize\n    if yang<=0 or np.any(primary[indices,:,-1].mean(axis=1)<=0): raise ValueError('undefined Yang relative gain')\n                         ~~~~~~~^^^^^^^^^^^^^^\nIndexError: too many indices for array: array is 2-dimensional, but 3 were indexed\n"
+    },
+    {
+      "test": "test_zero_actions_preserved (reviews.g1r_risk_constrained_recovery.code.g1r_e3_runner.tests.test_preparation.PreparationTests.test_zero_actions_preserved)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e3_runner\\tests\\test_preparation.py\", line 118, in test_zero_actions_preserved\n    result=summarize(cfg,rows,indices=self.ix)\n  File \"C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e3_runner\\statistics_reporter.py\", line 84, in summarize\n    if yang<=0 or np.any(primary[indices,:,-1].mean(axis=1)<=0): raise ValueError('undefined Yang relative gain')\n                         ~~~~~~~^^^^^^^^^^^^^^\nIndexError: too many indices for array: array is 2-dimensional, but 3 were indexed\n"
+    }
+  ],
+  "failures": [],
+  "formal_E3_executed": false,
+  "formal_E3_trajectory_count": 0,
+  "formal_authorization_file_created": false,
+  "generated_trajectory_seeds": [
+    0
+  ],
+  "passed": false,
+  "rng_calls": [
+    0,
+    9100000,
+    9100000,
+    12345,
+    12345
+  ],
+  "scope": "fixture seed0, synthetic numeric data, existing E2 cache only",
+  "tests_run": 32,
+  "unexpected_seed_rng_or_generation_attempts": []
+}
