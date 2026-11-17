@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "scope": "static algebra plus archived matrices; no simulation/RNG",
+  "check_groups": 8,
+  "checks": [
+    {
+      "name": "strict_broadcast_history_age_counterexample",
+      "status": "PASS",
+      "older_age": 2,
+      "younger_age": 1,
+      "older_norm": 0.1,
+      "younger_norm": 0.5,
+      "scope": "analytic estimate values; model support proven in report, not a generated trajectory"
+    },
+    {
+      "name": "timeout_masks_real_model_support_example",
+      "status": "PASS",
+      "g0": -0.004399999999999973,
+      "ga": 0.002513440368640027,
+      "h": [
+        -0.010019199999999999,
+        0.0
+      ],
+      "source_tick": 0,
+      "injection_tick": 9,
+      "decision_tick": 10,
+      "sender_previous_packet": 0.6,
+      "sender_injection_packet": 0.124,
+      "sender_true_send": true
+    },
+    {
+      "name": "reference_cancellation_algebra_only",
+      "status": "PASS",
+      "scope": "not a claim that nonzero h=b is reachable by a legal single Replay"
+    },
+    {
+      "name": "strict_guard_OR_and_margin_bound",
+      "status": "PASS",
+      "cases": 18
+    },
+    {
+      "name": "gain_inverse_support_on_saved_horizon",
+      "status": "PASS",
+      "min_singular": 0.42240936899355996,
+      "max_singular": 1.1710144927536228,
+      "scope": "saved k=0..399 only; gains not regenerated"
+    },
+    {
+      "name": "C_initial_injection_dimension_and_value",
+      "status": "PASS",
+      "injection_shape": [
+        40,
+        2
+      ],
+      "selector_shape": [
+        2,
+        40
+      ]
+    },
+    {
+      "name": "C_selects_h_minus_b_and_quadratic_form",
+      "status": "PASS",
+      "mode_count": 32,
+      "max_abs_error": 2.42861286636753e-17,
+      "scope": "operator identity for enumerated modes; no reachability claim or mode trajectory"
+    },
+    {
+      "name": "post_split_common_matrix_reset_is_wrong",
+      "status": "PASS",
+      "seed": 40000,
+      "decision_tick": 203,
+      "correct_reference_difference": [
+        -0.175343256711066,
+        -0.4189874658478576
+      ],
+      "incorrect_common_mode_reference_difference": [
+        -0.02694610504529099,
+        -0.2590574344877652
+      ]
+    }
+  ]
+}
