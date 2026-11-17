@@ -1,0 +1,8119 @@
+{
+  "witnesses": [
+    {
+      "B": 2,
+      "L": 6,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 3,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 3,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 5,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 5,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 5,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 5
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          5
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 1,
+        "s_cost": 0,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          2,
+          1,
+          1
+        ],
+        "frontier": [
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          5
+        ]
+      }
+    },
+    {
+      "B": 2,
+      "L": 7,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 3,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 3,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 5,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 3
+        },
+        {
+          "k": 4,
+          "tau_before": 3,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "high_wait",
+          "tau_after": 3
+        },
+        {
+          "k": 5,
+          "tau_before": 3,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 3
+        },
+        {
+          "k": 6,
+          "tau_before": 3,
+          "D": 6,
+          "H_before": [
+            1,
+            5
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 6
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          6
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 1,
+        "s_cost": 0,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          2,
+          1,
+          1
+        ],
+        "frontier": [
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          6
+        ]
+      }
+    },
+    {
+      "B": 3,
+      "L": 7,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 4,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 4,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 6,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 5
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          5
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 1,
+        "s_cost": 0,
+        "m_star": 2,
+        "t_star_offset": 1,
+        "U": [
+          2,
+          2,
+          1,
+          1
+        ],
+        "frontier": [
+          2,
+          3,
+          null,
+          null
+        ],
+        "expiring_ages": [
+          5
+        ]
+      }
+    },
+    {
+      "B": 2,
+      "L": 8,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 3,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 3,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 5,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 3
+        },
+        {
+          "k": 4,
+          "tau_before": 3,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 4
+        },
+        {
+          "k": 5,
+          "tau_before": 4,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "high_wait",
+          "tau_after": 4
+        },
+        {
+          "k": 6,
+          "tau_before": 4,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 4
+        },
+        {
+          "k": 7,
+          "tau_before": 4,
+          "D": 7,
+          "H_before": [
+            1,
+            6
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 7
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          7
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 1,
+        "s_cost": 0,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          2,
+          1,
+          1
+        ],
+        "frontier": [
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          7
+        ]
+      }
+    },
+    {
+      "B": 3,
+      "L": 8,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 4,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 4,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 6,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 6,
+          "tau_before": 2,
+          "D": 6,
+          "H_before": [
+            1,
+            4,
+            5
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 6
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          6
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 2,
+        "s_cost": 1,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          3,
+          3,
+          2,
+          2
+        ],
+        "frontier": [
+          1,
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          6
+        ]
+      }
+    },
+    {
+      "B": 4,
+      "L": 8,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 5,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 5,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 4,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 7,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 5
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          5
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 1,
+        "s_cost": 0,
+        "m_star": 3,
+        "t_star_offset": 2,
+        "U": [
+          2,
+          2,
+          2,
+          1,
+          1
+        ],
+        "frontier": [
+          3,
+          4,
+          null,
+          null,
+          null
+        ],
+        "expiring_ages": [
+          5
+        ]
+      }
+    },
+    {
+      "B": 2,
+      "L": 9,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 3,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 3,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 5,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 3
+        },
+        {
+          "k": 4,
+          "tau_before": 3,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 4
+        },
+        {
+          "k": 5,
+          "tau_before": 4,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 5
+        },
+        {
+          "k": 6,
+          "tau_before": 5,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "high_wait",
+          "tau_after": 5
+        },
+        {
+          "k": 7,
+          "tau_before": 5,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 5
+        },
+        {
+          "k": 8,
+          "tau_before": 5,
+          "D": 8,
+          "H_before": [
+            1,
+            7
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 8
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          8
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 1,
+        "s_cost": 0,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          2,
+          1,
+          1
+        ],
+        "frontier": [
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          8
+        ]
+      }
+    },
+    {
+      "B": 3,
+      "L": 9,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 4,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 4,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 3
+        },
+        {
+          "k": 4,
+          "tau_before": 3,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "high_wait",
+          "tau_after": 3
+        },
+        {
+          "k": 5,
+          "tau_before": 3,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 3
+        },
+        {
+          "k": 6,
+          "tau_before": 3,
+          "D": 7,
+          "H_before": [
+            1,
+            5
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 3
+        },
+        {
+          "k": 7,
+          "tau_before": 3,
+          "D": 7,
+          "H_before": [
+            1,
+            5,
+            6
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 7
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          7
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 2,
+        "s_cost": 1,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          3,
+          3,
+          2,
+          2
+        ],
+        "frontier": [
+          1,
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          7
+        ]
+      }
+    },
+    {
+      "B": 4,
+      "L": 9,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 5,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 5,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 4,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 7,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 6,
+          "tau_before": 2,
+          "D": 7,
+          "H_before": [
+            1,
+            4,
+            5
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 6
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          6
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 2,
+        "s_cost": 1,
+        "m_star": 2,
+        "t_star_offset": 1,
+        "U": [
+          3,
+          3,
+          3,
+          2,
+          2
+        ],
+        "frontier": [
+          2,
+          2,
+          3,
+          null,
+          null
+        ],
+        "expiring_ages": [
+          6
+        ]
+      }
+    },
+    {
+      "B": 5,
+      "L": 9,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 6,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 6,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 5,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 8,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "low_anchor",
+          "tau_after": 5
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          5
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 1,
+        "s_cost": 0,
+        "m_star": 4,
+        "t_star_offset": 3,
+        "U": [
+          2,
+          2,
+          2,
+          2,
+          1,
+          1
+        ],
+        "frontier": [
+          4,
+          5,
+          null,
+          null,
+          null,
+          null
+        ],
+        "expiring_ages": [
+          5
+        ]
+      }
+    },
+    {
+      "B": 2,
+      "L": 10,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 3,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 3,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 5,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 3
+        },
+        {
+          "k": 4,
+          "tau_before": 3,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 4
+        },
+        {
+          "k": 5,
+          "tau_before": 4,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 5
+        },
+        {
+          "k": 6,
+          "tau_before": 5,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 6
+        },
+        {
+          "k": 7,
+          "tau_before": 6,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "high_wait",
+          "tau_after": 6
+        },
+        {
+          "k": 8,
+          "tau_before": 6,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 6
+        },
+        {
+          "k": 9,
+          "tau_before": 6,
+          "D": 9,
+          "H_before": [
+            1,
+            8
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 9
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          9
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 1,
+        "s_cost": 0,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          2,
+          1,
+          1
+        ],
+        "frontier": [
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          9
+        ]
+      }
+    },
+    {
+      "B": 3,
+      "L": 10,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 4,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 4,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 3
+        },
+        {
+          "k": 4,
+          "tau_before": 3,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 4
+        },
+        {
+          "k": 5,
+          "tau_before": 4,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "high_wait",
+          "tau_after": 4
+        },
+        {
+          "k": 6,
+          "tau_before": 4,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 4
+        },
+        {
+          "k": 7,
+          "tau_before": 4,
+          "D": 8,
+          "H_before": [
+            1,
+            6
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 4
+        },
+        {
+          "k": 8,
+          "tau_before": 4,
+          "D": 8,
+          "H_before": [
+            1,
+            6,
+            7
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 8
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          8
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 2,
+        "s_cost": 1,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          3,
+          3,
+          2,
+          2
+        ],
+        "frontier": [
+          1,
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          8
+        ]
+      }
+    },
+    {
+      "B": 4,
+      "L": 10,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 5,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 5,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 4,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 7,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 6,
+          "tau_before": 2,
+          "D": 7,
+          "H_before": [
+            1,
+            4,
+            5
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 7,
+          "tau_before": 2,
+          "D": 7,
+          "H_before": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 7
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          4,
+          7
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 3,
+        "s_cost": 2,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          4,
+          4,
+          4,
+          3,
+          3
+        ],
+        "frontier": [
+          1,
+          1,
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          7
+        ]
+      }
+    },
+    {
+      "B": 5,
+      "L": 10,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 6,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 6,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 5,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 8,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 6,
+          "tau_before": 2,
+          "D": 8,
+          "H_before": [
+            1,
+            4,
+            5
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 6
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          6
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 2,
+        "s_cost": 1,
+        "m_star": 3,
+        "t_star_offset": 2,
+        "U": [
+          3,
+          3,
+          3,
+          3,
+          2,
+          2
+        ],
+        "frontier": [
+          3,
+          3,
+          4,
+          null,
+          null,
+          null
+        ],
+        "expiring_ages": [
+          6
+        ]
+      }
+    },
+    {
+      "B": 6,
+      "L": 10,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 7,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 7,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 6,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 6,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 6,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "low_anchor",
+          "tau_after": 5
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          5
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 1,
+        "s_cost": 0,
+        "m_star": 5,
+        "t_star_offset": 4,
+        "U": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1
+        ],
+        "frontier": [
+          5,
+          6,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "expiring_ages": [
+          5
+        ]
+      }
+    },
+    {
+      "B": 2,
+      "L": 11,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 3,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 3,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 5,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 3
+        },
+        {
+          "k": 4,
+          "tau_before": 3,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 4
+        },
+        {
+          "k": 5,
+          "tau_before": 4,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 5
+        },
+        {
+          "k": 6,
+          "tau_before": 5,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 6
+        },
+        {
+          "k": 7,
+          "tau_before": 6,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 7
+        },
+        {
+          "k": 8,
+          "tau_before": 7,
+          "D": 10,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "high_wait",
+          "tau_after": 7
+        },
+        {
+          "k": 9,
+          "tau_before": 7,
+          "D": 10,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 7
+        },
+        {
+          "k": 10,
+          "tau_before": 7,
+          "D": 10,
+          "H_before": [
+            1,
+            9
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 10
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          10
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 1,
+        "s_cost": 0,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          2,
+          1,
+          1
+        ],
+        "frontier": [
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          10
+        ]
+      }
+    },
+    {
+      "B": 3,
+      "L": 11,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 4,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 4,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 3
+        },
+        {
+          "k": 4,
+          "tau_before": 3,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 4
+        },
+        {
+          "k": 5,
+          "tau_before": 4,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 5
+        },
+        {
+          "k": 6,
+          "tau_before": 5,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "high_wait",
+          "tau_after": 5
+        },
+        {
+          "k": 7,
+          "tau_before": 5,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 5
+        },
+        {
+          "k": 8,
+          "tau_before": 5,
+          "D": 9,
+          "H_before": [
+            1,
+            7
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 5
+        },
+        {
+          "k": 9,
+          "tau_before": 5,
+          "D": 9,
+          "H_before": [
+            1,
+            7,
+            8
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 9
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          9
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 2,
+        "s_cost": 1,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          3,
+          3,
+          2,
+          2
+        ],
+        "frontier": [
+          1,
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          9
+        ]
+      }
+    },
+    {
+      "B": 4,
+      "L": 11,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 5,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 5,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 4,
+          "event": "low_anchor",
+          "tau_after": 3
+        },
+        {
+          "k": 4,
+          "tau_before": 3,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 4,
+          "event": "high_wait",
+          "tau_after": 3
+        },
+        {
+          "k": 5,
+          "tau_before": 3,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "high_block",
+          "tau_after": 3
+        },
+        {
+          "k": 6,
+          "tau_before": 3,
+          "D": 8,
+          "H_before": [
+            1,
+            5
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 3
+        },
+        {
+          "k": 7,
+          "tau_before": 3,
+          "D": 8,
+          "H_before": [
+            1,
+            5,
+            6
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 3
+        },
+        {
+          "k": 8,
+          "tau_before": 3,
+          "D": 8,
+          "H_before": [
+            1,
+            5,
+            6,
+            7
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 8
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          4,
+          8
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 3,
+        "s_cost": 2,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          4,
+          4,
+          4,
+          3,
+          3
+        ],
+        "frontier": [
+          1,
+          1,
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          8
+        ]
+      }
+    },
+    {
+      "B": 5,
+      "L": 11,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 6,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 6,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 5,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 8,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 6,
+          "tau_before": 2,
+          "D": 8,
+          "H_before": [
+            1,
+            4,
+            5
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 7,
+          "tau_before": 2,
+          "D": 8,
+          "H_before": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 7
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          4,
+          7
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 3,
+        "s_cost": 2,
+        "m_star": 2,
+        "t_star_offset": 1,
+        "U": [
+          4,
+          4,
+          4,
+          4,
+          3,
+          3
+        ],
+        "frontier": [
+          2,
+          2,
+          2,
+          3,
+          null,
+          null
+        ],
+        "expiring_ages": [
+          7
+        ]
+      }
+    },
+    {
+      "B": 6,
+      "L": 11,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 7,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 7,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 6,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 6,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 6,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 6,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1,
+            4,
+            5
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "low_anchor",
+          "tau_after": 6
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          6
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 2,
+        "s_cost": 1,
+        "m_star": 4,
+        "t_star_offset": 3,
+        "U": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2
+        ],
+        "frontier": [
+          4,
+          4,
+          5,
+          null,
+          null,
+          null,
+          null
+        ],
+        "expiring_ages": [
+          6
+        ]
+      }
+    },
+    {
+      "B": 7,
+      "L": 11,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 8,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 8,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 7,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 10,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 7,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 10,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 7,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 10,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 6,
+          "event": "low_anchor",
+          "tau_after": 5
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          5
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 1,
+        "s_cost": 0,
+        "m_star": 6,
+        "t_star_offset": 5,
+        "U": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1
+        ],
+        "frontier": [
+          6,
+          7,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "expiring_ages": [
+          5
+        ]
+      }
+    },
+    {
+      "B": 2,
+      "L": 12,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 3,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 3,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 5,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 3
+        },
+        {
+          "k": 4,
+          "tau_before": 3,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 4
+        },
+        {
+          "k": 5,
+          "tau_before": 4,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 5
+        },
+        {
+          "k": 6,
+          "tau_before": 5,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 6
+        },
+        {
+          "k": 7,
+          "tau_before": 6,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 7
+        },
+        {
+          "k": 8,
+          "tau_before": 7,
+          "D": 10,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 8
+        },
+        {
+          "k": 9,
+          "tau_before": 8,
+          "D": 11,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "high_wait",
+          "tau_after": 8
+        },
+        {
+          "k": 10,
+          "tau_before": 8,
+          "D": 11,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 8
+        },
+        {
+          "k": 11,
+          "tau_before": 8,
+          "D": 11,
+          "H_before": [
+            1,
+            10
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 11
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          11
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 1,
+        "s_cost": 0,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          2,
+          1,
+          1
+        ],
+        "frontier": [
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          11
+        ]
+      }
+    },
+    {
+      "B": 3,
+      "L": 12,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 4,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 4,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 3
+        },
+        {
+          "k": 4,
+          "tau_before": 3,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 4
+        },
+        {
+          "k": 5,
+          "tau_before": 4,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 5
+        },
+        {
+          "k": 6,
+          "tau_before": 5,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 6
+        },
+        {
+          "k": 7,
+          "tau_before": 6,
+          "D": 10,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "high_wait",
+          "tau_after": 6
+        },
+        {
+          "k": 8,
+          "tau_before": 6,
+          "D": 10,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 6
+        },
+        {
+          "k": 9,
+          "tau_before": 6,
+          "D": 10,
+          "H_before": [
+            1,
+            8
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 6
+        },
+        {
+          "k": 10,
+          "tau_before": 6,
+          "D": 10,
+          "H_before": [
+            1,
+            8,
+            9
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 10
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          10
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 2,
+        "s_cost": 1,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          3,
+          3,
+          2,
+          2
+        ],
+        "frontier": [
+          1,
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          10
+        ]
+      }
+    },
+    {
+      "B": 4,
+      "L": 12,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 5,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 5,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 4,
+          "event": "low_anchor",
+          "tau_after": 3
+        },
+        {
+          "k": 4,
+          "tau_before": 3,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 4,
+          "event": "low_anchor",
+          "tau_after": 4
+        },
+        {
+          "k": 5,
+          "tau_before": 4,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 4,
+          "event": "high_wait",
+          "tau_after": 4
+        },
+        {
+          "k": 6,
+          "tau_before": 4,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "high_block",
+          "tau_after": 4
+        },
+        {
+          "k": 7,
+          "tau_before": 4,
+          "D": 9,
+          "H_before": [
+            1,
+            6
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 4
+        },
+        {
+          "k": 8,
+          "tau_before": 4,
+          "D": 9,
+          "H_before": [
+            1,
+            6,
+            7
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 4
+        },
+        {
+          "k": 9,
+          "tau_before": 4,
+          "D": 9,
+          "H_before": [
+            1,
+            6,
+            7,
+            8
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 9
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          4,
+          9
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 3,
+        "s_cost": 2,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          4,
+          4,
+          4,
+          3,
+          3
+        ],
+        "frontier": [
+          1,
+          1,
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          9
+        ]
+      }
+    },
+    {
+      "B": 5,
+      "L": 12,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 6,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 6,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 5,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 8,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 6,
+          "tau_before": 2,
+          "D": 8,
+          "H_before": [
+            1,
+            4,
+            5
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 7,
+          "tau_before": 2,
+          "D": 8,
+          "H_before": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 8,
+          "tau_before": 2,
+          "D": 8,
+          "H_before": [
+            1,
+            4,
+            5,
+            6,
+            7
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 8
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          4,
+          5,
+          8
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 4,
+        "s_cost": 3,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          5,
+          5,
+          5,
+          5,
+          4,
+          4
+        ],
+        "frontier": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          8
+        ]
+      }
+    },
+    {
+      "B": 6,
+      "L": 12,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 7,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 7,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 6,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 6,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 6,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 6,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1,
+            4,
+            5
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 7,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 7
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          4,
+          7
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 3,
+        "s_cost": 2,
+        "m_star": 3,
+        "t_star_offset": 2,
+        "U": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          3,
+          3
+        ],
+        "frontier": [
+          3,
+          3,
+          3,
+          4,
+          null,
+          null,
+          null
+        ],
+        "expiring_ages": [
+          7
+        ]
+      }
+    },
+    {
+      "B": 7,
+      "L": 12,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 8,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 8,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 7,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 10,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 7,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 10,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 7,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 10,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 6,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 6,
+          "tau_before": 2,
+          "D": 10,
+          "H_before": [
+            1,
+            4,
+            5
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "low_anchor",
+          "tau_after": 6
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          6
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 2,
+        "s_cost": 1,
+        "m_star": 5,
+        "t_star_offset": 4,
+        "U": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2
+        ],
+        "frontier": [
+          5,
+          5,
+          6,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "expiring_ages": [
+          6
+        ]
+      }
+    },
+    {
+      "B": 8,
+      "L": 12,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 9,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 9,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 8,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 11,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 8,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 11,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 8,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 11,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 7,
+          "event": "low_anchor",
+          "tau_after": 5
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          5
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 1,
+        "s_cost": 0,
+        "m_star": 7,
+        "t_star_offset": 6,
+        "U": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1
+        ],
+        "frontier": [
+          7,
+          8,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "expiring_ages": [
+          5
+        ]
+      }
+    },
+    {
+      "B": 2,
+      "L": 13,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 3,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 3,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 5,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 3
+        },
+        {
+          "k": 4,
+          "tau_before": 3,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 4
+        },
+        {
+          "k": 5,
+          "tau_before": 4,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 5
+        },
+        {
+          "k": 6,
+          "tau_before": 5,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 6
+        },
+        {
+          "k": 7,
+          "tau_before": 6,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 7
+        },
+        {
+          "k": 8,
+          "tau_before": 7,
+          "D": 10,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 8
+        },
+        {
+          "k": 9,
+          "tau_before": 8,
+          "D": 11,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 9
+        },
+        {
+          "k": 10,
+          "tau_before": 9,
+          "D": 12,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "high_wait",
+          "tau_after": 9
+        },
+        {
+          "k": 11,
+          "tau_before": 9,
+          "D": 12,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 9
+        },
+        {
+          "k": 12,
+          "tau_before": 9,
+          "D": 12,
+          "H_before": [
+            1,
+            11
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 12
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          12
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 1,
+        "s_cost": 0,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          2,
+          1,
+          1
+        ],
+        "frontier": [
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          12
+        ]
+      }
+    },
+    {
+      "B": 3,
+      "L": 13,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 4,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 4,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 3
+        },
+        {
+          "k": 4,
+          "tau_before": 3,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 4
+        },
+        {
+          "k": 5,
+          "tau_before": 4,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 5
+        },
+        {
+          "k": 6,
+          "tau_before": 5,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 6
+        },
+        {
+          "k": 7,
+          "tau_before": 6,
+          "D": 10,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 7
+        },
+        {
+          "k": 8,
+          "tau_before": 7,
+          "D": 11,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "high_wait",
+          "tau_after": 7
+        },
+        {
+          "k": 9,
+          "tau_before": 7,
+          "D": 11,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 7
+        },
+        {
+          "k": 10,
+          "tau_before": 7,
+          "D": 11,
+          "H_before": [
+            1,
+            9
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 7
+        },
+        {
+          "k": 11,
+          "tau_before": 7,
+          "D": 11,
+          "H_before": [
+            1,
+            9,
+            10
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 11
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          11
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 2,
+        "s_cost": 1,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          3,
+          3,
+          2,
+          2
+        ],
+        "frontier": [
+          1,
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          11
+        ]
+      }
+    },
+    {
+      "B": 4,
+      "L": 13,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 5,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 5,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 4,
+          "event": "low_anchor",
+          "tau_after": 3
+        },
+        {
+          "k": 4,
+          "tau_before": 3,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 4,
+          "event": "low_anchor",
+          "tau_after": 4
+        },
+        {
+          "k": 5,
+          "tau_before": 4,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 4,
+          "event": "low_anchor",
+          "tau_after": 5
+        },
+        {
+          "k": 6,
+          "tau_before": 5,
+          "D": 10,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 4,
+          "event": "high_wait",
+          "tau_after": 5
+        },
+        {
+          "k": 7,
+          "tau_before": 5,
+          "D": 10,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "high_block",
+          "tau_after": 5
+        },
+        {
+          "k": 8,
+          "tau_before": 5,
+          "D": 10,
+          "H_before": [
+            1,
+            7
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 5
+        },
+        {
+          "k": 9,
+          "tau_before": 5,
+          "D": 10,
+          "H_before": [
+            1,
+            7,
+            8
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 5
+        },
+        {
+          "k": 10,
+          "tau_before": 5,
+          "D": 10,
+          "H_before": [
+            1,
+            7,
+            8,
+            9
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 10
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          4,
+          10
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 3,
+        "s_cost": 2,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          4,
+          4,
+          4,
+          3,
+          3
+        ],
+        "frontier": [
+          1,
+          1,
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          10
+        ]
+      }
+    },
+    {
+      "B": 5,
+      "L": 13,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 6,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 6,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 5,
+          "event": "low_anchor",
+          "tau_after": 3
+        },
+        {
+          "k": 4,
+          "tau_before": 3,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 5,
+          "event": "high_wait",
+          "tau_after": 3
+        },
+        {
+          "k": 5,
+          "tau_before": 3,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "high_block",
+          "tau_after": 3
+        },
+        {
+          "k": 6,
+          "tau_before": 3,
+          "D": 9,
+          "H_before": [
+            1,
+            5
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "high_block",
+          "tau_after": 3
+        },
+        {
+          "k": 7,
+          "tau_before": 3,
+          "D": 9,
+          "H_before": [
+            1,
+            5,
+            6
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 3
+        },
+        {
+          "k": 8,
+          "tau_before": 3,
+          "D": 9,
+          "H_before": [
+            1,
+            5,
+            6,
+            7
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 3
+        },
+        {
+          "k": 9,
+          "tau_before": 3,
+          "D": 9,
+          "H_before": [
+            1,
+            5,
+            6,
+            7,
+            8
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 9
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          4,
+          5,
+          9
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 4,
+        "s_cost": 3,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          5,
+          5,
+          5,
+          5,
+          4,
+          4
+        ],
+        "frontier": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          9
+        ]
+      }
+    },
+    {
+      "B": 6,
+      "L": 13,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 7,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 7,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 6,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 6,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 6,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 6,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1,
+            4,
+            5
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 7,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 8,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1,
+            4,
+            5,
+            6,
+            7
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 8
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          4,
+          5,
+          8
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 4,
+        "s_cost": 3,
+        "m_star": 2,
+        "t_star_offset": 1,
+        "U": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          4,
+          4
+        ],
+        "frontier": [
+          2,
+          2,
+          2,
+          2,
+          3,
+          null,
+          null
+        ],
+        "expiring_ages": [
+          8
+        ]
+      }
+    },
+    {
+      "B": 7,
+      "L": 13,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 8,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 8,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 7,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 10,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 7,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 10,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 7,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 10,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 6,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 6,
+          "tau_before": 2,
+          "D": 10,
+          "H_before": [
+            1,
+            4,
+            5
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 7,
+          "tau_before": 2,
+          "D": 10,
+          "H_before": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "low_anchor",
+          "tau_after": 7
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          4,
+          7
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 3,
+        "s_cost": 2,
+        "m_star": 4,
+        "t_star_offset": 3,
+        "U": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          3,
+          3
+        ],
+        "frontier": [
+          4,
+          4,
+          4,
+          5,
+          null,
+          null,
+          null,
+          null
+        ],
+        "expiring_ages": [
+          7
+        ]
+      }
+    },
+    {
+      "B": 8,
+      "L": 13,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 9,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 9,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 8,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 11,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 8,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 11,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 8,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 11,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 7,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 6,
+          "tau_before": 2,
+          "D": 11,
+          "H_before": [
+            1,
+            4,
+            5
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 6,
+          "event": "low_anchor",
+          "tau_after": 6
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          6
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 2,
+        "s_cost": 1,
+        "m_star": 6,
+        "t_star_offset": 5,
+        "U": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2
+        ],
+        "frontier": [
+          6,
+          6,
+          7,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "expiring_ages": [
+          6
+        ]
+      }
+    },
+    {
+      "B": 9,
+      "L": 13,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 10,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 10,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 10,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 9,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 12,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 9,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 12,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 9,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 12,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 8,
+          "event": "low_anchor",
+          "tau_after": 5
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          5
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 1,
+        "s_cost": 0,
+        "m_star": 8,
+        "t_star_offset": 7,
+        "U": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1
+        ],
+        "frontier": [
+          8,
+          9,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "expiring_ages": [
+          5
+        ]
+      }
+    },
+    {
+      "B": 2,
+      "L": 14,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 3,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 3,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 5,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 3
+        },
+        {
+          "k": 4,
+          "tau_before": 3,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 4
+        },
+        {
+          "k": 5,
+          "tau_before": 4,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 5
+        },
+        {
+          "k": 6,
+          "tau_before": 5,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 6
+        },
+        {
+          "k": 7,
+          "tau_before": 6,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 7
+        },
+        {
+          "k": 8,
+          "tau_before": 7,
+          "D": 10,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 8
+        },
+        {
+          "k": 9,
+          "tau_before": 8,
+          "D": 11,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 9
+        },
+        {
+          "k": 10,
+          "tau_before": 9,
+          "D": 12,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "low_anchor",
+          "tau_after": 10
+        },
+        {
+          "k": 11,
+          "tau_before": 10,
+          "D": 13,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 2,
+          "event": "high_wait",
+          "tau_after": 10
+        },
+        {
+          "k": 12,
+          "tau_before": 10,
+          "D": 13,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 10
+        },
+        {
+          "k": 13,
+          "tau_before": 10,
+          "D": 13,
+          "H_before": [
+            1,
+            12
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 13
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          13
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 1,
+        "s_cost": 0,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          2,
+          1,
+          1
+        ],
+        "frontier": [
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          13
+        ]
+      }
+    },
+    {
+      "B": 3,
+      "L": 14,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 4,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 4,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 3
+        },
+        {
+          "k": 4,
+          "tau_before": 3,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 4
+        },
+        {
+          "k": 5,
+          "tau_before": 4,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 5
+        },
+        {
+          "k": 6,
+          "tau_before": 5,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 6
+        },
+        {
+          "k": 7,
+          "tau_before": 6,
+          "D": 10,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 7
+        },
+        {
+          "k": 8,
+          "tau_before": 7,
+          "D": 11,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 8
+        },
+        {
+          "k": 9,
+          "tau_before": 8,
+          "D": 12,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 3,
+          "event": "high_wait",
+          "tau_after": 8
+        },
+        {
+          "k": 10,
+          "tau_before": 8,
+          "D": 12,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 8
+        },
+        {
+          "k": 11,
+          "tau_before": 8,
+          "D": 12,
+          "H_before": [
+            1,
+            10
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 8
+        },
+        {
+          "k": 12,
+          "tau_before": 8,
+          "D": 12,
+          "H_before": [
+            1,
+            10,
+            11
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 12
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          12
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 2,
+        "s_cost": 1,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          3,
+          3,
+          2,
+          2
+        ],
+        "frontier": [
+          1,
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          12
+        ]
+      }
+    },
+    {
+      "B": 4,
+      "L": 14,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 5,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 5,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 4,
+          "event": "low_anchor",
+          "tau_after": 3
+        },
+        {
+          "k": 4,
+          "tau_before": 3,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 4,
+          "event": "low_anchor",
+          "tau_after": 4
+        },
+        {
+          "k": 5,
+          "tau_before": 4,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 4,
+          "event": "low_anchor",
+          "tau_after": 5
+        },
+        {
+          "k": 6,
+          "tau_before": 5,
+          "D": 10,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 4,
+          "event": "low_anchor",
+          "tau_after": 6
+        },
+        {
+          "k": 7,
+          "tau_before": 6,
+          "D": 11,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 4,
+          "event": "high_wait",
+          "tau_after": 6
+        },
+        {
+          "k": 8,
+          "tau_before": 6,
+          "D": 11,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "high_block",
+          "tau_after": 6
+        },
+        {
+          "k": 9,
+          "tau_before": 6,
+          "D": 11,
+          "H_before": [
+            1,
+            8
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 6
+        },
+        {
+          "k": 10,
+          "tau_before": 6,
+          "D": 11,
+          "H_before": [
+            1,
+            8,
+            9
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 6
+        },
+        {
+          "k": 11,
+          "tau_before": 6,
+          "D": 11,
+          "H_before": [
+            1,
+            8,
+            9,
+            10
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 11
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          4,
+          11
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 3,
+        "s_cost": 2,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          4,
+          4,
+          4,
+          3,
+          3
+        ],
+        "frontier": [
+          1,
+          1,
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          11
+        ]
+      }
+    },
+    {
+      "B": 5,
+      "L": 14,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "low_anchor",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 6,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 6,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 6,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 5,
+          "event": "low_anchor",
+          "tau_after": 3
+        },
+        {
+          "k": 4,
+          "tau_before": 3,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 5,
+          "event": "low_anchor",
+          "tau_after": 4
+        },
+        {
+          "k": 5,
+          "tau_before": 4,
+          "D": 10,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 5,
+          "event": "high_wait",
+          "tau_after": 4
+        },
+        {
+          "k": 6,
+          "tau_before": 4,
+          "D": 10,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "high_block",
+          "tau_after": 4
+        },
+        {
+          "k": 7,
+          "tau_before": 4,
+          "D": 10,
+          "H_before": [
+            1,
+            6
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "high_block",
+          "tau_after": 4
+        },
+        {
+          "k": 8,
+          "tau_before": 4,
+          "D": 10,
+          "H_before": [
+            1,
+            6,
+            7
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 4
+        },
+        {
+          "k": 9,
+          "tau_before": 4,
+          "D": 10,
+          "H_before": [
+            1,
+            6,
+            7,
+            8
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 4
+        },
+        {
+          "k": 10,
+          "tau_before": 4,
+          "D": 10,
+          "H_before": [
+            1,
+            6,
+            7,
+            8,
+            9
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 10
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          4,
+          5,
+          10
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 4,
+        "s_cost": 3,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          5,
+          5,
+          5,
+          5,
+          4,
+          4
+        ],
+        "frontier": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          10
+        ]
+      }
+    },
+    {
+      "B": 6,
+      "L": 14,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "high_block",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 7,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 7,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 7,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 6,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 6,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 6,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 6,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1,
+            4,
+            5
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 7,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 8,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1,
+            4,
+            5,
+            6,
+            7
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 2,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 9,
+          "tau_before": 2,
+          "D": 9,
+          "H_before": [
+            1,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 1,
+          "event": "low_anchor",
+          "tau_after": 9
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          4,
+          5,
+          6,
+          9
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 5,
+        "s_cost": 4,
+        "m_star": 1,
+        "t_star_offset": 0,
+        "U": [
+          6,
+          6,
+          6,
+          6,
+          6,
+          5,
+          5
+        ],
+        "frontier": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          null
+        ],
+        "expiring_ages": [
+          9
+        ]
+      }
+    },
+    {
+      "B": 7,
+      "L": 14,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 8,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 8,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 8,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 7,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 10,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 7,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 10,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 7,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 10,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 6,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 6,
+          "tau_before": 2,
+          "D": 10,
+          "H_before": [
+            1,
+            4,
+            5
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 7,
+          "tau_before": 2,
+          "D": 10,
+          "H_before": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 4,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 8,
+          "tau_before": 2,
+          "D": 10,
+          "H_before": [
+            1,
+            4,
+            5,
+            6,
+            7
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 3,
+          "event": "low_anchor",
+          "tau_after": 8
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          4,
+          5,
+          8
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 4,
+        "s_cost": 3,
+        "m_star": 3,
+        "t_star_offset": 2,
+        "U": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          4,
+          4
+        ],
+        "frontier": [
+          3,
+          3,
+          3,
+          3,
+          4,
+          null,
+          null,
+          null
+        ],
+        "expiring_ages": [
+          8
+        ]
+      }
+    },
+    {
+      "B": 8,
+      "L": 14,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 9,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 9,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 9,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 8,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 11,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 8,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 11,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 8,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 11,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 7,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 6,
+          "tau_before": 2,
+          "D": 11,
+          "H_before": [
+            1,
+            4,
+            5
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 6,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 7,
+          "tau_before": 2,
+          "D": 11,
+          "H_before": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 5,
+          "event": "low_anchor",
+          "tau_after": 7
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          4,
+          7
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 3,
+        "s_cost": 2,
+        "m_star": 5,
+        "t_star_offset": 4,
+        "U": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          3,
+          3
+        ],
+        "frontier": [
+          5,
+          5,
+          5,
+          6,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "expiring_ages": [
+          7
+        ]
+      }
+    },
+    {
+      "B": 9,
+      "L": 14,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 10,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 10,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 10,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 9,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 12,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 9,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 12,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 9,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 12,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 8,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 6,
+          "tau_before": 2,
+          "D": 12,
+          "H_before": [
+            1,
+            4,
+            5
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 7,
+          "event": "low_anchor",
+          "tau_after": 6
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          3,
+          6
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 2,
+        "s_cost": 1,
+        "m_star": 7,
+        "t_star_offset": 6,
+        "U": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2
+        ],
+        "frontier": [
+          7,
+          7,
+          8,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "expiring_ages": [
+          6
+        ]
+      }
+    },
+    {
+      "B": 10,
+      "L": 14,
+      "shortest_events": [
+        "high_block",
+        "low_anchor",
+        "high_wait",
+        "high_block",
+        "low_anchor"
+      ],
+      "absolute_trace": [
+        {
+          "k": 1,
+          "tau_before": 0,
+          "D": 11,
+          "H_before": [],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 11,
+          "event": "high_block",
+          "tau_after": 0
+        },
+        {
+          "k": 2,
+          "tau_before": 0,
+          "D": 11,
+          "H_before": [
+            1
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 10,
+          "event": "low_anchor",
+          "tau_after": 2
+        },
+        {
+          "k": 3,
+          "tau_before": 2,
+          "D": 13,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 1,
+          "s_cost": 1,
+          "m_star": 10,
+          "event": "high_wait",
+          "tau_after": 2
+        },
+        {
+          "k": 4,
+          "tau_before": 2,
+          "D": 13,
+          "H_before": [
+            1
+          ],
+          "high": true,
+          "attempt": true,
+          "blocked": 1,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 10,
+          "event": "high_block",
+          "tau_after": 2
+        },
+        {
+          "k": 5,
+          "tau_before": 2,
+          "D": 13,
+          "H_before": [
+            1,
+            4
+          ],
+          "high": false,
+          "attempt": false,
+          "blocked": 0,
+          "success": false,
+          "s_safe": 0,
+          "s_cost": 0,
+          "m_star": 9,
+          "event": "low_anchor",
+          "tau_after": 5
+        }
+      ],
+      "endpoint": [
+        1,
+        [
+          2,
+          5
+        ]
+      ],
+      "endpoint_bounds": {
+        "s_safe": 1,
+        "s_cost": 0,
+        "m_star": 9,
+        "t_star_offset": 8,
+        "U": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1
+        ],
+        "frontier": [
+          9,
+          10,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "expiring_ages": [
+          5
+        ]
+      }
+    }
+  ]
+}
