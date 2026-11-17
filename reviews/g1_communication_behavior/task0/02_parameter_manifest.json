@@ -1,0 +1,2102 @@
+{
+  "schema": "g1_communication_behavior_task0_readonly_audit_v1",
+  "classification": "FACT",
+  "date": "2026-11-17",
+  "audit_root": "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract",
+  "branch": "g1r-e2-status-contract-20261115",
+  "head": "788204a388155c9604348fc09d6ce510691c3fc4",
+  "remote": "https://github.com/center-666/paper.git",
+  "remote_head_checked_this_task": false,
+  "main_root": "C:\\Users\\zhongxin\\shixidoc\\mypaper",
+  "main_head": "490e5b8f1212004407a0cdbfde224bf90a691da4",
+  "task1_model_selection": {
+    "classification": "OPEN",
+    "selected_profile": null,
+    "reason": "No automatic model selection or merging"
+  },
+  "current_core_assets": {
+    "simulation/engine.py": {
+      "classification": "FACT",
+      "sha256": "05fb3f19d457e103d7c1665ccd1087ea4b27076d6a39b57ac7e0d16cfdb35c97",
+      "main_same_bytes": true
+    },
+    "simulation/model.py": {
+      "classification": "FACT",
+      "sha256": "5b674a4cc274fca42d52d00f15490d5e3952231df98146a90cb28a62b4a9aeca",
+      "main_same_bytes": true
+    },
+    "simulation/config.json": {
+      "classification": "FACT",
+      "sha256": "cf801650e2527a409ebb4730e894e6d3fcb3602a08259bfeda1cb529d7ebb62b",
+      "main_same_bytes": true
+    },
+    "simulation/cache_monitor.py": {
+      "classification": "FACT",
+      "sha256": "59615c7758f32306418e2c3f7f7341d09ec0bd58822cd39fdb34a727190014a4",
+      "main_same_bytes": true
+    },
+    "simulation/sequential_cache.py": {
+      "classification": "FACT",
+      "sha256": "dd9c8678544c98a481551528fbec60318b5e4bea94cc95ef2efe742470fdd6a8",
+      "main_same_bytes": true
+    }
+  },
+  "model_profiles": [
+    {
+      "classification": "FACT",
+      "profile_id": "current_default_NOT_single_packet_run",
+      "source": {
+        "classification": "FACT",
+        "path": "simulation\\config.json",
+        "sha256": "cf801650e2527a409ebb4730e894e6d3fcb3602a08259bfeda1cb529d7ebb62b",
+        "locator": "entire JSON; engine.py:62-105",
+        "in_audit_worktree": true
+      },
+      "effective_parameters": {
+        "N": 5,
+        "n": 2,
+        "T": 400,
+        "A": [
+          [
+            1.01,
+            0.0
+          ],
+          [
+            0.0,
+            1.01
+          ]
+        ],
+        "Q": [
+          [
+            0.02,
+            0.0
+          ],
+          [
+            0.0,
+            0.02
+          ]
+        ],
+        "P0": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ],
+        "epsilon": 0.08,
+        "edges_sender_receiver": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "send_delta_squared": 0.12,
+        "max_interval": 10,
+        "warmup": 50,
+        "H": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          [
+            [
+              0.8,
+              0.0
+            ],
+            [
+              0.0,
+              0.8
+            ]
+          ],
+          [
+            [
+              1.2,
+              0.0
+            ],
+            [
+              0.0,
+              1.2
+            ]
+          ],
+          [
+            [
+              0.9,
+              0.0
+            ],
+            [
+              0.0,
+              0.9
+            ]
+          ],
+          [
+            [
+              1.1,
+              0.0
+            ],
+            [
+              0.0,
+              1.1
+            ]
+          ]
+        ],
+        "R": [
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ]
+        ],
+        "attack_fields_in_saved_config": {
+          "sender": 0,
+          "receiver": 1,
+          "start": 200,
+          "end_inclusive": 249,
+          "bias": [
+            1.2,
+            -0.8
+          ],
+          "replay_packet_lag": 8,
+          "recovery_steps": 50
+        },
+        "H_R_precedence": "Explicit H_matrices/R_matrices override H_scales/R_variances; model.py:27-28"
+      },
+      "communication_in_existing_run": "Caller-dependent: schedule=None SoD; explicit schedule overrides; local sends none",
+      "replay_rule": "replay_packet: eighth previous actual sender send; window 200..249 permits multiple substitutions",
+      "selected_for_Task1": false
+    },
+    {
+      "classification": "FACT",
+      "profile_id": "early_five_node_v2",
+      "source": {
+        "classification": "FACT",
+        "path": "simulation\\runs\\2026-11-10_five_node_v2\\config.json",
+        "sha256": "4a151c478e77ccc115c766a88d14cd0b6e3cca2274893e501a9f9b6c89abf71b",
+        "locator": "entire saved JSON; REPORT.md:10-21",
+        "in_audit_worktree": true
+      },
+      "effective_parameters": {
+        "N": 5,
+        "n": 2,
+        "T": 400,
+        "A": [
+          [
+            1.01,
+            0.0
+          ],
+          [
+            0.0,
+            1.01
+          ]
+        ],
+        "Q": [
+          [
+            0.02,
+            0.0
+          ],
+          [
+            0.0,
+            0.02
+          ]
+        ],
+        "P0": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ],
+        "epsilon": 0.08,
+        "edges_sender_receiver": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "send_delta_squared": 0.12,
+        "max_interval": 10,
+        "warmup": 50,
+        "H": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          [
+            [
+              0.8,
+              0.0
+            ],
+            [
+              0.0,
+              0.8
+            ]
+          ],
+          [
+            [
+              1.2,
+              0.0
+            ],
+            [
+              0.0,
+              1.2
+            ]
+          ],
+          [
+            [
+              0.9,
+              0.0
+            ],
+            [
+              0.0,
+              0.9
+            ]
+          ],
+          [
+            [
+              1.1,
+              0.0
+            ],
+            [
+              0.0,
+              1.1
+            ]
+          ]
+        ],
+        "R": [
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ]
+        ],
+        "attack_fields_in_saved_config": {
+          "sender": 0,
+          "receiver": 1,
+          "start": 200,
+          "end_inclusive": 249,
+          "bias": [
+            1.2,
+            -0.8
+          ],
+          "replay_packet_lag": 8,
+          "recovery_steps": 50
+        },
+        "H_R_precedence": "Explicit H_matrices/R_matrices override H_scales/R_variances; model.py:27-28"
+      },
+      "communication_in_existing_run": "Both reference_schedule and closed_loop; run_study.py:128-153; saved REPORT.md:10-21",
+      "replay_rule": "eighth previous actual send; repeated on eligible sends during 200..249",
+      "selected_for_Task1": false,
+      "test_seed_count_from_report": 32,
+      "snapshot_note": "Original engine/model hashes differ from current; trigger, reference update, Replay order inspected in original snapshot."
+    },
+    {
+      "classification": "FACT",
+      "profile_id": "G1_sequential_gap8",
+      "source": {
+        "classification": "FACT",
+        "path": "C:\\Users\\zhongxin\\shixidoc\\mypaper\\simulation\\validation_runs\\2026-11-11_sequential_strong_v1\\gap8\\config.json",
+        "sha256": "6274c45aa4936bcb881c808e3b09da80a5a658e1a7a71c0131b51501aa64ecd6",
+        "locator": "entire original saved JSON; run_sequential_validation.py:85-122",
+        "in_audit_worktree": false
+      },
+      "effective_parameters": {
+        "N": 5,
+        "n": 2,
+        "T": 400,
+        "A": [
+          [
+            1.0,
+            0.1
+          ],
+          [
+            0.0,
+            1.01
+          ]
+        ],
+        "Q": [
+          [
+            0.02,
+            0.0
+          ],
+          [
+            0.0,
+            0.02
+          ]
+        ],
+        "P0": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ],
+        "epsilon": 0.08,
+        "edges_sender_receiver": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "send_delta_squared": 0.12,
+        "max_interval": 10,
+        "warmup": 50,
+        "H": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.15
+            ]
+          ],
+          [
+            [
+              0.15,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.15
+            ]
+          ],
+          [
+            [
+              0.15,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          [
+            [
+              0.7,
+              0.0
+            ],
+            [
+              0.0,
+              0.7
+            ]
+          ]
+        ],
+        "R": [
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ]
+        ],
+        "attack_fields_in_saved_config": {
+          "sender": 0,
+          "receiver": 1,
+          "start": 200,
+          "end_inclusive": 249,
+          "bias": [
+            1.2,
+            -0.8
+          ],
+          "replay_packet_lag": 8,
+          "recovery_steps": 50,
+          "matched_replay_time_lag": 80,
+          "low_bias_factor": 0.25
+        },
+        "H_R_precedence": "Explicit H_matrices/R_matrices override H_scales/R_variances; model.py:27-28"
+      },
+      "communication_in_existing_run": "Fixed external schedule [8]; phase 1",
+      "replay_rule": "replay_matched: t-80 must be actual send; repeated during attack window",
+      "selected_for_Task1": false,
+      "audit_worktree_copy_missing": true,
+      "test_seed_count_from_report": 192
+    },
+    {
+      "classification": "FACT",
+      "profile_id": "G1_sequential_irregular",
+      "source": {
+        "classification": "FACT",
+        "path": "C:\\Users\\zhongxin\\shixidoc\\mypaper\\simulation\\validation_runs\\2026-11-11_sequential_strong_v1\\irregular\\config.json",
+        "sha256": "76971e02448c932a15cef08711ae2b751e388622d3d9c9f14da8eba7537ee4e9",
+        "locator": "entire original saved JSON; run_sequential_validation.py:85-122",
+        "in_audit_worktree": false
+      },
+      "effective_parameters": {
+        "N": 5,
+        "n": 2,
+        "T": 400,
+        "A": [
+          [
+            1.0,
+            0.1
+          ],
+          [
+            0.0,
+            1.01
+          ]
+        ],
+        "Q": [
+          [
+            0.02,
+            0.0
+          ],
+          [
+            0.0,
+            0.02
+          ]
+        ],
+        "P0": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ],
+        "epsilon": 0.08,
+        "edges_sender_receiver": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "send_delta_squared": 0.12,
+        "max_interval": 10,
+        "warmup": 50,
+        "H": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.15
+            ]
+          ],
+          [
+            [
+              0.15,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.15
+            ]
+          ],
+          [
+            [
+              0.15,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          [
+            [
+              0.7,
+              0.0
+            ],
+            [
+              0.0,
+              0.7
+            ]
+          ]
+        ],
+        "R": [
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ]
+        ],
+        "attack_fields_in_saved_config": {
+          "sender": 0,
+          "receiver": 1,
+          "start": 200,
+          "end_inclusive": 249,
+          "bias": [
+            1.2,
+            -0.8
+          ],
+          "replay_packet_lag": 8,
+          "recovery_steps": 50,
+          "matched_replay_time_lag": 80,
+          "low_bias_factor": 0.25
+        },
+        "H_R_precedence": "Explicit H_matrices/R_matrices override H_scales/R_variances; model.py:27-28"
+      },
+      "communication_in_existing_run": "Fixed external schedule [1, 2, 3, 4, 6, 8, 6, 4, 3, 3]; phase 1",
+      "replay_rule": "replay_matched: t-80 must be actual send; repeated during attack window",
+      "selected_for_Task1": false,
+      "audit_worktree_copy_missing": true,
+      "test_seed_count_from_report": 192
+    },
+    {
+      "classification": "FACT",
+      "profile_id": "G1_carry_gap8",
+      "source": {
+        "classification": "FACT",
+        "path": "C:\\Users\\zhongxin\\shixidoc\\mypaper\\simulation\\validation_runs\\2026-11-11_cusum_carry_v1\\gap8\\config.json",
+        "sha256": "6274c45aa4936bcb881c808e3b09da80a5a658e1a7a71c0131b51501aa64ecd6",
+        "locator": "entire saved JSON; cusum_carry_plan.json:10",
+        "in_audit_worktree": false
+      },
+      "effective_parameters": {
+        "N": 5,
+        "n": 2,
+        "T": 400,
+        "A": [
+          [
+            1.0,
+            0.1
+          ],
+          [
+            0.0,
+            1.01
+          ]
+        ],
+        "Q": [
+          [
+            0.02,
+            0.0
+          ],
+          [
+            0.0,
+            0.02
+          ]
+        ],
+        "P0": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ],
+        "epsilon": 0.08,
+        "edges_sender_receiver": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "send_delta_squared": 0.12,
+        "max_interval": 10,
+        "warmup": 50,
+        "H": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.15
+            ]
+          ],
+          [
+            [
+              0.15,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.15
+            ]
+          ],
+          [
+            [
+              0.15,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          [
+            [
+              0.7,
+              0.0
+            ],
+            [
+              0.0,
+              0.7
+            ]
+          ]
+        ],
+        "R": [
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ]
+        ],
+        "attack_fields_in_saved_config": {
+          "sender": 0,
+          "receiver": 1,
+          "start": 200,
+          "end_inclusive": 249,
+          "bias": [
+            1.2,
+            -0.8
+          ],
+          "replay_packet_lag": 8,
+          "recovery_steps": 50,
+          "matched_replay_time_lag": 80,
+          "low_bias_factor": 0.25
+        },
+        "H_R_precedence": "Explicit H_matrices/R_matrices override H_scales/R_variances; model.py:27-28"
+      },
+      "communication_in_existing_run": "Fixed external gap8",
+      "replay_rule": "Inherited Replay fields do not imply execution: carry scenarios clean/step/half_step",
+      "selected_for_Task1": false,
+      "audit_worktree_copy_missing": true
+    },
+    {
+      "classification": "FACT",
+      "profile_id": "G1_rank_one_gap8",
+      "source": {
+        "classification": "FACT",
+        "path": "simulation\\validation_runs\\2026-11-11_partial_observability_probe_v4\\gap8\\config.json",
+        "sha256": "f8638923acaa4f1ad1762f7a19dd3050b5974cf9c7af9d0d0be5d6c70ac79ab2",
+        "locator": "entire config; pressure REPORT.md:10-19",
+        "in_audit_worktree": true
+      },
+      "effective_parameters": {
+        "N": 5,
+        "n": 2,
+        "T": 400,
+        "A": [
+          [
+            1.0,
+            0.1
+          ],
+          [
+            0.0,
+            1.01
+          ]
+        ],
+        "Q": [
+          [
+            0.02,
+            0.0
+          ],
+          [
+            0.0,
+            0.02
+          ]
+        ],
+        "P0": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ],
+        "epsilon": 0.08,
+        "edges_sender_receiver": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "send_delta_squared": 0.12,
+        "max_interval": 10,
+        "warmup": 50,
+        "H": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ]
+        ],
+        "R": [
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ]
+        ],
+        "attack_fields_in_saved_config": {
+          "sender": 0,
+          "receiver": 1,
+          "start": 200,
+          "end_inclusive": 249,
+          "bias": [
+            1.2,
+            -0.8
+          ],
+          "replay_packet_lag": 8,
+          "recovery_steps": 50,
+          "matched_replay_time_lag": 80,
+          "low_bias_factor": 0.25
+        },
+        "H_R_precedence": "Explicit H_matrices/R_matrices override H_scales/R_variances; model.py:27-28"
+      },
+      "communication_in_existing_run": "Fixed external gap8",
+      "replay_rule": "Pressure scenarios clean/step/half_step; no closed-loop Replay confirmation",
+      "selected_for_Task1": false
+    },
+    {
+      "classification": "FACT",
+      "profile_id": "G1R_verified_model_reused_by_E2_E3",
+      "source": {
+        "classification": "FACT",
+        "path": "reviews\\g1_retroactive_recovery\\results\\g1r_p0_verified_20261113_v1\\config.json",
+        "sha256": "69833ec9501128a60e9fa3ff1dab8dfe483c25d538110cec8020f66422b34e77",
+        "locator": "model object; minimal_recovery_screen.py:59-82; propagation report:9-26",
+        "in_audit_worktree": true
+      },
+      "effective_parameters": {
+        "N": 5,
+        "n": 2,
+        "T": 280,
+        "A": [
+          [
+            1.0,
+            0.1
+          ],
+          [
+            0.0,
+            1.01
+          ]
+        ],
+        "Q": [
+          [
+            0.02,
+            0.0
+          ],
+          [
+            0.0,
+            0.02
+          ]
+        ],
+        "P0": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ],
+        "epsilon": 0.08,
+        "edges_sender_receiver": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "send_delta_squared": 0.12,
+        "max_interval": 10,
+        "warmup": 50,
+        "H": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.15
+            ]
+          ],
+          [
+            [
+              0.15,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.15
+            ]
+          ],
+          [
+            [
+              0.15,
+              0.0
+            ],
+            [
+              0.0,
+              1.0
+            ]
+          ],
+          [
+            [
+              0.7,
+              0.0
+            ],
+            [
+              0.0,
+              0.7
+            ]
+          ]
+        ],
+        "R": [
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.05
+            ]
+          ]
+        ],
+        "attack_fields_in_saved_config": {
+          "sender": 0,
+          "receiver": 1,
+          "start": 200,
+          "end_inclusive": 200,
+          "bias": [
+            1.2,
+            -0.8
+          ],
+          "replay_packet_lag": 8,
+          "recovery_steps": 50
+        },
+        "H_R_precedence": "Explicit H_matrices/R_matrices override H_scales/R_variances; model.py:27-28"
+      },
+      "communication_in_existing_run": "Fixed gap8; node j sends at t mod 8 == j; all at t0",
+      "replay_rule": "Single r200; lag8 -> s136, raw payload; next sender0 packet q208",
+      "selected_for_Task1": false,
+      "r": 200,
+      "s": 136,
+      "q": 208,
+      "decision": 216
+    }
+  ],
+  "E2_E3_fixed_protocol_reference": {
+    "classification": "FACT",
+    "source": {
+      "classification": "FACT",
+      "path": "reviews\\g1r_risk_constrained_recovery\\protocol_v2.json",
+      "sha256": "7c7a2589c1f7d136886ea5a1d4c1664552d7d463cbd143f5fb0e8c455b3fbeab",
+      "locator": "model_config,gap,events_edge_r,main_event,ages,innovation_times,target",
+      "in_audit_worktree": true
+    },
+    "model_profile": "G1R_verified_model_reused_by_E2_E3",
+    "events_edge_r": [
+      [
+        0,
+        176
+      ],
+      [
+        3,
+        178
+      ],
+      [
+        0,
+        184
+      ],
+      [
+        3,
+        186
+      ],
+      [
+        0,
+        192
+      ],
+      [
+        3,
+        194
+      ],
+      [
+        0,
+        200
+      ],
+      [
+        3,
+        202
+      ]
+    ],
+    "main_event": [
+      0,
+      200
+    ],
+    "ages": [
+      32,
+      64,
+      96
+    ],
+    "source_rule": "Single actual event r; packet lag=age/8 only in fixed gap8; verify source=r-age actual send. Not a SoD age rule.",
+    "online_z_times": [
+      211,
+      212,
+      213,
+      214,
+      215,
+      216
+    ],
+    "target": 217,
+    "formal_snapshots": [
+      {
+        "classification": "FACT",
+        "path": "reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\config.json",
+        "sha256": "35a0773a2ef099e7215ff9afd16868ace6b0c52fddb303076a10b3d38530ed7f",
+        "locator": "Existing frozen config/manifest; Task0 did not verify every referenced output shard",
+        "in_audit_worktree": true
+      },
+      {
+        "classification": "FACT",
+        "path": "reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\artifact_manifest.json",
+        "sha256": "40980383b61a63bc32d026f1db76c2066af7958d27e42792ab1eca27f9b3fd50",
+        "locator": "Existing frozen config/manifest; Task0 did not verify every referenced output shard",
+        "in_audit_worktree": true
+      },
+      {
+        "classification": "FACT",
+        "path": "reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\config.json",
+        "sha256": "566ee80c6392b1a1566bff63c283ae3d3afd7d64bdafff1eec603e9203c06a21",
+        "locator": "Existing frozen config/manifest; Task0 did not verify every referenced output shard",
+        "in_audit_worktree": true
+      },
+      {
+        "classification": "FACT",
+        "path": "reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\artifact_manifest.json",
+        "sha256": "4d6168edd274047c9e9ad0b1268ff121c03bb61e6eb1c67b8e654bcef5f48325",
+        "locator": "Existing frozen config/manifest; Task0 did not verify every referenced output shard",
+        "in_audit_worktree": true
+      }
+    ]
+  },
+  "historical_asset_availability": [
+    {
+      "classification": "FACT",
+      "relative_asset": "simulation/validation_runs/2026-11-11_sequential_strong_v1/gap8/config.json",
+      "audit_worktree_exists": false,
+      "main_original": "C:\\Users\\zhongxin\\shixidoc\\mypaper\\simulation\\validation_runs\\2026-11-11_sequential_strong_v1\\gap8\\config.json",
+      "main_exists": true,
+      "main_sha256": "6274c45aa4936bcb881c808e3b09da80a5a658e1a7a71c0131b51501aa64ecd6"
+    },
+    {
+      "classification": "FACT",
+      "relative_asset": "simulation/validation_runs/2026-11-11_sequential_strong_v1/irregular/config.json",
+      "audit_worktree_exists": false,
+      "main_original": "C:\\Users\\zhongxin\\shixidoc\\mypaper\\simulation\\validation_runs\\2026-11-11_sequential_strong_v1\\irregular\\config.json",
+      "main_exists": true,
+      "main_sha256": "76971e02448c932a15cef08711ae2b751e388622d3d9c9f14da8eba7537ee4e9"
+    },
+    {
+      "classification": "FACT",
+      "relative_asset": "simulation/validation_runs/2026-11-11_cusum_carry_v1/gap8/config.json",
+      "audit_worktree_exists": false,
+      "main_original": "C:\\Users\\zhongxin\\shixidoc\\mypaper\\simulation\\validation_runs\\2026-11-11_cusum_carry_v1\\gap8\\config.json",
+      "main_exists": true,
+      "main_sha256": "6274c45aa4936bcb881c808e3b09da80a5a658e1a7a71c0131b51501aa64ecd6"
+    },
+    {
+      "classification": "FACT",
+      "relative_asset": "simulation/runs/2026-11-10_five_node_v2/closed_loop/yang__replay_packet.npz",
+      "audit_worktree_exists": false,
+      "main_original": "C:\\Users\\zhongxin\\shixidoc\\mypaper\\simulation\\runs\\2026-11-10_five_node_v2\\closed_loop\\yang__replay_packet.npz",
+      "main_exists": true,
+      "main_sha256": "ad92ba0f2974ce6189a76bd9d1d6897b62f711ed97639104e8142c09b381e766"
+    },
+    {
+      "classification": "FACT",
+      "relative_asset": "simulation/runs/2026-11-10_five_node_v2/closed_loop/yang__clean.npz",
+      "audit_worktree_exists": false,
+      "main_original": "C:\\Users\\zhongxin\\shixidoc\\mypaper\\simulation\\runs\\2026-11-10_five_node_v2\\closed_loop\\yang__clean.npz",
+      "main_exists": true,
+      "main_sha256": "82f52b118a9a948c72771b39a636b63180114aef9449d67b03617234237bc16c"
+    }
+  ],
+  "existing_closed_loop_npz_schema": {
+    "classification": "FACT",
+    "inspection": "Read existing fields and shapes only; no event-difference or performance computation",
+    "fields": {
+      "estimates": [
+        32,
+        401,
+        5,
+        2
+      ],
+      "sends": [
+        32,
+        400,
+        5
+      ],
+      "weights": [
+        32,
+        400,
+        10
+      ],
+      "cache_bad": [
+        32,
+        400,
+        10
+      ],
+      "injected": [
+        32,
+        400
+      ],
+      "replay_source": [
+        32,
+        400
+      ],
+      "clipped": [
+        32,
+        400,
+        10
+      ]
+    }
+  },
+  "readonly_validation": {
+    "classification": "FACT",
+    "protected_file_count": 322,
+    "protected_sha256_mismatches": [],
+    "tracked_diff_unchanged": true,
+    "main_tracked_diff_unchanged": true,
+    "head_unchanged": true,
+    "protected_scope": "simulation top-level Python/JSON; G1/G1R root reports and code Python; selected P0/final/E2/E3 root JSON/CSV; G7 report; main G5 and previous standalone reference; not every result shard",
+    "protected_files_sha256_before_and_after_equal": {
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\statistics_audit.json": "027a1442c0dffb8839380aae9479f8b3a91b665977942f26cfcfa0aa5742dbf9",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\exact_normal_risk_refinement.py": "ecc63e938f28ab71d0c8b5862523dc0c03fc87ac1d4cfdb071b04a9fdf860597",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\code\\audit_minimal_screen.py": "b5e6cf1e100cf67b96515f841aa2a7e6bb38872e0133c34c0d69d6450457c39a",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\gao2026_p10.txt": "5bff767c28a037cac791af2cd3bae849805aa5adb969857bac4a87989d0d67d0",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\results\\g1r_p0_verified_20261113_v1\\method_summary.csv": "252e2d1a7e07e3ed6b1490158d8baacae40102c3133edebad93b092a7a92165a",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\fdi_replay_20261112\\code\\build_indices.py": "cc0bca282123205a9acc2e114cfdfb79ceef7d5b5976f17b03a33490a56b5f67",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\normal_batch_03.json": "943c9babf044704575476eef0cf30f5e2895d803a0a4d09ec619edeb43038292",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\reachable_silence_atom_audit_20261112.py": "8e83462b44410626e222c98f5efc283231f8264ee818374c9f53a3fc6640b214",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\14_joint_recovery_theory_draft.md": "37c68c1a606d7d13bc3fb62a45f27b486abe11f8521b7f6c50a90a7c1b186e74",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\audit_sequential_outputs.py": "8916ede48e8a1244c65551be85a8ffd3e4b50c8e9dbb5108214fe1bdd68f0433",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\fdi_replay_20261112\\code\\write_g2_source_fingerprints.py": "6c0b2c133d16af2e8fc79ae4517c8244c063e0d4cec691b767d594d3efe30e15",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\09_deghat_discrete_baseline.md": "315675e784a0261092ef3620151fa9b2a4af687dc76c9f349dcb25a257d82a47",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\code\\final_p0_audit.py": "ce88130d091e921c3d392bbf27ffad7b6aeef417ad84741cb3c434e6b11620ec",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\run_v2_debug.py": "14f53dc938004ef78c8cc3b75fd8481b22b8296700a9147217ab1330bd0f1f33",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\results\\g1r_p0_verified_20261113_v1\\cache_components.csv": "e88fdddf59c276fcbb075db0ed19d5d77feabb0cb00e840fdbfc01bca4d14ca2",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\02_ye_wang_privacy_attack_audit.md": "f4c1fa419dbf60ddb5c0f6dfb2eaa3a466f12ac4909e4d31f2e27e7453fd3c8e",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\03_candidate_methods.md": "eaf28e99fa6ec84cf743a21793bab476dea6f7bdc0accf3cc0246d3335a510b1",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\attack_batch_01.csv": "3b35a371bdeef791a0f6775725dbf2cc5d8002575cdcc8fadb6f7b7b2272eed7",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\wang2025_verified_metadata.json": "2fc8d0ca7405287fb0a19eab1eda7ae1199ec284b5bf1f049c521a98dc4d8c11",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\source_index.json": "964e86829cccd4e20131449b667fb7ae3a9d7ddbdc3533bd557d9f99fdf7cee3",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\code\\validate_final_delivery.py": "0e291b9b75a55a99333caa4f64e3deed5ba74a153b776862196704157598c291",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\gao2026_p05.txt": "9de1d39826276731ff9ddc30ac96239b8d16730d72b41bd40cf9a2596215541e",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\audit_e3_seed_collisions.py": "08f34c3b538ad63a89f09102ffdc21db51f2459070df40edd0e8eed0fb9295a8",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\checkpoint.json": "b285b2d9c69c5592e24c5080af44651537af0658457eadf8818d27780e1b3b51",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\calibration.py": "bab9a8704418d2382bace4d8d2e5c7142ba2fd7fb0285d55779979d97b276d0f",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\audit_e2_prelaunch.py": "3b77d2083ed2a014fd2d68eb58df688b7235e046482b97c24903823af2e025e4",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\fdi_replay_20261112\\code\\validate_g1.py": "1f3da0dd9a4a2ff0b76110c97728369c5f85fd4ebd95c7a1a34c7e6262baa7da",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\ye2025_verified_metadata.json": "c003a154a1454d5a928da622036b3afadfaaf4f8fb6ba5e83c85d89cac22f2b9",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\v2_estimators.py": "a7ce558a5b5922f63f395bee8658efda23f86fd8f05ae190907c40d5b880e9c9",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\fdi_replay_20261112\\code\\bibliography.py": "17ac340d388425da933d1e7c6015a77a836979e078aa28402f44c16bd08d0787",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\fdi_replay_20261112\\g1_experiment_plan.md": "a3acb0ece686c5e117385b81f495d8f939f8b038d0c2516db50568ded40357ef",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\fdi_replay_20261112\\code\\analyze_g2_final.py": "881d22565bb7392a5334b7b20cc54e7fc51d64bcbad66247e020df3c0cfafbd0",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\fdi_replay_20261112\\code\\mechanism_checks.py": "4c2834d39ca5dec4430ecb8b02ee14a0e39e1f1e4c4e93423a1d4040f11ae3ba",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\checkpoint_manager.py": "f90b858005deaa0a95d4669880e281fd1d5b49be6f2dbf600623cd423cfe62c9",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\23_e3_mathematics_and_implementation.md": "1f870d2ac877490014142ddadd3ed8c9d20d150fc4df9c6f7de4b2f74087a50f",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\gao2026_p11.txt": "b5374ec62007c4896ae7217f64755ab9fd4826ce3aca5b45320e86838cbf0496",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\artifact_manifest.json": "4d6168edd274047c9e9ad0b1268ff121c03bb61e6eb1c67b8e654bcef5f48325",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e3_runner\\authorization_guard.py": "08061d1c064df69524eccbac80f729946d4345f9f53d64ecf81215fc5da5f28d",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\__init__.py": "8bd014afafec63158e055cdfad7e25f2bbd012c202c93f5e25fb0a359dcef8fb",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\results\\g1r_p0_verified_20261113_v1\\config.json": "69833ec9501128a60e9fa3ff1dab8dfe483c25d538110cec8020f66422b34e77",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\gao2026_p03.txt": "717dc11fabc70962c1bbfb0280c5164a2ba7654900b9afc8243f9c1d2b4e2e74",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\12_v2_mathematical_and_fairness_audit.md": "d784326966eb6cf77dbd3ac6ae5eeb5c5df4ec2b05250c1dc73a67196c232204",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\execution_state.py": "9d027ae216b7770edcd71498adb7c1f1a7e2ad443e6ffa739d66dd3259a2951c",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\attack_batch_01.json": "52ff381df3bc13bc1bf29fcb5bd31402a17542398082fd997b960ef7f8c7dcc8",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\reachable_silence_screen_20261112.py": "05015e1a0af5325efe9189d70c5bbc07ed8698b329bf07df8aae40633fe0021b",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\03_problem_and_implementation_contract.md": "5e2efe2a82d190780588bf8b091555e4872e8ad59b2c1d66cc9c61278a760a5d",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\sequential_cache.py": "dd9c8678544c98a481551528fbec60318b5e4bea94cc95ef2efe742470fdd6a8",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\13_task5_implementation_audit.md": "f3c780bb6d04e39f9066dcfd2dd794ee13c0d5dadc81481a978051317687b969",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\online_proposal.py": "d1397ed8d12aae93d73231dcd343a2c7131d066f8b59416b8fb71c61399aa3f0",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\report.py": "b3bda4364d17936bf33c5dfe17dc64281da9cdb56df6fd92b50f3d2be68ca6ad",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\cache_monitor.py": "59615c7758f32306418e2c3f7f7341d09ec0bd58822cd39fdb34a727190014a4",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\validation_plan.json": "2a899fe0c1cb56dc3a693dee9e4bda5f2a39eeb582ab149637d66c6ac6e2521c",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\27_reusable_research_results_assessment.md": "bbb469223a0fc5a5020c9c0ae74164396529cdedf57d50115f7a11265e23ac73",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\13_shadow_baseline_verification.md": "b578c010cecddc24b84e73f5a9db44ebb329c2ee581d7e0ff91a7aead2711a54",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\offline_evaluator.py": "c13b8935a2ace3cb41bcaf048a077ec1adcd6b0092a41f4b279590ef4095752d",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\test_e2_deterministic_validation.py": "ba23a1b0866fd4f1598f18b6119c6119b5c848afda0bd047790b7765ba7918b9",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\independent_checks.py": "477f1bc6223b11aee19b4f24633e90e6d095c99d7ec53460fc3b29847ee15633",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\summarize_sequential_validation.py": "31ecbb08bf0a6578b2a6dc68a43ee4c8383bb22296c066c593ec82b904ade74e",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\attack_batch_03.json": "73d0c0e9a31dad93366b20d259ba55aebead7449d0f107cc0b5a8332589e01ec",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\04_one_problem_proposal.md": "eade48bdf854f660f6d35fdb5d15e0687d7595f3c1f86f1773b55cccfd2570c2",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\attack_batch_00.json": "44022aade3fc4e32ecc12f4ea0bf54072e90c4189620b12d321a41c0e225f75f",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\tests\\__init__.py": "b60f8fe476526f6a5aac75a194c8dea3b7f6424b8b5cea2cf3559f1303a8ea94",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\normal_batch_06.json": "8c6a6de6b7a315a9394ddd68edb4f3218555ce8ec47d20f64d4a6ae2fac14312",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\validation_output_audit.py": "8a6ecc806c0e8ea3d4c870635b819fd17cc22cef5fefc0f7376086027b0e9f21",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\code\\analyze_final_replay.py": "a5e00f78fd84503bf92705486bd480f5f07533decec5f7ac08b53abe00e869fd",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\fdi_replay_20261112\\code\\read_sources.py": "baf54067c247c171818d8876310201895845d0a026dcb9f2217dcf0e9917539b",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\test_v2_data_mechanics.py": "9b3d48b53f8d671d89cef6f42b1da2b42caee26bb4c2a7291515a4eceb1fbd12",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\reference_exploration_plan.json": "244d7788a3d2b097d571e32626431be05ef8b9f3ac3f4c788f238dca05761fab",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\attack_batch_02.json": "ed62e4862cef663323ce086115b42a7b193b885ee996e6458b810ca8869d8c7c",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\08_information_permission_audit.md": "6a12cee80b3e9b91025af85d0d43792155761869adf9d54aa96b0558f482cc17",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\fdi_replay_20261112\\code\\validate_delivery.py": "af2d53f4153cc272a7d2b5cf2616aa0d51b40c5809681e81338deec3f1b4a127",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\19_e2_prelaunch_integrity_audit.md": "46946b88d17ba154b00342108d93c9f1b4135ddb5def91194c5fa41d97084eeb",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\results\\g1r_p0_verified_20261113_v1\\per_seed_metrics.csv": "b554beae65b1cd0834f35d34923a1d3f8d9d0d4807f0f019a364323b94bc7dde",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\validate_task5_completion.py": "6cbd81b37b8dcc843c77d6727d77f39cd57334cda09cdbb60d23291e9b5b2d44",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\run_partial_observability_probe.py": "4cd6060ff6b51c8ebe2cdaf3c79379f758387cfc1430d8d3d0a010e20e66a11b",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\code\\p1_structural_check.py": "781aba770fb96bbce2813fea9df5de774c96eb54c00745a22f23e8804aab05e0",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\statistics_reporter.py": "ee646d93dd8771f9f2ceef4dfc7684709684d00d3534791793008ce7e35b8345",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\source_hashes.json": "0c786effc33e6f7bdcfa84be13fdb4328c85d31be145e64b5635f0439418ef76",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\code\\formula_checks.py": "127c4b35418e2dca8ffc25520daca17fe9d796329949fa2e1d4c46fed8323ea3",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\config.json": "cf801650e2527a409ebb4730e894e6d3fcb3602a08259bfeda1cb529d7ebb62b",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\reachable_silence_plan_20261112.json": "327b7699847b23d63b35df2bce8a4e2ae170a82b7774a9b809b3d0445783fbc6",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\results\\g1r_p0_verified_20261113_v1\\source_hashes.json": "3e7c4c77700ec3af47175e8f5b84da57338452f16d925ce10385d921d150bcba",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\corrected_tail_pair.py": "c3d615809bb5974a78ecfad585f8952e865e552fbf1f2ded440e285b7f4bbdff",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\result_writer.py": "43ec495907a3db70d0c1e3b6ec01c902f188f25ee842f98b6619436316ecf30b",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\replay_dictionary_probe.py": "d64d2fbd38e1a28840f7430a129bcc6fa5c6f5199e7c5d9055b44ea63401a944",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\analyze_increment.py": "6eed00f90af1f27298b89eb77ca417219de88a337725f9031f29e582132c7657",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\attack_batch_04.json": "c1d3a1b83b6830faf2174e05239ab6d34a48899ae370fe00b2aedef405758f12",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\p0_acceptance.md": "4f84ed00300ee0b858d87fa0f1849754b12781a56efcbbcae2d5eb94e54bf1bc",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e3_runner\\tests\\__init__.py": "1877598d28e423f348688033fdb1220084a2317e8e8572a3f7e3d300333110c3",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\cache_mechanism_gap8_plan.json": "c9fe9158577da25052e48746026c747a45e1b72136de5ab25ee6e54569187d8a",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\code\\receiver_gls_writeback.py": "998d860c931060236c4960a8514d96c4ae5e5b5f19f181db67921cd0d78158bb",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e3_runner\\online_proposal.py": "e78884eb01d5b00edce84905e9fb79b80b0a8f93ed245547db62ab4dc1469458",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e3_runner\\scenario_builder.py": "eb19d668b146ae4d5a811e0c0d1e4cc269fe11f3d11f153b12547b6d3faba0c4",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\validation_summary.py": "3a67c85cc14de4181796d0e5746fb6c0a2a06f06878082ba97dd65150c04b411",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\code\\receiver_integration_debug.py": "5ba8dc76892d7ee1c58e854039899a4025a6157e3ddf39465291277833e2f68b",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\04_theorem_candidates.md": "127a61c14f6161a38e3def94294738d7ca0d4898cafa97bec4ef61911f51b115",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\gate_counts.json": "86b284409206029aec58a5ab60ca748813aea21c9b3e93cbd84cd10938172e4c",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\05_minimal_experiment.md": "49b8e5943a10b44af41c93c6615843659ea39c40ee103e06fc004eb2a946f1f6",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\run_sequential_validation.py": "fe5fcb9cc2247ce8c46f400304d6c2f9d35354c280cb467c4634c52d06eb5818",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\fdi_replay_20261112\\project_evidence.md": "bf9d346e9d27ee20d9e2207c561f31575ec2a839aac23fed0cc68d0aab96b130",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\code\\compare_attack_input_trackers.py": "cb23a715b292b067468ff8a3fc5ea093afe9f22a23169889576777f9e4535971",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\calibrate_v2_normal.py": "edbd0326e6f81555ebfef8adae7e2be04438ecf7d732a54426cb534100d2410d",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\15_receiver_localization_interface.md": "f6c35f700aca74b81f892eadf514ced71d3bd114c13bbf239e09365cd4a86d49",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\code\\prepare_delivery_index.py": "05e9440dc2f38cd202419fb9098741c7e45dd129552b9f4c1e693ebc19badc57",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\summarize_cache_confirmation.py": "a4abdbbd699ee462a6897280609ed5e0c9eb8a8fc259f301c5649a7a29965eba",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\normal_batch_05.json": "9991d000b194a8ac74d1097d598fba78a6209eb1330a5de24214b292b2eb3c9a",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\build_e2_status_resolution_assets.py": "1f781d4f01b934465e6fe50461b5abd061587021b2f8089e6804af3b98f9f5b5",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\sequential_validation_plan.json": "b753dd147704fbcebf6e128bc378bbb1c2e049d19255626a583c787e70560add",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e3_runner\\offline_evaluator.py": "db9bc2321de5bfcd98ff933e4904e8b593bed6c4d76603dcc43fc561270c4225",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\validation_suite.py": "df880dc8cee6b4765229b385971ca8ddf14655c67badfc68967263a9abd0f75f",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\fdi_replay_20261112\\README.md": "a3957eda9886237982b759110db85f0f0f691236781640a0c3624c0494a2b3cc",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\attack_batch_00.csv": "0d766c917a0c5cb6e3627a7d545a6f8f2d82be0397e28e9d65e329e83bf5a2d1",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\normal_batch_01.json": "37380421ee75e49c28af9188f333fd5eee3ac6ee364244cfe2f92193a690ee8b",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\audit_e2_seed_collisions.py": "bd0fd0c63a81990a2246965884bfc47115aa9fd47c85fffe353bfa7ea98c0693",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\gao2026_p04.txt": "9e9f971d2ff86cbe91310f3abfd6c88ccb31ebb93f7350e548ae438fc72c2bfd",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\fdi_replay_20261112\\literature_reading_notes.md": "de6700cb477bcee6ce6be3fecc4d2d99a3e6692f7f25a3a1279a8ee38a7bb27d",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\02_problem_formulation.md": "94fd6ff626918e794449f57ec89cece41d650f15397a0ae7ebc1add0932def3e",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\tests\\test_prelaunch_integrity.py": "ef541f2a56f3ba3aab67815229d3811bbb178aa4b27f8effe0bbebc843358d4e",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\normal_batch_06.csv": "382a23b4b8a98288fe8f621b72c40e1926df44b396478b45466a95e88e18d51a",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\partial_observability_probe_plan.json": "10f3fcf7ee17e1bae76ba7ba53a9aa82fc173e786be8b0e3093529d75cb6d876",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\18_final_replay_results.md": "5fc6f788e4031e0306da9b72dd015a935515ddca7e88fbb32270d5da56879803",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\25_e3_authorization_request.md": "eb042012a77ca50f2bddc40661e934b3f65566cb92b95a39244cd761dd8d8d1a",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\environment_guard.py": "4cf627d5d07c4bfe321b06979462a2ba4696d2c16ff19826c35506816405b100",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\shared_channel_deadline_plan_20261112.json": "b3504440f57fe4408e71b4a67982e4d931553b6f729f73b4fec2a91a2e2fe3a9",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\statistics.json": "128f3da76266d1e05a9858324f58dc1fa7620aabc427d41e93f8d14268b1ef2a",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\audit_partial_observability_probe.py": "d893d17ef1049a15722858d49b2f000750d4dad30bd1532137816200c2164361",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\config.json": "566ee80c6392b1a1566bff63c283ae3d3afd7d64bdafff1eec603e9203c06a21",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e3_runner\\__init__.py": "18f324715125cbd72419dde3ee56f1b097216835bd9df19be74deb16c3c7f2f6",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\normal_batch_08.json": "1b2e0c4c4b4dc36c9e14ac15fcf4074c3a118b37e345e533740bd4e635ca5e48",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\access_audit.json": "1666c733cd24b067a2bf56ba777819c854e1ae8809919abbeb305e4bd1ef7d9b",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e3_runner\\config_loader.py": "e73875e24174db1d7e15c0a34727dc38aaf5c177be5c7efcc0921763b3a4a2dc",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\fdi_replay_20261112\\code\\verify_g2_staged_artifacts.py": "717377f566eb8b8b9fe6239f9047ffe683bbd89fd3a0bd712f57c1488504b4f0",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\attack_batch_07.csv": "dbd354ff999a80daeef310da2e01c58d87d79399a80d0abe95342ff63c48b37b",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\code\\extract_target_sources.py": "2c97fb230f9a1ed3cd1feba12ce2c548978a1ec039b332d0457b45f8dcddb53d",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\06_research_decision.md": "b3cc8719fc438252b6da8230790f83af76f403895bef68cf70f87d68279dd46e",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\validate_extensions.py": "a065d1e16ee070907534ed895c6e2c98ab9426fb33862f04d13f7cbaf5806d5e",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\20_e2_authorization_request_20261116.md": "07421b17d6e5c0021cf22f46143668fbb5245a4414d1e58f42e1dac042c546e8",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\26_e3_formal_experiment_report.md": "80e46bdf8856d2bf4e1a4caea9e154ec83d05100d713bba6385c736e824a2f06",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\normal_batch_02.csv": "be9b02ef852a726852695ff4bad75d1ba1d88350634baf78c5b898b009617fb7",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\run_status.json": "5943637a54fe886b3ef1ad681d48b8f7c406d890f2f8986b4a266bce9c295282",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\attack_batch_03.csv": "225c910279477cde2f6409f2aa6fb820ea7a0c8b422375097c5e7e87a9ddb93e",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\03_A_vs_F_decision.md": "48c08a65d9d793d37a6a04cd9fb255a24a816108c09ec14dbe21b41a0fa588c8",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\fdi_replay_20261112\\code\\g1_reaudit.py": "fc580219358369c9b56df452b43c6167f4efb920516386397e248e1e4b851254",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\14_pre_e2_readonly_audit.md": "fe3235598b7a1a0dd89f23e80889533a8e65e8d26b8ccc6b2ff5a99f3ae876dd",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\normal_batch_07.csv": "118ed0f4d10e237242b3ebe3d866574ccb3486c47751c70defc8f27f272628b2",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\test_e2_statistics.py": "a75559fdcb4b1473f8a3056c4d575a720ec84fa4e98808b916fb8ce642d0e7d1",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\gao2026_p07.txt": "88ed20d1ee8c6819357a4a451749bf22b94904b9a0f25ec0955b0458027dcc34",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\code\\finish_evidence_notes.py": "85ff1d05bd8fea18f4d89038bf3ea188b5e05769f650037db0fbcbab7689e7af",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\05_quickdet_palmdkf_fulltext_audit.md": "e35fd28146aa63bbf4787cc024d81e546ea441efa11bc2f873fe84f2526f22bc",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\tests\\test_runner.py": "1d85dd9b5a719444e64e5011fec8f340d7e8dadcd011c1bce4569af23c31ff08",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\attack_batch_08.csv": "71d971b457e728ec5e956a8ce85c99716c2cc96a3743096eeb6e68638f4a0b6c",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\gao2026_p09.txt": "c2867439928a468c4b58d5a91cb51b46d42293106fbfe68dd9555d2f9a7e2829",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\16_e2_status_contract_resolution.md": "39b6af2e090bcacf27595a08ff93d84949dbab000a2a88c278b811489c21d7e8",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e3_runner\\cli.py": "28739c1feaf67b632c83fc890ddbcbb2adcc68462e3df4eca005d621ec3efcd6",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\g2_replay_runner.py": "bbc382e823c2dace497d4274f000cf65d84366a5613be37a2f116579f53d2f02",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\check_formal_claims.py": "b01f467a13c7bf3101b00b7405319d0d24a7f7e4ce7f480173d439dd8cd7ddfb",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\04_minimal_validation_plan.md": "c1fd5beaf7df024f18fb0ddf3b318acdbc5ca4cd4e9b81d990d07eb7e9dc2e44",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\code\\final_replay_run.py": "36025d9e27c1c3cc767b2329f4f8c6ed9a1da0d1969b3714a3a5e980b7c7bc72",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\16_receiver_integration_debug.md": "c57e98f17c6321dbbc87f27ca8b93976a1eae0ce743f6d53fd6c396ed4746470",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\test_e2_status_adapter.py": "c404d15c49f50719bb43a8808672d8f3060e09d4844e9b773f23aa585b3ae482",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\attack_batch_08.json": "440541a2b473f42e5bb4cdfce5d4abe445a1d5db5c6f79b9e0747fb56cb640e8",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\cache_aged_plan.json": "dd96963093faacdb872d03718506d62573027b4c4f0e1d4fc8b05f483f413da5",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\audit_e3_preparation.py": "96d732938dab927bfb02ddee7d977b1e7dd0027c3685831bb155cff7d807cd53",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\artifact_manifest.json": "40980383b61a63bc32d026f1db76c2066af7958d27e42792ab1eca27f9b3fd50",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\model.py": "5b674a4cc274fca42d52d00f15490d5e3952231df98146a90cb28a62b4a9aeca",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\results\\g1r_final_replay_20261113_v1\\summary.json": "24c7cb499987dc3c5a326d59987a65fd27cc89113520fd907832af0d2f4a7f69",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\attack_batch_02.csv": "4c15f9ab2274f72e30a8dca2ed3fe0a2dba780253b8e48296dab03efa7d684a4",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\results\\g1r_p0_verified_20261113_v1\\sender_transmissions.csv": "ec89dd3856dcbf08e18860362c64c185bbc6c73acef688c66aff5eec8588deca",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\checkpoint.json": "81f9a3d0a53e514193917439c9f42bf888223761e274b84d1bcdd1fd6d0f69a3",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\normal_batch_07.json": "8866ca7223cf5be89ea9ce40cdd9bbf314d4fd47083f40227f99d9e0cc05d5d1",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\17_e2_runner_design_and_validation.md": "de0a595e0c222672f69a215b855aa06302fdad5f9e1295c5ff750585c9e05de5",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\code\\__pycache__\\formula_checks.cpython-314.pyc": "c6e3b8037fe9107d66d2872a9882c058a216ac01081f8e6193f2563888e95eda",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\08_budget_precheck_and_stage_decision.md": "8ea264eb625a05be88cfd0d311cda35bb027d29dded08d3fecf1f29908fcf222",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\EXECUTIVE_SUMMARY.md": "b6f52bbc4b99f5a6f6d7bac39d3833daef17bdc20ec8954314fbb7eb9462abf0",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\assemble_e2_status_package.py": "72dba937eb93163745b6c1e1f949774a40db368b6df013582ecfc4a20c10c89f",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\17_final_test_preregistration.md": "d4f079610e3e096d44aaf49aad3b69fb66f09416ba6725a915bcb7056db437d6",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\results\\g1r_p0_verified_20261113_v1\\comparisons.json": "d7b499b0cf2b5e22fc2fa1f3414ab25f30f196bbeab816f766c57d8d424acb8f",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\shared_channel_deadline_screen_20261112.py": "91b14d6c18c51dc65c1fdeba527cb18595addf198b53e5e634fec4502d87639e",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\normal_batch_05.csv": "fb50d4f8c952d7410834e847902a29e9f1cfedea4fa72ede8d13b27e3b551d7e",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\run_pre_e2_readonly_audit.py": "e06d65097186bab214a0c53167aac94db1dbc9750bdfa0146fa5c6e1b0d7a32c",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\07_replay_joint_probability_model.md": "2fc0564b59d47eb0e7fd911617160115a09f74b8e1d0d748d4a1b1826b966a7c",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\run_study.py": "e394675504effc2fa59e50cd4649b8528bcc05721334a6fc532be4ac29d6c811",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\code\\minimal_recovery_screen.py": "23824443eabb9615d3a4e158c92d8f86a3ad7c3bd8de55bfb982eccd5af7f38f",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\verify.py": "6f28de61dae7541d70e27d388e7f70a72bf4d4389196e9059dc9c68b38e04328",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\check_competitor_transfer.py": "ab443718095b172a6ba86190ddff58b03214705dab576d449044a3eb497b0d8c",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\normal_batch_09.json": "fb76041d3e59c3d87c232cfab95b2a85f172f7585561e6cd8cb6b9a907401c5b",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\audit_protocol_v2.py": "80032b4465b571593addf560caa5abfc2ade5e3884f8442d234144a1ffbb94e7",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\normal_batch_08.csv": "0f0385f36e4f39681105f0f92c5889f97077792f8467225b7edc4405bb237592",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\gao2026_p01.txt": "c64f83373a1000b7a08365c4b5175aa11fde743aaa39271d92d46fa88ca8cebd",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\per_seed_metrics.csv": "9a6af9948e20cd29b65dcea05f438471d1198e0a731074e56882410f806a0b34",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\diagnose_set_zero_scores.py": "248047bc4affd664df506ed6bd1271e0ff543658106aeb0606c85d169e1956d9",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\20_research_closeout_no_go.md": "4fd787a9da5a44204d58677ca582938e036e57efc0a8bea62846eb86be1261ff",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\reentry_audit_20261112.py": "4212bcf125ab22d45f84459df19b01ea9e88faf1e6ffe893beff5dc0b8661d6d",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\22_e2_independent_coverage_audit.md": "de30d0d55145232b7ee50533c5dc61730f9f87f5c7f924b77714b3d13b71b81f",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\check_sequential_cache.py": "a94bcb35583631cdebefe7bf120c2c5a4727e12d2d81f92fa436a8906344dc35",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\test_v2_estimators.py": "6ba8e0a5e218cdd7c914234b91ebeeaa40a960cf9a19108aec88bb50cb2f91aa",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e3_runner\\tests\\test_preparation.py": "7f13e4fc54ebdc6ab7f615b080de3ffafa46051fc7183daeaf1445c5cafb2463",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\code\\test_receiver_gls_writeback.py": "f482873e532eaac0897914189155a14a8f143c3f039a099aeb7ec7dd61b1447b",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\gao2026_p14.txt": "2e76b43d88aae530e033620f20c312bab89f1a654b9411f18c952127068af55b",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\run_status.json": "a07ae2907432605843fa5764f356a929f8c7fbe4c49808222adb509fb0317b4a",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\download_log.json": "f7efb90abf2fcfe61a30dabb2f3cdb589fdf2d9abaf8eabe8acf711780071c48",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\delivery_validation.json": "cf8d6ea197580e44192e28b0ea460c8e5f6d933db2d43b7d87a6422eb975654e",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\attack_batch_09.csv": "d5043cf49e096359832018fd6f3d06f03ad3cfa0ca3d117d7580720106e35d07",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\normal_batch_09.csv": "d9f980c41fdf6a98f2d2b88f53c1a690c0dfc079d05340bdcc71d8752e898b39",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\19_manuscript_research_draft.md": "c6e306213691ef1af7fd762f48980624821b521b1e357f4606a329f034174597",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\config_loader.py": "b55b88fca2b9db059e889b07075b8a6b7c5617e91d52baade7a80735f576922d",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\11_joint_writeback_debug.md": "6021bccb6b9aa52c39961fafbd2aafad9ba7d8cd2d4e25f6ac450f1ec22152fb",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e3_runner\\statistics_reporter.py": "8e8e4c7afafac7736a319d1674080c1a7659f79676fef7756435726a990dcb8c",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\fdi_replay_20261112\\research_digest.md": "26a797a2f0497167c2b2d980facd86ced5f9ef9e7e3666d43f84eba350856f7d",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\attack_batch_05.json": "2bb3aa779a3750c6b5b438ae1f39c59cec822df79db19ca2e9105ecce81c1aa2",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\cache_screen.py": "2ae2408b5f1d1c0c54b61b3c850869f26ac6373c7bbb628bc883ccb19959eee1",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\results\\g1r_p0_verified_20261113_v1\\summary.json": "1639c30df08338904efa6bdc863c2ddd91fe69960e6a28ea54568e2bd0a53d34",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\results\\2026-11-13_g5_formula_checks_r01\\checks.json": "44e1334ef5ad46ee8abd6dc6adb3b5c2b5c5558e28224533d6834a7db5dc4bec",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\cache_mechanism_plan.json": "4ce25085ffd04f172bc6aaf67af37b3da5bd52f9e76c14b11d0eb6a3b0f78cab",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e3_runner\\batch_runner.py": "423e2115f51ff49aa0ccdc08bdd20863a2e95ec2c4418fce87cbb469e2def486",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\normal_batch_00.csv": "09965d4a25587c6ae92280f1f556b0eae909da08ca7a8957d57d46a6ef9cac2e",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\verify_e2_adapter_equivalence.py": "3059e8bdf91944d0e8a62b100b16829a64d59bcaa5ccaf87eb7ab12350a07165",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\validate_task3_normalrisk.py": "16ce8affbbc4b04922fa2c281bf7a89de48ce93774474aa4ef3bbff816b2af3e",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\results\\g1r_final_replay_20261113_v1\\completion.json": "1a4c0ec46708c59bcb4b1b8ebe3f977586b967bd776e448410bdf902ffc97008",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\01_gao2026_formula_audit.md": "ea6395625a1f43c65d5867fa2cfff1813671e07924bb03109f4280a7b04bd79b",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\results\\g1r_final_replay_20261113_v1\\cases.json": "29b115dfa691d1ed4f5003ead359774532d422c8887673d6d05c1ac22501d6e9",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\gao2026_p12.txt": "dfe3e7b95aa7bfff18db3cd4f1330b44edc1de9534bb4e9341ddaf49ab971fb8",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\fdi_replay_20261112\\identifiability_audit.md": "69d155742d5128ef2a0859d2031050b0ee7a201898b61df08cd46052ef7866e2",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\authorization_guard.py": "397dbe5e67edbfac91a235ee8ea081d513a252f226b474b166cefe09c9558666",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\cache_aged_confirmation.py": "b55735d5505f7d27795bc142848a36c420f41491d394e052b4586168b2323349",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\ye2025_uvic_authorhosted.pdf": "291e0f272fc1a7d78963e49ac0c08c1337e20d367665111064f4d42a073aa7b6",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\fdi_replay_20261112\\g1_decision.md": "a2a72c8db064ce0d126768e638bbb499eb083fe3ada85bf6001bed23fa3712d3",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\code\\joint_recovery_debug.py": "ffd4c314d25f89fd045e80de1b81c170c0f2dfc0841e0f117ed9fb5c7b664ef6",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\normal_batch_04.csv": "125633eca85001ca30d16795c42dd5d74397e9cf0c6f81bc5f69333b25248c5f",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g7_sod_conditioned_retrospective_detection\\01_core_problem_audit.md": "bfa37ad4e692aa2d8550f3ae603304b365bfae558953e21f0c106874fe3d2acf",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\validate_protocol_joint_delivery.py": "6af9a279bae53add65d5406c9c8df5812b8055f1ee8e99b6b140f9d80e2e5ebe",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\15_e2_deterministic_validation.md": "de72056734236c6ff07eca27940210af4349967d83ebbc9b58e4b8c8106551b4",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\normal_batch_01.csv": "18522dd162c1bdc5850a5f637c5eb09fe8a5dbad379241d90c0a09a0c92c2ed0",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\09_exact_normal_risk_refinement.md": "6a5d409a62c17f1d7762fde19916303bd75ee7deac397ee09673d8d0f69fb6ae",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\gao2026_p13.txt": "7a55904a3640c1437b5626cafd85aad83326719151f9d28a94a1168a48f22ce5",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\21_e2_final_report_20261116.md": "8a87d1076219bbe6ac5a17f097a36b34b2087e42abe03c2771ecc25f27f8ef75",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\write_model_builder_inputs_addendum.py": "ff7ca9d5b5ccaf43d2fd96fdfb6b33fde5cedbbc7ee3ba157fd8db391e0b896e",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\code\\check_text_controls.py": "6da8e2dce53bd641d18816eec0b1378b6c220e633caf3059060129c830f2a9ab",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\code\\reconcile_p0_evidence.py": "99b5c45f9db4fa85ca1835b5c74e88b2bcd1755eaf9fea790aa312511c5eb96c",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\01_literature_gap.md": "1f92c3e996339d63247491c1b16ac95ae09015cf37119acad6851bb9a2801edc",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\code\\audit_deghat_output_channels.py": "827fe94d942a3df78b4c2a618da3d2e84a9f63cc2cbd583d3722721e281ba226",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\e2_statistics.py": "46dce57b41a3acd2c713f2bf5f68b8fd59b85ae8407e252a0397bedbbafe0d08",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\.gitattributes": "491de9abd858b76b66d376134d14d3b2721873d9e06436feb71f9347f254aa03",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e3_runner\\execution_state.py": "4fb16758159d0a5d92b948479b864d87908367038bbf2e20b20f37ec70ecb98f",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\fdi_replay_20261112\\problem_selection.md": "a13c4dc61c76cf9acddeac94857b0d28bb91b821eb5bf1f752b1c98fe7a478b9",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\scenario_builder.py": "a89e47dcedc2ad8fafebed31ac7ee277430627d9f0502be65b46c5284e64e662",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\code\\p0_verified.py": "9c573da0e1b89c57bd2d5e3649f3b9a0f6a6765d0cc3e8aea4c679eb61bf8b05",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\audit_exploration_outputs.py": "dead776a868403d027a77195ec1e7061eab7cf611c78c47cf153392a37cb3fbe",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\attack_batch_06.csv": "feb10e768b4c65de53df712883005127b3d10cbc908bf92a0460b5591e46ec9f",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\11_v2_solver_and_information_contract.md": "7e4753896105a921f4585ba8e7e019b707345790e647be9bde67814ce2365d3b",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\run_carry_cusum_audit.py": "b11995bea3932eb6c75339555cfc59a00227b884fb3b2bda8b81fe19c6dc24ee",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\code\\audit_tracker_comparison.py": "28c5ff9fb552ad14bcca27052fcd6878dd61a201152280d5ae9e567c58c1b094",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\07_full_horizon_propagation_audit.md": "9edafe7ec12cd79a83fdbabdf96642b7cf0ec5c5d6e4ce83900ae9ccb6094bb3",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\gao2026_p02.txt": "f179b0109e610857e57dca952eb24f39e0eabc9bbc056a0b0145f6b7d6fcb770",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\10_protocol_v2.md": "5ca91383a8fdecbd28655089d93bd129214339bda63c983aafd0644752a8b91a",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\integrity_checker.py": "30e49cc0303509eaaf249255c5594a927c7690869ec430dcdb5b1ecf521d66e4",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\attack_batch_06.json": "b7ab199a8fbff69750630416c6438d864c5ee817be830a66048d6fa8e606346a",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\repair_cache_validation_export.py": "26fad313e6e9f4ba889962ae89aeb14a6bd00a4bc50362abab7a2e9810e8276c",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\statistics_audit.json": "d7306f5ee84baa9430c82e2f2725cb962ca657f28050511b5a96f48cea56ae87",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\cache_exploration_plan.json": "eb53209d04fb9c34e7d7001b7b93664114988bc1f950d9287d83210ca62b6401",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\simulation\\yang_full_communication_reference.py": "76a27427a4be1a5e665908f51d75d88ae8a84dbf4937c44819e0026d3ccfe4e3",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\fdi_replay_20261112\\g2_final_report_addendum.md": "f24b11ab22ec031ec2c4bf7ff8eb0c46bc268e2d67da9f19d607cc66709c0396",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\27_e3_postmortem_and_next_decision_draft.md": "49bb3c81392c5de7a720a86b3437e27a685237b2fc919aff4d328bdaeb2d2096",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\fdi_replay_20261112\\code\\g1_sample_size.py": "3c6f7d4bfdf70b26e8d7878a8fe483e698b849a0b15f021b40843048ced0a025",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\audit_e2_independent_coverage.py": "a2925050a470abaa86317c11207291c267e89e682de36550ecf4921d6f86f180",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\18_e2_execution_plan_pending_authorization.md": "9b3455f983e5a6a2bfecd6b4b2958b8dda3e0ba1fd88e47b3ba8dd61c023c33c",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\cache_confirmation_plan.json": "9c03ccf7654c5ab7c7af15e3b96dd69aff489203ea2af16669b778054ba856c4",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\audit_v2_high_precision.py": "ec2babb769c254f44226764f227b82f0bd6714130ba9101e8225d2db344ea79d",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\code\\write_final_audit_reports.py": "4316aaf3598dcd13b7a04cb3d93f6f81ee33c4f28bc7deb29250d4864b564e0f",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\attack_batch_07.json": "8d229ff2f1b94b55f541a3e1c187a41c0bdf3143fb89c059fb445b845991d1bd",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\README.md": "27a2311c731a86e96ed9703723e41dd59493bf683ee9d2de158da4c4a846ca2c",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\ye2025_uvic_authorhosted.txt": "9dd73acf0c7c883477f85d8a0843029d1737a76ed279f3015fcb388f93a92f43",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\audit_carry_outputs.py": "292eab6d2e6e19a5a2a666eb2d1997feb6cb7367ffe3ae90d87762ad7243e2a6",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\fdi_replay_20261112\\g2_final_report.md": "9a75a5e5e27faf898f84802633e7eeb033a2e24f2940c528d1491ca76169ddac",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\failure_cases.json": "e01a08bf433cbb8126218157e70545e9d41a064e7c4bfe026d813856bdbf70a8",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\gao2026_p08.txt": "d07f24beee3f0226e231c16bffb839dc48c193786e1e48da1eb9400d5953047d",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e3_runner\\integrity_checker.py": "36877c481001a0feea875689b48e529e633fb8bfbae176790039d9bb0f9e7e4e",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\config.json": "35a0773a2ef099e7215ff9afd16868ace6b0c52fddb303076a10b3d38530ed7f",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\wang_automatica_2025_arxiv2405.16905v2.pdf": "f5d8f93b3d745a14b6c5cf6a43b40c59a044b2978bdfcc2c3f05ef8965308f34",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\cli.py": "3b23470c210f210d4e9ffda50a6f3ef43522863ce488e5a89048eeca95850253",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\gao2026_verified_metadata.json": "fa3217a4b346ff38f6d25915cd587ba5929b405a5af648aca1004dbda2d066a3",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\01_scope_and_competitors.md": "8150cf2e735c220907d7120052b61621ac80e2cb66b15300a711c967e978000b",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\replay_joint_statistics.py": "3bc93aa9cf0da6c06f9f2b5dc512d33923b492ca60921c41fcbf97a6e72c330c",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\trigger_consistency_probe.py": "b74c2464f9ad92d31008e5275e03e1a3342d33e765fd7fbb5d0e2add09276602",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\e2_status_adapter.py": "348ef208023c698f8e6cb9f6dbe9533d55f0247ca353f53738b1d1f6c5a8a1ab",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\code\\reproduce_audit.py": "d1a985c457fa7a598f9ae6762b473983fdcbd87c8ed444591fa4d469a88e6221",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\attack_batch_04.csv": "4c2fe1be887e1e1bce6f571307877c642ddb5b5020d67eb398b3a4357c091668",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\results\\g1r_final_replay_20261113_v1\\frozen_plan.json": "e70a1f44335d1832e3c1a86013fd27bafedee7f78dd24bfdf2583f69cc0b7221",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\results\\g1r_final_replay_20261113_v1\\metrics.csv": "92d716f951625970fe70805f3caa354e7344dab1683282391352597c4b56f5ee",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\24_e3_preparation_validation.md": "4d8163e7edb3a4284324502372c177617fbbe59dd1d3a650e97206187f065840",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\12_joint_recovery_resource_audit.md": "705ad8b950c63a1532ea5b96495444d93051652da80c6a837ff36081e4694acd",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e2_runner\\batch_runner.py": "22aca8018e87907b99ccfb37a1733ce74344f4824f31c4028edd3e11035dc70f",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\reference_screen.py": "5329080689f55acc76fda3d6d838b879606007d3c7cc5042ab60fe56875b75d7",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\normal_batch_04.json": "d21c146212575d546e34f1ac3aebdbb78cbe51aefcb52a1a0a293f28de3afbeb",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\gao2026_p06.txt": "6ee066e1e6d5d39a39d323d18a972bca4d28317978eb779242f3b6ca2cedcfa7",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\fdi_replay_20261112\\web_review_packet.md": "e90f80d02e3e1c96a7e7e2b21b9ea9eb9106e8dfa2e1abcf5e46e13a96b05c2b",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\ye_formula_visual_check.png": "c0f8547648aee8e2f01532921070a5243892b515395c731a6d14ea12c1ec1688",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\audit_v2_seed_collisions.py": "7697915c5e64faf92cbd157a32b73ce1323ffeff34ae44f5c880858288294324",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\README.md": "882b0ac48e728565532dae59543a2ce73e5d96f92b67194623d800ef2e6c6fd4",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\fdi_replay_20261112\\baseline_equivalence.md": "dbf5f22bc5e3c270a83228b9331ab1c782bb6f5cd515bd8cbd3252718d0b958c",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\28_B0_identifiability_and_recovery_bound_audit.md": "301351eb91364232b013be444a8729c69af06bd6a56e7ea90d361185b48e5520",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\.gitignore": "000cadffd05ced1d469bdb2d2de21d88c3a20555283348f23d4665dc10230096",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\10_final_research_decision.md": "c6d0f7879d057db5f9f260ef2844993b2797cb5a38077dec4174c4f81620df71",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\06_experiment_preregistration.md": "76d11c0095078e583a51e4cb6155af17856663287ee5c33b47dd7a8ea39569f6",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\normal_batch_03.csv": "244c22c4b63504d4cf611c8144fed5f41960e73327078dfc2e1b50faeb3d488d",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\source_environment.json": "e7d44cc4cfb36f1060363c684591c95431f1d412ffc9102a3d90e3edcf1639b7",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e3_runner\\storage.py": "71ff684d5092e3e5ebeb5753adb473445372db649fe7498c7858c69cef5faffb",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\EXECUTIVE_SUMMARY.md": "6fd89653fd270111626e131b4e201663129e5d9a167eca39c14b5a66afaa4164",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g7_sod_conditioned_retrospective_detection\\REVIEW_INDEX.md": "b9a5cfc1a3fd6e6f1b59fd9cc89c2c24d10891188dbc57f228130f7029d2312d",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\code\\g1r_e3_runner\\independent_statistics.py": "c955a9ead8a57cac702d0da86b8059c853ab38adf95bbc4b1286564fdfd3c5d4",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\code\\audit_attack_input_mapping.py": "88450b46663237edf57636383199b479da459ff02de108ea37257af22e619ea0",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\normal_batch_02.json": "d51768ac9378daa81b208fc1eeff0628d26a6fa89aa0835760aafa1bfddcbd35",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\attack_batch_09.json": "1ec85722846546a7ffe69b13c84ed88cc4957f7a7ccc01299cf0bfa02795668a",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper\\reviews\\g5_direct_competitor_audit\\sources\\download_requests.md": "7ff86d99240febf81142bd088d364677eed6aa369fb1492fed9f206ecc67c060",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\engine.py": "05fb3f19d457e103d7c1665ccd1087ea4b27076d6a39b57ac7e0d16cfdb35c97",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\results\\g1r_p0_verified_20261113_v1\\network_components.csv": "daeb20713f60386b32b3d898632484a85d2a04a78c4393b537ec556a671ce618",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\02_mathematical_audit.md": "aa6d084b52327d5113fe70838860542fc48b7b1b834de5f923d6657ad70751f3",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\code\\compare_deghat_outputs.py": "4fbf23c17760d6daa115ada113853dc5f943067757c57ecf897729626e578451",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1_retroactive_recovery\\results\\g1r_p0_verified_20261113_v1\\acceptance.json": "f5ab57715f257615e7bd63034296b3e31cdede8e2409a2a435347679a3ae4431",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e3_run_20261116_001\\normal_batch_00.json": "36481bfeffc918a013e2082706b44d6ff575db7a523cc81a54d776cc4e09369c",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\reviews\\g1r_risk_constrained_recovery\\results\\g1r_e2_run_20261116_001\\attack_batch_05.csv": "6962b74e8e4fe0188a55ef5713210c6e7b279bb6aa4b04500bdd56dd46eed759",
+      "C:\\Users\\zhongxin\\shixidoc\\mypaper_g1r_e2_status_contract\\simulation\\cusum_carry_plan.json": "971f623f5e71191aaf4d7f62448a85ed509d184584cd1c947c79175d4b49ebcb"
+    }
+  },
+  "actions_this_task": {
+    "classification": "FACT",
+    "simulate_calls": 0,
+    "generate_data_calls": 0,
+    "new_seed_trajectories": 0,
+    "new_runs": 0,
+    "calibration_calls": 0,
+    "new_detectors": 0,
+    "git_commits": 0,
+    "git_pushes": 0,
+    "new_files_expected": [
+      "00_reuse_audit.md",
+      "01_execution_order.md",
+      "02_parameter_manifest.json",
+      "03_attack_permission_audit.md",
+      "04_reusable_assets_matrix.md",
+      "05_open_questions.md"
+    ]
+  },
+  "delivery_markdown_sha256": {
+    "00_reuse_audit.md": "b0f0a5eed23dbd813e1f7f41404ca7af26f73dd4c191b5cbbc1e4633dd648608",
+    "01_execution_order.md": "9ce1ab0a6c02872de60307000f66774fbce8242f9199f9cf140a02781f764683",
+    "03_attack_permission_audit.md": "941d1b6cf00cf8844636405fe19a19dd8b78f8feedb76a15c7a6b3130c581855",
+    "04_reusable_assets_matrix.md": "b754f53869bab0faadd6bf8996761b9c97b33d0c1111ea519a01326c50a23866",
+    "05_open_questions.md": "9372d6a83616f379f0ec16637b441a132a213c6e2e2691305c90ccf44e426cce"
+  },
+  "self_hash_excluded": true,
+  "status": "TASK0_AUDIT_ONLY_AWAITING_RESEARCH_OWNER_REVIEW",
+  "historical_code_snapshots": {
+    "engine.py": {
+      "classification": "FACT",
+      "path": "C:\\Users\\zhongxin\\shixidoc\\mypaper\\simulation\\runs\\2026-11-10_five_node_v2\\sources\\engine.py",
+      "sha256": "766b58625775378405db110b4157d41b2700f8622f461383000d31fabd2cd508",
+      "current_file_same_bytes": false,
+      "comparison_scope": "Read original code: trigger, sender-reference update, Replay order, model field construction; no complete cross-version numerical equivalence test this task"
+    },
+    "model.py": {
+      "classification": "FACT",
+      "path": "C:\\Users\\zhongxin\\shixidoc\\mypaper\\simulation\\runs\\2026-11-10_five_node_v2\\sources\\model.py",
+      "sha256": "d471643f273f119a1c934d1a79e83efcde3143244b6a491f65c740cb8a888d5d",
+      "current_file_same_bytes": false,
+      "comparison_scope": "Read original code: trigger, sender-reference update, Replay order, model field construction; no complete cross-version numerical equivalence test this task"
+    }
+  }
+}
