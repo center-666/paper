@@ -1,0 +1,476 @@
+{
+  "classification": "FACT / DERIVED",
+  "task": "Task1 deterministic validation",
+  "baseline_commit": "0b50349bd8dcf00195fae9639ee65260251b23ae",
+  "script_sha256": "960378858b99b13e946143e4b5cf3212edef33ba70edf9ba324365a7e77ec9ec",
+  "parameters": {
+    "model": {
+      "N": 5,
+      "n": 2,
+      "T": 400,
+      "A": [
+        [
+          1.01,
+          0.0
+        ],
+        [
+          0.0,
+          1.01
+        ]
+      ],
+      "Q": [
+        [
+          0.02,
+          0.0
+        ],
+        [
+          0.0,
+          0.02
+        ]
+      ],
+      "P0": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "H_scales": [
+        1.0,
+        0.8,
+        1.2,
+        0.9,
+        1.1
+      ],
+      "R_variances": [
+        0.05,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+      ],
+      "epsilon": 0.08,
+      "send_delta_squared": 0.12,
+      "max_interval": 10,
+      "edges_sender_receiver": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ]
+    },
+    "config_sha256": "c71c687f13a6182f05d878bb0f0d171a36f0ca26afa09f2694b907674f3ac3ec",
+    "historical_source_sha256": {
+      "engine.py": "766b58625775378405db110b4157d41b2700f8622f461383000d31fabd2cd508",
+      "model.py": "d471643f273f119a1c934d1a79e83efcde3143244b6a491f65c740cb8a888d5d",
+      "run_study.py": "e394675504effc2fa59e50cd4649b8528bcc05721334a6fc532be4ac29d6c811"
+    },
+    "Task0_5_manifest_entries_verified": 13,
+    "task1_single_replay_definition": "one true opportunity 0->1; genuine previous raw sender packet; r/s policy remains unfrozen",
+    "historical_multi_replay_window_not_adopted_as_Task1_protocol": {
+      "sender": 0,
+      "receiver": 1,
+      "start": 200,
+      "end_inclusive": 249,
+      "bias": [
+        1.2,
+        -0.8
+      ],
+      "replay_packet_lag": 8,
+      "recovery_steps": 50
+    }
+  },
+  "Task0_5_independent_reaudit": {
+    "status": "PASS",
+    "n": 32,
+    "increased": 11,
+    "decreased": 14,
+    "unchanged": 7,
+    "delay_histogram": {
+      "1": 11,
+      "2": 8,
+      "3": 4,
+      "4": 2,
+      "5": 2,
+      "9": 1,
+      "17": 1,
+      "21": 1,
+      "28": 1,
+      "55": 1
+    },
+    "delay_median": 2.0,
+    "first_replay_histogram": {
+      "200": 6,
+      "201": 11,
+      "202": 5,
+      "203": 3,
+      "204": 4,
+      "205": 1,
+      "206": 1,
+      "208": 1
+    },
+    "second_replay_histogram": {
+      "201": 1,
+      "202": 3,
+      "203": 5,
+      "204": 10,
+      "205": 1,
+      "206": 4,
+      "207": 1,
+      "208": 3,
+      "210": 2,
+      "211": 1,
+      "213": 1
+    },
+    "strictly_before_second": 15,
+    "same_tick_before_second_update": 6,
+    "first_event_before_second_update": 21,
+    "first_cause_counts": {
+      "Threshold-flag-only": 32
+    },
+    "all_event_difference_cause_counts_from_04": {
+      "Threshold-flag-only": 315,
+      "Timeout-flag-only": 7,
+      "Both-flags-changed": 2
+    },
+    "all_flag_flips_including_equal_final_events_from_04": {
+      "threshold_flag_changed": 317,
+      "timeout_flag_changed": 12
+    },
+    "max_state_formula_abs_error": 1.7208456881689926e-15,
+    "max_margin_formula_abs_error": 1.27675647831893e-15,
+    "report_03_conflict": false,
+    "03_missing_columns": "03 contains total event differences and first cause, but not complete cause counts.315/7/2 cannot be derived uniquely from03; read04 separately without changing03.",
+    "historical_data_scope": "All 32 first injections from multi-Replay archive; no assertion of full single-Replay trajectory."
+  },
+  "deterministic_fixture_groups": [
+    {
+      "name": "fixed_mode_block_M_B_and_direct_node_difference",
+      "status": "PASS",
+      "scope": "deterministic algebra fixture, NOT a trajectory or research sample",
+      "mode_combinations": 32,
+      "max_block_error": 1.3877787807814457e-17,
+      "max_direct_pair_error": 1.6653345369377348e-16,
+      "gain_fixture": "k=0 gain algebra only; no Model.build/nominal_gains import; arbitrary states not claimed SoD-reachable"
+    },
+    {
+      "name": "two_fixed_matrix_composition",
+      "status": "PASS",
+      "scope": "matrix associativity; not a simulated path",
+      "max_abs_error": 2.7755575615628914e-17
+    },
+    {
+      "name": "four_reset_cases_raw_aligned_reference_and_clocks",
+      "status": "PASS",
+      "scope": "deterministic algebra fixture, NOT a trajectory or research sample",
+      "cases": [
+        {
+          "Sa": 0,
+          "S0": 0,
+          "raw_difference": [
+            -0.5,
+            0.8999999999999999
+          ],
+          "aligned_difference": [
+            -0.5297090652504001,
+            0.9480110651902
+          ],
+          "reference_difference": [
+            0.1,
+            0.5
+          ],
+          "clock_difference": 1,
+          "max_error": 6.245004513516506e-17
+        },
+        {
+          "Sa": 0,
+          "S0": 1,
+          "raw_difference": [
+            -0.30000000000000004,
+            1.5
+          ],
+          "aligned_difference": [
+            -0.30510100501000004,
+            1.53570703507
+          ],
+          "reference_difference": [
+            0.0,
+            1.1
+          ],
+          "clock_difference": -3,
+          "max_error": 6.938893903907228e-17
+        },
+        {
+          "Sa": 1,
+          "S0": 0,
+          "raw_difference": [
+            -0.5,
+            -0.2
+          ],
+          "aligned_difference": [
+            -0.5246080602404001,
+            -0.18769596987979997
+          ],
+          "reference_difference": [
+            -0.19999999999999998,
+            -0.2
+          ],
+          "clock_difference": 4,
+          "max_error": 5.551115123125783e-17
+        },
+        {
+          "Sa": 1,
+          "S0": 1,
+          "raw_difference": [
+            -0.3,
+            0.4
+          ],
+          "aligned_difference": [
+            -0.3,
+            0.4
+          ],
+          "reference_difference": [
+            -0.3,
+            0.4
+          ],
+          "clock_difference": 0,
+          "max_error": 4.163336342344337e-17
+        }
+      ],
+      "max_abs_error": 6.938893903907228e-17
+    },
+    {
+      "name": "guard_sign_OR_and_boundary_cases",
+      "status": "PASS",
+      "scope": "deterministic algebra fixture, NOT a trajectory or research sample",
+      "cases": 36,
+      "threshold_equality_is_not_send": true
+    },
+    {
+      "name": "general_margin_includes_sender_reference",
+      "status": "PASS",
+      "scope": "deterministic algebra fixture, NOT a trajectory or research sample",
+      "delta_g": -0.07150000000000002,
+      "formula": -0.07150000000000001,
+      "abs_error": 1.3877787807814457e-17
+    },
+    {
+      "name": "state_pollution_cancelled_by_reference_pollution",
+      "status": "PASS",
+      "scope": "deterministic algebra fixture, NOT a trajectory or research sample",
+      "h": [
+        0.2,
+        -0.3
+      ],
+      "b": [
+        0.2,
+        -0.3
+      ],
+      "delta_trigger_vector": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "timeout_masks_threshold_crossing",
+      "status": "PASS",
+      "scope": "deterministic algebra fixture, NOT a trajectory or research sample",
+      "g0": -0.07999999999999999,
+      "ga": 0.040000000000000036,
+      "U0": 1,
+      "Ua": 1,
+      "both_send": true
+    },
+    {
+      "name": "same_threshold_different_timeout_can_split",
+      "status": "PASS",
+      "scope": "deterministic algebra fixture, NOT a trajectory or research sample",
+      "g0": -0.07999999999999999,
+      "ga": -0.07999999999999999,
+      "U0": 0,
+      "Ua": 1
+    },
+    {
+      "name": "mode_split_does_not_force_nonzero_cache_or_estimate",
+      "status": "PASS",
+      "scope": "deterministic algebra fixture, NOT a trajectory or research sample",
+      "hat_clean": [
+        0,
+        0
+      ],
+      "hat_attack": [
+        0,
+        0
+      ],
+      "payloads": [
+        0,
+        0
+      ],
+      "last_send_clean": 16,
+      "last_send_attack": 7,
+      "k": 17,
+      "sigma_clean": 0,
+      "sigma_attack": 1,
+      "actual_sigma_checked": true,
+      "post_aligned_difference": [
+        0.0,
+        0.0
+      ],
+      "conclusion": "clock split alone does not algebraically force value pollution",
+      "reachability": "snapshot only; not proved reachable from the common initial state by one Replay"
+    },
+    {
+      "name": "difference_state_not_closed_without_healthy_baseline",
+      "status": "PASS",
+      "scope": "deterministic algebra fixture, NOT a trajectory or research sample",
+      "same_h": [
+        0.3,
+        0.0
+      ],
+      "same_b_and_gamma": [
+        0,
+        0
+      ],
+      "same_Sa_S0": [
+        1,
+        0
+      ],
+      "two_baseline_reset_differences": [
+        [
+          0.4,
+          0.0
+        ],
+        [
+          0.5,
+          0.0
+        ]
+      ],
+      "reachability": "algebra snapshots, not claimed full-network trajectory"
+    },
+    {
+      "name": "raw_zero_difference_with_unequal_ages",
+      "status": "PASS",
+      "scope": "deterministic algebra fixture, NOT a trajectory or research sample",
+      "raw_difference": [
+        0,
+        0
+      ],
+      "ages": [
+        2,
+        1
+      ],
+      "aligned_difference": [
+        0.003029999999999977,
+        -0.002019999999999994
+      ]
+    },
+    {
+      "name": "pollution_norm_does_not_determine_true_loss_change",
+      "status": "PASS",
+      "scope": "algebra loss snapshots; not MSE expectations or new trajectories",
+      "cases": [
+        {
+          "healthy_error": [
+            -0.1,
+            -0.0
+          ],
+          "pollution": [
+            0.1,
+            0.0
+          ],
+          "loss_change": -0.010000000000000002
+        },
+        {
+          "healthy_error": [
+            0.0,
+            0.0
+          ],
+          "pollution": [
+            0.1,
+            0.0
+          ],
+          "loss_change": 0.010000000000000002
+        },
+        {
+          "healthy_error": [
+            0.1,
+            0.0
+          ],
+          "pollution": [
+            0.1,
+            0.0
+          ],
+          "loss_change": 0.030000000000000006
+        }
+      ]
+    }
+  ],
+  "fixture_group_count": 12,
+  "no_simulation_or_rng_calls_AST": true,
+  "no_new_seeds_trajectories_npz_reads": true,
+  "protected_file_count": 19,
+  "protected_sha256": {
+    "reviews/g1_communication_behavior/task1/evidence/historical_five_node_v2/config.json": "c71c687f13a6182f05d878bb0f0d171a36f0ca26afa09f2694b907674f3ac3ec",
+    "reviews/g1_communication_behavior/task1/evidence/historical_five_node_v2/environment.json": "ed0b08c342cdd20f4443263b986c04fd22130961bd7e7c81764aae2d9375d9fb",
+    "reviews/g1_communication_behavior/task1/evidence/historical_five_node_v2/sources/engine.py": "766b58625775378405db110b4157d41b2700f8622f461383000d31fabd2cd508",
+    "reviews/g1_communication_behavior/task1/evidence/historical_five_node_v2/sources/model.py": "d471643f273f119a1c934d1a79e83efcde3143244b6a491f65c740cb8a888d5d",
+    "reviews/g1_communication_behavior/task1/evidence/historical_five_node_v2/sources/run_study.py": "e394675504effc2fa59e50cd4649b8528bcc05721334a6fc532be4ac29d6c811",
+    "reviews/g1_communication_behavior/task0_5/00_task0_5_final_report.md": "b15cf1bfceba96e8fe756935d904b882ff42594652d3d35076f5952d0725543d",
+    "reviews/g1_communication_behavior/task0_5/01_data_integrity_audit.json": "098b38cb6210ca4d4c80fea0a51fe8bc0291753295f4d8f51eacfe811f4b37a9",
+    "reviews/g1_communication_behavior/task0_5/02_seed_pairing_audit.md": "9d437ede42fea5a5d144b39e3e8e0b18a5b06e6cae4ade8e86492cd730025d9e",
+    "reviews/g1_communication_behavior/task0_5/03_seed_level_metrics.csv": "4dfb225bbd637626f4b16b8403efd70127c3f8591ca5422023fe23158a48c2c7",
+    "reviews/g1_communication_behavior/task0_5/04_event_reconstruction.csv": "6f6648362ff2aa03e55b67ede45185fbe7199046abe2feb10bc6e8306076eed0",
+    "reviews/g1_communication_behavior/task0_5/05_trigger_margin_analysis.csv": "763a65be53c8a4c327638c8aa5790ef2bf01bbba0bd1c95778e12b09703bf7dd",
+    "reviews/g1_communication_behavior/task0_5/06_first_replay_consistency.md": "cabd3682a7e7258d8dee10031ffecb65900fce1c6cfeca5e6da38787aab5b78e",
+    "reviews/g1_communication_behavior/task0_5/SHA256SUMS.txt": "ea312cb924031360fe7456048c620b2047baa5980ff23bf388e0ba5e467e9f49",
+    "reviews/g1_communication_behavior/task0_5/code/analyze_closed_loop_events.py": "dbbd033b2d82bd01d630ac458f728c233ff8fc0a35639a65879a577af8e6f22e",
+    "reviews/g1_communication_behavior/task0_5/figures/01_node1_event_comparison.png": "0ce5c7a09631fb6c78ecc811e054662bb10060f748d1b7215dc72c056d8e5034",
+    "reviews/g1_communication_behavior/task0_5/figures/02_node1_trigger_margin.png": "22afcf7868df1edaaf6c99a570d23a642a9140938a57c8742510256b1635a0f9",
+    "reviews/g1_communication_behavior/task0_5/figures/03_first_divergence_distribution.png": "650881755ce08bbd2082a620879fd5b39deadb03762109afea0b845f9bf0025c",
+    "reviews/g1_communication_behavior/task0_5/figures/04_seed_send_count_difference.png": "5dd2dc124051592f26df2279a2bde0a075a349af4cad6f9ddec45eabc4185a44",
+    "reviews/g1_communication_behavior/task0_5/figures/05_network_event_summary.png": "369202efd77d27ee6548a1fbbaeb508f1f2b94ee3d03c55e9564f599cf1bb3f0"
+  },
+  "protected_unchanged": true,
+  "tracked_diffs_unchanged_during_execution": true,
+  "status": "PASS",
+  "scope": "algebra and saved-data consistency only; not innovation, reachability, stochastic stability or detector performance validation"
+}
