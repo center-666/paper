@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "L": [
+    2,
+    3,
+    4
+  ],
+  "budgets": "0..L-1",
+  "k": "L+1",
+  "task_lengths": "2L+1 and 2L+2",
+  "histories": "all legal subsets of {1,...,L}",
+  "opportunities": "all subsets per profile",
+  "opportunity_sets": 54144,
+  "history_horizon_profiles": 96,
+  "cases_per_L": {
+    "2": 384,
+    "3": 4608,
+    "4": 49152
+  },
+  "oracle": "full attack decision vectors; independent recursive minimax game",
+  "scope": "finite exhaustive verification; not a proof or all parameter values",
+  "targeted_larger": {
+    "status": "PASS",
+    "L": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "B": "0 and L-1",
+    "task_length": "2L+2",
+    "histories": "empty, recent or old saturation (deduplicated)",
+    "opportunities": "representative empty, full, sparse, endpoint and B+1 prefixes/suffixes",
+    "profiles": 24,
+    "opportunity_sets": 144,
+    "oracle": "independent full-block window scan and recent-window dynamic game",
+    "scope": "targeted checks, not full enumeration"
+  }
+}

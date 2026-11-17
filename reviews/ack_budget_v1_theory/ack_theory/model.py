@@ -60,10 +60,22 @@ def frontier(history, length, budget, start, deadline):
             for wait in range(deadline - start + 1)]
 
 
-def safe_wait_boundary(history, length, budget, start, deadline) -> int:
-    """Largest feasible initial wait, clipped to the available task horizon."""
+def safe_wait_boundary(history, length, budget, start, deadline) -> int | None:
+    """Largest safe wait, or None if the persistent-request task is infeasible.
+
+    Domain: integer 1 <= start <= deadline, 0 <= budget < length, and a
+    legal set of historical block ticks all in 1..start-1.
+    """
+    if not isinstance(length, int) or not isinstance(budget, int) or not isinstance(start, int) or not isinstance(deadline, int):
+        raise ValueError("length, budget, start and deadline must be integers")
+    if length < 1 or not 0 <= budget < length or not 1 <= start <= deadline:
+        raise ValueError("invalid task parameters")
+    if any(not isinstance(t, int) or not 1 <= t < start for t in history):
+        raise ValueError("history must contain integer ticks in 1..start-1")
+    if not history_is_legal(history, length, budget, 1, start - 1):
+        raise ValueError("history violates the sliding-window budget")
     candidate = deadline - start - budget + window_count(history, length, deadline)
-    return min(deadline - start, candidate)
+    return None if candidate < 0 else candidate
 
 
 def cost_neutral_boundary(history, length, budget, start, deadline) -> int | None:
