@@ -1,0 +1,525 @@
+{
+  "stage": "P5.7-A only",
+  "checked_local": "2026-11-18T19:00:53.590423+08:00",
+  "baseline_commit": "de807527af90f2040e9402fafedc6287dbababa1",
+  "branch": "ack-v1-p57-weakly-hard-audit",
+  "source_A": {
+    "source_url": "https://people.cs.pitt.edu/~melhem/courses/3530/papers/bernat.pdf",
+    "referring_page": "https://people.cs.pitt.edu/~melhem/courses/3530/list.html",
+    "doi": "10.1109/12.919277",
+    "local_path": "C:\\Users\\zhongxin\\Downloads\\ACK_P57_literature\\Bernat_Burns_Llamosi_2001_Weakly_Hard_Real_Time_Systems.pdf",
+    "bytes": 229696,
+    "sha256": "3efffcb44c2366b987608786cc55e068cf4bc2cf6d8dfb382e4d4dae793667b2",
+    "pages": 14,
+    "pdf_metadata": {
+      "format": "PDF 1.2",
+      "title": "",
+      "author": "",
+      "subject": "",
+      "keywords": "",
+      "creator": "",
+      "producer": "Acrobat Distiller 4.05 for Windows",
+      "creationDate": "D:20020117135336",
+      "modDate": "D:20020117135336-05'00'",
+      "trapped": "",
+      "encryption": null
+    },
+    "http": "200|https://people.cs.pitt.edu/~melhem/courses/3530/papers/bernat.pdf|application/pdf",
+    "retrieved_local": "2026-11-18T18:51:06.785608+08:00",
+    "transfer_method": "Windows curl with default certificate verification; no insecure flag",
+    "first_attempt_error": "Python urllib certificate chain verification failed; no file saved in that attempt"
+  },
+  "source_A_evidence_level": "FULLTEXT",
+  "visual_pages_read": [
+    {
+      "pdf_page": 1,
+      "printed_page": 308
+    },
+    {
+      "pdf_page": 2,
+      "printed_page": 309
+    },
+    {
+      "pdf_page": 3,
+      "printed_page": 310
+    },
+    {
+      "pdf_page": 4,
+      "printed_page": 311
+    },
+    {
+      "pdf_page": 5,
+      "printed_page": 312
+    },
+    {
+      "pdf_page": 6,
+      "printed_page": 313
+    },
+    {
+      "pdf_page": 7,
+      "printed_page": 314
+    },
+    {
+      "pdf_page": 8,
+      "printed_page": 315
+    },
+    {
+      "pdf_page": 9,
+      "printed_page": 316
+    },
+    {
+      "pdf_page": 10,
+      "printed_page": 317
+    },
+    {
+      "pdf_page": 11,
+      "printed_page": 318
+    },
+    {
+      "pdf_page": 12,
+      "printed_page": 319
+    },
+    {
+      "pdf_page": 13,
+      "printed_page": 320
+    },
+    {
+      "pdf_page": 14,
+      "printed_page": 321
+    }
+  ],
+  "extraction_limitation": "Original PDF text layer has incorrect character mapping; all pages read as rendered images; no absence conclusions from keyword search.",
+  "metadata_primary": {
+    "url": "https://eprints.whiterose.ac.uk/id/eprint/6199/",
+    "metadata": [
+      {
+        "name": "eprints.creators_name",
+        "content": "Bernat, G."
+      },
+      {
+        "name": "eprints.creators_name",
+        "content": "Burns, A."
+      },
+      {
+        "name": "eprints.creators_name",
+        "content": "Liamosi, A."
+      },
+      {
+        "name": "eprints.title",
+        "content": "Weakly hard real-time systems"
+      },
+      {
+        "name": "eprints.date",
+        "content": "2001-04"
+      },
+      {
+        "name": "eprints.id_number",
+        "content": "10.1109/12.919277"
+      },
+      {
+        "name": "eprints.publication",
+        "content": "IEEE Transactions on Computers"
+      },
+      {
+        "name": "eprints.volume",
+        "content": "50"
+      },
+      {
+        "name": "eprints.number",
+        "content": "4"
+      },
+      {
+        "name": "eprints.pagerange",
+        "content": "308-321"
+      }
+    ]
+  },
+  "metadata_name_note": "Institutional metadata spells third surname Liamosi; report follows printed paper Llamosi (accented in title page).",
+  "source_B_to_E_status": "PDFs acquired and hashes rechecked; theoretical review remains pending; see 05 manifest.",
+  "claim_mapping": [
+    {
+      "topic": "hard per-slot sliding-window blockage budget",
+      "relation": "EQUIVALENT at binary constraint-language level",
+      "paper_locations": [
+        "p314 Def3,Def5",
+        "p317 Thm3"
+      ],
+      "proof_report_section": "A2"
+    },
+    {
+      "topic": "original ACK transition relation",
+      "relation": "one-way simulation after output projection; not bisimulation under this mapping",
+      "paper_locations": [
+        "p314 Def2,Eq1",
+        "p316 Def9-10"
+      ],
+      "proof_report_section": "A3"
+    },
+    {
+      "topic": "positive combinations of four monotone constraints versus ACK language",
+      "relation": "not equivalent for B>=3,L=B+3 under natural mu=1-beta encoding",
+      "paper_locations": [
+        "p316 Thm1",
+        "p318 Sec3.8"
+      ],
+      "proof_report_section": "A4.2"
+    },
+    {
+      "topic": "p-fragility versus future first-success cost",
+      "relation": "different operations; equal fragility can give different ACK costs",
+      "paper_locations": [
+        "p316 Def11",
+        "p317 example"
+      ],
+      "proof_report_section": "A5"
+    }
+  ],
+  "fixed_arithmetic_checks": [
+    {
+      "B": 2,
+      "L": 5,
+      "k": 5,
+      "tau": 4,
+      "H": [
+        3
+      ],
+      "U": [
+        1,
+        1,
+        1
+      ],
+      "m_star": 2,
+      "s_safe": 1
+    },
+    {
+      "B": 2,
+      "L": 5,
+      "k": 5,
+      "tau": 4,
+      "H": [
+        1
+      ],
+      "U": [
+        1,
+        0,
+        0
+      ],
+      "m_star": 3,
+      "s_safe": 0
+    },
+    {
+      "B": 2,
+      "L": 6,
+      "k": 4,
+      "tau": 3,
+      "H": [
+        1
+      ],
+      "U": [
+        1,
+        1,
+        1
+      ],
+      "m_star": 2,
+      "s_safe": 1
+    },
+    {
+      "B": 2,
+      "L": 6,
+      "k": 4,
+      "tau": 2,
+      "H": [
+        1
+      ],
+      "U": [
+        1,
+        1
+      ],
+      "m_star": 2,
+      "s_safe": 0
+    }
+  ],
+  "protected_files_count": 58,
+  "protected_files": [
+    {
+      "path": "papers/paper2_ack_budget_deadline/README.md",
+      "sha256": "22d32f4f4b17bb05bf38b03c0856866db73acf501d5e8dd72b4ea067989c8e22"
+    },
+    {
+      "path": "papers/paper2_ack_budget_deadline/manuscript/paper.tex",
+      "sha256": "01d0d1df740431e2c7c9442ea3a9804d2a0103ac4150952b2ab57e8de2806acf"
+    },
+    {
+      "path": "papers/paper2_ack_budget_deadline/manuscript/paper_typeset.tex",
+      "sha256": "d4215ff6964e26f0f358203456adb29630d2facd4f3295a8072ff15bb6c82c62"
+    },
+    {
+      "path": "research/current_status.md",
+      "sha256": "f544a66fcd3018b32460a69a701df83c1d14c1515f3c4f9b1785b41cc3f56fab"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/P5.5_CN_final_decision.md",
+      "sha256": "59af457de846096ca17b3f06eb64b9678f9bca5d8e1483b118d0eb6070a2c11a"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/P5.5_CN_formula_novelty_matrix.md",
+      "sha256": "eb6d92a294f1929ff42fb595baff2a72a5a4fb3fe3fc719fead1f50efb22daf7"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/P5.5_CN_mathematical_audit.md",
+      "sha256": "5ff0eef454064aca42dfa3679077a22cb168fec5aa74a968f37bed81e5f46484"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/P5.5_CN_mse_certificate_compatibility.md",
+      "sha256": "05fef221831d2c2d0cea56b99865581f2787f9061a03e1da55d00bd943675783"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/P5.6_A_fixed_deadline_novelty.md",
+      "sha256": "3dbb9338585fcf9006df986dc74f97db217aeb1597c901d0b112297a9131223f"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/P5.6_B_reachability_novelty.md",
+      "sha256": "3c82dfad94f98fce39b739367e70b86df8afafc45740887ec72d07eb8e387c52"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/P5.6_C_gaussian_physical_relevance.md",
+      "sha256": "a0340127d41ec1d14a775c071fd7968eba68d396a04a0816732971bb9833e0b2"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/P5.6_D_theory_experiment_alignment.md",
+      "sha256": "362c54ef9827932d44463e4494a3b3bb72080ec349884c8e2adcb3a1cfd2b2c5"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/P5.6_final_go_no_go.md",
+      "sha256": "f681c9e0d3835f975e65b0499d69aa50284614815c54c1a8355b1052d5d4394e"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p52_reachability/01_fulltext_addendum.md",
+      "sha256": "44d8c78ce120e225dd6decd0756a3eaaf952199e25a185a0562730939b29f94d"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p52_reachability/02_counterexample.md",
+      "sha256": "6236820efb599b1b1c4524dd06faa73e388a1018e0b3fcedc94864483c28566f"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p52_reachability/03_reachable_states_and_proofs.md",
+      "sha256": "8638fa01771d94f3bdd0fb0e993215ac1638604e678d6cad16ef096aa0118fce"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p52_reachability/04_cost_neutral_rule.md",
+      "sha256": "67e911211c2e1bf9a664b57a660cd74ccd75ff366a7cf3218faa9facd2c3d23c"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p52_reachability/05_validation_and_decision.md",
+      "sha256": "3da3b1b8872874d6ae92295a4392c28df30d95f53c6f291118f6853223c0ce61"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p52_reachability/README.md",
+      "sha256": "5a9561fa4a82d055d1f9888796f0591cf0409d421ed18239d4ed51d0fc5ef827"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p52_reachability/code/reachability_audit.py",
+      "sha256": "843597e0968d5b401e7a8dab583c12144053d5cf6660509ad683cfad9795f039"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p52_reachability/code/test_reachability.py",
+      "sha256": "e63745341efb7e5b2446f2c89ad3f47257ec5930c6f5b3df592b6eacd8a807e6"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p52_reachability/code/verify_integrity.py",
+      "sha256": "5e5c8d40a6ce652e336f23d9c0228d986159874e2cfcd27bf134824a9e7b8b42"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p52_reachability/data/environment.json",
+      "sha256": "a7c1259ae7086249c2dd50ec18fb633e59261c789caec36defe35269448b74e4"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p52_reachability/data/initial_validation_issue.json",
+      "sha256": "65425fafdb5d6a1baec3b07aa6c294997f7a1c48b120990591fa2266f65db518"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p52_reachability/data/parameter_summary.csv",
+      "sha256": "71f2febc3c413179dc5478fe27614d40076334e07d38759b9d4e6610a8f6390f"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p52_reachability/data/protected_assets.json",
+      "sha256": "aaa0fb15d45a48c6244902490ae55c83819d709697931bf651fbc4d40672d2f9"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p52_reachability/data/reachable_states.jsonl.gz",
+      "sha256": "11bfe7c08740fcda439a89c49f6fd0265874570897d572345d4469958afc72e8"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p52_reachability/data/reachable_transitions.jsonl.gz",
+      "sha256": "67c1cab074a115a58749211642045b4175560165723360b8aef5e2c8c3e453b3"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p52_reachability/data/regression_results.json",
+      "sha256": "ff4bb7a22b49e43e439f6f4a4a351f07198d646528c974aa6c926c04407cb90c"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p52_reachability/data/shortest_gap_witnesses.json",
+      "sha256": "0c4e780f30c110f2fe828857c1895321497a1fc2369c0ffcd155a2cecda3a168"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p52_reachability/data/summary.json",
+      "sha256": "a10e08c536cc331d6d216fc659f7799eeedb9c0a08d2d8a066c9de824bf81a01"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p52_reachability/integrity_manifest.json",
+      "sha256": "9faf53895f6f3a3978c5772cd04321beafcc68487412d3a467dfb67f53344cd3"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p53_physical_support/01_model_and_scope.md",
+      "sha256": "f1c0dcac0c34ffa44639ff9a6fbd177705a549d07bfe820887e51ffee9a7504f"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p53_physical_support/02_parameterized_measurement_witness.md",
+      "sha256": "c3e7f8282b440fd3d37491956e38d55d8d1f083403e63099fc2d818af2ac990a"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p53_physical_support/03_regular_witness_and_open_neighborhood.md",
+      "sha256": "41f843fd1c84b073892802f71a21e50a11202b525dd7d50df9fc4e2c60808937"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p53_physical_support/04_positive_probability_theorem.md",
+      "sha256": "66a8b86ff83aee1565bfcf16aa9dfff3537fbcd6b2302f2d06c2d438cf5b7d0e"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p53_physical_support/05_adversary_causality_and_budget.md",
+      "sha256": "cdb374ba720107aab08e996feeb1dad9a57d739c444db6c6b5f6a0091c1d6e2e"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p53_physical_support/06_independent_validation.md",
+      "sha256": "4d940db06973b3ac1c7d8d289b3cf325326554096118512b2b40f9836ffa2ce1"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p53_physical_support/07_final_decision.md",
+      "sha256": "2cade9e6584234c70d3c77638638fc0e8dd4cf0d8a1ee268e335ca56564f6d5d"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p53_physical_support/README.md",
+      "sha256": "bd517af4c6a4107bd4430672095ac782572a9a86473cce7490af46560a23f55b"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p53_physical_support/code/construct_physical_witness.py",
+      "sha256": "aeabda338fa6f0db1db9c3a57aa64e9922b6a4d70f6687d62005a41ad7d4c8ac"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p53_physical_support/code/independent_verify_witness.py",
+      "sha256": "d13e0014f29acea16d7b0ac38c7f00aa7c5bb4ef4be7aef97ad7cd391a2cfd1d"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p53_physical_support/code/verify_integrity.py",
+      "sha256": "340a9876ec1e6372e451b943071b1c796f70dc2faf095aea309d6b7c8e47bef2"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p53_physical_support/data/B2_L6_witness.json",
+      "sha256": "d953a79903c3edf3c25d933384d0f7d9283dea0d43498997af36ec6ed436495a"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p53_physical_support/data/baseline_file_manifest.json.gz",
+      "sha256": "21a9f3cab4dfb67375014d85642124e36a4f6a4873025df6291219f20845de84"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p53_physical_support/data/open_neighborhood_summary.json",
+      "sha256": "e46bacda3c2c867b9092dbeec0345856f8a516316d2cc07aad6bdbef541a0694"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p53_physical_support/data/parameterized_witnesses.json",
+      "sha256": "e26ca250a9618b54c484f9813746858f083ec2df2aaf04f32fffd321e871f13d"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p53_physical_support/data/regression_results.json",
+      "sha256": "22c3e42f4226fda0e6004a11f82864f96ce4c1e9d34da0c90e76dadb7591b08e"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p53_physical_support/data/task_source_manifest.json",
+      "sha256": "ee40285d0a97569e7b7de76aa21614bf0476ffea472377ce7ab4804a4c0c3847"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p53_physical_support/data/trigger_margin_summary.json",
+      "sha256": "185523a9aeb7353137d9578140870224deda484640199453921060552129b71a"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p53_physical_support/integrity_manifest.json",
+      "sha256": "6630184174718026e4dbb25db5f8ca3d7af83b418d82784372c443fa1c39c291"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p55_final_novelty/P5.5_final_novelty_audit.md",
+      "sha256": "889ff1c2526b9ac2ca99a94500f747946b1f74a22bfacbd150fe41f125ba1dbf"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p55_final_novelty/P5.5_fulltext_supplement_and_decision.md",
+      "sha256": "f136eccdb364392ebfc9556590040062c28ccc7b249cba377a53c3753719d9a0"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p55_final_novelty/README.md",
+      "sha256": "d2f2f683dcc9c4539c0c95b9bcc73baa7319bf508ed27a4c1e6147b1e97dd168"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p55_final_novelty/search_evidence.json",
+      "sha256": "4c67b94735f7e5e7a08b76b0488e8176d0ddd4565616558ecfbe5ceee414f701"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p55_final_novelty/sources_fulltext_supplement.json",
+      "sha256": "e611c3ad448aac4663a70a461ecb978cc71fff6f291e592d8c8676e78f97fd7d"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p55_final_novelty/supplement_integrity.json",
+      "sha256": "33229135c060decb012527bf48146fe9969f80ddc5defb063742390f536c4407"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p55_final_novelty/verify_supplement.py",
+      "sha256": "73896f03e2ee91413765862986b2e8d265e56023de886b627af73d6c3f2a89a7"
+    }
+  ],
+  "prior_stage0_files_unchanged": [
+    {
+      "path": "reviews/ack_budget_v1_theory/p57_weakly_hard_audit/00_stage0_environment_and_scope.md",
+      "sha256": "52b626777fac7aa1e044b5d47686b67adedfaf9694240a7072c7b1b5d51c6b18"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p57_weakly_hard_audit/01_original_protocol_object_contract.md",
+      "sha256": "6323bcaed7d7a72f5c831954a706fbaa868516e658c58ba0605dcecbb4742685"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p57_weakly_hard_audit/02_literature_acquisition_plan.md",
+      "sha256": "91ecc935c232f20c567517018dacd3ee826f49cfca9b1eec72683eecd08096e8"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p57_weakly_hard_audit/03_stage0_evidence_and_integrity.json",
+      "sha256": "442843f17ac27215aaeed5132a9813510a2dbc63065074f6a0f3d241fce17db6"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p57_weakly_hard_audit/04_download_receipt_and_remaining_gap.md",
+      "sha256": "5e7c4ca60fb7950d2e856f35d8bcffadda86504b547aeb1dbb3d399bcf5c005b"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p57_weakly_hard_audit/05_received_pdf_manifest.json",
+      "sha256": "a974a6a63f672c6c41a4691a34406115292ce0c19afb4e7db3825480f1cfffb4"
+    }
+  ],
+  "new_markdown_hashes": [
+    {
+      "path": "reviews/ack_budget_v1_theory/p57_weakly_hard_audit/06_A_fulltext_acquisition.md",
+      "sha256": "e8dc12b2821f1f36394fef271dee4c6aeffb67169b0c7db73564fadb49cfc877"
+    },
+    {
+      "path": "reviews/ack_budget_v1_theory/p57_weakly_hard_audit/07_A_fulltext_equivalence_audit.md",
+      "sha256": "50f4d8a6c44c91bfb189e3ad973037c62706b51f35bf07002624ab06d1cf4596"
+    }
+  ],
+  "manifest_self_hash_excluded": true,
+  "tracked_changes": [],
+  "staged_changes": [],
+  "third_party_pdf_in_repo": false,
+  "new_scripts_in_repo": false,
+  "monte_carlo_or_experiments_run": false,
+  "old_validators_executed": false,
+  "commit_performed": false,
+  "push_performed": false,
+  "stage_A_decision": "CONDITIONAL GO - limited to keeping candidate for next-paper audit; not publication recommendation",
+  "overall_P57_verdict": "OPEN - B through E have not been reviewed",
+  "stop": "Await research lead review before literature B stage."
+}
