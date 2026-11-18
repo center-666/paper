@@ -1,0 +1,84 @@
+{
+  "status": "PASS",
+  "scope": "fixed matrix and rational identities only",
+  "algebra": {
+    "exact_error_identity_cases": 7,
+    "exact_single_link_benefit_cases": 140,
+    "exact_joint_interaction_cases": 28,
+    "exact_correlated_conditional_moment_cases": 7,
+    "trace_fresh_noise_total": "14/25",
+    "trace_fresh_noise_per_node": "14/125",
+    "generic_sign_example": [
+      "-1",
+      "1"
+    ],
+    "generic_sign_example_is_not_reachable_network_evidence": true
+  },
+  "old_certificate": {
+    "rho_M": 0.9966450885280909,
+    "node_unconditional_certificate": [
+      3391.6770644017533,
+      1783.9935947198687,
+      3391.6770644017524,
+      1783.9935947198705,
+      3391.677064401752
+    ],
+    "frozen_table_max_abs_difference": 4.0175336835091e-07,
+    "certificate_is_not_a_conditional_bound": true,
+    "parameters_unchanged": true
+  },
+  "conditional_initial_example": {
+    "time": 1,
+    "condition": "regular conditional y_i,0=t for all i; t>1/3",
+    "all_initial_attempts_blocked_legal_when_B_at_least_1": true,
+    "exact_total_conditional_MSE_coefficient": "15305933/3097600",
+    "exact_total_conditional_MSE_constant": "17403/17600",
+    "coefficient_float": 4.941223205061983,
+    "constant_float": 0.9888068181818181,
+    "after_first_communication_target_time": 2,
+    "exact_total_conditional_MSE_e2_coefficient": "13982559759996869/3025000000000000",
+    "exact_total_conditional_MSE_e2_constant": "64065337/55000000",
+    "e2_coefficient_float": 4.622333804957643,
+    "e2_constant_float": 1.1648243090909092,
+    "e2_checked_against_full_F_D_shared_covariance": true,
+    "grows_unbounded_with_t": true,
+    "actual_noise_or_state_trajectory_generated": false
+  },
+  "support_tube_margins": {
+    "low_squared_norm_upper": "1/200",
+    "threshold_squared": "1/25",
+    "high_observed_coordinate_lower": "7/20",
+    "examples": [
+      {
+        "T": 1,
+        "epsilon_other_coordinate": "25/1106",
+        "epsilon_float": 0.022603978300180832,
+        "unobserved_residual_less_than_theta_over_4": true
+      },
+      {
+        "T": 6,
+        "epsilon_other_coordinate": "3725290298461914062500000000000000/3086730944711397049677612889400753303",
+        "epsilon_float": 0.0012068723724834465,
+        "unobserved_residual_less_than_theta_over_4": true
+      },
+      {
+        "T": 20,
+        "epsilon_other_coordinate": "31554436208840472216469142611311449186928257404360920190811157226562500000000000000000000000000000000000000000000000000000000/46312273262026386256534004321179209374467601507408374371452255739689762850447186009340392210641227387047753327380100834767022571703",
+        "epsilon_float": 6.813406897629757e-07,
+        "unobserved_residual_less_than_theta_over_4": true
+      },
+      {
+        "T": 41,
+        "epsilon_other_coordinate": "777876909732642713393008006722515530073781521090145891637639576848712354254422930147993102890714202119620823694390310265589505434036254882812500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000/82938556255122615236245377802592495519954257730759299875505659704469995414118656581235501819680281712474633420903914622832520922737847785341336943955727573348502546666846309249460231362171160621671213749820935492846632990098097515789776171436749929434991451992863386899303",
+        "epsilon_float": 9.378954069803909e-12,
+        "unobserved_residual_less_than_theta_over_4": true
+      }
+    ],
+    "finite_horizon_analytic_bounds_not_trajectory_samples": true
+  },
+  "numpy_version": "2.5.4",
+  "python_version": "3.14.9 | packaged by Anaconda, Inc. | (main, Oct 23 2026, 01:07:17) [MSC v.1942 64 bit (AMD64)]",
+  "simulations": 0,
+  "random_samples": 0,
+  "experiment_runs": 0
+}
