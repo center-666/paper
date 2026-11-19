@@ -1,0 +1,495 @@
+{
+  "study": "trusted local scale calibration small paired pilot",
+  "implementation": "v1: received sender estimate minus trusted local reference; v0 invalidated",
+  "frozen_baseline_commit": "9901785cf565e3bcfbe814080b04b997fd661377",
+  "model": {
+    "N": 5,
+    "n": 2,
+    "T": 400,
+    "A": [
+      [
+        1.01,
+        0.0
+      ],
+      [
+        0.0,
+        1.01
+      ]
+    ],
+    "Q": [
+      [
+        0.02,
+        0.0
+      ],
+      [
+        0.0,
+        0.02
+      ]
+    ],
+    "P0": [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0
+      ]
+    ],
+    "H_scales": [
+      1.0,
+      0.8,
+      1.2,
+      0.9,
+      1.1
+    ],
+    "R_variances": [
+      0.05,
+      0.05,
+      0.05,
+      0.05,
+      0.05
+    ],
+    "epsilon": 0.08,
+    "topology": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "full_send_schedule": true
+  },
+  "noise_step": {
+    "start": 200,
+    "Q_and_all_R_scale": 4.0,
+    "initial_P0_not_reset": true
+  },
+  "attack": {
+    "link": "0->1",
+    "times": [
+      200,
+      249
+    ],
+    "bias": [
+      0.12,
+      -0.08
+    ],
+    "per_packet_energy": 0.0208
+  },
+  "scale_window": 30,
+  "episode_alpha_target": 0.05,
+  "seeds": {
+    "cal_c1": [
+      51000,
+      51059,
+      60
+    ],
+    "cal_step": [
+      52000,
+      52059,
+      60
+    ],
+    "val_c1": [
+      61000,
+      61059,
+      60
+    ],
+    "val_step": [
+      62000,
+      62059,
+      60
+    ],
+    "test_attack_c1": [
+      71000,
+      71059,
+      60
+    ],
+    "test_attack_step": [
+      72000,
+      72059,
+      60
+    ]
+  },
+  "thresholds_empirical_95pct_episode_max": {
+    "fixed_covariance": 52.80398801641978,
+    "oracle_covariance": 14.66425665604672,
+    "link_adaptive": 30.219629813654002,
+    "trusted_local": 32.629039158062135
+  },
+  "validation": [
+    {
+      "label": "clean_c1",
+      "n": 60,
+      "methods": {
+        "fixed_covariance": {
+          "threshold": 52.80398801641978,
+          "episode_alarms": 0,
+          "episode_far_or_pd": 0.0,
+          "mean_delay_if_detected": null,
+          "detected_count": 0,
+          "alarm_slots_per_1000": 0.0,
+          "mean_delay_censored_at_50": 50.0
+        },
+        "oracle_covariance": {
+          "threshold": 14.66425665604672,
+          "episode_alarms": 2,
+          "episode_far_or_pd": 0.03333333333333333,
+          "mean_delay_if_detected": 15.5,
+          "detected_count": 2,
+          "alarm_slots_per_1000": 0.6666666666666666,
+          "mean_delay_censored_at_50": 48.85
+        },
+        "link_adaptive": {
+          "threshold": 30.219629813654002,
+          "episode_alarms": 0,
+          "episode_far_or_pd": 0.0,
+          "mean_delay_if_detected": null,
+          "detected_count": 0,
+          "alarm_slots_per_1000": 0.0,
+          "mean_delay_censored_at_50": 50.0
+        },
+        "trusted_local": {
+          "threshold": 32.629039158062135,
+          "episode_alarms": 0,
+          "episode_far_or_pd": 0.0,
+          "mean_delay_if_detected": null,
+          "detected_count": 0,
+          "alarm_slots_per_1000": 0.0,
+          "mean_delay_censored_at_50": 50.0
+        }
+      }
+    },
+    {
+      "label": "clean_c1_to_c4",
+      "n": 60,
+      "methods": {
+        "fixed_covariance": {
+          "threshold": 52.80398801641978,
+          "episode_alarms": 1,
+          "episode_far_or_pd": 0.016666666666666666,
+          "mean_delay_if_detected": 20.0,
+          "detected_count": 1,
+          "alarm_slots_per_1000": 0.3333333333333333,
+          "mean_delay_censored_at_50": 49.5
+        },
+        "oracle_covariance": {
+          "threshold": 14.66425665604672,
+          "episode_alarms": 0,
+          "episode_far_or_pd": 0.0,
+          "mean_delay_if_detected": null,
+          "detected_count": 0,
+          "alarm_slots_per_1000": 0.0,
+          "mean_delay_censored_at_50": 50.0
+        },
+        "link_adaptive": {
+          "threshold": 30.219629813654002,
+          "episode_alarms": 5,
+          "episode_far_or_pd": 0.08333333333333333,
+          "mean_delay_if_detected": 2.2,
+          "detected_count": 5,
+          "alarm_slots_per_1000": 1.6666666666666667,
+          "mean_delay_censored_at_50": 46.016666666666666
+        },
+        "trusted_local": {
+          "threshold": 32.629039158062135,
+          "episode_alarms": 3,
+          "episode_far_or_pd": 0.05,
+          "mean_delay_if_detected": 5.666666666666667,
+          "detected_count": 3,
+          "alarm_slots_per_1000": 1.0,
+          "mean_delay_censored_at_50": 47.78333333333333
+        }
+      }
+    }
+  ],
+  "attacks": [
+    {
+      "label": "attack_c1",
+      "n": 60,
+      "methods": {
+        "fixed_covariance": {
+          "threshold": 52.80398801641978,
+          "episode_alarms": 0,
+          "episode_far_or_pd": 0.0,
+          "mean_delay_if_detected": null,
+          "detected_count": 0,
+          "alarm_slots_per_1000": 0.0,
+          "mean_delay_censored_at_50": 50.0
+        },
+        "oracle_covariance": {
+          "threshold": 14.66425665604672,
+          "episode_alarms": 7,
+          "episode_far_or_pd": 0.11666666666666667,
+          "mean_delay_if_detected": 24.428571428571427,
+          "detected_count": 7,
+          "alarm_slots_per_1000": 3.0,
+          "mean_delay_censored_at_50": 47.016666666666666
+        },
+        "link_adaptive": {
+          "threshold": 30.219629813654002,
+          "episode_alarms": 0,
+          "episode_far_or_pd": 0.0,
+          "mean_delay_if_detected": null,
+          "detected_count": 0,
+          "alarm_slots_per_1000": 0.0,
+          "mean_delay_censored_at_50": 50.0
+        },
+        "trusted_local": {
+          "threshold": 32.629039158062135,
+          "episode_alarms": 0,
+          "episode_far_or_pd": 0.0,
+          "mean_delay_if_detected": null,
+          "detected_count": 0,
+          "alarm_slots_per_1000": 0.0,
+          "mean_delay_censored_at_50": 50.0
+        }
+      }
+    },
+    {
+      "label": "attack_c1_to_c4",
+      "n": 60,
+      "methods": {
+        "fixed_covariance": {
+          "threshold": 52.80398801641978,
+          "episode_alarms": 8,
+          "episode_far_or_pd": 0.13333333333333333,
+          "mean_delay_if_detected": 26.875,
+          "detected_count": 8,
+          "alarm_slots_per_1000": 3.0,
+          "mean_delay_censored_at_50": 46.916666666666664
+        },
+        "oracle_covariance": {
+          "threshold": 14.66425665604672,
+          "episode_alarms": 5,
+          "episode_far_or_pd": 0.08333333333333333,
+          "mean_delay_if_detected": 22.6,
+          "detected_count": 5,
+          "alarm_slots_per_1000": 1.6666666666666667,
+          "mean_delay_censored_at_50": 47.71666666666667
+        },
+        "link_adaptive": {
+          "threshold": 30.219629813654002,
+          "episode_alarms": 8,
+          "episode_far_or_pd": 0.13333333333333333,
+          "mean_delay_if_detected": 3.25,
+          "detected_count": 8,
+          "alarm_slots_per_1000": 2.6666666666666665,
+          "mean_delay_censored_at_50": 43.766666666666666
+        },
+        "trusted_local": {
+          "threshold": 32.629039158062135,
+          "episode_alarms": 4,
+          "episode_far_or_pd": 0.06666666666666667,
+          "mean_delay_if_detected": 4.0,
+          "detected_count": 4,
+          "alarm_slots_per_1000": 1.3333333333333333,
+          "mean_delay_censored_at_50": 46.93333333333333
+        }
+      }
+    }
+  ],
+  "paired_clean_attack_seeds": [
+    {
+      "label": "attack_c1_paired_clean",
+      "n": 60,
+      "methods": {
+        "fixed_covariance": {
+          "threshold": 52.80398801641978,
+          "episode_alarms": 0,
+          "episode_far_or_pd": 0.0,
+          "mean_delay_if_detected": null,
+          "detected_count": 0,
+          "alarm_slots_per_1000": 0.0,
+          "mean_delay_censored_at_50": 50.0
+        },
+        "oracle_covariance": {
+          "threshold": 14.66425665604672,
+          "episode_alarms": 3,
+          "episode_far_or_pd": 0.05,
+          "mean_delay_if_detected": 20.333333333333332,
+          "detected_count": 3,
+          "alarm_slots_per_1000": 1.0,
+          "mean_delay_censored_at_50": 48.516666666666666
+        },
+        "link_adaptive": {
+          "threshold": 30.219629813654002,
+          "episode_alarms": 0,
+          "episode_far_or_pd": 0.0,
+          "mean_delay_if_detected": null,
+          "detected_count": 0,
+          "alarm_slots_per_1000": 0.0,
+          "mean_delay_censored_at_50": 50.0
+        },
+        "trusted_local": {
+          "threshold": 32.629039158062135,
+          "episode_alarms": 0,
+          "episode_far_or_pd": 0.0,
+          "mean_delay_if_detected": null,
+          "detected_count": 0,
+          "alarm_slots_per_1000": 0.0,
+          "mean_delay_censored_at_50": 50.0
+        }
+      }
+    },
+    {
+      "label": "attack_c1_to_c4_paired_clean",
+      "n": 60,
+      "methods": {
+        "fixed_covariance": {
+          "threshold": 52.80398801641978,
+          "episode_alarms": 6,
+          "episode_far_or_pd": 0.1,
+          "mean_delay_if_detected": 21.0,
+          "detected_count": 6,
+          "alarm_slots_per_1000": 2.0,
+          "mean_delay_censored_at_50": 47.1
+        },
+        "oracle_covariance": {
+          "threshold": 14.66425665604672,
+          "episode_alarms": 3,
+          "episode_far_or_pd": 0.05,
+          "mean_delay_if_detected": 8.666666666666666,
+          "detected_count": 3,
+          "alarm_slots_per_1000": 1.0,
+          "mean_delay_censored_at_50": 47.93333333333333
+        },
+        "link_adaptive": {
+          "threshold": 30.219629813654002,
+          "episode_alarms": 8,
+          "episode_far_or_pd": 0.13333333333333333,
+          "mean_delay_if_detected": 3.875,
+          "detected_count": 8,
+          "alarm_slots_per_1000": 2.6666666666666665,
+          "mean_delay_censored_at_50": 43.85
+        },
+        "trusted_local": {
+          "threshold": 32.629039158062135,
+          "episode_alarms": 2,
+          "episode_far_or_pd": 0.03333333333333333,
+          "mean_delay_if_detected": 6.0,
+          "detected_count": 2,
+          "alarm_slots_per_1000": 0.6666666666666666,
+          "mean_delay_censored_at_50": 48.53333333333333
+        }
+      }
+    }
+  ],
+  "paired_scale_changes": {
+    "attack_c1": {
+      "local_scale_max_abs_change": 0.0,
+      "link_clean_mean_220_249": 1.025161252836912,
+      "link_attack_mean_220_249": 1.313745124783197
+    },
+    "attack_c1_to_c4": {
+      "local_scale_max_abs_change": 0.0,
+      "link_clean_mean_220_249": 3.8447908197160046,
+      "link_attack_mean_220_249": 4.184100937443239
+    }
+  },
+  "joint_covariance": {
+    "dimension": 12,
+    "network_block_error": 6.938893903907228e-18,
+    "local_block_error": 0.0,
+    "S0_200": [
+      [
+        0.03006910136437528,
+        0.0
+      ],
+      [
+        0.0,
+        0.03006910136437528
+      ]
+    ],
+    "independence_approximation_200": [
+      [
+        0.09349502780833578,
+        0.0
+      ],
+      [
+        0.0,
+        0.09349502780833578
+      ]
+    ],
+    "Sstep_200": [
+      [
+        0.030069101364375274,
+        0.0
+      ],
+      [
+        0.0,
+        0.030069101364375274
+      ]
+    ],
+    "Sstep_201": [
+      [
+        0.09721765227149481,
+        0.0
+      ],
+      [
+        0.0,
+        0.09721765227149481
+      ]
+    ]
+  },
+  "raw_per_packet_FAR_at_nominal_chi2_df2_95": {
+    "fixed_covariance": 0.43633333333333335,
+    "oracle_covariance": 0.043333333333333335,
+    "link_adaptive": 0.15166666666666667,
+    "trusted_local": 0.12833333333333333
+  },
+  "scale_estimates_during_attack_step": {
+    "link_scale_mean": 4.184100937443239,
+    "trusted_scale_mean": 3.8998922929876887,
+    "link_scale_median": 4.09725384355278,
+    "trusted_scale_median": 3.918341506928046
+  },
+  "scale_estimates_during_attack_c1": {
+    "link_scale_mean": 1.313745124783197,
+    "trusted_scale_mean": 1.0087593066192238,
+    "link_scale_median": 1.2691128575786363,
+    "trusted_scale_median": 0.9895565068955434
+  },
+  "paired_trusted_local_innovation_max_difference": 0.0,
+  "chi2_df2_95_threshold": 5.991464547107982,
+  "interpretation_limits": [
+    "Pilot uses common multiplicative scaling of all Q and R, plus a single abrupt step; it does not support independent Q/R adaptation claims.",
+    "Empirical episode thresholds use 120 independent clean trajectories and are exploratory, not formal false-alarm guarantees.",
+    "Gains remain the frozen healthy nominal gains; no event triggering, watermarks, cache, or estimator modification is used."
+  ]
+}

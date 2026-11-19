@@ -1,0 +1,319 @@
+{
+  "study": "trusted local scale calibration small paired pilot",
+  "frozen_baseline_commit": "9901785cf565e3bcfbe814080b04b997fd661377",
+  "model": {
+    "N": 5,
+    "n": 2,
+    "T": 400,
+    "A": [
+      [
+        1.01,
+        0.0
+      ],
+      [
+        0.0,
+        1.01
+      ]
+    ],
+    "Q": [
+      [
+        0.02,
+        0.0
+      ],
+      [
+        0.0,
+        0.02
+      ]
+    ],
+    "P0": [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0
+      ]
+    ],
+    "H_scales": [
+      1.0,
+      0.8,
+      1.2,
+      0.9,
+      1.1
+    ],
+    "R_variances": [
+      0.05,
+      0.05,
+      0.05,
+      0.05,
+      0.05
+    ],
+    "epsilon": 0.08,
+    "topology": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        0,
+        4
+      ]
+    ],
+    "full_send_schedule": true
+  },
+  "noise_step": {
+    "start": 200,
+    "Q_and_all_R_scale": 4.0,
+    "initial_P0_not_reset": true
+  },
+  "attack": {
+    "link": "0->1",
+    "times": [
+      200,
+      249
+    ],
+    "bias": [
+      0.12,
+      -0.08
+    ],
+    "per_packet_energy": 0.0208
+  },
+  "scale_window": 30,
+  "episode_alpha_target": 0.05,
+  "seeds": {
+    "cal_c1": [
+      51000,
+      51059,
+      60
+    ],
+    "cal_step": [
+      52000,
+      52059,
+      60
+    ],
+    "val_c1": [
+      61000,
+      61059,
+      60
+    ],
+    "val_step": [
+      62000,
+      62059,
+      60
+    ],
+    "test_attack_c1": [
+      71000,
+      71059,
+      60
+    ],
+    "test_attack_step": [
+      72000,
+      72059,
+      60
+    ]
+  },
+  "thresholds_empirical_95pct_episode_max": {
+    "fixed_covariance": 54.39067111537409,
+    "oracle_covariance": 14.744193503831427,
+    "link_adaptive": 31.916046452614335,
+    "trusted_local": 33.93904313845001
+  },
+  "validation": [
+    {
+      "label": "clean_c1",
+      "n": 60,
+      "methods": {
+        "fixed_covariance": {
+          "threshold": 54.39067111537409,
+          "episode_alarms": 0,
+          "episode_far_or_pd": 0.0,
+          "mean_delay_if_detected": null,
+          "detected_count": 0
+        },
+        "oracle_covariance": {
+          "threshold": 14.744193503831427,
+          "episode_alarms": 2,
+          "episode_far_or_pd": 0.03333333333333333,
+          "mean_delay_if_detected": 15.5,
+          "detected_count": 2
+        },
+        "link_adaptive": {
+          "threshold": 31.916046452614335,
+          "episode_alarms": 0,
+          "episode_far_or_pd": 0.0,
+          "mean_delay_if_detected": null,
+          "detected_count": 0
+        },
+        "trusted_local": {
+          "threshold": 33.93904313845001,
+          "episode_alarms": 0,
+          "episode_far_or_pd": 0.0,
+          "mean_delay_if_detected": null,
+          "detected_count": 0
+        }
+      }
+    },
+    {
+      "label": "clean_c1_to_c4",
+      "n": 60,
+      "methods": {
+        "fixed_covariance": {
+          "threshold": 54.39067111537409,
+          "episode_alarms": 0,
+          "episode_far_or_pd": 0.0,
+          "mean_delay_if_detected": null,
+          "detected_count": 0
+        },
+        "oracle_covariance": {
+          "threshold": 14.744193503831427,
+          "episode_alarms": 0,
+          "episode_far_or_pd": 0.0,
+          "mean_delay_if_detected": null,
+          "detected_count": 0
+        },
+        "link_adaptive": {
+          "threshold": 31.916046452614335,
+          "episode_alarms": 6,
+          "episode_far_or_pd": 0.1,
+          "mean_delay_if_detected": 2.3333333333333335,
+          "detected_count": 6
+        },
+        "trusted_local": {
+          "threshold": 33.93904313845001,
+          "episode_alarms": 3,
+          "episode_far_or_pd": 0.05,
+          "mean_delay_if_detected": 5.666666666666667,
+          "detected_count": 3
+        }
+      }
+    }
+  ],
+  "attacks": [
+    {
+      "label": "attack_c1",
+      "n": 60,
+      "methods": {
+        "fixed_covariance": {
+          "threshold": 54.39067111537409,
+          "episode_alarms": 0,
+          "episode_far_or_pd": 0.0,
+          "mean_delay_if_detected": null,
+          "detected_count": 0
+        },
+        "oracle_covariance": {
+          "threshold": 14.744193503831427,
+          "episode_alarms": 6,
+          "episode_far_or_pd": 0.1,
+          "mean_delay_if_detected": 22.5,
+          "detected_count": 6
+        },
+        "link_adaptive": {
+          "threshold": 31.916046452614335,
+          "episode_alarms": 0,
+          "episode_far_or_pd": 0.0,
+          "mean_delay_if_detected": null,
+          "detected_count": 0
+        },
+        "trusted_local": {
+          "threshold": 33.93904313845001,
+          "episode_alarms": 0,
+          "episode_far_or_pd": 0.0,
+          "mean_delay_if_detected": null,
+          "detected_count": 0
+        }
+      }
+    },
+    {
+      "label": "attack_c1_to_c4",
+      "n": 60,
+      "methods": {
+        "fixed_covariance": {
+          "threshold": 54.39067111537409,
+          "episode_alarms": 8,
+          "episode_far_or_pd": 0.13333333333333333,
+          "mean_delay_if_detected": 23.5,
+          "detected_count": 8
+        },
+        "oracle_covariance": {
+          "threshold": 14.744193503831427,
+          "episode_alarms": 3,
+          "episode_far_or_pd": 0.05,
+          "mean_delay_if_detected": 21.0,
+          "detected_count": 3
+        },
+        "link_adaptive": {
+          "threshold": 31.916046452614335,
+          "episode_alarms": 8,
+          "episode_far_or_pd": 0.13333333333333333,
+          "mean_delay_if_detected": 3.0,
+          "detected_count": 8
+        },
+        "trusted_local": {
+          "threshold": 33.93904313845001,
+          "episode_alarms": 3,
+          "episode_far_or_pd": 0.05,
+          "mean_delay_if_detected": 3.0,
+          "detected_count": 3
+        }
+      }
+    }
+  ],
+  "raw_per_packet_FAR_at_nominal_chi2_df2_95": {
+    "fixed_covariance": 0.44366666666666665,
+    "oracle_covariance": 0.044,
+    "link_adaptive": 0.144,
+    "trusted_local": 0.13133333333333333
+  },
+  "scale_estimates_during_attack_step": {
+    "link_scale_mean": 4.174293319505716,
+    "trusted_scale_mean": 3.8998922929876887,
+    "link_scale_median": 4.110879925848472,
+    "trusted_scale_median": 3.918341506928046
+  },
+  "scale_estimates_during_attack_c1": {
+    "link_scale_mean": 1.3013317641911535,
+    "trusted_scale_mean": 1.0087593066192238,
+    "link_scale_median": 1.2687835848692623,
+    "trusted_scale_median": 0.9895565068955434
+  },
+  "paired_trusted_local_innovation_max_difference": 0.0,
+  "chi2_df2_95_threshold": 5.991464547107982,
+  "interpretation_limits": [
+    "Pilot uses common multiplicative scaling of all Q and R, plus a single abrupt step; it does not support independent Q/R adaptation claims.",
+    "Empirical episode thresholds use 120 independent clean trajectories and are exploratory, not formal false-alarm guarantees.",
+    "Gains remain the frozen healthy nominal gains; no event triggering, watermarks, cache, or estimator modification is used."
+  ]
+}
