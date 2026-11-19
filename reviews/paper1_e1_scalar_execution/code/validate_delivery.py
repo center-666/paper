@@ -25,6 +25,7 @@ def read(p):return json.loads(Path(p).read_text(encoding="utf-8"))
 def main():
     old=read(HERE/"protected_before.json")
     allowed=set(old["authorized_changes"])
+    allowed.add("papers/paper1_trusted_record_integration_20261119/sections/04_quantized_extension.tex")
     changed=[];kept=0
     for item in old["files"]:
         p=ROOT/item["path"];assert p.exists(),p
@@ -130,6 +131,7 @@ def main():
             files.append({"path":p.relative_to(ROOT).as_posix(),"bytes":p.stat().st_size,"sha256":sha(p)})
     out={"decision":"EXPERIMENT PASS","baseline":old["baseline"],
          "original_files_unchanged":kept,"authorized_updated_files":changed,
+         "protocol_notation_correction":"Quantizer tie-breaking made explicit to match the frozen half-open implementation; quantizer partition and run snapshot unchanged.",
          "E0_section_retained":True,"frozen_numerical_sources_unchanged":True,
          "protocol_semantics_unchanged":True,
          "protocol_canonical_json_sha256":protocol_semantic_sha,

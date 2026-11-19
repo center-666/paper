@@ -3,10 +3,11 @@
 本节限于\textbf{标量}系统，$A\ne0$，$P_0,R,Z>0$，$Q\ge0$，并固定有限目标$k$。
 量化的是实际预测反馈，前向发送载荷保持连续。取无限格点、无饱和的均匀量化器
 \[
-c_t=Q_\delta(m_t^-),\qquad Q_\delta(m)=2\delta\,\mathrm{round}(m/(2\delta)),
+c_t=Q_\delta(m_t^-),\qquad Q_\delta(m)=2\delta\left\lfloor\frac{m+\delta}{2\delta}\right\rfloor,
 \qquad |c_t-m_t^-|\le\delta,
 \]
-边界采用固定半开格约定。传感器用$y_t-c_t$生成原指数二次随机事件。
+量化格为半开区间$[2j\delta-\delta,2j\delta+\delta)$，$j\in\mathbb Z$，故并列点归属固定。
+传感器用$y_t-c_t$生成原指数二次随机事件。
 发送支路保持原更新；静默时必须使用
 \begin{equation}
 m_t^+=m_t^-+K_0(P_t^-)(c_t-m_t^-),\qquad P_t^+=F_0(P_t^-).
