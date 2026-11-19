@@ -1,0 +1,91 @@
+{
+  "comparison": {
+    "mi_local_minus_original": 0.0037432103901107717,
+    "mi_difference_bootstrap_ci": [
+      -0.003377231263186186,
+      0.013119723351807614
+    ],
+    "mse_local_minus_original": -0.0004211317745713075,
+    "mse_difference_paired_ci": [
+      -0.00048087452537903515,
+      -0.0003640890704845167
+    ]
+  },
+  "config": {
+    "calibration_seeds": [
+      810000,
+      810239
+    ],
+    "test_seeds": [
+      820000,
+      821499
+    ],
+    "target_period": 4,
+    "target_rate": 0.24857142857142858,
+    "thresholds_squared": {
+      "original": 0.81463623046875,
+      "local": 0.83367919921875
+    },
+    "T": 400,
+    "warmup": 50,
+    "private": "sign of node 1 local reference innovation component 0 at t=199",
+    "history": "node 1 public send bits at t=198,199",
+    "outcome": "node 1 send bits at t=200,201,202",
+    "bootstrap_repetitions": 500,
+    "permutation_repetitions": 200,
+    "baseline_engine_agreement_n": 8
+  },
+  "results": {
+    "original": {
+      "rate": 0.2515089523809524,
+      "mse": 0.09363811676012412,
+      "mse_se": 0.00017953223301416982,
+      "mi_bits_plugin": 0.0013719512932579207,
+      "mi_ci_percentile": [
+        0.001489326194058354,
+        0.010484052639931555
+      ],
+      "permutation_null_mean": 0.004256756209751742,
+      "secret_positive_rate": 0.5233333333333333,
+      "threshold_fraction": 0.21917942857142858,
+      "timeout_fraction": 0.03682285714285714,
+      "overlap_fraction": 0.0044933333333333336,
+      "send_fraction": 0.2515089523809524,
+      "sample_n": 1500
+    },
+    "local": {
+      "rate": 0.25132533333333335,
+      "mse": 0.09321698498555281,
+      "mse_se": 0.0001770754624454041,
+      "mi_bits_plugin": 0.005115161683368692,
+      "mi_ci_percentile": [
+        0.004320768241100222,
+        0.016906296680918052
+      ],
+      "permutation_null_mean": 0.004745617450505324,
+      "secret_positive_rate": 0.5233333333333333,
+      "threshold_fraction": 0.22050285714285714,
+      "timeout_fraction": 0.03544838095238095,
+      "overlap_fraction": 0.004625904761904762,
+      "send_fraction": 0.25132533333333335,
+      "sample_n": 1500
+    },
+    "periodic": {
+      "rate": 0.24857142857142858,
+      "mse": 0.09085173136820644,
+      "mse_se": 0.00015603627081885123,
+      "mi_bits_plugin": 0.0,
+      "mi_ci_percentile": [
+        0.0,
+        0.0
+      ],
+      "permutation_null_mean": 0.0,
+      "secret_positive_rate": 0.5233333333333333,
+      "threshold_fraction": 0.0,
+      "timeout_fraction": 0.0,
+      "overlap_fraction": 0.0,
+      "send_fraction": 0.24857142857142858,
+      "sample_n": 1500
+    }
+  }
+}
