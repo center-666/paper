@@ -1,0 +1,70 @@
+{
+  "status": "passed_deterministic_replay",
+  "source": "E:\\硕士毕业论文\\第二篇小论文\\韧性恢复\\latex_copyedit_20261019",
+  "rows": 16,
+  "budget_rows": 10,
+  "residuals": {
+    "constants": 0.0,
+    "rows": 0.0,
+    "budgets": 0.0,
+    "mass": 4.440892098500626e-16,
+    "witness": 4.440892098500626e-16,
+    "damage_identity": 2.8189256484623115e-17
+  },
+  "cases": {
+    "S": {
+      "C_pm": 3.6636887699593768,
+      "L_v": 0.032185030926132265,
+      "kappa": 1.0,
+      "quadrature": {
+        "order_per_dimension": 40,
+        "quadrature_points": 1600,
+        "silence_probability_quadrature": 0.3721319775635088,
+        "silence_probability_formula": 0.3721319775635088,
+        "silence_probability_abs_error": 0.0,
+        "silent_mean_error_2norm": 3.925231146709438e-17,
+        "silent_covariance_error_fro": 4.998171544788447e-16
+      },
+      "lower_at_b_0_1": {
+        "b": 0.1,
+        "J": 0.0003218503092612949,
+        "tv": 6.878619409346389e-05,
+        "upper": 0.03663688769959377
+      }
+    },
+    "U": {
+      "C_pm": 3.511111006815558,
+      "L_v": 0.05737965755257867,
+      "kappa": 1.0,
+      "quadrature": {
+        "order_per_dimension": 40,
+        "quadrature_points": 1600,
+        "silence_probability_quadrature": 0.3721319775635088,
+        "silence_probability_formula": 0.3721319775635088,
+        "silence_probability_abs_error": 0.0,
+        "silent_mean_error_2norm": 3.925231146709438e-17,
+        "silent_covariance_error_fro": 4.998171544788447e-16
+      },
+      "lower_at_b_0_1": {
+        "b": 0.1,
+        "J": 0.0005737965755258146,
+        "tv": 0.00017226136589917245,
+        "upper": 0.035111110068155586
+      }
+    }
+  },
+  "unchanged_files_sha256": {
+    "theory.tex": "a71b4ff8c16996182703294fea803dbe2d197fd7b1daa6bd117b6a20531dbc7c",
+    "vector_proof.tex": "29a8f51b03eda871b9269a5e3afed09e1ca7f3510baa24d4cf5ec9e5363682e5",
+    "vector_core.py": "749f40185dda2a65a20c741ce7ad3b98dbcfd5fe9dd10019719c11afc70e67d4",
+    "experiments.py": "cf113e17690663c6bfc3cbcaa21ff7589bb293fa96569648c53c11bc3ec7c814",
+    "physical_check.py": "d12b91eba72ea00ec5fe1d26c666ae62a014a0dcae196528cb84059640b143b1",
+    "vector_data/results.json": "e5093253de52420bbac375c76ee77468cf394b7cf9ac630d7c0a911cc668fec0",
+    "vector_data/physical_check.json": "fb9e5d8abf1a7563662f39f699caae161500606dcb4fabcf201a48204727da75"
+  },
+  "limitations": [
+    "Existing algorithms were replayed; this is not an independent implementation.",
+    "No Monte Carlo rerun and no continuous-payload joint-TV integration.",
+    "Floating point, not interval arithmetic or formal proof verification."
+  ]
+}

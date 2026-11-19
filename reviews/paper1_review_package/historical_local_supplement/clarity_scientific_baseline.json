@@ -1,0 +1,244 @@
+{
+  "date": "2026-10-20",
+  "source": "latex_neighbor_fulltext_20261020",
+  "edited_sources": {
+    "conclusion.tex": {
+      "display_math": [],
+      "declarations": [],
+      "labels": []
+    },
+    "introduction.tex": {
+      "display_math": [],
+      "declarations": [],
+      "labels": [
+        "sec:introduction"
+      ]
+    },
+    "main_joint_kernel.tex": {
+      "display_math": [
+        "\\begin{equation}\n \\begin{aligned}\n \\mathcal K_{h,d}(\\{\\bot\\})&=\\int\\phi_{S'_h}(e)g(e+d)\\,de,\\\\\n \\mathcal K_{h,d}(de)&=\\phi_{S'_h}(e)[1-g(e+d)]\\,de,\\\\\n F_h(t)(dz,d\\xi)&=f_h(z-tv)\\,dz\\,\\mathcal K_{h,-tu_h}(d\\xi).\n \\end{aligned}\n \\label{eq:main-joint-kernel}\n\\end{equation}",
+        "\\begin{equation}\n \\begin{aligned}\n \\|F_h''(t)\\|_{\\rm var}\n &\\le \\|\\partial_v^2 f_h\\|_1\n +4\\sqrt{a_h/\\mathrm e}\\|\\partial_v f_h\\|_1\n +2p_ha_h\\\\\n &\\le B_h<\\infty.\n \\end{aligned}\n \\label{eq:main-kernel-smooth}\n\\end{equation}",
+        "\\begin{equation}\n \\begin{aligned}\n Q_h^\\eta-F_h(0)\n &=\\frac12\\int_0^\\eta(\\eta-t)\n [F_h''(t)+F_h''(-t)]\\,dt,\\\\\n \\|Q_h^\\eta-F_h(0)\\|_{\\rm var}&\\le \\tfrac12B_h\\eta^2.\n \\end{aligned}\n \\label{eq:main-kernel-taylor}\n\\end{equation}"
+      ],
+      "declarations": [],
+      "labels": [
+        "eq:main-joint-kernel",
+        "eq:main-kernel-smooth",
+        "eq:main-kernel-taylor"
+      ]
+    },
+    "numerical.tex": {
+      "display_math": [
+        "\\begin{equation}\n A_{\\rm S}=\\begin{bmatrix}0.82&0.18\\\\-0.10&0.72\\end{bmatrix},\\qquad\n A_{\\rm U}=\\begin{bmatrix}1.04&0.12\\\\0.03&0.91\\end{bmatrix}.\n\\end{equation}",
+        "\\begin{equation}\n \\begin{gathered}\n P_0=\\begin{bmatrix}0.8&0.12\\\\0.12&0.6\\end{bmatrix},\\quad\n Q=\\begin{bmatrix}0.05&0.01\\\\0.01&0.04\\end{bmatrix},\\\\\n R=\\begin{bmatrix}0.2&0.03\\\\0.03&0.3\\end{bmatrix},\\quad\n Z=\\begin{bmatrix}2&0.25\\\\0.25&1.5\\end{bmatrix}.\n\\end{gathered}\n \\label{eq:2d-parameters}\n\\end{equation}",
+        "\\[\\min\\{C_{\\rm peak}b^2,C_{\\rm record}\\varepsilon\\}.\\]"
+      ],
+      "declarations": [],
+      "labels": [
+        "sec:numerical",
+        "fig:vector-budget",
+        "eq:2d-parameters"
+      ]
+    },
+    "paper.tex": {
+      "display_math": [],
+      "declarations": [],
+      "labels": []
+    },
+    "record_condition_numerical.tex": {
+      "display_math": [],
+      "declarations": [],
+      "labels": [
+        "sec:record-ablation"
+      ]
+    },
+    "record_design.tex": {
+      "display_math": [
+        "\\begin{equation}\n \\begin{gathered}\n \\Delta_{\\rm last}=0,\\quad J_1=c_*b^2+O(b^4),\\\\\n c_*\\approx0.00049907284045>0.\n \\end{gathered}\n \\label{eq:last-counterexample}\n\\end{equation}"
+      ],
+      "declarations": [
+        "\\begin{proposition}[当拍截止记录的局限]\n\\label{prop:deletion}\n在主定理的任意固定 $n$ 维模型下，若只约束截至目标时刻的完整日志 $H_k$，\n则充分小的 $b>0$ 时仍存在满足峰值约束的因果攻击，使 $H_k$ 与无攻击运行同律，\n同时产生 $\\Theta(b^2)$ 的正损伤。\n\\end{proposition}",
+        "\\begin{proposition}[末事件位的标量反例]\n\\label{prop:last-bit}\n取标量模型 $A=1$、$P_0=4/5$、$Q=2$、$R=1/5$、$Z=2$ 及目标时刻 $k=1$。\n充分小的 $b>0$ 下存在满足峰值约束的因果策略，使\n\\begin{equation}\n \\begin{gathered}\n \\Delta_{\\rm last}=0,\\quad J_1=c_*b^2+O(b^4),\\\\\n c_*\\approx0.00049907284045>0.\n \\end{gathered}\n \\label{eq:last-counterexample}\n\\end{equation}\n\\end{proposition}"
+      ],
+      "labels": [
+        "sec:records",
+        "prop:deletion",
+        "prop:last-bit",
+        "eq:last-counterexample"
+      ]
+    },
+    "theory.tex": {
+      "display_math": [
+        "\\begin{equation}\n x_{t+1}=Ax_t+w_t,\\qquad y_t=x_t+v_t\\in\\R^n.\n \\label{eq:model}\n\\end{equation}",
+        "\\begin{equation}\n \\gamma_t=0\\ \\Longleftrightarrow\\ U_t\\le g(y_t-m_t^-),\\quad\n g(z)=\\exp(-z^\\top Zz/2).\n \\label{eq:trigger}\n\\end{equation}",
+        "\\begin{equation}\n \\widetilde y_t=y_t+a_t,\\qquad \\|a_t\\|_2\\le b.\n \\label{eq:peak}\n\\end{equation}",
+        "\\begin{equation}\n \\begin{aligned}\n K_i(P)&=P(P+R_i)^{-1},\\\\\n F_i(P)&=P-P(P+R_i)^{-1}P\\\\\n       &=(P^{-1}+R_i^{-1})^{-1},\\quad i\\in\\{0,1\\}.\n \\end{aligned}\n \\label{eq:gains}\n\\end{equation}",
+        "\\begin{equation}\n \\begin{aligned}\n m_t^+&=m_t^-+\\gamma_tK_1(P_t^-)(\\widetilde y_t-m_t^-),\\\\\n P_t^+&=F_{\\gamma_t}(P_t^-),\\\\\n m_{t+1}^-&=Am_t^+,\\quad P_{t+1}^-=AP_t^+A^\\top+Q,\n \\end{aligned}\n \\label{eq:receiver}\n\\end{equation}",
+        "\\begin{equation}\n \\begin{aligned}\n \\mathcal G_t^-&=\\sigma(S,\\gamma_{0:t-1},Y_{0:t-1}^{\\rm true}),\\\\\n \\mathcal G_t^+&=\\mathcal G_t^-\\vee\\sigma(\\gamma_t,Y_t^{\\rm true}).\n \\end{aligned}\n \\label{eq:information}\n\\end{equation}",
+        "\\begin{equation}\n J_k(\\pi)=\\E_\\pi\\|x_k-m_k^+\\|_2^2-\n             \\E_0\\|x_k-m_k^+\\|_2^2.\n \\label{eq:damage}\n\\end{equation}",
+        "\\begin{equation}\n \\begin{aligned}\n R_{\\rm full}&=H_{k+1},\\\\\n R_{\\rm bits}&=\\gamma_{0:k+1},\\\\\n R_{\\rm marked}&=(P_k^+,\\gamma_{k+1}).\n \\end{aligned}\n \\label{eq:records}\n\\end{equation}",
+        "\\begin{equation}\n \\begin{aligned}\n \\Delta_j(\\pi)&=\\TV(\\Law_\\pi(R_j),\\Law_0(R_j)),\\\\\n V_j(b,\\varepsilon)&=\\sup_{\\pi:\\,\\|a_t\\|_2\\le b,\\,\\Delta_j(\\pi)\\le\\varepsilon}J_k(\\pi).\n \\end{aligned}\n \\label{eq:value}\n\\end{equation}",
+        "\\begin{equation}\n \\begin{aligned}\n D_t&=(I-K_{\\gamma_t}(P_t^-))d_t-\\gamma_t K_1(P_t^-)a_t,\\\\\n d_{t+1}&=AD_t,\\quad d_0=0,\\\\\n J_k(\\pi)&=\\E_\\pi\\|D_k\\|_2^2+\n \\E_\\pi\\operatorname{tr}P_k^+-\\E_0\\operatorname{tr}P_k^+.\n \\end{aligned}\n \\label{eq:decomposition}\n\\end{equation}",
+        "\\begin{equation}\n c\\min\\{b^2,\\varepsilon\\}\\le V_j(b,\\varepsilon)\n \\le C\\min\\{b^2,\\varepsilon\\}.\n \\label{eq:main}\n\\end{equation}",
+        "\\begin{equation}\n \\begin{aligned}\n \\alpha_t&=\\max_{P,i}\\|I-K_i(P)\\|_2,\\quad\n \\beta_t=\\max_P\\|K_1(P)\\|_2,\\\\\n r_0&=\\beta_0,\\quad r_t=\\alpha_t\\|A\\|_2r_{t-1}+\\beta_t,\\\\\n \\ell_0&=0,\\quad \\ell_t=\\|A\\|_2r_{t-1}\\quad(t\\ge1).\n \\end{aligned}\n \\label{eq:radii}\n\\end{equation}",
+        "\\begin{equation}\n \\Pr_\\pi(\\gamma_t=0\\mid h)\n =s_h\\E_\\pi[e^{-d_t^\\top W_hd_t/2}\\mid h].\n \\label{eq:prefix-silence}\n\\end{equation}",
+        "\\begin{equation}\n \\TV(\\Law_\\pi(\\gamma_{0:k}),\\Law_0(\\gamma_{0:k}))\n \\le\\frac{\\|Z\\|_2b^2}{2}\\sum_{t=1}^k\\ell_t^2.\n \\label{eq:prefix-tv}\n\\end{equation}",
+        "\\begin{equation}\n J_k\\le C_{\\rm peak}b^2,\\qquad\n C_{\\rm peak}=r_k^2+\\frac{\\Omega_k\\|Z\\|_2}{2}\\sum_{t=1}^k\\ell_t^2.\n \\label{eq:peak-bound}\n\\end{equation}",
+        "\\begin{equation}\n \\begin{aligned}\n \\Sigma(P)&=APA^\\top+Q+R,\\\\\n s(P)&=\\det(I+Z^{1/2}\\Sigma(P)Z^{1/2})^{-1/2},\\\\\n w(P)&=s(P)^{-1},\\\\\n H(P)&=\\tfrac12 A^\\top[Z^{-1}+\\Sigma(P)]^{-1}A.\n \\end{aligned}\n \\label{eq:witness-functions}\n\\end{equation}",
+        "\\begin{equation}\n \\begin{aligned}\n \\E_\\pi[Y\\mid\\mathcal G_k^+]&=s(P)e^{-D^\\top H(P)D},\\\\\n \\E_0[w(P)Y]&=1,\\quad\n \\E_\\pi[w(P)Y]=\\E_\\pi e^{-D^\\top H(P)D}.\n \\end{aligned}\n \\label{eq:witness}\n\\end{equation}",
+        "\\begin{equation}\n \\begin{aligned}\n h_*&=\\min_{P\\in\\mathcal P_k^+}\\lambda_{\\min}(H(P)),\\quad\n M=\\max_{P\\in\\mathcal P_k^+}w(P),\\\\\n B_*&=r_kb_{\\rm ref},\\quad q=\\frac{1-e^{-h_*B_*^2}}{B_*^2}>0.\n \\end{aligned}\n \\label{eq:witness-constants}\n\\end{equation}",
+        "\\begin{equation}\n \\begin{aligned}\n q\\E_\\pi\\|D\\|_2^2&\\le\\E_0[w(P)Y]-\\E_\\pi[w(P)Y]\\\\\n &\\le M\\Delta_{\\rm marked}(\\pi),\\\\\n J_k(\\pi)&\\le C_{\\rm record}\\Delta_{\\rm marked}(\\pi),\\\\\n C_{\\rm record}&=M/q+\\Omega_k.\n \\end{aligned}\n \\label{eq:record-bound}\n\\end{equation}",
+        "\\begin{equation}\n \\kappa=\\bigl[\\max\\{1,\\max_h\\|AK_hv\\|_2\\}\\bigr]^{-1},\\quad \\eta=\\kappa b.\n \\label{eq:kappa}\n\\end{equation}",
+        "\\begin{equation}\n J_k=L_v\\eta^2,\\qquad L_v=\\sum_hw_hp_h\\|K_hv\\|_2^2>0.\n \\label{eq:lower-damage}\n\\end{equation}",
+        "\\begin{equation}\n \\begin{aligned}\n \\Delta_{\\rm full}&\\le\\varepsilon,\\\\\n J_k&=L_v\\min\\{\\kappa^2b^2,\\varepsilon/C_\\pm\\}.\n \\end{aligned}\n \\label{eq:attainable}\n\\end{equation}"
+      ],
+      "declarations": [
+        "\\begin{lemma}[条件误差分解]\n\\label{lem:gaussian}\n对任意允许策略，$x_t\\mid\\mathcal G_t^\\pm$ 为高斯分布，均值记为 $\\mu_t^\\pm$，\n协方差为 $P_t^\\pm$。令 $d_t=\\mu_t^--m_t^-$、$D_t=\\mu_t^+-m_t^+$，则\n\\begin{equation}\n \\begin{aligned}\n D_t&=(I-K_{\\gamma_t}(P_t^-))d_t-\\gamma_t K_1(P_t^-)a_t,\\\\\n d_{t+1}&=AD_t,\\quad d_0=0,\\\\\n J_k(\\pi)&=\\E_\\pi\\|D_k\\|_2^2+\n \\E_\\pi\\operatorname{tr}P_k^+-\\E_0\\operatorname{tr}P_k^+.\n \\end{aligned}\n \\label{eq:decomposition}\n\\end{equation}\n\\end{lemma}",
+        "\\begin{theorem}[任意固定维数下的可达到损伤阶数]\n\\label{thm:main}\n固定式\\eqref{eq:model}--\\eqref{eq:information}的模型、有限 $k$ 及参考峰值\n$b_{\\rm ref}>0$。存在 $0<c\\le C<\\infty$，使所有 $0<b\\le b_{\\rm ref}$、\n$0\\le\\varepsilon\\le1$ 及 $j\\in\\{\\mathrm{full},\\mathrm{bits},\\mathrm{marked}\\}$ 满足\n\\begin{equation}\n c\\min\\{b^2,\\varepsilon\\}\\le V_j(b,\\varepsilon)\n \\le C\\min\\{b^2,\\varepsilon\\}.\n \\label{eq:main}\n\\end{equation}\n特别地，$V_j(b,0)=0$。常数可依赖维数、模型、$k$ 和 $b_{\\rm ref}$，\n但不依赖变化的 $b,\\varepsilon$。\n\\end{theorem}",
+        "\\begin{remark}[维数、观测条件和时间范围]\n式\\eqref{eq:main}对任意固定 $n$ 给出同一阶数结构，其中的常数依赖具体维数与模型。\n可逆性保证下一时刻事件所对应的二次型在全部偏差方向上正定。\n若 $A$ 奇异，则对非零 $v\\in\\ker A$ 有 $v^\\top H(P)v=0$；\n沿该方向的当前偏差不改变下一时刻预测均值，因而不能由下一静默概率约束。\n这是单步事件感知全部偏差方向所需的结构条件。\n若使用部分测量 $y=Cx+v$，对应二次型含有 $CA$，\n仅凭 $(A,C)$ 可观不能保证单步二次型正定。\n因此，本节结论适用于全状态含噪测量及固定有限时刻；\n部分测量情形与时间一致界需要另行分析。\n有限时刻分析允许 $A$ 不稳定。\n\\end{remark}"
+      ],
+      "labels": [
+        "sec:model",
+        "eq:model",
+        "eq:trigger",
+        "eq:peak",
+        "eq:gains",
+        "eq:receiver",
+        "eq:information",
+        "eq:damage",
+        "eq:records",
+        "eq:value",
+        "sec:bounds",
+        "lem:gaussian",
+        "eq:decomposition",
+        "thm:main",
+        "eq:main",
+        "eq:radii",
+        "eq:prefix-silence",
+        "eq:prefix-tv",
+        "eq:peak-bound",
+        "eq:witness-functions",
+        "eq:witness",
+        "eq:witness-constants",
+        "eq:record-bound",
+        "eq:kappa",
+        "eq:lower-damage",
+        "eq:attainable"
+      ]
+    }
+  },
+  "unchanged_files": {
+    "assemble_references.py": "254a6ac2106e93aab5298ba0663e64869bdb8768529e5f429ddbffa0fbc657ee",
+    "build.ps1": "6f7c13bfcab2706064bfc19448faf71e3450c46579f88cc2e36a64dfd3668ef5",
+    "build.py": "aa01bd918a51b3bef93bd6939f5fff7a921ef12eed773a2843524b485ba5ce17",
+    "copyedit_baseline.json": "f78ece4e42501fe9df3bd904386d23116cf1f669c4e728c107ed25f8868b6eb5",
+    "core_input_manifest.json": "76abf384f6485fc29ab8408f076414ee261fa627ea49868a1ce202b12f11c259",
+    "damage_figure.tex": "d95c3548d148ffe62d836703d4ee8e8416b781563739ca4b4da2743e4d3c6edc",
+    "damage_table_float.tex": "a493dcd86065cc5149c0e92ad1ca126947ccb0d814cb2f5dbaf6b12c47bd2792",
+    "experiments.py": "cf113e17690663c6bfc3cbcaa21ff7589bb293fa96569648c53c11bc3ec7c814",
+    "figures/fig01_protocol.tex": "a6a1d93830630672c464eca7bcb2b29d516eb374dc1e2bc2bf633ea850d8bb55",
+    "figures/graphical_summary.tex": "4709a45ea7b1a63299b54710f531f3e44d34f0b88636de63c1fb48457d7452f9",
+    "finite_sample.tex": "04cf80d174d51c39458fc9662c7976a95a3ad497935869b0d07dee0e36dc4687",
+    "frozen_scalar_sha256.json": "ec8a75dab515d60705f943cd763227b5d9a8659a1c6b5f9f46b95ad05d844c29",
+    "fulltext_review/library_registration.json": "d7cdf089ddb4d6bbd38832f865c6d30194db8e3b1014a92202e249653df0d70c",
+    "fulltext_review/novelty_gate.md": "cbd79bec1194946f91ba480c49ba9d46af1c3e6d686cbeb3de20a40422b8f1a1",
+    "fulltext_review/shang_review.md": "411f7a2a2eb60bdd5f65a432d40dd82442ada3abd6b18a2563691c6905e99989",
+    "fulltext_review/song_review.md": "22eb0e730ef2d71df456dc99ec877886600071550f218019e7b46b1ab30b93c2",
+    "fulltext_review/source_manifest.json": "659948b0fe1ca002bfdc29a60e0cfca2f683acd1a1522fc2cb00806d30caa273",
+    "graphical.tex": "f752818db093f32fa886409cea9b1ed3572ed111839b0dee8875ff5eec656f16",
+    "graphical_abstract.tex": "f88a15993fddf0364852ccf6231fd35e915ba1cbaea0ee2434652e712948e7d6",
+    "label_refinement.tex": "04899877350e6c268817baecf70218675db3a4a95cddcaffdcc7df71766d8e62",
+    "neighbor_input_manifest.json": "a961a9602f937af1bb3761ef4a90e828acd26f03b56f126903aeac0a360bf207",
+    "paper-style.tex": "9cf99e3d8a75321fa05f3550a75c1e8f22d162b1a824473bfa97d26397f7b943",
+    "physical_check.py": "d12b91eba72ea00ec5fe1d26c666ae62a014a0dcae196528cb84059640b143b1",
+    "plot_review.py": "e727a39baa9b8081bc2cb3aefd9ad2a1426b6b8f1ec499340d68da5ed77074c7",
+    "previous_audit_core_release.py": "cfab6837b6aae929cf8bb69f6033b8b163f4d6378b78c12c77745f6bd7b0571c",
+    "previous_core_release_audit.json": "55077549f64bc54b8f462179c06e87db4ccd3ec03689bf5ee0e27370ffb201be",
+    "previous_core_visual_review.json": "3b058e89c997067534c2f6f57558e5c22537013b2c7c697c3bce379316ffa923",
+    "protocol-figure.tex": "c443ce2f0a779ae7866338baa5a101e4e69870139e9081a9f77b98f0a256aedc",
+    "provenance/references.tex": "5b608aed6457fe98d5d339f22927414e0fb7c9cc8269ed85673e09fd1bccfd7f",
+    "provenance/theory.tex": "9b371d79a41980150ba65fa2594f84f6057638f673a5019da0a941a2ef432894",
+    "provenance/vector_proof.tex": "29a8f51b03eda871b9269a5e3afed09e1ca7f3510baa24d4cf5ec9e5363682e5",
+    "recompute_review_comparison.py": "bf2c8cb711117a9c57268a091a98a51eb2d7d6b2bdd66d651a6124bd598a35a4",
+    "record_condition_appendix.tex": "a0c97e6b604764ed3da9a5042f5d15a2cfba48adfa6e8824e44435cd9fcc2e7a",
+    "record_condition_figure.tex": "76debaab8fa58975d7b61e13f7b3339252bd8c14f2557eb3154f7f2c636cae66",
+    "record_input_manifest.json": "8b680e177b74af45b9312dcd424ac0d3ffa7e34357c93cdadfe696bf22a21a12",
+    "record_reproduction_check.json": "59bfd2749c1c32cf209ed62d592c797093930e602a80d19526fe2836398f9ea3",
+    "record_requirements.txt": "44a2b57b99bec29bd30fb99995fba2340716d91b32e69a6c6c85d83170e651e1",
+    "record_study/mh_record_conditions.py": "239b15154d3f77eaf05cdfc7322aec359b59150405cf0df277ffcae9a744fcc5",
+    "record_study/parameters.json": "facbe5492cc20735b99e16a0ffd558cac18015af098a9a94754055c96c4f625e",
+    "record_study/plot_record_conditions.py": "b5e69a1fc3009a2b550b66f1e01993e2a2bc5c53c8ec47e2c22db32c8949a2c4",
+    "record_study/prefix_integrals.csv": "9670f02a8507979b6ff7b22911b716986e0777a01091ccf2f33f8e2fb34b964e",
+    "record_study/results.csv": "d0a7ef499b3280306147a7e0222a64bace7a20d67383802d907312551f66f35a",
+    "record_study/results.json": "efd3535b5e0ff42b8cf60e1e57dbc351a1d62ea3d3bf83fc0c069f47757576ed",
+    "record_study/theory_independent.md": "498b9822f8863f9a8c389d7f923187a990ed3c682499e190f7fce2df7aff9746",
+    "references_additions.tex": "3d2a950f2d3feab1d1de6fa39765929e65f94bb5a612f70f28eb7dd47ffba405",
+    "references_base.tex": "7d29a195f4c6a0e82b662fb14d6ed3da1e917ce6a648d73c6f114451c069cab6",
+    "review_checks/figure_budget_check.json": "ca7348d627e73be03fb80cd24ab394387a55f4521e9f085364b77bfb2d35f298",
+    "review_checks/joint_kernel_independent.json": "44e49bd6ff427476f8bee8631201e159741592d68e31b1cacd9ae76c32d2b211",
+    "review_checks/joint_kernel_independent.py": "3d194e52f1748ce8f7a3676357b20151f24e32fafe580943b306b2a930a7fcb5",
+    "review_checks/label_constants_20261019.json": "7fac3b3ac0b9728097f5ea7988232c9a19b9cac9be8b13aef8ffcc8c666c4cbd",
+    "review_checks/label_constants_20261019.md": "03b75f5a7dbdbb7ae92c316a7dce32df0d7ecf496995ca881ab171435cc33591",
+    "review_checks/label_constants_20261019.py": "066d905f6e48b816048b627ed0a8db5af8dae973121c99042e06faf9a6363630",
+    "review_checks/neighbors_audit_20261019.md": "38cae0a0aefee8b465fe710249722f01db82df6c5f4c30712d940c69b8cff8bb",
+    "review_checks/proof_audit_20261019.md": "4ddc0b124abcfc33bfddf3fb9abccc87c5c0201652017122dd9ef57946d71c4d",
+    "review_checks/proof_replay_20261019.json": "8ae2a8e64347ce8d72bc75a5b9202343647abd51e75c3a7bcaa97501d390f0ea",
+    "review_checks/proof_replay_20261019.py": "2e0c94cdf198cc08b8098ba66b92c2303cd39cf345405833a5126a951aaea182",
+    "review_checks/verify_copyedit_numbers.json": "9330a6aaef3c28a313bbd2f515f3f36b8cc924b3626b351164c78463c17f4ceb",
+    "review_checks/verify_copyedit_numbers.py": "a35e4bad0c93dcf9c3392e9c39faa6f5a430358b0006b2193bade690492ef3b2",
+    "review_comparison.json": "5730dad9c3229796696daa59348462d60218517c8b2d0ef0ae8fa8a5b4f74738",
+    "scalar_counterexample.tex": "267a81efe69acb25d75dec2783d7eacd9ccee6cc3e497339aa4b8c5e97435168",
+    "statistical_extension.tex": "2526b9d012f279ddda6c88ecf013605bd75e14dbc303afea44351f3d0292285a",
+    "statistical_numerical.tex": "f6be950b9bc0f954aeb3739a652965f2528e3219ec502e70af2f156146b47120",
+    "submission_review/clipped_reversal_review.md": "961f4aeb9bfdec7ba2d384720903497f2c3bb33a0bbb0ae78f94d90ddf251c64",
+    "submission_review/joint_kernel_review.md": "741aa232bbc786d24594544e0b2b6a698903ed919f3aa3c7cbd6454a24a623f6",
+    "submission_review/library_registration.json": "470c0b4b8a07da1bcbbdae859f1346bbe83f80afcd3b143658d03cc79ed5f038",
+    "submission_review/neighbors_review.md": "068331672f3351d6bbc523ffcc202c9fd05094204db4ce7b358c77124d1d3a7a",
+    "submission_review/recent_neighbors_review.md": "1a760ed943935faf5bf41c6b9ee5a55059f4381b75aeeb1c677fcf5235e6570a",
+    "supplement.tex": "d825d39b62b3c05e8cb2bc2cc0331c4516dcc4575aa16aa7733118b4bffdec6f",
+    "validation_appendix.tex": "cedb72776793cd5a83e75a6691058608ed88df22d0cf2615764409063a274d20",
+    "vector_core.py": "749f40185dda2a65a20c741ce7ad3b98dbcfd5fe9dd10019719c11afc70e67d4",
+    "vector_data/budgets.csv": "75649c6e6181e837bcd0102e6487458c222359d2c694eb134d881cc69a487b7d",
+    "vector_data/certificate_table.tex": "866d6d4c3d2718caa11eb5469b23072a2b250dbc8f6661e0f9bc11b03e75994c",
+    "vector_data/constant_table.tex": "3a4892b25c73993f0f097814560226374b35cf3dd704a3e6660071d996841643",
+    "vector_data/damage_table.tex": "d1367ad6ce83cbe2c81b29ce02b3600ab9c961b19595ac9fd085f6ca6e38184e",
+    "vector_data/parameters.json": "d523c7862e588e9b3fe21a45c624e0b16468c0b0206fc4da8d816b16252cbd65",
+    "vector_data/physical_check.json": "fb9e5d8abf1a7563662f39f699caae161500606dcb4fabcf201a48204727da75",
+    "vector_data/results.csv": "897be7617eed9856e92ee107d575b93acf47b4b2f8653dfea1ba4699c156f7d9",
+    "vector_data/results.json": "e5093253de52420bbac375c76ee77468cf394b7cf9ac630d7c0a911cc668fec0",
+    "vector_data/variance_table.tex": "e0cc9329a5df7366a64114f66829222f862baaa00f772ecaca1444c79b554e54",
+    "vector_proof.tex": "29a8f51b03eda871b9269a5e3afed09e1ca7f3510baa24d4cf5ec9e5363682e5"
+  },
+  "reference_entries": {
+    "sinopoli2004": "SINOPOLIB,SCHENATOL,FRANCESCHETTIM,etal.Kalmanfilteringwithintermittentobservations[J].IEEETransactionsonAutomaticControl,2004,49(9):1453--1464.DOI:\\url{https://doi.org/10.1109/TAC.2004.834121}.",
+    "rabi2012": "RABIM,MOUSTAKIDESGV,BARASJS.Adaptivesamplingforlinearstateestimation[J].SIAMJournalonControlandOptimization,2012,50(2):672--702.DOI:\\url{https://doi.org/10.1137/090757125}.",
+    "han2015": "HAND,MOY,WUJ,etal.Stochasticevent-triggeredsensorscheduleforremotestateestimation[J].IEEETransactionsonAutomaticControl,2015,60(10):2661--2675.DOI:\\url{https://doi.org/10.1109/TAC.2015.2406975}.",
+    "pasqualetti2013": "PASQUALETTIF,D\\\"ORFLERF,BULLOF.Attackdetectionandidentificationincyber-physicalsystems[J].IEEETransactionsonAutomaticControl,2013,58(11):2715--2729.DOI:\\url{https://doi.org/10.1109/TAC.2013.2266831}.",
+    "fawzi2014": "FAWZIH,TABUADAP,DIGGAVIS.Secureestimationandcontrolforcyber-physicalsystemsunderadversarialattacks[J].IEEETransactionsonAutomaticControl,2014,59(6):1454--1467.DOI:\\url{https://doi.org/10.1109/TAC.2014.2303233}.",
+    "mo2016": "MOY,SINOPOLIB.Ontheperformancedegradationofcyber-physicalsystemsunderstealthyintegrityattacks[J].IEEETransactionsonAutomaticControl,2016,61(9):2618--2624.DOI:\\url{https://doi.org/10.1109/TAC.2015.2498708}.",
+    "bai2017": "BAICZ,PASQUALETTIF,GUPTAV.Data-injectionattacksinstochasticcontrolsystems:Detectabilityandperformancetradeoffs[J].Automatica,2017,82:251--260.DOI:\\url{https://doi.org/10.1016/j.automatica.2017.04.047}.",
+    "baisensors2017": "BAICZ,GUPTAV,PASQUALETTIF.OnKalmanfilteringwithcompromisedsensors:Attackstealthinessandperformancebounds[J].IEEETransactionsonAutomaticControl,2017,62(12):6641--6648.DOI:\\url{https://doi.org/10.1109/TAC.2017.2714903}.",
+    "targetwang2021": "王彩云,李芳菲.基于KL散度检测器下的最优线性欺诈攻击[J].华东理工大学学报(自然科学版),2021,47(5):627--634.DOI:\\url{https://doi.org/10.14135/j.cnki.1006-3080.20200802001}.",
+    "hirzallah2018": "HIRZALLAHNH,VOULGARISPG.Onthecomputationofworstattacks:ALPframework[C]//2018AnnualAmericanControlConference(ACC).2018:4527--4532.DOI:\\url{https://doi.org/10.23919/ACC.2018.8431670}.",
+    "milosevic2020": "MILO\\vSEVI\\'CJ,SANDBERGH,JOHANSSONKH.Estimatingtheimpactofcyber-attackstrategiesforstochasticnetworkedcontrolsystems[J].IEEETransactionsonControlofNetworkSystems,2020,7(2):747--757.DOI:\\url{https://doi.org/10.1109/TCNS.2019.2940253}.",
+    "shang2022": "SHANGJ,YUH,CHENT.Worst-casestealthyattacksonstochasticevent-basedstateestimation[J].IEEETransactionsonAutomaticControl,2022,67(4):2052--2059.DOI:\\url{https://doi.org/10.1109/TAC.2021.3071948}.",
+    "cheng2020": "CHENGP,YANGZ,CHENJ,etal.Anevent-basedstealthyattackonremotestateestimation[J].IEEETransactionsonAutomaticControl,2020,65(10):4348--4355.DOI:\\url{https://doi.org/10.1109/TAC.2019.2956021}.",
+    "Paper_Song2022_SEBScheduling": "SONGY,YED.Optimalstealthyattackagainststochasticevent-basedschedulingforremotestateestimationincyber-physicalsystems[J].InternationalJournalofRobustandNonlinearControl,2022,32(6):3511--3526.DOI:\\url{https://doi.org/10.1002/rnc.5967}.",
+    "guo2025": "GUOZ,ZHOUJ,CHENT.Optimalstochasticevent-triggeredattackonremotestateestimation[J].Automatica,2025,179:112463.DOI:\\url{https://doi.org/10.1016/j.automatica.2025.112463}.",
+    "zhou2023": "ZHOUJ,SHANGJ,CHENT.Optimaldeceptionattacksonremotestateestimatorsequippedwithintervalanomalydetectors[J].Automatica,2023,148:110723.DOI:\\url{https://doi.org/10.1016/j.automatica.2022.110723}.",
+    "xu2026": "XUH,LIY,YANGT,etal.Stabilityboundaryanalysisofremoteestimationunderintermittentintegrityattacks[J].Automatica,2026,194:113256.DOI:\\url{https://doi.org/10.1016/j.automatica.2026.113256}.",
+    "khazraei2022perception": "KHAZRAEIA,PFISTERH,PAJICM.Resiliencyofperception-basedcontrollersagainstattacks[C]//Proceedingsofthe4thAnnualLearningforDynamicsandControlConference.ProceedingsofMachineLearningResearch,vol.168.PMLR,2022:713--725.\\url{https://proceedings.mlr.press/v168/khazraei22a.html}.",
+    "mo2015": "MOY,WEERAKKODYS,SINOPOLIB.Physicalauthenticationofcontrolsystems:Designingwatermarkedcontrolinputstodetectcounterfeitsensoroutputs[J].IEEEControlSystems,2015,35(1):93--109.DOI:\\url{https://doi.org/10.1109/MCS.2014.2364724}.",
+    "naha2023": "NAHAA,TEIXEIRAA,AHL\\'ENA,etal.Quickestphysicalwatermarking-baseddetectionofmeasurementreplacementattacksinnetworkedcontrolsystems[J].EuropeanJournalofControl,2023,71:100804.DOI:\\url{https://doi.org/10.1016/j.ejcon.2023.100804}.",
+    "targetchen2025": "陈佳玲,杨文.基于水印的参数不确定性电力系统攻击检测方法[J].华东理工大学学报(自然科学版),2025,51(5):671--680.DOI:\\url{https://doi.org/10.14135/j.cnki.1006-3080.20241227001}.",
+    "Paper_Shang2026_SingleDimensional": "SHANGJ,ZHAOD,ZHANGH,etal.Single-dimensionalencryptionagainststealthyattacksonstochasticevent-basedestimation[J].IEEE/CAAJournalofAutomaticaSinica,2026,13(1):233--235.DOI:\\url{https://doi.org/10.1109/JAS.2025.125381}.",
+    "metropolis1953": "METROPOLISN,ROSENBLUTHAW,ROSENBLUTHMN,etal.Equationofstatecalculationsbyfastcomputingmachines[J].TheJournalofChemicalPhysics,1953,21(6):1087--1092.DOI:\\url{https://doi.org/10.1063/1.1699114}.",
+    "hastings1970": "HASTINGSWK.MonteCarlosamplingmethodsusingMarkovchainsandtheirapplications[J].Biometrika,1970,57(1):97--109.DOI:\\url{https://doi.org/10.1093/biomet/57.1.97}.",
+    "blackwell1953": "BLACKWELLD.Equivalentcomparisonsofexperiments[J].TheAnnalsofMathematicalStatistics,1953,24(2):265--272.DOI:\\url{https://doi.org/10.1214/aoms/1177729032}.",
+    "sason2016": "SASONI,VERD\\'US.$f$-divergenceinequalities[J].IEEETransactionsonInformationTheory,2016,62(11):5973--6006.DOI:\\url{https://doi.org/10.1109/TIT.2016.2603151}.",
+    "bertsimas2005": "BERTSIMASD,POPESCUI.Optimalinequalitiesinprobabilitytheory:Aconvexoptimizationapproach[J].SIAMJournalonOptimization,2005,15(3):780--804.DOI:\\url{https://doi.org/10.1137/S1052623401399903}.",
+    "benbasat2021": "BENBASATR,MITZENMACHERM,VARGAFTIKS.Howtosendarealnumberusingasinglebit(andsomesharedrandomness)[C]//48thInternationalColloquiumonAutomata,Languages,andProgramming.LeibnizInternationalProceedingsinInformatics,vol.198.Dagstuhl:SchlossDagstuhl--Leibniz-Zentrumf\\\"urInformatik,2021:25:1--25:20.DOI:\\url{https://doi.org/10.4230/LIPIcs.ICALP.2021.25}.",
+    "suresh2017": "SURESHAT,YUFX,KUMARS,etal.Distributedmeanestimationwithlimitedcommunication[C]//Proceedingsofthe34thInternationalConferenceonMachineLearning.ProceedingsofMachineLearningResearch,vol.70.PMLR,2017:3329--3337.\\url{https://proceedings.mlr.press/v70/suresh17a.html}.",
+    "hoeffding1963": "HOEFFDINGW.Probabilityinequalitiesforsumsofboundedrandomvariables[J].JournaloftheAmericanStatisticalAssociation,1963,58(301):13--30.DOI:\\url{https://doi.org/10.1080/01621459.1963.10500830}."
+  }
+}
