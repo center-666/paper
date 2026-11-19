@@ -10,6 +10,12 @@ HERE = Path(__file__).resolve().parent
 
 
 def main():
+    # A result-bearing draft is built only after the separately executed E1 gates.
+    audit_dir = HERE.parents[1] / "reviews/paper1_e1_scalar_execution/results/e1_20261119_v1"
+    audit = json.loads((audit_dir/"independent_audit.json").read_text(encoding="utf-8"))
+    analysis = json.loads((audit_dir/"analysis/analysis_validation.json").read_text(encoding="utf-8"))
+    if audit["status"] != "PASS" or analysis["status"] != "PASS":
+        raise SystemExit("E1 numerical gates not passed; do not compile a result-bearing draft.")
     executable = shutil.which("xelatex")
     if not executable:
         raise SystemExit("XeLaTeX is required; no build performed.")
@@ -32,7 +38,7 @@ def main():
     warnings = [key for key in markers if key in log]
     match = re.search(r"Output written on .*?\((\d+) pages?",log)
     result = {
-        "status":"DISCUSSION_DRAFT_NEW_EXPERIMENTS_NOT_RUN",
+        "status":"DISCUSSION_DRAFT_V0.2_E1_EXPERIMENT_PASS",
         "engine":executable, "pages":int(match.group(1)) if match else None,
         "warnings":warnings,
         "hyperlinks":"DOIs shown as text; clickable source links in repository reports",
@@ -40,7 +46,11 @@ def main():
         "tex_sources":{p.relative_to(HERE).as_posix():
                        hashlib.sha256(p.read_bytes()).hexdigest()
                        for p in sorted(HERE.rglob("*.tex"))},
-        "experiments_executed":False,
+        "experiments_executed":True,
+        "experiments_executed_by_build":False,
+        "E1_run":"reviews/paper1_e1_scalar_execution/results/e1_20261119_v1",
+        "E1_independent_audit_sha256":hashlib.sha256((audit_dir/"independent_audit.json").read_bytes()).hexdigest(),
+        "E1_analysis_validation_sha256":hashlib.sha256((audit_dir/"analysis/analysis_validation.json").read_bytes()).hexdigest(),
     }
     (HERE/"build_validation.json").write_text(
         json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")

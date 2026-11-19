@@ -1,0 +1,2671 @@
+{
+  "status": "PASS",
+  "independence": "Separate algebraic saved-array reconstruction; no import of simulator helpers; no new physical samples.",
+  "cases": 12,
+  "base_samples": 4096,
+  "checks": [
+    {
+      "name": "protocol_bytes_frozen",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "code_frozen_analyze_e1.py",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "code_frozen_audit_e1.py",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "code_frozen_run_e1.py",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "code_frozen_verify_analysis.py",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "case_count",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "runner_gate",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "failure_log_empty",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "S1/sample_count",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "S1/horizon",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "S1/input_hash",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "S1/sample_ids",
+      "n_checked": 2048,
+      "n_failed": 0
+    },
+    {
+      "name": "S1/physical_state_recursion",
+      "n_checked": 10240,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-14,
+      "relative_tolerance": 1e-13
+    },
+    {
+      "name": "S1/physical_measurement_recursion",
+      "n_checked": 12288,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-14,
+      "relative_tolerance": 1e-13
+    },
+    {
+      "name": "S1/uniform_range",
+      "n_checked": 12288,
+      "n_failed": 0
+    },
+    {
+      "name": "S1/frozen_delta_grid",
+      "n_checked": 3,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-14,
+      "relative_tolerance": 1e-13
+    },
+    {
+      "name": "S1/frozen_eta_grid",
+      "n_checked": 3,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-14,
+      "relative_tolerance": 1e-13
+    },
+    {
+      "name": "U1/sample_count",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "U1/horizon",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "U1/input_hash",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "U1/sample_ids",
+      "n_checked": 2048,
+      "n_failed": 0
+    },
+    {
+      "name": "U1/physical_state_recursion",
+      "n_checked": 10240,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-14,
+      "relative_tolerance": 1e-13
+    },
+    {
+      "name": "U1/physical_measurement_recursion",
+      "n_checked": 12288,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-14,
+      "relative_tolerance": 1e-13
+    },
+    {
+      "name": "U1/uniform_range",
+      "n_checked": 12288,
+      "n_failed": 0
+    },
+    {
+      "name": "U1/frozen_delta_grid",
+      "n_checked": 3,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-14,
+      "relative_tolerance": 1e-13
+    },
+    {
+      "name": "U1/frozen_eta_grid",
+      "n_checked": 3,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-14,
+      "relative_tolerance": 1e-13
+    },
+    {
+      "name": "S1_A_d1/trace_hash",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d1/shape",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d1/finite_m_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d1/finite_m_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d1/finite_P_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d1/finite_P_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d1/finite_feedback",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d1/finite_action",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d1/finite_mu_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d1/finite_mu_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d1/prediction_from_previous",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d1/cov_prediction_from_previous",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d1/actual_center",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1_A_d1/rounded_log_is_view",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d1/rounded_log_value",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1_A_d1/event_precedes_payload",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d1/payload_presence",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d1/legal_gate_reconstructed",
+      "n_checked": 6144,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d1/disclosed_gate_M",
+      "n_checked": 1365,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d1/actions_from_legal_inputs",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1_A_d1/budget",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d1/payload_values",
+      "n_checked": 9840,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1_A_d1/receiver_posterior_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 4.440892098500626e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d1/receiver_covariance_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 8.326672684688674e-17,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d1/true_history_posterior_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 4.440892098500626e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d1/healthy_conditional_mean",
+      "n_checked": 12288,
+      "n_failed": 0,
+      "max_absolute_error": 4.440892098500626e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d1/target_covariance_in_finite_set",
+      "n_checked": 2048,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d1/paired_target_damage",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 1.6796239827579149e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d1/C_payload_empirical_vs_analytic",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 5.225752827426461e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d1/C_predictor_empirical_vs_analytic",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 2.4047371251667993e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d1/trace_hash",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d1/shape",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d1/finite_m_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d1/finite_m_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d1/finite_P_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d1/finite_P_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d1/finite_feedback",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d1/finite_action",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d1/finite_mu_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d1/finite_mu_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d1/prediction_from_previous",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d1/cov_prediction_from_previous",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d1/actual_center",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1_B_d1/rounded_log_is_view",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d1/rounded_log_value",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1_B_d1/index_matches_center",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d1/event_precedes_payload",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d1/payload_presence",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d1/legal_gate_reconstructed",
+      "n_checked": 6144,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d1/disclosed_gate_M",
+      "n_checked": 1362,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d1/actions_from_legal_inputs",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1_B_d1/budget",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d1/payload_values",
+      "n_checked": 9849,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1_B_d1/receiver_posterior_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 4.440892098500626e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d1/receiver_covariance_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 8.326672684688674e-17,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d1/true_history_posterior_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 4.440892098500626e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d1/healthy_conditional_mean",
+      "n_checked": 12288,
+      "n_failed": 0,
+      "max_absolute_error": 4.440892098500626e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d1/target_covariance_in_finite_set",
+      "n_checked": 2048,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d1/paired_target_damage",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 1.3734893349612656e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d1/B_all_events_equal",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d1/B_all_codes_equal",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d1/B_all_feedback_equal",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d1/B_target_P_equal",
+      "n_checked": 6144,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d1/C_payload_empirical_vs_analytic",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 5.225752827426461e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d1/C_predictor_empirical_vs_analytic",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 4.0291747938287284e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d2/trace_hash",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d2/shape",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d2/finite_m_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d2/finite_m_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d2/finite_P_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d2/finite_P_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d2/finite_feedback",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d2/finite_action",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d2/finite_mu_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d2/finite_mu_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d2/prediction_from_previous",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d2/cov_prediction_from_previous",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d2/actual_center",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1_A_d2/rounded_log_is_view",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d2/rounded_log_value",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1_A_d2/event_precedes_payload",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d2/payload_presence",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d2/legal_gate_reconstructed",
+      "n_checked": 6144,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d2/disclosed_gate_M",
+      "n_checked": 1365,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d2/actions_from_legal_inputs",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1_A_d2/budget",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d2/payload_values",
+      "n_checked": 9840,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1_A_d2/receiver_posterior_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 4.440892098500626e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d2/receiver_covariance_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 8.326672684688674e-17,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d2/true_history_posterior_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 4.440892098500626e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d2/healthy_conditional_mean",
+      "n_checked": 12288,
+      "n_failed": 0,
+      "max_absolute_error": 4.440892098500626e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d2/target_covariance_in_finite_set",
+      "n_checked": 2048,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d2/paired_target_damage",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 1.7037220701072997e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d2/C_payload_empirical_vs_analytic",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 5.742341281297914e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d2/C_predictor_empirical_vs_analytic",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 6.210716619811651e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d2/trace_hash",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d2/shape",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d2/finite_m_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d2/finite_m_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d2/finite_P_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d2/finite_P_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d2/finite_feedback",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d2/finite_action",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d2/finite_mu_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d2/finite_mu_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d2/prediction_from_previous",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d2/cov_prediction_from_previous",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d2/actual_center",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1_B_d2/rounded_log_is_view",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d2/rounded_log_value",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1_B_d2/index_matches_center",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d2/event_precedes_payload",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d2/payload_presence",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d2/legal_gate_reconstructed",
+      "n_checked": 6144,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d2/disclosed_gate_M",
+      "n_checked": 1365,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d2/actions_from_legal_inputs",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1_B_d2/budget",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d2/payload_values",
+      "n_checked": 9846,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1_B_d2/receiver_posterior_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 4.440892098500626e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d2/receiver_covariance_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 8.326672684688674e-17,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d2/true_history_posterior_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 4.440892098500626e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d2/healthy_conditional_mean",
+      "n_checked": 12288,
+      "n_failed": 0,
+      "max_absolute_error": 4.440892098500626e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d2/target_covariance_in_finite_set",
+      "n_checked": 2048,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d2/paired_target_damage",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 1.183982653672061e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d2/B_all_events_equal",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d2/B_all_codes_equal",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d2/B_all_feedback_equal",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d2/B_target_P_equal",
+      "n_checked": 6144,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d2/C_payload_empirical_vs_analytic",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 5.742341281297914e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d2/C_predictor_empirical_vs_analytic",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 4.1362143473732543e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d3/trace_hash",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d3/shape",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d3/finite_m_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d3/finite_m_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d3/finite_P_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d3/finite_P_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d3/finite_feedback",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d3/finite_action",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d3/finite_mu_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d3/finite_mu_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d3/prediction_from_previous",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d3/cov_prediction_from_previous",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d3/actual_center",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1_A_d3/rounded_log_is_view",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d3/rounded_log_value",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1_A_d3/event_precedes_payload",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d3/payload_presence",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d3/legal_gate_reconstructed",
+      "n_checked": 6144,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d3/disclosed_gate_M",
+      "n_checked": 1365,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d3/actions_from_legal_inputs",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1_A_d3/budget",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d3/payload_values",
+      "n_checked": 9840,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1_A_d3/receiver_posterior_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 4.440892098500626e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d3/receiver_covariance_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 8.326672684688674e-17,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d3/true_history_posterior_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 4.440892098500626e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d3/healthy_conditional_mean",
+      "n_checked": 12288,
+      "n_failed": 0,
+      "max_absolute_error": 4.440892098500626e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d3/target_covariance_in_finite_set",
+      "n_checked": 2048,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_A_d3/paired_target_damage",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 1.8188846696159944e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d3/C_payload_empirical_vs_analytic",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 5.20579673118915e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_A_d3/C_predictor_empirical_vs_analytic",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 3.026211551314384e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d3/trace_hash",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d3/shape",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d3/finite_m_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d3/finite_m_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d3/finite_P_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d3/finite_P_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d3/finite_feedback",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d3/finite_action",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d3/finite_mu_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d3/finite_mu_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d3/prediction_from_previous",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d3/cov_prediction_from_previous",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d3/actual_center",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1_B_d3/rounded_log_is_view",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d3/rounded_log_value",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1_B_d3/index_matches_center",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d3/event_precedes_payload",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d3/payload_presence",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d3/legal_gate_reconstructed",
+      "n_checked": 6144,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d3/disclosed_gate_M",
+      "n_checked": 1353,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d3/actions_from_legal_inputs",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1_B_d3/budget",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d3/payload_values",
+      "n_checked": 9834,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1_B_d3/receiver_posterior_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 4.440892098500626e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d3/receiver_covariance_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 8.326672684688674e-17,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d3/true_history_posterior_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 4.440892098500626e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d3/healthy_conditional_mean",
+      "n_checked": 12288,
+      "n_failed": 0,
+      "max_absolute_error": 4.440892098500626e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d3/target_covariance_in_finite_set",
+      "n_checked": 2048,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d3/paired_target_damage",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 2.0964404257722835e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d3/B_all_events_equal",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d3/B_all_codes_equal",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d3/B_all_feedback_equal",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d3/B_target_P_equal",
+      "n_checked": 6144,
+      "n_failed": 0
+    },
+    {
+      "name": "S1_B_d3/C_payload_empirical_vs_analytic",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 5.20579673118915e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1_B_d3/C_predictor_empirical_vs_analytic",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 4.1364345759395404e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d1/trace_hash",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d1/shape",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d1/finite_m_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d1/finite_m_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d1/finite_P_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d1/finite_P_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d1/finite_feedback",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d1/finite_action",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d1/finite_mu_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d1/finite_mu_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d1/prediction_from_previous",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d1/cov_prediction_from_previous",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d1/actual_center",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1_A_d1/rounded_log_is_view",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d1/rounded_log_value",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1_A_d1/event_precedes_payload",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d1/payload_presence",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d1/legal_gate_reconstructed",
+      "n_checked": 6144,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d1/disclosed_gate_M",
+      "n_checked": 1542,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d1/actions_from_legal_inputs",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1_A_d1/budget",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d1/payload_values",
+      "n_checked": 11070,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1_A_d1/receiver_posterior_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 8.881784197001252e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d1/receiver_covariance_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 8.326672684688674e-17,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d1/true_history_posterior_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 8.881784197001252e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d1/healthy_conditional_mean",
+      "n_checked": 12288,
+      "n_failed": 0,
+      "max_absolute_error": 8.881784197001252e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d1/target_covariance_in_finite_set",
+      "n_checked": 2048,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d1/paired_target_damage",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 2.1711233207316952e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d1/C_payload_empirical_vs_analytic",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 1.1607841153126602e-15,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d1/C_predictor_empirical_vs_analytic",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 3.1778931293110005e-15,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d1/trace_hash",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d1/shape",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d1/finite_m_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d1/finite_m_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d1/finite_P_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d1/finite_P_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d1/finite_feedback",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d1/finite_action",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d1/finite_mu_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d1/finite_mu_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d1/prediction_from_previous",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d1/cov_prediction_from_previous",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d1/actual_center",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1_B_d1/rounded_log_is_view",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d1/rounded_log_value",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1_B_d1/index_matches_center",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d1/event_precedes_payload",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d1/payload_presence",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d1/legal_gate_reconstructed",
+      "n_checked": 6144,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d1/disclosed_gate_M",
+      "n_checked": 1539,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d1/actions_from_legal_inputs",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1_B_d1/budget",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d1/payload_values",
+      "n_checked": 11061,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1_B_d1/receiver_posterior_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 8.881784197001252e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d1/receiver_covariance_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 8.326672684688674e-17,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d1/true_history_posterior_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 8.881784197001252e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d1/healthy_conditional_mean",
+      "n_checked": 12288,
+      "n_failed": 0,
+      "max_absolute_error": 8.881784197001252e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d1/target_covariance_in_finite_set",
+      "n_checked": 2048,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d1/paired_target_damage",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 2.2170833284497135e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d1/B_all_events_equal",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d1/B_all_codes_equal",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d1/B_all_feedback_equal",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d1/B_target_P_equal",
+      "n_checked": 6144,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d1/C_payload_empirical_vs_analytic",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 1.1607841153126602e-15,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d1/C_predictor_empirical_vs_analytic",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 2.2558782844669077e-15,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d2/trace_hash",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d2/shape",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d2/finite_m_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d2/finite_m_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d2/finite_P_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d2/finite_P_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d2/finite_feedback",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d2/finite_action",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d2/finite_mu_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d2/finite_mu_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d2/prediction_from_previous",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d2/cov_prediction_from_previous",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d2/actual_center",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1_A_d2/rounded_log_is_view",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d2/rounded_log_value",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1_A_d2/event_precedes_payload",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d2/payload_presence",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d2/legal_gate_reconstructed",
+      "n_checked": 6144,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d2/disclosed_gate_M",
+      "n_checked": 1542,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d2/actions_from_legal_inputs",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1_A_d2/budget",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d2/payload_values",
+      "n_checked": 11070,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1_A_d2/receiver_posterior_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 8.881784197001252e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d2/receiver_covariance_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 8.326672684688674e-17,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d2/true_history_posterior_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 8.881784197001252e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d2/healthy_conditional_mean",
+      "n_checked": 12288,
+      "n_failed": 0,
+      "max_absolute_error": 8.881784197001252e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d2/target_covariance_in_finite_set",
+      "n_checked": 2048,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d2/paired_target_damage",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 2.8803863591150836e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d2/C_payload_empirical_vs_analytic",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 2.462290896350361e-15,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d2/C_predictor_empirical_vs_analytic",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 3.2524235583399064e-15,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d2/trace_hash",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d2/shape",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d2/finite_m_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d2/finite_m_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d2/finite_P_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d2/finite_P_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d2/finite_feedback",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d2/finite_action",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d2/finite_mu_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d2/finite_mu_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d2/prediction_from_previous",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d2/cov_prediction_from_previous",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d2/actual_center",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1_B_d2/rounded_log_is_view",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d2/rounded_log_value",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1_B_d2/index_matches_center",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d2/event_precedes_payload",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d2/payload_presence",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d2/legal_gate_reconstructed",
+      "n_checked": 6144,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d2/disclosed_gate_M",
+      "n_checked": 1557,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d2/actions_from_legal_inputs",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1_B_d2/budget",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d2/payload_values",
+      "n_checked": 11076,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1_B_d2/receiver_posterior_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 8.881784197001252e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d2/receiver_covariance_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 8.326672684688674e-17,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d2/true_history_posterior_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 8.881784197001252e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d2/healthy_conditional_mean",
+      "n_checked": 12288,
+      "n_failed": 0,
+      "max_absolute_error": 8.881784197001252e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d2/target_covariance_in_finite_set",
+      "n_checked": 2048,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d2/paired_target_damage",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 2.972848475637363e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d2/B_all_events_equal",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d2/B_all_codes_equal",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d2/B_all_feedback_equal",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d2/B_target_P_equal",
+      "n_checked": 6144,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d2/C_payload_empirical_vs_analytic",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 2.462290896350361e-15,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d2/C_predictor_empirical_vs_analytic",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 2.4833074778376346e-15,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d3/trace_hash",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d3/shape",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d3/finite_m_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d3/finite_m_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d3/finite_P_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d3/finite_P_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d3/finite_feedback",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d3/finite_action",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d3/finite_mu_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d3/finite_mu_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d3/prediction_from_previous",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d3/cov_prediction_from_previous",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d3/actual_center",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1_A_d3/rounded_log_is_view",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d3/rounded_log_value",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1_A_d3/event_precedes_payload",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d3/payload_presence",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d3/legal_gate_reconstructed",
+      "n_checked": 6144,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d3/disclosed_gate_M",
+      "n_checked": 1542,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d3/actions_from_legal_inputs",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1_A_d3/budget",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d3/payload_values",
+      "n_checked": 11070,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1_A_d3/receiver_posterior_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 8.881784197001252e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d3/receiver_covariance_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 8.326672684688674e-17,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d3/true_history_posterior_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 8.881784197001252e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d3/healthy_conditional_mean",
+      "n_checked": 12288,
+      "n_failed": 0,
+      "max_absolute_error": 8.881784197001252e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d3/target_covariance_in_finite_set",
+      "n_checked": 2048,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_A_d3/paired_target_damage",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 1.996693825903617e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d3/C_payload_empirical_vs_analytic",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 2.7437362278004418e-15,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_A_d3/C_predictor_empirical_vs_analytic",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 2.8846554051692452e-15,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d3/trace_hash",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d3/shape",
+      "n_checked": 1,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d3/finite_m_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d3/finite_m_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d3/finite_P_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d3/finite_P_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d3/finite_feedback",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d3/finite_action",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d3/finite_mu_prior",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d3/finite_mu_post",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d3/prediction_from_previous",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d3/cov_prediction_from_previous",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d3/actual_center",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1_B_d3/rounded_log_is_view",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d3/rounded_log_value",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1_B_d3/index_matches_center",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d3/event_precedes_payload",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d3/payload_presence",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d3/legal_gate_reconstructed",
+      "n_checked": 6144,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d3/disclosed_gate_M",
+      "n_checked": 1563,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d3/actions_from_legal_inputs",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1_B_d3/budget",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d3/payload_values",
+      "n_checked": 11085,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1_B_d3/receiver_posterior_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 8.881784197001252e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d3/receiver_covariance_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 8.326672684688674e-17,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d3/true_history_posterior_independent",
+      "n_checked": 36864,
+      "n_failed": 0,
+      "max_absolute_error": 8.881784197001252e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d3/healthy_conditional_mean",
+      "n_checked": 12288,
+      "n_failed": 0,
+      "max_absolute_error": 8.881784197001252e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d3/target_covariance_in_finite_set",
+      "n_checked": 2048,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d3/paired_target_damage",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 3.6517284422027396e-16,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d3/B_all_events_equal",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d3/B_all_codes_equal",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d3/B_all_feedback_equal",
+      "n_checked": 36864,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d3/B_target_P_equal",
+      "n_checked": 6144,
+      "n_failed": 0
+    },
+    {
+      "name": "U1_B_d3/C_payload_empirical_vs_analytic",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 2.7437362278004418e-15,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "U1_B_d3/C_predictor_empirical_vs_analytic",
+      "n_checked": 2048,
+      "n_failed": 0,
+      "max_absolute_error": 4.604159393149787e-15,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 1e-08
+    },
+    {
+      "name": "S1/A_healthy_delta_independent_2",
+      "n_checked": 12288,
+      "n_failed": 0
+    },
+    {
+      "name": "S1/A_healthy_values_delta_independent_2",
+      "n_checked": 12288,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "S1/A_healthy_delta_independent_3",
+      "n_checked": 12288,
+      "n_failed": 0
+    },
+    {
+      "name": "S1/A_healthy_values_delta_independent_3",
+      "n_checked": 12288,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1/A_healthy_delta_independent_2",
+      "n_checked": 12288,
+      "n_failed": 0
+    },
+    {
+      "name": "U1/A_healthy_values_delta_independent_2",
+      "n_checked": 12288,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    },
+    {
+      "name": "U1/A_healthy_delta_independent_3",
+      "n_checked": 12288,
+      "n_failed": 0
+    },
+    {
+      "name": "U1/A_healthy_values_delta_independent_3",
+      "n_checked": 12288,
+      "n_failed": 0,
+      "max_absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "relative_tolerance": 0
+    }
+  ],
+  "failed_check_names": [],
+  "code_sha256": "d0ff0a3d29874f3f0947229eec18bd0020f459be0425e0b86ebd009e7fa5742a",
+  "current_code_matches_run_contract": true
+}
