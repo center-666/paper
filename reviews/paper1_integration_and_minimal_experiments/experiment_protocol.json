@@ -1,0 +1,139 @@
+{
+  "protocol_version": "v0.1",
+  "status": "DESIGN_ONLY_NOT_RUN",
+  "calculated": "Covariance label enumeration and parameter range only",
+  "models": [
+    {
+      "id": "S1",
+      "A": 0.82,
+      "m0": 0,
+      "P0": 0.8,
+      "Q": 0.05,
+      "R": 0.2,
+      "Z": 2,
+      "k": 4,
+      "design_constants": {
+        "P_min": 0.09407700323902807,
+        "P_max": 0.1335725521915625,
+        "K_min": 0.31990601850142475,
+        "K_max": 0.4004302851478471,
+        "alpha_min": 0.2623229351711683,
+        "alpha_max": 0.32835283382123465,
+        "p_star": 0.20648764570417377,
+        "L_star": 8.878720359107357,
+        "delta_star": 0.023256464597667934,
+        "delta_cap": 0.011628232298833967,
+        "delta_grid": [
+          0.0029070580747084917,
+          0.005814116149416983,
+          0.011628232298833967
+        ],
+        "eta_grid": [
+          0.004426729078103805,
+          0.00885345815620761,
+          0.01770691631241522
+        ]
+      }
+    },
+    {
+      "id": "U1",
+      "A": 1.04,
+      "m0": 0,
+      "P0": 0.8,
+      "Q": 0.05,
+      "R": 0.2,
+      "Z": 2,
+      "k": 4,
+      "design_constants": {
+        "P_min": 0.1418123569273262,
+        "P_max": 0.277826423095699,
+        "K_min": 0.4148836461096032,
+        "K_max": 0.581437965057985,
+        "alpha_min": 0.43147899195398737,
+        "alpha_max": 0.6046954836603043,
+        "p_star": 0.22931420563596838,
+        "L_star": 5.150869863384797,
+        "delta_star": 0.044519510629856776,
+        "delta_cap": 0.022259755314928388,
+        "delta_grid": [
+          0.005564938828732097,
+          0.011129877657464194,
+          0.022259755314928388
+        ],
+        "eta_grid": [
+          0.00460143905412255,
+          0.0092028781082451,
+          0.0184057562164902
+        ]
+      }
+    }
+  ],
+  "provenance": "Standalone scalar surrogates from first-coordinate coefficients; not marginals of the coupled 2D models.",
+  "b": 0.1,
+  "b_ref": 0.1,
+  "delta_ref": 0.1,
+  "selector": "delta_cap=min(delta_ref,delta_star/2,alpha_max*b/2); delta=cap*[.25,.5,1]",
+  "quantizer": "Q(x)=2*delta*floor((x+delta)/(2*delta)); half-open cells; no saturation",
+  "coupling": {
+    "base_samples_per_model": 2048,
+    "models_independent": true,
+    "shared_across": [
+      "precision",
+      "protocol",
+      "healthy_and_sign_branches"
+    ],
+    "sign_integration": "Average + and - per base sample; not two independent observations"
+  },
+  "rng_plan": {
+    "bit_generator": "PCG64",
+    "master_seed": 2026111901,
+    "SeedSequence_components": [
+      "master_seed",
+      "model_id",
+      "base_sample_id",
+      "noise_type"
+    ],
+    "model_id": {
+      "S1": 1,
+      "U1": 2
+    },
+    "noise_type": {
+      "initial": 0,
+      "process": 1,
+      "measurement": 2,
+      "trigger_uniform": 3
+    },
+    "generated_in_this_stage": false
+  },
+  "actual_protocols": [
+    "A_exact_feedback",
+    "B_quantized_feedback"
+  ],
+  "views": [
+    "C_payload_same_B",
+    "C_predictor_same_B",
+    "A_rounded_log_same_A"
+  ],
+  "policy": "One predeclared central-half-cell gate at k=4, eta=min(b,delta/(2*alpha_max)), sign branches +/-; no other action",
+  "history_end": 5,
+  "branch_runs_max": 73728,
+  "independent_base_paths": 4096,
+  "bootstrap": {
+    "replicates": 1000,
+    "seed": 2026111902,
+    "unit": "base sample within model, paired across cells",
+    "role": "exploratory intervals only"
+  },
+  "TV_claims": {
+    "B": "analytic equality; sample path identity for implementation only",
+    "C": "analytic moment witness plus observed paired moments; no V_C=0 claim",
+    "histogram": "No full continuous-log TV estimation"
+  },
+  "stops": [
+    "source/version/permission mismatch",
+    "any B event or quantizer-index mismatch",
+    "deterministic identity failure",
+    "numerical scale unresolved"
+  ],
+  "new_simulation_results_exist": false
+}
