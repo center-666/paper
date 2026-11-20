@@ -1,0 +1,74 @@
+\section{系统、信息与损伤模型}
+\subsection{精确反馈协议}
+考虑固定有限维线性Gaussian模型
+\begin{equation}
+x_{t+1}=Ax_t+w_t,\qquad y_t=x_t+v_t .
+\label{eq:model}
+\end{equation}
+设 $x_0\sim N(m_0,P_0)$，$w_t\sim N(0,Q)$，$v_t\sim N(0,R)$，
+$P_0,R,Z\succ0$，$Q\succeq0$，$A$可逆；初态、全部过程噪声、量测噪声和触发随机数相互独立。
+物理系统不受估计输出控制，不包含自然丢包、时延或乱序。
+传感器取得可信实际预测$m_t^-$后，使用私有独立$U_t\sim\mathrm{Unif}[0,1]$决定
+\begin{equation}
+\gamma_t=0\quad\Longleftrightarrow\quad
+U_t\le g(y_t-m_t^-),\qquad g(z)=e^{-z^\top Zz/2}.
+\label{eq:trigger}
+\end{equation}
+发送位已确定后，载荷变为$\tilde y_t=y_t+a_t$，
+$\norm{a_t}\le b$；静默时$a_t=0$。
+
+令 $R_1=R,\ R_0=R+Z^{-1}$，
+$K_i(P)=P(P+R_i)^{-1}$，$F_i(P)=P-P(P+R_i)^{-1}P$。
+接收器按既定名义规则更新
+\begin{align}
+m_t^+&=m_t^-+\gamma_tK_1(P_t^-)(\tilde y_t-m_t^-),&
+P_t^+&=F_{\gamma_t}(P_t^-),\label{eq:receive}\\
+m_{t+1}^-&=Am_t^+,& P_{t+1}^-&=AP_t^+A^\top+Q.\nonumber
+\end{align}
+初值为$(m_0,P_0)$。$P_t^\pm$是由事件历史确定的名义协方差标签；
+在受攻时，它不能单独代表实际接收估计器的真实MSE。
+
+\subsection{信息域与合法策略}
+用$\omega_a$表示独立于物理过程和触发随机数的修改方私有种子，
+$Y_t^{\rm true}=y_t$在发送时成立，否则为$\bot$。
+定义扩充分析信息
+\[
+\mathcal G_t^-=\sigma(\omega_a,\gamma_{0:t-1},Y^{\rm true}_{0:t-1}),\qquad
+\mathcal G_t^+=\mathcal G_t^-\vee\sigma(\gamma_t,Y_t^{\rm true}).
+\]
+允许任意$\mathcal G_t^+$可测且满足峰值的随机因果策略。
+策略不能读取真实状态、未发送量测、未来噪声或$U_t$。
+给定策略，已实施动作和接收预测可由上述历史重建。
+扩充信息用于证明条件分布，不授予审计者真实量测副本。
+
+固定目标$k$，损伤为同一协议内部的真实MSE增量
+\begin{equation}
+J_k(\pi)=\E_\pi\norm{x_k-m_k^+}^2-\E_0\norm{x_k-m_k^+}^2.
+\label{eq:damage}
+\end{equation}
+单个策略的增量可为负；零策略可行，最坏值非负。
+令$H_{k+1}$为截至$k+1$的可信事件、实际预测反馈和实际收到的载荷日志。
+考虑记录
+\[
+R_{\rm full}=H_{k+1},\qquad
+R_{\rm bits}=\gamma_{0:k+1},\qquad
+R_m=(P_k^+,\gamma_{k+1}).
+\]
+定义
+\begin{equation}
+\Delta_R(\pi)=\TV(\Law_\pi(R),\Law_0(R)),\qquad
+V_R^{(k)}(b,\varepsilon)=
+\sup_{\pi:\,\norm{a_t}\le b,\,\Delta_R(\pi)\le\varepsilon}J_k(\pi).
+\label{eq:value}
+\end{equation}
+本文取$\TV(\mu,\nu)=\sup_B|\mu(B)-\nu(B)|$，向量范数为欧氏范数，矩阵范数为其诱导谱范数。
+TV约束为总体分布条件，既非一次运行的观测值，也非预设误报率。
+任意仅使用该记录的检验，其攻击与健康拒绝概率之差不超过$\Delta_R$；
+这一标准性质解释了统计隐蔽预算的含义。
+
+\subsection{评价者与记录可信性}
+远端估计器拥有连续载荷及内部预测，外部审计者可只订阅已规定的可信事件和控制反馈。
+载荷未经完整性保护不妨碍保存收到的值；是否向审计者提供它由所规定的信息接口决定。
+本文量化扩展把审计者限制为控制遥测订阅者，增强审计则明确加入额外字段。
+静默与缺包必须区分，反馈码必须对应传感器实际采用的值，模型版本及初始化已知。
+若这些条件不成立，不能直接应用下面的保证。

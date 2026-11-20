@@ -1,0 +1,62 @@
+% !TeX program = xelatex
+% Local layout based on the official submission-style document.
+\documentclass[UTF8,fontset=windows,zihao=5]{ctexart}
+\usepackage[a4paper,left=18.01mm,right=20mm,top=20mm,bottom=20mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,bm,booktabs,tabularx,array,graphicx}
+\usepackage{setspace,float,caption,xcolor}
+\usepackage[numbers,sort&compress,square,super]{natbib}
+\usepackage{xurl}
+\usepackage[unicode,hidelinks]{hyperref}
+\setmainfont{Times New Roman}
+\setCJKmainfont{SimSun}[BoldFont=SimHei,ItalicFont=KaiTi]
+\setCJKsansfont{SimHei}
+\setstretch{1.5}
+\setlength{\emergencystretch}{2em}
+\setlength{\parindent}{2em}
+\setlength{\textfloatsep}{10pt}
+\setlength{\intextsep}{10pt}
+\setcounter{topnumber}{3}
+\renewcommand{\topfraction}{.92}
+\renewcommand{\textfraction}{.06}
+\renewcommand{\floatpagefraction}{.8}
+\captionsetup{font=small,labelsep=quad}
+\newcommand{\bicaption}[2]{\caption{#1\\#2}}
+\newcommand{\E}{\mathbb E}
+\newcommand{\R}{\mathbb R}
+\newcommand{\TV}{\operatorname{TV}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Law}{\mathcal L}
+\newcommand{\ind}{\mathbf 1}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newtheorem{theorem}{定理}
+\newtheorem{lemma}{引理}
+\newtheorem{proposition}{命题}
+\renewcommand{\proofname}{证明}
+\renewcommand{\refname}{参考文献}
+\pagestyle{plain}
+\ctexset{section={format=\large\heiti},subsection={format=\normalsize\heiti}}
+\hypersetup{pdftitle={可信事件记录下的估计损伤界},
+ pdfsubject={Finite-horizon estimation damage under trusted event records}}
+\begin{document}
+\begin{center}
+{\heiti\zihao{3}可信事件记录下的估计损伤界\par}
+\end{center}
+\input{metadata}
+\noindent\textbf{摘\quad 要：}
+针对事件位和实际预测反馈可信、发送载荷可受有界因果修改的随机触发估计系统，研究统计记录对真实均方误差损伤的约束。利用下一可信事件与协方差标签构造损伤证书，证明在全状态含噪观测、状态矩阵可逆及固定有限时刻下，最坏损伤与攻击幅值平方和记录总变差预算中的较小量同阶。进一步在标量无饱和均匀反馈量化下，证明受限事件与量化遥测记录同律时仍有正损伤，其最坏值具有幅值与精度平方的匹配阶数。数值例证核验损伤分解和格内攻击机制。量化结论不涉及完整接收日志下的隐蔽性。
+
+\smallskip
+\noindent\textbf{关键词：}随机事件触发；远程状态估计；统计隐蔽性；可信反馈；量化；估计损伤
+
+\input{sections/01_introduction}
+\input{typeset/02_model}
+\input{typeset/03_exact_feedback}
+\input{sections/04_quantized_extension}
+\input{typeset/05_evidence}
+\input{sections/06_conclusion}
+\appendix
+\input{typeset/appendix_proofs}
+\input{english_abstract}
+\input{references}
+\input{graphical_abstract}
+\end{document}

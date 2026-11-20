@@ -1,0 +1,75 @@
+\section*{引言}
+远程状态估计通过网络利用传感器测量形成系统状态预测。
+随机事件触发机制根据量测与预测的偏差决定是否发送，静默事件也参与条件估计。
+指数二次触发规则可在适当线性Gaussian模型下保持条件Gaussian结构，为通信与估计分析提供基础\cite{han2015}。
+当发送载荷遭到修改时，估计偏差可能经接收端实际预测反馈改变未来发送概率。
+可信事件因此可能提供关于隐藏估计损伤的统计信息。
+
+统计隐蔽与估计退化的关系已有广泛研究\cite{bai2017,shang2022,guo2025,song2022,xu2023,wei2026}。
+相关成果包括随机事件估计的创新分布、攻击调度、条件矩约束、可信与可疑信息源以及序贯检测。
+王彩云等\cite{wang2021}在Kullback--Leibler（KL）散度检测约束下求解最优线性攻击；
+陈佳玲等\cite{chen2025}结合水印与参数辨识研究不确定电力系统的攻击检测。
+这些工作分别面向攻击优化或检测方法；本文考察既定可信记录对全部允许有界因果策略能提供多强的损伤保证。
+
+表\ref{tab:related}给出直接近邻的定理级对照。CGC指complete Gaussian crater分布\cite{shang2022}。
+不同文献的攻击权限和隐蔽准则并不相同，条件矩约束与联合记录总变差（total variation，TV）不能直接互换。
+\begin{table}[ht]
+\centering\footnotesize
+\bicaption{与直接近邻的定理级对照}{Table \thetable\quad Theorem-level comparison with closely related studies}
+\label{tab:related}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{1.55cm}*{4}{>{\raggedright\arraybackslash}X}}
+\toprule
+Study & Trusted information and feedback & Attack permissions & Stealth constraint & Performance result\\
+\midrule
+Shang et al.\cite{shang2022} &
+Local event trigger; attacked remote prediction is not its center &
+Manipulation of innovation and communication channels &
+CGC distribution and prescribed attack conditions &
+Error-covariance recursion (Thm.~2); stealthy constructions (Thm.~3, Cor.~3)\\
+Guo et al.\cite{guo2025} &
+Local innovation sent each time; events schedule the attack &
+Policies under specified information; comparison includes nonlinear feasible policies &
+Conditional mean and covariance on attack branches &
+Conditional damage optimum for the stated history and schedule (Thm.~1)\\
+Wei et al.\cite{wei2026} &
+Reliable data and sequential tests; healthy prediction may be broadcast &
+Attacks with specified access to reliable and suspicious data &
+Gaussian laws, temporal and cross-information moments &
+Worst error in the stated feasible set (Thm.~2); necessary and sufficient rank condition for nontrivial attacks without reliable-data access (Cor.~1)\\
+Li et al.\cite{li2026} &
+Forward innovation quantization; feedback-assisted attack &
+Continuous innovation falsified before detection and binary quantization &
+Prescribed detector and feasibility constraints &
+Sign-probability attack optimization (Thm.~3); covariance convergence (Thm.~4)\\
+This study &
+Trusted event decisions and faithful actual prediction feedback &
+Bounded causal payload changes after genuine transmission &
+TV of a specified joint record; zero TV in the quantized extension &
+Finite-time worst-case damage orders; residual damage under restricted quantized telemetry\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+可信信息能够排除某些非平凡隐蔽攻击已有直接先例，特别是Wei等在可靠信息不可读时给出的秩条件\cite{wei2026}。
+本文不将这一广义认识作为新发现。Song等允许在发送决定前替换预测反馈；
+Xu等和Wei等的分析也允许向传感器广播健康预测\cite{song2022,xu2023,wei2026}。
+本文要求反馈忠实于接收端实际预测，事件位不可伪造，且载荷修改发生在发送决定之后。
+这种时序使修改引起的偏差保留在下一可信事件的条件概率中。
+结合协方差标签对事件历史选择的校准，可进一步得到指定联合记录TV与真实均方误差（mean-square error，MSE）损伤之间的有限时域定量关系。
+
+TV本身不能控制无界平方损失。本文利用有限峰值及上述事件概率关系，
+对全部允许的历史相关、量测相关因果策略建立统一上界；
+再以合法单拍构造证明最坏损伤在攻击幅值平方与记录TV预算中的较小量上具有匹配阶数。
+该结果给出既定协议的充分性能保证及其阶数紧性，不提供一般精确最优攻击或新的检测器。
+
+前向量化观测下的篡改、反馈辅助创新修改及调度防护已有直接成果\cite{li2026,li2025}，
+事件触发与量化创新的联合估计也已有研究\cite{shen2025}。
+本文的正文扩展只量化参与实际触发的预测反馈中心，保持发送载荷连续。
+标量无饱和量化下，内部预测在同一量化格中变化而下一反馈码不变，
+可使指定可信事件与量化遥测记录同律时仍存在正损伤；其最坏值具有匹配的幅值--精度阶数。
+该结果刻画原保证在特定协议和受限记录下的失效边界，不是所有量化估计系统的普遍安全损失。
+
+受限遥测是一项明确的信息结构假设。远端估计器拥有连续载荷和内部预测，
+外部审计者可仅访问指定可信字段；载荷未经认证并不意味着它不可观察。
+字段选择接口具有现有规范依据\cite{opcdata}，但本文未验证某工业部署满足全部信任假设，
+也未证明这种接口比完整载荷认证成本更低。
