@@ -41,18 +41,18 @@ B_0=1-L,\quad B_1=d-Le,\quad B_2=d^2+s-L(e^2+v_t).
 \]
 三、四阶矩使用高斯公式m3=d³+3ds、m4=d⁴+6d²s+3s²同样相减。由此得到健康发送条件均值m=B1/B0、方差v=B2/B0-m²，以及平方中心残差的方差w=E[(R_c-m)^4|send]-v²。二者均为正。预设统计量
 \[
-g=a(R_c-m)+b[(R_c-m)^2-v],\quad
-a=-\operatorname{sgn}(d)/\sqrt v,\quad b=1/\sqrt w
+g=\beta_1(R_c-m)+\beta_2[(R_c-m)^2-v],\quad
+\beta_1=-\operatorname{sgn}(d)/\sqrt v,\quad \beta_2=1/\sqrt w
 \]
-在健康发送条件下均值为0；其两个成分均为单位方差，但不假定它们独立。接收值z=0或d=0时符号成分定义为0。这个方向规则只用目标收到载荷与量化格位置，未使用真实攻击动作。
+在健康发送条件下均值为0；d非零时两个成分均为单位方差，但不假定它们独立。d=0时符号成分定义为0。这个方向规则只用目标收到载荷与量化格位置，未使用真实攻击动作；beta系数不与攻击幅值预算b混用。
 
 若真实目标量测为u、收到值为z，下一真实量测相对码中心的均值为d_a=lambda u-c。用d_a代替d计算发送子原始矩A0...A4，但评分中的m,v,w仍取健康收到z的系数。令R_j=E[(R_c-m)^j 1_send]，通过二项式把A0...A4平移即可得到。则
 \[
-E[g1_{\rm send}]=aR_1+b(R_2-vA_0),
+E[g\mathbf1_{\rm send}]=\beta_1R_1+\beta_2(R_2-vA_0),
 \]
 \[
-E[g^2 1_{\rm send}]=a^2R_2+2ab(R_3-vR_1)
-+b^2(R_4-2vR_2+v^2A_0).
+E[g^2\mathbf1_{\rm send}]=\beta_1^2R_2+2\beta_1\beta_2(R_3-vR_1)
++\beta_2^2(R_4-2vR_2+v^2A_0).
 \]
 只在gamma0=1、H=1、gamma1=1时累加g，其余贡献0。对发送次密度f(u)及攻击随机核积分，再乘rho得到每个独立episode矩。积分在性能规划模块读取真实u和已声明策略是分析者计算，不给检测器这些变量，也不据此改阈值。
 
