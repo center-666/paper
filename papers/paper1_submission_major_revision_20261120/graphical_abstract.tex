@@ -1,0 +1,25 @@
+\clearpage
+\section*{Graphical abstract}
+\begin{center}
+\begin{tikzpicture}[
+  box/.style={draw,align=center,text width=35mm,minimum height=12mm,font=\small},
+  tag/.style={font=\small\bfseries,align=right,text width=24mm},
+  arrow/.style={-{Latex[length=1.8mm]},semithick}
+]
+\node[tag] (exact) {精确反馈};
+\node[box,right=7mm of exact] (bias) {隐藏估计偏差\\$D_k$};
+\node[box,right=8mm of bias] (event) {下一可信静默事件\\概率随$D_k$变化};
+\node[box,right=8mm of event] (bound) {记录TV约束\\真实损伤$J_k$};
+\draw[arrow] (exact) -- (bias);
+\draw[arrow] (bias) -- (event);
+\draw[arrow] (event) -- (bound);
+
+\node[tag,below=13mm of exact] (quant) {量化反馈};
+\node[box,below=13mm of bias] (cell) {同一码格内\\预测发生偏移};
+\node[box,right=8mm of cell] (same) {事件与量化遥测\\记录保持不变};
+\node[box,right=8mm of same] (residual) {零TV下\\仍有正损伤};
+\draw[arrow] (quant) -- (cell);
+\draw[arrow] (cell) -- (same);
+\draw[arrow] (same) -- (residual);
+\end{tikzpicture}
+\end{center}

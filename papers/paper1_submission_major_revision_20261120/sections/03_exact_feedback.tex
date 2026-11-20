@@ -1,0 +1,103 @@
+\section{精确反馈下的损伤保证}
+\label{sec:exact}
+\subsection{损伤分解与下一事件统计机制}
+给定$\mathcal G_t^\pm$，真实状态仍具有高斯条件分布，条件均值记$\mu_t^\pm$，
+协方差为$P_t^\pm$。发送并给定真实测量后，事件似然因子在后验归一化时消去；
+静默时，积分量测噪声得到以实际预测为中心的高斯似然。该结构不要求载荷修改与当前量测独立。
+令$d_t=\mu_t^--m_t^-$、$D_t=\mu_t^+-m_t^+$，则
+\begin{align}
+D_t&=(I-K_{\gamma_t}(P_t^-))d_t-\gamma_tK_1(P_t^-)a_t,\qquad
+d_{t+1}=AD_t,\label{eq:bias}\\
+J_k&=\E_\pi\norm{D_k}^2+
+\E_\pi\tr P_k^+-\E_0\tr P_k^+.\label{eq:split}
+\end{align}
+式\eqref{eq:split}由条件零均值残差的正交性得到。最后两项不能删除；
+事件概率改变可能使其为负。
+
+固定$P=P_k^+$，记下一静默位$Y=\ind_{\{\gamma_{k+1}=0\}}$，定义
+\begin{align}
+\Sigma(P)&=APA^\top+Q+R,\qquad
+s(P)=\det(I+Z^{1/2}\Sigma(P)Z^{1/2})^{-1/2},\nonumber\\
+H(P)&=\tfrac12 A^\top[Z^{-1}+\Sigma(P)]^{-1}A,\qquad
+W=Y/s(P).
+\end{align}
+真实条件创新的均值为$AD_k$。高斯积分给
+\begin{equation}
+\E_\pi[Y\mid\mathcal G_k^+]=s(P)e^{-D_k^\top H(P)D_k},
+\qquad \E_0W=1,\quad \E_\pi W=\E_\pi e^{-D_k^\top H(P)D_k}.
+\label{eq:witness}
+\end{equation}
+未来载荷修改发生在未来事件之后，故不改变这一关系。
+
+式\eqref{eq:witness}是可信事件转化为损伤信息的关键。给定历史时，下一静默概率相对健康基准$s(P)$乘以$\exp[-D_k^\top H(P)D_k]$；由于$A$可逆且$Z^{-1}+\Sigma(P)\succ0$，有$H(P)\succ0$，每个非零偏差都会严格降低该归一化概率。审计者无需直接观察$D_k$，而是比较记录中$P_k^+$与下一事件的联合分布。
+
+协方差标签的作用是校准事件历史对应的基准概率$s(P)$。若只比较未校准的静默边缘概率，攻击改变不同事件历史的权重也会改变平均静默率，不能将其全部归因于隐藏偏差。式\eqref{eq:split}中的协方差分布变化项同样必须保留；定理对$R_{\rm bits}$和$R_{\rm full}$成立，是因为这些记录也保留了$P_k^+$所依赖的事件历史，而不是因为这些字段具有相同的信息量。
+
+有限$k$下，P及增益取有限值。由式\eqref{eq:bias}可得
+$\norm{D_k}\le r_kb$。固定$b_{\rm ref}>0$，取
+\[
+h_*=\min_P\lambda_{\min}(H(P))>0,\quad
+B_*=r_kb_{\rm ref},\quad q=\frac{1-e^{-h_*B_*^2}}{B_*^2}>0.
+\]
+其中$A$可逆保证$h_*>0$。割线不等式给出
+\begin{proposition}[可信下一事件给出的总体损伤上界]
+对全部允许策略及$0\le b\le b_{\rm ref}$，
+\begin{equation}
+J_k\le \frac{1-\E_\pi W}{q}
++\E_\pi\tr P_k^+-\E_0\tr P_k^+.
+\label{eq:certificate}
+\end{equation}
+\end{proposition}
+\begin{proof}
+在$\norm{D_k}\le B_*$上，
+$1-e^{-D_k^\top H(P)D_k}\ge q\norm{D_k}^2$。
+对式\eqref{eq:witness}取期望并代入式\eqref{eq:split}即得。
+\end{proof}
+右侧是由可信事件与已知模型标签定义的总体统计量，不需要审计者知道攻击向量或真实状态。
+有限样本估计仍有统计余量；一个事件或一条轨迹不能直接认证总体损伤。
+
+\subsection{双预算阶数及完整日志下界}
+记$\Delta_m=\Delta_{R_m}$，
+令$M=\max_P1/s(P)$，$\Omega_k=\max_P\tr P-\min_P\tr P$。
+因$0\le W\le M$且$P$在记录中，标准TV期望界给
+\[
+J_k\le(M/q+\Omega_k)\Delta_m.
+\]
+另一方面，式\eqref{eq:bias}控制偏差平方；每个历史下静默概率相对健康变化为$O(b^2)$。
+对有限事件前缀耦合并控制P标签的期望差，得到$J_k\le C_{\rm peak}b^2$。
+该第二步不可仅从偏差半径推出而忽略协方差项。
+
+\begin{theorem}[精确反馈的有限时域损伤阶数]
+\label{thm:exact}
+固定模型、有限维数、目标$k$及$b_{\rm ref}$，存在正有限常数$c,C$，
+对$0<b\le b_{\rm ref}$、$0\le\varepsilon\le1$及
+$R\in\{R_{\rm full},R_{\rm bits},R_m\}$，
+\begin{equation}
+c\min\{b^2,\varepsilon\}\le V_R^{(k)}(b,\varepsilon)
+\le C\min\{b^2,\varepsilon\}.
+\label{eq:exact-bound}
+\end{equation}
+特别地，$V_R^{(k)}(b,0)=0$。
+\end{theorem}
+\begin{proof}
+上界为两种界的组合及记录的数据处理。
+下界在目标前不修改，仅在目标真实发送后使用独立等概率符号$\sigma$和固定单位方向$v$，$\norm v=1$，
+取$a_k=\sigma\eta v$，其他时刻为零。目标损伤为$L_v\eta^2$，$L_v>0$。
+给定健康前史，将当前连续载荷和下一静默原子/连续载荷写成一个联合核。
+该核对位移二阶连续$L^1$可微，正负混合的一阶项消去，完整日志TV不超过$C_1\eta^2$。
+取$\eta=\min\{b,\sqrt{\varepsilon/C_1}\}$完成下界，联合核细节见附录\ref{app:single}。
+\end{proof}
+单拍构造足够支持阶数，并不声称是精确最坏策略。
+常数依赖模型、$k$、$b_{\rm ref}$；$\varepsilon$与$b^2$的量纲通过模型相关常数联系，
+两预算切换点不是普遍的$\varepsilon=b^2$。
+三个记录的最坏损伤具有相同阶数，不表示它们的最坏值或上界常数相等。
+由于$R_m$、$R_{\rm bits}$均为$R_{\rm full}$的确定性投影，数据处理给出
+$V_{R_{\rm full}}^{(k)}\le V_{R_{\rm bits}}^{(k)}\le V_{R_m}^{(k)}$；
+定理说明的是这三个量在固定模型和时域下具有匹配阶数。
+
+\subsection{观察时域与信息限制}
+式\eqref{eq:witness}使用下一拍可信事件以及目标协方差标签。
+因此，定理\ref{thm:exact}不直接适用于只观察到目标拍的日志，或删去历史校准标签后的单个事件边缘。
+这一充分保证不声称已确定所有审计方式的最小记录。
+精确协方差标签由事件历史决定，但并不天然构成低比特压缩；
+本文未给出其固定字长编码或通信成本最优性。

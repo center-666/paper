@@ -1,0 +1,138 @@
+\section{有限反馈精度下的保证退化}
+精确反馈定理依赖传感器使用接收端实际预测形成事件。现在改变协议本身：传感器改用量化预测中心触发，接收端也围绕该中心执行一致的静默更新。这样，内部预测在同一量化格内移动时，反馈码及事件记录可以保持不变；下文刻画由此产生的残余损伤，并区分协议量化与仅删减审计字段这两种变化。
+
+\subsection{量化协议及一致静默更新}
+本节限于\textbf{标量}系统，$A\ne0$，$P_0,R,Z>0$，$Q\ge0$，并固定有限目标$k$。
+量化的是实际预测反馈，前向发送载荷保持连续。取无限格点、无饱和的均匀量化器
+\[
+c_t=Q_\delta(m_t^-),\qquad Q_\delta(m)=2\delta\left\lfloor\frac{m+\delta}{2\delta}\right\rfloor,
+\qquad |c_t-m_t^-|\le\delta,
+\]
+量化格为半开区间$[2j\delta-\delta,2j\delta+\delta)$，$j\in\mathbb Z$，故并列点归属固定。
+传感器用$y_t-c_t$生成原指数二次随机事件。
+发送支路保持原更新；静默时必须使用
+\begin{equation}
+m_t^+=m_t^-+K_0(P_t^-)(c_t-m_t^-),\qquad P_t^+=F_0(P_t^-).
+\label{eq:silentq}
+\end{equation}
+健康条件均值于是与接收均值一致。若仍使用旧的$m_t^+=m_t^-$，
+健康运行也会因非零舍入误差产生条件均值失配。
+
+给定扩充真实历史，$c_t$为已知量；静默似然是以$c_t$为中心、噪声$R+Z^{-1}$的高斯因子。
+发送并给定真实测量后事件因子仍可消去。因此精确条件高斯结构保留，
+且真实条件均值与接收均值的偏差仍满足式\eqref{eq:bias}。
+量化误差项在两者使用同一静默中心后相消。
+这个结论不应移到只包含量化码或污染载荷的较小条件信息域。
+
+定义同量化协议内部损伤
+\[
+J_{k,\delta}=\E_{\pi,\delta}(x_k-m_k^+)^2-\E_{0,\delta}(x_k-m_k^+)^2.
+\]
+它不含正常量化运行相对正常精确运行的损失。
+令$T_{\delta,k}=(\gamma_{0:k+1},c_{0:k+1},P_k^+)$为全部可信控制遥测，
+$R_{m,\delta}=(P_k^+,c_{k+1},\gamma_{k+1})$为其投影。
+两者都排除连续接收载荷和未量化内部预测。
+相应TV与最坏值采用式\eqref{eq:value}的同协议定义。
+
+\subsection{零记录差异下的残余损伤}
+令$e=c_{k+1}-m_{k+1}^-$，$P=P_k^+$，
+$\Sigma(P)=A^2P+Q+R$，$V(P)=Z^{-1}+\Sigma(P)$，$h(P)=A^2/[2V(P)]$。
+下一事件关系变为
+\begin{equation}
+\E_{\pi,\delta}[W\mid\mathcal G_k^+]
+=\exp[-h(P)(D_k-e/A)^2],\qquad W=Y/s(P).
+\label{eq:qprob}
+\end{equation}
+健康时$D_k=0$，所以$\E_{0,\delta}W$一般小于1；
+原精确协议的健康归一化不能直接沿用。
+
+\begin{theorem}[标量有限精度下的零TV残余损伤阶数]
+\label{thm:quant}
+固定标量模型、有限$k$、$b_{\rm ref}>0$、$\delta_{\rm ref}>0$。
+存在$\delta_*>0$及正有限$c_k,C_k$，使全部
+$0<b\le b_{\rm ref}$、$0<\delta\le\min\{\delta_*,\delta_{\rm ref}\}$满足
+\begin{equation}
+c_k\min\{b^2,\delta^2\}\le V_{R,\delta}^{(k)}(b,0)
+\le C_k\min\{b^2,\delta^2\},
+\label{eq:quant-bound}
+\end{equation}
+其中$R=T_{\delta,k}$或$R_{m,\delta}$。
+\end{theorem}
+\begin{proof}
+上界适用于包括目标前动作在内的全部允许策略。
+有限前缀集给$|D_k|\le r_kb$。取
+$R_*=r_kb_{\rm ref}+\delta_{\rm ref}/|A|$，
+$h_*=\min_Ph(P)>0$，
+$q_*=(1-e^{-h_*R_*^2})/R_*^2$，
+$c_0=\max_P1/[2V(P)]$。
+当记录同律，$\E_\pi W=\E_0W$且P标签同律。
+由式\eqref{eq:qprob}和健康量化误差界，
+\[
+q_*\E_\pi(D_k-e/A)^2\le1-\E_\pi W
+=1-\E_0W\le c_0\delta^2.
+\]
+于是
+\[
+J_{k,\delta}=\E_\pi D_k^2
+\le\left(\sqrt{c_0/q_*}+|A|^{-1}\right)^2\delta^2,
+\qquad J_{k,\delta}\le r_k^2b^2 .
+\]
+
+下界选择此前无动作的合法子类。给定健康真实前史$\zeta$，
+令$m=m_k^-$、$e_k=c_k-m$、$P_h=P_k^-$、$S_h=P_h+R$、$K_h=P_h/S_h$。
+当前创新$u=y_k-m$的发送次密度为
+\begin{equation}
+f_{h,e_k}(u)=\phi_{S_h}(u)[1-\exp(-Z(u-e_k)^2/2)].
+\label{eq:sentq}
+\end{equation}
+真实发送后，下一健康预测$M=A(m+K_hu)$可由合法信息计算。
+定义开中央半区
+\[
+\mathcal C_\delta=\bigcup_{j\in\mathbb Z}
+(2j\delta-\delta/2,\,2j\delta+\delta/2).
+\]
+只在真实发送且$M\in\mathcal C_\delta$时，选择独立符号动作$\sigma\eta$，
+$\eta=\min\{b,\delta/(2\alpha_{\max})\}$，
+$\alpha_{\max}=\max_h|AK_h|$。
+因$|AK_h|\eta\le\delta/2$且中央区为开集，两种符号均严格不跨格，下一实际反馈码及事件逐路径相同，
+目标前的全部事件/反馈也相同。
+独立符号消去目标误差交叉项，故
+\[
+J_{k,\delta}=\eta^2\E_{0,\delta}[K_h^2\ind_E].
+\]
+附录\ref{app:uniform}证明安全发送事件的概率在所有健康前史下至少$p_*/4>0$，
+从而给出式\eqref{eq:quant-bound}的正下界。
+\end{proof}
+
+定理\ref{thm:quant}与定理\ref{thm:exact}形成一组适用范围对照：精确反馈下，指定记录TV为零强制最坏损伤为零；量化反馈下，受限遥测同律仍允许$\Theta(\min\{b^2,\delta^2\})$的残余损伤。这里失效的是量化协议及其指定审计记录下的严格零损伤保证，不是对完整接收日志的不可检测性结论。
+
+定理\ref{thm:quant}的常数可依赖$k$，不是长时间一致界。
+其下界取目标前无动作策略，只是全允许策略类的合法子集；
+不需要也没有假设所有允许攻击此前均无动作。
+$\delta^2$在该记录下是不能统一缩为$o(\delta^2)$的余量，
+不表示每条运行均有损伤。
+
+\subsection{协议变化与信息变化的区别}
+\begin{table}[ht]\centering\small
+\bicaption{反馈协议与审计记录的区别}{Table \thetable\quad Feedback protocols and audit records}
+\begin{tabularx}{\linewidth}{lXX}
+\toprule
+Setting & Actual trigger center & Proven guarantee\\
+\midrule
+A: exact feedback & $m_t^-$ & Zero record TV implies zero worst-case damage.\\
+B: quantized feedback & $Q_\delta(m_t^-)$ & Identical telemetry laws allow the residual damage in \eqref{eq:quant-bound}.\\
+C: enhanced audit & Same as B & Additional payload or exact prediction information cannot increase worst-case damage; a general zero-damage guarantee is unknown.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+仅把A的日志显示值量化，同时传感器仍使用精确中心，不会破坏原先由P和下一事件给出的保证。
+B的地板来自量化中心进入实际触发，以及审计者不保留足以区分该见证的连续数据共同作用。
+
+对于定理下界中的独立符号见证，加入目标拍收到的连续载荷后，
+统计量$\gamma_k\tilde y_k^2$的期望差为$\eta^2\Pr(E)>0$；
+加入下一未量化预测后，其平方期望差为$A^2\eta^2\E[K_h^2\ind_E]>0$。
+有限二阶矩下，这些差异证明该见证不再同律。
+但排除这个见证不等于排除全部零TV策略；对C只可一般地使用记录投影给出$V_C\le V_B$。
+
+无饱和均匀格代表绝对精度假设，其整数索引没有全路径固定字长。
+本文不据此给固定比特部署或认证成本优势，也不将采样估计TV替代上述严格同律证明。

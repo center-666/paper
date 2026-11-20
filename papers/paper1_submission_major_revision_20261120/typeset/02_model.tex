@@ -1,0 +1,114 @@
+\section{系统、信息与损伤模型}
+\subsection{精确反馈协议}
+考虑固定有限维线性高斯模型
+\begin{equation}
+{\bm{x}}_{t+1}={\bm{A}}{\bm{x}}_t+{\bm{w}}_t,\qquad {\bm{y}}_t={\bm{x}}_t+{\bm{v}}_t .
+\label{eq:model}
+\end{equation}
+设 ${\bm{x}}_0\sim N({\bm{m}}_0,{\bm{P}}_0)$，${\bm{w}}_t\sim N(0,{\bm{Q}})$，${\bm{v}}_t\sim N(0,{\bm{R}})$，
+${\bm{P}}_0,{\bm{R}},{\bm{Z}}\succ0$，${\bm{Q}}\succeq0$，${\bm{A}}$可逆；初态、全部过程噪声、量测噪声和触发随机数相互独立。
+物理系统不受估计输出控制，不包含自然丢包、时延或乱序。
+传感器取得可信实际预测${\bm{m}}_t^-$后，使用私有独立$U_t\sim\mathrm{Unif}[0,1]$决定
+\begin{equation}
+\gamma_t=0\quad\Longleftrightarrow\quad
+U_t\le g({\bm{y}}_t-{\bm{m}}_t^-),\qquad g({\bm{z}})=e^{-{\bm{z}}^\top {\bm{Z}}{\bm{z}}/2}.
+\label{eq:trigger}
+\end{equation}
+发送位已确定后，载荷变为$\tilde {\bm{y}}_t={\bm{y}}_t+{\bm{a}}_t$，
+$\norm{{\bm{a}}_t}\le b$；静默时${\bm{a}}_t=0$。
+
+令 ${\bm{R}}_1={\bm{R}},\ {\bm{R}}_0={\bm{R}}+{\bm{Z}}^{-1}$，
+${\bm{K}}_i({\bm{P}})={\bm{P}}({\bm{P}}+{\bm{R}}_i)^{-1}$，$F_i({\bm{P}})={\bm{P}}-{\bm{P}}({\bm{P}}+{\bm{R}}_i)^{-1}{\bm{P}}$。
+接收器按既定名义规则更新
+\begin{align}
+{\bm{m}}_t^+&={\bm{m}}_t^-+\gamma_t{\bm{K}}_1({\bm{P}}_t^-)(\tilde {\bm{y}}_t-{\bm{m}}_t^-),&
+{\bm{P}}_t^+&=F_{\gamma_t}({\bm{P}}_t^-),\label{eq:receive}\\
+{\bm{m}}_{t+1}^-&={\bm{A}}{\bm{m}}_t^+,& {\bm{P}}_{t+1}^-&={\bm{A}}{\bm{P}}_t^+{\bm{A}}^\top+{\bm{Q}}.\nonumber
+\end{align}
+初值为$({\bm{m}}_0,{\bm{P}}_0)$。${\bm{P}}_t^\pm$是由事件历史确定的名义协方差标签；
+在受攻时，它不能单独代表实际接收估计器的真实MSE。
+
+\subsection{信息域与合法策略}
+用$\omega_a$表示独立于物理过程和触发随机数的修改方私有种子，
+$Y_t^{\rm true}={\bm{y}}_t$在发送时成立，否则为$\bot$。
+定义扩充分析信息
+\[
+\mathcal G_t^-=\sigma(\omega_a,\gamma_{0:t-1},Y^{\rm true}_{0:t-1}),\qquad
+\mathcal G_t^+=\mathcal G_t^-\vee\sigma(\gamma_t,Y_t^{\rm true}).
+\]
+允许任意$\mathcal G_t^+$可测且满足峰值的随机因果策略。
+策略不能读取真实状态、未发送量测、未来噪声或$U_t$。
+给定策略，已实施动作和接收预测可由上述历史重建。
+扩充信息用于证明条件分布，不授予审计者真实量测副本。
+
+固定目标$k$，损伤为同一协议内部的真实MSE增量
+\begin{equation}
+J_k(\pi)=\E_\pi\norm{{\bm{x}}_k-{\bm{m}}_k^+}^2-\E_0\norm{{\bm{x}}_k-{\bm{m}}_k^+}^2.
+\label{eq:damage}
+\end{equation}
+单个策略的增量可为负；零策略可行，最坏值非负。
+定义记录字段
+\[
+\tilde {\bm{y}}_t^{\rm rec}=\begin{cases}
+\tilde {\bm{y}}_t,&\gamma_t=1,\\
+\bot,&\gamma_t=0.
+\end{cases}
+\]
+截至$k+1$的完整日志为
+\[
+H_{k+1}=\bigl(\gamma_{0:k+1},\ m^-_{0:k+1},\ \tilde y^{\rm rec}_{0:k+1}\bigr).
+\]
+其中事件位和实际预测反馈均可信；载荷字段记录接收端实际收到的值，但不表示该值具有源端完整性认证。
+静默以$\bot$编码，因而不会与丢包混淆。
+考虑记录
+\[
+R_{\rm full}=H_{k+1},\qquad
+R_{\rm bits}=\gamma_{0:k+1},\qquad
+R_m=({\bm{P}}_k^+,\gamma_{k+1}).
+\]
+定义
+\begin{equation}
+\Delta_R(\pi)=\TV(\Law_\pi(R),\Law_0(R)),\qquad
+V_R^{(k)}(b,\varepsilon)=
+\sup_{\pi:\,\norm{{\bm{a}}_t}\le b,\,\Delta_R(\pi)\le\varepsilon}J_k(\pi).
+\label{eq:value}
+\end{equation}
+本文取$\TV(\mu,\nu)=\sup_B|\mu(B)-\nu(B)|$，向量范数为欧氏范数，矩阵范数为其诱导谱范数。
+TV约束为总体分布条件，既非一次运行的观测值，也非预设误报率。
+任意仅使用该记录的检验，其攻击与健康拒绝概率之差不超过$\Delta_R$；
+这一标准性质解释了统计隐蔽预算的含义。
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  block/.style={draw,align=center,text width=36mm,minimum height=13mm,font=\small},
+  signal/.style={-{Latex[length=1.8mm]},semithick},
+  audit/.style={-{Latex[length=1.6mm]},densely dashed}
+]
+\node[block] (sensor) {传感器获得可信预测并决定事件};
+\node[block,right=18mm of sensor] (attacker) {发送决定后修改发送载荷};
+\node[block,right=18mm of attacker] (receiver) {接收端更新估计并产生实际预测};
+\node[block,below=17mm of attacker,text width=145mm,minimum height=9mm] (auditor)
+  {完整日志记录事件位、可信预测反馈及接收载荷；载荷只表示接收值，不表示源端认证};
+\draw[signal] (sensor.east) -- node[midway,above=2mm,fill=white,inner sep=1pt,font=\footnotesize]{仅发送时} (attacker.west);
+\draw[signal] (attacker.east) -- node[midway,above=2mm,fill=white,inner sep=1pt,font=\footnotesize]{修改后载荷} (receiver.west);
+\draw[signal] (receiver.north) .. controls +(0,13mm) and +(0,13mm) ..
+  node[above,font=\small]{下一时刻实际预测反馈} (sensor.north);
+\draw[audit] (sensor.south) -- (auditor.north west);
+\draw[audit] (attacker.south) -- (auditor.north);
+\draw[audit] (receiver.south) -- (auditor.north east);
+\end{tikzpicture}
+\bicaption{发送决定、载荷修改和可信审计字段的时序}{Fig. \thefigure\quad Timing of transmission, payload modification, and trusted audit fields}
+\label{fig:protocol}
+\end{figure}
+
+图\ref{fig:protocol}中的完整日志比主定理使用的每种记录都更丰富。
+特别是$R_m$仅保留目标协方差标签及下一事件，$R_{\rm bits}$只保留事件串；
+量化扩展另行定义量化遥测记录，不把载荷字段默认为可信。
+
+\subsection{评价者与记录可信性}
+远端估计器拥有连续载荷及内部预测，外部审计者可只订阅已规定的可信事件和控制反馈。
+载荷未经完整性保护不妨碍保存收到的值；是否向审计者提供它由所规定的信息接口决定。
+本文量化扩展把审计者限制为控制遥测订阅者，增强审计则明确加入额外字段。
+静默与缺包必须区分，反馈码必须对应传感器实际采用的值，模型版本及初始化已知。
+若这些条件不成立，不能直接应用下面的保证。

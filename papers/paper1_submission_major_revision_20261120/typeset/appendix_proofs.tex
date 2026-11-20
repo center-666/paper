@@ -1,0 +1,136 @@
+\section{精确协议的有限时域上界与单拍联合核}
+\label{app:single}
+\subsection{全策略半径及协方差概率项}
+在时刻$t$的有限先验标签集中取
+\[
+\alpha_t=\max_{{\bm{P}},i}\norm{{\bm{I}}-{\bm{K}}_i({\bm{P}})},\qquad \beta_t=\max_{\bm{P}}\norm{{\bm{K}}_1({\bm{P}})}.
+\]
+设$r_0=\beta_0$，$r_t=\alpha_t\norm {\bm{A}} r_{t-1}+\beta_t$，
+$\ell_0=0$，$\ell_t=\norm {\bm{A}} r_{t-1}$。
+式\eqref{eq:bias}给$\norm{{\bm{D}}_t}\le r_tb$及$\norm{{\bm{d}}_t}\le\ell_tb$，
+不要求非对称增益的谱范数小于1。
+精确反馈中，给定事件前缀h，静默概率是健康概率乘以一个
+$\E_\pi[e^{-{\bm{d}}_t^\top {\bm{W}}_h{\bm{d}}_t/2}\mid h]$因子，${\bm{W}}_h\preceq {\bm{Z}}$。
+利用$1-e^{-u}\le u$，逐步耦合有限事件字可得
+\[
+\TV(\Law_\pi(\gamma_{0:k}),\Law_0(\gamma_{0:k}))
+\le\frac{\norm {\bm{Z}} b^2}{2}\sum_{t=1}^k\ell_t^2.
+\]
+P标签为事件历史的函数，迹的振幅为$\Omega_k$，故
+\[
+J_k\le
+\left(r_k^2+\frac{\Omega_k\norm {\bm{Z}}}{2}\sum_{t=1}^k\ell_t^2\right)b^2.
+\]
+它与正文由记录分布得到的上界共同提供两个独立控制。
+
+\subsection{单拍完整日志的二阶平滑性}
+条件于目标前健康完整历史，事件前缀记$h=\gamma_{0:k-1}$，
+其健康概率记$w_h$；$k=0$时前缀为空且权重为1。定义
+\[
+{\bm{P}}_h={\bm{P}}_k^-(h),\quad {\bm{S}}_h={\bm{P}}_h+{\bm{R}},\quad {\bm{K}}_h={\bm{P}}_h{\bm{S}}_h^{-1},\quad
+{\bm{S}}'_h={\bm{A}}F_1({\bm{P}}_h){\bm{A}}^\top+{\bm{Q}}+{\bm{R}},\quad {\bm{c}}_h={\bm{A}}{\bm{K}}_h{\bm{v}}.
+\]
+真实创新u的发送次密度
+\begin{align*}
+f_h({\bm{u}})&=\phi_{{\bm{S}}_h}({\bm{u}})[1-g({\bm{u}})]
+=\phi_{{\bm{S}}_h}({\bm{u}})-s_h\phi_{{\bm{T}}_h}({\bm{u}}),\\
+{\bm{T}}_h&=({\bm{S}}_h^{-1}+{\bm{Z}})^{-1},\qquad
+s_h=\det({\bm{I}}+{\bm{Z}}^{1/2}{\bm{S}}_h{\bm{Z}}^{1/2})^{-1/2},\qquad
+\int f_h=p_h=1-s_h>0.
+\end{align*}
+当前有符号幅值t使接收创新为${\bm{z}}={\bm{u}}+t{\bm{v}}$，下一接收创新（不再修改）为${\bm{r}}={\bm{e}}-t{\bm{c}}_h$，
+其中给定当前真实发送量测后${\bm{e}}\sim N(0,{\bm{S}}'_h)$，条件分布与u无关。
+在$\{\bot\}\sqcup\R^n$上定义
+\begin{align*}
+Q_{h,t}(\{\bot\})&=\int\phi_{{\bm{S}}'_h}({\bm{r}}+t{\bm{c}}_h)g({\bm{r}})\,d{\bm{r}},\\
+Q_{h,t}(d{\bm{r}})&=\phi_{{\bm{S}}'_h}({\bm{r}}+t{\bm{c}}_h)[1-g({\bm{r}})]\,d{\bm{r}},\\
+F_h(t)(d{\bm{z}},d{\bm{\xi}})&=f_h({\bm{z}}-t{\bm{v}})\,d{\bm{z}}\,Q_{h,t}(d{\bm{\xi}}).
+\end{align*}
+$F_h(t)$总质量恒为$p_h$。记有限有符号测度的变差范数为
+$\norm{\nu}_{\rm var}=|\nu|(\Omega)$，两个概率测度之差的变差范数等于其TV距离的两倍。
+$Q_{h,t}$是固定事件输出核作用于高斯平移，
+其一、二阶变差范数可分别以
+\[
+m_{1,h}=\sqrt{2/\pi}\sqrt{{\bm{c}}_h^\top({\bm{S}}'_h)^{-1}{\bm{c}}_h},\qquad
+m_{2,h}=2{\bm{c}}_h^\top({\bm{S}}'_h)^{-1}{\bm{c}}_h
+\]
+控制。令$\rho_{S,h}={\bm{v}}^\top {\bm{S}}_h^{-1}{\bm{v}}$、$\rho_{T,h}={\bm{v}}^\top {\bm{T}}_h^{-1}{\bm{v}}$，
+高斯密度的导数满足
+\begin{align*}
+\norm{\partial_{\bm{v}}f_h}_1&\le F_{1,h}
+=\sqrt{2/\pi}\bigl(\sqrt{\rho_{S,h}}+s_h\sqrt{\rho_{T,h}}\bigr),\\
+\norm{\partial_{\bm{v}}^2f_h}_1&\le F_{2,h}=2(\rho_{S,h}+s_h\rho_{T,h}).
+\end{align*}
+因此
+\[
+\sup_t\norm{F_h''(t)}_{\rm var}
+\le B_h=F_{2,h}+2F_{1,h}m_{1,h}+p_hm_{2,h}<\infty.
+\]
+平移在$W^{2,1}$中连续，固定核及张量乘积为有界算子，
+故该导数在共同测度$d{\bm{z}}\otimes(\delta_\bot+d{\bm{\xi}})$下成立。
+对正负混合应用中心Taylor积分：
+\[
+\left\|\frac{F_h(\eta)+F_h(-\eta)}2-F_h(0)\right\|_{\rm var}
+\le\frac12B_h\eta^2.
+\]
+给定前史m和$({\bm{z}},{\bm{\xi}})$，按${\bm{m}}_{k+1}^-={\bm{A}}({\bm{m}}+{\bm{K}}_h{\bm{z}})$，
+下一发送时$\tilde {\bm{y}}_{k+1}={\bm{m}}_{k+1}^-+{\bm{\xi}}$重建完整日志；
+此映射不依赖t或隐藏符号。目标静默分支与健康相同。
+在共同前史上积分、对等质量测度转TV，得到
+$\Delta_{\rm full}\le C_1\eta^2$，
+$C_1=\frac14\sum_hw_hB_h>0$。
+目标真实损伤为$L_{\bm{v}}\eta^2$，
+$L_{\bm{v}}=\sum_hw_hp_h\norm{{\bm{K}}_h{\bm{v}}}^2>0$，
+从而得到正文下界。该论证保留了两拍日志的联合关系，而非分别匹配两个边缘分布。
+
+\section{量化协议的一致后验及所有历史的统一概率}
+\label{app:uniform}
+\subsection{扩充信息下的后验}
+在标量量化协议下，给定扩充前史，
+$x_t\sim N(\mu_t^-,P_t^-)$且$m_t^-,c_t$已知。
+静默似然为
+\[
+(1+RZ)^{-1/2}\exp[-(x_t-c_t)^2/(2(R+Z^{-1}))].
+\]
+后验均值为$\mu_t^-+K_0(P_t^-)(c_t-\mu_t^-)$，
+协方差$F_0(P_t^-)$。与式\eqref{eq:silentq}相减，
+静默偏差为$(1-K_0)d_t$；发送偏差为$(1-K_1)d_t-K_1a_t$。
+因此沿用式\eqref{eq:bias}及损伤分解。
+给定扩充历史后量化中心是常数，量化的不连续性不破坏这项归纳。
+
+\subsection{对连续历史与量化相位统一的界}
+令$\mathcal P_k^-$为固定k的有限先验标签集，$S_h=P_h+R$、$K_h=P_h/S_h$。
+目标前健康历史的连续值使m和$e=c_k-m$变化，但式\eqref{eq:sentq}满足
+\[
+\norm{f'_{h,e}}_1
+\le \sqrt{2/(\pi S_h)}+\sqrt{Z/\mathrm e}
+\le L_f:=\sqrt{2/(\pi S_{\min})}+\sqrt{Z/\mathrm e}.
+\]
+这个界对e平移一致。条件发送概率至少为
+\[
+p_*=\min_h\{1-(1+ZS_h)^{-1/2}\}>0.
+\]
+M的发送次密度由$M=A(m+K_hu)$变换得到，
+其导数$L^1$范数统一不超过
+$L_*=L_f/\alpha_{\min}$，$\alpha_{\min}=\min_h|AK_h|>0$。
+
+令$\chi_\delta=\ind_{\mathcal C_\delta}$指示正文定义的开中央半区，周期为$2\delta$、均值$1/2$。
+存在周期绝对连续原函数$G_\delta$使
+$G_\delta'=\chi_\delta-1/2$且$\norm{G_\delta}_\infty\le\delta/4$。
+对于任意上述条件发送次密度$\rho$，分部积分给
+\[
+\left|\int\rho\chi_\delta-\tfrac12\int\rho\right|
+\le\frac{\delta}{4}\norm{\rho'}_1\le\delta L_*/4.
+\]
+因此当$0<\delta\le\delta_*:=p_*/L_*$时，
+\[
+\Pr(\gamma_k=1,M\text{位于中央半格}\mid\zeta)\ge p_*/4
+\]
+对所有健康真实前史成立。无需假设M模格宽均匀，也无需固定量化相位。
+对历史平均并用$K_{\min}=\min_hK_h>0$得到下界
+\[
+J_{k,\delta}\ge
+\frac{K_{\min}^2p_*}{4}
+\min\left\{b^2,\frac{\delta^2}{4\alpha_{\max}^2}\right\}.
+\]
+这与正文的全策略上界匹配。充分范围和常数依赖k，不得到长时间一致结论。
