@@ -1,0 +1,75 @@
+{
+  "base_commit": "19e7b7d8e035801ef1a99d4512e93c526f9f94d7",
+  "models": [
+    {
+      "id": "S1",
+      "A": 0.82,
+      "m0": 0,
+      "P0": 0.8,
+      "Q": 0.05,
+      "R": 0.2,
+      "Z": 2,
+      "delta_grid": [
+        0.0029070580747084917,
+        0.005814116149416983,
+        0.011628232298833967
+      ]
+    },
+    {
+      "id": "U1",
+      "A": 1.04,
+      "m0": 0,
+      "P0": 0.8,
+      "Q": 0.05,
+      "R": 0.2,
+      "Z": 2,
+      "delta_grid": [
+        0.005564938828732097,
+        0.011129877657464194,
+        0.022259755314928388
+      ]
+    }
+  ],
+  "target": 0,
+  "last_time": 1,
+  "b": 0.1,
+  "audit_probabilities": [
+    0,
+    0.05,
+    0.1,
+    0.2,
+    1
+  ],
+  "calibration_episodes": 131072,
+  "test_episodes": 262144,
+  "window_sizes": [
+    32,
+    128
+  ],
+  "false_alarm_target": 0.01,
+  "power_planning_target": 0.8,
+  "master_seed": 2026112003,
+  "rng": "PCG64",
+  "quadrature_order": 16,
+  "quadrature_crosscheck_order": 32,
+  "quadrature_range_sd": 10,
+  "illustrative_tag_bytes": 16,
+  "detector": {
+    "feature_1": "phase-oriented standardized conditional residual (Y1-c1 minus healthy conditional mean), sign chosen by sign(lambda*zeta0-c1)",
+    "feature_2": "standardized excess squared conditional residual",
+    "single_episode_score": "feature_1 + feature_2 with fixed equal unit weights; health conditional centering and scaling",
+    "conditioning": "gamma0=1, gamma1=1, known zeta0, model and quantized center",
+    "threshold": "independent healthy calibration, empirical 99th percentile; strict greater-than alarm",
+    "window_scores": "non-overlapping 32- and 128-independent-episode sums of audited scores divided by sqrt(block size), one-sided threshold from healthy blocks",
+    "attack_labels_or_hidden_state_used_by_detector": false
+  },
+  "parameters_source": "reviews/paper1_e1_scalar_execution/results/e1_20261119_v1/protocol_snapshot.json",
+  "parameters_source_sha256": "86ca9d421c11ce734665576cfaad421b776ac39cb1fbf2d608546da5dd5083a2",
+  "attacks": [
+    "cell_sign",
+    "balanced_reflection"
+  ],
+  "full_auth_baseline": "protect both target and next transmitted payloads; ideal integrity, no attack enters estimator",
+  "sample_unit": "one independent two-time physical episode, not individual time points or paired branches",
+  "frozen_before_random_input": true
+}

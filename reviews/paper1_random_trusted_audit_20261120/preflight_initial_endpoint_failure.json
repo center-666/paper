@@ -1,0 +1,191 @@
+{
+  "checks": [
+    {
+      "model": "S1",
+      "delta": 0.0029070580747084917,
+      "peak_bound": true
+    },
+    {
+      "model": "S1",
+      "delta": 0.0029070580747084917,
+      "attack": "healthy",
+      "quadrature_16_32_max_error": 2.7755575615628914e-17,
+      "passed": true
+    },
+    {
+      "model": "S1",
+      "delta": 0.0029070580747084917,
+      "attack": "cell_sign",
+      "quadrature_16_32_max_error": 2.7755575615628914e-17,
+      "passed": true
+    },
+    {
+      "model": "S1",
+      "delta": 0.0029070580747084917,
+      "attack": "balanced_reflection",
+      "quadrature_16_32_max_error": 2.168404344971009e-19,
+      "passed": true
+    },
+    {
+      "model": "S1",
+      "half_open_quantizer_edges": true
+    },
+    {
+      "model": "S1",
+      "delta": 0.005814116149416983,
+      "peak_bound": true
+    },
+    {
+      "model": "S1",
+      "delta": 0.005814116149416983,
+      "attack": "healthy",
+      "quadrature_16_32_max_error": 2.7755575615628914e-17,
+      "passed": true
+    },
+    {
+      "model": "S1",
+      "delta": 0.005814116149416983,
+      "attack": "cell_sign",
+      "quadrature_16_32_max_error": 2.7755575615628914e-17,
+      "passed": true
+    },
+    {
+      "model": "S1",
+      "delta": 0.005814116149416983,
+      "attack": "balanced_reflection",
+      "quadrature_16_32_max_error": 2.7755575615628914e-17,
+      "passed": true
+    },
+    {
+      "model": "S1",
+      "half_open_quantizer_edges": true
+    },
+    {
+      "model": "S1",
+      "delta": 0.011628232298833967,
+      "peak_bound": true
+    },
+    {
+      "model": "S1",
+      "delta": 0.011628232298833967,
+      "attack": "healthy",
+      "quadrature_16_32_max_error": 5.551115123125783e-17,
+      "passed": true
+    },
+    {
+      "model": "S1",
+      "delta": 0.011628232298833967,
+      "attack": "cell_sign",
+      "quadrature_16_32_max_error": 5.551115123125783e-17,
+      "passed": true
+    },
+    {
+      "model": "S1",
+      "delta": 0.011628232298833967,
+      "attack": "balanced_reflection",
+      "quadrature_16_32_max_error": 8.673617379884035e-19,
+      "passed": true
+    },
+    {
+      "model": "S1",
+      "half_open_quantizer_edges": true
+    },
+    {
+      "model": "U1",
+      "delta": 0.005564938828732097,
+      "peak_bound": true
+    },
+    {
+      "model": "U1",
+      "delta": 0.005564938828732097,
+      "attack": "healthy",
+      "quadrature_16_32_max_error": 5.551115123125783e-17,
+      "passed": true
+    },
+    {
+      "model": "U1",
+      "delta": 0.005564938828732097,
+      "attack": "cell_sign",
+      "quadrature_16_32_max_error": 2.7755575615628914e-17,
+      "passed": true
+    },
+    {
+      "model": "U1",
+      "delta": 0.005564938828732097,
+      "attack": "balanced_reflection",
+      "quadrature_16_32_max_error": 2.7755575615628914e-17,
+      "passed": true
+    },
+    {
+      "model": "U1",
+      "half_open_quantizer_edges": false
+    },
+    {
+      "model": "U1",
+      "delta": 0.011129877657464194,
+      "peak_bound": true
+    },
+    {
+      "model": "U1",
+      "delta": 0.011129877657464194,
+      "attack": "healthy",
+      "quadrature_16_32_max_error": 6.795665716266256e-18,
+      "passed": true
+    },
+    {
+      "model": "U1",
+      "delta": 0.011129877657464194,
+      "attack": "cell_sign",
+      "quadrature_16_32_max_error": 4.7704895589362195e-18,
+      "passed": true
+    },
+    {
+      "model": "U1",
+      "delta": 0.011129877657464194,
+      "attack": "balanced_reflection",
+      "quadrature_16_32_max_error": 2.7755575615628914e-17,
+      "passed": true
+    },
+    {
+      "model": "U1",
+      "half_open_quantizer_edges": false
+    },
+    {
+      "model": "U1",
+      "delta": 0.022259755314928388,
+      "peak_bound": true
+    },
+    {
+      "model": "U1",
+      "delta": 0.022259755314928388,
+      "attack": "healthy",
+      "quadrature_16_32_max_error": 2.2749960844184794e-18,
+      "passed": true
+    },
+    {
+      "model": "U1",
+      "delta": 0.022259755314928388,
+      "attack": "cell_sign",
+      "quadrature_16_32_max_error": 2.168404344971009e-18,
+      "passed": true
+    },
+    {
+      "model": "U1",
+      "delta": 0.022259755314928388,
+      "attack": "balanced_reflection",
+      "quadrature_16_32_max_error": 5.551115123125783e-17,
+      "passed": true
+    },
+    {
+      "model": "U1",
+      "half_open_quantizer_edges": false
+    },
+    {
+      "deterministic_code_event_invariance": true
+    }
+  ],
+  "random_samples_generated": false,
+  "purpose": "deterministic formulas and protocol checks before source freeze",
+  "status": "FAIL",
+  "explanation": "Non-binary delta endpoint construction at 3*delta is not guaranteed to represent an exact mathematical boundary in float64. Tests retained. No simulator/quantizer changes."
+}
