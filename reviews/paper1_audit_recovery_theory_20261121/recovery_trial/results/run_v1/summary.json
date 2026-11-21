@@ -1,0 +1,530 @@
+[
+  {
+    "model": "S1",
+    "attack_bound": 0.1,
+    "attack": "persistent_positive_send",
+    "protocol": "postcommit_phase",
+    "n_episodes": 20000,
+    "attack_start": 50,
+    "audit_horizon": 512,
+    "threshold": 34.335456420629555,
+    "healthy_false_alarm_rate": 0.00025,
+    "attack_alarm_rate": 0.00025,
+    "attack_detection_delay_mean_conditional": 451.6,
+    "attack_detection_delay_median_conditional": 460.0,
+    "average_audit_score_healthy": -0.050308503801961536,
+    "average_audit_score_attack": 0.08551791156458605,
+    "average_predicted_audit_drift_attack": 0.1447632135709949,
+    "score_minus_predicted_drift_attack": -0.05924530200640885,
+    "maximum_abs_analysis_bias": 0.07138518388474194,
+    "mean_target_attack_sends_per_episode": 110.20895,
+    "mse_metrics": {
+      "clean": {
+        "mse": 0.09024159173000758,
+        "se": 6.471485158349201e-05
+      },
+      "monitor": {
+        "mse": 0.09110028936185693,
+        "se": 6.564587700398384e-05,
+        "paired_excess_vs_clean": 0.0008586976318493658,
+        "paired_excess_se": 1.4930437735331577e-05
+      },
+      "hard": {
+        "mse": 0.09110182836364483,
+        "se": 6.564553416851877e-05,
+        "paired_excess_vs_clean": 0.0008602366336372573,
+        "paired_excess_se": 1.4966034352554457e-05
+      },
+      "soft": {
+        "mse": 0.09110063548363888,
+        "se": 6.564463043668637e-05,
+        "paired_excess_vs_clean": 0.0008590437536313113,
+        "paired_excess_se": 1.4934342268241333e-05
+      },
+      "oracle": {
+        "mse": 0.15217448640991446,
+        "se": 0.0001510947424002391,
+        "paired_excess_vs_clean": 0.0619328946799069,
+        "paired_excess_se": 0.00012230341965993198
+      },
+      "healthy_hard": {
+        "mse": 0.09024422632089858,
+        "se": 6.471684995427135e-05,
+        "paired_excess_vs_clean": 2.634590891024416e-06,
+        "paired_excess_se": 1.4287515273125435e-06
+      },
+      "healthy_soft": {
+        "mse": 0.09024237007411923,
+        "se": 6.471241406235481e-05,
+        "paired_excess_vs_clean": 7.78344111651809e-07,
+        "paired_excess_se": 4.274479054916542e-07
+      }
+    },
+    "checkpoint_assumption": "episode-start authenticated snapshot; hard/soft recovery uses this potentially stale anchor",
+    "feedback_source": "provisional monitor drives event trigger; production output does not feed back to sensor",
+    "recovery": "hard rollback=open-loop checkpoint after first alarm; soft=50/50 monitor-checkpoint after first alarm; monitor continues only for audit",
+    "warning": "oracle reference assumes attack-onset knowledge; implementable rollback uses only episode-start authenticated checkpoint; no post-attack packet is called authenticated"
+  },
+  {
+    "model": "S1",
+    "attack_bound": 0.1,
+    "attack": "random_sign_send",
+    "protocol": "postcommit_phase",
+    "n_episodes": 20000,
+    "attack_start": 50,
+    "audit_horizon": 512,
+    "threshold": 34.335456420629555,
+    "healthy_false_alarm_rate": 0.00035,
+    "attack_alarm_rate": 0.0004,
+    "attack_detection_delay_mean_conditional": 473.375,
+    "attack_detection_delay_median_conditional": 491.0,
+    "average_audit_score_healthy": 0.032259012553432526,
+    "average_audit_score_attack": 0.0987912190015614,
+    "average_predicted_audit_drift_attack": 0.08631902634857244,
+    "score_minus_predicted_drift_attack": 0.012472192652988955,
+    "maximum_abs_analysis_bias": 0.06997196638832195,
+    "mean_target_attack_sends_per_episode": 110.21945,
+    "mse_metrics": {
+      "clean": {
+        "mse": 0.09024287142679195,
+        "se": 6.488995387710464e-05
+      },
+      "monitor": {
+        "mse": 0.09074973850399355,
+        "se": 6.509641964945764e-05,
+        "paired_excess_vs_clean": 0.0005068670772015913,
+        "paired_excess_se": 1.1863561959103295e-05
+      },
+      "hard": {
+        "mse": 0.09075215774445525,
+        "se": 6.512598320587369e-05,
+        "paired_excess_vs_clean": 0.0005092863176632858,
+        "paired_excess_se": 1.1951510201014393e-05
+      },
+      "soft": {
+        "mse": 0.09075036948659237,
+        "se": 6.510285071505502e-05,
+        "paired_excess_vs_clean": 0.0005074980598004194,
+        "paired_excess_se": 1.1872385832063624e-05
+      },
+      "oracle": {
+        "mse": 0.15218193376000777,
+        "se": 0.00015143664956931302,
+        "paired_excess_vs_clean": 0.06193906233321582,
+        "paired_excess_se": 0.00012285127030443974
+      },
+      "healthy_hard": {
+        "mse": 0.09024504401730406,
+        "se": 6.491571891432245e-05,
+        "paired_excess_vs_clean": 2.1725905120941588e-06,
+        "paired_excess_se": 1.2034457115852302e-06
+      },
+      "healthy_soft": {
+        "mse": 0.09024348191103336,
+        "se": 6.489685993220121e-05,
+        "paired_excess_vs_clean": 6.10484241389333e-07,
+        "paired_excess_se": 4.0737194191031724e-07
+      }
+    },
+    "checkpoint_assumption": "episode-start authenticated snapshot; hard/soft recovery uses this potentially stale anchor",
+    "feedback_source": "provisional monitor drives event trigger; production output does not feed back to sensor",
+    "recovery": "hard rollback=open-loop checkpoint after first alarm; soft=50/50 monitor-checkpoint after first alarm; monitor continues only for audit",
+    "warning": "oracle reference assumes attack-onset knowledge; implementable rollback uses only episode-start authenticated checkpoint; no post-attack packet is called authenticated"
+  },
+  {
+    "model": "S1",
+    "attack_bound": 0.25,
+    "attack": "persistent_positive_send",
+    "protocol": "postcommit_phase",
+    "n_episodes": 20000,
+    "attack_start": 50,
+    "audit_horizon": 512,
+    "threshold": 34.335456420629555,
+    "healthy_false_alarm_rate": 0.00035,
+    "attack_alarm_rate": 0.0005,
+    "attack_detection_delay_mean_conditional": 454.9,
+    "attack_detection_delay_median_conditional": 451.5,
+    "average_audit_score_healthy": -0.04031862590863085,
+    "average_audit_score_attack": 0.8463810585487161,
+    "average_predicted_audit_drift_attack": 0.9112316910398207,
+    "score_minus_predicted_drift_attack": -0.0648506324911048,
+    "maximum_abs_analysis_bias": 0.17633742309765732,
+    "mean_target_attack_sends_per_episode": 110.96405,
+    "mse_metrics": {
+      "clean": {
+        "mse": 0.09030061011922785,
+        "se": 6.472239439566995e-05
+      },
+      "monitor": {
+        "mse": 0.09566844812967651,
+        "se": 7.024573679694696e-05,
+        "paired_excess_vs_clean": 0.005367838010448643,
+        "paired_excess_se": 2.988136751747208e-05
+      },
+      "hard": {
+        "mse": 0.09567248618540591,
+        "se": 7.026853601510256e-05,
+        "paired_excess_vs_clean": 0.0053718760661780615,
+        "paired_excess_se": 2.9947809160802404e-05
+      },
+      "soft": {
+        "mse": 0.09566943343683101,
+        "se": 7.024725133230772e-05,
+        "paired_excess_vs_clean": 0.005368823317603157,
+        "paired_excess_se": 2.9891534058674504e-05
+      },
+      "oracle": {
+        "mse": 0.15242564308421258,
+        "se": 0.00015196903533982515,
+        "paired_excess_vs_clean": 0.062125032964984714,
+        "paired_excess_se": 0.00012311283450494042
+      },
+      "healthy_hard": {
+        "mse": 0.09030277865585781,
+        "se": 6.473383880481897e-05,
+        "paired_excess_vs_clean": 2.1685366299496445e-06,
+        "paired_excess_se": 1.0960847481988299e-06
+      },
+      "healthy_soft": {
+        "mse": 0.09030130179316966,
+        "se": 6.472369010775261e-05,
+        "paired_excess_vs_clean": 6.916739418038345e-07,
+        "paired_excess_se": 3.5547434333708303e-07
+      }
+    },
+    "checkpoint_assumption": "episode-start authenticated snapshot; hard/soft recovery uses this potentially stale anchor",
+    "feedback_source": "provisional monitor drives event trigger; production output does not feed back to sensor",
+    "recovery": "hard rollback=open-loop checkpoint after first alarm; soft=50/50 monitor-checkpoint after first alarm; monitor continues only for audit",
+    "warning": "oracle reference assumes attack-onset knowledge; implementable rollback uses only episode-start authenticated checkpoint; no post-attack packet is called authenticated"
+  },
+  {
+    "model": "S1",
+    "attack_bound": 0.25,
+    "attack": "random_sign_send",
+    "protocol": "postcommit_phase",
+    "n_episodes": 20000,
+    "attack_start": 50,
+    "audit_horizon": 512,
+    "threshold": 34.335456420629555,
+    "healthy_false_alarm_rate": 0.00025,
+    "attack_alarm_rate": 0.00025,
+    "attack_detection_delay_mean_conditional": 441.6,
+    "attack_detection_delay_median_conditional": 473.0,
+    "average_audit_score_healthy": -0.042776693877818205,
+    "average_audit_score_attack": 0.5168623994224285,
+    "average_predicted_audit_drift_attack": 0.5391825382548866,
+    "score_minus_predicted_drift_attack": -0.022320138832458047,
+    "maximum_abs_analysis_bias": 0.17232999090011852,
+    "mean_target_attack_sends_per_episode": 110.6358,
+    "mse_metrics": {
+      "clean": {
+        "mse": 0.0903863269943392,
+        "se": 6.53005592428323e-05
+      },
+      "monitor": {
+        "mse": 0.09353483541457645,
+        "se": 6.695247559424558e-05,
+        "paired_excess_vs_clean": 0.0031485084202372525,
+        "paired_excess_se": 2.2246207248450274e-05
+      },
+      "hard": {
+        "mse": 0.09353694425490866,
+        "se": 6.697400629032209e-05,
+        "paired_excess_vs_clean": 0.003150617260569461,
+        "paired_excess_se": 2.229130378494414e-05
+      },
+      "soft": {
+        "mse": 0.09353534837630224,
+        "se": 6.695655047579273e-05,
+        "paired_excess_vs_clean": 0.003149021381963041,
+        "paired_excess_se": 2.2252252160003893e-05
+      },
+      "oracle": {
+        "mse": 0.15271087835709285,
+        "se": 0.00015218992740414358,
+        "paired_excess_vs_clean": 0.06232455136275365,
+        "paired_excess_se": 0.00012327184954843073
+      },
+      "healthy_hard": {
+        "mse": 0.09038827577242582,
+        "se": 6.533193110067944e-05,
+        "paired_excess_vs_clean": 1.948778086616652e-06,
+        "paired_excess_se": 1.2788951813606378e-06
+      },
+      "healthy_soft": {
+        "mse": 0.09038674870669283,
+        "se": 6.530542388903555e-05,
+        "paired_excess_vs_clean": 4.2171235363648845e-07,
+        "paired_excess_se": 3.221754818237815e-07
+      }
+    },
+    "checkpoint_assumption": "episode-start authenticated snapshot; hard/soft recovery uses this potentially stale anchor",
+    "feedback_source": "provisional monitor drives event trigger; production output does not feed back to sensor",
+    "recovery": "hard rollback=open-loop checkpoint after first alarm; soft=50/50 monitor-checkpoint after first alarm; monitor continues only for audit",
+    "warning": "oracle reference assumes attack-onset knowledge; implementable rollback uses only episode-start authenticated checkpoint; no post-attack packet is called authenticated"
+  },
+  {
+    "model": "U1",
+    "attack_bound": 0.1,
+    "attack": "persistent_positive_send",
+    "protocol": "postcommit_phase",
+    "n_episodes": 20000,
+    "attack_start": 50,
+    "audit_horizon": 512,
+    "threshold": 34.335456420629555,
+    "healthy_false_alarm_rate": 0.00085,
+    "attack_alarm_rate": 0.001,
+    "attack_detection_delay_mean_conditional": 456.0,
+    "attack_detection_delay_median_conditional": 482.5,
+    "average_audit_score_healthy": -0.03747177147579204,
+    "average_audit_score_attack": 0.7010529086396075,
+    "average_predicted_audit_drift_attack": 0.7620663242056225,
+    "score_minus_predicted_drift_attack": -0.061013415566015076,
+    "maximum_abs_analysis_bias": 0.10405385671224619,
+    "mean_target_attack_sends_per_episode": 132.05585,
+    "mse_metrics": {
+      "clean": {
+        "mse": 0.1425368203106078,
+        "se": 0.00011335796735639615
+      },
+      "monitor": {
+        "mse": 0.14557221400812523,
+        "se": 0.00011733381020757322,
+        "paired_excess_vs_clean": 0.0030353936975174496,
+        "paired_excess_se": 6.167181667406792e-05
+      },
+      "hard": {
+        "mse": 333510309226530.1,
+        "se": 120350149822929.2,
+        "paired_excess_vs_clean": 333510309226529.94,
+        "paired_excess_se": 120350149822929.2
+      },
+      "soft": {
+        "mse": 83377577309512.06,
+        "se": 30087537456478.4,
+        "paired_excess_vs_clean": 83377577309511.94,
+        "paired_excess_se": 30087537456478.4
+      },
+      "oracle": {
+        "mse": 5848817912538546.0,
+        "se": 58131150555454.76,
+        "paired_excess_vs_clean": 5848817912538546.0,
+        "paired_excess_se": 58131150555454.76
+      },
+      "healthy_hard": {
+        "mse": 257390465095440.03,
+        "se": 122222903849862.94,
+        "paired_excess_vs_clean": 257390465095439.94,
+        "paired_excess_se": 122222903849862.94
+      },
+      "healthy_soft": {
+        "mse": 64347616275576.23,
+        "se": 30555725962876.8,
+        "paired_excess_vs_clean": 64347616275576.086,
+        "paired_excess_se": 30555725962876.8
+      }
+    },
+    "checkpoint_assumption": "episode-start authenticated snapshot; hard/soft recovery uses this potentially stale anchor",
+    "feedback_source": "provisional monitor drives event trigger; production output does not feed back to sensor",
+    "recovery": "hard rollback=open-loop checkpoint after first alarm; soft=50/50 monitor-checkpoint after first alarm; monitor continues only for audit",
+    "warning": "oracle reference assumes attack-onset knowledge; implementable rollback uses only episode-start authenticated checkpoint; no post-attack packet is called authenticated"
+  },
+  {
+    "model": "U1",
+    "attack_bound": 0.1,
+    "attack": "random_sign_send",
+    "protocol": "postcommit_phase",
+    "n_episodes": 20000,
+    "attack_start": 50,
+    "audit_horizon": 512,
+    "threshold": 34.335456420629555,
+    "healthy_false_alarm_rate": 0.00065,
+    "attack_alarm_rate": 0.00065,
+    "attack_detection_delay_mean_conditional": 463.9230769230769,
+    "attack_detection_delay_median_conditional": 469.0,
+    "average_audit_score_healthy": 0.18220335379813424,
+    "average_audit_score_attack": 0.5130658721125161,
+    "average_predicted_audit_drift_attack": 0.3752024084736737,
+    "score_minus_predicted_drift_attack": 0.13786346363884236,
+    "maximum_abs_analysis_bias": 0.10375001489987856,
+    "mean_target_attack_sends_per_episode": 131.87875,
+    "mse_metrics": {
+      "clean": {
+        "mse": 0.14256083331117922,
+        "se": 0.00011273357503174065
+      },
+      "monitor": {
+        "mse": 0.14409057566438774,
+        "se": 0.00011387433126268268,
+        "paired_excess_vs_clean": 0.0015297423532085156,
+        "paired_excess_se": 5.0523890650096844e-05
+      },
+      "hard": {
+        "mse": 245036216877762.8,
+        "se": 121489266966563.58,
+        "paired_excess_vs_clean": 245036216877762.66,
+        "paired_excess_se": 121489266966563.58
+      },
+      "soft": {
+        "mse": 61259054220013.29,
+        "se": 30372316741960.297,
+        "paired_excess_vs_clean": 61259054220013.13,
+        "paired_excess_se": 30372316741960.297
+      },
+      "oracle": {
+        "mse": 5944113225587020.0,
+        "se": 59591024548741.766,
+        "paired_excess_vs_clean": 5944113225587019.0,
+        "paired_excess_se": 59591024548741.766
+      },
+      "healthy_hard": {
+        "mse": 204951397136879.53,
+        "se": 104123257028530.67,
+        "paired_excess_vs_clean": 204951397136879.4,
+        "paired_excess_se": 104123257028530.67
+      },
+      "healthy_soft": {
+        "mse": 51237849284258.02,
+        "se": 26030814256465.242,
+        "paired_excess_vs_clean": 51237849284257.89,
+        "paired_excess_se": 26030814256465.242
+      }
+    },
+    "checkpoint_assumption": "episode-start authenticated snapshot; hard/soft recovery uses this potentially stale anchor",
+    "feedback_source": "provisional monitor drives event trigger; production output does not feed back to sensor",
+    "recovery": "hard rollback=open-loop checkpoint after first alarm; soft=50/50 monitor-checkpoint after first alarm; monitor continues only for audit",
+    "warning": "oracle reference assumes attack-onset knowledge; implementable rollback uses only episode-start authenticated checkpoint; no post-attack packet is called authenticated"
+  },
+  {
+    "model": "U1",
+    "attack_bound": 0.25,
+    "attack": "persistent_positive_send",
+    "protocol": "postcommit_phase",
+    "n_episodes": 20000,
+    "attack_start": 50,
+    "audit_horizon": 512,
+    "threshold": 34.335456420629555,
+    "healthy_false_alarm_rate": 0.00055,
+    "attack_alarm_rate": 0.0045,
+    "attack_detection_delay_mean_conditional": 443.24444444444447,
+    "attack_detection_delay_median_conditional": 451.5,
+    "average_audit_score_healthy": -0.0987653803747773,
+    "average_audit_score_attack": 4.834962699530689,
+    "average_predicted_audit_drift_attack": 4.880457090523101,
+    "score_minus_predicted_drift_attack": -0.04549439099241207,
+    "maximum_abs_analysis_bias": 0.2629393242109181,
+    "mean_target_attack_sends_per_episode": 135.99275,
+    "mse_metrics": {
+      "clean": {
+        "mse": 0.14279282993956058,
+        "se": 0.00011291325357468207
+      },
+      "monitor": {
+        "mse": 0.16260274390136917,
+        "se": 0.00013520404546766914,
+        "paired_excess_vs_clean": 0.01980991396180857,
+        "paired_excess_se": 9.860034155993279e-05
+      },
+      "hard": {
+        "mse": 1930173691333253.0,
+        "se": 391940814788990.56,
+        "paired_excess_vs_clean": 1930173691333253.0,
+        "paired_excess_se": 391940814788990.56
+      },
+      "soft": {
+        "mse": 482543422837882.06,
+        "se": 97985203697228.1,
+        "paired_excess_vs_clean": 482543422837882.06,
+        "paired_excess_se": 97985203697228.1
+      },
+      "oracle": {
+        "mse": 5860629950808927.0,
+        "se": 59067703344874.28,
+        "paired_excess_vs_clean": 5860629950808927.0,
+        "paired_excess_se": 59067703344874.28
+      },
+      "healthy_hard": {
+        "mse": 153727529072077.4,
+        "se": 88180597582691.05,
+        "paired_excess_vs_clean": 153727529072077.28,
+        "paired_excess_se": 88180597582691.05
+      },
+      "healthy_soft": {
+        "mse": 38431882267595.414,
+        "se": 22045149395328.344,
+        "paired_excess_vs_clean": 38431882267595.27,
+        "paired_excess_se": 22045149395328.344
+      }
+    },
+    "checkpoint_assumption": "episode-start authenticated snapshot; hard/soft recovery uses this potentially stale anchor",
+    "feedback_source": "provisional monitor drives event trigger; production output does not feed back to sensor",
+    "recovery": "hard rollback=open-loop checkpoint after first alarm; soft=50/50 monitor-checkpoint after first alarm; monitor continues only for audit",
+    "warning": "oracle reference assumes attack-onset knowledge; implementable rollback uses only episode-start authenticated checkpoint; no post-attack packet is called authenticated"
+  },
+  {
+    "model": "U1",
+    "attack_bound": 0.25,
+    "attack": "random_sign_send",
+    "protocol": "postcommit_phase",
+    "n_episodes": 20000,
+    "attack_start": 50,
+    "audit_horizon": 512,
+    "threshold": 34.335456420629555,
+    "healthy_false_alarm_rate": 0.00075,
+    "attack_alarm_rate": 0.00185,
+    "attack_detection_delay_mean_conditional": 454.6756756756757,
+    "attack_detection_delay_median_conditional": 470.0,
+    "average_audit_score_healthy": 0.010475301602716678,
+    "average_audit_score_attack": 2.3578693883508683,
+    "average_predicted_audit_drift_attack": 2.3423476226209807,
+    "score_minus_predicted_drift_attack": 0.015521765729887489,
+    "maximum_abs_analysis_bias": 0.24952226671590857,
+    "mean_target_attack_sends_per_episode": 133.6346,
+    "mse_metrics": {
+      "clean": {
+        "mse": 0.1425081199334856,
+        "se": 0.00011215279878371033
+      },
+      "monitor": {
+        "mse": 0.15195691429032698,
+        "se": 0.00011818920804432157,
+        "paired_excess_vs_clean": 0.009448794356841364,
+        "paired_excess_se": 7.458666892366969e-05
+      },
+      "hard": {
+        "mse": 1043763575707736.1,
+        "se": 314192080397961.1,
+        "paired_excess_vs_clean": 1043763575707736.1,
+        "paired_excess_se": 314192080397961.1
+      },
+      "soft": {
+        "mse": 260940893926505.28,
+        "se": 78548020099119.73,
+        "paired_excess_vs_clean": 260940893926505.16,
+        "paired_excess_se": 78548020099119.73
+      },
+      "oracle": {
+        "mse": 5809250606660126.0,
+        "se": 57848738400241.414,
+        "paired_excess_vs_clean": 5809250606660126.0,
+        "paired_excess_se": 57848738400241.414
+      },
+      "healthy_hard": {
+        "mse": 431103957053089.94,
+        "se": 190003645856628.53,
+        "paired_excess_vs_clean": 431103957053089.8,
+        "paired_excess_se": 190003645856628.53
+      },
+      "healthy_soft": {
+        "mse": 107775989262979.22,
+        "se": 47500911463992.76,
+        "paired_excess_vs_clean": 107775989262979.08,
+        "paired_excess_se": 47500911463992.76
+      }
+    },
+    "checkpoint_assumption": "episode-start authenticated snapshot; hard/soft recovery uses this potentially stale anchor",
+    "feedback_source": "provisional monitor drives event trigger; production output does not feed back to sensor",
+    "recovery": "hard rollback=open-loop checkpoint after first alarm; soft=50/50 monitor-checkpoint after first alarm; monitor continues only for audit",
+    "warning": "oracle reference assumes attack-onset knowledge; implementable rollback uses only episode-start authenticated checkpoint; no post-attack packet is called authenticated"
+  }
+]

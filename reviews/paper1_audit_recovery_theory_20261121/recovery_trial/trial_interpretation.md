@@ -1,0 +1,13 @@
+# Frozen trial interpretation
+
+The sampled trial follows the unchanged `protocol.json` and `run_trial.py` recorded in `freeze.json`. This note fixes how their timing and metrics should be interpreted.
+
+- The attack begins at \(t_0=50\) and remains active through the scored window. The audit observes \(N=512\) trusted event bits at \(t_0+1,\ldots,t_0+N\). The MSE metric contains \(N+1=513\) estimates at \(t_0,\ldots,t_0+N\). The endpoint estimate is still exposed to the final payload because its event has not yet been audited.
+- Monitoring starts on the fixed schedule \(t_0=50\), coinciding with attack onset in this trial. This is a favorable timing benchmark, not an unknown-change-time detection test. An indefinite or restarted detector must separately account for its total false-alarm budget.
+- The recovery output assumes the trusted event bit can be processed before the current continuous payload is committed to the production estimator. A threshold crossing on that event therefore gates the payload from the same timestamp. Even if event and payload arrive in one packet, this order can be implemented locally. An additional one-step delay is required only if the payload has already entered an irreversible production output before the gate is evaluated; that implementation has not been measured.
+- The monitor branch continues to consume the received payload and generate the feedback center that drives the actual event sequence after an alarm. Recovery changes the production output only. The audit theorem applies to this monitor-feedback protocol; changing feedback to the checkpoint branch requires a new proof and experiment.
+- The episode-start checkpoint is held fixed during the full window and propagated open loop. It is deliberately stale by the time an alarm occurs. Thus hard rollback measures the cost of this declared sparse-anchor baseline, not the best possible authenticated-checkpoint schedule. The attack-onset oracle row is only a diagnostic reference.
+- Soft fusion uses a fixed weight of (0.5), so it is a baseline rather than an optimized recovery rule. The clean comparator is run on the same exogenous noise, trigger uniforms, and phases, but its event history can differ because its prediction centers differ. Paired excess is common-random-number coupling, not a same-event-path comparison.
+- Recovery does not change the event stream or its transmission count in this two-track protocol. The trial does not charge storage, authentication, phase-distribution, or hardware costs.
+
+The finite-horizon false-alarm guarantee applies to the (N) scored event bits. Trial alarm rates are empirical estimates from independent episodes; timesteps within one episode are not treated as independent samples.

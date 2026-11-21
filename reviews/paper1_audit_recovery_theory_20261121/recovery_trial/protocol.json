@@ -1,0 +1,21 @@
+{
+  "base_commit": "8dddfbb9",
+  "models": [
+    {"id":"S1","A":0.82,"P0":0.8,"Q":0.05,"R":0.2,"Z":2.0,"delta":0.011628232298833967},
+    {"id":"U1","A":1.04,"P0":0.8,"Q":0.05,"R":0.2,"Z":2.0,"delta":0.022259755314928388}
+  ],
+  "attack_bounds": [0.1,0.25],
+  "attack_policies": ["persistent_positive_send", "random_sign_send"],
+  "phase_protocol": "postcommit_phase",
+  "episodes": 20000,
+  "attack_start": 50,
+  "audit_horizon": 512,
+  "target_false_alarm": 0.01,
+  "master_seed": 2026112112,
+  "initial_checkpoint": "The episode-start estimator is trusted/authenticated. No new anchors occur during the scored window; recovery propagates this potentially stale anchor open-loop.",
+  "monitor_track": "Consumes all received payloads and actual postcommit randomized centers; it supplies the prediction feedback that generates trusted event bits.",
+  "production_track": "Uses monitor posterior before alarm; after alarm hard rollback predicts open loop from the episode-start trusted checkpoint. Soft policy uses fixed alpha=0.5 convex blend of monitor posterior and checkpoint prediction after alarm.",
+  "metrics": ["healthy false-alarm rate", "attack alarm rate and delay", "monitor cumulative paired MSE excess", "hard rollback to episode-start checkpoint cumulative paired MSE excess", "soft fusion cumulative paired MSE excess", "oracle attack-onset rollback reference", "absolute healthy MSE of each recovery policy"],
+  "not_claimed": ["recovery of target-time damage before audit", "trusted replay of unauthenticated packets", "continuous MSE theorem for recovery track", "hardware cost", "independent time samples within an episode"],
+  "frozen_before_random_inputs": true
+}
