@@ -1,0 +1,61 @@
+{
+  "primary": [
+    {
+      "model": "S1",
+      "pass": true,
+      "metrics": {
+        "stage": "final",
+        "model": "S1",
+        "b": 0.25,
+        "onset": 200,
+        "H": 512,
+        "method": "J1_joint_mixture",
+        "detected": 49846,
+        "eligible_n": 49892,
+        "power": 0.9990780084983565,
+        "CP_lower95": 0.9987703818411836,
+        "CP_upper95": 0.9993249097262669,
+        "pre_attack_alarm_n": 108,
+        "restricted_delay": 159.5846829150966,
+        "delay_detected_only": 159.25945913413312,
+        "pre_MSE_eligible": 15.205292481892826,
+        "pre_bias_energy_eligible": 0.8242169197462954,
+        "monitor_MSE_per_step": 0.0957088364209292,
+        "paired_MSE_excess_per_step": 0.005363270559327702
+      }
+    },
+    {
+      "model": "U1",
+      "pass": true,
+      "metrics": {
+        "stage": "final",
+        "model": "U1",
+        "b": 0.25,
+        "onset": 200,
+        "H": 512,
+        "method": "J1_joint_mixture",
+        "detected": 49828,
+        "eligible_n": 49878,
+        "power": 0.9989975540318377,
+        "CP_lower95": 0.9986786108878571,
+        "CP_upper95": 0.99925587657555,
+        "pre_attack_alarm_n": 122,
+        "restricted_delay": 159.13851798388066,
+        "delay_detected_only": 158.78443846833105,
+        "pre_MSE_eligible": 25.724686237160718,
+        "pre_bias_energy_eligible": 3.166570528296386,
+        "monitor_MSE_per_step": 0.1625474577148024,
+        "paired_MSE_excess_per_step": 0.019843060260859226
+      }
+    }
+  ],
+  "all_pass": true,
+  "frozen_gate": {
+    "cases": "S1 and U1, b=.25, onset200",
+    "horizon": 512,
+    "joint_power_lower95_at_least": 0.8,
+    "joint_restricted_delay_at_most": 256,
+    "interpretation": "new engineering target frozen before stage3 samples, not a publication criterion"
+  },
+  "parameters_retuned": false
+}

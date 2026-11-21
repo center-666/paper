@@ -1,0 +1,57 @@
+{
+  "performance_random_samples_generated": false,
+  "benchmark_kind": "software-only deterministic microbenchmark",
+  "hardware_deadline_guarantee": false,
+  "platform": "Windows-10-10.0.26200-SP0",
+  "repetitions": 5,
+  "updates_per_repetition": 2000,
+  "other_experiments_may_be_running": true,
+  "rows": [
+    {
+      "model": "S1",
+      "candidates": 3,
+      "cpu_seconds_per_update": [
+        7.8125e-05,
+        7.03125e-05,
+        7.8125e-05,
+        7.8125e-05,
+        6.25e-05
+      ],
+      "wall_seconds_per_update": [
+        7.534164999378846e-05,
+        7.162519998382778e-05,
+        7.66857999842614e-05,
+        8.68130000308156e-05,
+        7.584689999930561e-05
+      ],
+      "median_cpu_microseconds": 78.125,
+      "median_wall_microseconds": 75.8468999993056,
+      "persistent_numeric_array_bytes": 96,
+      "memory_note": "Only four persistent NumPy arrays; excludes Python objects, temporaries and estimator state.",
+      "timing_note": "Includes validation and scalar covariance/fixture loop. Wall times under concurrent load are descriptive, not real-time guarantees."
+    },
+    {
+      "model": "U1",
+      "candidates": 3,
+      "cpu_seconds_per_update": [
+        7.8125e-05,
+        7.03125e-05,
+        7.03125e-05,
+        7.8125e-05,
+        7.03125e-05
+      ],
+      "wall_seconds_per_update": [
+        7.85852000117302e-05,
+        7.582069997442886e-05,
+        7.439750002231449e-05,
+        7.754530000966043e-05,
+        7.302205002633855e-05
+      ],
+      "median_cpu_microseconds": 70.3125,
+      "median_wall_microseconds": 75.82069997442886,
+      "persistent_numeric_array_bytes": 96,
+      "memory_note": "Only four persistent NumPy arrays; excludes Python objects, temporaries and estimator state.",
+      "timing_note": "Includes validation and scalar covariance/fixture loop. Wall times under concurrent load are descriptive, not real-time guarantees."
+    }
+  ]
+}

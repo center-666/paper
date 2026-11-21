@@ -1,0 +1,64 @@
+{
+  "base_commit":"8c02c07b",
+  "models":[
+    {"id":"S1","A":0.82,"P0":0.8,"Q":0.05,"R":0.2,"Z":2.0,"delta":0.011628232298833967},
+    {"id":"U1","A":1.04,"P0":0.8,"Q":0.05,"R":0.2,"Z":2.0,"delta":0.022259755314928388}
+  ],
+  "attack_strengths":[0.05,0.1,0.25],
+  "onsets":[50,100,200,"uniform_50_200"],
+  "horizons_after_onset":[128,512,1024,2048],
+  "alpha":0.01,
+  "candidate_strengths":[0.05,0.1,0.25],
+  "candidate_weights":[0.3333333333333333,0.3333333333333333,0.3333333333333333],
+  "onset_weight":"w_n=1/[n(n+1)], n=action_time+1",
+  "candidate_state":"hypothesized persistent attack from action0, no true-onset reset; shared predictable normalized kernels give exact O(J) start mixing",
+  "monitor_start":0,
+  "health_horizon":8192,
+  "screen_episodes":5000,
+  "final_episodes":50000,
+  "health_screen_episodes":5000,
+  "health_final_episodes":50000,
+  "batch_size":10000,
+  "screen_seed":202611213001,
+  "final_seed":202611213002,
+  "health_screen_seed":202611213003,
+  "health_final_seed":202611213004,
+  "offgrid_seed":202611213005,
+  "offgrid_strengths":[0.075,0.15],
+  "offgrid_onset":137,
+  "offgrid_episodes":20000,
+  "methods":[
+    "E0_previous_event_mixture",
+    "E1_phase_event_mixture",
+    "R0_selected_innovation_mixture",
+    "R1_biasaware_innovation_mixture",
+    "P1_conditional_payload_mixture",
+    "J1_joint_mixture",
+    "J0_joint_from_start"
+  ],
+  "offline_reference":"exact joint LR with known true onset and strength; never given to deployed algorithms",
+  "primary_gate":{
+    "cases":"S1 and U1, b=.25, onset200",
+    "horizon":512,
+    "joint_power_lower95_at_least":0.8,
+    "joint_restricted_delay_at_most":256,
+    "interpretation":"new engineering target frozen before stage3 samples, not a publication criterion"
+  },
+  "secondary_gate":{
+    "question":"does joint information improve materially on normalized innovation baselines?",
+    "criterion":"report paired joint-minus-R1 detections, delay and pre-alarm loss with uncertainty; no superiority assumed"
+  },
+  "confirmation":"all 24 cases retained, no changes to thresholds or parameters after screening",
+  "recovery":"none; detector alarms do not change monitor feedback or estimation",
+  "scored_outputs":"H outputs t0..t0+H-1, H contemporaneous event/payload observations; alarm gates exposure at its current time but no actual recovery",
+  "zero_density_policy":"no epsilon clipping; measure-zero indeterminate ratios raise explicit numerical failure",
+  "physics":"same exogenous model and phase protocol; paired healthy/attack error coordinates",
+  "not_claimed":[
+    "exact physical onset likelihood for the warm-start mixture",
+    "new global novelty of e-processes or selected-observation likelihoods",
+    "the payload gain is unique to randomized quantization",
+    "MSE reduction from detection without recovery",
+    "finite-bit or hardware implementation security",
+    "bounded joint log-likelihood increments"
+  ]
+}

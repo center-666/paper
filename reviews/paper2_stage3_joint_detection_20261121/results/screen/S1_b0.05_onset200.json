@@ -1,0 +1,2583 @@
+{
+  "stage": "screen",
+  "model": {
+    "id": "S1",
+    "A": 0.82,
+    "P0": 0.8,
+    "Q": 0.05,
+    "R": 0.2,
+    "Z": 2.0,
+    "delta": 0.011628232298833967
+  },
+  "n": 5000,
+  "statistics": {
+    "128": {
+      "monitor_MSE": {
+        "n": 5000,
+        "mean": 11.536356248399384,
+        "se": 0.03300438803315261,
+        "sum": 57681.78124199692,
+        "sum_squares": 692664.371737843
+      },
+      "healthy_MSE": {
+        "n": 5000,
+        "mean": 11.507418236040616,
+        "se": 0.0328492666212543,
+        "sum": 57537.091180203075,
+        "sum_squares": 689074.834863069
+      },
+      "MSE_excess": {
+        "n": 5000,
+        "mean": 0.02893801235876893,
+        "se": 0.004839586708126342,
+        "sum": 144.69006179384465,
+        "sum_squares": 589.6099224356831
+      },
+      "bias_energy": {
+        "n": 5000,
+        "mean": 0.026912843780402113,
+        "se": 7.79420899936791e-05,
+        "sum": 134.56421890201057,
+        "sum_squares": 3.77334966170925
+      },
+      "sends": {
+        "n": 5000,
+        "mean": 27.411,
+        "se": 0.0645046352566536,
+        "sum": 137055.0,
+        "sum_squares": 3860815.0
+      },
+      "oracle_joint_log_LR": {
+        "n": 5000,
+        "mean": 0.3964276044241499,
+        "se": 0.01332007812458036,
+        "sum": 1982.1380221207496,
+        "sum_squares": 5220.499136464235
+      },
+      "oracle_phase_event_log_LR": {
+        "n": 5000,
+        "mean": -5.562558051121786e-05,
+        "se": 5.189622037237375e-05,
+        "sum": -0.2781279025560893,
+        "sum_squares": 0.06733244716104086
+      },
+      "oracle_conditional_payload_log_LR": {
+        "n": 5000,
+        "mean": 0.3964832300046612,
+        "se": 0.013318435082845484,
+        "sum": 1982.4161500233058,
+        "sum_squares": 5219.6256812086
+      },
+      "E0_previous_event_mixture/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E0_previous_event_mixture/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E0_previous_event_mixture/detection_eligible": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E0_previous_event_mixture/restricted_delay_eligible": {
+        "n": 5000,
+        "mean": 128.0,
+        "se": 0.0,
+        "sum": 640000.0,
+        "sum_squares": 81920000.0
+      },
+      "E0_previous_event_mixture/delay_detected": {
+        "n": 0,
+        "mean": null,
+        "se": null,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E0_previous_event_mixture/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 11.536356248399384,
+        "se": 0.03300438803315261,
+        "sum": 57681.78124199692,
+        "sum_squares": 692664.371737843
+      },
+      "E0_previous_event_mixture/pre_MSE_eligible": {
+        "n": 5000,
+        "mean": 11.536356248399384,
+        "se": 0.03300438803315261,
+        "sum": 57681.78124199692,
+        "sum_squares": 692664.371737843
+      },
+      "E0_previous_event_mixture/pre_bias_eligible": {
+        "n": 5000,
+        "mean": 0.026912843780402113,
+        "se": 7.79420899936791e-05,
+        "sum": 134.56421890201057,
+        "sum_squares": 3.77334966170925
+      },
+      "E0_previous_event_mixture/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E1_phase_event_mixture/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E1_phase_event_mixture/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E1_phase_event_mixture/detection_eligible": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E1_phase_event_mixture/restricted_delay_eligible": {
+        "n": 5000,
+        "mean": 128.0,
+        "se": 0.0,
+        "sum": 640000.0,
+        "sum_squares": 81920000.0
+      },
+      "E1_phase_event_mixture/delay_detected": {
+        "n": 0,
+        "mean": null,
+        "se": null,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E1_phase_event_mixture/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 11.536356248399384,
+        "se": 0.03300438803315261,
+        "sum": 57681.78124199692,
+        "sum_squares": 692664.371737843
+      },
+      "E1_phase_event_mixture/pre_MSE_eligible": {
+        "n": 5000,
+        "mean": 11.536356248399384,
+        "se": 0.03300438803315261,
+        "sum": 57681.78124199692,
+        "sum_squares": 692664.371737843
+      },
+      "E1_phase_event_mixture/pre_bias_eligible": {
+        "n": 5000,
+        "mean": 0.026912843780402113,
+        "se": 7.79420899936791e-05,
+        "sum": 134.56421890201057,
+        "sum_squares": 3.77334966170925
+      },
+      "E1_phase_event_mixture/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "R0_selected_innovation_mixture/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0014,
+        "se": 0.0005288326132024738,
+        "sum": 7.0,
+        "sum_squares": 7.0
+      },
+      "R0_selected_innovation_mixture/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.0008,
+        "se": 0.0003998799579825916,
+        "sum": 4.0,
+        "sum_squares": 4.0
+      },
+      "R0_selected_innovation_mixture/detection_eligible": {
+        "n": 4993,
+        "mean": 0.0008011215701982776,
+        "se": 0.00040044040619781807,
+        "sum": 4.0,
+        "sum_squares": 4.0
+      },
+      "R0_selected_innovation_mixture/restricted_delay_eligible": {
+        "n": 4993,
+        "mean": 127.94552373322652,
+        "se": 0.028848259918770384,
+        "sum": 638832.0,
+        "sum_squares": 81756438.0
+      },
+      "R0_selected_innovation_mixture/delay_detected": {
+        "n": 4,
+        "mean": 60.0,
+        "se": 13.729530217745982,
+        "sum": 240.0,
+        "sum_squares": 16662.0
+      },
+      "R0_selected_innovation_mixture/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 11.513439760443672,
+        "se": 0.033664780561094114,
+        "sum": 57567.198802218365,
+        "sum_squares": 691123.7452552407
+      },
+      "R0_selected_innovation_mixture/pre_MSE_eligible": {
+        "n": 4993,
+        "mean": 11.529581174087395,
+        "se": 0.03315444672703781,
+        "sum": 57567.198802218365,
+        "sum_squares": 691123.7452552407
+      },
+      "R0_selected_innovation_mixture/pre_bias_eligible": {
+        "n": 4993,
+        "mean": 0.02690241707514768,
+        "se": 7.833838547174615e-05,
+        "sum": 134.32376845621238,
+        "sum_squares": 3.7665966840412626
+      },
+      "R0_selected_innovation_mixture/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.002,
+        "se": 0.0006318859517121695,
+        "sum": 10.0,
+        "sum_squares": 10.0
+      },
+      "R1_biasaware_innovation_mixture/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0012,
+        "se": 0.0004896528892903606,
+        "sum": 6.0,
+        "sum_squares": 6.0
+      },
+      "R1_biasaware_innovation_mixture/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.0012,
+        "se": 0.0004896528892903606,
+        "sum": 6.0,
+        "sum_squares": 6.0
+      },
+      "R1_biasaware_innovation_mixture/detection_eligible": {
+        "n": 4994,
+        "mean": 0.0012014417300760913,
+        "se": 0.0004902408837937373,
+        "sum": 6.0,
+        "sum_squares": 6.0
+      },
+      "R1_biasaware_innovation_mixture/restricted_delay_eligible": {
+        "n": 4994,
+        "mean": 127.92551061273528,
+        "se": 0.034982156814346035,
+        "sum": 638860.0,
+        "sum_squares": 81757006.0
+      },
+      "R1_biasaware_innovation_mixture/delay_detected": {
+        "n": 6,
+        "mean": 66.0,
+        "se": 15.788181233652807,
+        "sum": 396.0,
+        "sum_squares": 33614.0
+      },
+      "R1_biasaware_innovation_mixture/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 11.515117444727933,
+        "se": 0.03362335975901366,
+        "sum": 57575.58722363966,
+        "sum_squares": 691247.2542148817
+      },
+      "R1_biasaware_innovation_mixture/pre_MSE_eligible": {
+        "n": 4994,
+        "mean": 11.528952187352754,
+        "se": 0.03318590089855164,
+        "sum": 57575.58722363965,
+        "sum_squares": 691247.2542148816
+      },
+      "R1_biasaware_innovation_mixture/pre_bias_eligible": {
+        "n": 4994,
+        "mean": 0.02689809597643565,
+        "se": 7.842007787303708e-05,
+        "sum": 134.32909130631964,
+        "sum_squares": 3.7665400329529803
+      },
+      "R1_biasaware_innovation_mixture/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.002,
+        "se": 0.0006318859517121695,
+        "sum": 10.0,
+        "sum_squares": 10.0
+      },
+      "P1_conditional_payload_mixture/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0016,
+        "se": 0.0005652892271944304,
+        "sum": 8.0,
+        "sum_squares": 8.0
+      },
+      "P1_conditional_payload_mixture/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.006,
+        "se": 0.001092263067086654,
+        "sum": 30.0,
+        "sum_squares": 30.0
+      },
+      "P1_conditional_payload_mixture/detection_eligible": {
+        "n": 4992,
+        "mean": 0.006009615384615385,
+        "se": 0.00109400837258386,
+        "sum": 30.0,
+        "sum_squares": 30.0
+      },
+      "P1_conditional_payload_mixture/restricted_delay_eligible": {
+        "n": 4992,
+        "mean": 127.73998397435898,
+        "se": 0.05727656218178474,
+        "sum": 637678.0,
+        "sum_squares": 81538714.0
+      },
+      "P1_conditional_payload_mixture/delay_detected": {
+        "n": 30,
+        "mean": 84.73333333333333,
+        "se": 5.457660088338843,
+        "sum": 2542.0,
+        "sum_squares": 241306.0
+      },
+      "P1_conditional_payload_mixture/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 11.495235483927996,
+        "se": 0.03397264488990601,
+        "sum": 57476.17741963998,
+        "sum_squares": 689549.9384721739
+      },
+      "P1_conditional_payload_mixture/pre_MSE_eligible": {
+        "n": 4992,
+        "mean": 11.51365733566506,
+        "se": 0.0333967967364398,
+        "sum": 57476.17741963998,
+        "sum_squares": 689549.9384721739
+      },
+      "P1_conditional_payload_mixture/pre_bias_eligible": {
+        "n": 4992,
+        "mean": 0.026852415173127395,
+        "se": 7.903094770311444e-05,
+        "sum": 134.04725654425195,
+        "sum_squares": 3.7551094019113496
+      },
+      "P1_conditional_payload_mixture/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0022,
+        "se": 0.0006626611682940181,
+        "sum": 11.0,
+        "sum_squares": 11.0
+      },
+      "J1_joint_mixture/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0016,
+        "se": 0.0005652892271944304,
+        "sum": 8.0,
+        "sum_squares": 8.0
+      },
+      "J1_joint_mixture/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.0056,
+        "se": 0.0010554386719075779,
+        "sum": 28.0,
+        "sum_squares": 28.0
+      },
+      "J1_joint_mixture/detection_eligible": {
+        "n": 4992,
+        "mean": 0.005608974358974359,
+        "se": 0.0010571254792241223,
+        "sum": 28.0,
+        "sum_squares": 28.0
+      },
+      "J1_joint_mixture/restricted_delay_eligible": {
+        "n": 4992,
+        "mean": 127.74579326923077,
+        "se": 0.05700610558416403,
+        "sum": 637707.0,
+        "sum_squares": 81545353.0
+      },
+      "J1_joint_mixture/delay_detected": {
+        "n": 28,
+        "mean": 82.67857142857143,
+        "se": 5.608019006127871,
+        "sum": 2315.0,
+        "sum_squares": 215177.0
+      },
+      "J1_joint_mixture/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 11.495693520577452,
+        "se": 0.0339754369470392,
+        "sum": 57478.46760288726,
+        "sum_squares": 689607.3338372093
+      },
+      "J1_joint_mixture/pre_MSE_eligible": {
+        "n": 4992,
+        "mean": 11.51411610634761,
+        "se": 0.03339959534283169,
+        "sum": 57478.46760288726,
+        "sum_squares": 689607.3338372093
+      },
+      "J1_joint_mixture/pre_bias_eligible": {
+        "n": 4992,
+        "mean": 0.026854454211737506,
+        "se": 7.89690246787804e-05,
+        "sum": 134.05743542499363,
+        "sum_squares": 3.755412312748097
+      },
+      "J1_joint_mixture/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0022,
+        "se": 0.0006626611682940181,
+        "sum": 11.0,
+        "sum_squares": 11.0
+      },
+      "J0_joint_from_start/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0018,
+        "se": 0.000599519711750127,
+        "sum": 9.0,
+        "sum_squares": 9.0
+      },
+      "J0_joint_from_start/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.0052,
+        "se": 0.0010172506867984698,
+        "sum": 26.0,
+        "sum_squares": 26.0
+      },
+      "J0_joint_from_start/detection_eligible": {
+        "n": 4991,
+        "mean": 0.005209376878381086,
+        "se": 0.0010190804207676639,
+        "sum": 26.0,
+        "sum_squares": 26.0
+      },
+      "J0_joint_from_start/restricted_delay_eligible": {
+        "n": 4991,
+        "mean": 127.7677820076137,
+        "se": 0.054824495523785946,
+        "sum": 637689.0,
+        "sum_squares": 81550967.0
+      },
+      "J0_joint_from_start/delay_detected": {
+        "n": 26,
+        "mean": 83.42307692307692,
+        "se": 6.007987779595038,
+        "sum": 2169.0,
+        "sum_squares": 204407.0
+      },
+      "J0_joint_from_start/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 11.495976522093299,
+        "se": 0.03399811294285834,
+        "sum": 57479.88261046649,
+        "sum_squares": 689678.3937160671
+      },
+      "J0_joint_from_start/pre_MSE_eligible": {
+        "n": 4991,
+        "mean": 11.51670659396243,
+        "se": 0.033349668408707664,
+        "sum": 57479.88261046649,
+        "sum_squares": 689678.393716067
+      },
+      "J0_joint_from_start/pre_bias_eligible": {
+        "n": 4991,
+        "mean": 0.026859684168574326,
+        "se": 7.890515805564837e-05,
+        "sum": 134.05668368535447,
+        "sum_squares": 3.75577987173498
+      },
+      "J0_joint_from_start/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0026,
+        "se": 0.0007202442296541292,
+        "sum": 13.0,
+        "sum_squares": 13.0
+      },
+      "oracle_joint/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "oracle_joint/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.0038,
+        "se": 0.0008702088557872404,
+        "sum": 19.0,
+        "sum_squares": 19.0
+      },
+      "oracle_joint/detection_eligible": {
+        "n": 5000,
+        "mean": 0.0038,
+        "se": 0.0008702088557872404,
+        "sum": 19.0,
+        "sum_squares": 19.0
+      },
+      "oracle_joint/restricted_delay_eligible": {
+        "n": 5000,
+        "mean": 127.8102,
+        "se": 0.05630372291281491,
+        "sum": 639051.0,
+        "sum_squares": 81756473.0
+      },
+      "oracle_joint/delay_detected": {
+        "n": 19,
+        "mean": 78.05263157894737,
+        "se": 9.67557776935423,
+        "sum": 1483.0,
+        "sum_squares": 147769.0
+      },
+      "oracle_joint/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 11.51828394295921,
+        "se": 0.033338642338022584,
+        "sum": 57591.419714796044,
+        "sum_squares": 691135.3944513598
+      },
+      "oracle_joint/pre_MSE_eligible": {
+        "n": 5000,
+        "mean": 11.51828394295921,
+        "se": 0.033338642338022584,
+        "sum": 57591.419714796044,
+        "sum_squares": 691135.3944513598
+      },
+      "oracle_joint/pre_bias_eligible": {
+        "n": 5000,
+        "mean": 0.02686771213467793,
+        "se": 7.895188093465667e-05,
+        "sum": 134.33856067338965,
+        "sum_squares": 3.765173597340088
+      },
+      "J1_minus_R0_selected_innovation_mixture/detection_common_eligible": {
+        "n": 4985,
+        "mean": 0.00481444332998997,
+        "se": 0.0011328382115163506,
+        "sum": 24.0,
+        "sum_squares": 32.0
+      },
+      "J1_minus_R0_selected_innovation_mixture/delay_common_eligible": {
+        "n": 4985,
+        "mean": -0.2,
+        "se": 0.06402562130937389,
+        "sum": -997.0,
+        "sum_squares": 102047.0
+      },
+      "J1_minus_R0_selected_innovation_mixture/pre_MSE_common_eligible": {
+        "n": 4985,
+        "mean": -0.01749696484692484,
+        "se": 0.0066960756271551135,
+        "sum": -87.22236976192032,
+        "sum_squares": 1115.5228063703114
+      },
+      "J1_minus_R1_biasaware_innovation_mixture/detection_common_eligible": {
+        "n": 4986,
+        "mean": 0.004412354592860008,
+        "se": 0.0011679113701963102,
+        "sum": 22.0,
+        "sum_squares": 34.0
+      },
+      "J1_minus_R1_biasaware_innovation_mixture/delay_common_eligible": {
+        "n": 4986,
+        "mean": -0.17990373044524668,
+        "se": 0.0670283938863914,
+        "sum": -897.0,
+        "sum_squares": 111831.0
+      },
+      "J1_minus_R1_biasaware_innovation_mixture/pre_MSE_common_eligible": {
+        "n": 4986,
+        "mean": -0.01645212977917593,
+        "se": 0.006832368529395137,
+        "sum": -82.03031907897119,
+        "sum_squares": 1161.6220868969697
+      },
+      "J1_minus_P1_conditional_payload_mixture/detection_common_eligible": {
+        "n": 4992,
+        "mean": -0.00040064102564102563,
+        "se": 0.00028326760394673103,
+        "sum": -2.0,
+        "sum_squares": 2.0
+      },
+      "J1_minus_P1_conditional_payload_mixture/delay_common_eligible": {
+        "n": 4992,
+        "mean": 0.005809294871794872,
+        "se": 0.005612510260123807,
+        "sum": 29.0,
+        "sum_squares": 785.0
+      },
+      "J1_minus_P1_conditional_payload_mixture/pre_MSE_common_eligible": {
+        "n": 4992,
+        "mean": 0.0004587706825482915,
+        "se": 0.0003869883145904639,
+        "sum": 2.290183247281071,
+        "sum_squares": 3.7323307461590045
+      },
+      "J1_minus_E0_previous_event_mixture/detection_common_eligible": {
+        "n": 4992,
+        "mean": 0.005608974358974359,
+        "se": 0.0010571254792241223,
+        "sum": 28.0,
+        "sum_squares": 28.0
+      },
+      "J1_minus_E0_previous_event_mixture/delay_common_eligible": {
+        "n": 4992,
+        "mean": -0.2542067307692308,
+        "se": 0.05700610558416202,
+        "sum": -1269.0,
+        "sum_squares": 81289.0
+      },
+      "J1_minus_E0_previous_event_mixture/pre_MSE_common_eligible": {
+        "n": 4992,
+        "mean": -0.023671197528582325,
+        "se": 0.0057799318210814115,
+        "sum": -118.16661806268297,
+        "sum_squares": 835.1502001064474
+      }
+    },
+    "512": {
+      "monitor_MSE": {
+        "n": 5000,
+        "mean": 46.338651959454815,
+        "se": 0.06724018684209175,
+        "sum": 231693.25979727408,
+        "sum_squares": 10849361.78904778
+      },
+      "healthy_MSE": {
+        "n": 5000,
+        "mean": 46.216291388620796,
+        "se": 0.06704280066903251,
+        "sum": 231081.45694310399,
+        "sum_squares": 10792073.902942607
+      },
+      "MSE_excess": {
+        "n": 5000,
+        "mean": 0.12236057083401557,
+        "se": 0.009837816576387522,
+        "sum": 611.8028541700778,
+        "sum_squares": 2493.9425080653054
+      },
+      "bias_energy": {
+        "n": 5000,
+        "mean": 0.10918110214446704,
+        "se": 0.000156491852031345,
+        "sum": 545.9055107223352,
+        "sum_squares": 60.21468537270896
+      },
+      "sends": {
+        "n": 5000,
+        "mean": 109.771,
+        "se": 0.12802011416151002,
+        "sum": 548855.0,
+        "sum_squares": 60658009.0
+      },
+      "oracle_joint_log_LR": {
+        "n": 5000,
+        "mean": 1.5478346251604174,
+        "se": 0.027459539012565672,
+        "sum": 7739.173125802086,
+        "sum_squares": 30825.847072378936
+      },
+      "oracle_phase_event_log_LR": {
+        "n": 5000,
+        "mean": -8.652327986913268e-05,
+        "se": 0.000104862701914521,
+        "sum": -0.4326163993456634,
+        "sum_squares": 0.2748871067788747
+      },
+      "oracle_conditional_payload_log_LR": {
+        "n": 5000,
+        "mean": 1.5479211484402866,
+        "se": 0.027456552398559427,
+        "sum": 7739.605742201433,
+        "sum_squares": 30823.086837966388
+      },
+      "E0_previous_event_mixture/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E0_previous_event_mixture/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E0_previous_event_mixture/detection_eligible": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E0_previous_event_mixture/restricted_delay_eligible": {
+        "n": 5000,
+        "mean": 512.0,
+        "se": 0.0,
+        "sum": 2560000.0,
+        "sum_squares": 1310720000.0
+      },
+      "E0_previous_event_mixture/delay_detected": {
+        "n": 0,
+        "mean": null,
+        "se": null,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E0_previous_event_mixture/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 46.338651959454815,
+        "se": 0.06724018684209175,
+        "sum": 231693.25979727408,
+        "sum_squares": 10849361.78904778
+      },
+      "E0_previous_event_mixture/pre_MSE_eligible": {
+        "n": 5000,
+        "mean": 46.338651959454815,
+        "se": 0.06724018684209175,
+        "sum": 231693.25979727408,
+        "sum_squares": 10849361.78904778
+      },
+      "E0_previous_event_mixture/pre_bias_eligible": {
+        "n": 5000,
+        "mean": 0.10918110214446704,
+        "se": 0.000156491852031345,
+        "sum": 545.9055107223352,
+        "sum_squares": 60.21468537270896
+      },
+      "E0_previous_event_mixture/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E1_phase_event_mixture/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E1_phase_event_mixture/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E1_phase_event_mixture/detection_eligible": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E1_phase_event_mixture/restricted_delay_eligible": {
+        "n": 5000,
+        "mean": 512.0,
+        "se": 0.0,
+        "sum": 2560000.0,
+        "sum_squares": 1310720000.0
+      },
+      "E1_phase_event_mixture/delay_detected": {
+        "n": 0,
+        "mean": null,
+        "se": null,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E1_phase_event_mixture/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 46.338651959454815,
+        "se": 0.06724018684209175,
+        "sum": 231693.25979727408,
+        "sum_squares": 10849361.78904778
+      },
+      "E1_phase_event_mixture/pre_MSE_eligible": {
+        "n": 5000,
+        "mean": 46.338651959454815,
+        "se": 0.06724018684209175,
+        "sum": 231693.25979727408,
+        "sum_squares": 10849361.78904778
+      },
+      "E1_phase_event_mixture/pre_bias_eligible": {
+        "n": 5000,
+        "mean": 0.10918110214446704,
+        "se": 0.000156491852031345,
+        "sum": 545.9055107223352,
+        "sum_squares": 60.21468537270896
+      },
+      "E1_phase_event_mixture/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "R0_selected_innovation_mixture/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0014,
+        "se": 0.0005288326132024738,
+        "sum": 7.0,
+        "sum_squares": 7.0
+      },
+      "R0_selected_innovation_mixture/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.0042,
+        "se": 0.0009146799045926247,
+        "sum": 21.0,
+        "sum_squares": 21.0
+      },
+      "R0_selected_innovation_mixture/detection_eligible": {
+        "n": 4993,
+        "mean": 0.004205888243540957,
+        "se": 0.0009159596721025601,
+        "sum": 21.0,
+        "sum_squares": 21.0
+      },
+      "R0_selected_innovation_mixture/restricted_delay_eligible": {
+        "n": 4993,
+        "mean": 511.0989385139195,
+        "se": 0.24070757278459243,
+        "sum": 2551917.0,
+        "sum_squares": 1305726231.0
+      },
+      "R0_selected_innovation_mixture/delay_detected": {
+        "n": 21,
+        "mean": 297.76190476190476,
+        "se": 33.9592826752656,
+        "sum": 6253.0,
+        "sum_squares": 2346263.0
+      },
+      "R0_selected_innovation_mixture/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 46.18768828478407,
+        "se": 0.0748514367944109,
+        "sum": 230938.44142392036,
+        "sum_squares": 10806553.17152864
+      },
+      "R0_selected_innovation_mixture/pre_MSE_eligible": {
+        "n": 4993,
+        "mean": 46.25244170316851,
+        "se": 0.07084136614974697,
+        "sum": 230938.44142392036,
+        "sum_squares": 10806553.17152864
+      },
+      "R0_selected_innovation_mixture/pre_bias_eligible": {
+        "n": 4993,
+        "mean": 0.10899118253279456,
+        "se": 0.00016549900940514295,
+        "sum": 544.1929743862432,
+        "sum_squares": 59.9949311469246
+      },
+      "R0_selected_innovation_mixture/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0034,
+        "se": 0.0008233004097611895,
+        "sum": 17.0,
+        "sum_squares": 17.0
+      },
+      "R1_biasaware_innovation_mixture/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0012,
+        "se": 0.0004896528892903606,
+        "sum": 6.0,
+        "sum_squares": 6.0
+      },
+      "R1_biasaware_innovation_mixture/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.004,
+        "se": 0.0008927258212230538,
+        "sum": 20.0,
+        "sum_squares": 20.0
+      },
+      "R1_biasaware_innovation_mixture/detection_eligible": {
+        "n": 4994,
+        "mean": 0.004004805766920304,
+        "se": 0.0008937963303628783,
+        "sum": 20.0,
+        "sum_squares": 20.0
+      },
+      "R1_biasaware_innovation_mixture/restricted_delay_eligible": {
+        "n": 4994,
+        "mean": 510.8902683219864,
+        "se": 0.2791709484104093,
+        "sum": 2551386.0,
+        "sum_squares": 1305421626.0
+      },
+      "R1_biasaware_innovation_mixture/delay_detected": {
+        "n": 20,
+        "mean": 234.9,
+        "se": 32.99959329892926,
+        "sum": 4698.0,
+        "sum_squares": 1517370.0
+      },
+      "R1_biasaware_innovation_mixture/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 46.181022457884545,
+        "se": 0.07526499466689505,
+        "sum": 230905.11228942272,
+        "sum_squares": 10805026.337736266
+      },
+      "R1_biasaware_innovation_mixture/pre_MSE_eligible": {
+        "n": 4994,
+        "mean": 46.23650626540303,
+        "se": 0.07186547202437307,
+        "sum": 230905.11228942272,
+        "sum_squares": 10805026.337736264
+      },
+      "R1_biasaware_innovation_mixture/pre_bias_eligible": {
+        "n": 4994,
+        "mean": 0.10894277797061362,
+        "se": 0.00016809691611612327,
+        "sum": 544.0602331852444,
+        "sum_squares": 59.97601202625171
+      },
+      "R1_biasaware_innovation_mixture/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.003,
+        "se": 0.0007735112565003735,
+        "sum": 15.0,
+        "sum_squares": 15.0
+      },
+      "P1_conditional_payload_mixture/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0016,
+        "se": 0.0005652892271944304,
+        "sum": 8.0,
+        "sum_squares": 8.0
+      },
+      "P1_conditional_payload_mixture/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.0618,
+        "se": 0.003405652902798356,
+        "sum": 309.0,
+        "sum_squares": 309.0
+      },
+      "P1_conditional_payload_mixture/detection_eligible": {
+        "n": 4992,
+        "mean": 0.061899038461538464,
+        "se": 0.0034109311796835856,
+        "sum": 309.0,
+        "sum_squares": 309.0
+      },
+      "P1_conditional_payload_mixture/restricted_delay_eligible": {
+        "n": 4992,
+        "mean": 499.94691506410254,
+        "se": 0.8038845185981525,
+        "sum": 2495735.0,
+        "sum_squares": 1263835889.0
+      },
+      "P1_conditional_payload_mixture/delay_detected": {
+        "n": 309,
+        "mean": 317.27831715210357,
+        "se": 7.32742016629996,
+        "sum": 98039.0,
+        "sum_squares": 36215537.0
+      },
+      "P1_conditional_payload_mixture/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 45.15792892529868,
+        "se": 0.10177223667187393,
+        "sum": 225789.6446264934,
+        "sum_squares": 10455080.640100747
+      },
+      "P1_conditional_payload_mixture/pre_MSE_eligible": {
+        "n": 4992,
+        "mean": 45.230297401140504,
+        "se": 0.09866602989710306,
+        "sum": 225789.6446264934,
+        "sum_squares": 10455080.640100744
+      },
+      "P1_conditional_payload_mixture/pre_bias_eligible": {
+        "n": 4992,
+        "mean": 0.10656989716933198,
+        "se": 0.0002308573197257452,
+        "sum": 531.9969266693053,
+        "sum_squares": 58.0227090748937
+      },
+      "P1_conditional_payload_mixture/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0038,
+        "se": 0.0008702088557872404,
+        "sum": 19.0,
+        "sum_squares": 19.0
+      },
+      "J1_joint_mixture/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0016,
+        "se": 0.0005652892271944304,
+        "sum": 8.0,
+        "sum_squares": 8.0
+      },
+      "J1_joint_mixture/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.0618,
+        "se": 0.003405652902798356,
+        "sum": 309.0,
+        "sum_squares": 309.0
+      },
+      "J1_joint_mixture/detection_eligible": {
+        "n": 4992,
+        "mean": 0.061899038461538464,
+        "se": 0.0034109311796835856,
+        "sum": 309.0,
+        "sum_squares": 309.0
+      },
+      "J1_joint_mixture/restricted_delay_eligible": {
+        "n": 4992,
+        "mean": 500.0440705128205,
+        "se": 0.7973308505936919,
+        "sum": 2496220.0,
+        "sum_squares": 1264059430.0
+      },
+      "J1_joint_mixture/delay_detected": {
+        "n": 309,
+        "mean": 318.84789644012943,
+        "se": 7.266235226711693,
+        "sum": 98524.0,
+        "sum_squares": 36439078.0
+      },
+      "J1_joint_mixture/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 45.16798697868169,
+        "se": 0.10136875236280837,
+        "sum": 225839.93489340844,
+        "sum_squares": 10457574.459301824
+      },
+      "J1_joint_mixture/pre_MSE_eligible": {
+        "n": 4992,
+        "mean": 45.24037157319881,
+        "se": 0.09824696500160336,
+        "sum": 225839.93489340844,
+        "sum_squares": 10457574.459301822
+      },
+      "J1_joint_mixture/pre_bias_eligible": {
+        "n": 4992,
+        "mean": 0.10659279911849942,
+        "se": 0.00022950890868365391,
+        "sum": 532.1112531995491,
+        "sum_squares": 58.031612873844935
+      },
+      "J1_joint_mixture/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0038,
+        "se": 0.0008702088557872404,
+        "sum": 19.0,
+        "sum_squares": 19.0
+      },
+      "J0_joint_from_start/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0018,
+        "se": 0.000599519711750127,
+        "sum": 9.0,
+        "sum_squares": 9.0
+      },
+      "J0_joint_from_start/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.0596,
+        "se": 0.003348404151543301,
+        "sum": 298.0,
+        "sum_squares": 298.0
+      },
+      "J0_joint_from_start/detection_eligible": {
+        "n": 4991,
+        "mean": 0.059707473452213985,
+        "se": 0.0033542510659848868,
+        "sum": 298.0,
+        "sum_squares": 298.0
+      },
+      "J0_joint_from_start/restricted_delay_eligible": {
+        "n": 4991,
+        "mean": 500.671809256662,
+        "se": 0.769262160008045,
+        "sum": 2498853.0,
+        "sum_squares": 1265843195.0
+      },
+      "J0_joint_from_start/delay_detected": {
+        "n": 298,
+        "mean": 322.2718120805369,
+        "se": 7.249445454314828,
+        "sum": 96037.0,
+        "sum_squares": 35601403.0
+      },
+      "J0_joint_from_start/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 45.213388626294154,
+        "se": 0.10005222978048882,
+        "sum": 226066.94313147076,
+        "sum_squares": 10471463.7202193
+      },
+      "J0_joint_from_start/pre_MSE_eligible": {
+        "n": 4991,
+        "mean": 45.294919481360594,
+        "se": 0.09647030953702983,
+        "sum": 226066.94313147073,
+        "sum_squares": 10471463.720219301
+      },
+      "J0_joint_from_start/pre_bias_eligible": {
+        "n": 4991,
+        "mean": 0.10672704705333304,
+        "se": 0.00022529487293256094,
+        "sum": 532.6746918431852,
+        "sum_squares": 58.11492397383183
+      },
+      "J0_joint_from_start/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0038,
+        "se": 0.0008702088557872404,
+        "sum": 19.0,
+        "sum_squares": 19.0
+      },
+      "oracle_joint/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "oracle_joint/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.0718,
+        "se": 0.0036512488717786317,
+        "sum": 359.0,
+        "sum_squares": 359.0
+      },
+      "oracle_joint/detection_eligible": {
+        "n": 5000,
+        "mean": 0.0718,
+        "se": 0.0036512488717786317,
+        "sum": 359.0,
+        "sum_squares": 359.0
+      },
+      "oracle_joint/restricted_delay_eligible": {
+        "n": 5000,
+        "mean": 501.5412,
+        "se": 0.688923118732928,
+        "sum": 2507706.0,
+        "sum_squares": 1269580880.0
+      },
+      "oracle_joint/delay_detected": {
+        "n": 359,
+        "mean": 366.3342618384401,
+        "se": 6.106494294179592,
+        "sum": 131514.0,
+        "sum_squares": 52970576.0
+      },
+      "oracle_joint/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 45.378053394182885,
+        "se": 0.0912947556342841,
+        "sum": 226890.26697091444,
+        "sum_squares": 10504165.285722625
+      },
+      "oracle_joint/pre_MSE_eligible": {
+        "n": 5000,
+        "mean": 45.378053394182885,
+        "se": 0.0912947556342841,
+        "sum": 226890.26697091444,
+        "sum_squares": 10504165.285722625
+      },
+      "oracle_joint/pre_bias_eligible": {
+        "n": 5000,
+        "mean": 0.10685114269405399,
+        "se": 0.0002125491791783417,
+        "sum": 534.2557134702699,
+        "sum_squares": 58.21503642859225
+      },
+      "J1_minus_R0_selected_innovation_mixture/detection_common_eligible": {
+        "n": 4985,
+        "mean": 0.05737211634904714,
+        "se": 0.003495612303584668,
+        "sum": 286.0,
+        "sum_squares": 320.0
+      },
+      "J1_minus_R0_selected_innovation_mixture/delay_common_eligible": {
+        "n": 4985,
+        "mean": -10.983751253761284,
+        "se": 0.8219653942911267,
+        "sum": -54754.0,
+        "sum_squares": 17387522.0
+      },
+      "J1_minus_R0_selected_innovation_mixture/pre_MSE_common_eligible": {
+        "n": 4985,
+        "mean": -1.0095438063819377,
+        "se": 0.0760070148228269,
+        "sum": -5032.57587481396,
+        "sum_squares": 148613.20458056085
+      },
+      "J1_minus_R1_biasaware_innovation_mixture/detection_common_eligible": {
+        "n": 4986,
+        "mean": 0.05776173285198556,
+        "se": 0.0034936045706476125,
+        "sum": 288.0,
+        "sum_squares": 320.0
+      },
+      "J1_minus_R1_biasaware_innovation_mixture/delay_common_eligible": {
+        "n": 4986,
+        "mean": -10.839751303650221,
+        "se": 0.8368325463004367,
+        "sum": -54047.0,
+        "sum_squares": 17991679.0
+      },
+      "J1_minus_R1_biasaware_innovation_mixture/pre_MSE_common_eligible": {
+        "n": 4986,
+        "mean": -0.9992414810493079,
+        "se": 0.07721711324427362,
+        "sum": -4982.218024511849,
+        "sum_squares": 153177.1955097616
+      },
+      "J1_minus_P1_conditional_payload_mixture/detection_common_eligible": {
+        "n": 4992,
+        "mean": 0.0,
+        "se": 0.00028332436531468817,
+        "sum": 0.0,
+        "sum_squares": 2.0
+      },
+      "J1_minus_P1_conditional_payload_mixture/delay_common_eligible": {
+        "n": 4992,
+        "mean": 0.09715544871794872,
+        "se": 0.09846528150143695,
+        "sum": 485.0,
+        "sum_squares": 241609.0
+      },
+      "J1_minus_P1_conditional_payload_mixture/pre_MSE_common_eligible": {
+        "n": 4992,
+        "mean": 0.010074172058296344,
+        "se": 0.00915090598315284,
+        "sum": 50.29026691501535,
+        "sum_squares": 2086.87184800154
+      },
+      "J1_minus_E0_previous_event_mixture/detection_common_eligible": {
+        "n": 4992,
+        "mean": 0.061899038461538464,
+        "se": 0.0034109311796835856,
+        "sum": 309.0,
+        "sum_squares": 309.0
+      },
+      "J1_minus_E0_previous_event_mixture/delay_common_eligible": {
+        "n": 4992,
+        "mean": -11.955929487179487,
+        "se": 0.7973308505936907,
+        "sum": -59684.0,
+        "sum_squares": 16552998.0
+      },
+      "J1_minus_E0_previous_event_mixture/pre_MSE_common_eligible": {
+        "n": 4992,
+        "mean": -1.0998039697130575,
+        "se": 0.0736656323996858,
+        "sum": -5490.2214168075825,
+        "sum_squares": 141242.92978824626
+      }
+    },
+    "1024": {
+      "monitor_MSE": {
+        "n": 5000,
+        "mean": 92.73894711542904,
+        "se": 0.0956475706261976,
+        "sum": 463694.73557714524,
+        "sum_squares": 43231227.262270235
+      },
+      "healthy_MSE": {
+        "n": 5000,
+        "mean": 92.4874106433968,
+        "se": 0.09542407432423923,
+        "sum": 462437.05321698403,
+        "sum_squares": 42997203.95784769
+      },
+      "MSE_excess": {
+        "n": 5000,
+        "mean": 0.25153647203224366,
+        "se": 0.014087985184296785,
+        "sum": 1257.6823601612182,
+        "sum_squares": 5277.1437910035165
+      },
+      "bias_energy": {
+        "n": 5000,
+        "mean": 0.21911404370486207,
+        "se": 0.00022515667358064779,
+        "sum": 1095.5702185243103,
+        "sum_squares": 241.3219554572903
+      },
+      "sends": {
+        "n": 5000,
+        "mean": 219.7786,
+        "se": 0.18421917313013253,
+        "sum": 1098893.0,
+        "sum_squares": 242361413.0
+      },
+      "oracle_joint_log_LR": {
+        "n": 5000,
+        "mean": 3.0719552440213898,
+        "se": 0.03822581360909544,
+        "sum": 15359.776220106949,
+        "sum_squares": 83707.55969415484
+      },
+      "oracle_phase_event_log_LR": {
+        "n": 5000,
+        "mean": 3.738727862272731e-05,
+        "se": 0.00014913901511228134,
+        "sum": 0.18693639311363658,
+        "sum_squares": 0.5559569225304029
+      },
+      "oracle_conditional_payload_log_LR": {
+        "n": 5000,
+        "mean": 3.0719178567427665,
+        "se": 0.03822262959224136,
+        "sum": 15359.589283713833,
+        "sum_squares": 83700.32706945276
+      },
+      "E0_previous_event_mixture/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E0_previous_event_mixture/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E0_previous_event_mixture/detection_eligible": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E0_previous_event_mixture/restricted_delay_eligible": {
+        "n": 5000,
+        "mean": 1024.0,
+        "se": 0.0,
+        "sum": 5120000.0,
+        "sum_squares": 5242880000.0
+      },
+      "E0_previous_event_mixture/delay_detected": {
+        "n": 0,
+        "mean": null,
+        "se": null,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E0_previous_event_mixture/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 92.73894711542904,
+        "se": 0.0956475706261976,
+        "sum": 463694.73557714524,
+        "sum_squares": 43231227.262270235
+      },
+      "E0_previous_event_mixture/pre_MSE_eligible": {
+        "n": 5000,
+        "mean": 92.73894711542904,
+        "se": 0.0956475706261976,
+        "sum": 463694.73557714524,
+        "sum_squares": 43231227.262270235
+      },
+      "E0_previous_event_mixture/pre_bias_eligible": {
+        "n": 5000,
+        "mean": 0.21911404370486207,
+        "se": 0.00022515667358064779,
+        "sum": 1095.5702185243103,
+        "sum_squares": 241.3219554572903
+      },
+      "E0_previous_event_mixture/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E1_phase_event_mixture/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E1_phase_event_mixture/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E1_phase_event_mixture/detection_eligible": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E1_phase_event_mixture/restricted_delay_eligible": {
+        "n": 5000,
+        "mean": 1024.0,
+        "se": 0.0,
+        "sum": 5120000.0,
+        "sum_squares": 5242880000.0
+      },
+      "E1_phase_event_mixture/delay_detected": {
+        "n": 0,
+        "mean": null,
+        "se": null,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E1_phase_event_mixture/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 92.73894711542904,
+        "se": 0.0956475706261976,
+        "sum": 463694.73557714524,
+        "sum_squares": 43231227.262270235
+      },
+      "E1_phase_event_mixture/pre_MSE_eligible": {
+        "n": 5000,
+        "mean": 92.73894711542904,
+        "se": 0.0956475706261976,
+        "sum": 463694.73557714524,
+        "sum_squares": 43231227.262270235
+      },
+      "E1_phase_event_mixture/pre_bias_eligible": {
+        "n": 5000,
+        "mean": 0.21911404370486207,
+        "se": 0.00022515667358064779,
+        "sum": 1095.5702185243103,
+        "sum_squares": 241.3219554572903
+      },
+      "E1_phase_event_mixture/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "R0_selected_innovation_mixture/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0014,
+        "se": 0.0005288326132024738,
+        "sum": 7.0,
+        "sum_squares": 7.0
+      },
+      "R0_selected_innovation_mixture/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.0086,
+        "se": 0.0013059667338113801,
+        "sum": 43.0,
+        "sum_squares": 43.0
+      },
+      "R0_selected_innovation_mixture/detection_eligible": {
+        "n": 4993,
+        "mean": 0.008612056879631484,
+        "se": 0.0013077898815120844,
+        "sum": 43.0,
+        "sum_squares": 43.0
+      },
+      "R0_selected_innovation_mixture/restricted_delay_eligible": {
+        "n": 4993,
+        "mean": 1019.5868215501703,
+        "se": 0.7556542765055542,
+        "sum": 5090797.0,
+        "sum_squares": 5204742073.0
+      },
+      "R0_selected_innovation_mixture/delay_detected": {
+        "n": 43,
+        "mean": 511.5581395348837,
+        "se": 41.015140525159,
+        "sum": 21997.0,
+        "sum_squares": 14290873.0
+      },
+      "R0_selected_innovation_mixture/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 92.20212424271263,
+        "se": 0.12781782060111796,
+        "sum": 461010.62121356314,
+        "sum_squares": 42914511.76894725
+      },
+      "R0_selected_innovation_mixture/pre_MSE_eligible": {
+        "n": 4993,
+        "mean": 92.33138818617327,
+        "se": 0.11828943985386298,
+        "sum": 461010.62121356314,
+        "sum_squares": 42914511.76894726
+      },
+      "R0_selected_innovation_mixture/pre_bias_eligible": {
+        "n": 4993,
+        "mean": 0.21817117478918824,
+        "se": 0.0002795682606796852,
+        "sum": 1089.3286757224168,
+        "sum_squares": 239.60821971933962
+      },
+      "R0_selected_innovation_mixture/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0038,
+        "se": 0.0008702088557872404,
+        "sum": 19.0,
+        "sum_squares": 19.0
+      },
+      "R1_biasaware_innovation_mixture/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0012,
+        "se": 0.0004896528892903606,
+        "sum": 6.0,
+        "sum_squares": 6.0
+      },
+      "R1_biasaware_innovation_mixture/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.0086,
+        "se": 0.0013059667338113801,
+        "sum": 43.0,
+        "sum_squares": 43.0
+      },
+      "R1_biasaware_innovation_mixture/detection_eligible": {
+        "n": 4994,
+        "mean": 0.008610332398878654,
+        "se": 0.0013075291202617096,
+        "sum": 43.0,
+        "sum_squares": 43.0
+      },
+      "R1_biasaware_innovation_mixture/restricted_delay_eligible": {
+        "n": 4994,
+        "mean": 1019.4681617941529,
+        "se": 0.7862030518231351,
+        "sum": 5091224.0,
+        "sum_squares": 5205753502.0
+      },
+      "R1_biasaware_innovation_mixture/delay_detected": {
+        "n": 43,
+        "mean": 497.6744186046512,
+        "se": 44.66866726148432,
+        "sum": 21400.0,
+        "sum_squares": 14253726.0
+      },
+      "R1_biasaware_innovation_mixture/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 92.21522262353716,
+        "se": 0.12763501367441582,
+        "sum": 461076.1131176858,
+        "sum_squares": 42925422.38195073
+      },
+      "R1_biasaware_innovation_mixture/pre_MSE_eligible": {
+        "n": 4994,
+        "mean": 92.32601384014534,
+        "se": 0.1195040518597426,
+        "sum": 461076.1131176858,
+        "sum_squares": 42925422.381950736
+      },
+      "R1_biasaware_innovation_mixture/pre_bias_eligible": {
+        "n": 4994,
+        "mean": 0.21814186113168355,
+        "se": 0.00028283770737539554,
+        "sum": 1089.4004544916277,
+        "sum_squares": 239.63857542225455
+      },
+      "R1_biasaware_innovation_mixture/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0042,
+        "se": 0.0009146799045926247,
+        "sum": 21.0,
+        "sum_squares": 21.0
+      },
+      "P1_conditional_payload_mixture/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0016,
+        "se": 0.0005652892271944304,
+        "sum": 8.0,
+        "sum_squares": 8.0
+      },
+      "P1_conditional_payload_mixture/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.1996,
+        "se": 0.005653172531590946,
+        "sum": 998.0,
+        "sum_squares": 998.0
+      },
+      "P1_conditional_payload_mixture/detection_eligible": {
+        "n": 4992,
+        "mean": 0.1999198717948718,
+        "se": 0.005661101470298992,
+        "sum": 998.0,
+        "sum_squares": 998.0
+      },
+      "P1_conditional_payload_mixture/restricted_delay_eligible": {
+        "n": 4992,
+        "mean": 947.3247195512821,
+        "se": 2.7172068611276963,
+        "sum": 4729045.0,
+        "sum_squares": 4663894515.0
+      },
+      "P1_conditional_payload_mixture/delay_detected": {
+        "n": 998,
+        "mean": 640.4699398797595,
+        "se": 8.175230981433229,
+        "sum": 639189.0,
+        "sum_squares": 475881971.0
+      },
+      "P1_conditional_payload_mixture/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 85.65266592573496,
+        "se": 0.26733310117888925,
+        "sum": 428263.32962867484,
+        "sum_squares": 38468213.24064093
+      },
+      "P1_conditional_payload_mixture/pre_MSE_eligible": {
+        "n": 4992,
+        "mean": 85.78992981343647,
+        "se": 0.26331888568034073,
+        "sum": 428263.3296286749,
+        "sum_squares": 38468213.24064094
+      },
+      "P1_conditional_payload_mixture/pre_bias_eligible": {
+        "n": 4992,
+        "mean": 0.20249120188270303,
+        "se": 0.0006186713678642679,
+        "sum": 1010.8360797984535,
+        "sum_squares": 214.22176268625142
+      },
+      "P1_conditional_payload_mixture/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0046,
+        "se": 0.0009570533894397154,
+        "sum": 23.0,
+        "sum_squares": 23.0
+      },
+      "J1_joint_mixture/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0016,
+        "se": 0.0005652892271944304,
+        "sum": 8.0,
+        "sum_squares": 8.0
+      },
+      "J1_joint_mixture/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.1994,
+        "se": 0.005651045466369263,
+        "sum": 997.0,
+        "sum_squares": 997.0
+      },
+      "J1_joint_mixture/detection_eligible": {
+        "n": 4992,
+        "mean": 0.1997195512820513,
+        "se": 0.005658972837537414,
+        "sum": 997.0,
+        "sum_squares": 997.0
+      },
+      "J1_joint_mixture/restricted_delay_eligible": {
+        "n": 4992,
+        "mean": 947.4777644230769,
+        "se": 2.710750677200329,
+        "sum": 4729809.0,
+        "sum_squares": 4664469023.0
+      },
+      "J1_joint_mixture/delay_detected": {
+        "n": 997,
+        "mean": 640.8515546639919,
+        "se": 8.149439033809129,
+        "sum": 638929.0,
+        "sum_squares": 475407903.0
+      },
+      "J1_joint_mixture/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 85.6686184355437,
+        "se": 0.2667482338097532,
+        "sum": 428343.0921777185,
+        "sum_squares": 38474070.656188264
+      },
+      "J1_joint_mixture/pre_MSE_eligible": {
+        "n": 4992,
+        "mean": 85.80590788816475,
+        "se": 0.26272150232446406,
+        "sum": 428343.09217771847,
+        "sum_squares": 38474070.65618827
+      },
+      "J1_joint_mixture/pre_bias_eligible": {
+        "n": 4992,
+        "mean": 0.2025221165098135,
+        "se": 0.0006169074903076171,
+        "sum": 1010.9904056169889,
+        "sum_squares": 214.22996654561203
+      },
+      "J1_joint_mixture/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0046,
+        "se": 0.0009570533894397154,
+        "sum": 23.0,
+        "sum_squares": 23.0
+      },
+      "J0_joint_from_start/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0018,
+        "se": 0.000599519711750127,
+        "sum": 9.0,
+        "sum_squares": 9.0
+      },
+      "J0_joint_from_start/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.1946,
+        "se": 0.005599324824271007,
+        "sum": 973.0,
+        "sum_squares": 973.0
+      },
+      "J0_joint_from_start/detection_eligible": {
+        "n": 4991,
+        "mean": 0.1949509116409537,
+        "se": 0.005608200653275322,
+        "sum": 973.0,
+        "sum_squares": 973.0
+      },
+      "J0_joint_from_start/restricted_delay_eligible": {
+        "n": 4991,
+        "mean": 949.8541374474054,
+        "se": 2.662310275091939,
+        "sum": 4740722.0,
+        "sum_squares": 4679519094.0
+      },
+      "J0_joint_from_start/delay_detected": {
+        "n": 973,
+        "mean": 643.6690647482014,
+        "se": 8.175760669338912,
+        "sum": 626290.0,
+        "sum_squares": 466340726.0
+      },
+      "J0_joint_from_start/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 85.85998281072267,
+        "se": 0.2634900467269452,
+        "sum": 429299.9140536134,
+        "sum_squares": 38595011.224368535
+      },
+      "J0_joint_from_start/pre_MSE_eligible": {
+        "n": 4991,
+        "mean": 86.01480946776465,
+        "se": 0.2588606358998907,
+        "sum": 429299.9140536134,
+        "sum_squares": 38595011.22436853
+      },
+      "J0_joint_from_start/pre_bias_eligible": {
+        "n": 4991,
+        "mean": 0.20304601091254962,
+        "se": 0.000607402816632656,
+        "sum": 1013.4026404645351,
+        "sum_squares": 214.95580221307998
+      },
+      "J0_joint_from_start/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0046,
+        "se": 0.0009570533894397154,
+        "sum": 23.0,
+        "sum_squares": 23.0
+      },
+      "oracle_joint/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "oracle_joint/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.322,
+        "se": 0.0066084744371812,
+        "sum": 1610.0,
+        "sum_squares": 1610.0
+      },
+      "oracle_joint/detection_eligible": {
+        "n": 5000,
+        "mean": 0.322,
+        "se": 0.0066084744371812,
+        "sum": 1610.0,
+        "sum_squares": 1610.0
+      },
+      "oracle_joint/restricted_delay_eligible": {
+        "n": 5000,
+        "mean": 915.6162,
+        "se": 2.8393113033352746,
+        "sum": 4578081.0,
+        "sum_squares": 4393267037.0
+      },
+      "oracle_joint/delay_detected": {
+        "n": 1610,
+        "mean": 687.4043478260869,
+        "se": 5.481272012333284,
+        "sum": 1106721.0,
+        "sum_squares": 838594397.0
+      },
+      "oracle_joint/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 82.91553275061936,
+        "se": 0.27293099801573256,
+        "sum": 414577.66375309683,
+        "sum_squares": 36236838.64189337
+      },
+      "oracle_joint/pre_MSE_eligible": {
+        "n": 5000,
+        "mean": 82.91553275061936,
+        "se": 0.27293099801573256,
+        "sum": 414577.66375309683,
+        "sum_squares": 36236838.64189337
+      },
+      "oracle_joint/pre_bias_eligible": {
+        "n": 5000,
+        "mean": 0.19553452588257234,
+        "se": 0.0006374338040919617,
+        "sum": 977.6726294128617,
+        "sum_squares": 201.32476881631752
+      },
+      "J1_minus_R0_selected_innovation_mixture/detection_common_eligible": {
+        "n": 4985,
+        "mean": 0.19097291875626882,
+        "se": 0.005745616539231399,
+        "sum": 952.0,
+        "sum_squares": 1002.0
+      },
+      "J1_minus_R0_selected_innovation_mixture/delay_common_eligible": {
+        "n": 4985,
+        "mean": -71.91755265797393,
+        "se": 2.761778052819158,
+        "sum": -358509.0,
+        "sum_squares": 215288121.0
+      },
+      "J1_minus_R0_selected_innovation_mixture/pre_MSE_common_eligible": {
+        "n": 4985,
+        "mean": -6.509952546526311,
+        "se": 0.2516725974730876,
+        "sum": -32452.113444433657,
+        "sum_squares": 1784936.7679827157
+      },
+      "J1_minus_R1_biasaware_innovation_mixture/detection_common_eligible": {
+        "n": 4986,
+        "mean": 0.19113517849979944,
+        "se": 0.005739749967731369,
+        "sum": 953.0,
+        "sum_squares": 1001.0
+      },
+      "J1_minus_R1_biasaware_innovation_mixture/delay_common_eligible": {
+        "n": 4986,
+        "mean": -71.95346971520257,
+        "se": 2.780736385446355,
+        "sum": -358760.0,
+        "sum_squares": 218006810.0
+      },
+      "J1_minus_R1_biasaware_innovation_mixture/pre_MSE_common_eligible": {
+        "n": 4986,
+        "mean": -6.518366753460068,
+        "se": 0.2533470044789964,
+        "sum": -32500.576632751898,
+        "sum_squares": 1807174.991762829
+      },
+      "J1_minus_P1_conditional_payload_mixture/detection_common_eligible": {
+        "n": 4992,
+        "mean": -0.00020032051282051281,
+        "se": 0.00044796618155683917,
+        "sum": -1.0,
+        "sum_squares": 5.0
+      },
+      "J1_minus_P1_conditional_payload_mixture/delay_common_eligible": {
+        "n": 4992,
+        "mean": 0.1530448717948718,
+        "se": 0.1949898587135037,
+        "sum": 764.0,
+        "sum_squares": 947414.0
+      },
+      "J1_minus_P1_conditional_payload_mixture/pre_MSE_common_eligible": {
+        "n": 4992,
+        "mean": 0.01597807472829211,
+        "se": 0.01790036567324149,
+        "sum": 79.76254904363421,
+        "sum_squares": 7984.638840570724
+      },
+      "J1_minus_E0_previous_event_mixture/detection_common_eligible": {
+        "n": 4992,
+        "mean": 0.1997195512820513,
+        "se": 0.005658972837537414,
+        "sum": 997.0,
+        "sum_squares": 997.0
+      },
+      "J1_minus_E0_previous_event_mixture/delay_common_eligible": {
+        "n": 4992,
+        "mean": -76.52223557692308,
+        "se": 2.71075067720033,
+        "sum": -381999.0,
+        "sum_squares": 212311583.0
+      },
+      "J1_minus_E0_previous_event_mixture/pre_MSE_common_eligible": {
+        "n": 4992,
+        "mean": -6.934933255004624,
+        "se": 0.24691476638376142,
+        "sum": -34619.18680898308,
+        "sum_squares": 1759076.499280495
+      }
+    },
+    "2048": {
+      "monitor_MSE": {
+        "n": 5000,
+        "mean": 185.26319432649402,
+        "se": 0.13335111373532435,
+        "sum": 926315.97163247,
+        "sum_squares": 172056729.93604502
+      },
+      "healthy_MSE": {
+        "n": 5000,
+        "mean": 184.79483783672066,
+        "se": 0.13349005371239386,
+        "sum": 923974.1891836033,
+        "sum_squares": 171191061.21853065
+      },
+      "MSE_excess": {
+        "n": 5000,
+        "mean": 0.46835648977333766,
+        "se": 0.01994713977158682,
+        "sum": 2341.7824488666884,
+        "sum_squares": 11042.009192319196
+      },
+      "bias_energy": {
+        "n": 5000,
+        "mean": 0.43866857338648235,
+        "se": 0.00031973403866373683,
+        "sum": 2193.3428669324117,
+        "sum_squares": 964.7058216223863
+      },
+      "sends": {
+        "n": 5000,
+        "mean": 439.4996,
+        "se": 0.2609090544134765,
+        "sum": 2197498.0,
+        "sum_squares": 967500990.0
+      },
+      "oracle_joint_log_LR": {
+        "n": 5000,
+        "mean": 6.128812865213537,
+        "se": 0.053650290877806685,
+        "sum": 30644.064326067684,
+        "sum_squares": 259756.18669731013
+      },
+      "oracle_phase_event_log_LR": {
+        "n": 5000,
+        "mean": 0.00012055078886233348,
+        "se": 0.00020903523635979832,
+        "sum": 0.6027539443116674,
+        "sum_squares": 1.0922474348131952
+      },
+      "oracle_conditional_payload_log_LR": {
+        "n": 5000,
+        "mean": 6.128692314424674,
+        "se": 0.0536439318789034,
+        "sum": 30643.46157212337,
+        "sum_squares": 259731.74475301392
+      },
+      "E0_previous_event_mixture/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E0_previous_event_mixture/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E0_previous_event_mixture/detection_eligible": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E0_previous_event_mixture/restricted_delay_eligible": {
+        "n": 5000,
+        "mean": 2048.0,
+        "se": 0.0,
+        "sum": 10240000.0,
+        "sum_squares": 20971520000.0
+      },
+      "E0_previous_event_mixture/delay_detected": {
+        "n": 0,
+        "mean": null,
+        "se": null,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E0_previous_event_mixture/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 185.26319432649402,
+        "se": 0.13335111373532435,
+        "sum": 926315.97163247,
+        "sum_squares": 172056729.93604502
+      },
+      "E0_previous_event_mixture/pre_MSE_eligible": {
+        "n": 5000,
+        "mean": 185.26319432649402,
+        "se": 0.13335111373532435,
+        "sum": 926315.97163247,
+        "sum_squares": 172056729.93604502
+      },
+      "E0_previous_event_mixture/pre_bias_eligible": {
+        "n": 5000,
+        "mean": 0.43866857338648235,
+        "se": 0.00031973403866373683,
+        "sum": 2193.3428669324117,
+        "sum_squares": 964.7058216223863
+      },
+      "E0_previous_event_mixture/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E1_phase_event_mixture/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E1_phase_event_mixture/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E1_phase_event_mixture/detection_eligible": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E1_phase_event_mixture/restricted_delay_eligible": {
+        "n": 5000,
+        "mean": 2048.0,
+        "se": 0.0,
+        "sum": 10240000.0,
+        "sum_squares": 20971520000.0
+      },
+      "E1_phase_event_mixture/delay_detected": {
+        "n": 0,
+        "mean": null,
+        "se": null,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "E1_phase_event_mixture/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 185.26319432649402,
+        "se": 0.13335111373532435,
+        "sum": 926315.97163247,
+        "sum_squares": 172056729.93604502
+      },
+      "E1_phase_event_mixture/pre_MSE_eligible": {
+        "n": 5000,
+        "mean": 185.26319432649402,
+        "se": 0.13335111373532435,
+        "sum": 926315.97163247,
+        "sum_squares": 172056729.93604502
+      },
+      "E1_phase_event_mixture/pre_bias_eligible": {
+        "n": 5000,
+        "mean": 0.43866857338648235,
+        "se": 0.00031973403866373683,
+        "sum": 2193.3428669324117,
+        "sum_squares": 964.7058216223863
+      },
+      "E1_phase_event_mixture/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "R0_selected_innovation_mixture/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0014,
+        "se": 0.0005288326132024738,
+        "sum": 7.0,
+        "sum_squares": 7.0
+      },
+      "R0_selected_innovation_mixture/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.0148,
+        "se": 0.0017078569480700114,
+        "sum": 74.0,
+        "sum_squares": 74.0
+      },
+      "R0_selected_innovation_mixture/detection_eligible": {
+        "n": 4993,
+        "mean": 0.014820749048668135,
+        "se": 0.0017102335300257878,
+        "sum": 74.0,
+        "sum_squares": 74.0
+      },
+      "R0_selected_innovation_mixture/restricted_delay_eligible": {
+        "n": 4993,
+        "mean": 2031.0014019627479,
+        "se": 2.166435527538322,
+        "sum": 10140790.0,
+        "sum_squares": 20712943034.0
+      },
+      "R0_selected_innovation_mixture/delay_detected": {
+        "n": 74,
+        "mean": 901.0540540540541,
+        "se": 62.46980134377215,
+        "sum": 66678.0,
+        "sum_squares": 81161658.0
+      },
+      "R0_selected_innovation_mixture/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 183.45558838988399,
+        "se": 0.25696075723370543,
+        "sum": 917277.9419494199,
+        "sum_squares": 169930155.18219188
+      },
+      "R0_selected_innovation_mixture/pre_MSE_eligible": {
+        "n": 4993,
+        "mean": 183.71278629069096,
+        "se": 0.23822020491039972,
+        "sum": 917277.9419494199,
+        "sum_squares": 169930155.18219185
+      },
+      "R0_selected_innovation_mixture/pre_bias_eligible": {
+        "n": 4993,
+        "mean": 0.43503084486401067,
+        "se": 0.0005686779063372046,
+        "sum": 2172.109008406005,
+        "sum_squares": 952.9950446105032
+      },
+      "R0_selected_innovation_mixture/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0046,
+        "se": 0.0009570533894397154,
+        "sum": 23.0,
+        "sum_squares": 23.0
+      },
+      "R1_biasaware_innovation_mixture/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0012,
+        "se": 0.0004896528892903606,
+        "sum": 6.0,
+        "sum_squares": 6.0
+      },
+      "R1_biasaware_innovation_mixture/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.018,
+        "se": 0.0018804008034023721,
+        "sum": 90.0,
+        "sum_squares": 90.0
+      },
+      "R1_biasaware_innovation_mixture/detection_eligible": {
+        "n": 4994,
+        "mean": 0.01802162595114137,
+        "se": 0.001882639491214166,
+        "sum": 90.0,
+        "sum_squares": 90.0
+      },
+      "R1_biasaware_innovation_mixture/restricted_delay_eligible": {
+        "n": 4994,
+        "mean": 2029.2356828193833,
+        "se": 2.2411661277776425,
+        "sum": 10134003.0,
+        "sum_squares": 20689524865.0
+      },
+      "R1_biasaware_innovation_mixture/delay_detected": {
+        "n": 90,
+        "mean": 1006.7888888888889,
+        "se": 60.61678505433299,
+        "sum": 90611.0,
+        "sum_squares": 120658049.0
+      },
+      "R1_biasaware_innovation_mixture/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 183.34008350479826,
+        "se": 0.2586920963339174,
+        "sum": 916700.4175239913,
+        "sum_squares": 169740636.5073694
+      },
+      "R1_biasaware_innovation_mixture/pre_MSE_eligible": {
+        "n": 4994,
+        "mean": 183.56035593191658,
+        "se": 0.2428672971348843,
+        "sum": 916700.4175239914,
+        "sum_squares": 169740636.5073694
+      },
+      "R1_biasaware_innovation_mixture/pre_bias_eligible": {
+        "n": 4994,
+        "mean": 0.4346541761373172,
+        "se": 0.0005815172029154567,
+        "sum": 2170.662955629762,
+        "sum_squares": 951.9198087393048
+      },
+      "R1_biasaware_innovation_mixture/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0056,
+        "se": 0.0010554386719075779,
+        "sum": 28.0,
+        "sum_squares": 28.0
+      },
+      "P1_conditional_payload_mixture/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0016,
+        "se": 0.0005652892271944304,
+        "sum": 8.0,
+        "sum_squares": 8.0
+      },
+      "P1_conditional_payload_mixture/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.5598,
+        "se": 0.007021014950146883,
+        "sum": 2799.0,
+        "sum_squares": 2799.0
+      },
+      "P1_conditional_payload_mixture/detection_eligible": {
+        "n": 4992,
+        "mean": 0.5606971153846154,
+        "se": 0.007025098266000403,
+        "sum": 2799.0,
+        "sum_squares": 2799.0
+      },
+      "P1_conditional_payload_mixture/restricted_delay_eligible": {
+        "n": 4992,
+        "mean": 1583.606169871795,
+        "se": 7.962197029984528,
+        "sum": 7905362.0,
+        "sum_squares": 14098510432.0
+      },
+      "P1_conditional_payload_mixture/delay_detected": {
+        "n": 2799,
+        "mean": 1219.7563415505538,
+        "se": 9.694460727953766,
+        "sum": 3414098.0,
+        "sum_squares": 4900401760.0
+      },
+      "P1_conditional_payload_mixture/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 143.0353166481384,
+        "se": 0.7342667729538382,
+        "sum": 715176.583240692,
+        "sum_squares": 115771505.65129787
+      },
+      "P1_conditional_payload_mixture/pre_MSE_eligible": {
+        "n": 4992,
+        "mean": 143.26453991199762,
+        "se": 0.7309565874481372,
+        "sum": 715176.583240692,
+        "sum_squares": 115771505.65129784
+      },
+      "P1_conditional_payload_mixture/pre_bias_eligible": {
+        "n": 4992,
+        "mean": 0.33854959934695206,
+        "se": 0.0017206285416897994,
+        "sum": 1690.0395999399848,
+        "sum_squares": 645.9248592434392
+      },
+      "P1_conditional_payload_mixture/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0052,
+        "se": 0.0010172506867984698,
+        "sum": 26.0,
+        "sum_squares": 26.0
+      },
+      "J1_joint_mixture/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0016,
+        "se": 0.0005652892271944304,
+        "sum": 8.0,
+        "sum_squares": 8.0
+      },
+      "J1_joint_mixture/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.5598,
+        "se": 0.007021014950146883,
+        "sum": 2799.0,
+        "sum_squares": 2799.0
+      },
+      "J1_joint_mixture/detection_eligible": {
+        "n": 4992,
+        "mean": 0.5606971153846154,
+        "se": 0.007025098266000403,
+        "sum": 2799.0,
+        "sum_squares": 2799.0
+      },
+      "J1_joint_mixture/restricted_delay_eligible": {
+        "n": 4992,
+        "mean": 1583.7051282051282,
+        "se": 7.958480078744852,
+        "sum": 7905856.0,
+        "sum_squares": 14098600700.0
+      },
+      "J1_joint_mixture/delay_detected": {
+        "n": 2799,
+        "mean": 1219.932833154698,
+        "se": 9.68711539995153,
+        "sum": 3414592.0,
+        "sum_squares": 4900492028.0
+      },
+      "J1_joint_mixture/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 143.04709110599845,
+        "se": 0.73390622442331,
+        "sum": 715235.4555299922,
+        "sum_squares": 115775116.9338898
+      },
+      "J1_joint_mixture/pre_MSE_eligible": {
+        "n": 4992,
+        "mean": 143.27633323918113,
+        "se": 0.7305925017709336,
+        "sum": 715235.4555299922,
+        "sum_squares": 115775116.9338898
+      },
+      "J1_joint_mixture/pre_bias_eligible": {
+        "n": 4992,
+        "mean": 0.33855929388050343,
+        "se": 0.0017190853217004143,
+        "sum": 1690.0879950514732,
+        "sum_squares": 645.8253729418213
+      },
+      "J1_joint_mixture/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0052,
+        "se": 0.0010172506867984698,
+        "sum": 26.0,
+        "sum_squares": 26.0
+      },
+      "J0_joint_from_start/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0018,
+        "se": 0.000599519711750127,
+        "sum": 9.0,
+        "sum_squares": 9.0
+      },
+      "J0_joint_from_start/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.5562,
+        "se": 0.007026961479724185,
+        "sum": 2781.0,
+        "sum_squares": 2781.0
+      },
+      "J0_joint_from_start/detection_eligible": {
+        "n": 4991,
+        "mean": 0.5572029653376077,
+        "se": 0.007031674982351769,
+        "sum": 2781.0,
+        "sum_squares": 2781.0
+      },
+      "J0_joint_from_start/restricted_delay_eligible": {
+        "n": 4991,
+        "mean": 1591.1945501903426,
+        "se": 7.9012015164693645,
+        "sum": 7941652.0,
+        "sum_squares": 14191512882.0
+      },
+      "J0_joint_from_start/delay_detected": {
+        "n": 2781,
+        "mean": 1228.1812297734627,
+        "se": 9.69821896685621,
+        "sum": 3415572.0,
+        "sum_squares": 4922101042.0
+      },
+      "J0_joint_from_start/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 143.69190350272757,
+        "se": 0.7295801522736878,
+        "sum": 718459.5175136379,
+        "sum_squares": 116541334.18998535
+      },
+      "J0_joint_from_start/pre_MSE_eligible": {
+        "n": 4991,
+        "mean": 143.95101533032215,
+        "se": 0.7257644105955016,
+        "sum": 718459.5175136379,
+        "sum_squares": 116541334.18998535
+      },
+      "J0_joint_from_start/pre_bias_eligible": {
+        "n": 4991,
+        "mean": 0.3401670249354762,
+        "se": 0.0017068412718536108,
+        "sum": 1697.7736214529616,
+        "sum_squares": 650.0827780267023
+      },
+      "J0_joint_from_start/healthy_alarm_by_endpoint": {
+        "n": 5000,
+        "mean": 0.0052,
+        "se": 0.0010172506867984698,
+        "sum": 26.0,
+        "sum_squares": 26.0
+      },
+      "oracle_joint/pre_attack_alarm": {
+        "n": 5000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "oracle_joint/detection_unconditional": {
+        "n": 5000,
+        "mean": 0.7376,
+        "se": 0.006222297919440989,
+        "sum": 3688.0,
+        "sum_squares": 3688.0
+      },
+      "oracle_joint/detection_eligible": {
+        "n": 5000,
+        "mean": 0.7376,
+        "se": 0.006222297919440989,
+        "sum": 3688.0,
+        "sum_squares": 3688.0
+      },
+      "oracle_joint/restricted_delay_eligible": {
+        "n": 5000,
+        "mean": 1371.5008,
+        "se": 8.054639577511628,
+        "sum": 6857504.0,
+        "sum_squares": 11026678304.0
+      },
+      "oracle_joint/delay_detected": {
+        "n": 3688,
+        "mean": 1130.8373101952277,
+        "se": 7.706481230496099,
+        "sum": 4170528.0,
+        "sum_squares": 5523751456.0
+      },
+      "oracle_joint/pre_MSE_unconditional": {
+        "n": 5000,
+        "mean": 124.09624438510383,
+        "se": 0.737554938880312,
+        "sum": 620481.2219255192,
+        "sum_squares": 90596351.61266626
+      },
+      "oracle_joint/pre_MSE_eligible": {
+        "n": 5000,
+        "mean": 124.09624438510383,
+        "se": 0.737554938880312,
+        "sum": 620481.2219255192,
+        "sum_squares": 90596351.61266626
+      },
+      "oracle_joint/pre_bias_eligible": {
+        "n": 5000,
+        "mean": 0.2928643669264557,
+        "se": 0.0017372303462514917,
+        "sum": 1464.3218346322785,
+        "sum_squares": 504.2818291282157
+      },
+      "J1_minus_R0_selected_innovation_mixture/detection_common_eligible": {
+        "n": 4985,
+        "mean": 0.5458375125376128,
+        "se": 0.007165815756889107,
+        "sum": 2721.0,
+        "sum_squares": 2761.0
+      },
+      "J1_minus_R0_selected_innovation_mixture/delay_common_eligible": {
+        "n": 4985,
+        "mean": -447.04272818455365,
+        "se": 8.100393437145733,
+        "sum": -2228508.0,
+        "sum_squares": 2626492852.0
+      },
+      "J1_minus_R0_selected_innovation_mixture/pre_MSE_common_eligible": {
+        "n": 4985,
+        "mean": -40.419192909579415,
+        "se": 0.7356835737729687,
+        "sum": -201489.6766542534,
+        "sum_squares": 21591047.323526695
+      },
+      "J1_minus_R1_biasaware_innovation_mixture/detection_common_eligible": {
+        "n": 4986,
+        "mean": 0.542719614921781,
+        "se": 0.007157705530886783,
+        "sum": 2706.0,
+        "sum_squares": 2742.0
+      },
+      "J1_minus_R1_biasaware_innovation_mixture/delay_common_eligible": {
+        "n": 4986,
+        "mean": -445.5565583634176,
+        "se": 8.082470119689487,
+        "sum": -2221545.0,
+        "sum_squares": 2613523427.0
+      },
+      "J1_minus_R1_biasaware_innovation_mixture/pre_MSE_common_eligible": {
+        "n": 4986,
+        "mean": -40.291841859811576,
+        "se": 0.7339419814365848,
+        "sum": -200895.12351302052,
+        "sum_squares": 21483211.200088505
+      },
+      "J1_minus_P1_conditional_payload_mixture/detection_common_eligible": {
+        "n": 4992,
+        "mean": 0.0,
+        "se": 0.0005666487306293763,
+        "sum": 0.0,
+        "sum_squares": 8.0
+      },
+      "J1_minus_P1_conditional_payload_mixture/delay_common_eligible": {
+        "n": 4992,
+        "mean": 0.09895833333333333,
+        "se": 0.3984096261676274,
+        "sum": 494.0,
+        "sum_squares": 3954824.0
+      },
+      "J1_minus_P1_conditional_payload_mixture/pre_MSE_common_eligible": {
+        "n": 4992,
+        "mean": 0.011793327183511258,
+        "se": 0.034838397667547136,
+        "sum": 58.8722893000882,
+        "sum_squares": 30240.464802704566
+      },
+      "J1_minus_E0_previous_event_mixture/detection_common_eligible": {
+        "n": 4992,
+        "mean": 0.5606971153846154,
+        "se": 0.007025098266000403,
+        "sum": 2799.0,
+        "sum_squares": 2799.0
+      },
+      "J1_minus_E0_previous_event_mixture/delay_common_eligible": {
+        "n": 4992,
+        "mean": -464.29487179487177,
+        "se": 7.958480078744854,
+        "sum": -2317760.0,
+        "sum_squares": 2654180092.0
+      },
+      "J1_minus_E0_previous_event_mixture/pre_MSE_common_eligible": {
+        "n": 4992,
+        "mean": -41.99273516933658,
+        "se": 0.7228623331158567,
+        "sum": -209627.7339653282,
+        "sum_squares": 21821713.308679048
+      }
+    }
+  },
+  "frozen_hash": "94e15679f1e111d15802adbb8856e32d76d2f8f21abf2ed9186e2eee0b610d51",
+  "runtime_checks": [
+    {
+      "max_prior_error": 2.126233959931876,
+      "max_bias": 0.035938258142136206,
+      "oracle_chain_identity_max_error": 6.750155989720952e-14
+    }
+  ],
+  "seconds": 64.10643149993848,
+  "recovery_actions": false,
+  "strength": 0.05,
+  "onset": 200
+}
