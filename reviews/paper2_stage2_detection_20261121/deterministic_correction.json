@@ -1,0 +1,35 @@
+{
+  "recorded_utc": "2026-11-21T13:52:46.896421+00:00",
+  "stage": "POST_FREEZE_CONCURRENT_DETERMINISTIC_THEORY_SUPPLEMENT",
+  "reason": "Original range bound describes q=nu-epsilon_min; actual implementation uses q=sF(A*K*b_j), requiring a separate range bound. The epsilon and KL lower bounds remain valid.",
+  "concurrent_edit_note": "Original constants and script were temporarily revised while the parent froze and began screening; the original versions were exactly restored and the revision retained as independent supplemental files. No performance inputs were changed.",
+  "original_constants_sha256": "d6b2e6991e4eeeda60704c1a6da7f349addfa3b273523cf1760cfb14a10c53d0",
+  "original_constants_exactly_match_freeze": true,
+  "original_generator_sha256": "8563679e47e3b9c68b221dbe71b5758c29f29f89b30c4c157485627d8ed41341",
+  "supplement_constants_sha256": "d1e5b4b40e45ca67e51a8549116b8e54f404c432c93a2790c3db8daba943cb6b",
+  "supplement_generator_sha256": "f786b758846f264d54582ee0c8d230a4f2d89e1a888620962bf1472b9af99d24",
+  "supplement_generated_from_current_generator": true,
+  "performance_input_checks": {
+    "core.py": {
+      "expected": "7e1f81bf96167a0c2577c43ae2272b573c5c0db7339ecb79aa2de181a8a832c3",
+      "actual": "7e1f81bf96167a0c2577c43ae2272b573c5c0db7339ecb79aa2de181a8a832c3",
+      "unchanged": true
+    },
+    "run_experiment.py": {
+      "expected": "eaa2f966b48b80adaf03879385d44e83b9a4da2520eebd7798c6d7208a4cf6f3",
+      "actual": "eaa2f966b48b80adaf03879385d44e83b9a4da2520eebd7798c6d7208a4cf6f3",
+      "unchanged": true
+    },
+    "protocol.json": {
+      "expected": "507dbd465b50b1ca01c5286a2c46925417e5f8303535f07bce2fe65dec751090",
+      "actual": "507dbd465b50b1ca01c5286a2c46925417e5f8303535f07bce2fe65dec751090",
+      "unchanged": true
+    }
+  },
+  "random_samples_generated_by_this_supplement": false,
+  "performance_experiment_rerun_for_this_supplement": false,
+  "freeze_file_modified": false,
+  "old_range_field_interpretation": "constants.json rows[].conditional_log_lr_range_upper_on_current_send is valid only for the theoretical fixed epsilon_min candidate, not the implemented candidate.",
+  "actual_range_field": "constants_actual_candidate.json rows[].implemented_candidate_log_lr_range_upper_on_current_send",
+  "review": "Analytic symmetric-kernel ratio bound plus deterministic 101-point checks; numerical grids are not global proof."
+}

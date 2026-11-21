@@ -1,0 +1,19 @@
+{
+  "stage": "AFTER_SCREEN_STARTED_BEFORE_FINAL_SAMPLING",
+  "not_part_of_original_attachment": true,
+  "performance_inputs_changed": false,
+  "scope": "all 24 final cases x 3 horizons, no subset selection",
+  "method": "bounded empirical Bernstein on per-episode summed conditional KL, then binary data processing",
+  "confidence_family_failure_probability": 0.05,
+  "cells": 72,
+  "per_cell_failure_probability": 0.0006944444444444445,
+  "required_samples": 50000,
+  "information_record": "trusted event history, deterministic covariance labels; no payload, phase, or codewords",
+  "sources": {
+    "information_upper_bounds.py": "fdbb14a52efd5da0d01b60ce15c21db4eebdfa39d66d09c63752831b6c2cfc48",
+    "information_upper_constants.json": "06d5b78fe0a1e86a738388a8a683c52d56d9217c2eecc94bae0cbe72b189227b",
+    "04_information_upper_bound.md": "63bce0572b9662a1d1026644d8e036ff551606c0c364fc168cab97165a10cb8d",
+    "analyze.py": "0bb79eb5608bc8eb269b1d071a0f8e434df70854974b05df6f23578dbaf109b6"
+  },
+  "notes": "Analytic bounds remain separate from sample-based confidence refinements; final seeds do not overlap screen."
+}

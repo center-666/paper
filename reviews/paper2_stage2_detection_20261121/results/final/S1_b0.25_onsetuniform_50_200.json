@@ -1,0 +1,1310 @@
+{
+  "stage": "final",
+  "model": {
+    "id": "S1",
+    "A": 0.82,
+    "P0": 0.8,
+    "Q": 0.05,
+    "R": 0.2,
+    "Z": 2.0,
+    "delta": 0.011628232298833967
+  },
+  "strength": 0.25,
+  "onset": "uniform_50_200",
+  "n": 50000,
+  "seconds": 184.20758689998183,
+  "statistics": {
+    "512": {
+      "monitor_total_MSE": {
+        "n": 50000,
+        "mean": 48.98432810524902,
+        "se": 0.022739711874849914,
+        "sum": 2449216.405262451,
+        "sum_squares": 121265930.38178764
+      },
+      "healthy_total_MSE": {
+        "n": 50000,
+        "mean": 46.26014984091766,
+        "se": 0.021119751572968318,
+        "sum": 2313007.492045883,
+        "sum_squares": 108115160.62927213
+      },
+      "monitor_total_MSE_excess": {
+        "n": 50000,
+        "mean": 2.724178264331379,
+        "se": 0.00965204788108269,
+        "sum": 136208.91321656897,
+        "sum_squares": 603957.7734381435
+      },
+      "total_bias_energy": {
+        "n": 50000,
+        "mean": 2.7629920090177045,
+        "se": 0.0012696131117505176,
+        "sum": 138149.60045088522,
+        "sum_squares": 385735.955132734
+      },
+      "total_sends": {
+        "n": 50000,
+        "mean": 110.78906,
+        "se": 0.041414548043215135,
+        "sum": 5539453.0,
+        "sum_squares": 617998617.0
+      },
+      "oracle_conditional_KL": {
+        "n": 50000,
+        "mean": 0.011542733435032829,
+        "se": 7.922144934064707e-06,
+        "sum": 577.1366717516414,
+        "sum_squares": 6.818632570483038
+      },
+      "oracle_log_LR": {
+        "n": 50000,
+        "mean": 0.011348191019472697,
+        "se": 0.0006891928487730235,
+        "sum": 567.4095509736349,
+        "sum_squares": 1193.882279631271
+      },
+      "event_minus_expected_residual": {
+        "n": 50000,
+        "mean": -0.019400452960416738,
+        "se": 0.04161321058266774,
+        "sum": -970.0226480208369,
+        "sum_squares": 4329080.473407628
+      },
+      "D0_Azuma/pre_onset_alarm": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D0_Azuma/detection_unconditional": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D0_Azuma/detection_eligible": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D0_Azuma/restricted_delay_eligible": {
+        "n": 50000,
+        "mean": 512.0,
+        "se": 0.0,
+        "sum": 25600000.0,
+        "sum_squares": 13107200000.0
+      },
+      "D0_Azuma/delay_detected_only": {
+        "n": 0,
+        "mean": null,
+        "se": null
+      },
+      "D0_Azuma/pre_MSE": {
+        "n": 50000,
+        "mean": 48.98432810524902,
+        "se": 0.022739711874849914,
+        "sum": 2449216.405262451,
+        "sum_squares": 121265930.38178764
+      },
+      "D0_Azuma/pre_MSE_eligible": {
+        "n": 50000,
+        "mean": 48.98432810524902,
+        "se": 0.022739711874849914,
+        "sum": 2449216.405262451,
+        "sum_squares": 121265930.38178764
+      },
+      "D0_Azuma/pre_bias_energy": {
+        "n": 50000,
+        "mean": 2.7629920090177045,
+        "se": 0.0012696131117505176,
+        "sum": 138149.60045088522,
+        "sum_squares": 385735.955132734
+      },
+      "D0_Azuma/healthy_alarm_by_endpoint": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D1_fixed_LR/pre_onset_alarm": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D1_fixed_LR/detection_unconditional": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D1_fixed_LR/detection_eligible": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D1_fixed_LR/restricted_delay_eligible": {
+        "n": 50000,
+        "mean": 512.0,
+        "se": 0.0,
+        "sum": 25600000.0,
+        "sum_squares": 13107200000.0
+      },
+      "D1_fixed_LR/delay_detected_only": {
+        "n": 0,
+        "mean": null,
+        "se": null
+      },
+      "D1_fixed_LR/pre_MSE": {
+        "n": 50000,
+        "mean": 48.98432810524902,
+        "se": 0.022739711874849914,
+        "sum": 2449216.405262451,
+        "sum_squares": 121265930.38178764
+      },
+      "D1_fixed_LR/pre_MSE_eligible": {
+        "n": 50000,
+        "mean": 48.98432810524902,
+        "se": 0.022739711874849914,
+        "sum": 2449216.405262451,
+        "sum_squares": 121265930.38178764
+      },
+      "D1_fixed_LR/pre_bias_energy": {
+        "n": 50000,
+        "mean": 2.7629920090177045,
+        "se": 0.0012696131117505176,
+        "sum": 138149.60045088522,
+        "sum_squares": 385735.955132734
+      },
+      "D1_fixed_LR/healthy_alarm_by_endpoint": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D2_strength_mixture/pre_onset_alarm": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D2_strength_mixture/detection_unconditional": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D2_strength_mixture/detection_eligible": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D2_strength_mixture/restricted_delay_eligible": {
+        "n": 50000,
+        "mean": 512.0,
+        "se": 0.0,
+        "sum": 25600000.0,
+        "sum_squares": 13107200000.0
+      },
+      "D2_strength_mixture/delay_detected_only": {
+        "n": 0,
+        "mean": null,
+        "se": null
+      },
+      "D2_strength_mixture/pre_MSE": {
+        "n": 50000,
+        "mean": 48.98432810524902,
+        "se": 0.022739711874849914,
+        "sum": 2449216.405262451,
+        "sum_squares": 121265930.38178764
+      },
+      "D2_strength_mixture/pre_MSE_eligible": {
+        "n": 50000,
+        "mean": 48.98432810524902,
+        "se": 0.022739711874849914,
+        "sum": 2449216.405262451,
+        "sum_squares": 121265930.38178764
+      },
+      "D2_strength_mixture/pre_bias_energy": {
+        "n": 50000,
+        "mean": 2.7629920090177045,
+        "se": 0.0012696131117505176,
+        "sum": 138149.60045088522,
+        "sum_squares": 385735.955132734
+      },
+      "D2_strength_mixture/healthy_alarm_by_endpoint": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D3_start_strength_mixture/pre_onset_alarm": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D3_start_strength_mixture/detection_unconditional": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D3_start_strength_mixture/detection_eligible": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D3_start_strength_mixture/restricted_delay_eligible": {
+        "n": 50000,
+        "mean": 512.0,
+        "se": 0.0,
+        "sum": 25600000.0,
+        "sum_squares": 13107200000.0
+      },
+      "D3_start_strength_mixture/delay_detected_only": {
+        "n": 0,
+        "mean": null,
+        "se": null
+      },
+      "D3_start_strength_mixture/pre_MSE": {
+        "n": 50000,
+        "mean": 48.98432810524902,
+        "se": 0.022739711874849914,
+        "sum": 2449216.405262451,
+        "sum_squares": 121265930.38178764
+      },
+      "D3_start_strength_mixture/pre_MSE_eligible": {
+        "n": 50000,
+        "mean": 48.98432810524902,
+        "se": 0.022739711874849914,
+        "sum": 2449216.405262451,
+        "sum_squares": 121265930.38178764
+      },
+      "D3_start_strength_mixture/pre_bias_energy": {
+        "n": 50000,
+        "mean": 2.7629920090177045,
+        "se": 0.0012696131117505176,
+        "sum": 138149.60045088522,
+        "sum_squares": 385735.955132734
+      },
+      "D3_start_strength_mixture/healthy_alarm_by_endpoint": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D4_finite_horizon_CUSUM/pre_onset_alarm": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D4_finite_horizon_CUSUM/detection_unconditional": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D4_finite_horizon_CUSUM/detection_eligible": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D4_finite_horizon_CUSUM/restricted_delay_eligible": {
+        "n": 50000,
+        "mean": 512.0,
+        "se": 0.0,
+        "sum": 25600000.0,
+        "sum_squares": 13107200000.0
+      },
+      "D4_finite_horizon_CUSUM/delay_detected_only": {
+        "n": 0,
+        "mean": null,
+        "se": null
+      },
+      "D4_finite_horizon_CUSUM/pre_MSE": {
+        "n": 50000,
+        "mean": 48.98432810524902,
+        "se": 0.022739711874849914,
+        "sum": 2449216.405262451,
+        "sum_squares": 121265930.38178764
+      },
+      "D4_finite_horizon_CUSUM/pre_MSE_eligible": {
+        "n": 50000,
+        "mean": 48.98432810524902,
+        "se": 0.022739711874849914,
+        "sum": 2449216.405262451,
+        "sum_squares": 121265930.38178764
+      },
+      "D4_finite_horizon_CUSUM/pre_bias_energy": {
+        "n": 50000,
+        "mean": 2.7629920090177045,
+        "se": 0.0012696131117505176,
+        "sum": 138149.60045088522,
+        "sum_squares": 385735.955132734
+      },
+      "D4_finite_horizon_CUSUM/healthy_alarm_by_endpoint": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "oracle_matched_LR/pre_onset_alarm": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "oracle_matched_LR/detection_unconditional": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "oracle_matched_LR/detection_eligible": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "oracle_matched_LR/restricted_delay_eligible": {
+        "n": 50000,
+        "mean": 512.0,
+        "se": 0.0,
+        "sum": 25600000.0,
+        "sum_squares": 13107200000.0
+      },
+      "oracle_matched_LR/delay_detected_only": {
+        "n": 0,
+        "mean": null,
+        "se": null
+      },
+      "oracle_matched_LR/pre_MSE": {
+        "n": 50000,
+        "mean": 48.98432810524902,
+        "se": 0.022739711874849914,
+        "sum": 2449216.405262451,
+        "sum_squares": 121265930.38178764
+      },
+      "oracle_matched_LR/pre_MSE_eligible": {
+        "n": 50000,
+        "mean": 48.98432810524902,
+        "se": 0.022739711874849914,
+        "sum": 2449216.405262451,
+        "sum_squares": 121265930.38178764
+      },
+      "oracle_matched_LR/pre_bias_energy": {
+        "n": 50000,
+        "mean": 2.7629920090177045,
+        "se": 0.0012696131117505176,
+        "sum": 138149.60045088522,
+        "sum_squares": 385735.955132734
+      },
+      "D3_minus_D0_pre_MSE_common_eligible": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      }
+    },
+    "1024": {
+      "monitor_total_MSE": {
+        "n": 50000,
+        "mean": 97.95425754140103,
+        "se": 0.032038563984202906,
+        "sum": 4897712.877070052,
+        "sum_squares": 482317951.15630156
+      },
+      "healthy_total_MSE": {
+        "n": 50000,
+        "mean": 92.48106757645076,
+        "se": 0.02970221948858133,
+        "sum": 4624053.378822538,
+        "sum_squares": 429842903.4992801
+      },
+      "monitor_total_MSE_excess": {
+        "n": 50000,
+        "mean": 5.473189964950236,
+        "se": 0.013633063969612067,
+        "sum": 273659.4982475118,
+        "sum_squares": 1962432.209598775
+      },
+      "total_bias_energy": {
+        "n": 50000,
+        "mean": 5.538281802553275,
+        "se": 0.0018064157694769197,
+        "sum": 276914.09012766375,
+        "sum_squares": 1541785.947898278
+      },
+      "total_sends": {
+        "n": 50000,
+        "mean": 221.59582,
+        "se": 0.058798121695632095,
+        "sum": 11079791.0,
+        "sum_squares": 2463878247.0
+      },
+      "oracle_conditional_KL": {
+        "n": 50000,
+        "mean": 0.02315452159218727,
+        "se": 1.1283774976012745e-05,
+        "sum": 1157.7260796093635,
+        "sum_squares": 27.124896086247666
+      },
+      "oracle_log_LR": {
+        "n": 50000,
+        "mean": 0.023826248734680977,
+        "se": 0.0009799857430795192,
+        "sum": 1191.3124367340488,
+        "sum_squares": 2429.266629433306
+      },
+      "event_minus_expected_residual": {
+        "n": 50000,
+        "mean": -0.027905581890302494,
+        "se": 0.059048506110877745,
+        "sum": -1395.2790945151246,
+        "sum_squares": 8716679.784587253
+      },
+      "D0_Azuma/pre_onset_alarm": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D0_Azuma/detection_unconditional": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D0_Azuma/detection_eligible": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D0_Azuma/restricted_delay_eligible": {
+        "n": 50000,
+        "mean": 1024.0,
+        "se": 0.0,
+        "sum": 51200000.0,
+        "sum_squares": 52428800000.0
+      },
+      "D0_Azuma/delay_detected_only": {
+        "n": 0,
+        "mean": null,
+        "se": null
+      },
+      "D0_Azuma/pre_MSE": {
+        "n": 50000,
+        "mean": 97.95425754140103,
+        "se": 0.032038563984202906,
+        "sum": 4897712.877070052,
+        "sum_squares": 482317951.15630156
+      },
+      "D0_Azuma/pre_MSE_eligible": {
+        "n": 50000,
+        "mean": 97.95425754140103,
+        "se": 0.032038563984202906,
+        "sum": 4897712.877070052,
+        "sum_squares": 482317951.15630156
+      },
+      "D0_Azuma/pre_bias_energy": {
+        "n": 50000,
+        "mean": 5.538281802553275,
+        "se": 0.0018064157694769197,
+        "sum": 276914.09012766375,
+        "sum_squares": 1541785.947898278
+      },
+      "D0_Azuma/healthy_alarm_by_endpoint": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D1_fixed_LR/pre_onset_alarm": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D1_fixed_LR/detection_unconditional": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D1_fixed_LR/detection_eligible": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D1_fixed_LR/restricted_delay_eligible": {
+        "n": 50000,
+        "mean": 1024.0,
+        "se": 0.0,
+        "sum": 51200000.0,
+        "sum_squares": 52428800000.0
+      },
+      "D1_fixed_LR/delay_detected_only": {
+        "n": 0,
+        "mean": null,
+        "se": null
+      },
+      "D1_fixed_LR/pre_MSE": {
+        "n": 50000,
+        "mean": 97.95425754140103,
+        "se": 0.032038563984202906,
+        "sum": 4897712.877070052,
+        "sum_squares": 482317951.15630156
+      },
+      "D1_fixed_LR/pre_MSE_eligible": {
+        "n": 50000,
+        "mean": 97.95425754140103,
+        "se": 0.032038563984202906,
+        "sum": 4897712.877070052,
+        "sum_squares": 482317951.15630156
+      },
+      "D1_fixed_LR/pre_bias_energy": {
+        "n": 50000,
+        "mean": 5.538281802553275,
+        "se": 0.0018064157694769197,
+        "sum": 276914.09012766375,
+        "sum_squares": 1541785.947898278
+      },
+      "D1_fixed_LR/healthy_alarm_by_endpoint": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D2_strength_mixture/pre_onset_alarm": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D2_strength_mixture/detection_unconditional": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D2_strength_mixture/detection_eligible": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D2_strength_mixture/restricted_delay_eligible": {
+        "n": 50000,
+        "mean": 1024.0,
+        "se": 0.0,
+        "sum": 51200000.0,
+        "sum_squares": 52428800000.0
+      },
+      "D2_strength_mixture/delay_detected_only": {
+        "n": 0,
+        "mean": null,
+        "se": null
+      },
+      "D2_strength_mixture/pre_MSE": {
+        "n": 50000,
+        "mean": 97.95425754140103,
+        "se": 0.032038563984202906,
+        "sum": 4897712.877070052,
+        "sum_squares": 482317951.15630156
+      },
+      "D2_strength_mixture/pre_MSE_eligible": {
+        "n": 50000,
+        "mean": 97.95425754140103,
+        "se": 0.032038563984202906,
+        "sum": 4897712.877070052,
+        "sum_squares": 482317951.15630156
+      },
+      "D2_strength_mixture/pre_bias_energy": {
+        "n": 50000,
+        "mean": 5.538281802553275,
+        "se": 0.0018064157694769197,
+        "sum": 276914.09012766375,
+        "sum_squares": 1541785.947898278
+      },
+      "D2_strength_mixture/healthy_alarm_by_endpoint": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D3_start_strength_mixture/pre_onset_alarm": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D3_start_strength_mixture/detection_unconditional": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D3_start_strength_mixture/detection_eligible": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D3_start_strength_mixture/restricted_delay_eligible": {
+        "n": 50000,
+        "mean": 1024.0,
+        "se": 0.0,
+        "sum": 51200000.0,
+        "sum_squares": 52428800000.0
+      },
+      "D3_start_strength_mixture/delay_detected_only": {
+        "n": 0,
+        "mean": null,
+        "se": null
+      },
+      "D3_start_strength_mixture/pre_MSE": {
+        "n": 50000,
+        "mean": 97.95425754140103,
+        "se": 0.032038563984202906,
+        "sum": 4897712.877070052,
+        "sum_squares": 482317951.15630156
+      },
+      "D3_start_strength_mixture/pre_MSE_eligible": {
+        "n": 50000,
+        "mean": 97.95425754140103,
+        "se": 0.032038563984202906,
+        "sum": 4897712.877070052,
+        "sum_squares": 482317951.15630156
+      },
+      "D3_start_strength_mixture/pre_bias_energy": {
+        "n": 50000,
+        "mean": 5.538281802553275,
+        "se": 0.0018064157694769197,
+        "sum": 276914.09012766375,
+        "sum_squares": 1541785.947898278
+      },
+      "D3_start_strength_mixture/healthy_alarm_by_endpoint": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D4_finite_horizon_CUSUM/pre_onset_alarm": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D4_finite_horizon_CUSUM/detection_unconditional": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D4_finite_horizon_CUSUM/detection_eligible": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D4_finite_horizon_CUSUM/restricted_delay_eligible": {
+        "n": 50000,
+        "mean": 1024.0,
+        "se": 0.0,
+        "sum": 51200000.0,
+        "sum_squares": 52428800000.0
+      },
+      "D4_finite_horizon_CUSUM/delay_detected_only": {
+        "n": 0,
+        "mean": null,
+        "se": null
+      },
+      "D4_finite_horizon_CUSUM/pre_MSE": {
+        "n": 50000,
+        "mean": 97.95425754140103,
+        "se": 0.032038563984202906,
+        "sum": 4897712.877070052,
+        "sum_squares": 482317951.15630156
+      },
+      "D4_finite_horizon_CUSUM/pre_MSE_eligible": {
+        "n": 50000,
+        "mean": 97.95425754140103,
+        "se": 0.032038563984202906,
+        "sum": 4897712.877070052,
+        "sum_squares": 482317951.15630156
+      },
+      "D4_finite_horizon_CUSUM/pre_bias_energy": {
+        "n": 50000,
+        "mean": 5.538281802553275,
+        "se": 0.0018064157694769197,
+        "sum": 276914.09012766375,
+        "sum_squares": 1541785.947898278
+      },
+      "D4_finite_horizon_CUSUM/healthy_alarm_by_endpoint": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "oracle_matched_LR/pre_onset_alarm": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "oracle_matched_LR/detection_unconditional": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "oracle_matched_LR/detection_eligible": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "oracle_matched_LR/restricted_delay_eligible": {
+        "n": 50000,
+        "mean": 1024.0,
+        "se": 0.0,
+        "sum": 51200000.0,
+        "sum_squares": 52428800000.0
+      },
+      "oracle_matched_LR/delay_detected_only": {
+        "n": 0,
+        "mean": null,
+        "se": null
+      },
+      "oracle_matched_LR/pre_MSE": {
+        "n": 50000,
+        "mean": 97.95425754140103,
+        "se": 0.032038563984202906,
+        "sum": 4897712.877070052,
+        "sum_squares": 482317951.15630156
+      },
+      "oracle_matched_LR/pre_MSE_eligible": {
+        "n": 50000,
+        "mean": 97.95425754140103,
+        "se": 0.032038563984202906,
+        "sum": 4897712.877070052,
+        "sum_squares": 482317951.15630156
+      },
+      "oracle_matched_LR/pre_bias_energy": {
+        "n": 50000,
+        "mean": 5.538281802553275,
+        "se": 0.0018064157694769197,
+        "sum": 276914.09012766375,
+        "sum_squares": 1541785.947898278
+      },
+      "D3_minus_D0_pre_MSE_common_eligible": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      }
+    },
+    "2048": {
+      "monitor_total_MSE": {
+        "n": 50000,
+        "mean": 195.86894261834408,
+        "se": 0.045253223491836546,
+        "sum": 9793447.130917205,
+        "sum_squares": 1923351667.319702
+      },
+      "healthy_total_MSE": {
+        "n": 50000,
+        "mean": 184.94302430955793,
+        "se": 0.04194723987862137,
+        "sum": 9247151.215477897,
+        "sum_squares": 1714594951.3933268
+      },
+      "monitor_total_MSE_excess": {
+        "n": 50000,
+        "mean": 10.925918308786027,
+        "se": 0.01929064485072598,
+        "sum": 546295.9154393014,
+        "sum_squares": 6899088.384956451
+      },
+      "total_bias_energy": {
+        "n": 50000,
+        "mean": 11.091571522140264,
+        "se": 0.0025500364055201005,
+        "sum": 554578.5761070132,
+        "sum_squares": 6167404.330577055
+      },
+      "total_sends": {
+        "n": 50000,
+        "mean": 443.31862,
+        "se": 0.0828901842292834,
+        "sum": 22165931.0,
+        "sum_squares": 9843746555.0
+      },
+      "oracle_conditional_KL": {
+        "n": 50000,
+        "mean": 0.04638650877002188,
+        "se": 1.5941904022433913e-05,
+        "sum": 2319.325438501094,
+        "sum_squares": 108.22075784600189
+      },
+      "oracle_log_LR": {
+        "n": 50000,
+        "mean": 0.048199152365941335,
+        "se": 0.0013851522616048382,
+        "sum": 2409.957618297067,
+        "sum_squares": 4912.678951672865
+      },
+      "event_minus_expected_residual": {
+        "n": 50000,
+        "mean": 0.05894881502467022,
+        "se": 0.08327368902510396,
+        "sum": 2947.440751233511,
+        "sum_squares": 17336095.232399747
+      },
+      "D0_Azuma/pre_onset_alarm": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D0_Azuma/detection_unconditional": {
+        "n": 50000,
+        "mean": 0.00058,
+        "se": 0.00010767313439329888,
+        "sum": 29.0,
+        "sum_squares": 29.0
+      },
+      "D0_Azuma/detection_eligible": {
+        "n": 50000,
+        "mean": 0.00058,
+        "se": 0.00010767313439329888,
+        "sum": 29.0,
+        "sum_squares": 29.0
+      },
+      "D0_Azuma/restricted_delay_eligible": {
+        "n": 50000,
+        "mean": 2047.8532,
+        "se": 0.03390139792542872,
+        "sum": 102392660.0,
+        "sum_squares": 209688009642.0
+      },
+      "D0_Azuma/delay_detected_only": {
+        "n": 29,
+        "mean": 1794.896551724138,
+        "se": 35.38150085883311,
+        "sum": 52052.0,
+        "sum_squares": 94444458.0
+      },
+      "D0_Azuma/pre_MSE": {
+        "n": 50000,
+        "mean": 195.8546041687895,
+        "se": 0.045336198088967834,
+        "sum": 9792730.208439475,
+        "sum_squares": 1923089623.0800233
+      },
+      "D0_Azuma/pre_MSE_eligible": {
+        "n": 50000,
+        "mean": 195.8546041687895,
+        "se": 0.045336198088967834,
+        "sum": 9792730.208439475,
+        "sum_squares": 1923089623.0800233
+      },
+      "D0_Azuma/pre_bias_energy": {
+        "n": 50000,
+        "mean": 11.090765449481534,
+        "se": 0.0025438084566109416,
+        "sum": 554538.2724740767,
+        "sum_squares": 6166430.992882406
+      },
+      "D0_Azuma/healthy_alarm_by_endpoint": {
+        "n": 50000,
+        "mean": 0.00024,
+        "se": 6.92744107075591e-05,
+        "sum": 12.0,
+        "sum_squares": 12.0
+      },
+      "D1_fixed_LR/pre_onset_alarm": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D1_fixed_LR/detection_unconditional": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D1_fixed_LR/detection_eligible": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D1_fixed_LR/restricted_delay_eligible": {
+        "n": 50000,
+        "mean": 2048.0,
+        "se": 0.0,
+        "sum": 102400000.0,
+        "sum_squares": 209715200000.0
+      },
+      "D1_fixed_LR/delay_detected_only": {
+        "n": 0,
+        "mean": null,
+        "se": null
+      },
+      "D1_fixed_LR/pre_MSE": {
+        "n": 50000,
+        "mean": 195.86894261834408,
+        "se": 0.045253223491836546,
+        "sum": 9793447.130917205,
+        "sum_squares": 1923351667.319702
+      },
+      "D1_fixed_LR/pre_MSE_eligible": {
+        "n": 50000,
+        "mean": 195.86894261834408,
+        "se": 0.045253223491836546,
+        "sum": 9793447.130917205,
+        "sum_squares": 1923351667.319702
+      },
+      "D1_fixed_LR/pre_bias_energy": {
+        "n": 50000,
+        "mean": 11.091571522140264,
+        "se": 0.0025500364055201005,
+        "sum": 554578.5761070132,
+        "sum_squares": 6167404.330577055
+      },
+      "D1_fixed_LR/healthy_alarm_by_endpoint": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D2_strength_mixture/pre_onset_alarm": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D2_strength_mixture/detection_unconditional": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D2_strength_mixture/detection_eligible": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D2_strength_mixture/restricted_delay_eligible": {
+        "n": 50000,
+        "mean": 2048.0,
+        "se": 0.0,
+        "sum": 102400000.0,
+        "sum_squares": 209715200000.0
+      },
+      "D2_strength_mixture/delay_detected_only": {
+        "n": 0,
+        "mean": null,
+        "se": null
+      },
+      "D2_strength_mixture/pre_MSE": {
+        "n": 50000,
+        "mean": 195.86894261834408,
+        "se": 0.045253223491836546,
+        "sum": 9793447.130917205,
+        "sum_squares": 1923351667.319702
+      },
+      "D2_strength_mixture/pre_MSE_eligible": {
+        "n": 50000,
+        "mean": 195.86894261834408,
+        "se": 0.045253223491836546,
+        "sum": 9793447.130917205,
+        "sum_squares": 1923351667.319702
+      },
+      "D2_strength_mixture/pre_bias_energy": {
+        "n": 50000,
+        "mean": 11.091571522140264,
+        "se": 0.0025500364055201005,
+        "sum": 554578.5761070132,
+        "sum_squares": 6167404.330577055
+      },
+      "D2_strength_mixture/healthy_alarm_by_endpoint": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D3_start_strength_mixture/pre_onset_alarm": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D3_start_strength_mixture/detection_unconditional": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D3_start_strength_mixture/detection_eligible": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D3_start_strength_mixture/restricted_delay_eligible": {
+        "n": 50000,
+        "mean": 2048.0,
+        "se": 0.0,
+        "sum": 102400000.0,
+        "sum_squares": 209715200000.0
+      },
+      "D3_start_strength_mixture/delay_detected_only": {
+        "n": 0,
+        "mean": null,
+        "se": null
+      },
+      "D3_start_strength_mixture/pre_MSE": {
+        "n": 50000,
+        "mean": 195.86894261834408,
+        "se": 0.045253223491836546,
+        "sum": 9793447.130917205,
+        "sum_squares": 1923351667.319702
+      },
+      "D3_start_strength_mixture/pre_MSE_eligible": {
+        "n": 50000,
+        "mean": 195.86894261834408,
+        "se": 0.045253223491836546,
+        "sum": 9793447.130917205,
+        "sum_squares": 1923351667.319702
+      },
+      "D3_start_strength_mixture/pre_bias_energy": {
+        "n": 50000,
+        "mean": 11.091571522140264,
+        "se": 0.0025500364055201005,
+        "sum": 554578.5761070132,
+        "sum_squares": 6167404.330577055
+      },
+      "D3_start_strength_mixture/healthy_alarm_by_endpoint": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D4_finite_horizon_CUSUM/pre_onset_alarm": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D4_finite_horizon_CUSUM/detection_unconditional": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D4_finite_horizon_CUSUM/detection_eligible": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "D4_finite_horizon_CUSUM/restricted_delay_eligible": {
+        "n": 50000,
+        "mean": 2048.0,
+        "se": 0.0,
+        "sum": 102400000.0,
+        "sum_squares": 209715200000.0
+      },
+      "D4_finite_horizon_CUSUM/delay_detected_only": {
+        "n": 0,
+        "mean": null,
+        "se": null
+      },
+      "D4_finite_horizon_CUSUM/pre_MSE": {
+        "n": 50000,
+        "mean": 195.86894261834408,
+        "se": 0.045253223491836546,
+        "sum": 9793447.130917205,
+        "sum_squares": 1923351667.319702
+      },
+      "D4_finite_horizon_CUSUM/pre_MSE_eligible": {
+        "n": 50000,
+        "mean": 195.86894261834408,
+        "se": 0.045253223491836546,
+        "sum": 9793447.130917205,
+        "sum_squares": 1923351667.319702
+      },
+      "D4_finite_horizon_CUSUM/pre_bias_energy": {
+        "n": 50000,
+        "mean": 11.091571522140264,
+        "se": 0.0025500364055201005,
+        "sum": 554578.5761070132,
+        "sum_squares": 6167404.330577055
+      },
+      "D4_finite_horizon_CUSUM/healthy_alarm_by_endpoint": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "oracle_matched_LR/pre_onset_alarm": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "oracle_matched_LR/detection_unconditional": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "oracle_matched_LR/detection_eligible": {
+        "n": 50000,
+        "mean": 0.0,
+        "se": 0.0,
+        "sum": 0.0,
+        "sum_squares": 0.0
+      },
+      "oracle_matched_LR/restricted_delay_eligible": {
+        "n": 50000,
+        "mean": 2048.0,
+        "se": 0.0,
+        "sum": 102400000.0,
+        "sum_squares": 209715200000.0
+      },
+      "oracle_matched_LR/delay_detected_only": {
+        "n": 0,
+        "mean": null,
+        "se": null
+      },
+      "oracle_matched_LR/pre_MSE": {
+        "n": 50000,
+        "mean": 195.86894261834408,
+        "se": 0.045253223491836546,
+        "sum": 9793447.130917205,
+        "sum_squares": 1923351667.319702
+      },
+      "oracle_matched_LR/pre_MSE_eligible": {
+        "n": 50000,
+        "mean": 195.86894261834408,
+        "se": 0.045253223491836546,
+        "sum": 9793447.130917205,
+        "sum_squares": 1923351667.319702
+      },
+      "oracle_matched_LR/pre_bias_energy": {
+        "n": 50000,
+        "mean": 11.091571522140264,
+        "se": 0.0025500364055201005,
+        "sum": 554578.5761070132,
+        "sum_squares": 6167404.330577055
+      },
+      "D3_minus_D0_pre_MSE_common_eligible": {
+        "n": 50000,
+        "mean": 0.014338449554650825,
+        "se": 0.0032802962534369557,
+        "sum": 716.9224777325412,
+        "sum_squares": 26910.60031538737
+      }
+    }
+  },
+  "runtime_checks": [
+    {
+      "max_abs_prior_error": 2.240949796142044,
+      "max_abs_bias": 0.1797264356145583
+    },
+    {
+      "max_abs_prior_error": 2.0253961945049035,
+      "max_abs_bias": 0.17974128816715
+    },
+    {
+      "max_abs_prior_error": 2.0867211391550478,
+      "max_abs_bias": 0.17972828369912539
+    }
+  ],
+  "frozen_hash": "bfe98ebfca05eb22515eafb0cf9d7ceeaa25185bc6399216cd0f1efb99d68fb1",
+  "estimates_unchanged_by_detectors": true,
+  "instantaneous_oracle_pre_MSE": 0.0,
+  "statistical_unit": "independent episode; correlated timesteps are not separate samples"
+}

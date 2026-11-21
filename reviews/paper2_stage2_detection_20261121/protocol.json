@@ -1,0 +1,59 @@
+{
+  "base_commit": "8cf49e73",
+  "models": [
+    {"id":"S1","A":0.82,"P0":0.8,"Q":0.05,"R":0.2,"Z":2.0,"delta":0.011628232298833967},
+    {"id":"U1","A":1.04,"P0":0.8,"Q":0.05,"R":0.2,"Z":2.0,"delta":0.022259755314928388}
+  ],
+  "attack": "positive constant b on actual sends only, zero before onset",
+  "attack_strengths": [0.05,0.1,0.25],
+  "onsets": [50,100,200,"uniform_50_200"],
+  "horizons_after_onset": [512,1024,2048],
+  "alpha": 0.01,
+  "candidate_strengths": [0.05,0.1,0.25],
+  "candidate_weights": [0.3333333333333333,0.3333333333333333,0.3333333333333333],
+  "q_rule": "after send: exact phase-averaged probability at D=-K*b_j; after silence: q=nu (no bet)",
+  "monitor_start": 0,
+  "audit_first_event": 1,
+  "global_horizon_budget": 2248,
+  "health_long_horizon": 8192,
+  "screen_episodes_per_case": 20000,
+  "final_episodes_per_case": 50000,
+  "screen_seed": 202611212001,
+  "final_seed": 202611212002,
+  "health_screen_seed": 202611212003,
+  "health_final_seed": 202611212004,
+  "batch_size": 20000,
+  "D0": "fixed-horizon Azuma maximum test; horizon budget 2248, no onset reset",
+  "D1": "fixed candidate b_j=0.10, LR starts at action 0",
+  "D2": "strength mixture LR starts at action 0",
+  "D3": "start-strength mixture with w_k=1/[k(k+1)], remaining tail 1/(n+1)",
+  "D4": "finite-horizon union-calibrated Bernoulli CUSUM, sum_j pi_j max_k L_kj / H >= 1/alpha",
+  "offline_references": [
+    "known-onset-and-strength matched event LR, using D reconstructed from true schedule and trusted bits",
+    "instantaneous onset alarm, zero post-onset pre-alarm loss, explicitly not deployable"
+  ],
+  "primary_gate": {
+    "case": "S1, b=0.25, onset=200, 2048 post-onset events",
+    "D3_detection_probability_lower95_at_least": 0.8,
+    "D3_conditional_restricted_delay_at_most": 1024,
+    "interpretation": "engineering targets chosen before new random samples; not a publication acceptance standard"
+  },
+  "confirmation_rule": "all 24 settings receive an independent fixed 50000-episode final run; screen does not tune code, candidates, thresholds, or select settings",
+  "recovery": "none; all detector outputs share the same unmodified monitor estimate",
+  "risk_metrics": [
+    "actual pre-alarm summed MSE, both unconditional and conditional on no pre-onset alarm",
+    "pre-alarm conditional-bias energy",
+    "full-window monitor MSE and paired excess vs healthy",
+    "restricted mean delay; never treat non-detections as missing",
+    "pre-onset alarms separate from post-onset detections",
+    "oracle event log-likelihood and conditional KL"
+  ],
+  "numerics": "translation-invariant error coordinates; no large absolute U1 states",
+  "not_claimed": [
+    "uniform per-timestep positive bias or KL",
+    "finite-phase hardware guarantee",
+    "MSE reduction without an implemented response",
+    "global innovation of mixture likelihood or CUSUM",
+    "all attacks impossible to detect from failure of these conservative candidates"
+  ]
+}

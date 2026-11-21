@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "performance_random_samples_generated": false,
+  "fixtures": [
+    {
+      "model": "S1",
+      "steps": 220,
+      "max_posterior_error_difference": 1.6653345369377348e-16,
+      "max_quantization_residual_difference": 1.457167719820518e-16,
+      "max_covariance_difference": 0.0,
+      "minimum_event_margin": 0.0012235268232712038,
+      "send_counts": [
+        21,
+        23
+      ],
+      "pass": true
+    },
+    {
+      "model": "U1",
+      "steps": 220,
+      "max_posterior_error_difference": 9.096057240753908e-13,
+      "max_quantization_residual_difference": 7.934763956995994e-13,
+      "max_covariance_difference": 0.0,
+      "minimum_event_margin": 0.0046487242233334,
+      "send_counts": [
+        40,
+        43
+      ],
+      "pass": true
+    }
+  ],
+  "quantizer_translation_max_error": 1.7763568394002505e-15,
+  "U1_absolute_coordinate_precision": [
+    {
+      "time": 512,
+      "unconditional_state_rms": 625319001.15668,
+      "double_ulp_at_rms": 1.1920928955078125e-07,
+      "quantizer_delta": 0.022259755314928388,
+      "adding_delta_changes_rms": true
+    },
+    {
+      "time": 1024,
+      "unconditional_state_rms": 3.2898140154529e+17,
+      "double_ulp_at_rms": 64.0,
+      "quantizer_delta": 0.022259755314928388,
+      "adding_delta_changes_rms": false
+    },
+    {
+      "time": 2048,
+      "unconditional_state_rms": 9.105646549006906e+34,
+      "double_ulp_at_rms": 1.8446744073709552e+19,
+      "quantizer_delta": 0.022259755314928388,
+      "adding_delta_changes_rms": false
+    },
+    {
+      "time": 2248,
+      "unconditional_state_rms": 2.3226226032671154e+38,
+      "double_ulp_at_rms": 3.777893186295716e+22,
+      "quantizer_delta": 0.022259755314928388,
+      "adding_delta_changes_rms": false
+    },
+    {
+      "time": 4096,
+      "unconditional_state_rms": 6.975730156134736e+69,
+      "double_ulp_at_rms": 1.532495540865889e+54,
+      "quantizer_delta": 0.022259755314928388,
+      "adding_delta_changes_rms": false
+    }
+  ],
+  "scope": "Algebraic simulator equivalence and floating-point scale only; no detector performance claim."
+}
