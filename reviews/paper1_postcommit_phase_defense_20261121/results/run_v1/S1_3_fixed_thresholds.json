@@ -1,0 +1,21 @@
+{
+  "model": "S1",
+  "delta": 0.1,
+  "protocol": "fixed",
+  "alpha": 0.01,
+  "calibration_episodes": 131072,
+  "single_episode_thresholds": {
+    "conditional": 0.7635242395912065
+  },
+  "block_thresholds": {
+    "conditional": {
+      "single": 0.7635242395912065,
+      "32": 3.9519684120060883,
+      "128": 7.912528363279899,
+      "512": 14.14229577772651,
+      "1024": 25.650696859106112
+    },
+    "event_only": {}
+  },
+  "method": "split conformal order statistic; strict greater-than; independent healthy calibration"
+}

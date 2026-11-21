@@ -1,0 +1,38 @@
+{
+  "base_commit": "9ed726011a97be7cb10777e341bde53b787b881a",
+  "models": [
+    {"id":"S1","A":0.82,"P0":0.8,"Q":0.05,"R":0.2,"Z":2.0,"legacy_delta":0.011628232298833967},
+    {"id":"U1","A":1.04,"P0":0.8,"Q":0.05,"R":0.2,"Z":2.0,"legacy_delta":0.022259755314928388}
+  ],
+  "delta_multipliers": [0.25,0.5,1.0],
+  "stress_delta": [0.1,0.25],
+  "b":0.1,
+  "protocols":["fixed","public_phase","postcommit_phase"],
+  "attacks":["cell_sign","balanced_reflection","bounded_sign"],
+  "calibration_episodes":131072,
+  "test_episodes":262144,
+  "block_sizes":[32,128,512,1024],
+  "alpha":0.01,
+  "master_seed":2026112107,
+  "sample_unit":"independent two-time episode, target k=0, next payload unmodified",
+  "target_current_phase":0.0,
+  "random_phase_distribution":"uniform on [-delta,delta), fresh after target payload commitment; public baseline reveals the same phase before the attack chooses its action",
+  "postcommit_attack_reference":"fixed zero phase only; no future-phase input to attack function",
+  "public_attack_reference":"actual next phase known at action choice",
+  "reflection":"Metropolis involution within reference prediction cell; reject if peak bound violated",
+  "detectors":[
+    "event_only_phase_marginal: 1 - I_next_silence / nu_delta(P_target_post), where nu_delta is the phase-averaged healthy silence probability and P_target_post is the nominal covariance label determined by gamma0; consumes only gamma0,gamma1 and the covariance label",
+    "conditional_residual_comparator: I_send0*(p0_next_silence-I_next_silence), with p0 from the received target payload, actual next center and nominal covariance"
+  ],
+  "detector_record":"event-only uses only gamma0, next trusted event and its nominal covariance label. The comparator also reads the received target payload and phase-quantized next center.",
+  "calibration":"split conformal upper quantile, strict alarm; separate healthy calibration and test; thresholds frozen for each model/protocol/delta/detector/block size, reused across attacks",
+  "damage":"target true paired MSE and K^2 E action^2, healthy baseline within protocol",
+  "planning":"analytic phase-integrated mean/variance and one-sided normal 1%/80% planning; not guaranteed power",
+  "phase_integration_orders":[32,64],
+  "innovation_subinterval_orders":[12,24],
+  "innovation_range_sd":10.0,
+  "trusted_audit_comparison":"saved prior random-audit table at same legacy doses and b; separate seeds and scores, no paired significance claim",
+  "cost":"count base sends, score availability, and one fresh phase draw per target; exact continuous phase is an ideal model and has no finite bit encoding; no hardware or cryptographic overhead is inferred",
+  "safe_update_gate":"do not add estimator switching or downweighting unless this fixed detection experiment demonstrates useful power at legacy doses and comparable health/cost",
+  "no_parameter_or_threshold_tuning_on_test":true
+}

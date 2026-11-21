@@ -1,0 +1,28 @@
+{
+  "model": "U1",
+  "delta": 0.005564938828732097,
+  "protocol": "postcommit_phase",
+  "alpha": 0.01,
+  "calibration_episodes": 131072,
+  "single_episode_thresholds": {
+    "conditional": 0.7359883156790613,
+    "event_only": 1.0
+  },
+  "block_thresholds": {
+    "conditional": {
+      "single": 0.7359883156790613,
+      "32": 4.303767282628869,
+      "128": 8.215172061717178,
+      "512": 13.820697857829732,
+      "1024": 24.05735322054013
+    },
+    "event_only": {
+      "single": 1.0,
+      "32": 9.137892288056918,
+      "128": 18.48292372297202,
+      "512": 40.11528308528139,
+      "1024": 59.275457503851456
+    }
+  },
+  "method": "split conformal order statistic; strict greater-than; independent healthy calibration"
+}

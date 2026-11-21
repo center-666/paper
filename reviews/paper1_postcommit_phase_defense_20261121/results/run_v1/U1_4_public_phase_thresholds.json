@@ -1,0 +1,28 @@
+{
+  "model": "U1",
+  "delta": 0.25,
+  "protocol": "public_phase",
+  "alpha": 0.01,
+  "calibration_episodes": 131072,
+  "single_episode_thresholds": {
+    "conditional": 0.7357795935745927,
+    "event_only": 1.0
+  },
+  "block_thresholds": {
+    "conditional": {
+      "single": 0.7357795935745927,
+      "32": 4.13084362933918,
+      "128": 8.261105596998451,
+      "512": 15.551461263888243,
+      "1024": 21.631221030210558
+    },
+    "event_only": {
+      "single": 1.0,
+      "32": 9.80162846625787,
+      "128": 18.912979816635755,
+      "512": 44.57419911930404,
+      "1024": 72.65464617611877
+    }
+  },
+  "method": "split conformal order statistic; strict greater-than; independent healthy calibration"
+}
