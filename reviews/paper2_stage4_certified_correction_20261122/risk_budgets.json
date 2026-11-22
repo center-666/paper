@@ -1,0 +1,276 @@
+{
+  "status": "PASS",
+  "performance_random_samples_generated": false,
+  "numerical_scope": "deterministic formulas and exact rational finite fixtures; not interval certification or performance evidence",
+  "source_sha256": "491451b36b603b0524f90fc272f3637a3b350365014c0aed62e07bfc475fd94f",
+  "rows": [
+    {
+      "model": "S1",
+      "A": 0.82,
+      "Q": 0.05,
+      "R": 0.2,
+      "Z": 2.0,
+      "P0": 0.8,
+      "prior_covariance_lower": 0.09254063608970782,
+      "prior_covariance_upper": 0.8,
+      "send_gain_lower": 0.3163342957295347,
+      "send_gain_upper": 0.8,
+      "silent_contraction_upper": 0.7242530841472573,
+      "bias_multiplier": 0.9569377990430622,
+      "b_max": 0.25,
+      "confidence_failure": 0.01,
+      "B_max": 0.23923444976076555,
+      "B_max_squared": 0.057233121952336256,
+      "general_attack_penalty_per_step": 0.001144662439046725,
+      "healthy_cost_upper_per_step": 0.0005723312195233625,
+      "general_attack_penalty_T512": 0.5860671687919232,
+      "general_attack_penalty_T2048": 2.344268675167693,
+      "certificate_RMS_sufficient_threshold_for_general_expected_gain": 0.033832860343853945
+    },
+    {
+      "model": "U1",
+      "A": 1.04,
+      "Q": 0.05,
+      "R": 0.2,
+      "Z": 2.0,
+      "P0": 0.8,
+      "prior_covariance_lower": 0.13851457085480443,
+      "prior_covariance_upper": 0.8,
+      "send_gain_lower": 0.409183482132047,
+      "send_gain_upper": 0.8,
+      "silent_contraction_upper": 0.868201967269164,
+      "bias_multiplier": 1.0612958380631683,
+      "b_max": 0.25,
+      "confidence_failure": 0.01,
+      "B_max": 0.2653239595157921,
+      "B_max_squared": 0.07039680349313768,
+      "general_attack_penalty_per_step": 0.0014079360698627534,
+      "healthy_cost_upper_per_step": 0.0007039680349313767,
+      "general_attack_penalty_T512": 0.7208632677697298,
+      "general_attack_penalty_T2048": 2.883453071078919,
+      "certificate_RMS_sufficient_threshold_for_general_expected_gain": 0.03752247419697632
+    }
+  ],
+  "checks": [
+    {
+      "name": "S1_silent_contraction",
+      "pass": true,
+      "detail": 0.7242530841472573
+    },
+    {
+      "name": "S1_send_denominator_positive",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "S1_send_invariance",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "S1_send_invariance",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "U1_silent_contraction",
+      "pass": true,
+      "detail": 0.868201967269164
+    },
+    {
+      "name": "U1_send_denominator_positive",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "U1_send_invariance",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "U1_send_invariance",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "reference_Q_tree_mass_theta0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "reference_Q_density_martingale_theta0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "reference_Q_anytime_coverage_theta0",
+      "pass": true,
+      "detail": {
+        "failure_probability": 0.11237925925925926,
+        "bound": 0.2,
+        "exact_fraction": "9482/84375",
+        "tree_leaves": 128
+      }
+    },
+    {
+      "name": "reference_Q_tree_mass_theta1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "reference_Q_density_martingale_theta1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "reference_Q_anytime_coverage_theta1",
+      "pass": true,
+      "detail": {
+        "failure_probability": 0.10702734375,
+        "bound": 0.2,
+        "exact_fraction": "27399/256000",
+        "tree_leaves": 128
+      }
+    },
+    {
+      "name": "minimax_gain_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "minimax_gain_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "minimax_gain_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "minimax_gain_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "minimax_gain_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "minimax_gain_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "covered_gain_at_L",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "covered_gain_at_L",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "covered_gain_at_L",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "minimax_gain_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "minimax_gain_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "minimax_gain_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "minimax_gain_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "minimax_gain_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "minimax_gain_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "covered_gain_at_L",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "covered_gain_at_L",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "covered_gain_at_L",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "minimax_gain_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "minimax_gain_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "minimax_gain_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "minimax_gain_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "minimax_gain_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "minimax_gain_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "covered_gain_at_L",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "covered_gain_at_L",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "covered_gain_at_L",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "failure_budget_two_is_attained",
+      "pass": true,
+      "detail": null
+    }
+  ]
+}
