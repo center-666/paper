@@ -1,0 +1,123 @@
+{
+  "stage": "screen",
+  "b": 0.0,
+  "episode": 2,
+  "snapshots": {
+    "128": {
+      "monitor": 59.9018527666446,
+      "point": 64.1234219658526,
+      "certified": 59.9018527666446,
+      "oracle": 59.9018527666446,
+      "certified_gain": 0.0,
+      "conditional_certified_gain": 0.0,
+      "squared_actions": 0.0,
+      "point_gain": -4.221569199208039,
+      "current_certified_action_norm": 0.0,
+      "current_true_pollution_norm": 0.0,
+      "first_useful": null,
+      "first_nonzero": null,
+      "coverage_violating_steps": 0,
+      "negative_conditional_gain_steps": 0
+    },
+    "256": {
+      "monitor": 133.1854600454074,
+      "point": 137.87280122124025,
+      "certified": 133.1854600454074,
+      "oracle": 133.1854600454074,
+      "certified_gain": 0.0,
+      "conditional_certified_gain": 0.0,
+      "squared_actions": 0.0,
+      "point_gain": -4.687341175832834,
+      "current_certified_action_norm": 0.0,
+      "current_true_pollution_norm": 0.0,
+      "first_useful": null,
+      "first_nonzero": null,
+      "coverage_violating_steps": 0,
+      "negative_conditional_gain_steps": 0
+    },
+    "512": {
+      "monitor": 262.20140071064594,
+      "point": 264.36832980986,
+      "certified": 262.20140071064594,
+      "oracle": 262.20140071064594,
+      "certified_gain": 0.0,
+      "conditional_certified_gain": 0.0,
+      "squared_actions": 0.0,
+      "point_gain": -2.166929099214176,
+      "current_certified_action_norm": 0.0,
+      "current_true_pollution_norm": 0.0,
+      "first_useful": null,
+      "first_nonzero": null,
+      "coverage_violating_steps": 0,
+      "negative_conditional_gain_steps": 0
+    }
+  },
+  "certificate_queries": [
+    {
+      "time": 127,
+      "level": 0.025,
+      "direction": [
+        "1",
+        "416593/1000000"
+      ],
+      "certified": false,
+      "correction": [
+        "0",
+        "0"
+      ],
+      "guaranteed_gain": "0",
+      "nodes": 0,
+      "reason": "HEALTH_OR_FUTURE_START_RETAINED",
+      "target_support": "0.035414825",
+      "reference_log_cutoff": {
+        "lo": "-9.3220117431112550799210040772553897790731469464606",
+        "hi": "-9.3220117431112550799210040772553897790731469464196"
+      }
+    },
+    {
+      "time": 383,
+      "level": 0.025,
+      "direction": [
+        "1",
+        "46437/500000"
+      ],
+      "certified": false,
+      "correction": [
+        "0",
+        "0"
+      ],
+      "guaranteed_gain": "0",
+      "nodes": 0,
+      "reason": "HEALTH_OR_FUTURE_START_RETAINED",
+      "target_support": "0.02732185",
+      "reference_log_cutoff": {
+        "lo": "-11.002894521336909716658713310523226982315019709373",
+        "hi": "-11.002894521336909716658713310523226982315019698520"
+      }
+    }
+  ],
+  "timing": {
+    "maintenance": 40.01571840012912,
+    "point_scoring": 0.9745878999819979,
+    "certificate_search": 0.0004768000217154622,
+    "transport": 0.0266475003445521
+  },
+  "total_seconds": 42.679686499992386,
+  "steps": 562,
+  "alarm_time": null,
+  "first_useful": null,
+  "first_nonzero": null,
+  "coverage_violating_steps": 0,
+  "negative_conditional_gain_steps": 0,
+  "nonzero_output_steps": 0,
+  "max_prior_error_norm": 2.00081489180035,
+  "record_stats": {
+    "candidate_updates": 158203,
+    "suffix_trigger_evaluations": 1640,
+    "likelihood_evaluations": 0,
+    "segments_tested": 0
+  },
+  "freeze_sha256": "71d29ca0ba09a63f3c4d6d2e2f29eeae39555f26a5c08f724e24bec1313250f6",
+  "numerics": "exact rational gains/certificate propagation plus Decimal likelihood intervals; floating Gaussian physical generator",
+  "full_cost_includes_all_candidate_maintenance": true
+}

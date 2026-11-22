@@ -1,0 +1,81 @@
+{
+  "status": "PASS",
+  "arithmetic": "exact Fraction; no rounded eigenvalues used for acceptance",
+  "observability_matrix": [
+    [
+      "1",
+      "0"
+    ],
+    [
+      "51/50",
+      "1/10"
+    ]
+  ],
+  "observability_determinant": "1/10",
+  "open_loop_eigenvalues": [
+    "1.02",
+    "0.97"
+  ],
+  "prior_supersolution": [
+    [
+      "9/10",
+      "1/10"
+    ],
+    [
+      "1/10",
+      "9/10"
+    ]
+  ],
+  "supersolution_minus_all_silent_riccati": [
+    [
+      "5281/12500",
+      "-1499/50000"
+    ],
+    [
+      "-1499/50000",
+      "14513/1600000"
+    ]
+  ],
+  "slack_leading_principal_minor": "5281/12500",
+  "slack_determinant": "11733429/4000000000",
+  "posterior_covariance_lower": [
+    [
+      "1/25",
+      "0"
+    ],
+    [
+      "0",
+      "1/20"
+    ]
+  ],
+  "posterior_covariance_upper": [
+    [
+      "63/160",
+      "7/160"
+    ],
+    [
+      "7/160",
+      "143/160"
+    ]
+  ],
+  "prior_eigenvalue_upper": "1",
+  "Q_eigenvalue_lower": "1/20",
+  "posterior_eigenvalue_lower": "1/25",
+  "metric_contraction_squared": "19/20",
+  "rho_decimal_display": 0.9746794344808963,
+  "euclidean_prefactor_squared": "25",
+  "M_decimal_display": 5.0,
+  "product_bound": "||F_t ... F_s||_2 <= 5 * sqrt(19/20)^(t-s+1), s>=1",
+  "checks": {
+    "observable_det_nonzero": true,
+    "initial_covariance_above_Q": true,
+    "initial_covariance_below_supersolution": true,
+    "supersolution_slack_positive_definite": true,
+    "prior_upper_le_identity": true,
+    "Q_equals_one_twentieth_identity": true,
+    "posterior_lower_ge_one_twenty_fifth_identity": true,
+    "posterior_upper_le_identity": true
+  },
+  "performance_random_samples_generated": false,
+  "source_sha256": "40a61347358b4e83c121c975f4d1b23135bc01b8565153d99222d6522ad1dfe4"
+}

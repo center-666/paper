@@ -1,0 +1,227 @@
+{
+  "stage": "final",
+  "b": 0.25,
+  "episode": 9,
+  "snapshots": {
+    "128": {
+      "monitor": 66.02057062053639,
+      "point": 65.79807304313319,
+      "certified": 66.02057062053639,
+      "oracle": 63.9980770299589,
+      "certified_gain": 0.0,
+      "conditional_certified_gain": 0.0,
+      "squared_actions": 0.0,
+      "point_gain": 0.22249757740324783,
+      "current_certified_action_norm": 0.0,
+      "current_true_pollution_norm": 0.06398434844886047,
+      "first_useful": null,
+      "first_nonzero": null,
+      "coverage_violating_steps": 0,
+      "negative_conditional_gain_steps": 0
+    },
+    "256": {
+      "monitor": 186.94456291661234,
+      "point": 179.7701956731037,
+      "certified": 186.94456291661234,
+      "oracle": 177.97020046614114,
+      "certified_gain": 0.0,
+      "conditional_certified_gain": 0.0,
+      "squared_actions": 0.0,
+      "point_gain": 7.174367243508805,
+      "current_certified_action_norm": 0.0,
+      "current_true_pollution_norm": 0.21768221627564296,
+      "first_useful": null,
+      "first_nonzero": null,
+      "coverage_violating_steps": 0,
+      "negative_conditional_gain_steps": 0
+    },
+    "512": {
+      "monitor": 347.5933081097658,
+      "point": 336.0519728625871,
+      "certified": 347.5744053120689,
+      "oracle": 334.25197765562547,
+      "certified_gain": 0.018902797696837666,
+      "conditional_certified_gain": 0.05549858657572717,
+      "squared_actions": 0.004716067719912543,
+      "point_gain": 11.541335247179244,
+      "current_certified_action_norm": 9.941024380600754e-10,
+      "current_true_pollution_norm": 0.14865895455328587,
+      "first_useful": 383,
+      "first_nonzero": 383,
+      "coverage_violating_steps": 0,
+      "negative_conditional_gain_steps": 0
+    }
+  },
+  "certificate_queries": [
+    {
+      "time": 127,
+      "level": 0.025,
+      "direction": [
+        "328997/500000",
+        "-1"
+      ],
+      "certified": false,
+      "correction": [
+        "0",
+        "0"
+      ],
+      "guaranteed_gain": "0",
+      "nodes": 0,
+      "reason": "HEALTH_OR_FUTURE_START_RETAINED",
+      "target_support": "0.04144985",
+      "reference_log_cutoff": {
+        "lo": "-4.0878208957673462538634105495202604607941915827092",
+        "hi": "-4.0878208957673462538634105495202604607941915826196"
+      }
+    },
+    {
+      "time": 255,
+      "level": 0.025,
+      "direction": [
+        "1",
+        "-85369/500000"
+      ],
+      "certified": false,
+      "correction": [
+        "0",
+        "0"
+      ],
+      "guaranteed_gain": "0",
+      "nodes": 64,
+      "reason": "UNRESOLVED_NODE_LIMIT",
+      "target_support": "0.02926845",
+      "reference_log_cutoff": {
+        "lo": "2.2083343974882534244813200593207274098224652456961",
+        "hi": "2.2083343974882534244813200593207274098224652491958"
+      },
+      "nonempty_witness": {
+        "onset": 0,
+        "amplitude": ".05"
+      }
+    },
+    {
+      "time": 383,
+      "level": 0.025,
+      "direction": [
+        "1",
+        "-52919/100000"
+      ],
+      "certified": true,
+      "correction": [
+        "382297500/12800420561",
+        "-8092320561/512016822440"
+      ],
+      "guaranteed_gain": "23384220561/20480672897600",
+      "nodes": 0,
+      "reason": "ALL_LOW_SUPPORT_MODELS_EXCLUDED",
+      "target_support": "0.03822975",
+      "reference_log_cutoff": {
+        "lo": "17.660019526703380150999173488221722712429852467993",
+        "hi": "17.660019526703380150999173488221722712429852548772"
+      },
+      "nonempty_witness": {
+        "onset": 0,
+        "amplitude": ".10"
+      }
+    },
+    {
+      "time": 383,
+      "level": 0.05,
+      "direction": [
+        "1",
+        "-52919/100000"
+      ],
+      "certified": false,
+      "correction": [
+        "0",
+        "0"
+      ],
+      "guaranteed_gain": "0",
+      "nodes": 64,
+      "reason": "UNRESOLVED_NODE_LIMIT",
+      "target_support": "0.0764595",
+      "reference_log_cutoff": {
+        "lo": "17.660019526703380150999173488221722712429852467993",
+        "hi": "17.660019526703380150999173488221722712429852548772"
+      },
+      "nonempty_witness": {
+        "onset": 0,
+        "amplitude": ".10"
+      }
+    },
+    {
+      "time": 511,
+      "level": 0.025,
+      "direction": [
+        "1",
+        "-445417/1000000"
+      ],
+      "certified": true,
+      "correction": [
+        "36135425000/1198396303889",
+        "-643813303889/47935852155560"
+      ],
+      "guaranteed_gain": "2089230303889/1917434086222400",
+      "nodes": 0,
+      "reason": "ALL_LOW_SUPPORT_MODELS_EXCLUDED",
+      "target_support": "0.036135425",
+      "reference_log_cutoff": {
+        "lo": "32.273821638741539332992732578548311032050442064370",
+        "hi": "32.273821638741539332992732578548311032050443245099"
+      },
+      "nonempty_witness": {
+        "onset": 0,
+        "amplitude": ".25"
+      }
+    },
+    {
+      "time": 511,
+      "level": 0.05,
+      "direction": [
+        "1",
+        "-445417/1000000"
+      ],
+      "certified": false,
+      "correction": [
+        "0",
+        "0"
+      ],
+      "guaranteed_gain": "0",
+      "nodes": 64,
+      "reason": "UNRESOLVED_NODE_LIMIT",
+      "target_support": "0.07227085",
+      "reference_log_cutoff": {
+        "lo": "32.273821638741539332992732578548311032050442064370",
+        "hi": "32.273821638741539332992732578548311032050443245099"
+      },
+      "nonempty_witness": {
+        "onset": 0,
+        "amplitude": ".25"
+      }
+    }
+  ],
+  "timing": {
+    "maintenance": 30.238741198554635,
+    "point_scoring": 0.9713912999723107,
+    "certificate_search": 265.83024979999755,
+    "transport": 0.5982252027606592
+  },
+  "total_seconds": 300.7060916000046,
+  "steps": 562,
+  "alarm_time": 179,
+  "first_useful": 383,
+  "first_nonzero": 383,
+  "coverage_violating_steps": 0,
+  "negative_conditional_gain_steps": 0,
+  "nonzero_output_steps": 118,
+  "max_prior_error_norm": 2.626704720589295,
+  "record_stats": {
+    "candidate_updates": 158203,
+    "suffix_trigger_evaluations": 3275,
+    "likelihood_evaluations": 8695,
+    "segments_tested": 3970
+  },
+  "freeze_sha256": "71d29ca0ba09a63f3c4d6d2e2f29eeae39555f26a5c08f724e24bec1313250f6",
+  "numerics": "exact rational gains/certificate propagation plus Decimal likelihood intervals; floating Gaussian physical generator",
+  "full_cost_includes_all_candidate_maintenance": true
+}

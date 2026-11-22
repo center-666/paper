@@ -1,0 +1,165 @@
+{
+  "stage": "screen",
+  "b": 0.1,
+  "episode": 3,
+  "snapshots": {
+    "128": {
+      "monitor": 102.19638681659069,
+      "point": 101.9091049062027,
+      "certified": 102.19638681659069,
+      "oracle": 101.45146865745613,
+      "certified_gain": 0.0,
+      "conditional_certified_gain": 0.0,
+      "squared_actions": 0.0,
+      "point_gain": 0.28728191038798234,
+      "current_certified_action_norm": 0.0,
+      "current_true_pollution_norm": 0.03762791846269881,
+      "first_useful": null,
+      "first_nonzero": null,
+      "coverage_violating_steps": 0,
+      "negative_conditional_gain_steps": 0
+    },
+    "256": {
+      "monitor": 199.81120982614104,
+      "point": 201.82057785596442,
+      "certified": 199.81120982614104,
+      "oracle": 199.58156644771077,
+      "certified_gain": 0.0,
+      "conditional_certified_gain": 0.0,
+      "squared_actions": 0.0,
+      "point_gain": -2.0093680298234315,
+      "current_certified_action_norm": 0.0,
+      "current_true_pollution_norm": 0.03528809836486826,
+      "first_useful": null,
+      "first_nonzero": null,
+      "coverage_violating_steps": 0,
+      "negative_conditional_gain_steps": 0
+    },
+    "512": {
+      "monitor": 300.1977796170149,
+      "point": 302.6252045747784,
+      "certified": 300.1977796170149,
+      "oracle": 299.7693786358188,
+      "certified_gain": 0.0,
+      "conditional_certified_gain": 0.0,
+      "squared_actions": 0.0,
+      "point_gain": -2.427424957763606,
+      "current_certified_action_norm": 0.0,
+      "current_true_pollution_norm": 0.01975103241829993,
+      "first_useful": null,
+      "first_nonzero": null,
+      "coverage_violating_steps": 0,
+      "negative_conditional_gain_steps": 0
+    }
+  },
+  "certificate_queries": [
+    {
+      "time": 127,
+      "level": 0.025,
+      "direction": [
+        "1",
+        "-7463/31250"
+      ],
+      "certified": false,
+      "correction": [
+        "0",
+        "0"
+      ],
+      "guaranteed_gain": "0",
+      "nodes": 0,
+      "reason": "HEALTH_OR_FUTURE_START_RETAINED",
+      "target_support": "0.0309704",
+      "reference_log_cutoff": {
+        "lo": "-8.6967445097208535592849369480496574446824494668262",
+        "hi": "-8.6967445097208535592849369480496574446824494667835"
+      }
+    },
+    {
+      "time": 255,
+      "level": 0.025,
+      "direction": [
+        "1",
+        "-27981/500000"
+      ],
+      "certified": false,
+      "correction": [
+        "0",
+        "0"
+      ],
+      "guaranteed_gain": "0",
+      "nodes": 0,
+      "reason": "HEALTH_OR_FUTURE_START_RETAINED",
+      "target_support": "0.02639905",
+      "reference_log_cutoff": {
+        "lo": "-8.9290872294581092650065937480349177900133504255803",
+        "hi": "-8.9290872294581092650065937480349177900133504250084"
+      }
+    },
+    {
+      "time": 383,
+      "level": 0.025,
+      "direction": [
+        "1",
+        "309/12500"
+      ],
+      "certified": false,
+      "correction": [
+        "0",
+        "0"
+      ],
+      "guaranteed_gain": "0",
+      "nodes": 0,
+      "reason": "HEALTH_OR_FUTURE_START_RETAINED",
+      "target_support": "0.025618",
+      "reference_log_cutoff": {
+        "lo": "-7.6275917819214697764178411918448925881506646096825",
+        "hi": "-7.6275917819214697764178411918448925881506645975948"
+      }
+    },
+    {
+      "time": 511,
+      "level": 0.025,
+      "direction": [
+        "1",
+        "-127313/500000"
+      ],
+      "certified": false,
+      "correction": [
+        "0",
+        "0"
+      ],
+      "guaranteed_gain": "0",
+      "nodes": 0,
+      "reason": "HEALTH_OR_FUTURE_START_RETAINED",
+      "target_support": "0.03136565",
+      "reference_log_cutoff": {
+        "lo": "-6.7925458031575112562895610940142983323889236669302",
+        "hi": "-6.7925458031575112562895610940142983323889234272802"
+      }
+    }
+  ],
+  "timing": {
+    "maintenance": 41.813671400770545,
+    "point_scoring": 1.200570699875243,
+    "certificate_search": 0.0007804001215845346,
+    "transport": 0.025375899742357433
+  },
+  "total_seconds": 44.75937480002176,
+  "steps": 562,
+  "alarm_time": null,
+  "first_useful": null,
+  "first_nonzero": null,
+  "coverage_violating_steps": 0,
+  "negative_conditional_gain_steps": 0,
+  "nonzero_output_steps": 0,
+  "max_prior_error_norm": 2.166295326114463,
+  "record_stats": {
+    "candidate_updates": 158203,
+    "suffix_trigger_evaluations": 1820,
+    "likelihood_evaluations": 0,
+    "segments_tested": 0
+  },
+  "freeze_sha256": "71d29ca0ba09a63f3c4d6d2e2f29eeae39555f26a5c08f724e24bec1313250f6",
+  "numerics": "exact rational gains/certificate propagation plus Decimal likelihood intervals; floating Gaussian physical generator",
+  "full_cost_includes_all_candidate_maintenance": true
+}

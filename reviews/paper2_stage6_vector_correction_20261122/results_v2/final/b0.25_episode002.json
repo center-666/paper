@@ -1,0 +1,281 @@
+{
+  "stage": "final",
+  "b": 0.25,
+  "episode": 2,
+  "snapshots": {
+    "128": {
+      "monitor": 70.79632645828039,
+      "point": 70.25756573784531,
+      "certified": 70.79632645828039,
+      "oracle": 71.41403998510745,
+      "certified_gain": 0.0,
+      "conditional_certified_gain": 0.0,
+      "squared_actions": 0.0,
+      "point_gain": 0.5387607204350788,
+      "current_certified_action_norm": 0.0,
+      "current_true_pollution_norm": 0.07047460753010792,
+      "first_useful": null,
+      "first_nonzero": null,
+      "coverage_violating_steps": 0,
+      "negative_conditional_gain_steps": 0
+    },
+    "256": {
+      "monitor": 127.69378119597549,
+      "point": 127.55005872727637,
+      "certified": 127.64325984606751,
+      "oracle": 128.70653173918774,
+      "certified_gain": 0.05052134990796132,
+      "conditional_certified_gain": 0.03308484136498249,
+      "squared_actions": 0.0017352553169745616,
+      "point_gain": 0.1437224686991242,
+      "current_certified_action_norm": 1.240621568719226e-08,
+      "current_true_pollution_norm": 0.05365431794844969,
+      "first_useful": 255,
+      "first_nonzero": 255,
+      "coverage_violating_steps": 0,
+      "negative_conditional_gain_steps": 0
+    },
+    "512": {
+      "monitor": 271.75469133116377,
+      "point": 265.35111170184916,
+      "certified": 271.501143251852,
+      "oracle": 266.50758471376076,
+      "certified_gain": 0.2535480793119236,
+      "conditional_certified_gain": 0.1527277905500053,
+      "squared_actions": 0.02379120386024316,
+      "point_gain": 6.403579629314667,
+      "current_certified_action_norm": 5.325168047416957e-09,
+      "current_true_pollution_norm": 0.10484517610622213,
+      "first_useful": 255,
+      "first_nonzero": 255,
+      "coverage_violating_steps": 0,
+      "negative_conditional_gain_steps": 0
+    }
+  },
+  "certificate_queries": [
+    {
+      "time": 127,
+      "level": 0.025,
+      "direction": [
+        "1",
+        "-92473/200000"
+      ],
+      "certified": false,
+      "correction": [
+        "0",
+        "0"
+      ],
+      "guaranteed_gain": "0",
+      "nodes": 37,
+      "reason": "UNRESOLVED_OR_FEASIBLE",
+      "target_support": "0.036559125",
+      "reference_log_cutoff": {
+        "lo": "0.043889430029386746974721909070893818335948478449712",
+        "hi": "0.043889430029386746974721909070893818335948478585425"
+      },
+      "nonempty_witness": {
+        "onset": 0,
+        "amplitude": ".05"
+      }
+    },
+    {
+      "time": 255,
+      "level": 0.025,
+      "direction": [
+        "1",
+        "64989/1000000"
+      ],
+      "certified": true,
+      "correction": [
+        "26624725000/1004223570121",
+        "69212570121/40168942804840"
+      ],
+      "guaranteed_gain": "1134201570121/1606757712193600",
+      "nodes": 0,
+      "reason": "ALL_LOW_SUPPORT_MODELS_EXCLUDED",
+      "target_support": "0.026624725",
+      "reference_log_cutoff": {
+        "lo": "5.7685687019458028480329319856152336721286303971461",
+        "hi": "5.7685687019458028480329319856152336721286304000341"
+      },
+      "nonempty_witness": {
+        "onset": 0,
+        "amplitude": ".10"
+      }
+    },
+    {
+      "time": 255,
+      "level": 0.05,
+      "direction": [
+        "1",
+        "64989/1000000"
+      ],
+      "certified": false,
+      "correction": [
+        "0",
+        "0"
+      ],
+      "guaranteed_gain": "0",
+      "nodes": 45,
+      "reason": "UNRESOLVED_OR_FEASIBLE",
+      "target_support": "0.05324945",
+      "reference_log_cutoff": {
+        "lo": "5.7685687019458028480329319856152336721286303971461",
+        "hi": "5.7685687019458028480329319856152336721286304000341"
+      },
+      "nonempty_witness": {
+        "onset": 0,
+        "amplitude": ".10"
+      }
+    },
+    {
+      "time": 383,
+      "level": 0.025,
+      "direction": [
+        "1",
+        "-397989/1000000"
+      ],
+      "certified": true,
+      "correction": [
+        "34949725000/1158395244121",
+        "-556384244121/46335809764840"
+      ],
+      "guaranteed_gain": "1954373244121/1853432390593600",
+      "nodes": 0,
+      "reason": "ALL_LOW_SUPPORT_MODELS_EXCLUDED",
+      "target_support": "0.034949725",
+      "reference_log_cutoff": {
+        "lo": "26.924174294381590228541265431133367683467353096433",
+        "hi": "26.924174294381590228541265431133367683467353148654"
+      },
+      "nonempty_witness": {
+        "onset": 0,
+        "amplitude": ".25"
+      }
+    },
+    {
+      "time": 383,
+      "level": 0.05,
+      "direction": [
+        "1",
+        "-397989/1000000"
+      ],
+      "certified": false,
+      "correction": [
+        "0",
+        "0"
+      ],
+      "guaranteed_gain": "0",
+      "nodes": 64,
+      "reason": "UNRESOLVED_NODE_LIMIT",
+      "target_support": "0.06989945",
+      "reference_log_cutoff": {
+        "lo": "26.924174294381590228541265431133367683467353096433",
+        "hi": "26.924174294381590228541265431133367683467353148654"
+      },
+      "nonempty_witness": {
+        "onset": 0,
+        "amplitude": ".25"
+      }
+    },
+    {
+      "time": 511,
+      "level": 0.025,
+      "direction": [
+        "1",
+        "-84763/1000000"
+      ],
+      "certified": true,
+      "correction": [
+        "27119075000/1007184766169",
+        "-91947766169/40287390646760"
+      ],
+      "guaranteed_gain": "1176710766169/1611495625870400",
+      "nodes": 0,
+      "reason": "ALL_LOW_SUPPORT_MODELS_EXCLUDED",
+      "target_support": "0.027119075",
+      "reference_log_cutoff": {
+        "lo": "39.143893722391012148221424637901850323335549154688",
+        "hi": "39.143893722391012148221424637901850323335550457614"
+      },
+      "nonempty_witness": {
+        "onset": 0,
+        "amplitude": ".25"
+      }
+    },
+    {
+      "time": 511,
+      "level": 0.05,
+      "direction": [
+        "1",
+        "-84763/1000000"
+      ],
+      "certified": true,
+      "correction": [
+        "54238150000/1007184766169",
+        "-91947766169/20143695323380"
+      ],
+      "guaranteed_gain": "1176710766169/402873906467600",
+      "nodes": 0,
+      "reason": "ALL_LOW_SUPPORT_MODELS_EXCLUDED",
+      "target_support": "0.05423815",
+      "reference_log_cutoff": {
+        "lo": "39.143893722391012148221424637901850323335549154688",
+        "hi": "39.143893722391012148221424637901850323335550457614"
+      },
+      "nonempty_witness": {
+        "onset": 0,
+        "amplitude": ".25"
+      }
+    },
+    {
+      "time": 511,
+      "level": 0.1,
+      "direction": [
+        "1",
+        "-84763/1000000"
+      ],
+      "certified": true,
+      "correction": [
+        "108476300000/1007184766169",
+        "-91947766169/10071847661690"
+      ],
+      "guaranteed_gain": "1176710766169/100718476616900",
+      "nodes": 16,
+      "reason": "ALL_LOW_SUPPORT_MODELS_EXCLUDED",
+      "target_support": "0.1084763",
+      "reference_log_cutoff": {
+        "lo": "39.143893722391012148221424637901850323335549154688",
+        "hi": "39.143893722391012148221424637901850323335550457614"
+      },
+      "nonempty_witness": {
+        "onset": 0,
+        "amplitude": ".25"
+      }
+    }
+  ],
+  "timing": {
+    "maintenance": 31.980277103022672,
+    "point_scoring": 0.852000999962911,
+    "certificate_search": 257.131522399839,
+    "transport": 0.9060170986922458
+  },
+  "total_seconds": 294.8443820999237,
+  "steps": 562,
+  "alarm_time": 99,
+  "first_useful": 255,
+  "first_nonzero": 255,
+  "coverage_violating_steps": 0,
+  "negative_conditional_gain_steps": 0,
+  "nonzero_output_steps": 180,
+  "max_prior_error_norm": 1.8468779344968476,
+  "record_stats": {
+    "candidate_updates": 158203,
+    "suffix_trigger_evaluations": 3641,
+    "likelihood_evaluations": 9906,
+    "segments_tested": 4639
+  },
+  "freeze_sha256": "71d29ca0ba09a63f3c4d6d2e2f29eeae39555f26a5c08f724e24bec1313250f6",
+  "numerics": "exact rational gains/certificate propagation plus Decimal likelihood intervals; floating Gaussian physical generator",
+  "full_cost_includes_all_candidate_maintenance": true
+}

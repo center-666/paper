@@ -1,0 +1,144 @@
+{
+  "stage": "final",
+  "b": 0.0,
+  "episode": 9,
+  "snapshots": {
+    "128": {
+      "monitor": 41.30552030551143,
+      "point": 41.30552030551143,
+      "certified": 41.30552030551143,
+      "oracle": 41.30552030551143,
+      "certified_gain": 0.0,
+      "conditional_certified_gain": 0.0,
+      "squared_actions": 0.0,
+      "point_gain": 0.0,
+      "current_certified_action_norm": 0.0,
+      "current_true_pollution_norm": 0.0,
+      "first_useful": null,
+      "first_nonzero": null,
+      "coverage_violating_steps": 0,
+      "negative_conditional_gain_steps": 0
+    },
+    "256": {
+      "monitor": 108.45507440219245,
+      "point": 108.66642893604885,
+      "certified": 108.45507440219245,
+      "oracle": 108.45507440219245,
+      "certified_gain": 0.0,
+      "conditional_certified_gain": 0.0,
+      "squared_actions": 0.0,
+      "point_gain": -0.21135453385641048,
+      "current_certified_action_norm": 0.0,
+      "current_true_pollution_norm": 0.0,
+      "first_useful": null,
+      "first_nonzero": null,
+      "coverage_violating_steps": 0,
+      "negative_conditional_gain_steps": 0
+    },
+    "512": {
+      "monitor": 286.95446354379783,
+      "point": 287.4125386140519,
+      "certified": 286.95446354379783,
+      "oracle": 286.95446354379783,
+      "certified_gain": 0.0,
+      "conditional_certified_gain": 0.0,
+      "squared_actions": 0.0,
+      "point_gain": -0.45807507025390726,
+      "current_certified_action_norm": 0.0,
+      "current_true_pollution_norm": 0.0,
+      "first_useful": null,
+      "first_nonzero": null,
+      "coverage_violating_steps": 0,
+      "negative_conditional_gain_steps": 0
+    }
+  },
+  "certificate_queries": [
+    {
+      "time": 255,
+      "level": 0.025,
+      "direction": [
+        "-19329/200000",
+        "-1"
+      ],
+      "certified": false,
+      "correction": [
+        "0",
+        "0"
+      ],
+      "guaranteed_gain": "0",
+      "nodes": 0,
+      "reason": "HEALTH_OR_FUTURE_START_RETAINED",
+      "target_support": "0.027416125",
+      "reference_log_cutoff": {
+        "lo": "-8.9042786191932110541770110736590421686110032418504",
+        "hi": "-8.9042786191932110541770110736590421686110032415240"
+      }
+    },
+    {
+      "time": 383,
+      "level": 0.025,
+      "direction": [
+        "1",
+        "22219/100000"
+      ],
+      "certified": false,
+      "correction": [
+        "0",
+        "0"
+      ],
+      "guaranteed_gain": "0",
+      "nodes": 0,
+      "reason": "HEALTH_OR_FUTURE_START_RETAINED",
+      "target_support": "0.03055475",
+      "reference_log_cutoff": {
+        "lo": "-9.4353612019995606870491527495979236071796608571492",
+        "hi": "-9.4353612019995606870491527495979236071796608489723"
+      }
+    },
+    {
+      "time": 511,
+      "level": 0.025,
+      "direction": [
+        "1",
+        "969/6250"
+      ],
+      "certified": false,
+      "correction": [
+        "0",
+        "0"
+      ],
+      "guaranteed_gain": "0",
+      "nodes": 0,
+      "reason": "HEALTH_OR_FUTURE_START_RETAINED",
+      "target_support": "0.028876",
+      "reference_log_cutoff": {
+        "lo": "-10.094852191115889480075282537465191192095347232641",
+        "hi": "-10.094852191115889480075282537465191192095347001394"
+      }
+    }
+  ],
+  "timing": {
+    "maintenance": 41.94264599960297,
+    "point_scoring": 0.988330899970606,
+    "certificate_search": 0.0006250001024454832,
+    "transport": 0.029578400310128927
+  },
+  "total_seconds": 44.65560519997962,
+  "steps": 562,
+  "alarm_time": null,
+  "first_useful": null,
+  "first_nonzero": null,
+  "coverage_violating_steps": 0,
+  "negative_conditional_gain_steps": 0,
+  "nonzero_output_steps": 0,
+  "max_prior_error_norm": 2.019908792295488,
+  "record_stats": {
+    "candidate_updates": 158203,
+    "suffix_trigger_evaluations": 1565,
+    "likelihood_evaluations": 0,
+    "segments_tested": 0
+  },
+  "freeze_sha256": "71d29ca0ba09a63f3c4d6d2e2f29eeae39555f26a5c08f724e24bec1313250f6",
+  "numerics": "exact rational gains/certificate propagation plus Decimal likelihood intervals; floating Gaussian physical generator",
+  "full_cost_includes_all_candidate_maintenance": true
+}

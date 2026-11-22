@@ -1,0 +1,165 @@
+{
+  "stage": "screen",
+  "b": 0.0,
+  "episode": 1,
+  "snapshots": {
+    "128": {
+      "monitor": 48.93639183058329,
+      "point": 49.90614553642276,
+      "certified": 48.93639183058329,
+      "oracle": 48.93639183058329,
+      "certified_gain": 0.0,
+      "conditional_certified_gain": 0.0,
+      "squared_actions": 0.0,
+      "point_gain": -0.9697537058395058,
+      "current_certified_action_norm": 0.0,
+      "current_true_pollution_norm": 0.0,
+      "first_useful": null,
+      "first_nonzero": null,
+      "coverage_violating_steps": 0,
+      "negative_conditional_gain_steps": 0
+    },
+    "256": {
+      "monitor": 125.44803632065766,
+      "point": 126.88180632344583,
+      "certified": 125.44803632065766,
+      "oracle": 125.44803632065766,
+      "certified_gain": 0.0,
+      "conditional_certified_gain": 0.0,
+      "squared_actions": 0.0,
+      "point_gain": -1.4337700027882956,
+      "current_certified_action_norm": 0.0,
+      "current_true_pollution_norm": 0.0,
+      "first_useful": null,
+      "first_nonzero": null,
+      "coverage_violating_steps": 0,
+      "negative_conditional_gain_steps": 0
+    },
+    "512": {
+      "monitor": 255.3323921190791,
+      "point": 258.52904586068814,
+      "certified": 255.3323921190791,
+      "oracle": 255.3323921190791,
+      "certified_gain": 0.0,
+      "conditional_certified_gain": 0.0,
+      "squared_actions": 0.0,
+      "point_gain": -3.196653741609013,
+      "current_certified_action_norm": 0.0,
+      "current_true_pollution_norm": 0.0,
+      "first_useful": null,
+      "first_nonzero": null,
+      "coverage_violating_steps": 0,
+      "negative_conditional_gain_steps": 0
+    }
+  },
+  "certificate_queries": [
+    {
+      "time": 127,
+      "level": 0.025,
+      "direction": [
+        "1",
+        "47389/500000"
+      ],
+      "certified": false,
+      "correction": [
+        "0",
+        "0"
+      ],
+      "guaranteed_gain": "0",
+      "nodes": 0,
+      "reason": "HEALTH_OR_FUTURE_START_RETAINED",
+      "target_support": "0.02736945",
+      "reference_log_cutoff": {
+        "lo": "-6.6309095751118272694903158084585630638395627922033",
+        "hi": "-6.6309095751118272694903158084585630638395627921497"
+      }
+    },
+    {
+      "time": 255,
+      "level": 0.025,
+      "direction": [
+        "1",
+        "-86979/250000"
+      ],
+      "certified": false,
+      "correction": [
+        "0",
+        "0"
+      ],
+      "guaranteed_gain": "0",
+      "nodes": 0,
+      "reason": "HEALTH_OR_FUTURE_START_RETAINED",
+      "target_support": "0.0336979",
+      "reference_log_cutoff": {
+        "lo": "-6.9122221136805519472083009085768540888477743856964",
+        "hi": "-6.9122221136805519472083009085768540888477743850567"
+      }
+    },
+    {
+      "time": 383,
+      "level": 0.025,
+      "direction": [
+        "1",
+        "17563/62500"
+      ],
+      "certified": false,
+      "correction": [
+        "0",
+        "0"
+      ],
+      "guaranteed_gain": "0",
+      "nodes": 0,
+      "reason": "HEALTH_OR_FUTURE_START_RETAINED",
+      "target_support": "0.0320252",
+      "reference_log_cutoff": {
+        "lo": "-8.0316753202578194413295358275191137190179816171908",
+        "hi": "-8.0316753202578194413295358275191137190179816092828"
+      }
+    },
+    {
+      "time": 511,
+      "level": 0.025,
+      "direction": [
+        "1",
+        "-114729/200000"
+      ],
+      "certified": false,
+      "correction": [
+        "0",
+        "0"
+      ],
+      "guaranteed_gain": "0",
+      "nodes": 0,
+      "reason": "HEALTH_OR_FUTURE_START_RETAINED",
+      "target_support": "0.039341125",
+      "reference_log_cutoff": {
+        "lo": "-9.5692229995329358840421448066722392046469368240041",
+        "hi": "-9.5692229995329358840421448066722392046469365526270"
+      }
+    }
+  ],
+  "timing": {
+    "maintenance": 40.063545098062605,
+    "point_scoring": 0.9984447999158874,
+    "certificate_search": 0.0006816999521106482,
+    "transport": 0.02484839898534119
+  },
+  "total_seconds": 42.769112700014375,
+  "steps": 562,
+  "alarm_time": null,
+  "first_useful": null,
+  "first_nonzero": null,
+  "coverage_violating_steps": 0,
+  "negative_conditional_gain_steps": 0,
+  "nonzero_output_steps": 0,
+  "max_prior_error_norm": 2.077447045906254,
+  "record_stats": {
+    "candidate_updates": 158203,
+    "suffix_trigger_evaluations": 1635,
+    "likelihood_evaluations": 0,
+    "segments_tested": 0
+  },
+  "freeze_sha256": "71d29ca0ba09a63f3c4d6d2e2f29eeae39555f26a5c08f724e24bec1313250f6",
+  "numerics": "exact rational gains/certificate propagation plus Decimal likelihood intervals; floating Gaussian physical generator",
+  "full_cost_includes_all_candidate_maintenance": true
+}

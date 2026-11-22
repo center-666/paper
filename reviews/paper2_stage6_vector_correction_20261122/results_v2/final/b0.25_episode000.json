@@ -1,0 +1,181 @@
+{
+  "stage": "final",
+  "b": 0.25,
+  "episode": 0,
+  "snapshots": {
+    "128": {
+      "monitor": 87.67685743839472,
+      "point": 88.11221797652449,
+      "certified": 87.67685743839472,
+      "oracle": 85.83927836051961,
+      "certified_gain": 0.0,
+      "conditional_certified_gain": 0.0,
+      "squared_actions": 0.0,
+      "point_gain": -0.4353605381297755,
+      "current_certified_action_norm": 0.0,
+      "current_true_pollution_norm": 0.06618245341205883,
+      "first_useful": null,
+      "first_nonzero": null,
+      "coverage_violating_steps": 0,
+      "negative_conditional_gain_steps": 0
+    },
+    "256": {
+      "monitor": 202.0428786977527,
+      "point": 199.41581992789725,
+      "certified": 202.0428786977527,
+      "oracle": 197.14811376788396,
+      "certified_gain": 0.0,
+      "conditional_certified_gain": 0.0,
+      "squared_actions": 0.0,
+      "point_gain": 2.6270587698554064,
+      "current_certified_action_norm": 0.0,
+      "current_true_pollution_norm": 0.08593850542442054,
+      "first_useful": null,
+      "first_nonzero": null,
+      "coverage_violating_steps": 0,
+      "negative_conditional_gain_steps": 0
+    },
+    "512": {
+      "monitor": 409.1772539416257,
+      "point": 401.70507137451136,
+      "certified": 409.1772539416257,
+      "oracle": 399.5713885211473,
+      "certified_gain": 0.0,
+      "conditional_certified_gain": 0.0,
+      "squared_actions": 0.0,
+      "point_gain": 7.472182567114114,
+      "current_certified_action_norm": 0.0,
+      "current_true_pollution_norm": 0.085762474507811,
+      "first_useful": null,
+      "first_nonzero": null,
+      "coverage_violating_steps": 0,
+      "negative_conditional_gain_steps": 0
+    }
+  },
+  "certificate_queries": [
+    {
+      "time": 127,
+      "level": 0.025,
+      "direction": [
+        "1",
+        "50933/1000000"
+      ],
+      "certified": false,
+      "correction": [
+        "0",
+        "0"
+      ],
+      "guaranteed_gain": "0",
+      "nodes": 64,
+      "reason": "UNRESOLVED_NODE_LIMIT",
+      "target_support": "0.026273325",
+      "reference_log_cutoff": {
+        "lo": "2.0929745555671058558126127679151246799134262576454",
+        "hi": "2.0929745555671058558126127679151246799134262579755"
+      },
+      "nonempty_witness": {
+        "onset": 0,
+        "amplitude": ".05"
+      }
+    },
+    {
+      "time": 255,
+      "level": 0.025,
+      "direction": [
+        "1",
+        "-883207/1000000"
+      ],
+      "certified": false,
+      "correction": [
+        "0",
+        "0"
+      ],
+      "guaranteed_gain": "0",
+      "nodes": 64,
+      "reason": "UNRESOLVED_NODE_LIMIT",
+      "target_support": "0.047080175",
+      "reference_log_cutoff": {
+        "lo": "2.6636343179810200267345885500248818805032407148178",
+        "hi": "2.6636343179810200267345885500248818805032407168755"
+      },
+      "nonempty_witness": {
+        "onset": 0,
+        "amplitude": ".05"
+      }
+    },
+    {
+      "time": 383,
+      "level": 0.025,
+      "direction": [
+        "7491/100000",
+        "-1"
+      ],
+      "certified": false,
+      "correction": [
+        "0",
+        "0"
+      ],
+      "guaranteed_gain": "0",
+      "nodes": 64,
+      "reason": "UNRESOLVED_NODE_LIMIT",
+      "target_support": "0.02687275",
+      "reference_log_cutoff": {
+        "lo": "12.034133375678933287095780920614093795256026018092",
+        "hi": "12.034133375678933287095780920614093795256026088502"
+      },
+      "nonempty_witness": {
+        "onset": 0,
+        "amplitude": ".10"
+      }
+    },
+    {
+      "time": 511,
+      "level": 0.025,
+      "direction": [
+        "323333/500000",
+        "-1"
+      ],
+      "certified": false,
+      "correction": [
+        "0",
+        "0"
+      ],
+      "guaranteed_gain": "0",
+      "nodes": 64,
+      "reason": "UNRESOLVED_NODE_LIMIT",
+      "target_support": "0.04116665",
+      "reference_log_cutoff": {
+        "lo": "23.631703628567286368051508099726029480915609336856",
+        "hi": "23.631703628567286368051508099726029480915611032685"
+      },
+      "nonempty_witness": {
+        "onset": 0,
+        "amplitude": ".10"
+      }
+    }
+  ],
+  "timing": {
+    "maintenance": 31.73172340146266,
+    "point_scoring": 0.8615281000966206,
+    "certificate_search": 111.3804559999844,
+    "transport": 0.018741899402812123
+  },
+  "total_seconds": 145.39102079998702,
+  "steps": 562,
+  "alarm_time": 88,
+  "first_useful": null,
+  "first_nonzero": null,
+  "coverage_violating_steps": 0,
+  "negative_conditional_gain_steps": 0,
+  "nonzero_output_steps": 0,
+  "max_prior_error_norm": 2.6350769317235163,
+  "record_stats": {
+    "candidate_updates": 158203,
+    "suffix_trigger_evaluations": 2266,
+    "likelihood_evaluations": 4488,
+    "segments_tested": 1741
+  },
+  "freeze_sha256": "71d29ca0ba09a63f3c4d6d2e2f29eeae39555f26a5c08f724e24bec1313250f6",
+  "numerics": "exact rational gains/certificate propagation plus Decimal likelihood intervals; floating Gaussian physical generator",
+  "full_cost_includes_all_candidate_maintenance": true
+}
