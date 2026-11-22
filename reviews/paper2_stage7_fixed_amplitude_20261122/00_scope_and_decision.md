@@ -1,0 +1,13 @@
+# Stage 7: fixed-amplitude evidence retention
+
+This package tests the Stage 6 proposal that a positive directional pollution certificate should be converted into onset-specific lower bounds on the attack amplitude, then propagated under the original constant-amplitude attack model.
+
+The scope remains the Stage 6 V2 model: a centralized two-state linear system, one scalar measurement, the original event trigger, trusted event bit, exact reconstructed measurement center, and continuous received payload. The monitor, trigger, likelihood, and attack timing are unchanged. The attack has one fixed onset (k^\star) and one nonnegative amplitude (b^\star\in[0,b_{\max}]), injected at every trusted send after onset.
+
+The principal result is that this information retention can prevent a certified correction from disappearing under the conservative half-space propagation. On the identical 12 strong-attack Stage 6 traces, the new output had a useful correction 50 steps after a successful certificate in 8/12 episodes, versus 0/12 for the old output. This was then repeated on a locked independent seed with the full certificate search: strong attacks had successful certificates in 11/12 episodes and a useful correction at lag 50 in 8/12, again versus 0/12 for the old output. At the 512-step endpoint, the independent paired sample MSE improvement was 2.1496 for the new output versus 0.0626 for the old output; the paired difference was 2.0869 with a descriptive 95% Student-t interval [0.9417, 3.2322].
+
+The output guarantee is maintained by interval outer bounds, exact covariance/gain recursions, and an explicit fallback to the already certified old action whenever the new computed lower gain is weaker. A separate exact-rational implementation establishes the algebra on short event trees. The high-level comparison (G_{new}\ge G_{old}) applies to the exact minimax projection or same-direction support objective; it does not assert that arbitrary capped projection vectors have a monotone sample MSE.
+
+The first direct support implementation cost about 82 seconds per strong-attack replay. An incremental adjoint projection cache reduced this to 5.33 seconds on average, with exactly identical outputs on all 36 frozen traces. This performance comparison still reuses saved certificate decisions and excludes fresh likelihood certification.
+
+The independent run also preserved zero corrections on all healthy and weak-attack episodes. No coverage, old-support, or nondegradation counter was triggered in the 36 confirmation episodes. The formal manuscript was not edited. The method now has replicated small-sample evidence of useful recovery, while larger-scale evaluation and model-mismatch testing remain open.

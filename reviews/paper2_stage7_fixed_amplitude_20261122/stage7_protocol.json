@@ -1,0 +1,20 @@
+{
+  "identity": "Stage 7 fixed-amplitude evidence-retention paired replay",
+  "baseline_commit": "2902675af6dd7f98efdf5f957eead689626a799f",
+  "model": "Stage 6 V2 two-state, single scalar sensor; no trigger/monitor/likelihood changes",
+  "attack_model": "one onset k and one fixed b in [0, 0.25], injected at trusted sends",
+  "replay_stage": "Stage 6 final only; all 12 saved episodes per b; same three RNG streams and final seeds",
+  "attack_strengths": [0.0, 0.1, 0.25],
+  "attack_start": 50,
+  "evaluation_windows": [128, 256, 512],
+  "certification_times": [127, 255, 383, 511],
+  "workers": 4,
+  "certificate_evidence": "replay every successful saved Stage 6 certificate query; failed queries leave the outer set unchanged",
+  "parameter_outer_set": "per-onset b interval intersected with every successful directional certificate; unit response H is outward-Decimal interval",
+  "response_arithmetic": "exact rational Riccati matrices plus Stage 4 directed Decimal interval arithmetic (50-digit precision)",
+  "direction_transport": "adjoint transport under exact F with support recomputed over the fixed-amplitude outer set",
+  "legacy_fallback": "if interval support does not certify at least the old action guarantee, retain the old valid action",
+  "metrics": ["G_cert squared action norm lower bound", "G_cond truth-only conditional risk gain", "G_sample paired cumulative MSE gain", "certificate lag 0/1/10/25/50", "replay compute time"],
+  "fresh_samples": false,
+  "reason": "This stage first isolates propagation on identical archived final traces; it does not count saved certificate search cost or claim independent performance confirmation."
+}

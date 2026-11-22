@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "episodes": 36,
+  "max_absolute_output_difference": {
+    "monitor": 0.0,
+    "old_cert": 0.0,
+    "new_directional": 0.0,
+    "old_gain": 0.0,
+    "new_directional_gain": 0.0,
+    "old_conditional_gain": 0.0,
+    "new_directional_conditional_gain": 0.0,
+    "old_action_square": 0.0,
+    "new_action_square": 0.0,
+    "old_current_action_norm": 0.0,
+    "new_current_action_norm": 0.0,
+    "old_current_bound": 0.0,
+    "new_current_bound": 0.0
+  },
+  "metric_differences_over_1e-12": {
+    "monitor": 0,
+    "old_cert": 0,
+    "new_directional": 0,
+    "old_gain": 0,
+    "new_directional_gain": 0,
+    "old_conditional_gain": 0,
+    "new_directional_conditional_gain": 0,
+    "old_action_square": 0,
+    "new_action_square": 0,
+    "old_current_action_norm": 0,
+    "new_current_action_norm": 0,
+    "old_current_bound": 0,
+    "new_current_bound": 0
+  },
+  "runtime_by_attack_strength": {
+    "0.0": {
+      "n": 12,
+      "direct_support_mean_seconds": 0.003922091913409531,
+      "cached_support_mean_seconds": 0.0037193416404382638,
+      "support_speedup_geomean": 1.0516660593053087,
+      "direct_episode_mean_seconds": 3.0759273916773964,
+      "cached_episode_mean_seconds": 3.084345841644487
+    },
+    "0.1": {
+      "n": 12,
+      "direct_support_mean_seconds": 0.003959675300090264,
+      "cached_support_mean_seconds": 0.004996966609420876,
+      "support_speedup_geomean": 0.7923439564068426,
+      "direct_episode_mean_seconds": 3.1916926999983843,
+      "cached_episode_mean_seconds": 3.7257951333206925
+    },
+    "0.25": {
+      "n": 12,
+      "direct_support_mean_seconds": 81.97263832452397,
+      "cached_support_mean_seconds": 5.327680799586233,
+      "support_speedup_geomean": 8.111344845991434,
+      "direct_episode_mean_seconds": 92.04561645833503,
+      "cached_episode_mean_seconds": 17.07422845834905
+    }
+  },
+  "interpretation": "Same trace/evidence outputs; cached q lower bounds are outward and may differ from direct interval multiplication only within numerical enclosure.",
+  "claims_boundary": "No new random samples; no independent performance confirmation."
+}

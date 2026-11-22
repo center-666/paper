@@ -1,0 +1,166 @@
+{
+  "stage": "final",
+  "b": 0.25,
+  "episode": 8,
+  "steps": 562,
+  "snapshots": {
+    "128": {
+      "monitor": 83.76692206430377,
+      "old_cert": 83.76692206430377,
+      "new_directional": 83.76692206430377,
+      "old_gain": 0.0,
+      "new_directional_gain": 0.0,
+      "old_conditional_gain": 0.0,
+      "new_directional_conditional_gain": 0.0,
+      "old_action_square": 0.0,
+      "new_action_square": 0.0,
+      "old_current_action_norm": 0.0,
+      "new_current_action_norm": 0.0,
+      "old_current_bound": 0.0,
+      "new_current_bound": 0.0,
+      "first_old_useful": null,
+      "first_new_useful": null,
+      "new_interval_onsets": 0,
+      "coverage_violations": 0,
+      "old_support_violations": 0,
+      "bound_monotonicity_violations": 0
+    },
+    "256": {
+      "monitor": 165.9954701958333,
+      "old_cert": 165.9954701958333,
+      "new_directional": 165.9954701958333,
+      "old_gain": 0.0,
+      "new_directional_gain": 0.0,
+      "old_conditional_gain": 0.0,
+      "new_directional_conditional_gain": 0.0,
+      "old_action_square": 0.0,
+      "new_action_square": 0.0,
+      "old_current_action_norm": 0.0,
+      "new_current_action_norm": 0.0,
+      "old_current_bound": 0.0,
+      "new_current_bound": 0.0,
+      "first_old_useful": null,
+      "first_new_useful": null,
+      "new_interval_onsets": 0,
+      "coverage_violations": 0,
+      "old_support_violations": 0,
+      "bound_monotonicity_violations": 0
+    },
+    "512": {
+      "monitor": 312.9464689668436,
+      "old_cert": 312.88935948330436,
+      "new_directional": 312.7014897455301,
+      "old_gain": 0.057109483539334746,
+      "new_directional_gain": 0.24497922131352953,
+      "old_conditional_gain": 0.03026663819653011,
+      "new_directional_conditional_gain": 0.6769394389186995,
+      "old_action_square": 0.0015787827981180323,
+      "new_action_square": 0.0480882881578553,
+      "old_current_action_norm": 5.409485455953605e-26,
+      "new_current_action_norm": 0.014906800479891454,
+      "old_current_bound": 2.926253289817358e-51,
+      "new_current_bound": 0.00022221270054729208,
+      "first_old_useful": 383,
+      "first_new_useful": 383,
+      "new_interval_onsets": 384,
+      "coverage_violations": 0,
+      "old_support_violations": 0,
+      "bound_monotonicity_violations": 0
+    }
+  },
+  "lag_snapshots": {
+    "383+0": {
+      "target_time": 383,
+      "lag": 0,
+      "old_bound": 0.0007503412363001013,
+      "new_bound": 0.0007503412363001013,
+      "old_action_norm": 0.027392357260741566,
+      "new_action_norm": 0.027392357260741566,
+      "new_support": "0.02753255",
+      "new_direction_origin": {
+        "legacy_fallback": true
+      }
+    },
+    "383+1": {
+      "target_time": 384,
+      "lag": 1,
+      "old_bound": 0.000496652017174463,
+      "new_bound": 0.000496652017174463,
+      "old_action_norm": 0.022285690861502654,
+      "new_action_norm": 0.022285690861502654,
+      "new_support": "0.0222857734636",
+      "new_direction_origin": {
+        "legacy_fallback": true
+      }
+    },
+    "383+10": {
+      "target_time": 393,
+      "lag": 10,
+      "old_bound": 1.2455625689108807e-06,
+      "new_bound": 0.00019829322129879441,
+      "old_action_norm": 0.0011160477449064985,
+      "new_action_norm": 0.014081662590006708,
+      "new_support": "0.347390226907",
+      "new_direction_origin": {
+        "time": 383,
+        "z": "550651/20000000"
+      }
+    },
+    "383+25": {
+      "target_time": 408,
+      "lag": 25,
+      "old_bound": 5.093275532136688e-11,
+      "new_bound": 0.00027366492445857405,
+      "old_action_norm": 7.136718806382026e-06,
+      "new_action_norm": 0.0165428209341265,
+      "new_support": "63.8200911184",
+      "new_direction_origin": {
+        "time": 383,
+        "z": "550651/20000000"
+      }
+    },
+    "383+50": {
+      "target_time": 433,
+      "lag": 50,
+      "old_bound": 9.2738619744241e-18,
+      "new_bound": 5.028316925748673e-05,
+      "old_action_norm": 3.0453016228978205e-09,
+      "new_action_norm": 0.007091062632461141,
+      "new_support": "64110.2460963",
+      "new_direction_origin": {
+        "time": 383,
+        "z": "550651/20000000"
+      }
+    }
+  },
+  "successful_certificates": [
+    {
+      "time": 383,
+      "direction": [
+        "1",
+        "50651/500000"
+      ],
+      "z": "550651/20000000",
+      "input_onsets": 384,
+      "retained_onsets": 384,
+      "removed_onsets": [],
+      "raised_lower_bounds": 384,
+      "minimum_b_lower": "16546292925510927887938944428842059695320320915749/500000000000000000000000000000000000000000000000000"
+    }
+  ],
+  "timing": {
+    "exact_dynamics": 11.132097300258465,
+    "parameter_updates": 0.030218000058084726,
+    "support_search": 70.08344610023778
+  },
+  "replay_seconds": 82.56380389991682,
+  "coverage_violations": 0,
+  "old_support_violations": 0,
+  "bound_monotonicity_violations": 0,
+  "new_direction_count": 1,
+  "freeze_stage6_sha256": "71d29ca0ba09a63f3c4d6d2e2f29eeae39555f26a5c08f724e24bec1313250f6",
+  "certificate_decisions": "replayed from Stage 6 saved query JSON; certificate search runtime excluded",
+  "physical_rng_identity": "same SeedSequence([final_seed, attack_index, episode_index]) and Generator spawn order as pilot_v2.py",
+  "response_arithmetic": "exact Fraction Riccati gains and onset responses; exact rational amplitude bounds",
+  "sample_generator": "NumPy float64, matching Stage 6 pilot_v2.py"
+}

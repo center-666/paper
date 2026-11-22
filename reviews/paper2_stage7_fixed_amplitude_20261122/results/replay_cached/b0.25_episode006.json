@@ -1,0 +1,168 @@
+{
+  "stage": "final",
+  "b": 0.25,
+  "episode": 6,
+  "steps": 562,
+  "snapshots": {
+    "128": {
+      "monitor": 113.77646448428068,
+      "old_cert": 113.77646448428068,
+      "new_directional": 113.77646448428068,
+      "old_gain": 0.0,
+      "new_directional_gain": 0.0,
+      "old_conditional_gain": 0.0,
+      "new_directional_conditional_gain": 0.0,
+      "old_action_square": 0.0,
+      "new_action_square": 0.0,
+      "old_current_action_norm": 0.0,
+      "new_current_action_norm": 0.0,
+      "old_current_bound": 0.0,
+      "new_current_bound": 0.0,
+      "first_old_useful": null,
+      "first_new_useful": null,
+      "new_interval_onsets": 0,
+      "coverage_violations": 0,
+      "old_support_violations": 0,
+      "bound_monotonicity_violations": 0
+    },
+    "256": {
+      "monitor": 186.28951484090715,
+      "old_cert": 186.28951484090715,
+      "new_directional": 186.28951484090715,
+      "old_gain": 0.0,
+      "new_directional_gain": 0.0,
+      "old_conditional_gain": 0.0,
+      "new_directional_conditional_gain": 0.0,
+      "old_action_square": 0.0,
+      "new_action_square": 0.0,
+      "old_current_action_norm": 0.0,
+      "new_current_action_norm": 0.0,
+      "old_current_bound": 0.0,
+      "new_current_bound": 0.0,
+      "first_old_useful": null,
+      "first_new_useful": null,
+      "new_interval_onsets": 0,
+      "coverage_violations": 0,
+      "old_support_violations": 0,
+      "bound_monotonicity_violations": 0
+    },
+    "512": {
+      "monitor": 294.77905148959707,
+      "old_cert": 294.6602693221688,
+      "new_directional": 294.9218198488768,
+      "old_gain": 0.11878216742835049,
+      "new_directional_gain": -0.14276835927979506,
+      "old_conditional_gain": 0.017949618023686817,
+      "new_directional_conditional_gain": 0.27898983247355236,
+      "old_action_square": 0.001848014561910571,
+      "new_action_square": 0.034320153051809764,
+      "old_current_action_norm": 4.7734418611943835e-09,
+      "new_current_action_norm": 0.03103798687545591,
+      "old_current_bound": 2.27857472022029e-17,
+      "new_current_bound": 0.0009633566292809733,
+      "first_old_useful": 511,
+      "first_new_useful": 511,
+      "new_interval_onsets": 511,
+      "coverage_violations": 0,
+      "old_support_violations": 0,
+      "bound_monotonicity_violations": 0
+    }
+  },
+  "lag_snapshots": {
+    "511+0": {
+      "target_time": 511,
+      "lag": 0,
+      "old_bound": 0.0007539151118694456,
+      "new_bound": 0.0007539151118694456,
+      "old_action_norm": 0.02745751467029465,
+      "new_action_norm": 0.02745751467029465,
+      "new_support": "0.027606325",
+      "new_direction_origin": {
+        "legacy_fallback": true
+      }
+    },
+    "511+1": {
+      "target_time": 512,
+      "lag": 1,
+      "old_bound": 0.0004669354625277757,
+      "new_bound": 0.0004669354625277757,
+      "old_action_norm": 0.02160868951435454,
+      "new_action_norm": 0.02160868951435454,
+      "new_support": "0.021902481823",
+      "new_direction_origin": {
+        "legacy_fallback": true
+      }
+    },
+    "511+10": {
+      "target_time": 521,
+      "lag": 10,
+      "old_bound": 6.205800491750458e-07,
+      "new_bound": 0.0017016553094694738,
+      "old_action_norm": 0.0007877690328865726,
+      "new_action_norm": 0.04125112494792686,
+      "new_support": "1.44559117506",
+      "new_direction_origin": {
+        "time": 511,
+        "z": "1104253/40000000"
+      }
+    },
+    "511+25": {
+      "target_time": 536,
+      "lag": 25,
+      "old_bound": 9.997296208538608e-11,
+      "new_bound": 0.00012332512677704495,
+      "old_action_norm": 9.998648012875845e-06,
+      "new_action_norm": 0.011105184680006224,
+      "new_support": "30.6614791386",
+      "new_direction_origin": {
+        "time": 511,
+        "z": "1104253/40000000"
+      }
+    },
+    "511+50": {
+      "target_time": 561,
+      "lag": 50,
+      "old_bound": 2.27857472022029e-17,
+      "new_bound": 0.0009633566292809733,
+      "old_action_norm": 4.7734418611943835e-09,
+      "new_action_norm": 0.03103798687545591,
+      "new_support": "179502.501119",
+      "new_direction_origin": {
+        "time": 511,
+        "z": "1104253/40000000"
+      }
+    }
+  },
+  "successful_certificates": [
+    {
+      "time": 511,
+      "direction": [
+        "1",
+        "-104253/1000000"
+      ],
+      "z": "1104253/40000000",
+      "input_onsets": 512,
+      "retained_onsets": 511,
+      "removed_onsets": [
+        511
+      ],
+      "raised_lower_bounds": 511,
+      "minimum_b_lower": "6827182275655820681420673506224291812053747056031/125000000000000000000000000000000000000000000000000"
+    }
+  ],
+  "timing": {
+    "exact_dynamics": 13.237674901261926,
+    "parameter_updates": 0.09743069997057319,
+    "support_search": 35.476634601014666
+  },
+  "replay_seconds": 49.38127829995938,
+  "coverage_violations": 0,
+  "old_support_violations": 0,
+  "bound_monotonicity_violations": 0,
+  "new_direction_count": 1,
+  "freeze_stage6_sha256": "71d29ca0ba09a63f3c4d6d2e2f29eeae39555f26a5c08f724e24bec1313250f6",
+  "certificate_decisions": "replayed from Stage 6 saved query JSON; certificate search runtime excluded",
+  "physical_rng_identity": "same SeedSequence([final_seed, attack_index, episode_index]) and Generator spawn order as pilot_v2.py",
+  "response_arithmetic": "exact Fraction Riccati gains and onset responses; exact rational amplitude bounds",
+  "sample_generator": "NumPy float64, matching Stage 6 pilot_v2.py"
+}
