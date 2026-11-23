@@ -1,0 +1,899 @@
+{
+  "status": "PASS",
+  "research_base_commit": "7a2bca78e572f7a8e603da0f0ed237a6be6bda0c",
+  "audit_scope": "proof-dependency review, exact covariance recomputation, archived evidence reconciliation",
+  "covariance_and_risk": {
+    "checks": {
+      "observable": true,
+      "initial_above_process_covariance": true,
+      "initial_below_supersolution": true,
+      "supersolution_slack_positive": true,
+      "prior_upper_le_identity": true,
+      "process_covariance": true,
+      "posterior_lower": true,
+      "posterior_upper_le_identity": true
+    },
+    "exact_slack": [
+      [
+        "5281/12500",
+        "-1499/50000"
+      ],
+      [
+        "-1499/50000",
+        "14513/1600000"
+      ]
+    ],
+    "slack_determinant": "11733429/4000000000",
+    "M": "5",
+    "rho_squared": "19/20",
+    "conservative_theta_radius": "250/11",
+    "expectation_penalty_512": "33408/1375",
+    "expectation_penalty_display": 24.296727272727274
+  },
+  "scalar_time_contract": {
+    "archived_leaf_verifications": [
+      {
+        "model": "S1",
+        "gap": ".15",
+        "leaves": 10503
+      },
+      {
+        "model": "S1",
+        "gap": ".25",
+        "leaves": 1212
+      },
+      {
+        "model": "S1",
+        "gap": ".2",
+        "leaves": 2993
+      },
+      {
+        "model": "U1",
+        "gap": ".15",
+        "leaves": 9174
+      },
+      {
+        "model": "U1",
+        "gap": ".25",
+        "leaves": 1144
+      },
+      {
+        "model": "U1",
+        "gap": ".2",
+        "leaves": 2542
+      }
+    ],
+    "leaf_count": 27568,
+    "sufficient_ages": {
+      "S1": 255199,
+      "U1": 252346
+    },
+    "amplitude_dictionary": [
+      "0.05",
+      "0.10",
+      "0.25"
+    ],
+    "current_run_scope": "archived verification and raw certificate hashes"
+  },
+  "scalar_detection_evidence": {
+    "joint_detection": [
+      {
+        "model": "S1",
+        "method": "P1_conditional_payload_mixture",
+        "detected": "49848",
+        "eligible_n": "49894",
+        "power": "0.9990780454563675",
+        "CP_lower95": "0.9987704311228144",
+        "restricted_delay": "159.65013829318156"
+      },
+      {
+        "model": "S1",
+        "method": "J1_joint_mixture",
+        "detected": "49846",
+        "eligible_n": "49892",
+        "power": "0.9990780084983565",
+        "CP_lower95": "0.9987703818411836",
+        "restricted_delay": "159.5846829150966"
+      },
+      {
+        "model": "U1",
+        "method": "P1_conditional_payload_mixture",
+        "detected": "49836",
+        "eligible_n": "49882",
+        "power": "0.9990778236638467",
+        "CP_lower95": "0.9987701353737607",
+        "restricted_delay": "159.52814642556433"
+      },
+      {
+        "model": "U1",
+        "method": "J1_joint_mixture",
+        "detected": "49828",
+        "eligible_n": "49878",
+        "power": "0.9989975540318377",
+        "CP_lower95": "0.9986786108878571",
+        "restricted_delay": "159.13851798388066"
+      }
+    ],
+    "phase_averaged_event_information": [
+      {
+        "n": 50000,
+        "sample_mean_conditional_KL_sum": 0.04637208936380358,
+        "sample_variance_conditional_KL_sum": 1.2652587858218618e-05,
+        "proved_sample_range_upper": 2.2251613691461074,
+        "failure_probability": 0.0006944444444444445,
+        "empirical_Bernstein_radius": 0.0008906589097843903,
+        "population_event_record_KL_upper": 0.04726274827358797,
+        "false_alarm_budget": 0.01,
+        "horizon": 2048,
+        "model": "S1",
+        "attack_strength": 0.25,
+        "event_only_detection_probability_upper": 0.16372499515951852,
+        "binary_data_processing_detection_probability_upper": 0.05353952995578419,
+        "scope": "Any detector measurable from event history and deterministic covariance labels; not payload/phase logs.",
+        "onset": 200,
+        "eligible_power_upper": 0.0540803332886709
+      },
+      {
+        "n": 50000,
+        "sample_mean_conditional_KL_sum": 0.8144864337130003,
+        "sample_variance_conditional_KL_sum": 0.0026411121711133164,
+        "proved_sample_range_upper": 6.615959504443779,
+        "failure_probability": 0.0006944444444444445,
+        "empirical_Bernstein_radius": 0.00337671157613455,
+        "population_event_record_KL_upper": 0.8178631452891348,
+        "false_alarm_budget": 0.01,
+        "horizon": 2048,
+        "model": "U1",
+        "attack_strength": 0.25,
+        "event_only_detection_probability_upper": 0.6494775779060338,
+        "binary_data_processing_detection_probability_upper": 0.31063909501393966,
+        "scope": "Any detector measurable from event history and deterministic covariance labels; not payload/phase logs.",
+        "onset": 200,
+        "eligible_power_upper": 0.3137768636504441
+      }
+    ]
+  },
+  "stage7": {
+    "strong_episodes": 12,
+    "paired_gain_fixed_parameters_vs_halfspace": {
+      "n": 12,
+      "mean": 2.0869469159358123,
+      "t95": [
+        0.9416837930485922,
+        3.232210038823032
+      ]
+    },
+    "total_confirmation_episodes": 36
+  },
+  "stage9": {
+    "archived_deterministic_checks": 1712,
+    "verified_trace_contracts": {
+      "replay": {
+        "episodes": 9,
+        "logged_queries": 69,
+        "verified_stage9_certificate_ids": 34
+      },
+      "fresh": {
+        "episodes": 15,
+        "logged_queries": 69,
+        "verified_stage9_certificate_ids": 10
+      }
+    },
+    "replay": {
+      "episodes": 9,
+      "common_queries": 69,
+      "joint_successes": 34,
+      "different_decisions": 0,
+      "query_seconds": {
+        "8": 1598.678232200018,
+        "9": 1044.307790199975
+      },
+      "end_to_end_seconds": {
+        "8": 2043.4583001000137,
+        "9": 1587.2671880999987
+      },
+      "query_reduction_percent": 34.67679929795173,
+      "end_to_end_reduction_percent": 22.32446397255513,
+      "mean_query_seconds": {
+        "8": 23.169249742029248,
+        "9": 15.134895510144565
+      },
+      "maximum_query_seconds": {
+        "8": 80.31504040000073,
+        "9": 57.78592109999954
+      },
+      "cases": {
+        "-1": {
+          "n": 9,
+          "amplitude": "1/4",
+          "onset": 50,
+          "mean_cumulative_loss": {
+            "monitor": 305.49437040452347,
+            "point": 296.0588871648514,
+            "8": 302.7764555010874,
+            "9": 302.7430255088269
+          },
+          "gain_vs_monitor": {
+            "point": {
+              "mean": 9.435483239672104,
+              "t95": [
+                5.117908566752825,
+                13.753057912591384
+              ]
+            },
+            "8": {
+              "mean": 2.717914903436041,
+              "t95": [
+                1.34742144813559,
+                4.088408358736492
+              ]
+            },
+            "9": {
+              "mean": 2.751344895696573,
+              "t95": [
+                1.390700114340048,
+                4.1119896770530975
+              ]
+            }
+          },
+          "stage9_gain_vs_stage8": {
+            "mean": 0.03342999226053204,
+            "t95": [
+              0.010206001152526439,
+              0.056653983368537636
+            ]
+          },
+          "methods": {
+            "point": {
+              "mean_conditional_gain": 8.952927946624687,
+              "mean_guarantee": 0.0,
+              "mean_nonzero_steps": 435.0,
+              "first_useful_times": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              "any_false_episode": 0,
+              "false_steps": 0,
+              "coverage_misses": 0,
+              "risk_violations": 0
+            },
+            "8": {
+              "mean_conditional_gain": 2.173680720165017,
+              "mean_guarantee": 0.4490388359537704,
+              "mean_nonzero_steps": 235.88888888888889,
+              "first_useful_times": [
+                383,
+                383,
+                383,
+                255,
+                383,
+                383,
+                255,
+                255,
+                255
+              ],
+              "any_false_episode": 0,
+              "false_steps": 0,
+              "coverage_misses": 0,
+              "risk_violations": 0
+            },
+            "9": {
+              "mean_conditional_gain": 2.2058837879662656,
+              "mean_guarantee": 0.45964552220429344,
+              "mean_nonzero_steps": 235.88888888888889,
+              "first_useful_times": [
+                383,
+                383,
+                383,
+                255,
+                383,
+                383,
+                255,
+                255,
+                255
+              ],
+              "any_false_episode": 0,
+              "false_steps": 0,
+              "coverage_misses": 0,
+              "risk_violations": 0
+            }
+          }
+        }
+      }
+    },
+    "fresh": {
+      "episodes": 15,
+      "common_queries": 69,
+      "joint_successes": 10,
+      "different_decisions": 0,
+      "query_seconds": {
+        "8": 919.6752708999884,
+        "9": 748.281085100014
+      },
+      "end_to_end_seconds": {
+        "8": 1529.6629802001407,
+        "9": 1403.2945644999454
+      },
+      "query_reduction_percent": 18.63638082083572,
+      "end_to_end_reduction_percent": 8.261193304401038,
+      "mean_query_seconds": {
+        "8": 13.328627114492585,
+        "9": 10.84465340724658
+      },
+      "maximum_query_seconds": {
+        "8": 65.74080039999899,
+        "9": 60.377336300000024
+      },
+      "cases": {
+        "0": {
+          "n": 3,
+          "amplitude": "0",
+          "onset": 50,
+          "mean_cumulative_loss": {
+            "monitor": 307.4035540367665,
+            "point": 309.40131259439596,
+            "8": 307.4035540367665,
+            "9": 307.4035540367665
+          },
+          "gain_vs_monitor": {
+            "point": {
+              "mean": -1.997758557629434,
+              "t95": [
+                -8.77405671389152,
+                4.778539598632651
+              ]
+            },
+            "8": {
+              "mean": 0.0,
+              "t95": [
+                0.0,
+                0.0
+              ]
+            },
+            "9": {
+              "mean": 0.0,
+              "t95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "stage9_gain_vs_stage8": {
+            "mean": 0.0,
+            "t95": [
+              0.0,
+              0.0
+            ]
+          },
+          "methods": {
+            "point": {
+              "mean_conditional_gain": -2.6862698889581016,
+              "mean_guarantee": 0.0,
+              "mean_nonzero_steps": 392.3333333333333,
+              "first_useful_times": [
+                null,
+                null,
+                null
+              ],
+              "any_false_episode": 3,
+              "false_steps": 1177,
+              "coverage_misses": 0,
+              "risk_violations": 0
+            },
+            "8": {
+              "mean_conditional_gain": 0.0,
+              "mean_guarantee": 0.0,
+              "mean_nonzero_steps": 0.0,
+              "first_useful_times": [
+                null,
+                null,
+                null
+              ],
+              "any_false_episode": 0,
+              "false_steps": 0,
+              "coverage_misses": 0,
+              "risk_violations": 0
+            },
+            "9": {
+              "mean_conditional_gain": 0.0,
+              "mean_guarantee": 0.0,
+              "mean_nonzero_steps": 0.0,
+              "first_useful_times": [
+                null,
+                null,
+                null
+              ],
+              "any_false_episode": 0,
+              "false_steps": 0,
+              "coverage_misses": 0,
+              "risk_violations": 0
+            }
+          }
+        },
+        "1": {
+          "n": 3,
+          "amplitude": "1/10",
+          "onset": 50,
+          "mean_cumulative_loss": {
+            "monitor": 290.3537380860489,
+            "point": 290.71640979588534,
+            "8": 290.3537380860489,
+            "9": 290.3537380860489
+          },
+          "gain_vs_monitor": {
+            "point": {
+              "mean": -0.3626717098364054,
+              "t95": [
+                -8.834000401147918,
+                8.108656981475107
+              ]
+            },
+            "8": {
+              "mean": 0.0,
+              "t95": [
+                0.0,
+                0.0
+              ]
+            },
+            "9": {
+              "mean": 0.0,
+              "t95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "stage9_gain_vs_stage8": {
+            "mean": 0.0,
+            "t95": [
+              0.0,
+              0.0
+            ]
+          },
+          "methods": {
+            "point": {
+              "mean_conditional_gain": 0.549630047197775,
+              "mean_guarantee": 0.0,
+              "mean_nonzero_steps": 435.0,
+              "first_useful_times": [
+                null,
+                null,
+                null
+              ],
+              "any_false_episode": 0,
+              "false_steps": 0,
+              "coverage_misses": 0,
+              "risk_violations": 0
+            },
+            "8": {
+              "mean_conditional_gain": 0.0,
+              "mean_guarantee": 0.0,
+              "mean_nonzero_steps": 0.0,
+              "first_useful_times": [
+                null,
+                null,
+                null
+              ],
+              "any_false_episode": 0,
+              "false_steps": 0,
+              "coverage_misses": 0,
+              "risk_violations": 0
+            },
+            "9": {
+              "mean_conditional_gain": 0.0,
+              "mean_guarantee": 0.0,
+              "mean_nonzero_steps": 0.0,
+              "first_useful_times": [
+                null,
+                null,
+                null
+              ],
+              "any_false_episode": 0,
+              "false_steps": 0,
+              "coverage_misses": 0,
+              "risk_violations": 0
+            }
+          }
+        },
+        "2": {
+          "n": 3,
+          "amplitude": "1/4",
+          "onset": 50,
+          "mean_cumulative_loss": {
+            "monitor": 332.5382892570529,
+            "point": 324.2805631479663,
+            "8": 330.30773594622957,
+            "9": 330.29105001381663
+          },
+          "gain_vs_monitor": {
+            "point": {
+              "mean": 8.257726109086642,
+              "t95": [
+                -8.733698491606306,
+                25.24915070977959
+              ]
+            },
+            "8": {
+              "mean": 2.230553310823344,
+              "t95": [
+                -1.1888127899310401,
+                5.649919411577728
+              ]
+            },
+            "9": {
+              "mean": 2.247239243236303,
+              "t95": [
+                -1.193995259739009,
+                5.688473746211615
+              ]
+            }
+          },
+          "stage9_gain_vs_stage8": {
+            "mean": 0.01668593241295942,
+            "t95": [
+              -0.027359513296138258,
+              0.0607313781220571
+            ]
+          },
+          "methods": {
+            "point": {
+              "mean_conditional_gain": 9.664792860598887,
+              "mean_guarantee": 0.0,
+              "mean_nonzero_steps": 435.0,
+              "first_useful_times": [
+                null,
+                null,
+                null
+              ],
+              "any_false_episode": 0,
+              "false_steps": 0,
+              "coverage_misses": 0,
+              "risk_violations": 0
+            },
+            "8": {
+              "mean_conditional_gain": 2.0973307886731862,
+              "mean_guarantee": 0.33749168468568186,
+              "mean_nonzero_steps": 221.66666666666666,
+              "first_useful_times": [
+                255,
+                383,
+                383
+              ],
+              "any_false_episode": 0,
+              "false_steps": 0,
+              "coverage_misses": 0,
+              "risk_violations": 0
+            },
+            "9": {
+              "mean_conditional_gain": 2.122477035324897,
+              "mean_guarantee": 0.34474354400507967,
+              "mean_nonzero_steps": 221.66666666666666,
+              "first_useful_times": [
+                255,
+                383,
+                383
+              ],
+              "any_false_episode": 0,
+              "false_steps": 0,
+              "coverage_misses": 0,
+              "risk_violations": 0
+            }
+          }
+        },
+        "3": {
+          "n": 3,
+          "amplitude": "1/5",
+          "onset": 96,
+          "mean_cumulative_loss": {
+            "monitor": 306.27101023821524,
+            "point": 303.81236286881875,
+            "8": 306.27101023821524,
+            "9": 306.27101023821524
+          },
+          "gain_vs_monitor": {
+            "point": {
+              "mean": 2.4586473693965445,
+              "t95": [
+                -2.185239371541897,
+                7.102534110334986
+              ]
+            },
+            "8": {
+              "mean": 0.0,
+              "t95": [
+                0.0,
+                0.0
+              ]
+            },
+            "9": {
+              "mean": 0.0,
+              "t95": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "stage9_gain_vs_stage8": {
+            "mean": 0.0,
+            "t95": [
+              0.0,
+              0.0
+            ]
+          },
+          "methods": {
+            "point": {
+              "mean_conditional_gain": 6.053211279002873,
+              "mean_guarantee": 0.0,
+              "mean_nonzero_steps": 481.0,
+              "first_useful_times": [
+                null,
+                null,
+                null
+              ],
+              "any_false_episode": 0,
+              "false_steps": 0,
+              "coverage_misses": 0,
+              "risk_violations": 0
+            },
+            "8": {
+              "mean_conditional_gain": 0.0,
+              "mean_guarantee": 0.0,
+              "mean_nonzero_steps": 0.0,
+              "first_useful_times": [
+                null,
+                null,
+                null
+              ],
+              "any_false_episode": 0,
+              "false_steps": 0,
+              "coverage_misses": 0,
+              "risk_violations": 0
+            },
+            "9": {
+              "mean_conditional_gain": 0.0,
+              "mean_guarantee": 0.0,
+              "mean_nonzero_steps": 0.0,
+              "first_useful_times": [
+                null,
+                null,
+                null
+              ],
+              "any_false_episode": 0,
+              "false_steps": 0,
+              "coverage_misses": 0,
+              "risk_violations": 0
+            }
+          }
+        },
+        "4": {
+          "n": 3,
+          "amplitude": "1/4",
+          "onset": 96,
+          "mean_cumulative_loss": {
+            "monitor": 383.58410321008864,
+            "point": 376.0005075156675,
+            "8": 383.3255688408667,
+            "9": 383.3042051735997
+          },
+          "gain_vs_monitor": {
+            "point": {
+              "mean": 7.583595694421224,
+              "t95": [
+                -0.4956006297162334,
+                15.662792018558683
+              ]
+            },
+            "8": {
+              "mean": 0.25853436922193396,
+              "t95": [
+                -0.8538492402448756,
+                1.3709179786887435
+              ]
+            },
+            "9": {
+              "mean": 0.2798980364889682,
+              "t95": [
+                -0.9244060142618051,
+                1.4842020872397417
+              ]
+            }
+          },
+          "stage9_gain_vs_stage8": {
+            "mean": 0.02136366726703424,
+            "t95": [
+              -0.07055677401692986,
+              0.11328410855099835
+            ]
+          },
+          "methods": {
+            "point": {
+              "mean_conditional_gain": 9.318585698000696,
+              "mean_guarantee": 0.0,
+              "mean_nonzero_steps": 481.0,
+              "first_useful_times": [
+                null,
+                null,
+                null
+              ],
+              "any_false_episode": 0,
+              "false_steps": 0,
+              "coverage_misses": 0,
+              "risk_violations": 0
+            },
+            "8": {
+              "mean_conditional_gain": 0.16640445669953782,
+              "mean_guarantee": 0.01923548376742867,
+              "mean_nonzero_steps": 32.333333333333336,
+              "first_useful_times": [
+                null,
+                null,
+                511
+              ],
+              "any_false_episode": 0,
+              "false_steps": 0,
+              "coverage_misses": 0,
+              "risk_violations": 0
+            },
+            "9": {
+              "mean_conditional_gain": 0.18091624338750548,
+              "mean_guarantee": 0.023264082853088713,
+              "mean_nonzero_steps": 32.333333333333336,
+              "first_useful_times": [
+                null,
+                null,
+                511
+              ],
+              "any_false_episode": 0,
+              "false_steps": 0,
+              "coverage_misses": 0,
+              "risk_violations": 0
+            }
+          }
+        }
+      },
+      "healthy_total_steps": 1686
+    }
+  },
+  "open_guarantees": [
+    "positive unconditional expected recovery gain for current implementation",
+    "short-window startup for weak amplitudes and late onsets",
+    "full monitor recursion rounding enclosure",
+    "finite-word feedback and uplink observation kernels",
+    "formula-level comparison with the named identification-compensation neighbor"
+  ],
+  "source_sha256": {
+    "reviews/paper1_postcommit_phase_defense_20261121/00_scope.md": "32cf800f66944688bcb500f4847034ca3aac5d88d86fca14e630deee4adcac8f",
+    "reviews/paper2_consolidated_technical_note_20261123/audit_evidence.py": "679b129102285b287b2528c862f3379e376cc046c92bbe59b2d7afd6d3d1dc71",
+    "reviews/paper2_consolidated_technical_note_20261123/README.md": "041f7bd230750162ae9a90ce3029592087ea2cd899755fbfdd0b7b4e4488d2c5",
+    "reviews/paper2_consolidated_technical_note_20261123/technical_note.md": "2b58dc60a98000cd2fa39ee416f9843a56619d042637c0b0e7faf043a3719e5a",
+    "reviews/paper2_stage2_detection_20261121/04_information_upper_bound.md": "63bce0572b9662a1d1026644d8e036ff551606c0c364fc168cab97165a10cb8d",
+    "reviews/paper2_stage2_detection_20261121/05_results_and_decision.md": "02fd36f4d3d07ba9245f77b48d31eb5e670a84a1ef483b4188bb8885a4b4b650",
+    "reviews/paper2_stage2_detection_20261121/analysis/information_power_bounds.json": "b9648784b923315dfaa647bf74d1f33baaf8eca4abc0075ede764bb56a77f002",
+    "reviews/paper2_stage3_joint_detection_20261121/01_joint_observation_theory.md": "a6c168a670e2575859a3cab58de7c228e2de7714fce4b42615cdd462c0219ba1",
+    "reviews/paper2_stage3_joint_detection_20261121/07_results_and_decision.md": "fda2b9351bfb4d4277ec808c0c569bb63c351d5c1e7e80c8f2b81a665956732d",
+    "reviews/paper2_stage3_joint_detection_20261121/08_novelty_boundary.md": "d0f21e0328ede39fea988609704633ca7abd37a1e2ab5526f2b7a7f2cb93b99e",
+    "reviews/paper2_stage3_joint_detection_20261121/10_center_vs_codeword_likelihood.md": "a28ab6f2f84be71a542e155c3481fa69dc555a3f8f7d750b29975dcb42cb5e39",
+    "reviews/paper2_stage3_joint_detection_20261121/analysis/final_metrics.csv": "1bcaa2cbc386d8abd707a8d0339e0845a825ea3b8f3d52d36dac7b84d2d51047",
+    "reviews/paper2_stage4_certified_correction_20261122/02_confidence_sequence_and_risk.md": "2ecea822e5894c761d16efdb3aa738298f049d36a0b6f0284e676f9c4e38ac9f",
+    "reviews/paper2_stage4_certified_correction_20261122/05_literature_and_scope.md": "e8642d3ece8275dc551492c6d064b7c78f3f2fc70013beb9d06ce346760e41ca",
+    "reviews/paper2_stage4_certified_correction_20261122/08_continuous_functional_contraction.md": "269017bda98093154b36d383d01e16bb028dae129b676611b4802f2d2a785af1",
+    "reviews/paper2_stage4_certified_correction_20261122/10_finite_reference_outer_approximation.md": "78dde9ae22c108325e02e7beaca4c4a6358c06fa3f77b180c8aa565beb889ec5",
+    "reviews/paper2_stage4_certified_correction_20261122/interval_arithmetic.py": "92ae767d665ccf38c41301b49ce4404607afdc7d61b6b6ddd0914c7715ceda95",
+    "reviews/paper2_stage5_certification_acceleration_20261122/01_piecewise_strong_concavity.md": "f0d22c92385ce352fed4fa76da68e4bc137ee1b70dca647c30647deb25c9447e",
+    "reviews/paper2_stage5_certification_acceleration_20261122/02_information_clock.md": "d2132cf746b7556cbc72dd83412b830d4bfa24acf5b120385385195dba6ebe21",
+    "reviews/paper2_stage5_certification_acceleration_20261122/04_results_and_limits.md": "c82ad5ff70a32b5f4d354baec2a225174216056533c48f872414b120c1f5db35",
+    "reviews/paper2_stage5_certification_acceleration_20261122/fourier_certificates/S1_gap0.15_target0.0001.json": "c33badf968860d8100114c2b5e226d9625bf47b3726b54cd0af51166f245bc13",
+    "reviews/paper2_stage5_certification_acceleration_20261122/fourier_certificates/S1_gap0.15_target0.0001_verification.json": "04d27d42e5db2350b4bc8cecf73d865b44cad0ee2fb7b64639ebed518793f692",
+    "reviews/paper2_stage5_certification_acceleration_20261122/fourier_certificates/S1_gap0.25_target0.0001.json": "99bc6a252b71e81de3b0e79552a6e02d6d375ad1de330f0c6578946d6bb5727f",
+    "reviews/paper2_stage5_certification_acceleration_20261122/fourier_certificates/S1_gap0.25_target0.0001_verification.json": "36154fd863fd083e80ad872dd2ff422e8d5c212ba3c9adb8b062512988a2049a",
+    "reviews/paper2_stage5_certification_acceleration_20261122/fourier_certificates/S1_gap0.2_target0.0001.json": "fe206d08d611bf09b6e1501c0cf575849e145b69ef323625a8a1f190c8153237",
+    "reviews/paper2_stage5_certification_acceleration_20261122/fourier_certificates/S1_gap0.2_target0.0001_verification.json": "5fe3aef2445a9cf476440724e68203b148463296017fe5b858c81532360e099d",
+    "reviews/paper2_stage5_certification_acceleration_20261122/fourier_certificates/U1_gap0.15_target0.0001.json": "cb6fc0b8b8a08d58a62cd545277a3f05a827b4c1b2136b4dfe695c8ae0f1cf44",
+    "reviews/paper2_stage5_certification_acceleration_20261122/fourier_certificates/U1_gap0.15_target0.0001_verification.json": "0367d66e7106d71ccaaa00675b1be0c07a02577eb0de3176c88e493869e79cc8",
+    "reviews/paper2_stage5_certification_acceleration_20261122/fourier_certificates/U1_gap0.25_target0.0001.json": "96e20547210cfd4c94b48b57dac4f8468d47da86a4dba9b4945a71b968e5a951",
+    "reviews/paper2_stage5_certification_acceleration_20261122/fourier_certificates/U1_gap0.25_target0.0001_verification.json": "172301d78c3f77c08f0272f54148fa374e55116f1bc1743366beb3e7b90ef01f",
+    "reviews/paper2_stage5_certification_acceleration_20261122/fourier_certificates/U1_gap0.2_target0.0001.json": "83ba5e28bd0d22eca43ef23c8d656e0b6226e0b05efde6893f7b862f288e2428",
+    "reviews/paper2_stage5_certification_acceleration_20261122/fourier_certificates/U1_gap0.2_target0.0001_verification.json": "acb4d66d7acfac621a8dde6fd9aec767429ea50730c908ca2646dfc2d05f984e",
+    "reviews/paper2_stage5_certification_acceleration_20261122/new_time_bounds.json": "52ad658e425d62d59d9ba6d7499239c56acdd9c99985f277ca9e106eac60f42d",
+    "reviews/paper2_stage5_certification_acceleration_20261122/strong_concavity.py": "7be82132fcb4f5f4a69d29e15643715c1bfea79142b02927891772aa2b5c26b6",
+    "reviews/paper2_stage6_vector_correction_20261122/01_vector_kernel_and_pollution.md": "aff05acd084bd91f84a171942bceafac2bb4e558d3c827d081e712ed2ca7e4ef",
+    "reviews/paper2_stage6_vector_correction_20261122/02_uniform_forgetting.md": "33c1f5328b1cf6e13a2d98527edb87552f37e9027aa645241bfc7afd26b7f98e",
+    "reviews/paper2_stage6_vector_correction_20261122/03_projection_and_directional_certificate.md": "fde6b074efa232046e2b461a8011238ba41ce734a790917944d1c69cd59ad4f4",
+    "reviews/paper2_stage6_vector_correction_20261122/06_novelty_and_claim_boundary.md": "005633d43a30342af168bada646176dc582faf69f942a27457ad838dc06ea7f4",
+    "reviews/paper2_stage6_vector_correction_20261122/covariance_certificate.json": "fda7e55c1223e4ef99df489b5a56d23d6d0007f9d8def0a06c2bf927a8ef0ebb",
+    "reviews/paper2_stage6_vector_correction_20261122/exact_linear.py": "feb0548d3fc0ae788a0dfa9806616ca6bfe07f24c26ab57b87149ae0b9781958",
+    "reviews/paper2_stage6_vector_correction_20261122/model.json": "f5d9b3048df500f6b164dfdd7f9a7bbafdfe6c38aeded20a01561a9565a5498a",
+    "reviews/paper2_stage6_vector_correction_20261122/pilot_v2.py": "f6892268474c54af97bfbcc5e6bc419d7b97c8c9daa0ef5773fa97a0b4609ffa",
+    "reviews/paper2_stage6_vector_correction_20261122/projection.py": "08a6d759e7f1e30c003c77b497aab7ca6b000caa272f0c6efbb86ba102e1d3f1",
+    "reviews/paper2_stage6_vector_correction_20261122/vector_record.py": "74721abc915603a7ee0465041b18f39a652aa8c84aacbfd8d96b7c341482c724",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/01_fixed_parameter_theory.md": "9de82ecf159ba009a1bfc736ff9d51c05f3740a8145771d4de882e7d4ec76ee9",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/08_fresh_confirmation_results.md": "be0d378f9f32e2f9c8916a981cf299c5923890d4999cbe35b8dc7b72d40f73da",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/direction_cache_corrected.py": "c9e66da5ae6a2a3c905d7bf77036848748c8489bb23f8fc32bfab76cfd75269f",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/fixed_amplitude.py": "0a433a2b30cb694cbc831a7a70007522aa1aa5d54ff504f688c474b149bdb1de",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/fresh_protocol.json": "3781482528356ba5b532f9eca2f6e77148b9261bb27776835140c5582d660567",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0.1_episode000.json": "e4236c37aae8dabbb325b840d930a059b858e9e781468cd434ffaf57524de4bf",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0.1_episode001.json": "f6b5671ce16f6670903fa2b9d512d0b9578ecb7d0d35174731c3467c3d170d81",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0.1_episode002.json": "79c9a7b413b44521d0f2dbceade37919927f9e4e9768599eb1de01c648f2baef",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0.1_episode003.json": "88c479c64296af84cb92d68ea2acd44d30d00d252e5ef211fadd4a0a664b391a",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0.1_episode004.json": "d380783ef55c1956c0fb012a478591e56abe82032e71cad51b77f7e91b5e145f",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0.1_episode005.json": "3d1fa691d5f3230d8a88abaaf1cad88bca893f1a7f553be3837c710bfefcc175",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0.1_episode006.json": "0b959ae1fee5bac756a748ffe8a9680bb2757fb727fd2a168a7947c595483ab4",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0.1_episode007.json": "0cc565cc59557614f921f4a4ea73ef6caa8f319b8caca453d470237086acae58",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0.1_episode008.json": "e163b52d24dfaaa00644c50478922103557836426d1eb975d615307c98528b11",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0.1_episode009.json": "265ec53b9f67eae61c1335a57c63a586e2284b00b77941c901e5f81d061217dc",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0.1_episode010.json": "3845d1b9ba5509ce82b3e54055a9a3c3052b398cdbb16f5081643c6121f1e6c1",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0.1_episode011.json": "8f277671877a56f1352cfac08dab34e70b126a94c62ee5b0f49371e356b158e2",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0.25_episode000.json": "262723b16758f15f4f7847b3958a7ad4220ef415a4dd9415f1593746828e9769",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0.25_episode001.json": "57a3f0343806421ba64b6b881f10ad4c77854044d2b0c33740f076767bb74f82",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0.25_episode002.json": "d259c6d64ab10f8bde40eb3d5430a4a64445df1ace773f7f232a98cbd10aa665",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0.25_episode003.json": "3ae9d2bf99e25206184014cbf140aab111b818e3001429cb7d20f576b6971ccf",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0.25_episode004.json": "41c15e0bc20bc171ee6e87f2986564217413676b1ac752cab765b634653f686a",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0.25_episode005.json": "013e16ddc064b7a0526fc6fa1c63edd3b7e698c9306c880c157cc55575fc2c05",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0.25_episode006.json": "0d7104f1813bb1c13473e13526dd05174f0776a993e8d8ec8114522ace2d1820",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0.25_episode007.json": "45d6717376a459caf5542f0009c4e1e7676fc1f6882f735ac1ea83316fe7eb3a",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0.25_episode008.json": "998bf6e341bed6907ecdbcb5aa88a5193255ecd00b49a0ee54efaea51a250db4",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0.25_episode009.json": "946e9a8ae7a110ac7fe77e37d0beff17c6246beb783098ae0f540bb101699d27",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0.25_episode010.json": "fe095238e48d9360db38159773e228fa3acf28d49330d29fbf974bcc22ce0861",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0.25_episode011.json": "121344f94685a5f3b14cb5418d8f609c43e95ac90f54e6e5d7bf78462342990d",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0_episode000.json": "2455c2f4fd0e0bddcf315313d4572600c8a34f80c41ed921b4df02d12f138081",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0_episode001.json": "74d96873a9eede56941915b36c49bd7a4a63b3c8111b2ed02cd4fd0b364ad7cd",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0_episode002.json": "542944178a8efa6ffc6a460b9e229380f48cb9b932b022125f01c5a859377994",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0_episode003.json": "11ffd199351aeff5187e64204b848fbd5fcb00be0c4287e92206f0ac7c78e170",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0_episode004.json": "48263d74af96d47dbfd9d5332c9347071d71a5f827c76fcc3d70ff3c4157ef9a",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0_episode005.json": "fff6ade4053ed4be649e60105f9e93f5418afcf59a5d20a3c612ecdea8eba0d1",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0_episode006.json": "16565111ad743995579191958d447ea97ecdba5d601a5a90d453ad59bb86641a",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0_episode007.json": "7b6148d41c1a01d15e14b4778bfa82e931b6735a99a757aabcac99b195f9be6c",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0_episode008.json": "a79778f9282e5e9426e395e7e5c820c2092bb8705df85b8e0223f4e0e1e84798",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0_episode009.json": "e87e7ef3cf421703e8c779109248f0ba2ff6cecc8bb3425c16a3c3df81dcd6c8",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0_episode010.json": "ec60b04ef5954c47c8165ce08351095c6db767d60f5d30bec4521e2aab3890f3",
+    "reviews/paper2_stage7_fixed_amplitude_20261122/results/fresh_confirmation/b0_episode011.json": "fdf42b832109ad30e075e138030e945b7e9c05011b8f269fd2ebd89c10ce19b0",
+    "reviews/paper2_stage7_output_audit_20261123/README.md": "1bd9eef6d524cf424ea92466f122e6444a183a3131c0a5d4caddc061f1802749",
+    "reviews/paper2_stage8_restricted_certification_20261123/02_results.md": "d3d01187088f19b75b194f7ecce2e5d61a71b1c1a487aeef177911f7516c9456",
+    "reviews/paper2_stage8_restricted_certification_20261123/restricted_certification.py": "d8b7037aec498fe8333f451f3cd53336d53b7d2e7c1299ea4868fee0e7fa928c",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/01_theory.md": "371774a743e681991742e42d948eaaf22cef10446aa8b8855e526d7438801809",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/02_results.md": "da4204af7654bbd55d31d3676eb0edc2c4a23f250c82ce6dbd8018f289f6d6c7",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/check_stage9.py": "f08a13ded0a94a414daa9a695dcccc0c00ffdeb4c75ff1af49eeccc9fd8eae96",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/cumulative_envelope.py": "a207c3d8e46a2475f314c44d4141125b3e637fe5454c6d233b5ed26a0a2a550f",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/fresh_episodes/case0_episode000.json": "86cc2405655152500208c5ba2bb6e4f6773c483251ac0fad4e50f40bd2eb67ff",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/fresh_episodes/case0_episode001.json": "478fecc616764d513680b29846aee80930ffb2ce8005fc46027c6606a383779f",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/fresh_episodes/case0_episode002.json": "b0a0dba4a98c011cece53fd3bb92b6b7eaf9654c7619d7141b49f1d1409b3a38",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/fresh_episodes/case1_episode000.json": "8af9a21c2dae7659b2d404b254aadd3bdc3bc7b52069e8e984666cb3c97de86b",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/fresh_episodes/case1_episode001.json": "48919d52064f420abdf397906834f1169cacfc36e7ef26611c4354be20a36909",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/fresh_episodes/case1_episode002.json": "ac129e218babd7e4a1aa69115dc2320f849e0532532c216c7f2fb9752854c097",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/fresh_episodes/case2_episode000.json": "cfae0bf3b2e9a2df62c52334c66cedfd9f536c5df037c2c9d2f648d16ae0a5c4",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/fresh_episodes/case2_episode001.json": "84b874857fa87c4c86dd48a7728d7d298c2ac5d98f55b838fcb241b912e55e49",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/fresh_episodes/case2_episode002.json": "75a4808063d7c06db3c72d17dad7a9582024527d0244ac7ad63375465d29891d",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/fresh_episodes/case3_episode000.json": "97f1378ee8005ac7ca678f3c1d252cdc8ba20e1f5a72057ce1328fedb00a54ee",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/fresh_episodes/case3_episode001.json": "cbecdde27e0d8c52c3a11214a18475bc00aebff5d44cc2cea6af33070320d7aa",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/fresh_episodes/case3_episode002.json": "d0d2e0dd7ecfed3edc3daae78c999a343c140d4599407681db10ba542ae1080f",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/fresh_episodes/case4_episode000.json": "b6b388625b2465b3a0dee7aa0615d4a3eb7136a2771f665e965ce141598eb357",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/fresh_episodes/case4_episode001.json": "b990df4920a2edc3229da11f897d90eaf9912f57c934fb4e9582c463af592d4b",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/fresh_episodes/case4_episode002.json": "7208adc37e05922e76f82dfa9c5e7fb48edb125a94add3ad1c25ea8462e1728c",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/fresh_freeze.json": "34293920086881f8b55d1e6f6312c6d950794c811ae925b30ee5ace8258d1338",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/fresh_summary.json": "82e2ef5e329d364462d0e70b2089312848ca23e54e2b0bf8c38a8c73a2aa0983",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/paired_recovery.py": "2b8f08a504718e2a9b161fb498927331744df7d61053de04403d8643826ffaf3",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/README.md": "16f6d25ef8d9fa0c9cae4094f47b0a8d42f5dd5e4176fd53774b249c1938da41",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/replay_episodes/case-1_episode001.json": "63bdfa8246e2ba30529d6ae0d5b98351b5b4c23a5a06eeb412f43b9509c4a84b",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/replay_episodes/case-1_episode003.json": "53468870b1915cd257982b2f1d683b0efc29db2d7f726b7f4c7b1d5b67f7521c",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/replay_episodes/case-1_episode005.json": "9ebe0a35436b24c7877c16538759c889f965e7495aa45f408a3087c35c7f1b0b",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/replay_episodes/case-1_episode006.json": "b5820b340eac46ed549a6d7a17abbddc4cafdcac2ab2a04d6d7dcb5cfad93866",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/replay_episodes/case-1_episode007.json": "962d2c5ca7f7578c6aee6f5bada91bafdc04710726c3f5b44e9c49644ff7312c",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/replay_episodes/case-1_episode008.json": "edab064f81da2f3bdadf6c843223ef6cdb28f05e0211514646de3cb86c92545e",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/replay_episodes/case-1_episode009.json": "ec368568b613f3017be8e7bd4f78621de68becb68165ebe05bfeaa4e683a75d6",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/replay_episodes/case-1_episode010.json": "edaa817c47bee214871bc3d4f3c6f21698a2fbc2d5b71b1f1586ce1b8fe217e4",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/replay_episodes/case-1_episode011.json": "0e4026d7c9e5bedc7532b47f619327e07cc8f64e59e257681be434e6c28d5f16",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/replay_freeze.json": "fb8d0622b64aac2c43d64d1bab06dc62695a3a91a3b6fa7117a029eff17084c0",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/replay_summary.json": "800f37ef43b3165a5f71e0ea287b93df2761fc8339e868f4b2ce7821a5ff631e",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/stage9_checks.json": "7b4e173c22fd5f7fdd3b2a6bafec953de26132d261b94525c890f091ad59d823",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/stage9_protocol.json": "d0a94e834ea13a1822b1291354f9396ef9c70bc7ecdff50881580ba3a4d201dd",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/validate_stage9.py": "96f4eb4a3fee609714142f9489a336236322cfc5c540ad2b0926b4a3ac05114a"
+  },
+  "new_performance_samples": 0
+}
