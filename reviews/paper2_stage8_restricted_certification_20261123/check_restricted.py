@@ -95,6 +95,18 @@ def main():
                                            {0: (".05", ".40")})
     check("upper_endpoint_is_clipped_to_attack_cap", D(clipped["search_width"]) == D(".20"))
 
+    point_record = VectorRecord(model)
+    for _ in range(8):
+        point_record.append(True, ".00001", "0")
+    point_record.likelihood = lambda k, box: I.exact("1000")
+    safe_point = certify_direction_restricted(point_record, direction, ".01",
+                                               {0: (".25", ".25")})
+    check("singleton_with_proven_support_can_certify", safe_point["certified"], safe_point)
+    unsafe_point = certify_direction_restricted(point_record, direction, "10",
+                                                 {0: (".1", ".1")})
+    check("unexcluded_low_support_singleton_blocks_certificate",
+          unsafe_point["reason"] == "UNRESOLVED_POINT_CANDIDATE", unsafe_point)
+
     out = {"status": "PASS", "check_count": len(checks), "checks": checks,
            "performance_random_samples_generated": False,
            "source_sha256": hashlib.sha256((HERE / "restricted_certification.py").read_bytes()).hexdigest()}

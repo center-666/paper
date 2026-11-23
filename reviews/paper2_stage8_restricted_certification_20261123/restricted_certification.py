@@ -76,10 +76,10 @@ def certify_direction_restricted(record, direction, z, bounds,
         raw_hi_d = D(str(raw_hi)) if not isinstance(raw_hi, F) else interval_fraction(raw_hi).hi
         if lo < 0 or raw_hi_d < lo:
             raise ValueError("Invalid retained amplitude interval")
-        if lo >= bmax_d:
+        if lo > bmax_d:
             continue
         hi = min(raw_hi_d, bmax_d)
-        if hi <= lo:
+        if hi < lo:
             continue
         clean[int(k)] = (lo, hi)
 
@@ -118,6 +118,7 @@ def certify_direction_restricted(record, direction, z, bounds,
 
     jobs = []
     serial = 0
+    unresolved_points = []
     for k, (lo, hi) in sorted(clean.items()):
         candidate = record.candidates[k]
         a = record.support_coefficient(k, d)
@@ -128,6 +129,15 @@ def certify_direction_restricted(record, direction, z, bounds,
         if a.lo > 0:
             upper = min(upper, (I.exact(z) / I.exact(a.lo)).hi)
         if upper < lo:
+            continue
+        if upper == lo:
+            point_support = a * I.exact(lo)
+            if point_support.lo < z:
+                point_bound = record.likelihood(k, I.exact(lo)).hi
+                if point_bound >= threshold.lo:
+                    unresolved_points.append({"onset": k, "amplitude": str(lo),
+                                              "support_lower": str(point_support.lo),
+                                              "likelihood_upper": str(point_bound)})
             continue
         cuts = [lo, upper]
         for mark in record.marks[k:]:
@@ -144,6 +154,11 @@ def certify_direction_restricted(record, direction, z, bounds,
             if bound >= threshold.lo:
                 heapq.heappush(jobs, (-bound, serial, k, interval))
                 serial += 1
+
+    if unresolved_points:
+        out["unresolved_point_candidates"] = unresolved_points
+        out["reason"] = "UNRESOLVED_POINT_CANDIDATE"
+        return out
 
     while jobs:
         if out["nodes"] >= max_nodes:

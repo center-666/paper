@@ -15,6 +15,7 @@ def main():
     data=read(HERE/"restricted_replay_results.json")
     protocol=read(HERE/"stage8_protocol.json")
     unit=read(HERE/"restricted_checks.json")
+    freeze=read(HERE/"stage8_freeze.json")
     checks=[]
     def ok(name,value):
         checks.append({"name":name,"pass":bool(value)})
@@ -23,6 +24,8 @@ def main():
     ok("deterministic_restricted_search_checks_pass",unit["status"]=="PASS" and unit["check_count"]>=14)
     ok("all_preselected_queries_present",len(rows)==9 and
        [x["episode"] for x in rows]==protocol["selected_episodes"])
+    ok("replay_used_stage8_freeze",data["stage8_freeze_sha256"]==sha(HERE/"stage8_freeze.json"))
+    ok("all_queries_have_strictly_earlier_evidence",all(x["prior_certificate_count"]>0 for x in rows))
     ok("all_full_searches_certified",all(x["full"]["certified"] for x in rows))
     ok("all_restricted_searches_certified",all(x["restricted"]["certified"] for x in rows))
     ok("full_and_restricted_decisions_match",all(x["decision_match"] for x in rows))
@@ -38,6 +41,7 @@ def main():
         files.append({"name":path.name,"sha256":sha(path)})
     out={"status":"PASS","check_count":len(checks),"checks":checks,
          "base_commit":protocol["base_stage7_commit"],
+         "stage8_freeze_sha256":sha(HERE/"stage8_freeze.json"),
          "stage7_fresh_freeze_sha256":sha(STAGE7/"fresh_confirmation_freeze.json"),
          "stage7_input_trace_hashes":files,
          "stage8_source_hashes":{name:sha(HERE/name) for name in

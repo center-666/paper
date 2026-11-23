@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "check_count": 14,
+  "check_count": 16,
   "checks": [
     {
       "name": "empty_restricted_domain_is_unresolved",
@@ -95,8 +95,64 @@
       "name": "upper_endpoint_is_clipped_to_attack_cap",
       "pass": true,
       "detail": null
+    },
+    {
+      "name": "singleton_with_proven_support_can_certify",
+      "pass": true,
+      "detail": {
+        "certified": true,
+        "correction": [
+          "1/100",
+          "0"
+        ],
+        "guaranteed_gain": "1/10000",
+        "nodes": 0,
+        "segments_tested": 0,
+        "reason": "ALL_RETAINED_LOW_SUPPORT_MODELS_EXCLUDED",
+        "target_support": "0.01",
+        "reference_log_cutoff": {
+          "lo": "153.04269417164201658137187168117274102327975803780",
+          "hi": "153.04269417164201658137187168117274102328135803785"
+        },
+        "restricted": true,
+        "witness_check_performed": false,
+        "search_onsets": 1,
+        "search_width": "0.00"
+      }
+    },
+    {
+      "name": "unexcluded_low_support_singleton_blocks_certificate",
+      "pass": true,
+      "detail": {
+        "certified": false,
+        "correction": [
+          "0",
+          "0"
+        ],
+        "guaranteed_gain": "0",
+        "nodes": 0,
+        "segments_tested": 0,
+        "reason": "UNRESOLVED_POINT_CANDIDATE",
+        "target_support": "10",
+        "reference_log_cutoff": {
+          "lo": "153.04269417164201658137187168117274102327975803780",
+          "hi": "153.04269417164201658137187168117274102328135803785"
+        },
+        "restricted": true,
+        "witness_check_performed": false,
+        "search_onsets": 1,
+        "search_width": "0.0",
+        "unresolved_point_candidates": [
+          {
+            "onset": 0,
+            "amplitude": "0.1",
+            "support_lower": "0.10246730035893324753962921427975236339377029687864",
+            "likelihood_upper": "1000"
+          }
+        ]
+      }
     }
   ],
   "performance_random_samples_generated": false,
-  "source_sha256": "b55cb35117cb95040d0c64a7a0683f27a3e45dbbd7d1c9c50172b1f8f4fdc833"
+  "source_sha256": "d8b7037aec498fe8333f451f3cd53336d53b7d2e7c1299ea4868fee0e7fa928c"
 }

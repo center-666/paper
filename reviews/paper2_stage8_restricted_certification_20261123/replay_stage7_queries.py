@@ -1,6 +1,7 @@
 """Paired full-domain vs restricted recertification on saved Stage 7 traces."""
 from __future__ import annotations
 import json, math, time
+import hashlib
 from fractions import Fraction as F
 from pathlib import Path
 import sys
@@ -19,6 +20,7 @@ from restricted_certification import certify_direction_restricted
 
 
 def read(path):return json.loads(Path(path).read_text(encoding="utf8"))
+def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
 def select_episodes():
@@ -52,8 +54,7 @@ def run_episode(archive,target,target_query,protocol,model):
     P=matrix(model["P0_prior"])
     error=np.linalg.cholesky(np.array(model["P0_prior"],float))@phys.normal(size=2)
     prior_success=[c for c in archive["successful_certificates"]
-                   if int(c["time"])<t_target or
-                   (int(c["time"])==t_target and c is not target)]
+                   if int(c["time"])<t_target]
     by_time={}
     for cert in prior_success:by_time.setdefault(int(cert["time"]),[]).append(cert)
     target_record=None
@@ -125,6 +126,12 @@ def run_episode(archive,target,target_query,protocol,model):
 
 def main():
     protocol,selected=select_episodes()
+    freeze=read(HERE/"stage8_freeze.json")
+    for name,digest in freeze["sources"].items():
+        if sha(HERE/name)!=digest:raise RuntimeError("Frozen Stage 8 source changed: "+name)
+    for name,digest in freeze["selected_stage7_trace_hashes"].items():
+        if sha(STAGE7/"results"/"fresh_confirmation"/name)!=digest:
+            raise RuntimeError("Frozen Stage 7 trace changed: "+name)
     model=read(STAGE6/"model.json")
     rows=[]
     for archive,target,query in selected:
@@ -138,6 +145,7 @@ def main():
         r["restricted_matches_original"] and r["witnessless_matches_witnessed"] for r in rows) else "MISMATCH",
         "episodes":len(rows),"independent_random_samples":False,
         "source_seed":protocol["seed"],"queries":rows,
+        "stage8_freeze_sha256":sha(HERE/"stage8_freeze.json"),
         "mean_full_seconds":sum(r["full_seconds"] for r in rows)/max(len(rows),1),
         "mean_restricted_seconds":sum(r["restricted_seconds"] for r in rows)/max(len(rows),1),
         "mean_restricted_with_witness_seconds":sum(r["restricted_with_witness_seconds"] for r in rows)/max(len(rows),1),

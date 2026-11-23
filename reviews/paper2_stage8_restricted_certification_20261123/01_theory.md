@@ -46,6 +46,8 @@ The branch-and-bound calculation still uses the exact continuous likelihood over
 S_{t}=S_\tau\cap\{(k,b):b a_{k,t}\ge z_t\}.
 \]
 
+If an outer amplitude interval collapses to one point, the implementation first checks its outward support lower bound. If that point can still have support below (z_t), it evaluates the point likelihood and leaves the query unresolved whenever the point may remain in the confidence set. It never discards a singleton merely because its interval width is zero.
+
 Using outward interval endpoints can only enlarge the searched low-support region. Unresolved interval arithmetic, node limits, or an empty retained domain produce no new certificate.
 
 ## Why coverage is unchanged

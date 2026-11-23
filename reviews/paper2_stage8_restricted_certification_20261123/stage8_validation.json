@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "check_count": 11,
+  "check_count": 13,
   "checks": [
     {
       "name": "deterministic_restricted_search_checks_pass",
@@ -8,6 +8,14 @@
     },
     {
       "name": "all_preselected_queries_present",
+      "pass": true
+    },
+    {
+      "name": "replay_used_stage8_freeze",
+      "pass": true
+    },
+    {
+      "name": "all_queries_have_strictly_earlier_evidence",
       "pass": true
     },
     {
@@ -48,6 +56,7 @@
     }
   ],
   "base_commit": "3083595d",
+  "stage8_freeze_sha256": "79399d982a4e0dcaba853f6e8cc3fee291427a4994153896b714c78ee115d42c",
   "stage7_fresh_freeze_sha256": "0cf5d489cfb9247c0581c0f2f773bbf97e6dc26134830fb17fae72cc04441a89",
   "stage7_input_trace_hashes": [
     {
@@ -88,9 +97,9 @@
     }
   ],
   "stage8_source_hashes": {
-    "restricted_certification.py": "b55cb35117cb95040d0c64a7a0683f27a3e45dbbd7d1c9c50172b1f8f4fdc833",
-    "check_restricted.py": "1841f98b20a9e87d4a3a383507daed3785cac15225f0e1afc691c1baa64602cf",
-    "replay_stage7_queries.py": "de37eb20dfc66ae74896cc5660ed09721500e981b0e91c185b5fbfc44270c3de",
+    "restricted_certification.py": "d8b7037aec498fe8333f451f3cd53336d53b7d2e7c1299ea4868fee0e7fa928c",
+    "check_restricted.py": "3670deb4b2ea6d2ae6b02bf2a20775749661c114f7ab9d112c581e9d6999ade5",
+    "replay_stage7_queries.py": "6c929ed27464b65be0a9ba619612a837426da0ecf4403b25893c1611840542e6",
     "stage8_protocol.json": "9974227094f8eb19438309aea0e0b70db77076e7b63b2d137cd60f6d5a5ff791"
   },
   "new_random_samples": false,
@@ -99,9 +108,9 @@
   "sum_restricted_likelihood_evaluations": 7578,
   "sum_full_segments": 9544,
   "sum_restricted_segments": 3789,
-  "mean_full_seconds": 55.05271778888896,
-  "mean_restricted_seconds": 26.245965344444457,
-  "mean_of_query_speedups": 2.3430152081927487,
-  "ratio_of_mean_seconds": 2.097568790722422,
+  "mean_full_seconds": 53.26005087777745,
+  "mean_restricted_seconds": 25.27345054444413,
+  "mean_of_query_speedups": 2.357644610239979,
+  "ratio_of_mean_seconds": 2.1073517754972966,
   "diagnostic_witness_evaluations": 18
 }
