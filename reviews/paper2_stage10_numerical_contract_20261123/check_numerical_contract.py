@@ -22,6 +22,7 @@ from numerical_record import (
 )
 from exact_linear import add, asfloat, matmul, matrix, transpose, update
 from interval_arithmetic import Interval as I
+from interval_observation import center_contract, selection_log_ratio
 
 HERE = Path(__file__).resolve().parent
 REVIEWS = HERE.parent
@@ -76,6 +77,55 @@ def main():
     except TypeError:
         rejected = True
     check("implicit_float_observation_rejected", rejected)
+    # Check the actual, rather than nominal, quantizer coordinates on both
+    # event branches. Failed appends must leave every cache available for retry.
+    delta = F(model["quantization_half_width"])
+    for sent in (False, True):
+        for sign in (-1, 1):
+            for seeded in (False, True):
+                record = NumericalLikelihoodRecord(model)
+                prior = (0.0, 0.0)
+                if seeded:
+                    record.append(False, None, F(0), prior=prior, posterior=prior)
+                center = sign * delta
+                payload = F(".5") if sent else None
+                before = deepcopy((record.monitor.__dict__, record.core.__dict__))
+                try:
+                    record.append(sent, payload, center + sign * F(1, 10**18),
+                                  prior=prior, posterior=prior)
+                except ValueError as exc:
+                    check("illegal_actual_center_rejected", "quantization contract" in str(exc))
+                else:
+                    raise AssertionError("illegal_actual_center_accepted")
+                check("illegal_center_commits_nothing", before == (record.monitor.__dict__, record.core.__dict__))
+                frame = record.append(sent, payload, center, prior=prior, posterior=prior)
+                check("actual_center_boundary_accepted", frame.actual_center_residual == center)
+                check("valid_center_retry_advances_once", record.core.n == before[1]["n"] + 1)
+    record = NumericalLikelihoodRecord(model, [F(1), F(0)])
+    frame = record.append(False, None, F(0), prior=(0.0, 0.0), posterior=(0.0, 0.0))
+    check("nominal_center_can_exceed_half_width", frame.nominal_center_residual.hi < -D(str(float(delta))))
+    check("actual_center_still_legal", frame.actual_center_residual == 0)
+    check("interval_center_legal_at_boundaries",
+          center_contract((-delta, delta), (0, 0), delta) == "legal")
+    check("interval_center_outside_is_illegal",
+          center_contract((delta + F(1, 10**18), delta + 1), (0, 0), delta) == "illegal")
+    check("interval_center_overlap_is_unresolved",
+          center_contract((delta, delta + F(1, 10**18)), (0, 0), delta) == "unresolved")
+    for amp in ((F(".19"), F(".21")), (F(".2"), F(".21")),
+                (F(".21"), F(".22"))):
+        ratio = selection_log_ratio((F(".2"), F(".2")), (0, 0), amp, Z)
+        check("interval_selection_upper_is_finite", ratio.hi.is_finite())
+        if amp[0] <= F(".2") <= amp[1]:
+            check("moving_zero_has_negative_infinity_lower", ratio.lo == D("-Infinity"))
+        for b in (amp[0], (amp[0]+amp[1])/2, amp[1]):
+            with localcontext() as context:
+                context.prec = 100
+                value = log_trigger_point(F(".2")-b, Z)-log_trigger_point(F(".2"), Z)
+                check("interval_selection_contains_point_diagnostic", ratio.lo <= value <= ratio.hi)
+    check("healthy_zero_returns_unresolved",
+          selection_log_ratio((F("-.01"), F(".01")), (0, 0), (0, F(".1")), Z) is None)
+    check("near_zero_denominator_returns_unresolved",
+          selection_log_ratio((F(1, 10**100), F(1, 10**100)), (0, 0), (0, 0), Z) is None)
     fixtures = [("switch_" + "".join(map(str, events)), events, (F(0), F(0)), "raw")
                 for events in product((False, True), repeat=5)]
     fixtures += [
@@ -249,7 +299,8 @@ def main():
                            record.core.stats))
         failed=False
         try:
-            record.append(True,".5",".5",prior=actual_post,posterior=actual_post)
+            zero_center = exact_matvec(C, tuple(binary64_value(x) for x in actual_post))[0] + F(".002")
+            record.append(True,zero_center,zero_center,prior=actual_post,posterior=actual_post)
         except ArithmeticError:
             failed=True
         check("null_density_returns_unresolved",failed)
@@ -287,7 +338,7 @@ def main():
     check("healthy_effective_threshold_uses_existing_norm_scale",
           F(policy["healthy_action"]["effective_action_energy_threshold"]) ==
           F(str(policy["healthy_action"]["threshold_norm_display"]))**2 == F(1,1600))
-    files=[HERE/"numerical_record.py",Path(__file__),STAGE6/"vector_record.py",STAGE6/"model.json",
+    files=[HERE/"numerical_record.py",HERE/"interval_observation.py",Path(__file__),STAGE6/"vector_record.py",STAGE6/"model.json",
            STAGE6/"exact_linear.py",REVIEWS/"paper2_stage4_certified_correction_20261122/interval_arithmetic.py",
            REVIEWS/"paper2_stage5_certification_acceleration_20261122/strong_concavity.py",
            HERE/"README.md",HERE/"01_numerical_contract.md",HERE/"execution_status.md",

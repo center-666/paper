@@ -196,12 +196,16 @@ class NumericalLikelihoodRecord:
             raise ValueError("The inherited likelihood cache is scoped to V2")
         if F(model["R"]) <= 0 or F(model["Z"]) <= 0:
             raise ValueError("Positive measurement noise and trigger precision are required")
+        if F(model["quantization_half_width"]) <= 0:
+            raise ValueError("A positive quantization half-width is required")
         self.monitor = MonitorEnclosure(model, initial_nominal_prior)
         self.core = VectorRecord(model)
 
     def append(self, sent, payload, center, *, prior, posterior):
         frame = self.monitor._prepare(sent, payload, center, prior, posterior)
         core = self.core
+        if abs(frame.actual_center_residual) > F(core.model["quantization_half_width"]):
+            raise ValueError("Center violates the quantization contract")
         if core.P != [list(row) for row in frame.prior_covariance]:
             raise ArithmeticError("Monitor and likelihood covariance states differ")
         variance = matmul(matmul(core.C, core.P), transpose(core.C))[0][0] + core.R
