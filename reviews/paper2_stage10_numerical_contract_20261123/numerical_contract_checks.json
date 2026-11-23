@@ -1,0 +1,80 @@
+{
+  "status": "PASS",
+  "check_count": 14248,
+  "checks_by_kind": {
+    "binary64_and_decimal_input_semantics_differ": 1,
+    "subnormal_binary64_value_is_exact": 1,
+    "subnormal_finite_decimal_roundtrip": 1,
+    "rounding_cell_contains_represented_value": 8,
+    "rounding_cell_interior_roundtrips": 8,
+    "rounding_cell_contains_original_decimal_value": 1,
+    "implicit_float_observation_rejected": 1,
+    "prior_error_contains_exact_reference": 378,
+    "posterior_error_contains_exact_reference": 378,
+    "nominal_prior_contains_exact_reference": 378,
+    "nominal_posterior_contains_exact_reference": 378,
+    "nominal_center_contains_exact_transform": 189,
+    "center_coordinate_translation": 189,
+    "response_contains_exact_rational_reference": 1350,
+    "nominal_pollution_identity": 2025,
+    "represented_pollution_identity": 2025,
+    "silent_kernel_coordinate_identity": 2025,
+    "likelihood_contains_independent_100_digit_value": 2025,
+    "effective_risk_lower_is_conservative": 105,
+    "tangent_upper_dominates_independent_value": 88,
+    "null_density_returns_unresolved": 35,
+    "failed_append_does_not_commit_state": 35,
+    "valid_retry_advances_once": 35,
+    "nominal_innovation_contains_exact_transform": 861,
+    "sent_gaussian_coordinate_identity": 861,
+    "selection_zero_is_translation_invariant": 861,
+    "shifted_kernel_normalization": 3,
+    "primary_setting_weights_sum_to_one": 1,
+    "primary_settings_match_existing_cases": 1,
+    "healthy_effective_threshold_uses_existing_norm_scale": 1
+  },
+  "deterministic_fixtures": 35,
+  "maximum_display": {
+    "monitor_error": 0.2581453178726877,
+    "prior_width": 1.4e-49,
+    "posterior_width": 1.6e-49
+  },
+  "examples": {
+    "required_mean_shift": {
+      "fixture": "large_state",
+      "time": 1,
+      "C_xi_prior": "-0.13872",
+      "actual_center_residual": "0.002",
+      "nominal_center_residual": "-0.13672"
+    }
+  },
+  "positive_synthetic_output_bounds": 33,
+  "kernel_mass_errors": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "source_sha256": {
+    "reviews/paper2_stage10_numerical_contract_20261123/numerical_record.py": "53dc9e4c1643481edfee0077a5a952a7a5173d8a5766dd086f3d063ff553eea1",
+    "reviews/paper2_stage10_numerical_contract_20261123/check_numerical_contract.py": "046f170a8d5f8fc393c1bbced1a3de60e4102e6358820589a655dea6763e8a56",
+    "reviews/paper2_stage6_vector_correction_20261122/vector_record.py": "74721abc915603a7ee0465041b18f39a652aa8c84aacbfd8d96b7c341482c724",
+    "reviews/paper2_stage6_vector_correction_20261122/model.json": "f5d9b3048df500f6b164dfdd7f9a7bbafdfe6c38aeded20a01561a9565a5498a",
+    "reviews/paper2_stage6_vector_correction_20261122/exact_linear.py": "feb0548d3fc0ae788a0dfa9806616ca6bfe07f24c26ab57b87149ae0b9781958",
+    "reviews/paper2_stage4_certified_correction_20261122/interval_arithmetic.py": "92ae767d665ccf38c41301b49ce4404607afdc7d61b6b6ddd0914c7715ceda95",
+    "reviews/paper2_stage5_certification_acceleration_20261122/strong_concavity.py": "7be82132fcb4f5f4a69d29e15643715c1bfea79142b02927891772aa2b5c26b6",
+    "reviews/paper2_stage10_numerical_contract_20261123/README.md": "eea92a7cfdc9a14a5bfc2552b63c1ee8fce4470797d5dad14275dbab2899e66f",
+    "reviews/paper2_stage10_numerical_contract_20261123/01_numerical_contract.md": "5c765e2522fcadd0842fcaad91017443cd6566094aa79f9684b9a1ec99ea5ba1",
+    "reviews/paper2_stage10_numerical_contract_20261123/execution_status.md": "5ea039d0ae8713bbe2cc1c3524ffd0d81d22c615e6c8b55f826abe405de41d1d",
+    "reviews/paper2_stage10_numerical_contract_20261123/statistical_conventions.json": "0b13324998e39eaa1caa80eb1db50ecc8aaaee69356ba895be7445d910ddde50",
+    "reviews/paper2_stage9_cumulative_evidence_20261123/stage9_protocol.json": "d0a94e834ea13a1822b1291354f9396ef9c70bc7ecdff50881580ba3a4d201dd"
+  },
+  "new_random_performance_samples": 0,
+  "likelihood_reference": "independent direct physical kernels, Decimal 100-digit point diagnostics",
+  "pollution_reference": "exact Fraction nominal and candidate filters",
+  "risk_fixture_scope": "supplied outer intervals for algebraic checks",
+  "environment": {
+    "python": "3.11.18 (main, Oct 26 2026, 14:08:50) [MSC v.1944 64 bit (AMD64)]",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1"
+  }
+}

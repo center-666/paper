@@ -1,0 +1,56 @@
+{
+  "identity": "Stage 10 analysis conventions before independent confirmation",
+  "theory_baseline": "d92c39cb1152f335d5b347ca9a2cc8f11924a64e",
+  "acceptance_baseline": "803a0399c438552d3a5f9f71f88aab49792278e4",
+  "status": "analysis conventions specified; sample sizes, seeds and executable freeze pending",
+  "horizon": 512,
+  "primary_pair": {
+    "difference": "D_gi = L_monitor_gi - L_full_gi",
+    "positive_direction": "lower cumulative loss for the numerically audited full restorer",
+    "unit": "one independent physical trajectory",
+    "independence": "independent streams across trajectories and settings; paired methods within each trajectory",
+    "loss": "sum of weighted squared state error over the prescribed 512-frame window"
+  },
+  "settings": [
+    {"amplitude": "0", "evaluation_onset": 50, "weight": "1/5"},
+    {"amplitude": "0.10", "evaluation_onset": 50, "weight": "1/5"},
+    {"amplitude": "0.25", "evaluation_onset": 50, "weight": "1/5"},
+    {"amplitude": "0.20", "evaluation_onset": 96, "weight": "1/5"},
+    {"amplitude": "0.25", "evaluation_onset": 96, "weight": "1/5"}
+  ],
+  "primary_estimand": "Delta = sum_g weight_g * E[D_gi] under the five-setting design distribution",
+  "primary_estimator": "sum_g weight_g * mean_i D_gi",
+  "primary_interval": {
+    "method": "two-sided approximate stratified Welch-Satterthwaite t interval",
+    "confidence_level": 0.95,
+    "variance": "V = sum_g weight_g^2 * s_g^2 / n_g",
+    "degrees_of_freedom": "V^2 / sum_g ((weight_g^2*s_g^2/n_g)^2/(n_g-1))",
+    "interval": "estimate plus/minus t_(0.975,df)*sqrt(V)",
+    "zero_estimated_variance": "report the degenerate estimated interval and all group counts and losses",
+    "secondary_results": "setting-specific and ablation intervals carry descriptive labels unless an additional confirmatory procedure is frozen before samples"
+  },
+  "healthy_action": {
+    "effective_action": "exact binary rational difference between actual monitor and published binary64 state",
+    "any_action": "effective_action != 0 in at least one coordinate",
+    "effective_action_threshold": "effective_action^T W effective_action >= 1/1600",
+    "effective_action_energy_threshold": "1/1600",
+    "threshold_norm_display": 0.025,
+    "energy": "sum_t effective_action^T W effective_action",
+    "reported_windows": ["entire run including pre-evaluation frames", "512-frame evaluation window"],
+    "rate_unit": "fraction of independent healthy trajectories with at least one qualifying action",
+    "interval": "95% Clopper-Pearson interval for trajectory-level rates",
+    "additional_counts": ["qualifying frames", "all frames", "trajectory action energy"]
+  },
+  "query_cost": {
+    "clock": "wall-clock elapsed time using a declared monotonic high-resolution timer",
+    "quantile_method": "linear interpolation",
+    "pooled": ["count", "P50", "P95", "maximum", "sum"],
+    "per_trajectory": ["count", "P50", "P95", "maximum", "sum"],
+    "across_trajectories": ["equal-trajectory summaries of per-trajectory P50 and P95", "distribution of trajectory maximum query time"],
+    "zero_query_trajectory": "retain trajectory with count 0, sum 0 and null query quantiles and maximum",
+    "query_labels": ["initial full-domain", "subsequent restricted", "successful", "unresolved"],
+    "end_to_end": "include prediction, gain/covariance, reference, candidates, proposals, envelope, provenance, search and effective-output audit"
+  },
+  "unresolved_and_censoring": "retain all frozen trajectories, annotate reasons and right-censor certificate waiting times",
+  "new_performance_samples_generated": 0
+}
