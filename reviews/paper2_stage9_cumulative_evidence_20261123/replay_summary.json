@@ -1,0 +1,158 @@
+{
+  "mode": "replay",
+  "freeze_sha256": "fb8d0622b64aac2c43d64d1bab06dc62695a3a91a3b6fa7117a029eff17084c0",
+  "episode_count": 9,
+  "cases": {
+    "-1": {
+      "n": 9,
+      "amplitude": "1/4",
+      "onset": 50,
+      "mean_cumulative_loss": {
+        "monitor": 305.49437040452347,
+        "point": 296.0588871648514,
+        "8": 302.7764555010874,
+        "9": 302.7430255088269
+      },
+      "gain_vs_monitor": {
+        "point": {
+          "mean": 9.435483239672104,
+          "t95": [
+            5.117908566752825,
+            13.753057912591384
+          ]
+        },
+        "8": {
+          "mean": 2.717914903436041,
+          "t95": [
+            1.34742144813559,
+            4.088408358736492
+          ]
+        },
+        "9": {
+          "mean": 2.751344895696573,
+          "t95": [
+            1.390700114340048,
+            4.1119896770530975
+          ]
+        }
+      },
+      "stage9_gain_vs_stage8": {
+        "mean": 0.03342999226053204,
+        "t95": [
+          0.010206001152526439,
+          0.056653983368537636
+        ]
+      },
+      "methods": {
+        "point": {
+          "mean_conditional_gain": 8.952927946624687,
+          "mean_guarantee": 0.0,
+          "mean_nonzero_steps": 435.0,
+          "first_useful_times": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "any_false_episode": 0,
+          "false_steps": 0,
+          "coverage_misses": 0,
+          "risk_violations": 0
+        },
+        "8": {
+          "mean_conditional_gain": 2.173680720165017,
+          "mean_guarantee": 0.4490388359537704,
+          "mean_nonzero_steps": 235.88888888888889,
+          "first_useful_times": [
+            383,
+            383,
+            383,
+            255,
+            383,
+            383,
+            255,
+            255,
+            255
+          ],
+          "any_false_episode": 0,
+          "false_steps": 0,
+          "coverage_misses": 0,
+          "risk_violations": 0
+        },
+        "9": {
+          "mean_conditional_gain": 2.2058837879662656,
+          "mean_guarantee": 0.45964552220429344,
+          "mean_nonzero_steps": 235.88888888888889,
+          "first_useful_times": [
+            383,
+            383,
+            383,
+            255,
+            383,
+            383,
+            255,
+            255,
+            255
+          ],
+          "any_false_episode": 0,
+          "false_steps": 0,
+          "coverage_misses": 0,
+          "risk_violations": 0
+        }
+      }
+    }
+  },
+  "common_queries": 69,
+  "joint_successes": 34,
+  "different_decisions": 0,
+  "different_guarantees_on_joint_successes": 0,
+  "query_totals": {
+    "8": {
+      "likelihood": 49938,
+      "suffix_terms": 5467,
+      "query_boxes": 21288,
+      "increment_updates": 0,
+      "increment_log_calls": 0
+    },
+    "9": {
+      "likelihood": 41070,
+      "suffix_terms": 5467,
+      "query_boxes": 16492,
+      "increment_updates": 437042,
+      "increment_log_calls": 37506
+    }
+  },
+  "time_totals": {
+    "8": {
+      "advance": 32.68831839998893,
+      "query": 1598.678232200018,
+      "commit": 1.7350698000118427,
+      "output": 67.05916159994376,
+      "end_to_end": 2043.4583001000137
+    },
+    "9": {
+      "advance": 67.59492069987391,
+      "query": 1044.307790199975,
+      "commit": 68.17389950000143,
+      "output": 63.89305960009733,
+      "end_to_end": 1587.2671880999987
+    }
+  },
+  "final_domain_means": {
+    "8": {
+      "onsets": 325.77777777777777,
+      "components": 325.77777777777777,
+      "width": 50.8057260910806
+    },
+    "9": {
+      "onsets": 208.44444444444446,
+      "components": 208.66666666666666,
+      "width": 32.7686169833439
+    }
+  }
+}
