@@ -1,0 +1,12 @@
+{
+  "identity": "Stage 8 restricted re-certification on frozen Stage 7 records",
+  "base_stage7_commit": "3083595d",
+  "source_trace_seed": 202611226603,
+  "source_case": "b=0.25, Stage 7 independent full-search confirmation",
+  "target_selection": "saved episodes with at least two successful certificates; target the last successful query at its saved direction and level; use only successful certificates at strictly earlier times to form the retained domain",
+  "selected_episodes": [1, 3, 5, 6, 7, 8, 9, 10, 11],
+  "comparators": ["full onset-amplitude domain", "onset-associated retained intervals, no nonempty-witness scan", "same restricted intervals with diagnostic witness scan"],
+  "invariants": ["same saved Stage 7 observation history", "same likelihood and confidence reference", "same direction and support target", "same node budget", "same continuous branch-and-bound arithmetic"],
+  "new_random_samples": false,
+  "performance_claim_scope": "recertification query CPU and likelihood/segment counts only; excludes trace reconstruction and record maintenance"
+}

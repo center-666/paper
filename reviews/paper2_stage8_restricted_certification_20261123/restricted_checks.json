@@ -1,0 +1,102 @@
+{
+  "status": "PASS",
+  "check_count": 14,
+  "checks": [
+    {
+      "name": "empty_restricted_domain_is_unresolved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "empty_restricted_domain_never_certifies",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "first_full_domain_certificate_succeeds",
+      "pass": true,
+      "detail": {
+        "certified": true,
+        "correction": [
+          "1/40",
+          "0"
+        ],
+        "guaranteed_gain": "1/1600",
+        "nodes": 0,
+        "reason": "ALL_LOW_SUPPORT_MODELS_EXCLUDED",
+        "target_support": "0.025",
+        "reference_log_cutoff": {
+          "lo": "153.04269417164201658137187168117274102327975803780",
+          "hi": "153.04269417164201658137187168117274102328135803785"
+        },
+        "nonempty_witness": {
+          "onset": 0,
+          "amplitude": ".25"
+        }
+      }
+    },
+    {
+      "name": "restricted_and_full_decisions_agree",
+      "pass": true,
+      "detail": {
+        "full": "ALL_LOW_SUPPORT_MODELS_EXCLUDED",
+        "restricted": "ALL_RETAINED_LOW_SUPPORT_MODELS_EXCLUDED"
+      }
+    },
+    {
+      "name": "witnessless_and_witnessed_decisions_agree",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "witness_scan_is_omitted_by_default",
+      "pass": true,
+      "detail": {
+        "without": 16,
+        "with": 18
+      }
+    },
+    {
+      "name": "restricted_result_declares_restricted_search",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "retained_domain_is_strictly_narrower_than_full_domain",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "restricted_search_tests_only_retained_onsets",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "restricted_segments_are_nonempty",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "restricted_certificate_preserves_correction_and_gain",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "restricted_result_is_certified_or_explicitly_unresolved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "out_of_cap_interval_rejected",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "upper_endpoint_is_clipped_to_attack_cap",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "performance_random_samples_generated": false,
+  "source_sha256": "b55cb35117cb95040d0c64a7a0683f27a3e45dbbd7d1c9c50172b1f8f4fdc833"
+}

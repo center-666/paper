@@ -1,0 +1,107 @@
+{
+  "status": "PASS",
+  "check_count": 11,
+  "checks": [
+    {
+      "name": "deterministic_restricted_search_checks_pass",
+      "pass": true
+    },
+    {
+      "name": "all_preselected_queries_present",
+      "pass": true
+    },
+    {
+      "name": "all_full_searches_certified",
+      "pass": true
+    },
+    {
+      "name": "all_restricted_searches_certified",
+      "pass": true
+    },
+    {
+      "name": "full_and_restricted_decisions_match",
+      "pass": true
+    },
+    {
+      "name": "restricted_matches_saved_stage7_decision",
+      "pass": true
+    },
+    {
+      "name": "no_witness_and_witness_decisions_match",
+      "pass": true
+    },
+    {
+      "name": "correction_vectors_match",
+      "pass": true
+    },
+    {
+      "name": "guaranteed_gains_match",
+      "pass": true
+    },
+    {
+      "name": "restricted_likelihood_calls_lower",
+      "pass": true
+    },
+    {
+      "name": "restricted_intervals_lower",
+      "pass": true
+    }
+  ],
+  "base_commit": "3083595d",
+  "stage7_fresh_freeze_sha256": "0cf5d489cfb9247c0581c0f2f773bbf97e6dc26134830fb17fae72cc04441a89",
+  "stage7_input_trace_hashes": [
+    {
+      "name": "b0.25_episode001.json",
+      "sha256": "57a3f0343806421ba64b6b881f10ad4c77854044d2b0c33740f076767bb74f82"
+    },
+    {
+      "name": "b0.25_episode003.json",
+      "sha256": "3ae9d2bf99e25206184014cbf140aab111b818e3001429cb7d20f576b6971ccf"
+    },
+    {
+      "name": "b0.25_episode005.json",
+      "sha256": "013e16ddc064b7a0526fc6fa1c63edd3b7e698c9306c880c157cc55575fc2c05"
+    },
+    {
+      "name": "b0.25_episode006.json",
+      "sha256": "0d7104f1813bb1c13473e13526dd05174f0776a993e8d8ec8114522ace2d1820"
+    },
+    {
+      "name": "b0.25_episode007.json",
+      "sha256": "45d6717376a459caf5542f0009c4e1e7676fc1f6882f735ac1ea83316fe7eb3a"
+    },
+    {
+      "name": "b0.25_episode008.json",
+      "sha256": "998bf6e341bed6907ecdbcb5aa88a5193255ecd00b49a0ee54efaea51a250db4"
+    },
+    {
+      "name": "b0.25_episode009.json",
+      "sha256": "946e9a8ae7a110ac7fe77e37d0beff17c6246beb783098ae0f540bb101699d27"
+    },
+    {
+      "name": "b0.25_episode010.json",
+      "sha256": "fe095238e48d9360db38159773e228fa3acf28d49330d29fbf974bcc22ce0861"
+    },
+    {
+      "name": "b0.25_episode011.json",
+      "sha256": "121344f94685a5f3b14cb5418d8f609c43e95ac90f54e6e5d7bf78462342990d"
+    }
+  ],
+  "stage8_source_hashes": {
+    "restricted_certification.py": "b55cb35117cb95040d0c64a7a0683f27a3e45dbbd7d1c9c50172b1f8f4fdc833",
+    "check_restricted.py": "1841f98b20a9e87d4a3a383507daed3785cac15225f0e1afc691c1baa64602cf",
+    "replay_stage7_queries.py": "de37eb20dfc66ae74896cc5660ed09721500e981b0e91c185b5fbfc44270c3de",
+    "stage8_protocol.json": "9974227094f8eb19438309aea0e0b70db77076e7b63b2d137cd60f6d5a5ff791"
+  },
+  "new_random_samples": false,
+  "episodes": 9,
+  "sum_full_likelihood_evaluations": 19063,
+  "sum_restricted_likelihood_evaluations": 7578,
+  "sum_full_segments": 9544,
+  "sum_restricted_segments": 3789,
+  "mean_full_seconds": 55.05271778888896,
+  "mean_restricted_seconds": 26.245965344444457,
+  "mean_of_query_speedups": 2.3430152081927487,
+  "ratio_of_mean_seconds": 2.097568790722422,
+  "diagnostic_witness_evaluations": 18
+}
