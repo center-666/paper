@@ -1,0 +1,66 @@
+{
+  "schema": "paper2-stage11-v0.2-proposal",
+  "status": "proposal-not-frozen-no-implementation",
+  "date": "2026-11-24",
+  "supersedes": null,
+  "preserves": "S11 v0.1 fixed-amplitude charter as baseline",
+  "decision": "do not freeze or implement until direct-competitor full-text gate and short-history moment gate pass",
+  "research_target": "Time-uniform attack-trajectory confidence under a trusted pre-attack event and finite-bit post-event payload channel, connected to full-record posterior-risk decisions.",
+  "attack_models": {
+    "baseline_fixed": {
+      "schedule": "a_t=b on [k0,k1), zero otherwise",
+      "role": "nested baseline and reference ablation"
+    },
+    "proposed_one_switch": {
+      "schedule": "zero before k0; b1 on [k0,s); b2 on [s,k1); zero after k1",
+      "onset": "integer k0>=0",
+      "total_durations": [20, 60],
+      "minimum_segment_length": 5,
+      "amplitude_set": "[-0.25,-0.10] union [0.10,0.25]",
+      "maximum_switch_magnitude": 0.25,
+      "amplitude_path": "fixed deterministically before observation generation; no current-innovation-adaptive b_t"
+    }
+  },
+  "proposed_reference_prior": {
+    "onset_prior": "1/((k0+1)*(k0+2))",
+    "model_mode_weights": {
+      "fixed_amplitude": 0.5,
+      "one_switch": 0.5
+    },
+    "duration_weights": "uniform over admissible durations {20,60}",
+    "switch_time_weights": "uniform over s satisfying both segment lengths >=5",
+    "amplitude_reference_grid": ["-0.25", "-0.175", "-0.10", "0.10", "0.175", "0.25"],
+    "pair_rule": "for one-switch templates require |b2-b1|<=0.25; normalize uniformly over admissible ordered pairs",
+    "future_onset_mass": "1/(t+2)",
+    "status": "candidate normalized mixture; prior mass and endpoint conventions require proof before implementation"
+  },
+  "audit_candidate": {
+    "observation": "trusted event and finite saturating payload code",
+    "confidence": "fixed-trajectory time-uniform likelihood-ratio confidence set with normalized onset/duration/switch/reference-amplitude mixture",
+    "coverage_claim": "for each fixed admissible true trajectory; no blanket simultaneous coverage over all continuous trajectories",
+    "box_exclusion": "certified likelihood upper for whole box below epsilon times certified reference-process lower"
+  },
+  "fusion_candidate": {
+    "posterior_moments": "outer bounds on unnormalized mass, first state moment, and second state moment",
+    "objective": "minimize certified worst-case full-record conditional squared risk over surviving trajectory boxes plus health",
+    "benchmark": "global ML single-model posterior mean on exactly the same record",
+    "claim_scope": "worst-case conditional-risk control only; expected post-stop MSE improvement requires a separate paired experiment",
+    "ml_inclusion_fact": "if R_t is a mixture over the same candidate class and 0<epsilon<1, a global ML candidate satisfies L_ML>=R_t>epsilon*R_t and remains in the confidence set",
+    "consequence": "confidence-set fusion is a worst-case action over plausible models, not an assurance that the ML model is wrong or can be removed"
+  },
+  "novelty_status": {
+    "time_varying_attack_estimation": "covered by close prior work; not a contribution",
+    "feasible_attack_history_set": "covered broadly by set-membership and interval-observer work; not a contribution",
+    "quantized_attack_compensation": "multiple close prior works; not a contribution",
+    "piecewise_constant_amplitude": "a bounded modeling stress only; TIFS 2018 studies unknown time-varying attack vectors and TIFS 2019 reports online estimation of unknown time-varying attack parameters with state recovery",
+    "finite_bit_joint_event_code_time_uniform_trajectory_coverage_to_risk_envelope": "candidate gap, open pending full-text comparison and a demonstrated nontrivial risk result"
+  },
+  "gates_before_implementation": [
+    "complete full-text equation-level comparison for TIFS 2018 and 2019, Automatica 2022, IEEE Sensors Journal 2024, IEEE TSIPN 2026, and Ad Hoc Networks 2026",
+    "derive the one-switch finite-code recursion and normalized reference process",
+    "prove a nondegenerate posterior-risk or worst-case-regret result",
+    "verify a 2-5 step full-history moment outer enclosure for a switch-crossing record"
+  ],
+  "random_sampling_started": false,
+  "code_implementation_started": false
+}

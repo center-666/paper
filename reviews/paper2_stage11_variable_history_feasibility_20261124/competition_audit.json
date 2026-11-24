@@ -1,0 +1,106 @@
+{
+  "schema": "s11-competition-audit-v0.1",
+  "date": "2026-11-24",
+  "claims_scope": "Literature boundary review; not a global novelty proof",
+  "sources": [
+    {
+      "id": "kurt2018_tifs",
+      "title": "Distributed Quickest Detection of Cyber-Attacks in Smart Grid",
+      "doi": "10.1109/TIFS.2018.2800908",
+      "authors": ["H. Kurt", "Y. Yilmaz", "X. Wang"],
+      "evidence": "public full text reviewed at model/algorithm level",
+      "primary_url": "https://par.nsf.gov/servlets/purl/10119500",
+      "checked_scope": "time-varying attack vector and attacked-meter set, per-time attack-vector MLE, GLLR-CUSUM, distributed quantization of local statistics and event-driven LCSH",
+      "not_independently_rederived": ["all theorem proofs", "all operating assumptions"],
+      "impact": "variable attack, unknown onset, sequential detection, and event-driven quantized messages are not standalone novelty claims"
+    },
+    {
+      "id": "kurt2019_tifs",
+      "title": "Real-Time Detection of Hybrid and Stealthy Cyber-Attacks in Smart Grid",
+      "doi": "10.1109/TIFS.2018.2854745",
+      "evidence": "arXiv abstract and metadata checked; final publisher equations not fully audited",
+      "primary_urls": [
+        "https://arxiv.org/abs/1803.00128",
+        "https://doi.org/10.1109/TIFS.2018.2854745"
+      ],
+      "abstract_summary": "online estimates of unknown time-varying attack parameters, detection of hybrid FDI/DoS, and recovery state estimates",
+      "impact": "time-varying attack identification plus state recovery is an established close direction"
+    },
+    {
+      "id": "kurt2019_tifs",
+      "title": "Real-Time Detection of Hybrid and Stealthy Cyber-Attacks in Smart Grid",
+      "doi": "10.1109/TIFS.2018.2854745",
+      "authors": ["H. Kurt", "Y. Yilmaz", "X. Wang"],
+      "evidence": "arXiv abstract checked; publisher full text not equation-audited",
+      "primary_url": "https://doi.org/10.1109/TIFS.2018.2854745",
+      "checked_scope": "abstract reports online estimation of unknown time-varying attack parameters, detection of hybrid FDI/DoS, and recovered state estimation",
+      "impact": "detection plus recovery is an existing close direction; detailed assumptions remain open"
+    },
+    {
+      "id": "degue2022_automatica",
+      "title": "Stealthy Attacks and Attack-Resilient Interval Observers",
+      "doi": "10.1016/j.automatica.2022.110558",
+      "authors": ["K. H. Degue", "J. Le Ny", "D. Efimov"],
+      "evidence": "publisher abstract/page checked; full proof not equation-audited",
+      "primary_url": "https://www.sciencedirect.com/science/article/abs/pii/S0005109822004198",
+      "checked_scope": "stealthy attack-sequence construction and interval-observer state/attack bounds under bounded disturbances",
+      "impact": "feasible attack sequences, bounded attack sets, and interval recovery are not standalone novelty claims"
+    },
+    {
+      "id": "song2020_tnnls",
+      "title": "Set-Membership Estimation for Complex Networks Subject to Linear and Nonlinear Bounded Attacks",
+      "doi": "10.1109/TNNLS.2019.2900045",
+      "evidence": "PubMed abstract and metadata checked",
+      "primary_url": "https://pubmed.ncbi.nlm.nih.gov/30908265/",
+      "checked_scope": "set-membership estimation under unknown bounded linear and nonlinear attacks",
+      "impact": "deterministic feasible-set formulation is established prior art"
+    },
+    {
+      "id": "li2026_jfi",
+      "title": "State Estimation for Linear Discrete-Time Systems with Binary-Valued Quantized Innovations Against Data Tampering Attacks",
+      "doi": "10.1016/j.jfranklin.2024.106817",
+      "evidence": "publisher full text already audited in repository",
+      "repository_audit": "../paper1_quantized_literature_fulltext_audit/01_li_hu_guo_ijnrc.md",
+      "impact": "binary quantized-innovation tampering identification and compensation are established"
+    },
+    {
+      "id": "li2024_sensors",
+      "title": "Fusion State Estimation of CPS Under Quantized Observations and Tampering Attacks",
+      "doi": "10.1109/JSEN.2024.3393725",
+      "evidence": "metadata and indexed abstract only; publisher full text unavailable in this review",
+      "primary_url": "https://doi.org/10.1109/JSEN.2024.3393725",
+      "abstract_summary": "quantized observations, partial-channel tampering, compensation for known strategies, and joint attack/state estimation for unknown strategies",
+      "impact": "high overlap with quantized attack/state fusion; exact guarantees remain open"
+    },
+    {
+      "id": "li2025_adhoc",
+      "title": "Transmission Scheduling for Remote State Estimation with Quantized Communication Against Tampering Attacks",
+      "doi": "10.1016/j.adhoc.2025.103997",
+      "evidence": "publisher full text theorem-level audit already in repository",
+      "repository_audit": "../paper1_quantized_literature_fulltext_audit/02_jfi_adhoc_comparison.md",
+      "impact": "quantized tampering identification, compensation and communication scheduling are established"
+    },
+    {
+      "id": "li2026_tsipn",
+      "title": "Remote State Estimation With Quantized Communication Against Markov Tampering Attack",
+      "doi": "10.1109/TSIPN.2026.3672342",
+      "evidence": "metadata and indexed abstract only; publisher full text unavailable in this review",
+      "primary_url": "https://doi.org/10.1109/TSIPN.2026.3672342",
+      "abstract_summary": "binary quantization, Markov tampering, MMSE, known-attack compensation, unknown-attack/state identification and communication scheduling",
+      "impact": "very close quantized attack-identification/recovery prior; exact coverage guarantees remain open"
+    },
+    {
+      "id": "liu2026_adhoc",
+      "title": "Remote Estimation with Binary-Switching Sensors Under Tampering Attack: Identification-Compensated Method Using Quantized Communication",
+      "doi": "10.1016/j.adhoc.2026.104269",
+      "evidence": "publisher page and abstract checked; full equation-level audit not completed",
+      "primary_url": "https://www.sciencedirect.com/science/article/pii/S1570870526001356",
+      "abstract_summary": "binary-switching sensing, quantized tampering, identification-compensation, and data requirement for a specified identification accuracy",
+      "impact": "high direct overlap with quantized unknown-tampering identification and compensation"
+    }
+  ],
+  "provisional_gap": "A candidate-specific time-uniform likelihood confidence set built from the joint trusted-event/finite-code record, connected to certified full-record posterior moment envelopes and a worst-case conditional-risk action. This remains open against the 2024/2026 full texts.",
+  "novelty_status": "OPEN",
+  "implementation_started": false,
+  "random_samples_generated": false
+}
