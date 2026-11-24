@@ -1,0 +1,144 @@
+{
+  "schema": "paper2-stage11-task-charter-v0.1",
+  "freeze_date": "2026-11-24",
+  "repository_base_commit": "51bba8f96a82d0d1c85ea5e9d8510d9c29eda1b9",
+  "status": {
+    "charter_frozen": true,
+    "implementation_started": false,
+    "random_pilot_started": false,
+    "confirmation_started": false,
+    "performance_claims": false
+  },
+  "models": {
+    "V2": {
+      "A": [["1.02", "0.10"], ["0", "0.97"]],
+      "C": [["1", "0"]],
+      "Q": [["0.05", "0"], ["0", "0.05"]],
+      "R": "0.20",
+      "P0": [["0.8", "0"], ["0", "0.8"]],
+      "Z": "2",
+      "W": [["1", "0"], ["0", "1"]],
+      "feedback_half_width": "0.011628232298833967",
+      "observability_determinant": "0.10"
+    },
+    "stable_stress": {
+      "A": [["0.97", "0.10"], ["0", "0.93"]],
+      "C": [["1", "0"]],
+      "Q": [["0.05", "0"], ["0", "0.05"]],
+      "R": "0.20",
+      "P0": [["0.8", "0"], ["0", "0.8"]],
+      "Z": "2",
+      "W": [["1", "0"], ["0", "1"]],
+      "observability_determinant": "0.10",
+      "validation_status": "must be recomputed"
+    }
+  },
+  "feedback": {
+    "phase_distribution": "Uniform[-delta_q,delta_q)",
+    "phase_timing": "after previous record commit and before current event",
+    "center": "phase+2*delta_q*floor((C*monitor_prior-phase+delta_q)/(2*delta_q))",
+    "center_phase_trusted": true,
+    "feedback_driver": "monitor track only; recovery/fusion output does not feed future centers or events",
+    "cost_accounting": "report feedback center/phase bits separately"
+  },
+  "event": {
+    "P_silence": "exp(-Z*(y-center)^2/2)",
+    "generated_before_attack": true,
+    "event_randomizer_independent": true,
+    "event_bit_trusted": true
+  },
+  "uplink_quantizer": {
+    "type": "uniform saturating scalar quantizer of center-relative innovation",
+    "primary_bits": 8,
+    "sensitivity_bits": 12,
+    "codes": "2^B",
+    "kappa": 4,
+    "scale": "sqrt(S_t), S_t=C*P_prior*C'+R",
+    "input": "(y_t-center_t+a_t)/sqrt(S_t)",
+    "step": "2*kappa/(2^B)",
+    "reconstruction": "-kappa+(j+1/2)*step",
+    "outer_cells": "(-infinity,-kappa+step), [kappa-step,infinity)",
+    "saturation_codes_in_alphabet": true
+  },
+  "attack": {
+    "one_contiguous_interval": true,
+    "onset": "integer k>=0",
+    "duration": "integer D in [1,60]",
+    "stop": "tau=k+D-1",
+    "amplitude": "[-0.25,-0.10] union [0.10,0.25]",
+    "amplitude_fixed_during_interval": true,
+    "injection_active_only_on_send": true,
+    "tamperable": ["send payload before finite-bit codec"],
+    "protected": ["event", "phase", "center", "codec", "receiver log"]
+  },
+  "confidence": {
+    "alpha": 0.01,
+    "epsilon": 0.01,
+    "onset_prior": "1/((k+1)*(k+2))",
+    "reference_durations": [20, 60],
+    "reference_amplitudes": ["-0.25", "-0.10", "0.10", "0.25"],
+    "template_weights": "uniform over duration and amplitude",
+    "future_onset_mass": "1/(t+2)",
+    "alarm": "R_t>=1/alpha",
+    "confidence_set": "C_t={theta:L_t(theta)>=epsilon*R_t}",
+    "box_exclusion": "upper(L over box)<epsilon*lower(R)"
+  },
+  "recovery": {
+    "checkpoint_schedule": "every sample",
+    "suspect_window": "[minimum surviving onset, maximum surviving stop]",
+    "inside_window": "erase send code from recovery recursion, keep complete audit log",
+    "outside_window": "use observed finite code",
+    "centers": "use actual logged center/phase; never regenerate from recovery estimate",
+    "post_attack_label_requires": "maximum surviving stop<current time",
+    "risk_set": "surviving attack candidates union H0",
+    "fusion_weight_domain": [0, 1]
+  },
+  "experiments": {
+    "primary": {
+      "model": "V2",
+      "bits": 8,
+      "amplitudes": ["-0.25", "-0.10", "0.10", "0.25"],
+      "durations": [20, 60],
+      "onsets": ["fixed 80", "uniform integer 40..120"]
+    },
+    "stable_stress": {
+      "model": "stable_stress",
+      "bits": 8,
+      "amplitudes": ["-0.25", "0.25"],
+      "durations": [20, 60],
+      "onsets": ["uniform integer 40..120"]
+    },
+    "bit_sensitivity": {
+      "model": "V2",
+      "bits": 12,
+      "amplitudes": ["-0.25", "0.25"],
+      "durations": [20, 60],
+      "onsets": ["uniform integer 40..120"]
+    },
+    "post_stop_horizon": 512,
+    "healthy_control_window": "paired sham onset and duration from matched attack cell",
+    "primary_metric": "equal-weight mean of episode paired post-stop cumulative W-loss differences",
+    "confidence_interval": "stratified episode-level paired bootstrap; time steps are not independent",
+    "pilot_episodes_per_cell": 200,
+    "pilot_reused_for_confirmation": false,
+    "confirmation_min_per_cell": 500,
+    "confirmation_max_per_cell": 2000,
+    "sample_size_target": "95% CI half-width <= 10% of pilot monitor post-stop excess"
+  },
+  "methods": [
+    "quantized monitor",
+    "event-only audit plus monitor",
+    "GLR/CUSUM plus monitor",
+    "alarm-triggered episode-start hard rollback/replay",
+    "finite-bit audit plus selective replay and risk-constrained branch selection/fusion",
+    "oracle true-window replay (upper-bound diagnostic only)"
+  ],
+  "gates": {
+    "S11-1": "finite code cells, saturation tails, normalized kernel, posterior recursion and independent 2-5 step integrations",
+    "S11-2": "time-uniform coverage, H0 e-alarm and whole-box likelihood upper bounds",
+    "S11-3": "fresh checkpoint, selective replay and full-record conditional risk",
+    "S11-4": "post-stop MSE paired CI lower endpoint >0; healthy false-recovery CI upper endpoint <=0.015",
+    "S11-5": "soft fusion retained only with independent significant benefit over hard branch selection",
+    "S11-6": "direct full-text novelty comparison before originality claims"
+  }
+}
