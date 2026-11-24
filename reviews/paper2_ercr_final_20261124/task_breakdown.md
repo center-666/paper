@@ -26,6 +26,8 @@ Freeze seeds and protocol before confirmation runs. Report all trajectories, fai
 
 Write around trusted-history-constrained vector pollution and conditional-risk-safe recovery. The historical results support the theorem foundation and a directional-certificate prototype. They do not support significant overall MSE improvement, full per-step convex-hull projection, finite-bit communication certification, or real-time performance.
 
+The preliminary novelty review is in `novelty_difference_review.md`. Three direct binary-tampering full texts have now been reviewed locally. JFI 2024 article 10.1016/j.jfranklin.2024.106817 and the probability-guaranteed TASE comparison remain open. Global novelty is not yet adjudicated.
+
 ## Stop conditions
 
 - If the persistent fixed-amplitude response does not match direct candidate filtering, stop before expanding the audit.

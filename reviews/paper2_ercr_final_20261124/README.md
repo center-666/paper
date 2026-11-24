@@ -23,5 +23,7 @@ The original P0 audit analyzed the then-proposed one-switch ERCR attack. Its com
 - [p1_theory_unification.md](p1_theory_unification.md) gives the unified model, lemmas, theorem proofs, implementation boundaries, and draft chapter organization.
 - [p1_proof_audit.json](p1_proof_audit.json) records theorem-by-theorem validity and remaining claim limits.
 - [p1_experiment_evidence.md](p1_experiment_evidence.md) classifies reusable historical experiments and identifies required new evidence.
+- [novelty_difference_review.md](novelty_difference_review.md) maps each candidate theorem, algorithm module, and experiment metric to the closest reviewed literature.
+- [novelty_source_register.json](novelty_source_register.json) records evidence level, local PDF hashes, and remaining full-text gaps.
 
 P0 and P1 do not modify the Stage 6, Stage 9, or Oracle source files.

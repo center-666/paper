@@ -1,0 +1,155 @@
+{
+  "report": "novelty_difference_review.md",
+  "date": "2026-11-24",
+  "scope": "Preliminary formula-level novelty boundary review, not an exhaustive global novelty proof",
+  "local_fulltext_sources": [
+    {
+      "id": "li_hu_guo_sensors_2024",
+      "title": "Fusion State Estimation of CPS Under Quantized Observations and Tampering Attacks",
+      "doi": "10.1109/JSEN.2024.3393725",
+      "primary_url": "https://doi.org/10.1109/JSEN.2024.3393725",
+      "zotero_key": "4UWPLG9K",
+      "pages": 12,
+      "sha256": "26b34edbe7d06ef2919a67312d74ec7ef764f5c3eeb63012b33ee509cf16c42d",
+      "evidence_level": "local publisher PDF, model, attack mechanism, estimator, compensation and identification sections reviewed; proofs not independently reproduced",
+      "checked_scope": ["multisensor binary-quantized observations", "probabilistic tampering transition matrix", "known-attack multiplicative compensation", "unknown attack/state joint estimation", "strategy identification accuracy and sample requirements"],
+      "limits": "The attacker modifies quantized sensor symbols under per-channel energy limits. It does not use the paper's trusted pre-attack event bit plus continuous post-event payload model."
+    },
+    {
+      "id": "li_xue_zhao_guo_tsipn_2026",
+      "title": "Remote State Estimation With Quantized Communication Against Markov Tampering Attack",
+      "doi": "10.1109/TSIPN.2026.3672342",
+      "primary_url": "https://doi.org/10.1109/TSIPN.2026.3672342",
+      "zotero_key": "HY6T5PLZ",
+      "pages": 12,
+      "sha256": "cbbb87036367350a41b878f1fcdc71e0aefc89be356e80bbccd314428b526608",
+      "evidence_level": "local publisher PDF, binary-quantized model, Markov attack, known compensation, unknown identification and scheduling results reviewed; proofs not independently reproduced",
+      "checked_scope": ["binary sign-quantized innovation", "two-state Markov tampering", "attack MMSE estimator", "known-attack compensation", "unknown transition-parameter identification", "communication scheduling and finite-sample identification requirements"],
+      "limits": "The paper studies Markov symbol tampering and an identification/scheduling protocol. It does not use a separate trusted stochastic event indicator generated before a continuous payload is modified."
+    },
+    {
+      "id": "liu_li_guo_adhoc_2026",
+      "title": "Remote Estimation with Binary-Switching Sensors Under Tampering Attack: Identification-Compensated Method Using Quantized Communication",
+      "doi": "10.1016/j.adhoc.2026.104269",
+      "primary_url": "https://doi.org/10.1016/j.adhoc.2026.104269",
+      "zotero_key": "JHKTX8GX",
+      "pages": 11,
+      "sha256": "cf4e21515c7c2f4e8b0d02b8933724833e7b3aefeed762e1227586f6871d7440",
+      "evidence_level": "local publisher PDF, system/attack model, compensation, unknown-attack identification, sample-size and convergence sections reviewed; proofs not independently reproduced",
+      "checked_scope": ["periodically switching binary sensors", "binary-quantized transmission", "stochastic sign-tampering attack", "known-attack gain compensation", "unknown-parameter joint identification and estimation", "finite data requirement"],
+      "limits": "The active sensor is selected by the switching protocol and the attacker alters quantized bits. The model and risk target differ from continuous additive payload corruption under a trusted trigger record."
+    },
+    {
+      "id": "li_hu_guo_adhoc_2025",
+      "title": "Transmission Scheduling for Remote State Estimation with Quantized Communication Against Tampering Attacks",
+      "doi": "10.1016/j.adhoc.2025.103997",
+      "primary_url": "https://doi.org/10.1016/j.adhoc.2025.103997",
+      "zotero_key": "DJUPF2SY",
+      "sha256": "b969319207cab1c785ddde1e3e95b369a6120ef8f3eb088e543cf95d0c82d8b6",
+      "evidence_level": "existing repository theorem-level full-text audit",
+      "audit": "reviews/paper1_quantized_literature_fulltext_audit/02_jfi_adhoc_comparison.md",
+      "checked_scope": ["binary-quantized communication", "tampering identification", "compensation", "communication scheduling"]
+    },
+    {
+      "id": "li_hu_guo_ijnrc_2026",
+      "title": "Innovation-Based Tampering Attack on Remote State Estimation With Quantized Observations",
+      "doi": "10.1002/rnc.70168",
+      "primary_url": "https://doi.org/10.1002/rnc.70168",
+      "zotero_key": "3C8H76CM",
+      "sha256": "2ac9e2bb3feb86c143b16182ddfcfac5fa46c4e28978a7cadaaf3adaa7783c5a",
+      "evidence_level": "existing repository publisher full-text audit",
+      "audit": "reviews/paper1_quantized_literature_fulltext_audit/01_li_hu_guo_ijnrc.md",
+      "checked_scope": ["binary sign-quantized innovations", "attacker modifies innovation before detector and quantizer", "threshold detection", "MMSE analysis and compensation"]
+    },
+    {
+      "id": "kurt_yilmaz_wang_tifs_2018",
+      "title": "Distributed Quickest Detection of Cyber-Attacks in Smart Grid",
+      "doi": "10.1109/TIFS.2018.2800908",
+      "primary_url": "https://doi.org/10.1109/TIFS.2018.2800908",
+      "evidence_level": "existing S11 audit reports public full text model/algorithm review",
+      "audit": "reviews/paper2_stage11_variable_history_feasibility_20261124/competition_audit.json",
+      "checked_scope": ["time-varying attack vectors", "unknown onset", "GLR-CUSUM", "event-driven quantization of local detector statistics"]
+    },
+    {
+      "id": "kurt_yilmaz_wang_tifs_2019",
+      "title": "Real-Time Detection of Hybrid and Stealthy Cyber-Attacks in Smart Grid",
+      "doi": "10.1109/TIFS.2018.2854745",
+      "primary_url": "https://doi.org/10.1109/TIFS.2018.2854745",
+      "evidence_level": "arXiv abstract and metadata only; publisher equations not audited",
+      "audit": "reviews/paper2_stage11_variable_history_feasibility_20261124/competition_audit.json"
+    }
+  ],
+  "metadata_only_or_open_sources": [
+    {
+      "id": "li_hu_guo_jfi_2024_106817",
+      "title": "State Estimation for Linear Discrete-Time Systems with Binary-Valued Quantized Innovations Against Data Tampering Attacks",
+      "doi": "10.1016/j.jfranklin.2024.106817",
+      "primary_url": "https://doi.org/10.1016/j.jfranklin.2024.106817",
+      "evidence_level": "Crossref metadata and citation only; no matching local PDF located",
+      "correction": "This DOI is not the IJRNC paper at DOI 10.1002/rnc.70168. The earlier Stage 11 source register pointed this JFI DOI to the IJRNC full-text audit, which is a source mismatch."
+    },
+    {
+      "id": "chen_et_al_tase_2025",
+      "title": "Probability-Guaranteed Distributed Set-Membership Secure Fusion Estimation Against Nonlinear Hybrid Attacks",
+      "doi": "10.1109/TASE.2024.3424190",
+      "primary_url": "https://doi.org/10.1109/TASE.2024.3424190",
+      "evidence_level": "Crossref title/metadata and summary-level comparison only; no local formula-level audit located"
+    },
+    {
+      "id": "degue_le_ny_efimov_automatica_2022",
+      "title": "Stealthy Attacks and Attack-Resilient Interval Observers",
+      "doi": "10.1016/j.automatica.2022.110558",
+      "primary_url": "https://doi.org/10.1016/j.automatica.2022.110558",
+      "evidence_level": "publisher abstract/page summary in prior audit; full proof not audited"
+    },
+    {
+      "id": "song_et_al_tnnls_2020",
+      "title": "Set-Membership Estimation for Complex Networks Subject to Linear and Nonlinear Bounded Attacks",
+      "doi": "10.1109/TNNLS.2019.2900045",
+      "primary_url": "https://doi.org/10.1109/TNNLS.2019.2900045",
+      "evidence_level": "abstract/metadata summary in prior audit"
+    },
+    {
+      "id": "zhang_asjc_2023",
+      "title": "Ellipsoidal set-membership FDI detection study cited in the supplied review",
+      "doi": "10.1002/asjc.3166",
+      "primary_url": "https://doi.org/10.1002/asjc.3166",
+      "evidence_level": "metadata/abstract-level summary in supplied review; full text not audited in this report"
+    },
+    {
+      "id": "wu_ding_yang_ecust_quantized_innovation_2026",
+      "title": "基于新息的网络化系统高效量化编码通信方法",
+      "doi": "10.14135/j.cnki.1006-3080.20251214001",
+      "primary_url": "https://doi.org/10.14135/j.cnki.1006-3080.20251214001",
+      "evidence_level": "cited as a venue engineering benchmark in project design materials; no full-text equation audit located"
+    }
+  ],
+  "venue_fulltext_sources": [
+    {
+      "id": "wang_li_ecust_2021_kl",
+      "title": "基于KL散度检测器下的最优线性欺诈攻击",
+      "doi": "10.14135/j.cnki.1006-3080.20200802001",
+      "primary_url": "https://doi.org/10.14135/j.cnki.1006-3080.20200802001",
+      "evidence_level": "official journal HTML/full-text audit in repository",
+      "audit": "reviews/research_portfolio_journal_20261119/02_journal_article_comparison.md"
+    },
+    {
+      "id": "chen_yang_ecust_2025_watermark",
+      "title": "基于水印的参数不确定性电力系统攻击检测方法",
+      "doi": "10.14135/j.cnki.1006-3080.20241227001",
+      "primary_url": "https://doi.org/10.14135/j.cnki.1006-3080.20241227001",
+      "evidence_level": "official PDF/full-text audit in repository",
+      "audit": "reviews/research_portfolio_journal_20261119/02_journal_article_comparison.md"
+    },
+    {
+      "id": "yu_et_al_ecust_2026_mimo_event_attack_control",
+      "title": "混合攻击下随机MIMO非线性CPSs的事件触发自适应逆最优控制",
+      "doi": "10.14135/j.cnki.1006-3080.20260203002",
+      "primary_url": "https://doi.org/10.14135/j.cnki.1006-3080.20260203002",
+      "evidence_level": "official structured HTML and theorem-level summary in repository; PDF download timed out",
+      "audit": "reviews/research_portfolio_journal_20261119/02_journal_article_comparison.md"
+    }
+  ],
+  "novelty_status": "provisional and model-specific; not a global priority determination",
+  "model_boundary": "The Stage 6/9 main paper uses continuous uplink payloads. It must not claim finite-bit payload likelihood or directly appropriate the finite-code results of S11 feasibility work."
+}
