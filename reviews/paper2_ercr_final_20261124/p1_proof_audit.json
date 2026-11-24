@@ -1,0 +1,84 @@
+{
+  "baseline_commit": "0cc7594882bc809b0c9cb3980ac087dd3c942b0a",
+  "scope": {
+    "estimator": "centralized single-node remote estimator",
+    "state_dimension": 2,
+    "measurement_dimension": 1,
+    "attack": "unknown onset, fixed constant nonnegative amplitude, persistent from onset",
+    "communication": "trusted send/silence event and center, continuous uplink payload",
+    "explicitly_out_of_scope": [
+      "variable-amplitude or finite-stop attack guarantee",
+      "finite-word floating-point payload likelihood",
+      "distributed or multi-estimator fusion"
+    ]
+  },
+  "items": [
+    {
+      "claim": "event-conditioned covariance closure",
+      "status": "valid_under_stated_model",
+      "basis": "Stage 6 Gaussian send and silence kernel",
+      "conditions": ["center is predictable and known", "trigger precedes payload attack", "Gaussian linear model"]
+    },
+    {
+      "claim": "vector pollution response delta=H*b",
+      "status": "valid_and_code_aligned",
+      "basis": "Stage 6 response recursion and deterministic checks",
+      "conditions": ["fixed trusted event history", "persistent fixed scalar amplitude", "same event-indexed covariance for Monitor and candidate"]
+    },
+    {
+      "claim": "time-uniform candidate coverage from reference process",
+      "status": "valid_for_continuous_observation_contract",
+      "basis": "Stage 9 predictable normalized reference kernels and Ville inequality",
+      "conditions": ["reference conditional kernels normalize", "common support over finite histories", "fixed true candidate", "outward likelihood and reference bounds"]
+    },
+    {
+      "claim": "full online continuous confidence set and vector hull projection",
+      "status": "not_end_to_end_implemented",
+      "basis": "Stage 9 uses a post-certificate interval envelope and directional support queries; Stage 6 geometry checks start from supplied endpoints",
+      "consequence": "Describe the implementation as an outer interval envelope with directional certificates. Do not claim per-step full confidence-set enumeration or full hull projection in the performance experiment."
+    },
+    {
+      "claim": "conditional risk nonincrease",
+      "status": "valid_on_common_coverage_event",
+      "basis": "exact conditional risk identity plus projection or certified positive support",
+      "conditions": ["true pollution belongs to the certified outer set", "output action is history-measurable", "Monitor recursion is not altered by output correction"]
+    },
+    {
+      "claim": "unconditional expected MSE improvement",
+      "status": "not_established_by_current_results",
+      "basis": "requires bounded failure-path damage and a favorable quantitative budget",
+      "diagnostic": "Stage 6 V2 small pilot has zero action for b=0.10 and a descriptive interval crossing zero for b=0.25; generic vector failure penalty is conservative."
+    },
+    {
+      "claim": "floating-point output safety",
+      "status": "local_output_audit_only",
+      "basis": "exact binary-rational reconstruction of emitted correction and risk lower bound",
+      "limitation": "continuous decimal input likelihood is not a rounded-cell probability model"
+    },
+    {
+      "claim": "Stage 6 and Stage 9 attack-model alignment",
+      "status": "aligned_for_main_paper",
+      "basis": "both use unknown onset and fixed nonnegative amplitude persistent from onset",
+      "limitation": "TRSR Oracle finite-window attacks are a separate diagnostic and must not be pooled into main-model performance results"
+    },
+    {
+      "claim": "novelty relative to direct competitors",
+      "status": "not_yet_adjudicated",
+      "basis": "requires formula-level full-text comparison",
+      "consequence": "Avoid priority or first-ever claims until direct competitor review is complete."
+    }
+  ],
+  "p1_gate": {
+    "theory_unification": "complete_with_explicit_boundaries",
+    "p2_set_construction": "may_proceed_as_an_implementation_closure_task",
+    "submission_claim": "conditional risk-safe recovery under a time-uniform outer pollution set",
+    "claims_not_supported": [
+      "attack detection accuracy",
+      "all-attack identifiability",
+      "per-trajectory MSE decrease",
+      "significant overall MSE improvement",
+      "finite-bit communication certification",
+      "real-time execution"
+    ]
+  }
+}
