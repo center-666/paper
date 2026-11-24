@@ -1,0 +1,50 @@
+{
+  "schema": "trsr-oracle-feasibility-v0.1",
+  "date": "2026-11-24",
+  "status": "diagnostic-pilot-frozen-before-run",
+  "model": {
+    "id": "V2",
+    "A": [["1.02", "0.10"], ["0", "0.97"]],
+    "C": [["1", "0"]],
+    "Q": [["0.05", "0"], ["0", "0.05"]],
+    "R": "0.20",
+    "P0": [["0.8", "0"], ["0", "0.8"]],
+    "Z": "2",
+    "W": [["1", "0"], ["0", "1"]],
+    "feedback_half_width": "0.011628232298833967"
+  },
+  "protocol": {
+    "uplink": "continuous payload, matching prior V2 recovery experiments",
+    "feedback": "initial phase zero; thereafter independent uniform phase per step, actual center shared and logged",
+    "event": "P(silence|y,c)=exp(-Z*(y-c)^2/2)",
+    "attack_window": "send payload receives constant signed b on [k0,k1); event is never altered",
+    "recovery": "last saved posterior strictly before k0; replay all records using original centers. During suspect sends skip the update and preserve the covariance tag. At silence apply the silence gain of the recovery branch. Resume normal updates from k1.",
+    "checkpoint_stride": 10,
+    "checkpoint_schedule": "initial trusted prior, then posterior at times 0,10,20,...; pick latest strictly before the oracle onset",
+    "hard_rollback": "M1 fixed checkpoint: predict from the same checkpoint in open loop to every release; no observations assimilated",
+    "oracle_compensation": "candidate branch subtracts known true payload injection and processes all observations",
+    "feedback_driver": "monitor only; every policy sees the same realized event and center record",
+    "evaluation": "512 outputs t=k1..k1+511; auxiliary first 20 outputs for the transient",
+    "post_stop_steps": 512
+  },
+  "cells": [
+    {"amplitude": 0.10, "duration": 20},
+    {"amplitude": 0.10, "duration": 60},
+    {"amplitude": 0.25, "duration": 20},
+    {"amplitude": 0.25, "duration": 60}
+  ],
+  "onset": "uniform integer in [40,80]",
+  "episodes_per_cell": 200,
+  "master_seed": 202611241231,
+  "streams": ["physical state/process/measurement", "phase", "event randomizer"],
+  "policies": [
+    "M0 monitor", "M1 fixed-checkpoint open-loop rollback",
+    "M2 selective replay alone", "M3 fixed 50/50 monitor-replay",
+    "M4 oracle adaptive monitor-replay", "M5 monitor minus b times response"
+  ],
+  "adaptive_weight": "clip(min_theta h^T W d_theta / (h^T W h),0,1), singleton true theta in this oracle diagnostic",
+  "paired_metric": "post-stop cumulative W-loss difference, Monitor minus policy",
+  "interval": "within-cell paired Student-t 95%; pooled equal-weight mean of four cells with stratified standard error and Welch-Satterthwaite degrees of freedom. Secondary contrasts descriptive.",
+  "pilot_gate": "Evaluate M4 versus M0 on equal-weight 512-step paired gain. Report diagnostic interval, absolute and relative size, expected gain versus M5, and M2/M3 alternatives. If interval includes zero, stop before R5. A positive result still requires separate engineering relevance and audit evidence.",
+  "performance_claims": false
+}
