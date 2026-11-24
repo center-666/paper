@@ -1,10 +1,14 @@
 """Predictable rounded-observation reference kernels and interval histories."""
 from fractions import Fraction as F
 import math
+from pathlib import Path
+import sys
 
 from exact_linear import add, matmul, matrix, transpose, update
 from mixture_history import I, box, pi_box, trigger_integral
 from numerical_record import binary64_rounding_cell, interval_fraction as frac
+sys.path.insert(0,str(Path(__file__).resolve().parent.parent/'paper2_stage10_r4a_final_20261124'))
+from alphabet_audit import overflow_mass
 
 
 def reading_cell(word):
@@ -43,6 +47,9 @@ def silence_mass(center, mean, variance, Z):
 def reference_step(reading, bias, variance, Z, pieces=4):
     if reading.word is None:
         return silence_mass(reading.center,F(0),variance,Z)
+    if reading.word in (math.inf,-math.inf):
+        return overflow_mass(reading.word,bias,F(0),variance,
+                             F.from_float(reading.center),Z)
     return sent_mass(reading,bias,F(0),variance,F.from_float(reading.center),Z,pieces)
 
 

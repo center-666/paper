@@ -1,0 +1,506 @@
+{
+  "model": "A, exact continuous monitor recursion, one binary64 center reconstruction",
+  "phase_source": "fixed exogenous values, independent of state and current event",
+  "center_formula": "phase + 2*delta*floor((C*m_prior-phase+delta)/(2*delta))",
+  "rows": [
+    {
+      "time": 0,
+      "prior_mean": [
+        "0",
+        "0"
+      ],
+      "prediction": "0",
+      "phase": "0",
+      "grid_index": "0",
+      "grid_center": "0",
+      "center_hex": "0x0.0p+0",
+      "event": "send",
+      "word_hex": "0x1.8000000000000p-2",
+      "source_filter": [
+        "prior_mean",
+        "phase"
+      ],
+      "generated_before_current_event": true,
+      "center_within_half_width": true
+    },
+    {
+      "time": 1,
+      "prior_mean": [
+        "153/500",
+        "0"
+      ],
+      "prediction": "153/500",
+      "phase": "11628232298833967/4000000000000000000",
+      "grid_index": "13",
+      "grid_center": "244192878275513307/800000000000000000",
+      "center_hex": "0x1.38911f528c14dp-2",
+      "event": "silence",
+      "word_hex": null,
+      "source_filter": [
+        "prior_mean",
+        "phase"
+      ],
+      "generated_before_current_event": true,
+      "center_within_half_width": true
+    },
+    {
+      "time": 2,
+      "prior_mean": [
+        "3246690699363163248313/10408539314793595535360",
+        "-16078999948073510567/260213482869839888384000"
+      ],
+      "prediction": "3246690699363163248313/10408539314793595535360",
+      "phase": "-11628232298833967/2000000000000000000",
+      "grid_index": "14",
+      "grid_center": "127910555287173637/400000000000000000",
+      "center_hex": "0x1.47737625b752cp-2",
+      "event": "send",
+      "word_hex": "-0x1.0000000000000p-2",
+      "source_filter": [
+        "prior_mean",
+        "phase"
+      ],
+      "generated_before_current_event": true,
+      "center_within_half_width": true
+    },
+    {
+      "time": 3,
+      "prior_mean": [
+        "-7486632146623443696628021171/484407365611586854605291520000",
+        "-800278749536768134811403556387/4844073656115868546052915200000"
+      ],
+      "prediction": "-7486632146623443696628021171/484407365611586854605291520000",
+      "phase": "11628232298833967/8000000000000000000",
+      "grid_index": "-1",
+      "grid_center": "-34884696896501901/1600000000000000000",
+      "center_hex": "-0x1.653823cc0dceap-6",
+      "event": "send",
+      "word_hex": "0x1.0000000000000p-1",
+      "source_filter": [
+        "prior_mean",
+        "phase"
+      ],
+      "generated_before_current_event": true,
+      "center_within_half_width": true
+    },
+    {
+      "time": 4,
+      "prior_mean": [
+        "8324839578719673369127419751322144077/34956924847714096562776893103800320000",
+        "4603857971596655469842360622948895069/349569248477140965627768931038003200000"
+      ],
+      "prediction": "8324839578719673369127419751322144077/34956924847714096562776893103800320000",
+      "phase": "-11628232298833967/8000000000000000000",
+      "grid_index": "10",
+      "grid_center": "1848888935514600753/8000000000000000000",
+      "center_hex": "0x1.d950c907f8b1dp-3",
+      "event": "silence",
+      "word_hex": null,
+      "source_filter": [
+        "prior_mean",
+        "phase"
+      ],
+      "generated_before_current_event": true,
+      "center_within_half_width": true
+    },
+    {
+      "time": 5,
+      "prior_mean": [
+        "616002575134896061387408299834892794706109851/2538086814881529822430081809540292982865920000",
+        "296772446458262754448998299419140007666606397/25380868148815298224300818095402929828659200000"
+      ],
+      "prediction": "616002575134896061387408299834892794706109851/2538086814881529822430081809540292982865920000",
+      "phase": "11628232298833967/3000000000000000000",
+      "grid_index": "10",
+      "grid_center": "709322170228871987/3000000000000000000",
+      "center_hex": "0x1.e43b08b3e5349p-3",
+      "event": "send",
+      "word_hex": "-0x1.0000000000000p-3",
+      "source_filter": [
+        "prior_mean",
+        "phase"
+      ],
+      "generated_before_current_event": true,
+      "center_within_half_width": true
+    }
+  ],
+  "stage9_comparison": {
+    "file": "reviews/paper2_stage9_cumulative_evidence_20261123/paired_recovery.py",
+    "sha256": "2b8f08a504718e2a9b161fb498927331744df7d61053de04403d8643826ffaf3",
+    "phase_offset_assignment_line": 297,
+    "event_assignment_line": 299,
+    "residual_assignment_line": 307,
+    "record_append_line": 314,
+    "independent_phase_and_event_rngs": true,
+    "phase_generated_before_event": true,
+    "phase_offset_passed_to_evidence_record": true,
+    "phase_random_call_lines": [
+      297,
+      299
+    ],
+    "absolute_center_variable_constructed": false,
+    "phase_is_direct_offset_r": true,
+    "stage9_center_source_chain": "r is generated independently before event and stored; ideal absolute center C*m_prior+r is reconstructible from shared monitor state, but no absolute-center bit pattern is logged",
+    "stage9_channel_matches_model_A": "no, the event uses floating y-r and the sent residual uses floating y+injection"
+  },
+  "stage9_trace_reconstruction": {
+    "trace_sha256": "ad9905bc25a8da7e2fb03e62483f3cde6a29251d2f55a1a63b36c69c693a1ddb",
+    "rows": [
+      {
+        "time": 0,
+        "prior_hex": [
+          "0x0.0p+0",
+          "0x0.0p+0"
+        ],
+        "offset_hex": "0x0.0p+0",
+        "center_hex": "0x0.0p+0",
+        "event": false,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 1,
+        "prior_hex": [
+          "0x0.0p+0",
+          "0x0.0p+0"
+        ],
+        "offset_hex": "-0x1.068d4f8881cbcp-8",
+        "center_hex": "-0x1.068d4f8881cbcp-8",
+        "event": true,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 2,
+        "prior_hex": [
+          "0x1.ebf968fcd9d78p-1",
+          "0x1.3fdb9b1d901b6p-3"
+        ],
+        "offset_hex": "-0x1.7eba872b999a1p-11",
+        "center_hex": "0x1.eb99ba5b0ef12p-1",
+        "event": false,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 3,
+        "prior_hex": [
+          "0x1.fdb81c49bcfbfp-1",
+          "0x1.3619da3e92f7fp-3"
+        ],
+        "offset_hex": "0x1.3b6e766ceb04fp-7",
+        "center_hex": "0x1.0152eb11b8540p+0",
+        "event": true,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 4,
+        "prior_hex": [
+          "0x1.cfe7314bc3708p+0",
+          "0x1.3002339be3bc4p-1"
+        ],
+        "offset_hex": "0x1.1a564df29736fp-10",
+        "center_hex": "0x1.d02dc6df40165p+0",
+        "event": true,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 5,
+        "prior_hex": [
+          "0x1.5e26f76ca3036p+0",
+          "0x1.b54f4147b098ep-3"
+        ],
+        "offset_hex": "0x1.7ace1b309e384p-7",
+        "center_hex": "0x1.611c93a3043fdp+0",
+        "event": true,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 6,
+        "prior_hex": [
+          "0x1.3a82051056756p+0",
+          "0x1.2b0401b014f83p-4"
+        ],
+        "offset_hex": "0x1.edcd08985d4f3p-8",
+        "center_hex": "0x1.3c6fd218eed2bp+0",
+        "event": false,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 7,
+        "prior_hex": [
+          "0x1.4313f2b2dbf1fp+0",
+          "0x1.26c49e44bd9e4p-4"
+        ],
+        "offset_hex": "-0x1.622df8fa0ee30p-9",
+        "center_hex": "0x1.4262dbb65eea8p+0",
+        "event": false,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 8,
+        "prior_hex": [
+          "0x1.4b3346f0b5d8ep+0",
+          "0x1.1bed554cab191p-4"
+        ],
+        "offset_hex": "-0x1.a208470cc0316p-9",
+        "center_hex": "0x1.4a6242cd2f78cp+0",
+        "event": true,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 9,
+        "prior_hex": [
+          "0x1.ce40f040b068fp+0",
+          "0x1.84f89226031a1p-2"
+        ],
+        "offset_hex": "-0x1.1e4ded83cb458p-9",
+        "center_hex": "0x1.cdb1c949ee835p+0",
+        "event": false,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 10,
+        "prior_hex": [
+          "0x1.e117d1309a760p+0",
+          "0x1.78f89d567b458p-2"
+        ],
+        "offset_hex": "-0x1.2377a41cf0d8ap-7",
+        "center_hex": "0x1.ded0e1e860945p+0",
+        "event": true,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 11,
+        "prior_hex": [
+          "0x1.49d0e54e8a8ccp+1",
+          "0x1.7953afeee3212p-1"
+        ],
+        "offset_hex": "-0x1.17c733384167fp-8",
+        "center_hex": "0x1.494501b4ee6c1p+1",
+        "event": true,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 12,
+        "prior_hex": [
+          "0x1.1c48f2d01e923p+1",
+          "0x1.b4e49caaede66p-2"
+        ],
+        "offset_hex": "0x1.c36ecee196bfep-10",
+        "center_hex": "0x1.1c8160a9fac50p+1",
+        "event": false,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 13,
+        "prior_hex": [
+          "0x1.277a5b6e7fcdfp+1",
+          "0x1.a80144066463cp-2"
+        ],
+        "offset_hex": "-0x1.2f90943c1236ap-7",
+        "center_hex": "0x1.264acada43bbcp+1",
+        "event": false,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 14,
+        "prior_hex": [
+          "0x1.32631798144f2p+1",
+          "0x1.99e831a8d5ecfp-2"
+        ],
+        "offset_hex": "-0x1.9dc48652a787cp-9",
+        "center_hex": "0x1.31fba6767fa54p+1",
+        "event": false,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 15,
+        "prior_hex": [
+          "0x1.3d86595e519fep+1",
+          "0x1.8d1b43571ea81p-2"
+        ],
+        "offset_hex": "-0x1.3b6d3340f3b5bp-7",
+        "center_hex": "0x1.3c4aec2b10ac3p+1",
+        "event": false,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 16,
+        "prior_hex": [
+          "0x1.4878a82aa9459p+1",
+          "0x1.7f9f26eae15f0p-2"
+        ],
+        "offset_hex": "0x1.9a9133e02d67bp-12",
+        "center_hex": "0x1.48857cb448470p+1",
+        "event": false,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 17,
+        "prior_hex": [
+          "0x1.53d9f7a30c5dfp+1",
+          "0x1.742d51899f67bp-2"
+        ],
+        "offset_hex": "0x1.c39371c0736b5p-10",
+        "center_hex": "0x1.54126a11446c6p+1",
+        "event": false,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 18,
+        "prior_hex": [
+          "0x1.5f5e9af7c52a8p+1",
+          "0x1.694a68b11a22ep-2"
+        ],
+        "offset_hex": "0x1.5d79a9ef12ee2p-8",
+        "center_hex": "0x1.600d57ccbcb3fp+1",
+        "event": false,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 19,
+        "prior_hex": [
+          "0x1.6b20b33d9b32fp+1",
+          "0x1.5f4dfc333c223p-2"
+        ],
+        "offset_hex": "0x1.3ddaa45cbc735p-7",
+        "center_hex": "0x1.6c5e8de1f7ef6p+1",
+        "event": false,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 20,
+        "prior_hex": [
+          "0x1.772c4afb52756p+1",
+          "0x1.564c0bb49aad1p-2"
+        ],
+        "offset_hex": "-0x1.9ca020d7afda0p-8",
+        "center_hex": "0x1.765dfaeae69d7p+1",
+        "event": false,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 21,
+        "prior_hex": [
+          "0x1.82b3784b877e9p+1",
+          "0x1.4b0b8d9ad0961p-2"
+        ],
+        "offset_hex": "0x1.1e033a300115ep-7",
+        "center_hex": "0x1.83d17b85b77fap+1",
+        "event": false,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 22,
+        "prior_hex": [
+          "0x1.8eecdb5dccfa8p+1",
+          "0x1.4276c362246f4p-2"
+        ],
+        "offset_hex": "-0x1.a3768ced4a6fbp-11",
+        "center_hex": "0x1.8ed2a3f4fe25ep+1",
+        "event": false,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 23,
+        "prior_hex": [
+          "0x1.9ae6fc246f050p+1",
+          "0x1.38aacaa7ea996p-2"
+        ],
+        "offset_hex": "0x1.5bb8dc0892c49p-7",
+        "center_hex": "0x1.9c42b5007797cp+1",
+        "event": true,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 24,
+        "prior_hex": [
+          "0x1.db339e5ea2becp+1",
+          "0x1.f527075bbb239p-2"
+        ],
+        "offset_hex": "0x1.791604615f72ep-7",
+        "center_hex": "0x1.dcacb463041e3p+1",
+        "event": false,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 25,
+        "prior_hex": [
+          "0x1.eb4ef7d86708cp+1",
+          "0x1.e774a75f2e19cp-2"
+        ],
+        "offset_hex": "-0x1.8804e4b1009edp-8",
+        "center_hex": "0x1.ea8af5660e887p+1",
+        "event": true,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 26,
+        "prior_hex": [
+          "0x1.b1d1dcb8a64c0p+1",
+          "0x1.6a00e0edc3a7ap-3"
+        ],
+        "offset_hex": "-0x1.a4a0bbe3177f2p-8",
+        "center_hex": "0x1.b0ff8c5ab4c04p+1",
+        "event": false,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 27,
+        "prior_hex": [
+          "0x1.bc9487c488f6bp+1",
+          "0x1.5dae6e0aaeb84p-3"
+        ],
+        "offset_hex": "-0x1.b21c87147d0d9p-8",
+        "center_hex": "0x1.bbbb7980feb83p+1",
+        "event": true,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 28,
+        "prior_hex": [
+          "0x1.aa612d9f9efb9p+1",
+          "0x1.91913f7339bcep-5"
+        ],
+        "offset_hex": "-0x1.f35d7b4113313p-8",
+        "center_hex": "0x1.a9677ee1fe71fp+1",
+        "event": false,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 29,
+        "prior_hex": [
+          "0x1.b35313435c654p+1",
+          "0x1.7e88f65c15629p-5"
+        ],
+        "offset_hex": "-0x1.26c4cfe192e41p-7",
+        "center_hex": "0x1.b22c4e737ad26p+1",
+        "event": false,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 30,
+        "prior_hex": [
+          "0x1.bc55eddd2b726p+1",
+          "0x1.6969f43e4dde1p-5"
+        ],
+        "offset_hex": "0x1.68d3ed48f4b64p-7",
+        "center_hex": "0x1.bdbec1ca74671p+1",
+        "event": false,
+        "center_source_is_past_state_plus_independent_offset": true
+      },
+      {
+        "time": 31,
+        "prior_hex": [
+          "0x1.c62e70b148f0dp+1",
+          "0x1.6b53158031b8ap-5"
+        ],
+        "offset_hex": "0x1.d2a2507ed6943p-8",
+        "center_hex": "0x1.c717c1d9885c2p+1",
+        "event": false,
+        "center_source_is_past_state_plus_independent_offset": true
+      }
+    ]
+  },
+  "sha256": {
+    "reviews/paper2_stage6_vector_correction_20261122/model.json": "f5d9b3048df500f6b164dfdd7f9a7bbafdfe6c38aeded20a01561a9565a5498a"
+  }
+}
