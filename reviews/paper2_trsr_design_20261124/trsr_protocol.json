@@ -1,0 +1,69 @@
+{
+  "status": "DESIGN_ONLY",
+  "base_commit": "3fc8710534eab7a4e23ef804cb584acbdb29f62e",
+  "model_source": "../paper2_stage6_vector_correction_20261122/model.json",
+  "communication": "continuous uplink, trusted random-event record and shared quantized prediction center; output-only correction",
+  "attack": {
+    "onset": 80,
+    "durations": [
+      20,
+      60
+    ],
+    "pilot_amplitudes": [
+      -0.25,
+      -0.1,
+      0.1,
+      0.25
+    ],
+    "candidate_duration_range": [
+      1,
+      60
+    ],
+    "candidate_amplitude_range": [
+      -0.25,
+      0.25
+    ],
+    "include_health": true
+  },
+  "checkpoint_period": 10,
+  "oracle_pilot": {
+    "status": "not_started",
+    "episodes_per_cell": 200,
+    "seed_root_proposed": 202611240731,
+    "delay_steps": [
+      0,
+      5,
+      20,
+      60,
+      128
+    ],
+    "post_stop_primary_steps": 64,
+    "secondary_steps": 512,
+    "methods": [
+      "monitor",
+      "fixed_incomplete_rollback",
+      "selective_replay",
+      "fixed_half_fusion",
+      "oracle_trsr",
+      "oracle_direct_correction"
+    ],
+    "paired": true,
+    "primary_unit": "episode",
+    "healthy_sham_controls": true
+  },
+  "acceptance": {
+    "deterministic_tolerance": 1e-10,
+    "minimum_oracle_conditional_gain_fraction": 0.2,
+    "first_validate": "R1-R3 deterministic fixtures",
+    "no_performance_claims": true,
+    "continuous_coverage_not_established_for_grid": true
+  },
+  "audit": {
+    "status": "deferred",
+    "alpha": 0.01,
+    "epsilon": 0.01
+  },
+  "implementation_started": false,
+  "random_experiment_started": false,
+  "novelty": "open"
+}
