@@ -20,14 +20,15 @@ DEV_SEED = 202611251703
 def save(path, data):
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix("." + uuid.uuid4().hex + ".tmp")
-    tmp.write_text(json.dumps(data,allow_nan=False,ensure_ascii=False)+"\n",encoding="utf8")
+    tmp.write_text(json.dumps(data,allow_nan=False,ensure_ascii=False)+"\n",encoding="utf8",newline="\n")
     os.replace(tmp,path)
 
 def read(p):
     return json.loads(p.read_text(encoding="utf8"))
 
 def digest(p):
-    return hashlib.sha256(p.read_bytes()).hexdigest()
+    # Frozen inputs are UTF-8 text. Match Git LF blobs on Windows checkouts.
+    return hashlib.sha256(p.read_bytes().replace(b"\r\n",b"\n")).hexdigest()
 
 def trial(group, index, seed, thresholds, phase, identity):
     outdir = TASK/"results"/phase
