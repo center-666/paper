@@ -1,0 +1,53 @@
+{
+  "plant": "industrial_two_tank",
+  "unit": "cm from nominal level; 1 simulation level unit = 1 cm",
+  "time_unit": "s",
+  "onset": 50,
+  "steps": 608,
+  "window": [
+    50,
+    561
+  ],
+  "query_times": [
+    127,
+    255,
+    383,
+    511
+  ],
+  "levels": [
+    0.025,
+    0.05,
+    0.1
+  ],
+  "epsilon": 0.001,
+  "budget": 64,
+  "cap_action": 1,
+  "useful_gain": 0.000625,
+  "dev_seed": 202611252820,
+  "calibration_seed": 202611252821,
+  "test_seed": 202611252822,
+  "threshold_quantile": 0.995,
+  "calibration_n": 200,
+  "strong_ladder": [
+    0.08,
+    0.16,
+    0.25,
+    0.35,
+    0.45,
+    0.55
+  ],
+  "weak": 0.032,
+  "select": "smallest cap=strong with at least 3/4 useful runs per sign on the same 4 development seed indices; if none use last and disclose",
+  "groups": {
+    "strong_positive": 20,
+    "strong_negative": 20,
+    "weak_positive": 8,
+    "weak_negative": 8,
+    "health": 36
+  },
+  "timing_ids": [
+    0,
+    1
+  ],
+  "workers": 6
+}

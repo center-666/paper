@@ -13,6 +13,7 @@ from propagation import response_step, update_signed_intervals
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 PLANTS = load_plants(ROOT / "config" / "plants.json")
+PLANTS.update(load_plants(ROOT / "config" / "test_v2.json"))
 
 
 def vector_scale(value, vector):
@@ -32,14 +33,11 @@ def run_trace(plant, amplitude, mirror=False):
         sent = t % 3 != 1
         active = sent and t >= 3
         clean = [F("0.11") * (1 if (t + i) % 2 else -1) for i in range(plant.measurement_dimension)]
-        observation = list(clean)
+        observation = [-x for x in clean] if mirror else list(clean)
         if active:
-            # The mirror run negates the complete positive-bias record while
-            # retaining the signed candidate amplitude used by the filter.
-            observation[plant.attack_channel] += abs(amplitude)
+            observation[plant.attack_channel] += amplitude
         center = [F("0.03") * (i + 1) for i in range(plant.measurement_dimension)]
         if mirror:
-            observation = [-x for x in observation]
             center = [-x for x in center]
             control_used = [-x for x in control]
         else:

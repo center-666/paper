@@ -3,64 +3,78 @@
   "control_convention": "x_next=A x_plus+B u",
   "measurement_convention": "y=C x_plus+v",
   "plants": {
-    "v2_regression": {
-      "dimension": 2,
-      "A": [["1.02", "0.10"], ["0", "0.97"]],
-      "B": [["0.10"], ["0.04"]],
-      "C": [["1", "0"]],
-      "Q": [["0.05", "0"], ["0", "0.05"]],
-      "R": [["0.20"]],
-      "Z": "2",
-      "P0": [["0.8", "0"], ["0", "0.8"]],
-      "W": [["1", "0"], ["0", "1"]],
-      "attack_channel": 0,
-      "sample_period": "1",
-      "units": {"state": "normalized", "input": "normalized", "measurement": "normalized"}
-    },
     "industrial_two_tank": {
       "dimension": 2,
-      "A": [["0.94", "0.08"], ["0.03", "0.91"]],
-      "B": [["0.06", "0.01"], ["0.02", "0.05"]],
-      "C": [["1", "0"]],
-      "Q": [["0.0025", "0"], ["0", "0.0025"]],
-      "R": [["0.02"]],
+      "A": [
+        [
+          "0.94",
+          "0.08"
+        ],
+        [
+          "0.03",
+          "0.91"
+        ]
+      ],
+      "B": [
+        [
+          "0.06",
+          "0.01"
+        ],
+        [
+          "0.02",
+          "0.05"
+        ]
+      ],
+      "C": [
+        [
+          "1",
+          "0"
+        ]
+      ],
+      "Q": [
+        [
+          "0.0025",
+          "0"
+        ],
+        [
+          "0",
+          "0.0025"
+        ]
+      ],
+      "R": [
+        [
+          "0.02"
+        ]
+      ],
       "Z": "2",
-      "P0": [["0.25", "0"], ["0", "0.25"]],
-      "W": [["1", "0"], ["0", "1"]],
+      "P0": [
+        [
+          "0.25",
+          "0"
+        ],
+        [
+          "0",
+          "0.25"
+        ]
+      ],
+      "W": [
+        [
+          "1",
+          "0"
+        ],
+        [
+          "0",
+          "1"
+        ]
+      ],
       "attack_channel": 0,
       "sample_period": "1",
-      "units": {"state": "relative level", "input": "relative flow", "measurement": "relative level"},
+      "units": {
+        "state": "cm deviation around operating point",
+        "input": "normalized pump command",
+        "measurement": "cm"
+      },
       "physical_interpretation": "two interacting normalized liquid levels with known pump-flow input"
-    },
-    "four_state_servo": {
-      "dimension": 4,
-      "A": [["0.98", "0.08", "0.01", "0"], ["-0.04", "0.96", "0.02", "0.01"], ["0", "0", "0.93", "0.08"], ["0", "0", "-0.03", "0.90"]],
-      "B": [["0.02"], ["0.08"], ["0.04"], ["0.12"]],
-      "C": [["1", "0", "0", "0"]],
-      "Q": [["0.001", "0", "0", "0"], ["0", "0.001", "0", "0"], ["0", "0", "0.001", "0"], ["0", "0", "0", "0.001"]],
-      "R": [["0.015"]],
-      "Z": "2",
-      "P0": [["0.2", "0", "0", "0"], ["0", "0.2", "0", "0"], ["0", "0", "0.2", "0"], ["0", "0", "0", "0.2"]],
-      "W": [["1", "0", "0", "0"], ["0", "1", "0", "0"], ["0", "0", "1", "0"], ["0", "0", "0", "1"]],
-      "attack_channel": 0,
-      "sample_period": "0.1",
-      "units": {"state": "normalized position and velocity modes", "input": "normalized actuator", "measurement": "normalized position"},
-      "physical_interpretation": "discrete four-state servo modal approximation with known actuator input"
-    },
-    "three_state_reactor": {
-      "dimension": 3,
-      "A": [["0.91", "0.05", "0"], ["0.02", "0.88", "0.04"], ["0", "0.03", "0.85"]],
-      "B": [["0.04"], ["0.02"], ["0.06"]],
-      "C": [["1", "0", "0"]],
-      "Q": [["0.002", "0", "0"], ["0", "0.002", "0"], ["0", "0", "0.002"]],
-      "R": [["0.02"]],
-      "Z": "2",
-      "P0": [["0.25", "0", "0"], ["0", "0.25", "0"], ["0", "0", "0.25"]],
-      "W": [["1", "0", "0"], ["0", "1", "0"], ["0", "0", "1"]],
-      "attack_channel": 0,
-      "sample_period": "1",
-      "units": {"state": "normalized concentration, temperature, and holdup modes", "input": "normalized feed", "measurement": "normalized concentration"},
-      "physical_interpretation": "three-state stable reactor-like linear process approximation with known feed input"
     }
   }
 }
