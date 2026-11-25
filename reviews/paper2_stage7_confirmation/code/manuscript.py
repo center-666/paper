@@ -55,6 +55,8 @@ def main():
         for m in ("M1","M2","M3"):
             x=summary(g,m)
             doc.append(f"| {NAME[g]} | {m} | {f(x['gain'])} | {f(x['conditional'])} | {f(x['mean_cert'])} | {f(x['recovery_share'])} | {x['first_success']}/{x['n']} | {f(x['median_delay_among_successes'],1)} |")
+    weak=[summary(g,"M3") for g in ("weak_early","weak_late")]
+    doc += [f"在早起点强档，M3 恢复了未限幅 Oracle 条件机会量的 {100*float(p['recovery_share']):.1f}%，M1 为 {100*float(point['recovery_share']):.1f}%。M3 的首次有证动作只在 {p['first_success']}/{p['n']} 条上出现，成功者中位延迟 {f(p['median_delay_among_successes'],0)} 拍；M1 首次非零出手为 {point['first_success']}/{point['n']} 条，中位延迟 {f(point['median_delay_among_successes'],0)} 拍。两种弱档中，M3 各有 {weak[0]['first_success']}/{weak[0]['n']} 和 {weak[1]['first_success']}/{weak[1]['n']} 条达到有用门限。这些未启动轨迹都计入均值。"]
     doc+=["## 健康轨迹与计算代价",
           f"主门限 M1 在 608 拍内至少误动一次的轨迹为 {health['method_active']}/{health['n']}，M3 为 {health['m3_active']}/{health['n']}。各自双侧 95% 精确区间为 [{100*health['method_lo']:.2f}%, {100*health['method_hi']:.2f}%]、[{100*health['m3_lo']:.2f}%, {100*health['m3_hi']:.2f}%]。仅 M1 出手 {health['only_method']} 条，仅 M3 出手 {health['only_m3']} 条。M1 减 M3 的误动率差为 {100*health['diff']:.2f} 个百分点，保守配对区间 [{100*health['lo']:.2f}, {100*health['hi']:.2f}] 个百分点。±1 个百分点等效{'通过' if health['equivalent'] else '未确定'}。健康损失仍按绝对 50–561 拍量计。",
           "![健康误动率与累计降损](tradeoff.png)",
