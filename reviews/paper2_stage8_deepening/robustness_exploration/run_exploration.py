@@ -185,7 +185,7 @@ def registration_data():
 
 def register():
     target = TASK / "registration.json"
-    if target.exists() and any((TASK / "data").rglob("*.json")):
+    if target.exists() and any((TASK / "data_v2").rglob("*.json")):
         raise FileExistsError("Cannot revise the registration after trial data exist")
     atomic_json(target, registration_data())
     print("registered", digest(target))
@@ -302,43 +302,78 @@ def conditional_gain(delta, action):
     return 2 * exact_dot(delta, weighted_action) - exact_dot(action, weighted_action)
 
 
-def drift_margin(onset_time, anchor_time, current_time, direction, rho, injection_response):
-    if rho == 0:
-        return F(0)
+def move_direction(direction, transition):
+    if W_EXACT != [[F(1), F(0)], [F(0), F(1)]]:
+        raise NotImplementedError("The optimized projection recursion requires W=I")
+    inverse_transpose = transpose(inverse(transition))
+    moved = tuple(row[0] for row in matmul(inverse_transpose, [[value] for value in direction]))
+    scale = max(map(abs, moved))
+    return tuple(value / scale for value in moved), scale
+
+
+def suffix_drift_margins(send_times, projections, anchor_time, rho):
+    suffix = [F(0)] * len(send_times)
+    running = F(0)
+    for index in range(len(send_times) - 1, -1, -1):
+        running += rho * abs(send_times[index] - anchor_time) * abs(projections[index])
+        suffix[index] = running
+    return suffix
+
+
+def initialize_direction_state(direction, injection_response, send_times):
     weighted_direction = exact_matvec(W_EXACT, direction)
-    return rho * sum(
-        (
-            abs(send_time - anchor_time) * abs(exact_dot(weighted_direction, response))
-            for send_time, response in injection_response.items()
-            if onset_time <= send_time <= current_time
-        ),
-        F(0),
-    )
+    projections = [
+        exact_dot(weighted_direction, injection_response[send_time])
+        for send_time in send_times
+    ]
+    return {"direction": tuple(direction), "projections": projections}
 
 
-def m3_rho_action(method, m2_action, m3_action, time_index, rho, anchors, injection_response):
+def advance_direction_states(states, directions, transition, gain, sent,
+                             injection_response, send_times):
+    updated = []
+    for state in states:
+        direction, scale = move_direction(state["direction"], transition)
+        projections = [value / scale for value in state["projections"]]
+        if sent:
+            projections.append(exact_dot(exact_matvec(W_EXACT, direction), gain))
+        updated.append({"direction": direction, "projections": projections})
+    for direction in directions[len(updated):]:
+        updated.append(initialize_direction_state(direction, injection_response, send_times))
+    if len(updated) != len(directions):
+        raise AssertionError("Direction propagation state does not match certified directions")
+    if any(state["direction"] != tuple(direction)
+           for state, direction in zip(updated, directions)):
+        raise AssertionError("Adjoint direction recurrence diverged from the frozen method")
+    return updated
+
+
+def m3_rho_action(method, m2_action, m3_action, rho, anchors, direction_states):
     if rho == 0:
         return m3_action
     if method.intervals == {}:
-        return m2_action, F(0)
+        return (F(0), F(0)), F(0)
 
     old_action, legacy_floor = capped_halfspace_action(method.old, W, CAP)
     best = publish(method.monitor, old_action, method.radius)[:2]
-    for direction in method.directions:
+    send_times = method.core.send_times
+    for state in direction_states:
+        direction = state["direction"]
         robust_support = None
+        margins_by_anchor = {}
         for onset, amplitude_interval in method.intervals.items():
-            onset_time = method.core.send_times[onset]
-            anchor_time = anchors.get(onset, time_index)
+            anchor_time = anchors.get(onset, method.core.n)
+            if anchor_time not in margins_by_anchor:
+                margins_by_anchor[anchor_time] = suffix_drift_margins(
+                    send_times, state["projections"], anchor_time, rho
+                )
             coefficient = method.core.support_coefficient(onset, direction)
             static_support = min(
                 F(endpoint) * amplitude
                 for endpoint in (coefficient.lo, coefficient.hi)
                 for amplitude in amplitude_interval
             )
-            margin = drift_margin(
-                onset_time, anchor_time, time_index, direction, rho, injection_response
-            )
-            candidate = static_support - margin
+            candidate = static_support - margins_by_anchor[anchor_time][onset]
             robust_support = candidate if robust_support is None else min(robust_support, candidate)
         if robust_support is None or robust_support <= 0:
             continue
@@ -349,7 +384,6 @@ def m3_rho_action(method, m2_action, m3_action, time_index, rho, anchors, inject
         if published[1] > best[1]:
             best = published
     return best
-
 
 def build_tasks(kind):
     tasks = []
@@ -393,7 +427,7 @@ def build_tasks(kind):
 
 def output_path(task):
     scenario = task["scenario"].replace("%", "pct").replace("+", "p").replace("-", "m")
-    return TASK / "data" / task["experiment"] / f"{scenario}_{task['group']}_{task['index']:02d}.json"
+    return TASK / "data_v2" / task["experiment"] / f"{scenario}_{task['group']}_{task['index']:02d}.json"
 
 
 def evaluate_task(task, registration_hash):
@@ -417,6 +451,7 @@ def evaluate_task(task, registration_hash):
     true_prior = [F(0), F(0)]
     anchors = {}
     injection_response = {}
+    direction_states = []
     metrics = {
         name: {
             "loss": 0.0, "actual_gain": 0.0, "conditional_gain": F(0),
@@ -434,6 +469,7 @@ def evaluate_task(task, registration_hash):
 
     for time_index, frame in enumerate(frames):
         sent = frame[1]
+        old_direction_count = len(method.directions)
         CAPTURED_EXACT_UPDATE = None
         actual_actions, query, point_gain, point_transition = method.step(frame)
         if CAPTURED_EXACT_UPDATE is None:
@@ -444,6 +480,13 @@ def evaluate_task(task, registration_hash):
             injection_response[send_time] = exact_matvec(nominal_f, injection_response[send_time])
         if sent:
             injection_response[time_index] = tuple(row[0] for row in nominal_gain)
+        direction_states = advance_direction_states(
+            direction_states, method.directions, nominal_f,
+            tuple(row[0] for row in nominal_gain), sent,
+            injection_response, method.core.send_times,
+        )
+        if len(method.directions) < old_direction_count:
+            raise AssertionError("The frozen method removed an existing direction")
 
         for gate_name, threshold in gate_thresholds.items():
             point, amplitude = gate_states[gate_name]
@@ -508,8 +551,8 @@ def evaluate_task(task, registration_hash):
 
         actual_actions["M0"] = zero, None
         actual_actions["M3_rho"] = m3_rho_action(
-            method, actual_actions["M2"][0], actual_actions["M3"], time_index,
-            rho, anchors, injection_response,
+            method, actual_actions["M2"][0], actual_actions["M3"],
+            rho, anchors, direction_states,
         )
         if task["experiment"] == "drift" and rho == 0 and actual_actions["M3_rho"] != actual_actions["M3"]:
             raise AssertionError("M3-rho at rho=0 did not reproduce M3")
@@ -589,12 +632,48 @@ def save_task(task, registration_hash):
         atomic_json(path, row)
         return path
     except Exception:
-        error_dir = TASK / "data" / task["experiment"] / "errors"
+        error_dir = TASK / "data_v2" / task["experiment"] / "errors"
         error_dir.mkdir(parents=True, exist_ok=True)
         atomic_json(error_dir / f"{path.stem}_{time.time_ns()}.json",
                     {"task": task, "traceback": traceback.format_exc()})
         raise
 
+
+def check_projection_recurrence():
+    transitions = [
+        matrix([["1.01", "0.1"], ["0.02", "0.97"]]),
+        matrix([["0.99", "0.08"], ["0.01", "1.02"]]),
+        matrix([["1.03", "0.04"], ["0.03", "0.96"]]),
+        matrix([["0.98", "0.12"], ["0.02", "1.01"]]),
+        matrix([["1.02", "0.06"], ["0.01", "0.99"]]),
+    ]
+    gains = [
+        (F("0.2"), F("0.03")), (F("0.18"), F("0.02")),
+        (F("0.16"), F("0.04")), (F("0.14"), F("0.01")),
+        (F("0.12"), F("0.05")),
+    ]
+    sends = (True, False, True, True, False)
+    state = {"direction": (F(1), F(1, 3)), "projections": []}
+    responses = {}
+    send_times = []
+    for time_index, (transition, gain, sent) in enumerate(zip(transitions, gains, sends)):
+        for send_time in list(responses):
+            responses[send_time] = exact_matvec(transition, responses[send_time])
+        if sent:
+            responses[time_index] = gain
+            send_times.append(time_index)
+        direction, scale = move_direction(state["direction"], transition)
+        projections = [value / scale for value in state["projections"]]
+        if sent:
+            projections.append(exact_dot(direction, gain))
+        state = {"direction": direction, "projections": projections}
+        direct = [
+            exact_dot(exact_matvec(W_EXACT, direction), responses[send_time])
+            for send_time in send_times
+        ]
+        if state["projections"] != direct:
+            raise AssertionError("Adjoint scalar projection recurrence is not exact")
+    print("adjoint projection recurrence: exact rational equality passed")
 
 def check_generator():
     seed = SPEC["test_seed"]
@@ -611,6 +690,7 @@ def check_generator():
         if not np.array_equal(np.asarray(states), np.asarray(frozen_states)):
             raise AssertionError(f"Generated physical states differ from frozen {group}")
     print("generator parity: 3/3 frozen records and states match")
+    check_projection_recurrence()
 
 
 def run_kind(kind, workers=6):
@@ -639,7 +719,7 @@ def run_kind(kind, workers=6):
     rows = [read(output_path(task)) for task in tasks]
     cpu_seconds = sum(row["cpu_seconds"] for row in rows if not row.get("aliased_identical_bias_path"))
     wall_seconds = time.perf_counter() - started
-    log_path = TASK / "run_log.json"
+    log_path = TASK / "run_log_v2.json"
     log = read(log_path) if log_path.exists() else []
     log.append(dict(experiment=kind, requested=len(tasks), newly_computed=len(todo),
                     cpu_seconds=cpu_seconds, wall_seconds=wall_seconds, workers=workers))
@@ -674,6 +754,16 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+
+
+
+
 
 
 

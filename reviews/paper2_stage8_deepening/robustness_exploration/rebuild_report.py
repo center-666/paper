@@ -14,6 +14,7 @@ from scipy.stats import t as student_t
 
 TASK = Path(__file__).resolve().parent
 DATA = TASK / "data"
+DATA_V2 = TASK / "data_v2"
 FIG = TASK / "figures"
 REPORT = TASK / "robustness_report.md"
 METHODS = ("M0", "M1_h0", "M1_q95", "M1", "M2", "M3", "M3_rho")
@@ -41,8 +42,10 @@ def write_csv(path, rows):
 
 def data_rows():
     rows = []
-    for experiment in ("quantization", "drift", "model_mismatch"):
-        for path in sorted((DATA / experiment).glob("*.json")):
+    for path in sorted((DATA / "quantization").glob("*.json")):
+        rows.append(read(path))
+    for experiment in ("drift", "model_mismatch"):
+        for path in sorted((DATA_V2 / experiment).glob("*.json")):
             if path.parent.name == "errors":
                 continue
             rows.append(read(path))
@@ -320,7 +323,8 @@ def main():
     plot_drift(summary)
     plot_model_mismatch(summary)
 
-    log = read(TASK / "run_log.json") if (TASK / "run_log.json").exists() else []
+    log = read(TASK / "run_log_v1.json") if (TASK / "run_log_v1.json").exists() else []
+    log += read(TASK / "run_log_v2.json") if (TASK / "run_log_v2.json").exists() else []
     registration = read(TASK / "registration.json")
     quant = ordered_summary(summary, "quantization")
     drift = ordered_summary(summary, "drift")
@@ -340,7 +344,7 @@ def main():
     parts = [
         "# 双容液位模型边界与失配稳健性探索",
         "",
-        "本报告对应预先登记的探索性批次。M0/M1/M2/M3 使用同一条轨迹、同一接收记录和同一组随机种子。M1 使用冻结主门限 5.45758438644748；另以相同点估计提案并行回放 h0=0 和 q95=4.11686632914。样本是配对机制探索，不替代新的独立确认集。",
+        "量化批次按 registration_v1.json 登记。漂移和矩阵摄动按当前 registration.json 登记，使用伴随投影递推优化后的 M3-rho 实现。M0/M1/M2/M3 使用同一条轨迹和接收记录。M1 使用冻结主门限 5.45758438644748；另用共享点估计提案回放 h0=0 和 q95=4.11686632914。样本是配对机制探索，不替代新的独立确认集。",
         "",
         "所有表的实际降损使用真实状态与发布输出，正数表示降低累计损失。条件改善单独按与连续真值滤波器的精确有理数差计算。量化实验中的条件量是连续真值参考代理，模型/漂移实验按各自失配真实模型递推。风险下界违约仅统计有正下界动作；变幅实验中的上游统计证书不适用于真实变幅，M3-rho 仅为下游传播机制探索。",
         "",
@@ -361,6 +365,7 @@ def main():
         "## 实验 2A/2B：恒定幅值失配及漂移感知传播",
         "",
         "增强曲线与零漂移结果相同，因为正偏置基线已在 +b_max。衰减扫描按 512 拍末端总幅值下降百分比标定。2B 使用精确递推维护每个发送时刻的 Phi 响应，并在方向支撑中扣除 rho 加权残差上界。每个轨迹以最近已通过的方向证书时刻作幅值锚点。M3-rho 的上游似然区间仍由恒定幅值模型产生，故 M3-rho 输出下界是机制敏感性数值，不构成对变幅模型的概率保证。",
+        "优化利用 d_t=F_t^(-T)d_(t-1)/s_t 的伴随关系递推保存 d_t^T W Phi_(t,s)K_s 投影，并以精确有理数后缀和累计漂移余量。预先检查了投影递推与直接矩阵乘积的精确相等。",
         "",
         markdown_table(drift, cols),
         "",
@@ -398,6 +403,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
 
 
 
