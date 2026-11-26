@@ -176,14 +176,14 @@ def registration_data():
         "sample_plan": {
             "quantization": "12 each for strong_positive, strong_negative, and health at each bit depth",
             "drift": "12 paired positive-bias traces at each unique decay level; clipped enhancement aliases the constant trace",
-            "model_mismatch": "12 each for health, strong_positive, strong_negative at each epsilon_A",
+            "model_mismatch": "12 per group at 0%, +/-1%, +/-2%; 2 per group at +/-5% extreme pilot due exact rational compute budget",
             "model_mismatch_batch_size": 6,
-            "model_mismatch_batch_order": "epsilon_A, group, then indices 0-5 and 6-11",
+            "model_mismatch_batch_order": "standard cases indices 0-5 and 6-11; extreme pilot indices 0-1 per group",
             "workers": 6,
         },
         "source_hashes": source_hashes(),
         "decimal_exponent_range": {"Emax": MAX_EMAX, "Emin": MIN_EMIN},
-        "matrix_batch_runner_sha256": digest(TASK / "run_matrix_batches.py"),
+        "matrix_batch_runner_sha256": digest(TASK / "run_matrix_batches_v4.py"),
         "implementation_sha256": hashlib.sha256((TASK / "run_exploration.py").read_bytes()).hexdigest(),
         "rebuild_report_sha256": digest(TASK / "rebuild_report_final.py"),
         "reproduce_sha256": digest(TASK / "reproduce.py"),
@@ -213,7 +213,7 @@ def verify_registration():
         raise RuntimeError("Reproduction entry differs from registration")
     if registration.get("decimal_exponent_range") != {"Emax": MAX_EMAX, "Emin": MIN_EMIN}:
         raise RuntimeError("Registered Decimal exponent range mismatch")
-    if digest(TASK / "run_matrix_batches.py") != registration["matrix_batch_runner_sha256"]:
+    if digest(TASK / "run_matrix_batches_v4.py") != registration["matrix_batch_runner_sha256"]:
         raise RuntimeError("Matrix batch runner differs from registration")
     return registration, digest(TASK / "registration.json")
 
@@ -428,7 +428,8 @@ def build_tasks(kind):
             scenario = f"eps_{float(epsilon):+.2%}"
             for group in ("health", "strong_positive", "strong_negative"):
                 bias = "0" if group == "health" else ("0.35" if group == "strong_positive" else "-0.35")
-                for index in indices:
+                sample_indices = range(2) if abs(epsilon) == F(".05") else indices
+                for index in sample_indices:
                     tasks.append(dict(experiment=kind, scenario=scenario, epsilon=str(epsilon),
                                       group=group, index=index, bias_kind="model_constant", bias=bias))
     else:
@@ -782,6 +783,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
 
 
 
