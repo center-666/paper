@@ -44,7 +44,7 @@ from experiment import (
     read,
     record as frozen_record,
 )
-from exact_linear import add, asfloat, matmul, matrix, transpose, update
+from exact_linear import add, asfloat, inverse, matmul, matrix, transpose, update
 from fixed_amplitude import capped_halfspace_action
 
 PLANT = read(STAGE8 / "config/plants.json")["plants"]["industrial_two_tank"]
@@ -754,6 +754,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
