@@ -44,13 +44,13 @@ def data_rows():
     rows = []
     for path in sorted((DATA / "quantization").glob("*.json")):
         rows.append(read(path))
-    for experiment in ("drift", "model_mismatch"):
-        for path in sorted((DATA_V2 / experiment).glob("*.json")):
-            if path.parent.name == "errors":
-                continue
-            rows.append(read(path))
+    for path in sorted((DATA_V2 / "drift").glob("*.json")):
+        rows.append(read(path))
+    for path in sorted((TASK / "data_v3" / "model_mismatch").glob("*.json")):
+        if path.parent.name == "errors":
+            continue
+        rows.append(read(path))
     return rows
-
 
 def paired_interval(values):
     values = np.asarray(values, dtype=float)
@@ -325,6 +325,7 @@ def main():
 
     log = read(TASK / "run_log_v1.json") if (TASK / "run_log_v1.json").exists() else []
     log += read(TASK / "run_log_v2.json") if (TASK / "run_log_v2.json").exists() else []
+    log += read(TASK / "run_log_v3.json") if (TASK / "run_log_v3.json").exists() else []
     registration = read(TASK / "registration.json")
     quant = ordered_summary(summary, "quantization")
     drift = ordered_summary(summary, "drift")
@@ -347,7 +348,7 @@ def main():
     parts = [
         "# 双容液位模型边界与失配稳健性探索",
         "",
-        "量化批次按 registration_v1.json 登记。漂移和矩阵摄动按当前 registration.json 登记，使用伴随投影递推优化后的 M3-rho 实现。M0/M1/M2/M3 使用同一条轨迹和接收记录。M1 使用冻结主门限 5.45758438644748；另用共享点估计提案回放 h0=0 和 q95=4.11686632914。样本是配对机制探索，不替代新的独立确认集。",
+        "量化批次按 registration_v1.json 登记。漂移批次按 registration_v2.json 登记。矩阵摄动按当前 registration.json 登记，使用六轨迹分批实现。V2 超预算先导运行保存在 data_v2_attempt，不并入确认汇总。M0/M1/M2/M3 使用同一条轨迹和接收记录。M1 使用冻结主门限 5.45758438644748；另用共享点估计提案回放 h0=0 和 q95=4.11686632914。样本是配对机制探索，不替代新的独立确认集。",
         "",
         "所有表的实际降损使用真实状态与发布输出，正数表示降低累计损失。条件改善单独按与连续真值滤波器的精确有理数差计算。量化实验中的条件量是连续真值参考代理，模型/漂移实验按各自失配真实模型递推。风险下界违约仅统计有正下界动作；变幅实验中的上游统计证书不适用于真实变幅，M3-rho 仅为下游传播机制探索。",
         "",
@@ -406,6 +407,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
 
 
 

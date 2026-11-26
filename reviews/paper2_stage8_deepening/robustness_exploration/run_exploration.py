@@ -174,6 +174,8 @@ def registration_data():
             "quantization": "12 each for strong_positive, strong_negative, and health at each bit depth",
             "drift": "12 paired positive-bias traces at each unique decay level; clipped enhancement aliases the constant trace",
             "model_mismatch": "12 each for health, strong_positive, strong_negative at each epsilon_A",
+            "model_mismatch_batch_size": 6,
+            "model_mismatch_batch_order": "epsilon_A, group, then indices 0-5 and 6-11",
             "workers": 6,
         },
         "source_hashes": source_hashes(),
@@ -185,7 +187,7 @@ def registration_data():
 
 def register():
     target = TASK / "registration.json"
-    if target.exists() and any((TASK / "data_v2").rglob("*.json")):
+    if target.exists() and any((TASK / "data_v3").rglob("*.json")):
         raise FileExistsError("Cannot revise the registration after trial data exist")
     atomic_json(target, registration_data())
     print("registered", digest(target))
@@ -427,8 +429,8 @@ def build_tasks(kind):
 
 def output_path(task):
     scenario = task["scenario"].replace("%", "pct").replace("+", "p").replace("-", "m")
-    return TASK / "data_v2" / task["experiment"] / f"{scenario}_{task['group']}_{task['index']:02d}.json"
-
+    directory = "data_v3" if task["experiment"] == "model_mismatch" else "data_v2"
+    return TASK / directory / task["experiment"] / f"{scenario}_{task['group']}_{task['index']:02d}.json"
 
 def evaluate_task(task, registration_hash):
     global CAPTURED_EXACT_UPDATE
@@ -632,7 +634,8 @@ def save_task(task, registration_hash):
         atomic_json(path, row)
         return path
     except Exception:
-        error_dir = TASK / "data_v2" / task["experiment"] / "errors"
+        directory = "data_v3" if task["experiment"] == "model_mismatch" else "data_v2"
+        error_dir = TASK / directory / task["experiment"] / "errors"
         error_dir.mkdir(parents=True, exist_ok=True)
         atomic_json(error_dir / f"{path.stem}_{time.time_ns()}.json",
                     {"task": task, "traceback": traceback.format_exc()})
@@ -693,9 +696,12 @@ def check_generator():
     check_projection_recurrence()
 
 
-def run_kind(kind, workers=6):
+def run_kind(kind, workers=6, scenario_filter=None, group_filter=None, index_start=0, index_stop=12):
     _, registration_hash = verify_registration()
     tasks = build_tasks(kind)
+    tasks = [task for task in tasks if (scenario_filter is None or task["scenario"] == scenario_filter) and (group_filter is None or task["group"] == group_filter) and index_start <= task["index"] < index_stop]
+    if not tasks:
+        raise ValueError("The requested registered batch is empty")
     todo = []
     for task in tasks:
         path = output_path(task)
@@ -719,9 +725,12 @@ def run_kind(kind, workers=6):
     rows = [read(output_path(task)) for task in tasks]
     cpu_seconds = sum(row["cpu_seconds"] for row in rows if not row.get("aliased_identical_bias_path"))
     wall_seconds = time.perf_counter() - started
-    log_path = TASK / "run_log_v2.json"
+    log_name = "run_log_v3.json" if kind == "model_mismatch" else "run_log_v2.json"
+    log_path = TASK / log_name
     log = read(log_path) if log_path.exists() else []
-    log.append(dict(experiment=kind, requested=len(tasks), newly_computed=len(todo),
+    log.append(dict(experiment=kind, scenario=scenario_filter, group=group_filter,
+                    index_start=index_start, index_stop=index_stop,
+                    requested=len(tasks), newly_computed=len(todo),
                     cpu_seconds=cpu_seconds, wall_seconds=wall_seconds, workers=workers))
     atomic_json(log_path, log)
     print(f"{kind}: {len(rows)} rows; {cpu_seconds/3600:.3f} CPU h; {wall_seconds/3600:.3f} wall h")
@@ -734,6 +743,10 @@ def main():
         choices=("register", "check", "quantization", "drift", "model_mismatch", "all"),
     )
     parser.add_argument("--workers", type=int, default=6)
+    parser.add_argument("--scenario")
+    parser.add_argument("--group")
+    parser.add_argument("--index-start", type=int, default=0)
+    parser.add_argument("--index-stop", type=int, default=12)
     args = parser.parse_args()
     if args.phase == "register":
         register()
@@ -744,16 +757,24 @@ def main():
         if not (TASK / "registration.json").exists():
             register()
         check_generator()
-        for kind in ("quantization", "drift", "model_mismatch"):
-            run_kind(kind, args.workers)
+        run_kind("drift", args.workers)
+        for epsilon in ("eps_+0.00%", "eps_+1.00%", "eps_-1.00%",
+                        "eps_+2.00%", "eps_-2.00%", "eps_+5.00%", "eps_-5.00%"):
+            for group in ("health", "strong_positive", "strong_negative"):
+                for index_start in (0, 6):
+                    run_kind("model_mismatch", args.workers, epsilon, group,
+                             index_start, index_start + 6)
     else:
         verify_registration()
         check_generator()
-        run_kind(args.phase, args.workers)
+        run_kind(args.phase, args.workers, args.scenario, args.group,
+                 args.index_start, args.index_stop)
 
 
 if __name__ == "__main__":
     main()
+
+
 
 
 
