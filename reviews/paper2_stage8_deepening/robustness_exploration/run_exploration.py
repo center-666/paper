@@ -2,7 +2,7 @@
 
 import argparse
 from concurrent.futures import ProcessPoolExecutor, as_completed
-from decimal import Decimal as D
+from decimal import Decimal as D, MAX_EMAX, MIN_EMIN, getcontext
 from fractions import Fraction as F
 import hashlib
 import json
@@ -20,6 +20,9 @@ os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
 sys.dont_write_bytecode = True
 
 import numpy as np
+
+getcontext().Emax = MAX_EMAX
+getcontext().Emin = MIN_EMIN
 
 TASK = Path(__file__).resolve().parent
 STAGE8 = TASK.parent
@@ -179,15 +182,17 @@ def registration_data():
             "workers": 6,
         },
         "source_hashes": source_hashes(),
+        "decimal_exponent_range": {"Emax": MAX_EMAX, "Emin": MIN_EMIN},
+        "matrix_batch_runner_sha256": digest(TASK / "run_matrix_batches.py"),
         "implementation_sha256": hashlib.sha256((TASK / "run_exploration.py").read_bytes()).hexdigest(),
-        "rebuild_report_sha256": digest(TASK / "rebuild_report.py"),
+        "rebuild_report_sha256": digest(TASK / "rebuild_report_final.py"),
         "reproduce_sha256": digest(TASK / "reproduce.py"),
     }
 
 
 def register():
     target = TASK / "registration.json"
-    if target.exists() and any((TASK / "data_v3").rglob("*.json")):
+    if target.exists() and any((TASK / "data_v4").rglob("*.json")):
         raise FileExistsError("Cannot revise the registration after trial data exist")
     atomic_json(target, registration_data())
     print("registered", digest(target))
@@ -202,10 +207,14 @@ def verify_registration():
     implementation_hash = hashlib.sha256((TASK / "run_exploration.py").read_bytes()).hexdigest()
     if implementation_hash != registration["implementation_sha256"]:
         raise RuntimeError("Exploration implementation differs from registration")
-    if digest(TASK / "rebuild_report.py") != registration["rebuild_report_sha256"]:
+    if digest(TASK / "rebuild_report_final.py") != registration["rebuild_report_sha256"]:
         raise RuntimeError("Report rebuild script differs from registration")
     if digest(TASK / "reproduce.py") != registration["reproduce_sha256"]:
         raise RuntimeError("Reproduction entry differs from registration")
+    if registration.get("decimal_exponent_range") != {"Emax": MAX_EMAX, "Emin": MIN_EMIN}:
+        raise RuntimeError("Registered Decimal exponent range mismatch")
+    if digest(TASK / "run_matrix_batches.py") != registration["matrix_batch_runner_sha256"]:
+        raise RuntimeError("Matrix batch runner differs from registration")
     return registration, digest(TASK / "registration.json")
 
 
@@ -429,7 +438,7 @@ def build_tasks(kind):
 
 def output_path(task):
     scenario = task["scenario"].replace("%", "pct").replace("+", "p").replace("-", "m")
-    directory = "data_v3" if task["experiment"] == "model_mismatch" else "data_v2"
+    directory = "data_v4" if task["experiment"] == "model_mismatch" else "data_v2"
     return TASK / directory / task["experiment"] / f"{scenario}_{task['group']}_{task['index']:02d}.json"
 
 def evaluate_task(task, registration_hash):
@@ -634,7 +643,7 @@ def save_task(task, registration_hash):
         atomic_json(path, row)
         return path
     except Exception:
-        directory = "data_v3" if task["experiment"] == "model_mismatch" else "data_v2"
+        directory = "data_v4" if task["experiment"] == "model_mismatch" else "data_v2"
         error_dir = TASK / directory / task["experiment"] / "errors"
         error_dir.mkdir(parents=True, exist_ok=True)
         atomic_json(error_dir / f"{path.stem}_{time.time_ns()}.json",
@@ -725,7 +734,7 @@ def run_kind(kind, workers=6, scenario_filter=None, group_filter=None, index_sta
     rows = [read(output_path(task)) for task in tasks]
     cpu_seconds = sum(row["cpu_seconds"] for row in rows if not row.get("aliased_identical_bias_path"))
     wall_seconds = time.perf_counter() - started
-    log_name = "run_log_v3.json" if kind == "model_mismatch" else "run_log_v2.json"
+    log_name = "run_log_v4.json" if kind == "model_mismatch" else "run_log_v2.json"
     log_path = TASK / log_name
     log = read(log_path) if log_path.exists() else []
     log.append(dict(experiment=kind, scenario=scenario_filter, group=group_filter,
@@ -773,6 +782,11 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
 
 
 

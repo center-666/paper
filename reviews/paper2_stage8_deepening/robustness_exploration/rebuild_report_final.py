@@ -46,10 +46,11 @@ def data_rows():
         rows.append(read(path))
     for path in sorted((DATA_V2 / "drift").glob("*.json")):
         rows.append(read(path))
-    for path in sorted((TASK / "data_v3" / "model_mismatch").glob("*.json")):
-        if path.parent.name == "errors":
-            continue
-        rows.append(read(path))
+    for directory in ("data_v3", "data_v4"):
+        for path in sorted((TASK / directory / "model_mismatch").glob("*.json")):
+            if path.parent.name == "errors":
+                continue
+            rows.append(read(path))
     return rows
 
 def paired_interval(values):
@@ -72,19 +73,25 @@ def summarize(rows):
         method_names = sorted({name for row in cohort for name in row["metrics"]})
         paired_by_method = {}
         if "M2" in method_names:
-            for paired_method in method_names:
-                if paired_method == "M2":
+            for method_name in method_names:
+                if method_name == "M2":
                     continue
-                differences = [
-                    by_index[i]["metrics"][paired_method]["actual_gain"]
-                    - by_index[i]["metrics"]["M2"]["actual_gain"]
-                    for i in sorted(by_index)
+                values = [
+                    by_index[index]["metrics"][method_name]["actual_gain"]
+                    - by_index[index]["metrics"]["M2"]["actual_gain"]
+                    for index in sorted(by_index)
                 ]
-                paired_by_method[paired_method] = paired_interval(differences)
-        transmission_rate = sum(row["transmissions"] for row in cohort) / sum(
-            row["horizon"] for row in cohort
-        )
-        alias = all(row.get("aliased_identical_bias_path", False) for row in cohort)
+                paired_by_method[("M2", method_name)] = paired_interval(values)
+        if "M3" in method_names:
+            for method_name in method_names:
+                if method_name == "M3":
+                    continue
+                values = [
+                    by_index[index]["metrics"][method_name]["actual_gain"]
+                    - by_index[index]["metrics"]["M3"]["actual_gain"]
+                    for index in sorted(by_index)
+                ]
+                paired_by_method[("M3", method_name)] = paired_interval(values)
         for method in method_names:
             values = [row["metrics"][method] for row in cohort]
             n = len(values)
@@ -92,7 +99,8 @@ def summarize(rows):
             violations = sum(item["risk_violations"] for item in values)
             conditional = np.asarray([item["conditional_gain"] for item in values], dtype=float)
             first = [item["first_useful"] for item in values if item["first_useful"] is not None]
-            method_pair = paired_by_method.get(method)
+            pair_to_m2 = paired_by_method.get(("M2", method))
+            pair_to_m3 = paired_by_method.get(("M3", method))
             row_out = dict(
                 experiment=experiment,
                 scenario=scenario,
@@ -112,9 +120,12 @@ def summarize(rows):
                 certificate_checks=checks,
                 risk_violations=violations,
                 risk_violation_rate=violations / checks if checks else None,
-                paired_method_minus_M2_mean=method_pair[0] if method_pair else None,
-                paired_method_minus_M2_t95_low=method_pair[1] if method_pair else None,
-                paired_method_minus_M2_t95_high=method_pair[2] if method_pair else None,
+                paired_method_minus_M2_mean=pair_to_m2[0] if pair_to_m2 else None,
+                paired_method_minus_M2_t95_low=pair_to_m2[1] if pair_to_m2 else None,
+                paired_method_minus_M2_t95_high=pair_to_m2[2] if pair_to_m2 else None,
+                paired_method_minus_M3_mean=pair_to_m3[0] if pair_to_m3 else None,
+                paired_method_minus_M3_t95_low=pair_to_m3[1] if pair_to_m3 else None,
+                paired_method_minus_M3_t95_high=pair_to_m3[2] if pair_to_m3 else None,
                 aliased_identical_bias_path=alias,
                 cpu_seconds_sum=sum(row["cpu_seconds"] for row in cohort if not row.get("aliased_identical_bias_path")) if method == "M0" else None,
             )
@@ -326,6 +337,7 @@ def main():
     log = read(TASK / "run_log_v1.json") if (TASK / "run_log_v1.json").exists() else []
     log += read(TASK / "run_log_v2.json") if (TASK / "run_log_v2.json").exists() else []
     log += read(TASK / "run_log_v3.json") if (TASK / "run_log_v3.json").exists() else []
+    log += read(TASK / "run_log_v4.json") if (TASK / "run_log_v4.json").exists() else []
     registration = read(TASK / "registration.json")
     quant = ordered_summary(summary, "quantization")
     drift = ordered_summary(summary, "drift")
@@ -348,7 +360,7 @@ def main():
     parts = [
         "# 双容液位模型边界与失配稳健性探索",
         "",
-        "量化批次按 registration_v1.json 登记。漂移批次按 registration_v2.json 登记。矩阵摄动按当前 registration.json 登记，使用六轨迹分批实现。V2 超预算先导运行保存在 data_v2_attempt，不并入确认汇总。M0/M1/M2/M3 使用同一条轨迹和接收记录。M1 使用冻结主门限 5.45758438644748；另用共享点估计提案回放 h0=0 和 q95=4.11686632914。样本是配对机制探索，不替代新的独立确认集。",
+        "量化批次按 registration_v1.json 登记。漂移批次按 registration_v2.json 登记。矩阵摄动有两段登记：registration.json 对应 0% 与 ±1%、+2% 档；registration_v4.json 对应扩展 Decimal 指数范围后的剩余极端档。V2 超预算先导运行保存在 data_v2_attempt，不并入汇总。V3 在 +5% 健康核遇到 Decimal 指数范围溢出，错误保留在 data_v3/model_mismatch/errors。V4 扩大 Decimal Emax/Emin，仅重跑 +5% 全部三类工况，输出在 data_v4。M0/M1/M2/M3 使用同一条轨迹和接收记录。M1 使用冻结主门限 5.45758438644748；另用共享点估计提案回放 h0=0 和 q95=4.11686632914。样本是配对机制探索，不替代新的独立确认集。",
         "",
         "所有表的实际降损使用真实状态与发布输出，正数表示降低累计损失。条件改善单独按与连续真值滤波器的精确有理数差计算。量化实验中的条件量是连续真值参考代理，模型/漂移实验按各自失配真实模型递推。风险下界违约仅统计有正下界动作；变幅实验中的上游统计证书不适用于真实变幅，M3-rho 仅为下游传播机制探索。",
         "",
@@ -407,6 +419,12 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
 
 
 
