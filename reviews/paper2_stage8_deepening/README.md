@@ -1,5 +1,11 @@
 # 双容液位确认实验（方案 A）
 
+在本目录可用二进制区间版独立复放全部 116 条双容轨迹。方向选择、连续幅值证书、跨拍传播和发布均从公开帧重算。参考实现的已存动作用于事后对比，真实幅值仅用于离线条件风险核验。
+
+```sh
+uv run --script code/binary_query.py --workers 4 --output results/binary_query_audit.json results/confirmation supplement/results/transition
+```
+
 [验收报告](reports/acceptance.md) · [逐轨迹配对数据](reports/paired_trajectories.csv) · [三线表](reports/tables/performance.tex) · [工程计时](reports/tables/timing.tex) · [预注册](registration.json)
 
 在本目录执行以下命令可从逐轨迹归档重建报告、图和表。
