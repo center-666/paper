@@ -8,13 +8,14 @@
 
     uv run --python 3.14 --with numpy,scipy,matplotlib python -B reviews/paper2_stage8_deepening/robustness_exploration/reproduce.py --workers 6
 
-完整量化扫描已在第一版登记 registration_v1.json 下完成，原始记录位于 data/quantization/。第一版漂移计算成本过高，未完成记录保留在 data_v1/drift/。优化后的漂移与矩阵摄动使用当前 registration.json，输出写入 data_v2/。
+完整量化扫描已在第一版登记 registration_v1.json 下完成，原始记录位于 data/quantization/。第一版漂移计算成本过高，未完成记录保留在 data_v1/drift/。优化后的漂移与矩阵摄动使用当前 registration.json，输出写入 data_v2/。最终汇总应运行 rebuild_report_final.py。
 
 单项断点续跑：
 
     uv run --python 3.14 --with numpy,scipy,matplotlib python -B reviews/paper2_stage8_deepening/robustness_exploration/run_exploration.py drift --workers 6
     uv run --python 3.14 --with numpy,scipy,matplotlib python -B reviews/paper2_stage8_deepening/robustness_exploration/run_exploration.py model_mismatch --workers 6
     uv run --python 3.14 --with numpy,scipy,matplotlib python -B reviews/paper2_stage8_deepening/robustness_exploration/rebuild_report.py
+    uv run --python 3.14 --with numpy,scipy,matplotlib python -B reviews/paper2_stage8_deepening/robustness_exploration/rebuild_report_final.py
 
 实现、输入或注册哈希不符时脚本会停止。失败轨迹写入 data_v2/<experiment>/errors/，保留其种子、场景和错误记录。
 
@@ -27,3 +28,4 @@ registration_v1.json 固定了量化批次的源哈希、随机规则、三档�
 漂移幅度从 +0.35 cm 下降到 b_max 区间内。按题设的增强定义从 +0.35 cm 出发会立即饱和为常值，报告只将其作为别名路径。A 摄动使用逐元素 A_plant=A_nom*(1+epsilon_A)。所有在线算法与触发中心仍使用标称系统。
 
 量化、漂移与矩阵摄动都超出连续载荷、恒定偏置或标称参数证书的原始理论合同。其违约数是明确标注的失配代理诊断。M3-rho 只检验下游方向支撑扣减机制，不表示上游时间一致似然证书已扩展为变幅攻击保证。
+
